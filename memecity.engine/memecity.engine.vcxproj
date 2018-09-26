@@ -125,7 +125,27 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AssetManager.cpp" />
+    <ClCompile Include="AudioFacade.cpp" />
+    <ClCompile Include="GraphicsFacade.cpp" />
+    <ClCompile Include="InputFacade.cpp" />
+    <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MultimediaManager.cpp" />
+    <ClCompile Include="SerializationFacade.cpp" />
+    <ClCompile Include="StorageManager.cpp" />
+    <ClCompile Include="TimerFacade.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AssetManager.h" />
+    <ClInclude Include="AudioFacade.h" />
+    <ClInclude Include="GraphicsFacade.h" />
+    <ClInclude Include="InputFacade.h" />
+    <ClInclude Include="InputManager.h" />
+    <ClInclude Include="MultimediaManager.h" />
+    <ClInclude Include="SerializationFacade.h" />
+    <ClInclude Include="StorageManager.h" />
+    <ClInclude Include="TimerFacade.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
