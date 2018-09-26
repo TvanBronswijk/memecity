@@ -13,10 +13,84 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\Facades">
+      <UniqueIdentifier>{af2f497d-80d0-4703-9bf3-8764aa63b282}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Facades">
+      <UniqueIdentifier>{bc101bc5-d5e0-4ea0-9143-824f195d6ce0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Managers">
+      <UniqueIdentifier>{fd4ce232-c5c6-460f-a5ac-582ba4a29e0b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Managers">
+      <UniqueIdentifier>{4e403f74-ea79-485f-ac02-5e6aa1849db9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Utilities">
+      <UniqueIdentifier>{1755097f-ecda-4dda-b7a4-04ff35d46dc2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Utilities">
+      <UniqueIdentifier>{5e28a962-31e9-45c4-8a7a-701134626559}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="GraphicsFacade.cpp">
+      <Filter>Source Files\Facades</Filter>
+    </ClCompile>
+    <ClCompile Include="AudioFacade.cpp">
+      <Filter>Source Files\Facades</Filter>
+    </ClCompile>
+    <ClCompile Include="InputFacade.cpp">
+      <Filter>Source Files\Facades</Filter>
+    </ClCompile>
+    <ClCompile Include="SerializationFacade.cpp">
+      <Filter>Source Files\Facades</Filter>
+    </ClCompile>
+    <ClCompile Include="MultimediaManager.cpp">
+      <Filter>Source Files\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="InputManager.cpp">
+      <Filter>Source Files\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="StorageManager.cpp">
+      <Filter>Source Files\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="AssetManager.cpp">
+      <Filter>Source Files\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="TimerFacade.cpp">
+      <Filter>Source Files\Facades</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="GraphicsFacade.h">
+      <Filter>Header Files\Facades</Filter>
+    </ClInclude>
+    <ClInclude Include="AudioFacade.h">
+      <Filter>Header Files\Facades</Filter>
+    </ClInclude>
+    <ClInclude Include="InputFacade.h">
+      <Filter>Header Files\Facades</Filter>
+    </ClInclude>
+    <ClInclude Include="SerializationFacade.h">
+      <Filter>Header Files\Facades</Filter>
+    </ClInclude>
+    <ClInclude Include="MultimediaManager.h">
+      <Filter>Header Files\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="InputManager.h">
+      <Filter>Header Files\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="StorageManager.h">
+      <Filter>Header Files\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="AssetManager.h">
+      <Filter>Header Files\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="TimerFacade.h">
+      <Filter>Header Files\Facades</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

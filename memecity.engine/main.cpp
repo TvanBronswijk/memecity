@@ -1,44 +1,16 @@
-#include <SDL.h>
-#include <iostream>
-
-bool is_running = true;
-SDL_Event event;
+#define _CRTDBG_MAP_ALLOC
+#include <stdlib.h>
+#include <crtdbg.h>
+#include "GraphicsFacade.h"
 
 int main(int argc, char* argv[])
 {
-	SDL_Init(SDL_INIT_VIDEO);
-	const auto window = SDL_CreateWindow("SDL TEST", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 640, 480,
-		SDL_WINDOW_SHOWN);
+	//DO NOT DELETE THIS LINE: IS INTENDED TO FIND MEMORY LEAKS
+	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 
-	while (is_running)
-	{
-		while (SDL_PollEvent(&event))
-		{
-			if (event.type == SDL_KEYUP)
-			{
-				switch (event.key.keysym.sym)
-				{
-				case SDLK_q:
-					is_running = false;
+	GraphicsFacade* graphics = new GraphicsFacade();
 
-				case SDLK_DOWN:
-					std::cout << "Down";
-					break;
-
-				case SDLK_UP:
-					std::cout << "Up";
-					break;
-
-				default:
-					std::cout << event.key.keysym.sym;
-					break;
-				}
-			}
-		}
-	}
-
-	SDL_DestroyWindow(window);
-	SDL_Quit();
+	delete graphics;
 
 	return 0;
 }
