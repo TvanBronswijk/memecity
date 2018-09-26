@@ -89,6 +89,8 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <AdditionalIncludeDirectories>C:\Repositories\memecity\memecity.engine;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(SolutionDir)dependencies\SDL2_mixer-2.0.2\lib\x64;$(SolutionDir)dependencies\SDL2_ttf-2.0.14\lib\x64;$(SolutionDir)dependencies\SDL2_image-2.0.3\lib\x64;$(SolutionDir)dependencies\SDL2\lib\x64;</AdditionalLibraryDirectories>
@@ -127,24 +129,31 @@
   <ItemGroup>
     <ClCompile Include="AssetManager.cpp" />
     <ClCompile Include="AudioFacade.cpp" />
+    <ClCompile Include="Graphic.cpp" />
+    <ClCompile Include="Graphics.cpp" />
     <ClCompile Include="GraphicsFacade.cpp" />
     <ClCompile Include="InputFacade.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MultimediaManager.cpp" />
     <ClCompile Include="SerializationFacade.cpp" />
+    <ClCompile Include="Texture.cpp" />
     <ClCompile Include="StorageManager.cpp" />
     <ClCompile Include="TimerFacade.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AssetManager.h" />
     <ClInclude Include="AudioFacade.h" />
+    <ClInclude Include="Graphic.h" />
+    <ClInclude Include="Graphics.h" />
     <ClInclude Include="GraphicsFacade.h" />
     <ClInclude Include="InputFacade.h" />
     <ClInclude Include="InputManager.h" />
+    <ClInclude Include="MathHelper.h" />
     <ClInclude Include="MultimediaManager.h" />
     <ClInclude Include="SerializationFacade.h" />
     <ClInclude Include="StorageManager.h" />
+    <ClInclude Include="Texture.h" />
     <ClInclude Include="TimerFacade.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
