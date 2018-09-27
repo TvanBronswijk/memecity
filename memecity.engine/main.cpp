@@ -2,11 +2,21 @@
 #include <stdlib.h>
 #include <crtdbg.h>
 #include "Texture.h"
+#include "ExampleGuy.h"
+#include "SerializationFacade.h"
+#include <iostream>
 
 int main(int argc, char* argv[])
 {
 	//DO NOT DELETE THIS LINE: IS INTENDED TO FIND MEMORY LEAKS
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+
+	ExampleGuy E = ExampleGuy();
+	SerializationFacade S = SerializationFacade();
+	std::cout << S.serialize_example_guy(E);
+
+
+	
 
 	Graphics *graphics = Graphics::Instance();
 
