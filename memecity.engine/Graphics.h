@@ -22,7 +22,6 @@ private:
 
 	SDL_Window* mWindow;
 	SDL_Surface* mBackBuffer;
-
 	SDL_Renderer* mRenderer;
 
 public:
