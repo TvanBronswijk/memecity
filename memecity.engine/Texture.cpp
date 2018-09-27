@@ -1,63 +1,62 @@
 #include "Texture.h"
 
-Texture::Texture(std::string filename)
+Texture::Texture(const std::string filename)
 {
-	mGraphics = Graphics::Instance();
+	graphics = GraphicsFacade::GetInstance();
+	asset_manager = AssetManager::Instance();
+	texture = asset_manager->GetTexture(filename);
+	SDL_QueryTexture(texture, nullptr, nullptr, &texture_width, &texture_height);
 
-	mTex = AssetManager::Instance()->GetTexture(filename);
+	is_clipped = false;
 
-	SDL_QueryTexture(mTex, nullptr, nullptr, &mWidth, &mHeight);
-
-	mClipped = false;
-
-	mRenderRect.w = mWidth;
-	mRenderRect.h = mHeight;
+	render_rect.w = texture_width;
+	render_rect.h = texture_height;
 }
 
-Texture::Texture(std::string filename, int x, int y, int width, int height)
+Texture::Texture(const std::string filename, const int x, const int y, const int width, int height)
 {
-	mGraphics = Graphics::Instance();
+	graphics = GraphicsFacade::GetInstance();
+	asset_manager = AssetManager::Instance();
+	texture = asset_manager->GetTexture(filename);
+	is_clipped = true;
 
-	mTex = AssetManager::Instance()->GetTexture(filename);
+	texture_width = width;
+	texture_height = height;
 
-	mClipped = true;
+	render_rect.w = texture_width;
+	render_rect.h = texture_height;
 
-	mWidth = width;
-	mHeight = height;
-
-	mRenderRect.w = mWidth;
-	mRenderRect.h = mHeight;
-
-	mClippedRect.x = x;
-	mClippedRect.y = y;
-	mClippedRect.w = mWidth;
-	mClippedRect.h = mHeight;
+	clipped_rect.x = x;
+	clipped_rect.y = y;
+	clipped_rect.w = texture_width;
+	clipped_rect.h = texture_height;
 }
 
-Texture::Texture(std::string text, std::string fontPath, int size, SDL_Color color)
+Texture::Texture(const std::string text, const std::string font_path, const int size, const SDL_Color color)
 {
-	mGraphics = Graphics::Instance();
-	mTex = AssetManager::Instance()->GetText(text, fontPath, size, color);
+	graphics = GraphicsFacade::GetInstance();
+	asset_manager = AssetManager::Instance();
+	texture = asset_manager->GetText(text, font_path, size, color);
 
-	mClipped = false;
+	is_clipped = false;
 
-	SDL_QueryTexture(mTex, nullptr, nullptr, &mWidth, &mHeight);
+	SDL_QueryTexture(texture, nullptr, nullptr, &texture_width, &texture_height);
 
-	mRenderRect.w = mWidth;
-	mRenderRect.h = mHeight;
+	render_rect.w = texture_width;
+	render_rect.h = texture_height;
 }
 
 Texture::~Texture()
 {
-	mTex = nullptr;
-	mGraphics = nullptr;
+	texture = nullptr;
+	graphics = nullptr;
+	asset_manager = nullptr;
 }
 
 void Texture::Render()
 {
-	Vector2 pos = Pos(world);
-	mRenderRect.x = int(pos.x - mWidth * 0.5f);
-	mRenderRect.y = int(pos.y - mHeight * 0.5f);
-
-	mGraphics->DrawTexture(mTex, (mClipped) ? &mClippedRect : nullptr, &mRenderRect);
+	const auto pos = Pos(world);
+	render_rect.x = int(pos.x - texture_width * 0.5f);
+	render_rect.y = int(pos.y - texture_height * 0.5f);
+	graphics->DrawTexture(texture, (is_clipped) ? &clipped_rect : nullptr, &render_rect);
 }

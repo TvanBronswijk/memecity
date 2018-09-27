@@ -2,7 +2,7 @@
 #define _ASSET_MANAGER_H
 #include <map>
 #include <SDL.h>
-#include "Graphics.h"
+#include <SDL_ttf.h>
 #include <SDL_mixer.h>
 class AssetManager
 {

@@ -130,7 +130,6 @@
     <ClCompile Include="AssetManager.cpp" />
     <ClCompile Include="AudioFacade.cpp" />
     <ClCompile Include="Graphic.cpp" />
-    <ClCompile Include="Graphics.cpp" />
     <ClCompile Include="GraphicsFacade.cpp" />
     <ClCompile Include="InputFacade.cpp" />
     <ClCompile Include="InputManager.cpp" />
@@ -145,7 +144,6 @@
     <ClInclude Include="AssetManager.h" />
     <ClInclude Include="AudioFacade.h" />
     <ClInclude Include="Graphic.h" />
-    <ClInclude Include="Graphics.h" />
     <ClInclude Include="GraphicsFacade.h" />
     <ClInclude Include="InputFacade.h" />
     <ClInclude Include="InputManager.h" />

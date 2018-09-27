@@ -75,9 +75,6 @@
     <ClCompile Include="Graphic.cpp">
       <Filter>Source Files\Graphics</Filter>
     </ClCompile>
-    <ClCompile Include="Graphics.cpp">
-      <Filter>Source Files\Graphics</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GraphicsFacade.h">
@@ -107,16 +104,13 @@
     <ClInclude Include="TimerFacade.h">
       <Filter>Header Files\Facades</Filter>
     </ClInclude>
-    <ClInclude Include="Graphic.h">
-      <Filter>Header Files\Graphics</Filter>
-    </ClInclude>
     <ClInclude Include="MathHelper.h">
       <Filter>Header Files\Utilities</Filter>
     </ClInclude>
-    <ClInclude Include="Graphics.h">
+    <ClInclude Include="Texture.h">
       <Filter>Header Files\Graphics</Filter>
     </ClInclude>
-    <ClInclude Include="Texture.h">
+    <ClInclude Include="Graphic.h">
       <Filter>Header Files\Graphics</Filter>
     </ClInclude>
   </ItemGroup>
