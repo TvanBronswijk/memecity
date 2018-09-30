@@ -7,13 +7,13 @@
 class AssetManager
 {
 private:
-	static AssetManager* sInstance;
+	static AssetManager* instance;
 
-	std::map<std::string, SDL_Texture*> mTextures;
-	std::map<std::string, SDL_Texture*> mText;
-	std::map<std::string, TTF_Font*> mFonts;
-	std::map<std::string, Mix_Music*> mMusic;
-	std::map<std::string, Mix_Chunk*> mSFX;
+	std::map<std::string, SDL_Texture*> textures;
+	std::map<std::string, SDL_Texture*> texts;
+	std::map<std::string, TTF_Font*> fonts;
+	std::map<std::string, Mix_Music*> music;
+	std::map<std::string, Mix_Chunk*> sfx;
 
 public:
 	static AssetManager* Instance();
