@@ -4,6 +4,7 @@
 #include "Texture.h"
 #include "GraphicsFacade.h"
 #include <thread>
+#include "TimerFacade.h"
 
 int main(int argc, char* argv[])
 {
@@ -11,12 +12,14 @@ int main(int argc, char* argv[])
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 
 	auto graphicsFacade = GraphicsFacade::GetInstance();
+	auto timerFacade = TimerFacade::GetInstance();
 	auto texture = new Texture("BlikBier.bmp");
 	bool quit = false;
 
 	while (!quit) 
 	{
 		SDL_Event events;
+		timerFacade->Update();
 
 		while (SDL_PollEvent(&events) != 0)
 		{
@@ -25,15 +28,20 @@ int main(int argc, char* argv[])
 				quit = true;
 			}
 		}
-		texture->Translate({ 2.0f, 2.0f });
-	//	texture->Update();
-		graphicsFacade->Clear();
-		texture->Render();
-		graphicsFacade->Render();
+		if (timerFacade->DeltaTime() >= 1.0f / 120) {
+
+			texture->Translate(Vector2( 50.0f, 50.0f ) * timerFacade->DeltaTime());
+			//	texture->Update();
+			graphicsFacade->Clear();
+			texture->Render();
+			graphicsFacade->Render();
+			timerFacade->Reset();
+		}
 	}
 
 	GraphicsFacade::Release();
 	AssetManager::Release();
+	TimerFacade::Release();
 	delete texture;
 	return 0;
 }
