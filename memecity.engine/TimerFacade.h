@@ -4,20 +4,16 @@
 
 class TimerFacade
 {
+	private:
+		unsigned int startTicks{};
+		unsigned int elapsedTicks{};
+		float deltaTime{};
 
-private:
-	unsigned int startTicks;
-	unsigned int elaspsedTicks;
-	float deltaTime;
-
-public:
-
-	void Reset();
-	float DeltaTime();
-
-	void Update();
-
-	TimerFacade();
+	public:
+		void Reset();
+		float DeltaTime() const;
+		void Update();
+		TimerFacade();
 };
 
 #endif

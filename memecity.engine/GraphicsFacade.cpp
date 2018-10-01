@@ -40,7 +40,7 @@ bool GraphicsFacade::Init()
 	return true;
 }
 
-SDL_Texture* GraphicsFacade::LoadTexture(const std::string path)
+SDL_Texture* GraphicsFacade::LoadTexture(const std::string path) const
 {
 	SDL_Texture* texture = nullptr;
 	SDL_Surface* surface = IMG_Load(path.c_str());
@@ -61,7 +61,7 @@ SDL_Texture* GraphicsFacade::LoadTexture(const std::string path)
 	return texture;
 }
 
-SDL_Texture* GraphicsFacade::LoadTextTexture(TTF_Font* font, std::string text, const SDL_Color color)
+SDL_Texture* GraphicsFacade::LoadTextTexture(TTF_Font* font, std::string text, const SDL_Color color) const
 {
 	SDL_Surface* surface = TTF_RenderText_Solid(font, text.c_str(), color);
 	if (surface == nullptr)
@@ -81,17 +81,17 @@ SDL_Texture* GraphicsFacade::LoadTextTexture(TTF_Font* font, std::string text, c
 	return tex;
 }
 
-void GraphicsFacade::DrawTexture(SDL_Texture* texture, SDL_Rect* clipped_rect, SDL_Rect* render_rect)
+void GraphicsFacade::DrawTexture(SDL_Texture* texture, SDL_Rect* clipped_rect, SDL_Rect* render_rect) const
 {
 	SDL_RenderCopy(sdl_renderer, texture, clipped_rect, render_rect);
 }
 
-void GraphicsFacade::Clear()
+void GraphicsFacade::Clear() const
 {
 	SDL_RenderClear(sdl_renderer);
 }
 
-void GraphicsFacade::Render()
+void GraphicsFacade::Render() const
 {
 	SDL_RenderPresent(sdl_renderer);
 }

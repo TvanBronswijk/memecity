@@ -6,9 +6,7 @@ Graphic::Graphic(float x, float y)
 	mPos.y = y;
 
 	mRotation = 0.0f;
-
 	mActive = true;
-
 	mParent = nullptr;
 }
 

@@ -1,5 +1,4 @@
 ﻿#include "AssetManager.h"
-#include <iostream>
 #include "GraphicsFacade.h"
 
 AssetManager::AssetManager(std::shared_ptr<GraphicsFacade> graphics)
@@ -9,16 +8,16 @@ AssetManager::AssetManager(std::shared_ptr<GraphicsFacade> graphics)
 
 AssetManager::~AssetManager()
 {
-	for (auto tex : textures)
+	for (const auto texture : textures)
 	{
-		if (tex.second != nullptr)
+		if (texture.second != nullptr)
 		{
-			SDL_DestroyTexture(tex.second);
+			SDL_DestroyTexture(texture.second);
 		}
 	}
 	textures.clear();
 
-	for (auto text : texts)
+	for (const auto text : texts)
 	{
 		if (text.second != nullptr)
 		{
@@ -27,7 +26,7 @@ AssetManager::~AssetManager()
 	}
 	texts.clear();
 
-	for (auto font : fonts)
+	for (const auto font : fonts)
 	{
 		if (font.second != nullptr)
 		{
@@ -64,7 +63,7 @@ TTF_Font* AssetManager::GetFont(std::string filename, int size)
 {
 	std::string fullPath = SDL_GetBasePath();
 	fullPath.append("Assets/" + filename);
-	std::string key = fullPath + char(size);
+	const std::string key = fullPath + char(size);
 
 	if (fonts[key] == nullptr)
 	{
