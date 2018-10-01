@@ -15,10 +15,10 @@ private:
 
 public:
 	EntityManager();
-	void RegisterEntity(Entity e);
-	void RegisterComponent(Component c);
-	void RegisterSystem(System s);
-	void FireEvent(Event e);
+	void RegisterEntity(Entity &e);
+	void RegisterComponent(Component &c);
+	void RegisterSystem(System &s);
+	void FireEvent(Event &e);
 	void Update();
 	~EntityManager();
 };
