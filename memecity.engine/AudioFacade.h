@@ -15,11 +15,11 @@ public:
 
 	int PlaySound(const char* name, int repeats, int volume);
 
-	void PlayBackGroundSound(const char* name, int volume);
+	void PlayBackgroundSound(const char* name, int volume);
 
-	void PauzeBackGroundSound();
+	void PauzeBackgroundSound();
 
-	void StopBackGroundSound();
+	void StopBackgroundSound();
 
 	void CloseAudio();
 };

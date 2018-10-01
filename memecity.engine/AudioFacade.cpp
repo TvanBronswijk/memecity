@@ -10,7 +10,7 @@ std::map<const char*, Mix_Chunk>::iterator it;
 
 void AudioFacade::Init() {
 	if (SDL_Init(SDL_INIT_AUDIO) < 0) {
-		std::cout << "video Initialization error: " << SDL_GetError() << std::endl;
+		std::cout << "Audio Initialization error: " << SDL_GetError() << std::endl;
 	}
 }
 
@@ -20,7 +20,7 @@ void AudioFacade::OpenAudio(int frequency, int channel, int chunksize) {
 	}
 }
 int AudioFacade::PlaySound(const char* name, int repeats, int volume) {
-	Mix_Chunk *sound = nullptr; // smaller then 10 sec
+	Mix_Chunk *sound = nullptr; // smaller than 10 sec
 
 	it = chunks.find(name);
 	if (it != chunks.end()) {
@@ -42,8 +42,8 @@ int AudioFacade::PlaySound(const char* name, int repeats, int volume) {
 	return channel;
 }
 
-void AudioFacade::PlayBackGroundSound(const char* name, int volume) {
-	AudioFacade::StopBackGroundSound();
+void AudioFacade::PlayBackgroundSound(const char* name, int volume) {
+	AudioFacade::StopBackgroundSound();
 
 	bgm = Mix_LoadMUS(name);
 	if (!bgm) {
@@ -59,7 +59,7 @@ void AudioFacade::PlayBackGroundSound(const char* name, int volume) {
 
 }
 
-void AudioFacade::PauzeBackGroundSound() {
+void AudioFacade::PauzeBackgroundSound() {
 	//If the music is paused 
 	if (Mix_PausedMusic() == 1)
 	{ //Resume the music 
@@ -71,7 +71,7 @@ void AudioFacade::PauzeBackGroundSound() {
 	}
 }
 
-void AudioFacade::StopBackGroundSound() {
+void AudioFacade::StopBackgroundSound() {
 	//Stop the music 
 	if (Mix_PlayingMusic) {
 		Mix_HaltMusic();

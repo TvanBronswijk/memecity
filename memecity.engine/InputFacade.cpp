@@ -4,7 +4,7 @@ void InputFacade::update()
 {
 	while (SDL_PollEvent(&event) != 0)
 	{
-		if (event.type == SDL_QUIT) {} //TODO place Kill switch. 
+		if (event.type == SDL_QUIT) { QuitPressed = true; }
 		switch (event.type)
 		{
 		case SDL_KEYDOWN:
