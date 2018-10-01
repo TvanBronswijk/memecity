@@ -34,19 +34,14 @@ End with an example of getting some data out of the system or using it for a lit
 ## Built With
 
 * [C++](https://isocpp.org/) - Programming Language
-* [SDL 2](https://www.libsdl.org/) - Simple DirectMedia Layer
+* [SDL2](https://www.libsdl.org/) - Simple DirectMedia Layer
 * [JSON for Modern C++](https://nlohmann.github.io/json/) - JSON Library
 
 ## Authors
 
-* **Tobi van Bronswijk** - *Developer*
-* **Thom van de Pas** - *Developer*
-* **Rick van Berloo** - *Developer*
-* **Simon Heij** - *Developer*
-* **Yoeri van Hoof** - *Developer*
-* **Martijn van der Pol** - *Developer*
-* **Roy van Oldenbeek** - *Developer*
+[![Rick van Berlo](https://avatars0.githubusercontent.com/u/27727293?s=250)](https://github.com/RickvanBerlo) | [![Tobi van Bronswijk](https://avatars3.githubusercontent.com/u/15573392?s=250)](https://github.com/TvanBronswijk) | [![Simon Heij](https://avatars1.githubusercontent.com/u/7112682?s=250)](https://github.com/simson0606) | [![Yoeri van Hoof](https://avatars2.githubusercontent.com/u/23375527?s=250)](https://github.com/yoerivanhoof) | [![Roy van Oldenbeek](https://avatars3.githubusercontent.com/u/6740763?s=250)](https://github.com/FireRageNL) | [![Thom van de Pas](https://avatars3.githubusercontent.com/u/17568946?s=250)](https://github.com/Thomvdpas) | [![Martijn van der Pol](https://avatars0.githubusercontent.com/u/25583331?s=250)](https://github.com/MartijnPol)
+---|---|---|---|---|---|---
+[Rick van Berlo](https://github.com/RickvanBerlo) | [Tobi van Bronswijk](https://github.com/TvanBronswijk) | [Simon Heij](https://github.com/simson0606) | [Yoeri van Hoof](https://github.com/yoerivanhoof) | [Roy van Oldenbeek](https://github.com/FireRageNL) | [Thom van de Pas](https://github.com/Thomvdpas) | [Martijn van der Pol](https://github.com/MartijnPol) 
 
 ## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
+[MIT License](LICENSE) © Tobi van Bronswijk
