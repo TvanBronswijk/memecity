@@ -5,6 +5,8 @@ void InputFacade::Update()
 	while (SDL_PollEvent(&event) != 0)
 	{
 		if (event.type == SDL_QUIT) { quitPressed = true; }
+		state = SDL_GetKeyboardState(nullptr);
+
 		switch (event.type)
 		{
 		case SDL_KEYDOWN:
@@ -21,7 +23,7 @@ void InputFacade::Update()
 
 bool InputFacade::IsPressed(const InputKeys key) const
 {
-	return state[key];
+	return state[key] != 0;
 }
 
 bool InputFacade::GetQuitPressed() const

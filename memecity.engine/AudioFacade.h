@@ -6,12 +6,14 @@
 #include <iostream>
 #include <map>
 #include "AssetManager.h"
+#include <vector>
 
 class AudioFacade
 {
 
 private:
 	std::shared_ptr<AssetManager> asset_manager;
+
 public:
 
 	AudioFacade(std::shared_ptr<AssetManager> assetManager);
@@ -20,7 +22,9 @@ public:
 
 	void OpenAudio(int frequency, int channel, int chunksize);
 
-	int PlaySound(const char* name, int repeats, int volume);
+	int PlaySound(const char* name, int repeats, int volume, int channel = 0);
+
+	bool IsPlaying(int channel);
 
 	void PlayBackgroundSound(const char* name, int volume);
 
