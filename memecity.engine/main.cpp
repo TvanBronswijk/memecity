@@ -5,6 +5,7 @@
 #include "GraphicsFacade.h"
 #include <thread>
 #include "TimerFacade.h"
+#include "InputFacade.h"
 
 int main(int argc, char* argv[])
 {
@@ -16,9 +17,9 @@ int main(int argc, char* argv[])
 		auto assetManager = std::make_shared<AssetManager>(graphicsFacade);
 		auto texture = std::make_unique<Texture>(assetManager, graphicsFacade, "BlikBier.bmp");
 		auto timer = std::make_unique<TimerFacade>();
-		bool quit = false;
+		auto inputFacade = InputFacade();
 
-		while (!quit)
+		while (inputFacade.GetQuitPressed())
 		{
 			SDL_Event events;
 
