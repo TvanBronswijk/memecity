@@ -41,6 +41,7 @@ int main(int argc, char* argv[])
 
 	GraphicsFacade::Release();
 	AssetManager::Release();
+	TimerFacade::Release();
 	delete texture;
 	return 0;
 }

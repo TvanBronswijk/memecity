@@ -11,7 +11,6 @@ private:
 	unsigned int startTicks;
 	unsigned int elaspsedTicks;
 	float deltaTime;
-	float timeScale;
 
 public:
 	static TimerFacade* GetInstance();
@@ -19,9 +18,6 @@ public:
 
 	void Reset();
 	float DeltaTime();
-
-	void TimeScale(float t);
-	float TimeScale();
 
 	void Update();
 
