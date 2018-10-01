@@ -146,6 +146,7 @@
     <ClInclude Include="Graphic.h" />
     <ClInclude Include="GraphicsFacade.h" />
     <ClInclude Include="InputFacade.h" />
+    <ClInclude Include="InputKeys.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="MathHelper.h" />
     <ClInclude Include="MultimediaManager.h" />
