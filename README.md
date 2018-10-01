@@ -33,7 +33,7 @@ End with an example of getting some data out of the system or using it for a lit
 
 ## Built With
 
-* [C++](https://en.wikipedia.org/wiki/C%2B%2B) - Programming Language
+* [C++](https://isocpp.org/) - Programming Language
 * [SDL 2](https://www.libsdl.org/) - Simple DirectMedia Layer
 * [JSON for Modern C++](https://nlohmann.github.io/json/) - JSON Library
 
