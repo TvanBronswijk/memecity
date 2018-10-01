@@ -87,9 +87,10 @@ Mix_Music* AssetManager::GetMusic(std::string filename)
 	if (music[fullPath] == nullptr)
 	{
 		music[fullPath] = Mix_LoadMUS(fullPath.c_str());
+
 		if (music[fullPath] == nullptr)
 		{
-			printf("Music loading error: file-%s Error-%s", filename.c_str(), Mix_GetError());
+			printf("Music loading error: file- %s Error- %s", filename.c_str(), Mix_GetError());
 		}
 	}
 

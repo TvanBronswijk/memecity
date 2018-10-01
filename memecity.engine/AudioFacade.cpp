@@ -4,6 +4,10 @@
 AudioFacade::AudioFacade(std::shared_ptr<AssetManager> assetManager)
 {
 	asset_manager = assetManager;
+	if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 4096) < 0)
+	{
+		printf("Mixer initialization error: %s", Mix_GetError());
+	}
 }
 
 void AudioFacade::Init() {

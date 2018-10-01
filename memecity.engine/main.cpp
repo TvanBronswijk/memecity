@@ -21,6 +21,7 @@ int main(int argc, char* argv[])
 		auto timer = std::make_unique<TimerFacade>();
 		auto inputFacade = InputFacade();
 		auto audioFacade = std::make_shared<AudioFacade>(assetManager);
+		audioFacade->Init();
 		audioFacade->PlayBackgroundSound("bgm.mp3", 50);
 
 		while (!inputFacade.GetQuitPressed())
