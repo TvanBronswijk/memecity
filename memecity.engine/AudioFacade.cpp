@@ -13,11 +13,6 @@ void AudioFacade::Init()
 	}
 }
 
-void Stopchunck(int channel) 
-{
-	Mix_HaltChannel(channel);
-}
-
 void AudioFacade::OpenAudio(int frequency, int channel, int chunksize) 
 {
 	if (Mix_OpenAudio(frequency, MIX_DEFAULT_FORMAT, channel, chunksize) < 0) 
@@ -36,7 +31,6 @@ int AudioFacade::PlaySound(const char* name, int repeats, int volume, int channe
 
 		Mix_VolumeChunk(sound, volume);
 		int channelIndex = Mix_PlayChannel(channel, sound, repeats);
-		//Mix_ChannelFinished(Stopchunck);
 		sound = nullptr;
 		return channelIndex;
 
