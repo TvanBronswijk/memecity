@@ -6,6 +6,7 @@
 #include <thread>
 #include "TimerFacade.h"
 #include "InputFacade.h"
+#include "AudioFacade.h"
 
 int main(int argc, char* argv[])
 {
@@ -13,16 +14,17 @@ int main(int argc, char* argv[])
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 
 	auto graphicsFacade = std::make_shared<GraphicsFacade>();
+
 	if (graphicsFacade->Init()) {
 		auto assetManager = std::make_shared<AssetManager>(graphicsFacade);
 		auto texture = std::make_unique<Texture>(assetManager, graphicsFacade, "BlikBier.bmp");
 		auto timer = std::make_unique<TimerFacade>();
 		auto inputFacade = InputFacade();
+		auto audioFacade = std::make_shared<AudioFacade>(assetManager);
+		audioFacade->PlayBackgroundSound("bgm.mp3", 50);
 
 		while (!inputFacade.GetQuitPressed())
 		{
-			SDL_Event events;
-
 			timer->Update();
 
 			inputFacade.Update();
@@ -35,6 +37,10 @@ int main(int argc, char* argv[])
 				texture->Render();
 				graphicsFacade->Render();
 				timer->Reset();
+				if (inputFacade.IsPressed(ESCAPE))
+				{
+					audioFacade->PauseBackgroundSound();
+				}
 			}
 		}
 

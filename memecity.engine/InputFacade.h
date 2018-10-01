@@ -8,12 +8,12 @@ class InputFacade
 {
 private:
 	SDL_Event event;
-	const Uint8 *state = SDL_GetKeyboardState(NULL);
+	const Uint8 *state = SDL_GetKeyboardState(nullptr);
 	bool quitPressed = false;
 public:
 	void Update();
-	bool IsPressed(InputKeys input);
-	bool GetQuitPressed();
+	bool IsPressed(InputKeys input) const;
+	bool GetQuitPressed() const;
 };
 
 #endif

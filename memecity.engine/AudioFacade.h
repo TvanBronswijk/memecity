@@ -5,10 +5,17 @@
 #include<SDL_mixer.h>
 #include <iostream>
 #include <map>
+#include "AssetManager.h"
 
 class AudioFacade
 {
+
+private:
+	std::shared_ptr<AssetManager> asset_manager;
 public:
+
+	AudioFacade(std::shared_ptr<AssetManager> assetManager);
+
 	void Init();
 
 	void OpenAudio(int frequency, int channel, int chunksize);

@@ -13,17 +13,18 @@ void InputFacade::Update()
 		case SDL_KEYUP:
 			std::cout << "you have released: " << SDL_GetKeyName(event.key.keysym.sym) << std::endl;
 			break;
+		default: 
+			break;
 		}
 	}
 }
 
-bool InputFacade::IsPressed(InputKeys key) {
-	if (state[key]) {
-		return true;
-	}
-	else return false;
+bool InputFacade::IsPressed(const InputKeys key) const
+{
+	return state[key];
 }
 
-bool InputFacade::GetQuitPressed() {
+bool InputFacade::GetQuitPressed() const
+{
 	return quitPressed;
 }
