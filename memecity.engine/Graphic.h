@@ -1,7 +1,7 @@
 #ifndef _GRAPHIC_H
 #define  _GRAPHIC_H
 #include "MathHelper.h"
-
+#include "GraphicsFacade.h"
 class Graphic
 {
 public:
@@ -16,7 +16,7 @@ private:
 
 public:
 	Graphic(float x = 0.0f, float y = 0.0f);
-	~Graphic();
+	virtual ~Graphic();
 
 	void Pos(Vector2 pos);
 	Vector2 Pos(SPACE space = world);

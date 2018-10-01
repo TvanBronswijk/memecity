@@ -1,31 +1,31 @@
 #ifndef _TEXTURE_H
 #define _TEXTURE_H
-#include "Graphic.h"
+
 #include <SDL.h>
+#include "Graphic.h"
 #include "AssetManager.h"
 
 class Texture : public Graphic
 {
-protected:
+	protected:
+		SDL_Texture* texture;
+		GraphicsFacade* graphics;
+		AssetManager* asset_manager;
+		bool is_clipped;
 
-	SDL_Texture* mTex;
+		int texture_width;
+		int texture_height;
 
-	Graphics* mGraphics;
+		SDL_Rect render_rect;
+		SDL_Rect clipped_rect;
 
-	int mWidth;
-	int mHeight;
+	public:
+		Texture(std::string filename);
+		Texture(std::string filename, int x, int y, int width, int height);
+		Texture(std::string text, std::string font_path, int size, SDL_Color color);
+		~Texture();
 
-	bool mClipped;
-	SDL_Rect mRenderRect;
-	SDL_Rect mClippedRect;
-public:
-
-	Texture(std::string filename);
-	Texture(std::string filename, int x, int y, int width, int height);
-	Texture(std::string text, std::string fontPath, int size, SDL_Color color);
-	~Texture();
-
-	virtual void Render();
+		virtual void Render();
 };
 
 #endif

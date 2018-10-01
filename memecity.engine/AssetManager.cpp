@@ -1,20 +1,21 @@
 ﻿#include "AssetManager.h"
 #include <iostream>
+#include "GraphicsFacade.h"
 
-AssetManager* AssetManager::sInstance = nullptr;
+AssetManager* AssetManager::instance = nullptr;
 
 AssetManager* AssetManager::Instance()
 {
-	if (sInstance == nullptr)
-		sInstance = new AssetManager();
+	if (instance == nullptr)
+		instance = new AssetManager();
 
-	return sInstance;
+	return instance;
 }
 
 void AssetManager::Release()
 {
-	delete sInstance;
-	sInstance = nullptr;
+	delete instance;
+	instance = nullptr;
 }
 
 AssetManager::AssetManager()
@@ -24,32 +25,32 @@ AssetManager::AssetManager()
 
 AssetManager::~AssetManager()
 {
-	for (auto tex : mTextures)
+	for (auto tex : textures)
 	{
 		if (tex.second != nullptr)
 		{
 			SDL_DestroyTexture(tex.second);
 		}
 	}
-	mTextures.clear();
+	textures.clear();
 
-	for (auto text : mText)
+	for (auto text : texts)
 	{
 		if (text.second != nullptr)
 		{
 			SDL_DestroyTexture(text.second);
 		}
 	}
-	mText.clear();
+	texts.clear();
 
-	for (auto font : mFonts)
+	for (auto font : fonts)
 	{
 		if (font.second != nullptr)
 		{
 			TTF_CloseFont(font.second);
 		}
 	}
-	mFonts.clear();
+	fonts.clear();
 }
 
 SDL_Texture* AssetManager::GetTexture(std::string filename)
@@ -57,10 +58,10 @@ SDL_Texture* AssetManager::GetTexture(std::string filename)
 	std::string fullPath = SDL_GetBasePath();
 	fullPath.append("Assets/" + filename);
 
-	if (mTextures[fullPath] == nullptr)
-		mTextures[fullPath] = Graphics::Instance()->LoadTexture(fullPath);
+	if (textures[fullPath] == nullptr)
+		textures[fullPath] = GraphicsFacade::GetInstance()->LoadTexture(fullPath);
 
-	return mTextures[fullPath];
+	return textures[fullPath];
 }
 
 SDL_Texture* AssetManager::GetText(std::string text, std::string filename, int size, SDL_Color color)
@@ -68,10 +69,10 @@ SDL_Texture* AssetManager::GetText(std::string text, std::string filename, int s
 	TTF_Font* font = GetFont(filename, size);
 	std::string key = text + filename + char(size) + char(color.r) + char(color.g) + char(color.b);
 
-	if (mText[key] == nullptr)
-		mText[key] = Graphics::Instance()->CreateTextTexture(font, text, color);
+	if (texts[key] == nullptr)
+		texts[key] = GraphicsFacade::GetInstance()->LoadTextTexture(font, text, color);
 
-	return mText[key];
+	return texts[key];
 }
 
 
@@ -81,17 +82,17 @@ TTF_Font* AssetManager::GetFont(std::string filename, int size)
 	fullPath.append("Assets/" + filename);
 	std::string key = fullPath + char(size);
 
-	if (mFonts[key] == nullptr)
+	if (fonts[key] == nullptr)
 	{
-		mFonts[key] = TTF_OpenFont(fullPath.c_str(), size);
+		fonts[key] = TTF_OpenFont(fullPath.c_str(), size);
 
-		if (mFonts[key] == nullptr)
+		if (fonts[key] == nullptr)
 		{
 			printf("Font loading error: Font-%s Error-%s\n", filename.c_str(), TTF_GetError());
 		}
 	}
 
-	return mFonts[key];
+	return fonts[key];
 }
 
 Mix_Music* AssetManager::GetMusic(std::string filename)
@@ -99,16 +100,16 @@ Mix_Music* AssetManager::GetMusic(std::string filename)
 	std::string fullPath = SDL_GetBasePath();
 	fullPath.append("Assets/" + filename);
 
-	if (mMusic[fullPath] == nullptr)
+	if (music[fullPath] == nullptr)
 	{
-		mMusic[fullPath] = Mix_LoadMUS(fullPath.c_str());
-		if (mMusic[fullPath] == nullptr)
+		music[fullPath] = Mix_LoadMUS(fullPath.c_str());
+		if (music[fullPath] == nullptr)
 		{
 			printf("Music loading error: file-%s Error-%s", filename.c_str(), Mix_GetError());
 		}
 	}
 
-	return mMusic[fullPath];
+	return music[fullPath];
 }
 
 Mix_Chunk* AssetManager::GetSFX(std::string filename)
@@ -116,14 +117,14 @@ Mix_Chunk* AssetManager::GetSFX(std::string filename)
 	std::string fullPath = SDL_GetBasePath();
 	fullPath.append("Assets/" + filename);
 
-	if (mSFX[fullPath] == nullptr)
+	if (sfx[fullPath] == nullptr)
 	{
-		mSFX[fullPath] = Mix_LoadWAV(fullPath.c_str());
-		if (mSFX[fullPath] == nullptr)
+		sfx[fullPath] = Mix_LoadWAV(fullPath.c_str());
+		if (sfx[fullPath] == nullptr)
 		{
 			printf("SFX loading error: file-%s Error-%s", filename.c_str(), Mix_GetError());
 		}
 	}
 
-	return mSFX[fullPath];
+	return sfx[fullPath];
 }
