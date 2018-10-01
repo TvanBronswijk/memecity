@@ -4,7 +4,7 @@ void InputFacade::update()
 {
 	while (SDL_PollEvent(&event) != 0)
 	{
-		if (event.type == SDL_QUIT) { QuitPressed = true; }
+		if (event.type == SDL_QUIT) { quitPressed = true; }
 		switch (event.type)
 		{
 		case SDL_KEYDOWN:
@@ -22,4 +22,8 @@ bool InputFacade::isPressed(InputKeys key) {
 		return true;
 	}
 	else return false;
+}
+
+bool InputFacade::GetQuitPressed() {
+	return quitPressed;
 }

@@ -59,7 +59,7 @@ void AudioFacade::PlayBackgroundSound(const char* name, int volume) {
 
 }
 
-void AudioFacade::PauzeBackgroundSound() {
+void AudioFacade::PauseBackgroundSound() {
 	//If the music is paused 
 	if (Mix_PausedMusic() == 1)
 	{ //Resume the music 

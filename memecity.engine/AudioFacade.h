@@ -17,7 +17,7 @@ public:
 
 	void PlayBackgroundSound(const char* name, int volume);
 
-	void PauzeBackgroundSound();
+	void PauseBackgroundSound();
 
 	void StopBackgroundSound();
 
