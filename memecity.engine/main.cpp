@@ -19,19 +19,13 @@ int main(int argc, char* argv[])
 		auto timer = std::make_unique<TimerFacade>();
 		auto inputFacade = InputFacade();
 
-		while (inputFacade.GetQuitPressed())
+		while (!inputFacade.GetQuitPressed())
 		{
 			SDL_Event events;
 
 			timer->Update();
 
-			while (SDL_PollEvent(&events) != 0)
-			{
-				if (events.type == SDL_QUIT)
-				{
-					quit = true;
-				}
-			}
+			inputFacade.Update();
 
 			if (timer->DeltaTime() >= 1.0f / 60) {
 

@@ -1,6 +1,6 @@
 ﻿#include "InputFacade.h"
 
-void InputFacade::update()
+void InputFacade::Update()
 {
 	while (SDL_PollEvent(&event) != 0)
 	{
@@ -17,7 +17,7 @@ void InputFacade::update()
 	}
 }
 
-bool InputFacade::isPressed(InputKeys key) {
+bool InputFacade::IsPressed(InputKeys key) {
 	if (state[key]) {
 		return true;
 	}
