@@ -9,7 +9,6 @@
 class GraphicsFacade
 {
 	private:
-
 		SDL_Window* sdl_window{};
 		SDL_Surface* window_surface{};
 		SDL_Renderer* sdl_renderer{};
@@ -22,11 +21,11 @@ class GraphicsFacade
 		int screen_height;
 		bool isInitialized;
 
-		SDL_Texture* LoadTexture(std::string file);
-		SDL_Texture* LoadTextTexture(TTF_Font* font, std::string text, SDL_Color color);
-		void DrawTexture(SDL_Texture* texture, SDL_Rect* clipped_rect, SDL_Rect* render_rect);		
-		void Render();
-		void Clear();
+		SDL_Texture* LoadTexture(std::string file) const;
+		SDL_Texture* LoadTextTexture(TTF_Font* font, std::string text, SDL_Color color) const;
+		void DrawTexture(SDL_Texture* texture, SDL_Rect* clipped_rect, SDL_Rect* render_rect) const;		
+		void Render() const;
+		void Clear() const;
 };
 
 #endif
