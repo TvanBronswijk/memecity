@@ -1,9 +1,9 @@
 #include "Texture.h"
 
-Texture::Texture(const std::string filename)
+Texture::Texture(std::shared_ptr<AssetManager> asset_manager_ref, std::shared_ptr<GraphicsFacade> graphics_facade_ref, const std::string filename)
 {
-	graphics = GraphicsFacade::GetInstance();
-	asset_manager = AssetManager::Instance();
+	graphics = graphics_facade_ref;
+	asset_manager = asset_manager_ref;
 	texture = asset_manager->GetTexture(filename);
 	SDL_QueryTexture(texture, nullptr, nullptr, &texture_width, &texture_height);
 
@@ -13,10 +13,10 @@ Texture::Texture(const std::string filename)
 	render_rect.h = texture_height;
 }
 
-Texture::Texture(const std::string filename, const int x, const int y, const int width, int height)
+Texture::Texture(std::shared_ptr<AssetManager> asset_manager_ref, std::shared_ptr<GraphicsFacade> graphics_facade_ref, const std::string filename, const int x, const int y, const int width, int height)
 {
-	graphics = GraphicsFacade::GetInstance();
-	asset_manager = AssetManager::Instance();
+	graphics = graphics_facade_ref;
+	asset_manager = asset_manager_ref;
 	texture = asset_manager->GetTexture(filename);
 	is_clipped = true;
 
@@ -32,10 +32,10 @@ Texture::Texture(const std::string filename, const int x, const int y, const int
 	clipped_rect.h = texture_height;
 }
 
-Texture::Texture(const std::string text, const std::string font_path, const int size, const SDL_Color color)
+Texture::Texture(std::shared_ptr<AssetManager> asset_manager_ref, std::shared_ptr<GraphicsFacade> graphics_facade_ref, const std::string text, const std::string font_path, const int size, const SDL_Color color)
 {
-	graphics = GraphicsFacade::GetInstance();
-	asset_manager = AssetManager::Instance();
+	graphics = graphics_facade_ref;
+	asset_manager = asset_manager_ref;
 	texture = asset_manager->GetText(text, font_path, size, color);
 
 	is_clipped = false;
