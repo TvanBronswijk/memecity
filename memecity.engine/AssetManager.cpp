@@ -1,9 +1,9 @@
 ﻿#include "AssetManager.h"
 #include "GraphicsFacade.h"
 
-AssetManager::AssetManager(std::shared_ptr<GraphicsFacade> graphics)
+AssetManager::AssetManager(std::shared_ptr<GraphicsFacade> graphicsFacade)
 {
-	graphics_facade = graphics;
+	graphics_facade = graphicsFacade;
 }
 
 AssetManager::~AssetManager()
