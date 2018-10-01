@@ -1,22 +1,10 @@
 #include "GraphicsFacade.h"
-#include <SDL_image.h>
 
-GraphicsFacade* GraphicsFacade::instance = nullptr;
-
-GraphicsFacade::GraphicsFacade() 
+GraphicsFacade::GraphicsFacade()
 {
-	screen_width = 640;
-	screen_height = 480;
-	isInitialized = Init();
+	
 }
 
-GraphicsFacade* GraphicsFacade::GetInstance()
-{
-	if (instance == nullptr) {
-		instance = new GraphicsFacade();
-	}
-	return instance;
-}
 
 bool GraphicsFacade::Init()
 {
@@ -108,10 +96,5 @@ void GraphicsFacade::Render()
 	SDL_RenderPresent(sdl_renderer);
 }
 
-void GraphicsFacade::Release()
-{
-	delete instance;
-	instance = nullptr;
-}
 
 

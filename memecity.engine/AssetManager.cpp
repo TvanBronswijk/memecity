@@ -2,25 +2,9 @@
 #include <iostream>
 #include "GraphicsFacade.h"
 
-AssetManager* AssetManager::instance = nullptr;
-
-AssetManager* AssetManager::Instance()
+AssetManager::AssetManager(std::shared_ptr<GraphicsFacade> graphics)
 {
-	if (instance == nullptr)
-		instance = new AssetManager();
-
-	return instance;
-}
-
-void AssetManager::Release()
-{
-	delete instance;
-	instance = nullptr;
-}
-
-AssetManager::AssetManager()
-{
-
+	graphics_facade = graphics;
 }
 
 AssetManager::~AssetManager()
@@ -59,7 +43,7 @@ SDL_Texture* AssetManager::GetTexture(std::string filename)
 	fullPath.append("Assets/" + filename);
 
 	if (textures[fullPath] == nullptr)
-		textures[fullPath] = GraphicsFacade::GetInstance()->LoadTexture(fullPath);
+		textures[fullPath] = graphics_facade->LoadTexture(fullPath);
 
 	return textures[fullPath];
 }
@@ -70,7 +54,7 @@ SDL_Texture* AssetManager::GetText(std::string text, std::string filename, int s
 	std::string key = text + filename + char(size) + char(color.r) + char(color.g) + char(color.b);
 
 	if (texts[key] == nullptr)
-		texts[key] = GraphicsFacade::GetInstance()->LoadTextTexture(font, text, color);
+		texts[key] = graphics_facade->LoadTextTexture(font, text, color);
 
 	return texts[key];
 }
