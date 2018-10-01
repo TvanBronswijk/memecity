@@ -20,7 +20,6 @@ void TimerFacade::Release()
 TimerFacade::TimerFacade()
 {
 	Reset();
-	timeScale = 1.0f;
 }
 
 TimerFacade::~TimerFacade()
@@ -38,17 +37,6 @@ void TimerFacade::Reset()
 float TimerFacade::DeltaTime()
 {
 	return deltaTime;
-}
-
-void TimerFacade::TimeScale(float t)
-{
-	timeScale = t;
-}
-
-
-float TimerFacade::TimeScale()
-{
-	return timeScale;
 }
 
 void TimerFacade::Update()
