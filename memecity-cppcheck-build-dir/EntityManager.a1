@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<analyzerinfo checksum="966334735">
+  <FileInfo check="CheckUnusedFunctions">
+    <functiondecl functionName="RegisterEntity" lineNumber="8"/>
+    <functiondecl functionName="RegisterComponent" lineNumber="13"/>
+    <functiondecl functionName="RegisterSystem" lineNumber="18"/>
+    <functiondecl functionName="FireEvent" lineNumber="24"/>
+    <functiondecl functionName="Update" lineNumber="31"/>
+    <functioncall functionName="EntityManager"/>
+    <functioncall functionName="Run"/>
+    <functioncall functionName="c"/>
+    <functioncall functionName="e"/>
+    <functioncall functionName="for"/>
+    <functioncall functionName="getType"/>
+    <functioncall functionName="if"/>
+    <functioncall functionName="isOnEvent"/>
+    <functioncall functionName="push_back"/>
+    <functioncall functionName="s"/>
+    <functioncall functionName="systems"/>
+  </FileInfo>
+</analyzerinfo>

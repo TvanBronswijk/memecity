@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<results version="2">
+    <cppcheck version="1.84"/>
+    <errors>
+        <error id="passedByValue" severity="performance" msg="Function parameter &amp;#039;filename&amp;#039; should be passed by const reference." verbose="Parameter &amp;#039;filename&amp;#039; is passed by value. It could be passed as a const reference which is usually faster and recommended in C++." sinceDate="02/10/2018">
+            <location file="memecity.engine\AssetManager.cpp" line="56"/>
+        </error>
+        <error id="passedByValue" severity="performance" msg="Function parameter &amp;#039;filename&amp;#039; should be passed by const reference." verbose="Parameter &amp;#039;filename&amp;#039; is passed by value. It could be passed as a const reference which is usually faster and recommended in C++." sinceDate="02/10/2018">
+            <location file="memecity.engine\AssetManager.cpp" line="67"/>
+        </error>
+        <error id="unusedFunction" severity="style" msg="The function &amp;#039;GetMusic&amp;#039; is never used." verbose="The function &amp;#039;GetMusic&amp;#039; is never used." sinceDate="02/10/2018">
+            <location file="memecity.engine\AssetManager.cpp" line="98"/>
+        </error>
+        <error id="unusedFunction" severity="style" msg="The function &amp;#039;GetSFX&amp;#039; is never used." verbose="The function &amp;#039;GetSFX&amp;#039; is never used." sinceDate="02/10/2018">
+            <location file="memecity.engine\AssetManager.cpp" line="115"/>
+        </error>
+        <error id="noExplicitConstructor" severity="style" msg="Class &amp;#039;Texture&amp;#039; has a constructor with 1 argument that is not explicit." verbose="Class &amp;#039;Texture&amp;#039; has a constructor with 1 argument that is not explicit. Such constructors should in general be explicit for type safety reasons. Using the explicit keyword in the constructor means some mistakes when using the class can be avoided." sinceDate="02/10/2018">
+            <location file="memecity.engine\Texture.h" line="23"/>
+        </error>
+        <error id="missingOverride" severity="style" msg="The function &amp;#039;Render&amp;#039; overrides a function in a base class but is not marked with a &amp;#039;override&amp;#039; specifier." verbose="The function &amp;#039;Render&amp;#039; overrides a function in a base class but is not marked with a &amp;#039;override&amp;#039; specifier." sinceDate="02/10/2018">
+            <location file="memecity.engine\Texture.h" line="28" info="Function in derived class"/>
+            <location file="memecity.engine\Graphic.h" line="36" info="Virtual function in base class"/>
+        </error>
+        <error id="unusedFunction" severity="style" msg="The function &amp;#039;Active&amp;#039; is never used." verbose="The function &amp;#039;Active&amp;#039; is never used." sinceDate="02/10/2018">
+            <location file="memecity.engine\Graphic.cpp" line="59"/>
+        </error>
+        <error id="unusedFunction" severity="style" msg="The function &amp;#039;Parent&amp;#039; is never used." verbose="The function &amp;#039;Parent&amp;#039; is never used." sinceDate="02/10/2018">
+            <location file="memecity.engine\Graphic.cpp" line="71"/>
+        </error>
+        <error id="unusedFunction" severity="style" msg="The function &amp;#039;FireEvent&amp;#039; is never used." verbose="The function &amp;#039;FireEvent&amp;#039; is never used." sinceDate="02/10/2018">
+            <location file="memecity.engine.ecs\EntityManager.cpp" line="24"/>
+        </error>
+        <error id="unusedFunction" severity="style" msg="The function &amp;#039;RegisterComponent&amp;#039; is never used." verbose="The function &amp;#039;RegisterComponent&amp;#039; is never used." sinceDate="02/10/2018">
+            <location file="memecity.engine.ecs\EntityManager.cpp" line="13"/>
+        </error>
+        <error id="unusedFunction" severity="style" msg="The function &amp;#039;RegisterEntity&amp;#039; is never used." verbose="The function &amp;#039;RegisterEntity&amp;#039; is never used." sinceDate="02/10/2018">
+            <location file="memecity.engine.ecs\EntityManager.cpp" line="8"/>
+        </error>
+        <error id="unusedFunction" severity="style" msg="The function &amp;#039;RegisterSystem&amp;#039; is never used." verbose="The function &amp;#039;RegisterSystem&amp;#039; is never used." sinceDate="02/10/2018">
+            <location file="memecity.engine.ecs\EntityManager.cpp" line="18"/>
+        </error>
+        <error id="unusedFunction" severity="style" msg="The function &amp;#039;SDL_main&amp;#039; is never used." verbose="The function &amp;#039;SDL_main&amp;#039; is never used." sinceDate="02/10/2018">
+            <location file="memecity.engine\main.cpp" line="9"/>
+        </error>
+    </errors>
+</results>

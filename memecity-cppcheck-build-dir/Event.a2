@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<analyzerinfo checksum="484489229">
+  <FileInfo check="CheckUnusedFunctions">
+    <functiondecl functionName="getType" lineNumber="3"/>
+  </FileInfo>
+</analyzerinfo>

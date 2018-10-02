@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<analyzerinfo checksum="2965342795">
+  <FileInfo check="CheckUnusedFunctions">
+    <functioncall functionName="public:"/>
+  </FileInfo>
+</analyzerinfo>
