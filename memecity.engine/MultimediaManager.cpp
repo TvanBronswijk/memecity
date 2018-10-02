@@ -19,10 +19,10 @@ bool MultimediaManager::Init() const
 	return false;
 }
 
-void MultimediaManager::PlayBackgroundMusic(std::string name) const
+void MultimediaManager::PlayBackgroundMusic(std::string name, int volume) const
 {
 	const auto music = asset_manager->GetMusic(name);
-	audio_facade->PlayBackgroundMusic(music, 50);
+	audio_facade->PlayBackgroundMusic(music, volume);
 }
 
 void MultimediaManager::PlaySoundEffect(std::string name, int repeats, int volume, int channel) const

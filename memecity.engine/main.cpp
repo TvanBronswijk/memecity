@@ -16,7 +16,7 @@ int main(int argc, char* argv[])
 
 	if (multimediaManager->Init()) 
 	{
-		multimediaManager->PlayBackgroundMusic("bgm.mp3");
+		multimediaManager->PlayBackgroundMusic("bgm.mp3", 50);
 		auto texture = std::make_unique<Texture>(multimediaManager, "BlikBier.bmp");
 		auto timer = std::make_unique<TimerFacade>();		
 		auto inputFacade = InputFacade();

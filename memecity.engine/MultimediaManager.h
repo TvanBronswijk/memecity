@@ -15,7 +15,7 @@ class MultimediaManager
 		MultimediaManager();
 		bool Init() const;
 
-		void PlayBackgroundMusic(std::string name) const;
+		void PlayBackgroundMusic(std::string name, int volume) const;
 		void PlaySoundEffect(std::string name, int repeats, int volume, int channel) const;
 		void PauseBackgroundMusic() const;
 
