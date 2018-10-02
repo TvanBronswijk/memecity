@@ -14,9 +14,9 @@ int main(int argc, char* argv[])
 
 	const auto multimediaManager = std::make_shared<MultimediaManager>(false);
 
-	if (multimediaManager->Init())
+	if (multimediaManager->init())
 	{
-		multimediaManager->PlayBackgroundMusic("bgm.mp3", 50);
+		multimediaManager->play_background_music("bgm.mp3", 50);
 		auto texture = std::make_unique<Texture>(multimediaManager, "BlikBier.bmp");
 		auto timer = std::make_unique<TimerFacade>();		
 		auto inputFacade = InputFacade();
@@ -29,24 +29,24 @@ int main(int argc, char* argv[])
 				inputFacade.Update();
 
 				texture->Translate(Vector2(120.0f, 120.0f) * timer->DeltaTime());
-				multimediaManager->ClearGraphics();
+				multimediaManager->clear_graphics();
 				texture->Render();
-				multimediaManager->RenderGraphics();
+				multimediaManager->render_graphics();
 				timer->Reset();
 
 				if (inputFacade.IsPressed(ESCAPE))
 				{
-					multimediaManager->PauseBackgroundMusic();
+					multimediaManager->pause_background_music();
 				}
 
 				if (inputFacade.IsPressed(UP))
 				{
-					multimediaManager->PlaySoundEffect("biem.mp3", 0, 50, 1);
+					multimediaManager->play_sound_effect("biem.mp3", 0, 50, 1);
 				}
 
 				if (inputFacade.IsPressed(DOWN))
 				{
-					multimediaManager->PlaySoundEffect("biem.mp3", 0, 50, 2);
+					multimediaManager->play_sound_effect("biem.mp3", 0, 50, 2);
 				}
 			}
 		}

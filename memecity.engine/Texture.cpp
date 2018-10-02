@@ -3,7 +3,7 @@
 Texture::Texture(std::shared_ptr<MultimediaManager> multimediaManager, const std::string filename)
 {
 	multimedia_manager = multimediaManager;
-	texture = multimedia_manager->GetTexture(filename);
+	texture = multimedia_manager->get_texture(filename);
 	SDL_QueryTexture(texture, nullptr, nullptr, &texture_width, &texture_height);
 
 	is_clipped = false;
@@ -15,7 +15,7 @@ Texture::Texture(std::shared_ptr<MultimediaManager> multimediaManager, const std
 Texture::Texture(std::shared_ptr<MultimediaManager> multimediaManager, const std::string filename, const int x, const int y, const int width, int height)
 {
 	multimedia_manager = multimediaManager;
-	texture = multimedia_manager->GetTexture(filename);
+	texture = multimedia_manager->get_texture(filename);
 	is_clipped = true;
 
 	texture_width = width;
@@ -33,7 +33,7 @@ Texture::Texture(std::shared_ptr<MultimediaManager> multimediaManager, const std
 Texture::Texture(std::shared_ptr<MultimediaManager> multimediaManager, const std::string text, const std::string font_path, const int size, const SDL_Color color)
 {
 	multimedia_manager = multimediaManager;
-	texture = multimedia_manager->GetText(text, font_path, size, color);
+	texture = multimedia_manager->get_text(text, font_path, size, color);
 
 	is_clipped = false;
 
@@ -53,5 +53,5 @@ void Texture::Render()
 	const auto pos = Pos(world);
 	render_rect.x = int(pos.x - texture_width * 0.5f);
 	render_rect.y = int(pos.y - texture_height * 0.5f);
-	multimedia_manager->DrawTexture(texture, (is_clipped) ? &clipped_rect : nullptr, &render_rect);
+	multimedia_manager->draw_texture(texture, (is_clipped) ? &clipped_rect : nullptr, &render_rect);
 }

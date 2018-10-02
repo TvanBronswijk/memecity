@@ -19,9 +19,9 @@ class Texture : public Graphic
 		SDL_Rect clipped_rect;
 
 	public:
-		Texture(std::shared_ptr<MultimediaManager> multimediaManager, std::string filename);
-		Texture(std::shared_ptr<MultimediaManager> multimediaManager, std::string filename, int x, int y, int width, int height);
-		Texture(std::shared_ptr<MultimediaManager> multimediaManager, std::string text, std::string font_path, int size, SDL_Color color);
+		Texture(std::shared_ptr<MultimediaManager> multimedia_manager, std::string filename);
+		Texture(std::shared_ptr<MultimediaManager> multimedia_manager, std::string filename, int x, int y, int width, int height);
+		Texture(std::shared_ptr<MultimediaManager> multimedia_manager, std::string text, std::string font_path, int size, SDL_Color color);
 		~Texture();
 
 		virtual void Render();

@@ -1,8 +1,8 @@
 #include "GraphicsFacade.h"
 
-GraphicsFacade::GraphicsFacade(const bool isFullscreen)
+GraphicsFacade::GraphicsFacade(const bool is_fullscreen): isInitialized(false)
 {
-	is_fullscreen = isFullscreen;
+	this->is_fullscreen = is_fullscreen;
 	screen_height = 480;
 	screen_width = 640;
 }
