@@ -12,7 +12,7 @@ class MultimediaManager
 		std::shared_ptr<GraphicsFacade> graphics_facade;
 
 	public:
-		MultimediaManager();
+		MultimediaManager(bool isFullscreen);
 		bool Init() const;
 
 		void PlayBackgroundMusic(std::string name, int volume) const;

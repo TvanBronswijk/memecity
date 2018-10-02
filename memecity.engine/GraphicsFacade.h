@@ -9,12 +9,14 @@
 class GraphicsFacade
 {
 	private:
+		bool is_fullscreen;
+		
 		SDL_Window* sdl_window{};
 		SDL_Surface* window_surface{};
 		SDL_Renderer* sdl_renderer{};
 
 	public:
-		GraphicsFacade();
+		GraphicsFacade(bool isFullscreen);
 		bool Init();
 
 		int screen_width;

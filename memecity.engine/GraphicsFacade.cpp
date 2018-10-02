@@ -1,7 +1,8 @@
 #include "GraphicsFacade.h"
 
-GraphicsFacade::GraphicsFacade()
+GraphicsFacade::GraphicsFacade(const bool isFullscreen)
 {
+	is_fullscreen = isFullscreen;
 	screen_height = 480;
 	screen_width = 640;
 }
@@ -21,11 +22,14 @@ bool GraphicsFacade::Init()
 		return false;
 	}
 
-	//if (SDL_SetWindowFullscreen(sdl_window, SDL_WINDOW_FULLSCREEN_DESKTOP) != 0)
-	//{
-	//	printf("Window FullScreen error: %s\n", SDL_GetError());
-	//	return false;
-	//}	
+	if (is_fullscreen)
+	{
+		if (SDL_SetWindowFullscreen(sdl_window, SDL_WINDOW_FULLSCREEN_DESKTOP) != 0)
+		{
+			printf("Window FullScreen error: %s\n", SDL_GetError());
+			return false;
+		}	
+	}
 
 	SDL_GetWindowSize(sdl_window, &screen_width, &screen_height);
 

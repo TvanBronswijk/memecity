@@ -12,9 +12,9 @@ int main(int argc, char* argv[])
 	//DO NOT DELETE THIS LINE: ITS INTENDED TO FIND MEMORY LEAKS
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 
-	const auto multimediaManager = std::make_shared<MultimediaManager>();
+	const auto multimediaManager = std::make_shared<MultimediaManager>(false);
 
-	if (multimediaManager->Init()) 
+	if (multimediaManager->Init())
 	{
 		multimediaManager->PlayBackgroundMusic("bgm.mp3", 50);
 		auto texture = std::make_unique<Texture>(multimediaManager, "BlikBier.bmp");

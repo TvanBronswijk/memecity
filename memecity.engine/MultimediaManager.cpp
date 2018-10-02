@@ -1,8 +1,8 @@
 #include "MultimediaManager.h"
 
-MultimediaManager::MultimediaManager()
+MultimediaManager::MultimediaManager(bool isFullscreen)
 {
-	graphics_facade = std::make_shared<GraphicsFacade>();
+	graphics_facade = std::make_shared<GraphicsFacade>(isFullscreen);
 	asset_manager = std::make_unique<AssetManager>(graphics_facade);
 	audio_facade = std::make_unique<AudioFacade>();
 }
