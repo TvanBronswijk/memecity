@@ -135,6 +135,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AnyExtension.cpp" />
     <ClCompile Include="AssetManager.cpp" />
     <ClCompile Include="AudioFacade.cpp" />
     <ClCompile Include="ExampleGuy.cpp" />
@@ -151,6 +152,7 @@
     <ClCompile Include="TimerFacade.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AnyExtension.h" />
     <ClInclude Include="AssetManager.h" />
     <ClInclude Include="AudioFacade.h" />
     <ClInclude Include="ExampleGuy.h" />

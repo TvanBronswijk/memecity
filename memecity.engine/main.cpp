@@ -6,9 +6,18 @@
 #include "TimerFacade.h"
 #include "InputFacade.h"
 #include "MultimediaManager.h"
+#include "ExampleGuy.h"
 
 int main(int argc, char* argv[])
 {
+	example_guy guy = example_guy();
+
+	guy.name = "piet";
+	guy.age = 9;
+
+	guy.to_map();
+
+
 	//DO NOT DELETE THIS LINE: ITS INTENDED TO FIND MEMORY LEAKS
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 

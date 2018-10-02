@@ -84,6 +84,9 @@
     <ClCompile Include="ExampleGuy.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="AnyExtension.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GraphicsFacade.h">
@@ -129,6 +132,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ExampleGuy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AnyExtension.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
