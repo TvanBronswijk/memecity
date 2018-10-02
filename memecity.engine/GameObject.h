@@ -2,6 +2,7 @@
 #define  _GRAPHIC_H
 #include "MathHelper.h"
 #include "GraphicsFacade.h"
+
 class GameObject
 {
 public:
