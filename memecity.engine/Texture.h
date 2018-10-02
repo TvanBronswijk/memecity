@@ -9,7 +9,7 @@ class Texture : public Graphic
 {
 	protected:
 		SDL_Texture* texture;
-		GraphicsFacade* graphicss;
+		GraphicsFacade* graphics;
 		AssetManager* asset_manager;
 		bool is_clipped;
 
