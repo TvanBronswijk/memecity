@@ -56,9 +56,9 @@ std::shared_ptr<Texture> MultimediaManager::get_texture(std::string filename, in
 	return std::make_shared<Texture>(graphics_facade, asset_manager->get_texture(filename), x, y, width, height);
 }
 
-std::shared_ptr<Texture> MultimediaManager::get_text_texture(std::string text, std::string font_path, int size, SDL_Color color)
+std::shared_ptr<Texture> MultimediaManager::get_text_texture(std::string text, std::string font_path, int size, Color color)
 {
-	return std::make_shared<Texture>(graphics_facade, asset_manager->get_text(text, font_path, size, color));
+	return std::make_shared<Texture>(graphics_facade, asset_manager->get_text(text, font_path, size, color.get_sdl_color()));
 }
 
 

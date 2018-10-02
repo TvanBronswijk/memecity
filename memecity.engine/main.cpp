@@ -44,12 +44,12 @@ int main(int argc, char* argv[])
 
 				if (inputFacade.IsPressed(UP))
 				{
-					multimediaManager->play_sound_effect("biem.mp3", 0, 50, 1);
+					multimediaManager->play_sound_effect("biem.wav", 0, 50, 1);
 				}
 
 				if (inputFacade.IsPressed(DOWN))
 				{
-					multimediaManager->play_sound_effect("biem.mp3", 0, 50, 2);
+					multimediaManager->play_sound_effect("biem.wav", 0, 50, 2);
 				}
 			}
 		}

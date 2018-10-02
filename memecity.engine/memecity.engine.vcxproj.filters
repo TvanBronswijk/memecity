@@ -78,6 +78,9 @@
     <ClCompile Include="GameObject.cpp">
       <Filter>Source Files\Graphics</Filter>
     </ClCompile>
+    <ClCompile Include="Color.cpp">
+      <Filter>Source Files\Graphics</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GraphicsFacade.h">
@@ -117,6 +120,9 @@
       <Filter>Header Files\Enum</Filter>
     </ClInclude>
     <ClInclude Include="GameObject.h">
+      <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Color.h">
       <Filter>Header Files\Graphics</Filter>
     </ClInclude>
   </ItemGroup>

@@ -4,6 +4,7 @@
 #include "AssetManager.h"
 #include "AudioFacade.h"
 #include "Texture.h"
+#include "Color.h"
 
 class MultimediaManager
 {
@@ -25,7 +26,7 @@ class MultimediaManager
 
 		std::shared_ptr<Texture> get_texture(std::string filename);
 		std::shared_ptr<Texture> get_texture(std::string filename, int x, int y, int width, int height);
-		std::shared_ptr<Texture> get_text_texture(std::string text, std::string font_path, int size, SDL_Color color);
+		std::shared_ptr<Texture> get_text_texture(std::string text, std::string font_path, int size, Color color);
 };
 
 #endif
