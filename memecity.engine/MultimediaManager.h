@@ -3,6 +3,7 @@
 
 #include "AssetManager.h"
 #include "AudioFacade.h"
+#include "Texture.h"
 
 class MultimediaManager
 {
@@ -21,10 +22,10 @@ class MultimediaManager
 
 		void clear_graphics() const;
 		void render_graphics() const;
-		void draw_texture(SDL_Texture* texture, SDL_Rect* sdl_rect, SDL_Rect* render_rect) const;
-		
-		SDL_Texture* get_text(const std::string& cs, const std::string& font_path, const int size, const SDL_Color& color) const;
-		SDL_Texture* get_texture(const std::string& cs) const;
+
+		std::shared_ptr<Texture> get_texture(std::string filename);
+		std::shared_ptr<Texture> get_texture(std::string filename, int x, int y, int width, int height);
+		std::shared_ptr<Texture> get_text_texture(std::string text, std::string font_path, int size, SDL_Color color);
 };
 
 #endif

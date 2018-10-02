@@ -17,7 +17,9 @@ int main(int argc, char* argv[])
 	if (multimediaManager->init())
 	{
 		multimediaManager->play_background_music("bgm.mp3", 50);
-		auto texture = std::make_unique<Texture>(multimediaManager, "BlikBier.bmp");
+		auto texture = multimediaManager->get_texture("BlikBier.bmp");
+		auto text = multimediaManager->get_text_texture("Test", "Blazed.ttf", 50, { 255,10,10 });
+		text->translate({ 100.0f, 100.0f });
 		auto timer = std::make_unique<TimerFacade>();		
 		auto inputFacade = InputFacade();
 
@@ -28,9 +30,10 @@ int main(int argc, char* argv[])
 			{
 				inputFacade.Update();
 
-				texture->Translate(Vector2(120.0f, 120.0f) * timer->DeltaTime());
+				texture->translate(Vector2(120.0f, 120.0f) * timer->DeltaTime());
 				multimediaManager->clear_graphics();
-				texture->Render();
+				texture->render();
+				text->render();
 				multimediaManager->render_graphics();
 				timer->Reset();
 

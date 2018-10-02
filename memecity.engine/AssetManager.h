@@ -16,15 +16,15 @@ class AssetManager
 		std::map<std::string, Mix_Music*> music;
 		std::map<std::string, Mix_Chunk*> sfx;
 
-		TTF_Font* GetFont(std::string filename, int size);
+		TTF_Font* get_font(std::string filename, int size);
 
 	public:
 
-		AssetManager(std::shared_ptr<GraphicsFacade> graphicsFacade);
-		SDL_Texture* GetTexture(std::string filename);
-		SDL_Texture* GetText(std::string text, std::string filename, int size, SDL_Color color);
-		Mix_Music* GetMusic(std::string filename);
-		Mix_Chunk* GetSFX(std::string filename);
+		AssetManager(std::shared_ptr<GraphicsFacade> graphics_facade);
+		SDL_Texture* get_texture(std::string filename);
+		SDL_Texture* get_text(std::string text, std::string filename, int size, SDL_Color color);
+		Mix_Music* get_music(std::string filename);
+		Mix_Chunk* get_sfx(std::string filename);
 
 		~AssetManager();
 };

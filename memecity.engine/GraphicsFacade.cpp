@@ -40,6 +40,12 @@ bool GraphicsFacade::Init()
 		return false;
 	}
 
+	if (TTF_Init() == -1)
+	{
+		printf("TTF initialization error: %s\n", TTF_GetError());
+		return false;
+	}
+
 	window_surface = SDL_GetWindowSurface(sdl_window);
 	return true;
 }
