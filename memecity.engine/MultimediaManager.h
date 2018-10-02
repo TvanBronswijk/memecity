@@ -9,7 +9,6 @@ class MultimediaManager
 	private:
 		std::unique_ptr<AssetManager> asset_manager;
 		std::unique_ptr<AudioFacade> audio_facade;
-
 		std::shared_ptr<GraphicsFacade> graphics_facade;
 
 	public:

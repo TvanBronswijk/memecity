@@ -51,8 +51,7 @@ void MultimediaManager::DrawTexture(SDL_Texture* texture, SDL_Rect* sdl_rect, SD
 	graphics_facade->DrawTexture(texture, sdl_rect, render_rect);
 }
 
-SDL_Texture* MultimediaManager::GetText(const std::string& cs, const std::string& font_path, const int size,
-	const SDL_Color& color) const
+SDL_Texture* MultimediaManager::GetText(const std::string& cs, const std::string& font_path, const int size, const SDL_Color& color) const
 {
 	return asset_manager->GetText(cs, font_path, size, color);
 }

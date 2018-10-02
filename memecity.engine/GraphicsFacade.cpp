@@ -25,7 +25,7 @@ bool GraphicsFacade::Init()
 	//{
 	//	printf("Window FullScreen error: %s\n", SDL_GetError());
 	//	return false;
-	//}
+	//}	
 
 	SDL_GetWindowSize(sdl_window, &screen_width, &screen_height);
 
