@@ -12,8 +12,8 @@ private:
 	bool quitPressed = false;
 public:
 	void Update();
-	bool IsPressed(InputKeys input) const;
-	bool GetQuitPressed() const;
+	bool IsPressed(InputKeys key) const;
+	bool IsQuitPressed() const;
 };
 
 #endif
