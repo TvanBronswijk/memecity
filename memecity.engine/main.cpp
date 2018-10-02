@@ -2,30 +2,24 @@
 #include <cstdlib>
 #include <crtdbg.h>
 #include "Texture.h"
-#include "GraphicsFacade.h"
 #include <thread>
 #include "TimerFacade.h"
 #include "InputFacade.h"
-#include "AudioFacade.h"
+#include "MultimediaManager.h"
 
 int main(int argc, char* argv[])
 {
 	//DO NOT DELETE THIS LINE: ITS INTENDED TO FIND MEMORY LEAKS
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 
-	auto graphicsFacade = std::make_shared<GraphicsFacade>();
+	const auto multimediaManager = std::make_shared<MultimediaManager>(false);
 
-	if (graphicsFacade->Init()) {
-
-		auto assetManager = std::make_shared<AssetManager>(graphicsFacade);
-		auto texture = std::make_unique<Texture>(assetManager, graphicsFacade, "BlikBier.bmp");
-		auto timer = std::make_unique<TimerFacade>();
+	if (multimediaManager->Init())
+	{
+		multimediaManager->PlayBackgroundMusic("bgm.mp3", 50);
+		auto texture = std::make_unique<Texture>(multimediaManager, "BlikBier.bmp");
+		auto timer = std::make_unique<TimerFacade>();		
 		auto inputFacade = InputFacade();
-		auto audioFacade = std::make_shared<AudioFacade>(assetManager);
-
-		audioFacade->Init();
-		audioFacade->OpenAudio(44100, 2, 4096);
-		audioFacade->PlayBackgroundSound("bgm.mp3", 50);
 
 		while (!inputFacade.GetQuitPressed())
 		{
@@ -35,24 +29,24 @@ int main(int argc, char* argv[])
 				inputFacade.Update();
 
 				texture->Translate(Vector2(120.0f, 120.0f) * timer->DeltaTime());
-				graphicsFacade->Clear();
+				multimediaManager->ClearGraphics();
 				texture->Render();
-				graphicsFacade->Render();
+				multimediaManager->RenderGraphics();
 				timer->Reset();
 
 				if (inputFacade.IsPressed(ESCAPE))
 				{
-					audioFacade->PauseBackgroundSound();
+					multimediaManager->PauseBackgroundMusic();
 				}
 
 				if (inputFacade.IsPressed(UP))
 				{
-						 audioFacade->PlaySound("biem.mp3", 0, 50, 1);
+					multimediaManager->PlaySoundEffect("biem.mp3", 0, 50, 1);
 				}
 
 				if (inputFacade.IsPressed(DOWN))
 				{
-					audioFacade->PlaySound("biem.mp3", 0, 50, 2);
+					multimediaManager->PlaySoundEffect("biem.mp3", 0, 50, 2);
 				}
 			}
 		}

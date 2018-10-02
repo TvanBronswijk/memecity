@@ -1,16 +1,13 @@
 ﻿#include "AudioFacade.h"
-#include "AssetManager.h"
 
-AudioFacade::AudioFacade(std::shared_ptr<AssetManager> assetManager)
-{
-	asset_manager = assetManager;
-}
-
-void AudioFacade::Init() 
+bool AudioFacade::Init() 
 {
 	if (SDL_Init(SDL_INIT_AUDIO) < 0) {
 		std::cout << "Audio Initialization error: " << SDL_GetError() << std::endl;
+		return false;
 	}
+
+	return true;
 }
 
 void AudioFacade::OpenAudio(int frequency, int channel, int chunksize) 
@@ -20,40 +17,34 @@ void AudioFacade::OpenAudio(int frequency, int channel, int chunksize)
 		std::cout << "Audio error: " << Mix_GetError() << std::endl;
 	}
 }
-int AudioFacade::PlaySound(const char* name, int repeats, int volume, int channel) 
+
+void AudioFacade::PlaySoundEffect(Mix_Chunk* sound, int repeats, int volume, int channel) const
 {
-		if (IsPlaying(channel))
-		{
-			return -1;
-		}
-
-		Mix_Chunk *sound = asset_manager->GetSFX(name); // smaller than 10 sec
-
+	if (!IsPlaying(channel))
+	{
 		Mix_VolumeChunk(sound, volume);
-		int channelIndex = Mix_PlayChannel(channel, sound, repeats);
+		Mix_PlayChannel(channel, sound, repeats);
 		sound = nullptr;
-		return channelIndex;
-
+	}
 }
 
-bool AudioFacade::IsPlaying(int channel)
+bool AudioFacade::IsPlaying(int channel) const
 {
 	return Mix_Playing(channel) == 1;
 }
 
-
-void AudioFacade::PlayBackgroundSound(const char* name, int volume) 
+void AudioFacade::PlayBackgroundMusic(Mix_Music* music, int volume) const
 {
 
 	Mix_VolumeMusic(volume);
 
 	if (!Mix_PlayingMusic()) {
-		Mix_PlayMusic(asset_manager->GetMusic(name), -1);
+		Mix_PlayMusic(music, -1);
 	}
 
 }
 
-void AudioFacade::PauseBackgroundSound() 
+void AudioFacade::PauseBackgroundMusic() const
 {
 	//If the music is paused 
 	if (Mix_PausedMusic() == 1)
@@ -66,15 +57,16 @@ void AudioFacade::PauseBackgroundSound()
 	}
 }
 
-void AudioFacade::StopBackgroundSound() 
+void AudioFacade::StopBackgroundMusic() const
 {
 	//Stop the music 
-	if (Mix_PlayingMusic) {
+	if (Mix_PlayingMusic) 
+	{
 		Mix_HaltMusic();
 	}
 }
 
-void AudioFacade::CloseAudio() 
+void AudioFacade::CloseAudio() const
 {
 	Mix_Quit();
 }
