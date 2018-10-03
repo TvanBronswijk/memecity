@@ -1,19 +1,19 @@
 #include "System.h"
 
-bool System::isOnEvent(Event &e)
+bool System::is_on_event(Event &e)
 {
-	return e.getType() == on_event;
+	return e.get_type() == on_event;
 }
 
-std::string System::getType()
+std::string System::get_type()
 {
 	return "abstract system";
 }
 
-void System::Run(EntityManager &em)
+void System::run(EntityManager &em)
 {
 }
 
-void System::Run(EntityManager &em, Event &e) 
+void System::run(EntityManager &em, Event &e) 
 {
 }

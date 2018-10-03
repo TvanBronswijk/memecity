@@ -5,33 +5,33 @@ EntityManager::EntityManager()
 
 }
 
-void EntityManager::RegisterEntity(Entity &e)
+void EntityManager::register_entity(Entity &e)
 {
 	entities.push_back(e);
 }
 
-void EntityManager::RegisterComponent(Component &c)
+void EntityManager::register_component(Component &c)
 {
-	components[c.getType()].push_back(c);
+	components[c.get_type()].push_back(c);
 }
 
-void EntityManager::RegisterSystem(System &s)
+void EntityManager::register_system(System &s)
 {
 	
-	systems[s.getType()] = s;
+	systems[s.get_type()] = s;
 }
 
-void EntityManager::FireEvent(Event &e)
+void EntityManager::fire_event(Event &e)
 {
 	for (auto pair : systems)
-		if(pair.second.isOnEvent(e))
-			pair.second.Run(*this, e);
+		if(pair.second.is_on_event(e))
+			pair.second.run(*this, e);
 }
 
 void EntityManager::Update() 
 {
 	for (auto pair : systems)
-		pair.second.Run(*this);
+		pair.second.run(*this);
 }
 
 EntityManager::~EntityManager()

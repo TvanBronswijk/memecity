@@ -7,8 +7,8 @@ class System {
 private:
 	std::string on_event;
 public:
-	bool isOnEvent(Event &e);
-	virtual std::string getType();
-	virtual void Run(EntityManager &em);
-	virtual void Run(EntityManager &em, Event &e);
+	bool is_on_event(Event &e);
+	virtual std::string get_type();
+	virtual void run(EntityManager &em);
+	virtual void run(EntityManager &em, Event &e);
 };

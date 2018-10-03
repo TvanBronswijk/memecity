@@ -2,5 +2,5 @@
 
 struct Component {
 	int entity_id;
-	virtual std::string getType();
+	virtual std::string get_type();
 };
