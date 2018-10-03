@@ -37,6 +37,9 @@
     <Filter Include="Header Files\Graphics">
       <UniqueIdentifier>{6eee9d0c-03b2-4d29-806f-8d81bcc80732}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Enum">
+      <UniqueIdentifier>{620389af-bc57-44d0-a3eb-e62f4df589bd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -72,7 +75,10 @@
     <ClCompile Include="Texture.cpp">
       <Filter>Source Files\Graphics</Filter>
     </ClCompile>
-    <ClCompile Include="Graphic.cpp">
+    <ClCompile Include="GameObject.cpp">
+      <Filter>Source Files\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Color.cpp">
       <Filter>Source Files\Graphics</Filter>
     </ClCompile>
   </ItemGroup>
@@ -110,7 +116,13 @@
     <ClInclude Include="Texture.h">
       <Filter>Header Files\Graphics</Filter>
     </ClInclude>
-    <ClInclude Include="Graphic.h">
+    <ClInclude Include="InputKeys.h">
+      <Filter>Header Files\Enum</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject.h">
+      <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Color.h">
       <Filter>Header Files\Graphics</Filter>
     </ClInclude>
   </ItemGroup>

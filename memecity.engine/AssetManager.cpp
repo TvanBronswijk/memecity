@@ -1,40 +1,23 @@
 ﻿#include "AssetManager.h"
-#include <iostream>
 #include "GraphicsFacade.h"
 
-AssetManager* AssetManager::instance = nullptr;
-
-AssetManager* AssetManager::Instance()
+AssetManager::AssetManager(std::shared_ptr<GraphicsFacade> graphics_facade)
 {
-	if (instance == nullptr)
-		instance = new AssetManager();
-
-	return instance;
-}
-
-void AssetManager::Release()
-{
-	delete instance;
-	instance = nullptr;
-}
-
-AssetManager::AssetManager()
-{
-
+	this->graphics_facade = graphics_facade;
 }
 
 AssetManager::~AssetManager()
 {
-	for (auto tex : textures)
+	for (const auto texture : textures)
 	{
-		if (tex.second != nullptr)
+		if (texture.second != nullptr)
 		{
-			SDL_DestroyTexture(tex.second);
+			SDL_DestroyTexture(texture.second);
 		}
 	}
 	textures.clear();
 
-	for (auto text : texts)
+	for (const auto text : texts)
 	{
 		if (text.second != nullptr)
 		{
@@ -43,7 +26,7 @@ AssetManager::~AssetManager()
 	}
 	texts.clear();
 
-	for (auto font : fonts)
+	for (const auto font : fonts)
 	{
 		if (font.second != nullptr)
 		{
@@ -53,34 +36,34 @@ AssetManager::~AssetManager()
 	fonts.clear();
 }
 
-SDL_Texture* AssetManager::GetTexture(std::string filename)
+SDL_Texture* AssetManager::get_texture(std::string filename)
 {
 	std::string fullPath = SDL_GetBasePath();
 	fullPath.append("Assets/" + filename);
 
 	if (textures[fullPath] == nullptr)
-		textures[fullPath] = GraphicsFacade::GetInstance()->LoadTexture(fullPath);
+		textures[fullPath] = graphics_facade->LoadTexture(fullPath);
 
 	return textures[fullPath];
 }
 
-SDL_Texture* AssetManager::GetText(std::string text, std::string filename, int size, SDL_Color color)
+SDL_Texture* AssetManager::get_text(std::string text, std::string filename, int size, SDL_Color color)
 {
-	TTF_Font* font = GetFont(filename, size);
+	TTF_Font* font = get_font(filename, size);
 	std::string key = text + filename + char(size) + char(color.r) + char(color.g) + char(color.b);
 
 	if (texts[key] == nullptr)
-		texts[key] = GraphicsFacade::GetInstance()->LoadTextTexture(font, text, color);
+		texts[key] = graphics_facade->LoadTextTexture(font, text, color);
 
 	return texts[key];
 }
 
 
-TTF_Font* AssetManager::GetFont(std::string filename, int size)
+TTF_Font* AssetManager::get_font(std::string filename, int size)
 {
 	std::string fullPath = SDL_GetBasePath();
 	fullPath.append("Assets/" + filename);
-	std::string key = fullPath + char(size);
+	const std::string key = fullPath + char(size);
 
 	if (fonts[key] == nullptr)
 	{
@@ -95,7 +78,7 @@ TTF_Font* AssetManager::GetFont(std::string filename, int size)
 	return fonts[key];
 }
 
-Mix_Music* AssetManager::GetMusic(std::string filename)
+Mix_Music* AssetManager::get_music(std::string filename)
 {
 	std::string fullPath = SDL_GetBasePath();
 	fullPath.append("Assets/" + filename);
@@ -103,16 +86,17 @@ Mix_Music* AssetManager::GetMusic(std::string filename)
 	if (music[fullPath] == nullptr)
 	{
 		music[fullPath] = Mix_LoadMUS(fullPath.c_str());
+
 		if (music[fullPath] == nullptr)
 		{
-			printf("Music loading error: file-%s Error-%s", filename.c_str(), Mix_GetError());
+			printf("Music loading error: file- %s Error- %s", filename.c_str(), Mix_GetError());
 		}
 	}
 
 	return music[fullPath];
 }
 
-Mix_Chunk* AssetManager::GetSFX(std::string filename)
+Mix_Chunk* AssetManager::get_sfx(std::string filename)
 {
 	std::string fullPath = SDL_GetBasePath();
 	fullPath.append("Assets/" + filename);

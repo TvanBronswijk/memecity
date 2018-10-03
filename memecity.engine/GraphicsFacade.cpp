@@ -1,21 +1,10 @@
 #include "GraphicsFacade.h"
-#include <SDL_image.h>
 
-GraphicsFacade* GraphicsFacade::instance = nullptr;
-
-GraphicsFacade::GraphicsFacade() 
+GraphicsFacade::GraphicsFacade(const bool is_fullscreen): isInitialized(false)
 {
-	screen_width = 640;
+	this->is_fullscreen = is_fullscreen;
 	screen_height = 480;
-	isInitialized = Init();
-}
-
-GraphicsFacade* GraphicsFacade::GetInstance()
-{
-	if (instance == nullptr) {
-		instance = new GraphicsFacade();
-	}
-	return instance;
+	screen_width = 640;
 }
 
 bool GraphicsFacade::Init()
@@ -33,10 +22,13 @@ bool GraphicsFacade::Init()
 		return false;
 	}
 
-	if (SDL_SetWindowFullscreen(sdl_window, SDL_WINDOW_FULLSCREEN_DESKTOP) != 0)
+	if (is_fullscreen)
 	{
-		printf("Window FullScreen error: %s\n", SDL_GetError());
-		return false;
+		if (SDL_SetWindowFullscreen(sdl_window, SDL_WINDOW_FULLSCREEN_DESKTOP) != 0)
+		{
+			printf("Window FullScreen error: %s\n", SDL_GetError());
+			return false;
+		}	
 	}
 
 	SDL_GetWindowSize(sdl_window, &screen_width, &screen_height);
@@ -48,11 +40,17 @@ bool GraphicsFacade::Init()
 		return false;
 	}
 
+	if (TTF_Init() == -1)
+	{
+		printf("TTF initialization error: %s\n", TTF_GetError());
+		return false;
+	}
+
 	window_surface = SDL_GetWindowSurface(sdl_window);
 	return true;
 }
 
-SDL_Texture* GraphicsFacade::LoadTexture(const std::string path)
+SDL_Texture* GraphicsFacade::LoadTexture(const std::string path) const
 {
 	SDL_Texture* texture = nullptr;
 	SDL_Surface* surface = IMG_Load(path.c_str());
@@ -73,7 +71,7 @@ SDL_Texture* GraphicsFacade::LoadTexture(const std::string path)
 	return texture;
 }
 
-SDL_Texture* GraphicsFacade::LoadTextTexture(TTF_Font* font, std::string text, const SDL_Color color)
+SDL_Texture* GraphicsFacade::LoadTextTexture(TTF_Font* font, std::string text, const SDL_Color color) const
 {
 	SDL_Surface* surface = TTF_RenderText_Solid(font, text.c_str(), color);
 	if (surface == nullptr)
@@ -93,25 +91,20 @@ SDL_Texture* GraphicsFacade::LoadTextTexture(TTF_Font* font, std::string text, c
 	return tex;
 }
 
-void GraphicsFacade::DrawTexture(SDL_Texture* texture, SDL_Rect* clipped_rect, SDL_Rect* render_rect)
+void GraphicsFacade::DrawTexture(SDL_Texture* texture, SDL_Rect* clipped_rect, SDL_Rect* render_rect) const
 {
 	SDL_RenderCopy(sdl_renderer, texture, clipped_rect, render_rect);
 }
 
-void GraphicsFacade::Clear()
+void GraphicsFacade::Clear() const
 {
 	SDL_RenderClear(sdl_renderer);
 }
 
-void GraphicsFacade::Render()
+void GraphicsFacade::Render() const
 {
 	SDL_RenderPresent(sdl_renderer);
 }
 
-void GraphicsFacade::Release()
-{
-	delete instance;
-	instance = nullptr;
-}
 
 
