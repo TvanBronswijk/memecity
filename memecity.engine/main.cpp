@@ -4,8 +4,8 @@
 #include "Texture.h"
 #include <thread>
 #include "TimerFacade.h"
-#include "InputFacade.h"
 #include "MultimediaManager.h"
+#include "InputManager.h"
 
 int main(int argc, char* argv[])
 {
@@ -13,43 +13,40 @@ int main(int argc, char* argv[])
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 
 	const auto multimediaManager = std::make_shared<MultimediaManager>(false);
+	const auto inputManager = std::make_unique<InputManager>();
 
-	if (multimediaManager->init())
+	if (multimediaManager->Init())
 	{
-		multimediaManager->play_background_music("bgm.mp3", 50);
-		auto texture = multimediaManager->get_texture("BlikBier.bmp");
-		auto text = multimediaManager->get_text_texture("Test", "Blazed.ttf", 50, { 255,10,10 });
-		text->translate({ 100.0f, 100.0f });
-		auto timer = std::make_unique<TimerFacade>();		
-		auto inputFacade = InputFacade();
+		multimediaManager->PlayBackgroundMusic("bgm.mp3", 50);
+		auto texture = std::make_unique<Texture>(multimediaManager, "BlikBier.bmp");
+		auto timer = std::make_unique<TimerFacade>();
 
-		while (!inputFacade.GetQuitPressed())
+		while (!inputManager->IsQuitPressed())
 		{
 			timer->Update();
-			if (timer->DeltaTime() >= 1.0f / 60) 
+			if (timer->DeltaTime() >= 1.0f / 60)
 			{
-				inputFacade.Update();
+				inputManager->Update();
 
-				texture->translate(Vector2(120.0f, 120.0f) * timer->DeltaTime());
-				multimediaManager->clear_graphics();
-				texture->render();
-				text->render();
-				multimediaManager->render_graphics();
+				texture->Translate(Vector2(120.0f, 120.0f) * timer->DeltaTime());
+				multimediaManager->ClearGraphics();
+				texture->Render();
+				multimediaManager->RenderGraphics();
 				timer->Reset();
 
-				if (inputFacade.IsPressed(ESCAPE))
+				if (inputManager->IsPressed(ESCAPE))
 				{
-					multimediaManager->pause_background_music();
+					multimediaManager->PauseBackgroundMusic();
 				}
 
-				if (inputFacade.IsPressed(UP))
+				if (inputManager->IsPressed(UP))
 				{
-					multimediaManager->play_sound_effect("biem.wav", 0, 50, 1);
+					multimediaManager->PlaySoundEffect("biem.mp3", 0, 50, 1);
 				}
 
-				if (inputFacade.IsPressed(DOWN))
+				if (inputManager->IsPressed(DOWN))
 				{
-					multimediaManager->play_sound_effect("biem.wav", 0, 50, 2);
+					multimediaManager->PlaySoundEffect("biem.mp3", 0, 50, 2);
 				}
 			}
 		}

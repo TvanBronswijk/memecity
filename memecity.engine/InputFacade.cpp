@@ -26,7 +26,7 @@ bool InputFacade::IsPressed(const InputKeys key) const
 	return state[key] != 0;
 }
 
-bool InputFacade::GetQuitPressed() const
+bool InputFacade::IsQuitPressed() const
 {
 	return quitPressed;
 }
