@@ -2,15 +2,13 @@
 #define _TEXTURE_H
 
 #include <SDL.h>
-#include "Graphic.h"
-#include "AssetManager.h"
+#include "GameObject.h"
 
-class Texture : public Graphic
+class Texture : public GameObject
 {
 	protected:
 		SDL_Texture* texture;
-		GraphicsFacade* graphics;
-		AssetManager* asset_manager;
+		std::shared_ptr<GraphicsFacade> graphics_facade;
 		bool is_clipped;
 
 		int texture_width;
@@ -20,12 +18,11 @@ class Texture : public Graphic
 		SDL_Rect clipped_rect;
 
 	public:
-		Texture(std::string filename);
-		Texture(std::string filename, int x, int y, int width, int height);
-		Texture(std::string text, std::string font_path, int size, SDL_Color color);
+		Texture(std::shared_ptr<GraphicsFacade> graphics_facade, SDL_Texture* texture);
+		Texture(std::shared_ptr<GraphicsFacade> graphics_facade, SDL_Texture* texture, int x, int y, int width, int height);
 		~Texture();
 
-		virtual void Render();
+		virtual void render();
 };
 
 #endif

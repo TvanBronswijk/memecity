@@ -2,46 +2,60 @@
 #include <cstdlib>
 #include <crtdbg.h>
 #include "Texture.h"
-#include "GraphicsFacade.h"
 #include <thread>
 #include "TimerFacade.h"
+#include "MultimediaManager.h"
+#include "InputManager.h"
 
 int main(int argc, char* argv[])
 {
-	//DO NOT DELETE THIS LINE: IS INTENDED TO FIND MEMORY LEAKS
+	//DO NOT DELETE THIS LINE: ITS INTENDED TO FIND MEMORY LEAKS
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 
-	auto graphicsFacade = GraphicsFacade::GetInstance();
-	auto timerFacade = TimerFacade::GetInstance();
-	auto texture = new Texture("BlikBier.bmp");
-	bool quit = false;
+	const auto multimedia_manager = std::make_shared<MultimediaManager>(false);
+	const auto input_manager = std::make_unique<InputManager>();
 
-	while (!quit) 
+	if (multimedia_manager->init())
 	{
-		SDL_Event events;
-		timerFacade->Update();
+		multimedia_manager->play_background_music("bgm.mp3", 50);
+		auto texture = multimedia_manager->get_texture("BlikBier.bmp");
+		auto text = multimedia_manager->get_text_texture("Test", "Blazed.ttf", 50, { 255,10,10 });
+		text->translate({ 100.0f, 100.0f });
+		auto timer = std::make_unique<TimerFacade>();
 
-		while (SDL_PollEvent(&events) != 0)
+		while (!input_manager->IsQuitPressed())
 		{
-			if (events.type == SDL_QUIT)
+			timer->Update();
+			if (timer->DeltaTime() >= 1.0f / 60)
 			{
-				quit = true;
+				input_manager->Update();
+
+				texture->translate(Vector2(120.0f, 120.0f) * timer->DeltaTime());
+				multimedia_manager->clear_graphics();
+				texture->render();
+				text->render();
+				multimedia_manager->render_graphics();
+				timer->Reset();
+
+				if (input_manager->IsPressed(ESCAPE))
+				{
+					multimedia_manager->pause_background_music();
+				}
+
+				if (input_manager->IsPressed(UP))
+				{
+					multimedia_manager->play_sound_effect("biem.mp3", 0, 50, 1);
+				}
+
+				if (input_manager->IsPressed(DOWN))
+				{
+					multimedia_manager->play_sound_effect("biem.mp3", 0, 50, 2);
+				}
 			}
 		}
-		if (timerFacade->DeltaTime() >= 1.0f / 120) {
 
-			texture->Translate(Vector2( 50.0f, 50.0f ) * timerFacade->DeltaTime());
-			//	texture->Update();
-			graphicsFacade->Clear();
-			texture->Render();
-			graphicsFacade->Render();
-			timerFacade->Reset();
-		}
+		return 0;
 	}
 
-	GraphicsFacade::Release();
-	AssetManager::Release();
-	TimerFacade::Release();
-	delete texture;
-	return 0;
+	return -1;
 }
