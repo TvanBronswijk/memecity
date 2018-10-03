@@ -5,17 +5,17 @@ InputManager::InputManager()
 	input_facade = std::make_unique<InputFacade>();
 }
 
-void InputManager::Update() const
+void InputManager::update() const
 {
-	input_facade->Update();
+	input_facade->update();
 }
 
-bool InputManager::IsPressed(const InputKeys key) const
+bool InputManager::is_pressed(const InputKeys key) const
 {
-	return input_facade->IsPressed(key);
+	return input_facade->is_pressed(key);
 }
 
-bool InputManager::IsQuitPressed() const
+bool InputManager::is_quit_pressed() const
 {
-	return input_facade->IsQuitPressed();
+	return input_facade->is_quit_pressed();
 }
