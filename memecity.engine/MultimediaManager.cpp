@@ -9,54 +9,53 @@ MultimediaManager::MultimediaManager(bool is_fullscreen)
 
 bool MultimediaManager::init() const
 {	
-	if (graphics_facade->Init())
+	if (graphics_facade->init() && audio_facade->init())
 	{
-		audio_facade->Init();
-		audio_facade->OpenAudio(44100, 2, 4096);
+		audio_facade->open_audio(44100, 2, 4096);
 		return true;
 	}
 
 	return false;
 }
 
-void MultimediaManager::play_background_music(std::string name, int volume) const
+void MultimediaManager::play_background_music(std::string const name, int const volume) const
 {
 	const auto music = asset_manager->get_music(name);
-	audio_facade->PlayBackgroundMusic(music, volume);
+	audio_facade->play_background_music(music, volume);
 }
 
-void MultimediaManager::play_sound_effect(std::string name, int repeats, int volume, int channel) const
+void MultimediaManager::play_sound_effect(std::string const name, int const repeats, int const volume, int const channel) const
 {
 	const auto sound = asset_manager->get_sfx(name);
-	audio_facade->PlaySoundEffect(sound, repeats, volume, channel);
+	audio_facade->play_sound_effect(sound, repeats, volume, channel);
 }
 
 void MultimediaManager::pause_background_music() const
 {	
-	audio_facade->PauseBackgroundMusic();
+	audio_facade->pause_background_music();
 }
 
 void MultimediaManager::clear_graphics() const
 {
-	graphics_facade->Clear();
+	graphics_facade->clear();
 }
 
 void MultimediaManager::render_graphics() const
 {
-	graphics_facade->Render();
+	graphics_facade->render();
 }
 
-std::shared_ptr<Texture> MultimediaManager::get_texture(std::string filename)
+std::shared_ptr<Texture> MultimediaManager::get_texture(const std::string filename)
 {
 	return std::make_shared<Texture>(graphics_facade, asset_manager->get_texture(filename));
 }
 
-std::shared_ptr<Texture> MultimediaManager::get_texture(std::string filename, int x, int y, int width, int height)
+std::shared_ptr<Texture> MultimediaManager::get_texture(std::string const filename, int x, int y, int width, int height)
 {
 	return std::make_shared<Texture>(graphics_facade, asset_manager->get_texture(filename), x, y, width, height);
 }
 
-std::shared_ptr<Texture> MultimediaManager::get_text_texture(std::string text, std::string font_path, int size, Color color)
+std::shared_ptr<Texture> MultimediaManager::get_text_texture(std::string const text, std::string const font_path, const int size, Color color)
 {
 	return std::make_shared<Texture>(graphics_facade, asset_manager->get_text(text, font_path, size, color.get_sdl_color()));
 }

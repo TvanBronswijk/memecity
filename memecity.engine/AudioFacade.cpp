@@ -1,6 +1,6 @@
 ﻿#include "AudioFacade.h"
 
-bool AudioFacade::Init() 
+bool AudioFacade::init() const
 {
 	if (SDL_Init(SDL_INIT_AUDIO) < 0) {
 		std::cout << "Audio Initialization error: " << SDL_GetError() << std::endl;
@@ -10,7 +10,7 @@ bool AudioFacade::Init()
 	return true;
 }
 
-void AudioFacade::OpenAudio(int frequency, int channel, int chunksize) 
+void AudioFacade::open_audio(const int frequency, const int channel, const int chunksize) const
 {
 	if (Mix_OpenAudio(frequency, MIX_DEFAULT_FORMAT, channel, chunksize) < 0) 
 	{
@@ -18,9 +18,9 @@ void AudioFacade::OpenAudio(int frequency, int channel, int chunksize)
 	}
 }
 
-void AudioFacade::PlaySoundEffect(Mix_Chunk* sound, int repeats, int volume, int channel) const
+void AudioFacade::play_sound_effect(Mix_Chunk* sound, const int repeats, const int volume, const int channel) const
 {
-	if (!IsPlaying(channel))
+	if (!is_playing(channel))
 	{
 		Mix_VolumeChunk(sound, volume);
 		Mix_PlayChannel(channel, sound, repeats);
@@ -28,12 +28,12 @@ void AudioFacade::PlaySoundEffect(Mix_Chunk* sound, int repeats, int volume, int
 	}
 }
 
-bool AudioFacade::IsPlaying(int channel) const
+bool AudioFacade::is_playing(int const channel) const
 {
 	return Mix_Playing(channel) == 1;
 }
 
-void AudioFacade::PlayBackgroundMusic(Mix_Music* music, int volume) const
+void AudioFacade::play_background_music(Mix_Music* music, const int volume) const
 {
 
 	Mix_VolumeMusic(volume);
@@ -44,7 +44,7 @@ void AudioFacade::PlayBackgroundMusic(Mix_Music* music, int volume) const
 
 }
 
-void AudioFacade::PauseBackgroundMusic() const
+void AudioFacade::pause_background_music() const
 {
 	//If the music is paused 
 	if (Mix_PausedMusic() == 1)
@@ -57,7 +57,7 @@ void AudioFacade::PauseBackgroundMusic() const
 	}
 }
 
-void AudioFacade::StopBackgroundMusic() const
+void AudioFacade::stop_background_music() const
 {
 	//Stop the music 
 	if (Mix_PlayingMusic) 
@@ -66,7 +66,7 @@ void AudioFacade::StopBackgroundMusic() const
 	}
 }
 
-void AudioFacade::CloseAudio() const
+void AudioFacade::close_audio() const
 {
 	Mix_Quit();
 }

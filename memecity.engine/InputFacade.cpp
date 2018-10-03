@@ -1,6 +1,6 @@
 ﻿#include "InputFacade.h"
 
-void InputFacade::Update()
+void InputFacade::update()
 {
 	while (SDL_PollEvent(&event) != 0)
 	{
@@ -21,12 +21,12 @@ void InputFacade::Update()
 	}
 }
 
-bool InputFacade::IsPressed(const InputKeys key) const
+bool InputFacade::is_pressed(const InputKeys key) const
 {
 	return state[key] != 0;
 }
 
-bool InputFacade::IsQuitPressed() const
+bool InputFacade::is_quit_pressed() const
 {
 	return quitPressed;
 }
