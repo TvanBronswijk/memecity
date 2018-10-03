@@ -42,7 +42,7 @@ SDL_Texture* AssetManager::get_texture(std::string filename)
 	fullPath.append("Assets/" + filename);
 
 	if (textures[fullPath] == nullptr)
-		textures[fullPath] = graphics_facade->LoadTexture(fullPath);
+		textures[fullPath] = graphics_facade->load_texture(fullPath);
 
 	return textures[fullPath];
 }
@@ -53,7 +53,7 @@ SDL_Texture* AssetManager::get_text(std::string text, std::string filename, int 
 	std::string key = text + filename + char(size) + char(color.r) + char(color.g) + char(color.b);
 
 	if (texts[key] == nullptr)
-		texts[key] = graphics_facade->LoadTextTexture(font, text, color);
+		texts[key] = graphics_facade->load_text_texture(font, text, color);
 
 	return texts[key];
 }

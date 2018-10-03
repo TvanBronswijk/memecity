@@ -7,7 +7,7 @@ GraphicsFacade::GraphicsFacade(const bool is_fullscreen): isInitialized(false)
 	screen_width = 640;
 }
 
-bool GraphicsFacade::Init()
+bool GraphicsFacade::init()
 {
 	if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) < 0)
 	{
@@ -50,7 +50,7 @@ bool GraphicsFacade::Init()
 	return true;
 }
 
-SDL_Texture* GraphicsFacade::LoadTexture(const std::string path) const
+SDL_Texture* GraphicsFacade::load_texture(const std::string path) const
 {
 	SDL_Texture* texture = nullptr;
 	SDL_Surface* surface = IMG_Load(path.c_str());
@@ -71,7 +71,7 @@ SDL_Texture* GraphicsFacade::LoadTexture(const std::string path) const
 	return texture;
 }
 
-SDL_Texture* GraphicsFacade::LoadTextTexture(TTF_Font* font, std::string text, const SDL_Color color) const
+SDL_Texture* GraphicsFacade::load_text_texture(TTF_Font* font, std::string text, const SDL_Color color) const
 {
 	SDL_Surface* surface = TTF_RenderText_Solid(font, text.c_str(), color);
 	if (surface == nullptr)
@@ -91,17 +91,17 @@ SDL_Texture* GraphicsFacade::LoadTextTexture(TTF_Font* font, std::string text, c
 	return tex;
 }
 
-void GraphicsFacade::DrawTexture(SDL_Texture* texture, SDL_Rect* clipped_rect, SDL_Rect* render_rect) const
+void GraphicsFacade::draw_texture(SDL_Texture* texture, SDL_Rect* clipped_rect, SDL_Rect* render_rect) const
 {
 	SDL_RenderCopy(sdl_renderer, texture, clipped_rect, render_rect);
 }
 
-void GraphicsFacade::Clear() const
+void GraphicsFacade::clear() const
 {
 	SDL_RenderClear(sdl_renderer);
 }
 
-void GraphicsFacade::Render() const
+void GraphicsFacade::render() const
 {
 	SDL_RenderPresent(sdl_renderer);
 }

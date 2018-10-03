@@ -41,5 +41,5 @@ void Texture::render()
 	const auto pos = get_position(world);
 	render_rect.x = int(pos.x - texture_width * 0.5f);
 	render_rect.y = int(pos.y - texture_height * 0.5f);
-	graphics_facade->DrawTexture(texture, (is_clipped) ? &clipped_rect : nullptr, &render_rect);
+	graphics_facade->draw_texture(texture, (is_clipped) ? &clipped_rect : nullptr, &render_rect);
 }

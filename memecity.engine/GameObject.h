@@ -22,14 +22,14 @@ public:
 	void set_position(Vector2 position);
 	Vector2 get_position(SPACE space = world);
 
-	void set_rotation(float rotation);
-	float get_rotation(SPACE space = world);
+	void set_rotation(float rotation) const;
+	float get_rotation(SPACE space = world) const;
 
 	void set_active(bool active);
-	bool get_active();
+	bool get_active() const;
 
 	void get_parent(std::shared_ptr<GameObject> parent);
-	std::shared_ptr<GameObject> get_parent();
+	std::shared_ptr<GameObject> get_parent() const;
 
 	void translate(Vector2 vector);
 
