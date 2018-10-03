@@ -1,13 +1,13 @@
 #include "MultimediaManager.h"
 
-MultimediaManager::MultimediaManager(bool isFullscreen)
+MultimediaManager::MultimediaManager(bool is_fullscreen)
 {
-	graphics_facade = std::make_shared<GraphicsFacade>(isFullscreen);
+	graphics_facade = std::make_shared<GraphicsFacade>(is_fullscreen);
 	asset_manager = std::make_unique<AssetManager>(graphics_facade);
 	audio_facade = std::make_unique<AudioFacade>();
 }
 
-bool MultimediaManager::Init() const
+bool MultimediaManager::init() const
 {	
 	if (graphics_facade->Init())
 	{
@@ -19,47 +19,50 @@ bool MultimediaManager::Init() const
 	return false;
 }
 
-void MultimediaManager::PlayBackgroundMusic(std::string name, int volume) const
+void MultimediaManager::play_background_music(std::string name, int volume) const
 {
-	const auto music = asset_manager->GetMusic(name);
+	const auto music = asset_manager->get_music(name);
 	audio_facade->PlayBackgroundMusic(music, volume);
 }
 
-void MultimediaManager::PlaySoundEffect(std::string name, int repeats, int volume, int channel) const
+void MultimediaManager::play_sound_effect(std::string name, int repeats, int volume, int channel) const
 {
-	const auto sound = asset_manager->GetSFX(name);
+	const auto sound = asset_manager->get_sfx(name);
 	audio_facade->PlaySoundEffect(sound, repeats, volume, channel);
 }
 
-void MultimediaManager::PauseBackgroundMusic() const
+void MultimediaManager::pause_background_music() const
 {	
 	audio_facade->PauseBackgroundMusic();
 }
 
-void MultimediaManager::ClearGraphics() const
+void MultimediaManager::clear_graphics() const
 {
 	graphics_facade->Clear();
 }
 
-void MultimediaManager::RenderGraphics() const
+void MultimediaManager::render_graphics() const
 {
 	graphics_facade->Render();
 }
 
-void MultimediaManager::DrawTexture(SDL_Texture* texture, SDL_Rect* sdl_rect, SDL_Rect* render_rect) const
+std::shared_ptr<Texture> MultimediaManager::get_texture(std::string filename)
 {
-	graphics_facade->DrawTexture(texture, sdl_rect, render_rect);
+	return std::make_shared<Texture>(graphics_facade, asset_manager->get_texture(filename));
 }
 
-SDL_Texture* MultimediaManager::GetText(const std::string& cs, const std::string& font_path, const int size, const SDL_Color& color) const
+std::shared_ptr<Texture> MultimediaManager::get_texture(std::string filename, int x, int y, int width, int height)
 {
-	return asset_manager->GetText(cs, font_path, size, color);
+	return std::make_shared<Texture>(graphics_facade, asset_manager->get_texture(filename), x, y, width, height);
 }
 
-SDL_Texture* MultimediaManager::GetTexture(const std::string& cs) const
+std::shared_ptr<Texture> MultimediaManager::get_text_texture(std::string text, std::string font_path, int size, Color color)
 {
-	return asset_manager->GetTexture(cs);
+	return std::make_shared<Texture>(graphics_facade, asset_manager->get_text(text, font_path, size, color.get_sdl_color()));
 }
+
+
+
 
 
 

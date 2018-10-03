@@ -1,8 +1,8 @@
 #include "GraphicsFacade.h"
 
-GraphicsFacade::GraphicsFacade(const bool isFullscreen)
+GraphicsFacade::GraphicsFacade(const bool is_fullscreen): isInitialized(false)
 {
-	is_fullscreen = isFullscreen;
+	this->is_fullscreen = is_fullscreen;
 	screen_height = 480;
 	screen_width = 640;
 }
@@ -37,6 +37,12 @@ bool GraphicsFacade::Init()
 	if (sdl_renderer == nullptr)
 	{
 		printf("Renderer creation error: %s\n", SDL_GetError());
+		return false;
+	}
+
+	if (TTF_Init() == -1)
+	{
+		printf("TTF initialization error: %s\n", TTF_GetError());
 		return false;
 	}
 

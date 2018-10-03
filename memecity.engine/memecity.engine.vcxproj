@@ -136,7 +136,8 @@
   <ItemGroup>
     <ClCompile Include="AssetManager.cpp" />
     <ClCompile Include="AudioFacade.cpp" />
-    <ClCompile Include="Graphic.cpp" />
+    <ClCompile Include="Color.cpp" />
+    <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GraphicsFacade.cpp" />
     <ClCompile Include="InputFacade.cpp" />
     <ClCompile Include="InputManager.cpp" />
@@ -150,7 +151,8 @@
   <ItemGroup>
     <ClInclude Include="AssetManager.h" />
     <ClInclude Include="AudioFacade.h" />
-    <ClInclude Include="Graphic.h" />
+    <ClInclude Include="Color.h" />
+    <ClInclude Include="GameObject.h" />
     <ClInclude Include="GraphicsFacade.h" />
     <ClInclude Include="InputFacade.h" />
     <ClInclude Include="InputKeys.h" />

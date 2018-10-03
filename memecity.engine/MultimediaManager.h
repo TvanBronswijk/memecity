@@ -3,6 +3,8 @@
 
 #include "AssetManager.h"
 #include "AudioFacade.h"
+#include "Texture.h"
+#include "Color.h"
 
 class MultimediaManager
 {
@@ -12,19 +14,19 @@ class MultimediaManager
 		std::shared_ptr<GraphicsFacade> graphics_facade;
 
 	public:
-		MultimediaManager(bool isFullscreen);
-		bool Init() const;
+		MultimediaManager(bool is_fullscreen);
+		bool init() const;
 
-		void PlayBackgroundMusic(std::string name, int volume) const;
-		void PlaySoundEffect(std::string name, int repeats, int volume, int channel) const;
-		void PauseBackgroundMusic() const;
+		void play_background_music(std::string name, int volume) const;
+		void play_sound_effect(std::string name, int repeats, int volume, int channel) const;
+		void pause_background_music() const;
 
-		void ClearGraphics() const;
-		void RenderGraphics() const;
-		void DrawTexture(SDL_Texture* texture, SDL_Rect* sdl_rect, SDL_Rect* render_rect) const;
-		
-		SDL_Texture* GetText(const std::string& cs, const std::string& font_path, const int size, const SDL_Color& color) const;
-		SDL_Texture* GetTexture(const std::string& cs) const;
+		void clear_graphics() const;
+		void render_graphics() const;
+
+		std::shared_ptr<Texture> get_texture(std::string filename);
+		std::shared_ptr<Texture> get_texture(std::string filename, int x, int y, int width, int height);
+		std::shared_ptr<Texture> get_text_texture(std::string text, std::string font_path, int size, Color color);
 };
 
 #endif
