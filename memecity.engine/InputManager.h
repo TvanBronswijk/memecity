@@ -11,9 +11,9 @@ private:
 
 public:
 	InputManager();
-	void Update() const;
-	bool IsPressed(InputKeys key) const;
-	bool IsQuitPressed() const;
+	void update() const;
+	bool is_pressed(InputKeys key) const;
+	bool is_quit_pressed() const;
 };
 
 #endif

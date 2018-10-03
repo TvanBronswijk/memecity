@@ -11,9 +11,9 @@ private:
 	const Uint8 *state = SDL_GetKeyboardState(nullptr);
 	bool quitPressed = false;
 public:
-	void Update();
-	bool IsPressed(InputKeys key) const;
-	bool IsQuitPressed() const;
+	void update();
+	bool is_pressed(InputKeys key) const;
+	bool is_quit_pressed() const;
 };
 
 #endif
