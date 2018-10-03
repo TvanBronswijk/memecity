@@ -12,41 +12,44 @@ int main(int argc, char* argv[])
 	//DO NOT DELETE THIS LINE: ITS INTENDED TO FIND MEMORY LEAKS
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 
-	const auto multimediaManager = std::make_shared<MultimediaManager>(false);
-	const auto inputManager = std::make_unique<InputManager>();
+	const auto multimedia_manager = std::make_shared<MultimediaManager>(false);
+	const auto input_manager = std::make_unique<InputManager>();
 
-	if (multimediaManager->Init())
+	if (multimedia_manager->init())
 	{
-		multimediaManager->PlayBackgroundMusic("bgm.mp3", 50);
-		auto texture = std::make_unique<Texture>(multimediaManager, "BlikBier.bmp");
+		multimedia_manager->play_background_music("bgm.mp3", 50);
+		auto texture = multimedia_manager->get_texture("BlikBier.bmp");
+		auto text = multimedia_manager->get_text_texture("Test", "Blazed.ttf", 50, { 255,10,10 });
+		text->translate({ 100.0f, 100.0f });
 		auto timer = std::make_unique<TimerFacade>();
 
-		while (!inputManager->IsQuitPressed())
+		while (!input_manager->IsQuitPressed())
 		{
 			timer->Update();
 			if (timer->DeltaTime() >= 1.0f / 60)
 			{
-				inputManager->Update();
+				input_manager->Update();
 
-				texture->Translate(Vector2(120.0f, 120.0f) * timer->DeltaTime());
-				multimediaManager->ClearGraphics();
-				texture->Render();
-				multimediaManager->RenderGraphics();
+				texture->translate(Vector2(120.0f, 120.0f) * timer->DeltaTime());
+				multimedia_manager->clear_graphics();
+				texture->render();
+				text->render();
+				multimedia_manager->render_graphics();
 				timer->Reset();
 
-				if (inputManager->IsPressed(ESCAPE))
+				if (input_manager->IsPressed(ESCAPE))
 				{
-					multimediaManager->PauseBackgroundMusic();
+					multimedia_manager->pause_background_music();
 				}
 
-				if (inputManager->IsPressed(UP))
+				if (input_manager->IsPressed(UP))
 				{
-					multimediaManager->PlaySoundEffect("biem.mp3", 0, 50, 1);
+					multimedia_manager->play_sound_effect("biem.mp3", 0, 50, 1);
 				}
 
-				if (inputManager->IsPressed(DOWN))
+				if (input_manager->IsPressed(DOWN))
 				{
-					multimediaManager->PlaySoundEffect("biem.mp3", 0, 50, 2);
+					multimedia_manager->play_sound_effect("biem.mp3", 0, 50, 2);
 				}
 			}
 		}
