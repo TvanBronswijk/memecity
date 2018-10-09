@@ -46,6 +46,12 @@ Texture::~Texture()
 	texture = nullptr;
 }
 
+void Texture::update()
+{
+	// Does nothing?
+}
+
+
 /**
  * Delegates rendering the texture
  */
@@ -55,9 +61,4 @@ void Texture::render()
 	render_rect.x = int(pos.x - texture_width * 0.5f);
 	render_rect.y = int(pos.y - texture_height * 0.5f);
 	graphics_facade->draw_texture(texture, (is_clipped) ? &clipped_rect : nullptr, &render_rect);
-}
-
-void Texture::update()
-{
-	// TODO: ?
 }
