@@ -140,6 +140,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\memecity.game\MemeEngine.cpp" />
     <ClCompile Include="AssetManager.cpp" />
     <ClCompile Include="AudioFacade.cpp" />
     <ClCompile Include="Color.cpp" />
@@ -163,6 +164,7 @@
     <ClInclude Include="InputKeys.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="MathHelper.h" />
+    <ClInclude Include="MemeEngine.h" />
     <ClInclude Include="MultimediaManager.h" />
     <ClInclude Include="SerializationFacade.h" />
     <ClInclude Include="StorageManager.h" />
