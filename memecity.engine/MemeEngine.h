@@ -11,8 +11,8 @@ protected:
 	std::shared_ptr<InputManager> input_manager;
 	std::shared_ptr<TimerFacade> timer;
 
-	virtual bool Init();
-	virtual void Handle();
+	virtual bool Init() = 0;
+	virtual void Handle() = 0;
 public:
 	int Run();
 	MemeEngine();

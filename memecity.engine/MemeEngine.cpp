@@ -22,12 +22,5 @@ int MemeEngine::Run()
 	return 1;
 }
 
-bool MemeEngine::Init()
-{
-	return false;
-}
-
-
-void MemeEngine::Handle(){}
 
 
