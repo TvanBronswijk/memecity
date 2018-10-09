@@ -1,14 +1,20 @@
 ﻿#include "AssetManager.h"
 #include "GraphicsFacade.h"
 
+/**
+ * Constructor which assigns a given graphics_facade to it's member variable
+ */
 AssetManager::AssetManager(std::shared_ptr<GraphicsFacade> graphics_facade)
 {
 	this->graphics_facade = graphics_facade;
 }
 
+/**
+ * Cleanup
+ */
 AssetManager::~AssetManager()
 {
-	for (const auto texture : textures)
+	for (auto texture : textures)
 	{
 		if (texture.second != nullptr)
 		{
@@ -17,7 +23,7 @@ AssetManager::~AssetManager()
 	}
 	textures.clear();
 
-	for (const auto text : texts)
+	for (auto text : texts)
 	{
 		if (text.second != nullptr)
 		{
@@ -26,7 +32,7 @@ AssetManager::~AssetManager()
 	}
 	texts.clear();
 
-	for (const auto font : fonts)
+	for (auto font : fonts)
 	{
 		if (font.second != nullptr)
 		{
@@ -36,29 +42,41 @@ AssetManager::~AssetManager()
 	fonts.clear();
 }
 
+/**
+ * Returns a texture based on given filename
+ */
 SDL_Texture* AssetManager::get_texture(std::string filename)
 {
 	std::string fullPath = SDL_GetBasePath();
 	fullPath.append("Assets/" + filename);
 
 	if (textures[fullPath] == nullptr)
+	{
 		textures[fullPath] = graphics_facade->load_texture(fullPath);
+	}
 
 	return textures[fullPath];
 }
 
+/**
+ * Returns a text texture based on a given text and filename
+ */
 SDL_Texture* AssetManager::get_text(std::string text, std::string filename, int size, SDL_Color color)
 {
 	TTF_Font* font = get_font(filename, size);
 	std::string key = text + filename + char(size) + char(color.r) + char(color.g) + char(color.b);
 
 	if (texts[key] == nullptr)
+	{
 		texts[key] = graphics_facade->load_text_texture(font, text, color);
+	}
 
 	return texts[key];
 }
 
-
+/**
+ * Returns a font based on a given filename
+ */
 TTF_Font* AssetManager::get_font(std::string filename, int size)
 {
 	std::string fullPath = SDL_GetBasePath();
@@ -78,6 +96,9 @@ TTF_Font* AssetManager::get_font(std::string filename, int size)
 	return fonts[key];
 }
 
+/**
+ * Returns music based on a given filename
+ */
 Mix_Music* AssetManager::get_music(std::string filename)
 {
 	std::string fullPath = SDL_GetBasePath();
@@ -96,6 +117,9 @@ Mix_Music* AssetManager::get_music(std::string filename)
 	return music[fullPath];
 }
 
+/**
+ * Returns a sound effect based on a given filename
+ */
 Mix_Chunk* AssetManager::get_sfx(std::string filename)
 {
 	std::string fullPath = SDL_GetBasePath();

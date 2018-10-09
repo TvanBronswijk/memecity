@@ -1,15 +1,21 @@
 #include "GraphicsFacade.h"
 
-GraphicsFacade::GraphicsFacade(const bool is_fullscreen): isInitialized(false)
+/**
+ * Constructor with the default setting to disable fullscreen
+ */
+GraphicsFacade::GraphicsFacade(bool is_fullscreen): is_initialized(false)
 {
 	this->is_fullscreen = is_fullscreen;
 	screen_height = 480;
 	screen_width = 640;
 }
 
+/**
+ * Initializes the SDL Video and enables fullscreen if selected
+ */
 bool GraphicsFacade::init()
 {
-	if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) < 0)
+	if (SDL_Init(SDL_INIT_VIDEO) < 0)
 	{
 		printf("SDL initialization error: %s\n", SDL_GetError());
 		return false;
@@ -50,6 +56,9 @@ bool GraphicsFacade::init()
 	return true;
 }
 
+/**
+ * Loads texture from path into memory
+ */
 SDL_Texture* GraphicsFacade::load_texture(const std::string path) const
 {
 	SDL_Texture* texture = nullptr;
@@ -71,7 +80,10 @@ SDL_Texture* GraphicsFacade::load_texture(const std::string path) const
 	return texture;
 }
 
-SDL_Texture* GraphicsFacade::load_text_texture(TTF_Font* font, std::string text, const SDL_Color color) const
+/**
+ * Loads a text texture from path into memory
+ */
+SDL_Texture* GraphicsFacade::load_text_texture(TTF_Font* font, std::string text, const SDL_Color &color) const
 {
 	SDL_Surface* surface = TTF_RenderText_Solid(font, text.c_str(), color);
 	if (surface == nullptr)
@@ -91,20 +103,26 @@ SDL_Texture* GraphicsFacade::load_text_texture(TTF_Font* font, std::string text,
 	return tex;
 }
 
+/**
+ * Loads a texture into the buffer of the SDL_Renderer object
+ */
 void GraphicsFacade::draw_texture(SDL_Texture* texture, SDL_Rect* clipped_rect, SDL_Rect* render_rect) const
 {
 	SDL_RenderCopy(sdl_renderer, texture, clipped_rect, render_rect);
 }
 
+/**
+ * Clears the SDL_Renderer buffer
+ */
 void GraphicsFacade::clear() const
 {
 	SDL_RenderClear(sdl_renderer);
 }
 
+/**
+ * Renders the SDL_Renderer buffer
+ */
 void GraphicsFacade::render() const
 {
 	SDL_RenderPresent(sdl_renderer);
 }
-
-
-

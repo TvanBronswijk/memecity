@@ -1,10 +1,13 @@
 ﻿#include "InputFacade.h"
 
+/**
+ * Updates the Keyboard State to find out which keys are pressed
+ */
 void InputFacade::update()
 {
 	while (SDL_PollEvent(&event) != 0)
 	{
-		if (event.type == SDL_QUIT) { quitPressed = true; }
+		if (event.type == SDL_QUIT) { quit_pressed = true; }
 		state = SDL_GetKeyboardState(nullptr);
 
 		switch (event.type)
@@ -21,12 +24,18 @@ void InputFacade::update()
 	}
 }
 
-bool InputFacade::is_pressed(const InputKeys key) const
+/**
+ * Returns if a given key is pressed
+ */
+bool InputFacade::is_pressed(InputKeys key) const
 {
 	return state[key] != 0;
 }
 
+/**
+ * Returns whether quit is pressed 
+ */
 bool InputFacade::is_quit_pressed() const
 {
-	return quitPressed;
+	return quit_pressed;
 }

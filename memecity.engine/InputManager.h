@@ -5,7 +5,6 @@
 
 class InputManager
 {
-
 private:
 	std::unique_ptr<InputFacade> input_facade;
 

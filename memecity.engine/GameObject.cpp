@@ -1,6 +1,9 @@
 #include "GameObject.h"
 
-GameObject::GameObject(const float x, const float y)
+/**
+ * Create a new GameObject on given x and y values (position)
+ */
+GameObject::GameObject(float x, float y)
 {
 	position.x = x;
 	position.y = y;
@@ -10,77 +13,103 @@ GameObject::GameObject(const float x, const float y)
 	parent = nullptr;
 }
 
+/**
+ * Sets the parent of the GameObject to a nullptr to avoid memory leaks
+ */
 GameObject::~GameObject()
 {
 	parent = nullptr;
 }
 
-void GameObject::set_position(const Vector2 position)
+/**
+ * Sets the position
+ */
+void GameObject::set_position(Vector2 position)
 {
 	this->position = position;
 }
 
-Vector2 GameObject::get_position(const SPACE space)
+/**
+ * Returns position based on given SPACE
+ */
+Vector2 GameObject::get_position(SPACE space)
 {
 	if (space == local || parent == nullptr)
+	{
 		return position;
+	}
 
 	return parent->get_position(world) + RotateVector(position, parent->get_rotation(local));
 }
-void GameObject::set_rotation(float rotation) const
+
+/**
+ * Sets the rotation
+ */
+void GameObject::set_rotation(float rotation)
 {
-	rotation = rotation;
-	if (rotation > 360.0f) {
+	this->rotation = rotation;
+	if (rotation > 360.0f) 
+	{
 		const int mul = rotation / 360;
-		rotation -= 360.0f * mul;
+		this->rotation -= 360.0f * mul;
 	}
-	else if (rotation < 0.0f) {
+	else if (rotation < 0.0f) 
+	{
 		const int mul = (rotation / 360) - 1;
-		rotation -= 360.0f * mul;
+		this->rotation -= 360.0f * mul;
 	}
 }
 
-float GameObject::get_rotation(const SPACE space) const
+/**
+ * Gets the rotation based on given SPACE
+ */
+float GameObject::get_rotation(SPACE space) const
 {
 	if (space == local || parent == nullptr)
+	{
 		return rotation;
+	}
 
 	return parent->get_rotation(world) + rotation;
 }
 
-void GameObject::set_active(const bool active)
+/*
+ * Sets if the GameObject is active
+ */
+void GameObject::set_active(bool active)
 {
 	is_active = active;
 }
 
+/**
+ * Returns whether the GameObject is active
+ */
 bool GameObject::get_active() const
 {
 	return is_active;
 }
 
-void GameObject::get_parent(std::shared_ptr<GameObject> parent)
+/**
+ * Sets the parent
+ */
+void GameObject::set_parent(std::shared_ptr<GameObject> parent)
 {
 	position = get_position(world) - parent->get_position(world);
-	parent = parent;
+	this->parent = parent;
 }
 
+/**
+ * Returns the parent
+ */
 std::shared_ptr<GameObject> GameObject::get_parent() const
 {
 	return parent;
 }
 
-void GameObject::translate(const Vector2 vector)
+/**
+ * Update position based on given vector
+ */
+void GameObject::translate(Vector2 vector)
 {
 	position += vector;
-}
-
-
-void GameObject::update()
-{
-
-}
-
-void GameObject::render()
-{
-
 }
