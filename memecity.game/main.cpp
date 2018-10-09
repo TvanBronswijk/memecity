@@ -1,13 +1,12 @@
+
 #define _CRTDBG_MAP_ALLOC
-#include <cstdlib>
-#include <crtdbg.h>
-#include "Texture.h"
-#include <thread>
-#include "TimerFacade.h"
 #include "MultimediaManager.h"
 #include "InputManager.h"
+#include <memory>
+#include "TimerFacade.h"
 
-int nomain(int argc, char* argv[])
+
+int main(int argc, char* argv[])
 {
 	//DO NOT DELETE THIS LINE: ITS INTENDED TO FIND MEMORY LEAKS
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
