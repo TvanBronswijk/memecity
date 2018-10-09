@@ -1,11 +1,10 @@
+
 #define _CRTDBG_MAP_ALLOC
-#include <cstdlib>
-#include <crtdbg.h>
-#include "Texture.h"
-#include <thread>
-#include "TimerFacade.h"
 #include "MultimediaManager.h"
 #include "InputManager.h"
+#include <memory>
+#include "TimerFacade.h"
+
 
 int main(int argc, char* argv[])
 {

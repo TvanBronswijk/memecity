@@ -24,7 +24,6 @@ void AudioFacade::play_sound_effect(Mix_Chunk* sound, const int repeats, const i
 	{
 		Mix_VolumeChunk(sound, volume);
 		Mix_PlayChannel(channel, sound, repeats);
-		sound = nullptr;
 	}
 }
 
