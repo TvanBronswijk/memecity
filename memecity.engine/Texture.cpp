@@ -4,7 +4,8 @@ Texture::Texture(std::shared_ptr<GraphicsFacade> graphics_facade, SDL_Texture* t
 {
 	this->graphics_facade = graphics_facade;
 	this->texture = texture;
-	//used to determine width and height of texture
+
+	// Used to determine width and height of the given texture
 	SDL_QueryTexture(texture, nullptr, nullptr, &texture_width, &texture_height);
 
 	is_clipped = false;
