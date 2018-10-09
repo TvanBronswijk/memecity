@@ -23,7 +23,6 @@ public:
 	~Texture();
 
 	void render() override;
-	void update() override;
 };
 
 #endif

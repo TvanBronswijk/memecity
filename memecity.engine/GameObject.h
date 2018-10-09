@@ -1,5 +1,6 @@
 #ifndef _GRAPHIC_H
 #define  _GRAPHIC_H
+
 #include "MathHelper.h"
 #include "GraphicsFacade.h"
 
@@ -33,7 +34,6 @@ public:
 
 	void translate(Vector2 vector);
 
-	virtual void update() = 0;
 	virtual void render() = 0;
 };
 

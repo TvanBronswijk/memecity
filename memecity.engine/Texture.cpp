@@ -46,12 +46,6 @@ Texture::~Texture()
 	texture = nullptr;
 }
 
-void Texture::update()
-{
-	// Does nothing?
-}
-
-
 /**
  * Delegates rendering the texture
  */

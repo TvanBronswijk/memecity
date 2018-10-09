@@ -3,14 +3,14 @@
 
 #include "InputFacade.h"
 
-class InputManager
+class InputManager : public Updatable
 {
 private:
 	std::unique_ptr<InputFacade> input_facade;
 
 public:
 	InputManager();
-	void update() const;
+	void update() override;
 	bool is_pressed(InputKeys key) const;
 	bool is_quit_pressed() const;
 };
