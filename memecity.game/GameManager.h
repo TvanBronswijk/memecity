@@ -2,8 +2,15 @@
 #define _GAME_MANAGER_H
 #include "MemeEngine.h"
 
-class GameManager : MemeEngine 
+class GameManager : public MemeEngine 
 {
+private:
+	std::shared_ptr<Texture> texture;
+	std::shared_ptr<Texture> text;
+
+protected:
+	bool Init() override;
+	void Handle() override;
 
 };
 
