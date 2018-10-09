@@ -7,7 +7,8 @@ Texture::Texture(std::shared_ptr<GraphicsFacade> graphics_facade, SDL_Texture* t
 {
 	this->graphics_facade = graphics_facade;
 	this->texture = texture;
-	//used to determine width and height of texture
+
+	// Used to determine width and height of texture
 	SDL_QueryTexture(texture, nullptr, nullptr, &texture_width, &texture_height);
 
 	is_clipped = false;
@@ -54,4 +55,9 @@ void Texture::render()
 	render_rect.x = int(pos.x - texture_width * 0.5f);
 	render_rect.y = int(pos.y - texture_height * 0.5f);
 	graphics_facade->draw_texture(texture, (is_clipped) ? &clipped_rect : nullptr, &render_rect);
+}
+
+void Texture::update()
+{
+	// TODO: ?
 }
