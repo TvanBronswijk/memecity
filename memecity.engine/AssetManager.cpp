@@ -1,17 +1,13 @@
 ﻿#include "AssetManager.h"
 #include "GraphicsFacade.h"
 
-/**
- * Constructor which assigns a given graphics_facade to it's member variable
- */
+///<summary>Constructor which assigns a given graphics_facade to it's member variable.</summary>
 AssetManager::AssetManager(std::shared_ptr<GraphicsFacade> graphics_facade)
 {
 	this->graphics_facade = graphics_facade;
 }
 
-/**
- * Cleanup
- */
+///<summary>Cleanup.</summary>
 AssetManager::~AssetManager()
 {
 	for (auto texture : textures)
@@ -42,9 +38,7 @@ AssetManager::~AssetManager()
 	fonts.clear();
 }
 
-/**
- * Returns a texture based on given filename
- */
+///<summary>Returns a texture based on given filename.</summary>
 SDL_Texture* AssetManager::get_texture(std::string filename)
 {
 	std::string fullPath = SDL_GetBasePath();
@@ -58,9 +52,7 @@ SDL_Texture* AssetManager::get_texture(std::string filename)
 	return textures[fullPath];
 }
 
-/**
- * Returns a text texture based on a given text and filename
- */
+///<summary>Returns a text texture based on a given text and filename.</summary>
 SDL_Texture* AssetManager::get_text(std::string text, std::string filename, int size, SDL_Color color)
 {
 	TTF_Font* font = get_font(filename, size);
@@ -74,9 +66,7 @@ SDL_Texture* AssetManager::get_text(std::string text, std::string filename, int 
 	return texts[key];
 }
 
-/**
- * Returns a font based on a given filename
- */
+///<summary>Returns a font based on a given filename.</summary>
 TTF_Font* AssetManager::get_font(std::string filename, int size)
 {
 	std::string fullPath = SDL_GetBasePath();
@@ -95,10 +85,7 @@ TTF_Font* AssetManager::get_font(std::string filename, int size)
 
 	return fonts[key];
 }
-
-/**
- * Returns music based on a given filename
- */
+///<summary>Returns music based on a given filename.</summary>
 Mix_Music* AssetManager::get_music(std::string filename)
 {
 	std::string fullPath = SDL_GetBasePath();
@@ -117,9 +104,7 @@ Mix_Music* AssetManager::get_music(std::string filename)
 	return music[fullPath];
 }
 
-/**
- * Returns a sound effect based on a given filename
- */
+///<summary>Returns a sound effect based on a given filename.</summary>
 Mix_Chunk* AssetManager::get_sfx(std::string filename)
 {
 	std::string fullPath = SDL_GetBasePath();

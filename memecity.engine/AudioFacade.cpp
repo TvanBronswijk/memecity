@@ -1,8 +1,6 @@
 ﻿#include "AudioFacade.h"
 
-/**
- * Initializes the SDL Audio
- */
+ ///<summary>Initializes the SDL Audio.</summary>
 bool AudioFacade::init() const
 {
 	if (SDL_Init(SDL_INIT_AUDIO) < 0) {
@@ -13,9 +11,7 @@ bool AudioFacade::init() const
 	return true;
 }
 
-/**
- * Open the SDL audio mixer with a given audio format
- */
+///<summary>Open the SDL audio mixer with a given audio format.</summary>
 void AudioFacade::open_audio(int frequency, int channels, int chunksize) const
 {
 	if (Mix_OpenAudio(frequency, MIX_DEFAULT_FORMAT, channels, chunksize) < 0) 
@@ -24,9 +20,7 @@ void AudioFacade::open_audio(int frequency, int channels, int chunksize) const
 	}
 }
 
-/**
- * Play a sound effect with a given amount of repeats, volume and the selected channel
-*/
+///<summary>Play a sound effect with a given amount of repeats, volume and the selected channel.</summary>
 void AudioFacade::play_sound_effect(Mix_Chunk* sound, int repeats, int volume, int channel) const
 {
 	if (!is_playing(channel))
@@ -36,17 +30,13 @@ void AudioFacade::play_sound_effect(Mix_Chunk* sound, int repeats, int volume, i
 	}
 }
 
-/**
- * Check if audio is playing on the given channel
- */
+///<summary>Checks if audio is playing on the given channel.</summary>
 bool AudioFacade::is_playing(int channel) const
 {
 	return Mix_Playing(channel) == 1;
 }
 
-/**
- * Play a given background music with a specified volume
- */
+///<summary>Play a given background music with a specified volume.</summary>
 void AudioFacade::play_background_music(Mix_Music* music, int volume) const
 {
 
@@ -58,9 +48,7 @@ void AudioFacade::play_background_music(Mix_Music* music, int volume) const
 
 }
 
-/**
- * If the music is paused, resume. Otherwise pause.
- */
+///<summary>If the music is paused, resume. Otherwise pause.</summary>
 void AudioFacade::pause_background_music() const
 {
 	if (Mix_PausedMusic() == 1)
@@ -73,9 +61,7 @@ void AudioFacade::pause_background_music() const
 	}
 }
 
-/**
- * If background music is playing, stop it
- */
+///<summary>If background music is playing, stop it.</summary>
 void AudioFacade::stop_background_music() const
 {
 	if (Mix_PlayingMusic) 
@@ -84,9 +70,7 @@ void AudioFacade::stop_background_music() const
 	}
 }
 
-/**
- * Cleanup the audio
- */
+///<summary>Cleanup audio</summary>
 void AudioFacade::close_audio() const
 {
 	Mix_Quit();
