@@ -19,9 +19,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CityGenerator.h" />
     <ClInclude Include="GameManager.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CityGenerator.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>

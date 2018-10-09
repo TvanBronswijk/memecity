@@ -13,10 +13,25 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\Components">
+      <UniqueIdentifier>{df7c88b1-87fb-405d-ae9e-ffff39c88c65}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Components">
+      <UniqueIdentifier>{cf8d53bf-063f-47ff-a6b8-3bbe841ef165}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\City">
+      <UniqueIdentifier>{69be7a77-99c9-4639-be1f-3358806ed1a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\City">
+      <UniqueIdentifier>{0dbf50c0-d376-4205-9bd5-61396d320cc4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameManager.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CityGenerator.h">
+      <Filter>Header Files\City</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -25,6 +40,9 @@
     </ClCompile>
     <ClCompile Include="GameManager.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CityGenerator.cpp">
+      <Filter>Source Files\City</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
