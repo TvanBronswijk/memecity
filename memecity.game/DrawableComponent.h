@@ -6,6 +6,7 @@
 
 struct DrawableComponent : public Component
 {
+	static std::string COMPONENT_TYPE;
 
 public:
 	std::string get_type() override;

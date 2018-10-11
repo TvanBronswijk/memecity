@@ -1,7 +1,8 @@
 ﻿#include "DrawableComponent.h"
 
+std::string DrawableComponent::COMPONENT_TYPE = "DrawableComponent";
 
 std::string DrawableComponent::get_type()
 {
-	return "GraphicComponent";
+	return COMPONENT_TYPE;
 }

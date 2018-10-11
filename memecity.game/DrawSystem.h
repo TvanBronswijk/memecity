@@ -4,6 +4,7 @@
 #include <vector>
 #include "MultimediaManager.h"
 #include "DrawableComponent.h"
+#include "../memecity.engine.ecs/EntityManager.h"
 
 class DrawSystem : public System
 {
