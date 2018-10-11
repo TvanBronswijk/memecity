@@ -20,13 +20,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameManager.h" />
-    <ClInclude Include="GraphicComponent.h" />
-    <ClInclude Include="GraphicSystem.h" />
+    <ClInclude Include="DrawableComponent.h" />
+    <ClInclude Include="DrawSystem.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameManager.cpp" />
-    <ClCompile Include="GraphicComponent.cpp" />
-    <ClCompile Include="GraphicSystem.cpp" />
+    <ClCompile Include="DrawableComponent.cpp" />
+    <ClCompile Include="DrawSystem.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
