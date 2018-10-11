@@ -1,6 +1,8 @@
 #include "GameManager.h"
 
-bool GameManager::Init()
+
+
+bool GameManager::init()
 {
 	if (multimedia_manager->init())
 	{
@@ -14,7 +16,7 @@ bool GameManager::Init()
 }
 
 
-void GameManager::Handle()
+void GameManager::handle()
 {
 	timer->update();
 	if (timer->get_delta_time() >= 1.0f / 60)
