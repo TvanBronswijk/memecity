@@ -153,6 +153,7 @@
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="StorageManager.cpp" />
     <ClCompile Include="TimerFacade.cpp" />
+    <ClCompile Include="Updatable.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AssetManager.h" />
@@ -170,6 +171,7 @@
     <ClInclude Include="StorageManager.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="TimerFacade.h" />
+    <ClInclude Include="Updatable.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,10 +1,12 @@
 #include "Texture.h"
 
+///<summary>Creates a new instance for a texture based on an entire SDL_Texture.</summary>
 Texture::Texture(std::shared_ptr<GraphicsFacade> graphics_facade, SDL_Texture* texture)
 {
 	this->graphics_facade = graphics_facade;
 	this->texture = texture;
-	//used to determine width and height of texture
+
+	// Used to determine width and height of texture
 	SDL_QueryTexture(texture, nullptr, nullptr, &texture_width, &texture_height);
 
 	is_clipped = false;
@@ -13,6 +15,7 @@ Texture::Texture(std::shared_ptr<GraphicsFacade> graphics_facade, SDL_Texture* t
 	render_rect.h = texture_height;
 }
 
+///<summary>Creates a new instance for a texture based on a cutout of a SDL_Texture.</summary>
 Texture::Texture(std::shared_ptr<GraphicsFacade> graphics_facade, SDL_Texture* texture, int x, int y, int width, int height)
 {
 	this->graphics_facade = graphics_facade;
@@ -31,11 +34,13 @@ Texture::Texture(std::shared_ptr<GraphicsFacade> graphics_facade, SDL_Texture* t
 	clipped_rect.h = texture_height;
 }
 
+///<summary>Cleanup.</summary>
 Texture::~Texture()
 {
 	texture = nullptr;
 }
 
+///<summary>Delegates rendering the texture.<summary>
 void Texture::render()
 {
 	const auto pos = get_position(world);
