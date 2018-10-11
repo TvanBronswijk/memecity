@@ -31,14 +31,23 @@ public:
 	///<summary>Register a system to the EntityManager.</summary>
 	void register_system(System* s);
 
+	///<summary>Get all entities</summary>
+	vector<Entity*> get_entities();
+
+	///<summary>Get all entities with a certain component.</summary>
+	vector<Entity*> get_entities_with_component(string type);
+
 	///<summary>Get components of a specific type.</summary>
 	vector<Component*> get_components_of_type(string type);
 
 	///<summary>Get specific component of entity</summary>
-	Component* get_component_of_entity(Entity* e, string type);
+	Component* get_component_of_entity(int entity_id, string type);
 
 	///<summary>Get components with a specific entity ID.</summary>
-	vector<Component*> get_components_of_entity(Entity* e);
+	vector<Component*> get_components_of_entity(int entity_id);
+
+	///<summary>Checks if entity has component.</summary>
+	bool has_component(Entity* e, string type);
 
 	///<summary>Run all systems that are subscribed to the event.</summary>
 	void fire_event(Event* e);
