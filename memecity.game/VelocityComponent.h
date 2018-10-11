@@ -4,10 +4,13 @@
 
 struct VelocityComponent : Component
 {
+	static std::string COMPONENT_TYPE;
+
 	float x, y;
 
 	VelocityComponent(Entity* e);
 	VelocityComponent(Entity* e, float x, float y);
+	std::string get_type() override;
 };
 
 #endif

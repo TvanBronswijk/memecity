@@ -5,7 +5,9 @@
 class InputSystem : public System
 {
 public:
-	
+	static std::string SYSTEM_TYPE;
+	void run(EntityManager& em) override;
+	std::string get_type() override;
 };
 
 #endif
