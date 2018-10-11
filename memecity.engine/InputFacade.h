@@ -3,15 +3,17 @@
 
 #include <iostream>
 #include "InputKeys.h"
+#include "Updatable.h"
 
-class InputFacade
+class InputFacade : public Updatable
 {
 private:
 	SDL_Event event;
 	const Uint8 *state = SDL_GetKeyboardState(nullptr);
-	bool quitPressed = false;
+	bool quit_pressed = false;
+
 public:
-	void update();
+	void update() override;
 	bool is_pressed(InputKeys key) const;
 	bool is_quit_pressed() const;
 };
