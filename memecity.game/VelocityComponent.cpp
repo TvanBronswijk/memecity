@@ -26,33 +26,3 @@ VelocityComponent::VelocityComponent(int speed, float x, float y)
 	this->x = x;
 	this->y = y;
 }
-
-int VelocityComponent::get_speed() const
-{
-	return this->speed;
-}
-
-void VelocityComponent::set_speed(int speed)
-{
-	this->speed = speed;
-}
-
-float VelocityComponent::get_x() const
-{
-	return this->x;
-}
-
-void VelocityComponent::set_x(float x)
-{
-	this->x = x;
-}
-
-float VelocityComponent::get_y() const
-{
-	return this->y;
-}
-
-void VelocityComponent::set_y(float y)
-{
-	this->y = y;
-}
