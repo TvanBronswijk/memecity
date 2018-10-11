@@ -1,6 +1,6 @@
 ﻿#ifndef _POSITIONCOMPONENT_H
 #define  _POSITIONCOMPONENT_H
-#include "Component.h"
+#include "../memecity.engine.ecs/Component.h"
 
 struct PositionComponent : public Component
 {
