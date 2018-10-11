@@ -5,8 +5,8 @@
 struct PositionComponent : public Component
 {
 	float x, y;
-	PositionComponent();
-	PositionComponent(float x, float y);
+	PositionComponent(Entity* e);
+	PositionComponent(Entity* e, float x, float y);
 };
 
 #endif

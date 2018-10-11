@@ -6,8 +6,8 @@ struct VelocityComponent : Component
 {
 	float x, y;
 
-	VelocityComponent();
-	VelocityComponent(float x, float y);
+	VelocityComponent(Entity* e);
+	VelocityComponent(Entity* e, float x, float y);
 };
 
 #endif
