@@ -7,26 +7,27 @@
 
 class AssetManager
 {
-private:
-	std::shared_ptr<GraphicsFacade> graphics_facade;
+	private:
+		std::shared_ptr<GraphicsFacade> graphics_facade;
 
-	std::map<std::string, SDL_Texture*> textures;
-	std::map<std::string, SDL_Texture*> texts;
-	std::map<std::string, TTF_Font*> fonts;
-	std::map<std::string, Mix_Music*> music;
-	std::map<std::string, Mix_Chunk*> sfx;
+		std::map<std::string, SDL_Texture*> textures;
+		std::map<std::string, SDL_Texture*> texts;
+		std::map<std::string, TTF_Font*> fonts;
+		std::map<std::string, Mix_Music*> music;
+		std::map<std::string, Mix_Chunk*> sfx;
 
-	TTF_Font* get_font(std::string filename, int size);
+		TTF_Font* get_font(std::string filename, int size);
 
-public:
+	public:
 
-	AssetManager(std::shared_ptr<GraphicsFacade> graphics_facade);
-	SDL_Texture* get_texture(std::string filename);
-	SDL_Texture* get_text(std::string text, std::string filename, int size, SDL_Color color);
-	Mix_Music* get_music(std::string filename);
-	Mix_Chunk* get_sfx(std::string filename);
+		AssetManager(std::shared_ptr<GraphicsFacade> graphics_facade);
+		SDL_Texture* get_animated_texture(std::string filename);
+		SDL_Texture* get_texture(std::string filename);
+		SDL_Texture* get_text(std::string text, std::string filename, int size, SDL_Color color);
+		Mix_Music* get_music(std::string filename);
+		Mix_Chunk* get_sfx(std::string filename);
 
-	~AssetManager();
+		~AssetManager();
 };
 
 #endif

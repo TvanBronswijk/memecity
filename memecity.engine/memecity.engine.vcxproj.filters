@@ -81,7 +81,7 @@
     <ClCompile Include="MemeEngine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Updatable.cpp">
+    <ClCompile Include="AnimatedTexture.cpp">
       <Filter>Source Files\Graphics</Filter>
     </ClCompile>
   </ItemGroup>
@@ -131,7 +131,7 @@
     <ClInclude Include="MemeEngine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Updatable.h">
+    <ClInclude Include="AnimatedTexture.h">
       <Filter>Header Files\Graphics</Filter>
     </ClInclude>
   </ItemGroup>

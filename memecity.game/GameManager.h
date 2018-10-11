@@ -5,6 +5,7 @@
 class GameManager : public MemeEngine 
 {
 private:
+	std::shared_ptr<AnimatedTexture> sprite;
 	std::shared_ptr<Texture> texture;
 	std::shared_ptr<Texture> text;
 
