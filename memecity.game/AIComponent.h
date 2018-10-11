@@ -6,8 +6,8 @@ struct AIComponent : public Component {
 	
 public:
 	bool _fighting, _fleeing;
-	AIComponent();
-	AIComponent(bool fighting, bool fleeing);
+	AIComponent(Entity* e);
+	AIComponent(bool fighting, bool fleeing, Entity* e);
 	std::string get_type() override;
 };
 

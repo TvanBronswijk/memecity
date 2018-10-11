@@ -8,8 +8,8 @@ struct PositionComponent : public Component
 public:
 	float x_position, y_position;
 	std::string get_type() override;
-	PositionComponent();
-	PositionComponent(float x, float y);
+	PositionComponent(Entity* e);
+	PositionComponent(float x, float y, Entity* e);
 	void update();
 };
 
