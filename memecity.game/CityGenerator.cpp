@@ -10,5 +10,7 @@ std::unique_ptr<City> CityGenerator::generate(int w, int h)
 	root.w = c->w;
 	root.h = c->h;
 
+	
+
 	return c;
 }
