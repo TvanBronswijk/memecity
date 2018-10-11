@@ -10,7 +10,6 @@ private :
 public:
 	Color(Uint8 r, Uint8 g, Uint8 b, Uint8 a = 255);
 	SDL_Color get_sdl_color() const;
-
 };
 
 #endif
