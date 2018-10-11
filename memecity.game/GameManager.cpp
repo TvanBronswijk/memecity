@@ -1,20 +1,10 @@
 #include "GameManager.h"
 #include <EntityManager.h>
 
-EntityManager entity_manager;
-
 bool GameManager::Init()
 {
 	if (multimedia_manager->init())
 	{
-		auto player = new Entity();
-		auto sprite_component = new Component();
-		player->id = 1;
-		sprite_component->entity_id = 1;
-
-		entity_manager.register_entity(*player);
-		entity_manager.register_component(*sprite_component);
-
 		multimedia_manager->play_background_music("bgm.mp3", 50);
 		texture = multimedia_manager->get_texture("BlikBier.bmp");
 		text = multimedia_manager->get_text_texture("Test", "Blazed.ttf", 50, { 255,10,10 });
