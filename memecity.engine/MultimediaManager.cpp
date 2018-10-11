@@ -55,6 +55,13 @@ std::shared_ptr<Texture> MultimediaManager::get_texture(std::string const filena
 	return std::make_shared<Texture>(graphics_facade, asset_manager->get_texture(filename), x, y, width, height);
 }
 
+std::shared_ptr<AnimatedTexture> MultimediaManager::get_animated_texture(TimerFacade *timer, std::string filename, int x, int y, int width, int height, int frame_count, float animation_speed, AnimatedTexture::ANIMATION_DIRECTION direction)
+{
+	auto texture = asset_manager->get_texture(filename);
+	return std::make_shared<AnimatedTexture>(timer, graphics_facade, texture, x, y, width, height, frame_count, animation_speed, direction);
+}
+
+
 std::shared_ptr<Texture> MultimediaManager::get_text_texture(std::string const text, std::string const font_path, const int size, Color color)
 {
 	return std::make_shared<Texture>(graphics_facade, asset_manager->get_text(text, font_path, size, color.get_sdl_color()));

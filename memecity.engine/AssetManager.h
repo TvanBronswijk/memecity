@@ -21,6 +21,7 @@ class AssetManager
 	public:
 
 		AssetManager(std::shared_ptr<GraphicsFacade> graphics_facade);
+		SDL_Texture* get_animated_texture(std::string filename);
 		SDL_Texture* get_texture(std::string filename);
 		SDL_Texture* get_text(std::string text, std::string filename, int size, SDL_Color color);
 		Mix_Music* get_music(std::string filename);
