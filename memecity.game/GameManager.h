@@ -1,5 +1,6 @@
 #ifndef _GAME_MANAGER_H
 #define _GAME_MANAGER_H
+
 #include "MemeEngine.h"
 
 class GameManager : public MemeEngine 
@@ -12,7 +13,6 @@ private:
 protected:
 	bool init() override;
 	void handle() override;
-
 };
 
 

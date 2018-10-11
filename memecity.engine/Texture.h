@@ -6,23 +6,23 @@
 
 class Texture : public GameObject
 {
-	protected:
-		SDL_Texture* texture;
-		std::shared_ptr<GraphicsFacade> graphics_facade;
-		bool is_clipped;
+protected:
+	SDL_Texture* texture;
+	std::shared_ptr<GraphicsFacade> graphics_facade;
+	bool is_clipped;
 
-		int texture_width;
-		int texture_height;
+	int texture_width;
+	int texture_height;
 
-		SDL_Rect render_rect;
-		SDL_Rect clipped_rect;
+	SDL_Rect render_rect;
+	SDL_Rect clipped_rect;
 
-	public:
-		Texture(std::shared_ptr<GraphicsFacade> graphics_facade, SDL_Texture* texture);
-		Texture(std::shared_ptr<GraphicsFacade> graphics_facade, SDL_Texture* texture, int x, int y, int width, int height);
-		~Texture();
-		
-		void render() override;
+public:
+	Texture(std::shared_ptr<GraphicsFacade> graphics_facade, SDL_Texture* texture);
+	Texture(std::shared_ptr<GraphicsFacade> graphics_facade, SDL_Texture* texture, int x, int y, int width, int height);
+	~Texture();
+	
+	void render() override;
 };
 
 #endif

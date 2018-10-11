@@ -1,7 +1,7 @@
 #include "GameManager.h"
 #include "AnimatedTexture.h"
 
-bool GameManager::Init()
+bool GameManager::init()
 {
 	if (multimedia_manager->init())
 	{
@@ -18,7 +18,7 @@ bool GameManager::Init()
 	return false;
 }
 
-void GameManager::Handle()
+void GameManager::handle()
 {
 	timer->update();
 	if (timer->get_delta_time() >= 1.0f / 60)
@@ -65,4 +65,3 @@ void GameManager::Handle()
 		timer->reset();
 	}
 }
-
