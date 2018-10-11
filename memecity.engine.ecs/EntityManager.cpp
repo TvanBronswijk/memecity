@@ -61,5 +61,19 @@ void EntityManager::update()
 
 EntityManager::~EntityManager()
 {
+	for (auto it = entities.begin(); it != entities.end(); ++it)
+		delete(*it);
+	entities.clear();
 
+	for (auto pair : components)
+	{
+		for (auto it = pair.second.begin(); it != pair.second.end(); ++it)
+			delete(*it);
+		pair.second.clear();
+	}
+	components.clear();
+
+	for (auto it = systems.begin(); it != systems.end(); ++it)
+		delete (it->second);
+	systems.clear();
 }
