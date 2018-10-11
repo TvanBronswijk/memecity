@@ -2,7 +2,7 @@
 
 
 
-bool GameManager::Init()
+bool GameManager::init()
 {
 	city = city_generator->generate(5, 5);
 	if (multimedia_manager->init())
@@ -17,7 +17,7 @@ bool GameManager::Init()
 }
 
 
-void GameManager::Handle()
+void GameManager::handle()
 {
 	timer->update();
 	if (timer->get_delta_time() >= 1.0f / 60)

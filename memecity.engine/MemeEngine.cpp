@@ -9,12 +9,12 @@ MemeEngine::MemeEngine()
 }
 
 
-int MemeEngine::Run()
+int MemeEngine::run()
 {
-	if (Init()) {
+	if (init()) {
 		while (!input_manager->is_quit_pressed())
 		{
-			Handle();
+			handle();
 		}
 		return 0;
 	}

@@ -5,7 +5,7 @@ InputManager::InputManager()
 	input_facade = std::make_unique<InputFacade>();
 }
 
-void InputManager::update() const
+void InputManager::update()
 {
 	input_facade->update();
 }

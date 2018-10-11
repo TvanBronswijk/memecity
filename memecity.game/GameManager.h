@@ -12,8 +12,8 @@ private:
 	std::unique_ptr<City> city;
 
 protected:
-	bool Init() override;
-	void Handle() override;
+	bool init() override;
+	void handle() override;
 
 };
 
