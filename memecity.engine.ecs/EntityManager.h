@@ -15,10 +15,20 @@ private:
 
 public:
 	EntityManager();
-	void register_entity(Entity &e);
-	void register_component(Component &c);
-	void register_system(System &s);
-	void fire_event(Event &e);
-	void Update();
 	~EntityManager();
+
+	///<summary>Register an entity to the EntityManager.</summary>
+	void register_entity(Entity &e);
+
+	///<summary>Register a component to the EntityManager.</summary>
+	void register_component(Component &c);
+
+	///<summary>Register a system to the EntityManager.</summary>
+	void register_system(System &s);
+
+	///<summary>Run all systems that are subscribed to the event.</summary>
+	void fire_event(Event &e);
+
+	///<summary>Run all systems.</summary>
+	void Update();
 };
