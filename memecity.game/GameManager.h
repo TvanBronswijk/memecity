@@ -9,8 +9,8 @@ private:
 	std::shared_ptr<Texture> text;
 
 protected:
-	bool Init() override;
-	void Handle() override;
+	bool init() override;
+	void handle() override;
 
 };
 

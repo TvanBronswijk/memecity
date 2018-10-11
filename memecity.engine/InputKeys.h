@@ -1,6 +1,10 @@
-#pragma once
-
+#ifndef _INPUTKEYS_H
+#define _INPUTKEYS_H
 #include <SDL.h>
+
+/**
+ * Abstraction of the SDL Scancodes
+ */
 enum InputKeys
 {
 	UP = SDL_SCANCODE_W,
@@ -18,3 +22,5 @@ enum InputKeys
 	ATTACK = SDL_SCANCODE_SPACE,
 	ESCAPE = SDL_SCANCODE_ESCAPE
 };
+
+#endif
