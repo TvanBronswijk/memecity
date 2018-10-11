@@ -5,9 +5,9 @@
 struct Component {
 	int entity_id;
 
-	Component(Entity e) 
+	Component(Entity* e) 
 	{
-		entity_id = e.id;
+		this->entity_id = e->id;
 	}
 	
 	///<summary>Get the type of the component for filtering.</summary>
