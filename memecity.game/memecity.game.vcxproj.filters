@@ -42,7 +42,7 @@
       <Filter>Source Files\Components</Filter>
     </ClCompile>
     <ClCompile Include="VelocityComponent.cpp">
-      <Filter>Header Files\Components</Filter>
+      <Filter>Source Files\Components</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

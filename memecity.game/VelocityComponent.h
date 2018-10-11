@@ -7,6 +7,7 @@ class VelocityComponent : Component
 private:
 	int speed;
 	float x, y;
+
 public:
 	VelocityComponent();
 	VelocityComponent(int speed);
@@ -18,7 +19,6 @@ public:
 	void set_x(float x);
 	float get_y() const;
 	void set_y(float y);
-
 };
 
 #endif

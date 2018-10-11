@@ -1,5 +1,4 @@
 #include "GameManager.h"
-#include <EntityManager.h>
 
 bool GameManager::Init()
 {
