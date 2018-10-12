@@ -1,5 +1,7 @@
 #include"AIComponent.h"
 
+std::string AIComponent::COMPONENT_TYPE = "AIConponent";
+
 AIComponent::AIComponent(Entity* e) : Component(e) {
 	this->entity_id = e->id;
 	_fleeing = false;
@@ -12,5 +14,5 @@ AIComponent::AIComponent(bool fighting, bool fleeing, Entity* e) : Component(e) 
 }
 
 std::string AIComponent::get_type() {
-	return "AIConponent";
+	return COMPONENT_TYPE;
 }

@@ -22,6 +22,7 @@
     <ClInclude Include="AISystem.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="AIComponent.h" />
+    <ClInclude Include="HealthComponent.h" />
     <ClInclude Include="PositionComponent.h" />
     <ClInclude Include="VelocityComponent.h" />
   </ItemGroup>
@@ -29,6 +30,7 @@
     <ClCompile Include="AIComponent.cpp" />
     <ClCompile Include="AISystem.cpp" />
     <ClCompile Include="GameManager.cpp" />
+    <ClCompile Include="HealthComponent.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="PositionComponent.cpp" />
     <ClCompile Include="VelocityComponent.cpp" />

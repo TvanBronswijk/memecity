@@ -4,6 +4,8 @@
 
 struct AIComponent : public Component {
 	
+	static std::string COMPONENT_TYPE;
+
 public:
 	bool _fighting, _fleeing;
 	AIComponent(Entity* e);
