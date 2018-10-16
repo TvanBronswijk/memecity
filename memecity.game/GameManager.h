@@ -1,6 +1,16 @@
 #ifndef _GAME_MANAGER_H
 #define _GAME_MANAGER_H
 #include "MemeEngine.h"
+#include "../memecity.engine.ecs/EntityManager.h"
+#include "PositionComponent.h"
+#include "AIComponent.h"
+#include "VelocityComponent.h"
+#include "LevelComponent.h"
+#include "HealthComponent.h"
+#include "AISystem.h"
+
+
+
 
 class GameManager : public MemeEngine{
 private:

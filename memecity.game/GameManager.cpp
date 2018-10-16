@@ -4,6 +4,7 @@
 
 bool GameManager::init()
 {
+
 	if (multimedia_manager->init())
 	{
 		multimedia_manager->play_background_music("bgm.mp3", 50);
@@ -26,6 +27,25 @@ void GameManager::handle()
 		texture->translate(Vector2(120.0f, 120.0f) * timer->get_delta_time());
 		multimedia_manager->clear_graphics();
 		texture->render();
+		if (input_manager->is_pressed(LEFT))
+		{
+			EntityManager em;
+			Entity* npc = em.create_entity();
+			AIComponent* AI = new AIComponent(npc);
+			VelocityComponent* VC = new VelocityComponent(npc);
+			LevelComponent* LC = new LevelComponent(npc);
+			HealthComponent* HC = new HealthComponent(npc);
+			PositionComponent* PC = new PositionComponent(1,1,npc);
+			em.register_component(AI);
+			em.register_component(VC);
+			em.register_component(LC);
+			em.register_component(HC);
+			em.register_component(PC);
+			AISystem* AS = new AISystem();
+			em.register_system(AS);
+			AS->run(em);
+		}
+		
 		text->render();
 		multimedia_manager->render_graphics();
 		timer->reset();

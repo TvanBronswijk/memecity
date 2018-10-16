@@ -1,6 +1,6 @@
 #include"AIComponent.h"
 
-std::string AIComponent::COMPONENT_TYPE = "AIConponent";
+std::string AIComponent::COMPONENT_TYPE = "AIComponent";
 
 AIComponent::AIComponent(Entity* e) : Component(e) {
 	this->entity_id = e->id;
@@ -9,6 +9,7 @@ AIComponent::AIComponent(Entity* e) : Component(e) {
 }
 
 AIComponent::AIComponent(bool fighting, bool fleeing, Entity* e) : Component(e) {
+	this->entity_id = e->id;
 	_fleeing = fleeing;
 	_fighting = fighting;
 }

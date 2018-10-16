@@ -6,12 +6,14 @@ std::string PositionComponent::get_type() {
 
 PositionComponent::PositionComponent(Entity* e) : Component(e)
 {
+	this->entity_id = e->id;
 	x_position = 0;
 	y_position = 0;
 }
 
 PositionComponent::PositionComponent(float x, float y, Entity* e) : Component(e)
 {
+	this->entity_id = e->id;
 	x_position = x;
 	y_position = y;
 }

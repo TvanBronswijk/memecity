@@ -4,6 +4,8 @@
 
 struct HealthComponent : public Component {
 
+	static std::string COMPONENT_TYPE;
+
 public:
 	int _health;
 	HealthComponent(Entity* e);
