@@ -9,7 +9,6 @@ private:
 	std::unique_ptr<CityGenerator> city_generator;
 	std::shared_ptr<Texture> texture;
 	std::shared_ptr<Texture> text;
-	std::unique_ptr<City> city;
 
 protected:
 	bool init() override;

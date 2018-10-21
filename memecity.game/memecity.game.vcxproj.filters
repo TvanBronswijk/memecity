@@ -25,13 +25,31 @@
     <Filter Include="Source Files\City">
       <UniqueIdentifier>{0dbf50c0-d376-4205-9bd5-61396d320cc4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\City\Strategy">
+      <UniqueIdentifier>{a7b7af10-e482-4351-88bb-ed46f345485d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\City\Strategy">
+      <UniqueIdentifier>{4163cd46-6aa9-484e-8c7c-416715d66d3b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\City\Models">
+      <UniqueIdentifier>{e97041ac-e993-4d12-9f72-3c065d33f77c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="City.h">
+      <Filter>Header Files\City\Models</Filter>
+    </ClInclude>
     <ClInclude Include="CityGenerator.h">
       <Filter>Header Files\City</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratorStrategy.h">
+      <Filter>Header Files\City\Strategy</Filter>
+    </ClInclude>
+    <ClInclude Include="BSPGenerator.h">
+      <Filter>Header Files\City\Strategy</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -40,6 +58,9 @@
     </ClCompile>
     <ClCompile Include="GameManager.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BSPGenerator.cpp">
+      <Filter>Source Files\City\Strategy</Filter>
     </ClCompile>
     <ClCompile Include="CityGenerator.cpp">
       <Filter>Source Files\City</Filter>
