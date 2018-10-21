@@ -9,7 +9,6 @@ struct InteractionComponent : public Component {
 
 public:
 	std::vector<std::string> _smallTalk;
-	std::string _text;
 	InteractionComponent(std::vector<std::string> smallTalk, Entity* e);
 	InteractionComponent(Entity* e);
 	std::string get_type() override;

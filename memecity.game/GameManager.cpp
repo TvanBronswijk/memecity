@@ -11,25 +11,23 @@ bool GameManager::init()
 		texture = multimedia_manager->get_texture("BlikBier.bmp");
 		text = multimedia_manager->get_text_texture("Test", "Blazed.ttf", 50, { 255,10,10 });
 		text->translate({ 100.0f, 100.0f });
+		AS = new AISystem();
 		return true;
 	}
 	return false;
 }
-
-
 void GameManager::handle()
 {
 	timer->update();
 	if (timer->get_delta_time() >= 1.0f / 60)
 	{
 		input_manager->update();
-
+		em.update();
 		texture->translate(Vector2(120.0f, 120.0f) * timer->get_delta_time());
 		multimedia_manager->clear_graphics();
 		texture->render();
 		if (input_manager->is_pressed(LEFT))
 		{
-			EntityManager em;
 			Entity* npc = em.create_entity();
 			AIComponent* AI = new AIComponent(npc);
 			VelocityComponent* VC = new VelocityComponent(npc);

@@ -15,7 +15,7 @@ LevelComponent::LevelComponent(int level, Entity* e) : Component(e) {
 
 LevelComponent::LevelComponent(int world, int range, Entity* e) : Component(e) {
 	this->entity_id = e->id;
-	_level = (rand() % world + (world-range) + (world - range));
+	_level = (rand() % (world-(range/2))/*min*/ + (world +(range/2)))/*max*/;
 }
 
 std::string LevelComponent::get_type() {

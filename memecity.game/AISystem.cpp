@@ -32,13 +32,48 @@ void AISystem::run(EntityManager &em) {
 		velocity->x += RandomX(velocity);
 		velocity->y += RandomY(velocity);
 
+		int previousX = xy->x_position;
+		int previousY = xy->y_position;
+
 		xy->x_position += velocity->x;
 		xy->y_position += velocity->y;
 
 
 		std::cout << "NPC has Placed with X: " << xy->x_position << "Y: " << xy->y_position << std::endl;
+
+		/*
+		if(previousY > xy->y_position){
+			texture.animate(up);
+		}
+		else if(previousY < xy->y_position){
+			texture.animate(down);
+		}
+		else if(previousX < xy->x_position){
+			texture.animate(left);
+		}
+		else if(previousX > xy->x_position){
+			texture.animate(right);
+		}else{
+			texture.animate(hold);
+		}
+
+		if(HC.health =< 0){
+			texture.animate(dead);
+		}
+
+		if(AI.fighting == true){
+			if(player.x > (xy.x - (range/2)) && player.y < (xy.y + (range/2))){
+				texture.animate(fight);
+				player.health =- damage;
+			}
+		}
+		*/
 	}
 }
 void AISystem::run(EntityManager &em, Event *e) {
-
+	/*
+	 if(e.message == interaction){
+		texture.showtext(interaction.smalltalk[rand]);
+	 }
+	*/
 }
