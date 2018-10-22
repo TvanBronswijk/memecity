@@ -1,19 +1,28 @@
-#include "VelocityComponent.h"
+﻿#include "VelocityComponent.h"
 
-std::string VelocityComponent::get_type() {
-	return"VelocityComponent";
-}
-
-VelocityComponent::VelocityComponent(Entity* e) : Component(e)
+VelocityComponent::VelocityComponent()
 {
-	this->entity_id = e->id;
+	speed = 0;
 	x = 0.0f;
 	y = 0.0f;
 }
 
-VelocityComponent::VelocityComponent(float x, float y, Entity* e) : Component(e)
+VelocityComponent::VelocityComponent(int speed)
 {
-	this->entity_id = e->id;
+	this->speed = speed;
+}
+
+VelocityComponent::VelocityComponent(float x, float y)
+{
+	this->x = x;
+	this->y = y;
+	speed = 0;
+}
+
+
+VelocityComponent::VelocityComponent(int speed, float x, float y)
+{
+	this->speed = speed;
 	this->x = x;
 	this->y = y;
 }

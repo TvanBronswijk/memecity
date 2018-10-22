@@ -1,16 +1,12 @@
-#ifndef _POSITIONCOMPONENT_H
+﻿#ifndef _POSITIONCOMPONENT_H
 #define  _POSITIONCOMPONENT_H
-#include "../memecity.engine.ecs/Component.h"
+#include "Component.h"
 
 struct PositionComponent : public Component
 {
-	
-public:
-	float x_position, y_position;
-	std::string get_type() override;
-	PositionComponent(Entity* e);
-	PositionComponent(float x, float y, Entity* e);
-	void update();
+	float x, y;
+	PositionComponent();
+	PositionComponent(float x, float y);
 };
 
 #endif

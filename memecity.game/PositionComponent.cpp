@@ -1,25 +1,13 @@
-#include "PositionComponent.h"
+﻿#include "PositionComponent.h"
 
-std::string PositionComponent::get_type() {
-	return"PositionComponent";
+PositionComponent::PositionComponent()
+{
+	this->x = 0;
+	this->y = 0;
 }
 
-PositionComponent::PositionComponent(Entity* e) : Component(e)
+PositionComponent::PositionComponent(float x, float y)
 {
-	this->entity_id = e->id;
-	x_position = 0;
-	y_position = 0;
-}
-
-PositionComponent::PositionComponent(float x, float y, Entity* e) : Component(e)
-{
-	this->entity_id = e->id;
-	x_position = x;
-	y_position = y;
-}
-
-void PositionComponent::update()
-{
-	x_position++;
-	y_position++;
+	this->x = x;
+	this->y = y;
 }

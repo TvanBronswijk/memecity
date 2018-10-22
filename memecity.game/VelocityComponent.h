@@ -1,15 +1,16 @@
-#ifndef _VELOCITYCOMPONENT_H
+﻿#ifndef _VELOCITYCOMPONENT_H
 #define  _VELOCITYCOMPONENT_H
-#include "../memecity.engine.ecs/Component.h"
+#include "Component.h"
 
-struct VelocityComponent : public Component
+struct VelocityComponent : Component
 {
-
-public:
+	int speed;
 	float x, y;
-	std::string get_type() override;
-	VelocityComponent(Entity* e);
-	VelocityComponent(float x, float y, Entity* e);
+
+	VelocityComponent();
+	VelocityComponent(int speed);
+	VelocityComponent(float x, float y);
+	VelocityComponent(int speed, float x, float y);
 };
 
 #endif

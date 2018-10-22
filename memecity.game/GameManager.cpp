@@ -1,7 +1,5 @@
 #include "GameManager.h"
 
-
-
 bool GameManager::init()
 {
 
