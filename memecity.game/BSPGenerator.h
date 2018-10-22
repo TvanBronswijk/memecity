@@ -25,8 +25,8 @@ struct Node : Rectangle {
 
 class BSPGenerator : GeneratorStrategy {
 private:
-	const static int MIN_NODE_WIDTH = 16;
-	const static int MIN_NODE_HEIGHT = 16;
+	const static int MIN_NODE_WIDTH = 8;
+	const static int MIN_NODE_HEIGHT = 8;
 
 	void split_h(Node* n);
 	void split_v(Node* n);

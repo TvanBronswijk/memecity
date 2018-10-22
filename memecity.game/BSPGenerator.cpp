@@ -32,12 +32,12 @@ void BSPGenerator::split_h(Node* n)
 	n->left =	new Node(n->x, n->y,		n->w, split);
 	n->right =	new Node(n->x, n->left->y2, n->w, n->h - split);
 
-	if(rand() & 4 == 0)
+	if(rand() & 10 == 0)
 		this->split_h(n->left);
 	else
 		this->split_v(n->left);
 	
-	if (rand() & 4 == 0)
+	if (rand() & 10 == 0)
 		this->split_h(n->right);
 	else
 		this->split_v(n->right);
@@ -90,7 +90,7 @@ void BSPGenerator::fill_node(Node* n, std::unique_ptr<City> &c)
 
 void BSPGenerator::fill_building(Node * n, std::unique_ptr<City> &c)
 {
-	int r_size = 2;
+	int r_size = 1;
 	for (int x = n->x; x <= n->x2; x++)
 		for (int y = n->y; y <= n->y2; y++) {
 			c->coord(x, y) = '-';
@@ -128,6 +128,7 @@ void BSPGenerator::fill_building(Node * n, std::unique_ptr<City> &c)
 
 void BSPGenerator::fill_water(Node * n, std::unique_ptr<City> &c)
 {
+	int WATER_GEN = this->MIN_NODE_HEIGHT * 2 + this->MIN_NODE_WIDTH * 2;
 	for (int x = n->x; x <= n->x2; x++)
 		for (int y = n->y; y <= n->y2; y++) {
 			c->coord(x, y) = '-';
@@ -137,7 +138,7 @@ void BSPGenerator::fill_water(Node * n, std::unique_ptr<City> &c)
 
 	int x = n->center_x;
 	int y = n->center_y;
-	for (int i = 0; i < 256; i++)
+	for (int i = 0; i < WATER_GEN; i++)
 	{
 		c->coord(x, y) = 'w';
 		switch (rand() % 4)
