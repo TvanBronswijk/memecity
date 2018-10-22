@@ -19,11 +19,17 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="City.h" />
+    <ClInclude Include="BSPGenerator.h" />
+    <ClInclude Include="CityGenerator.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="DrawableComponent.h" />
     <ClInclude Include="DrawSystem.h" />
+    <ClInclude Include="GeneratorStrategy.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BSPGenerator.cpp" />
+    <ClCompile Include="CityGenerator.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="DrawableComponent.cpp" />
     <ClCompile Include="DrawSystem.cpp" />

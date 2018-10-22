@@ -4,11 +4,13 @@
 
 bool GameManager::init()
 {
+	city_generator = std::make_unique<CityGenerator>();
+	auto em = std::make_unique<EntityManager>();
+	city_generator->generate(64, 64, em);
 	if (multimedia_manager->init())
 	{
 		multimedia_manager->play_background_music("bgm.mp3", 50);
 		texture = multimedia_manager->get_texture("BlikBier.bmp");
-		text = multimedia_manager->get_text_texture("Test", "Blazed.ttf", 50, { 255,10,10 });
 		text->translate({ 100.0f, 100.0f });
 		return true;
 	}

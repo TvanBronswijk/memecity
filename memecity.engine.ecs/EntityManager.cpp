@@ -22,28 +22,51 @@ void EntityManager::register_system(System* s)
 	systems[s->get_type()] = s;
 }
 
+vector<Entity*> EntityManager::get_entities()
+{
+	return entities;
+}
+
+vector<Entity*> EntityManager::get_entities_with_component(string type)
+{
+	vector<Entity*> result;
+	for (auto it = entities.begin(); it != entities.end(); ++it)
+		if (this->has_component(*it, type))
+			result.push_back(*it);
+	return result;
+}
+
 vector<Component*> EntityManager::get_components_of_type(string type)
 {
 	return components[type];
 }
 
-Component* EntityManager::get_component_of_entity(Entity* e, string type)
+Component* EntityManager::get_component_of_entity(int entity_id, string type)
 {
 	for (auto pairs : components)
 		for (auto c : pairs.second)
-			if (c->entity_id == e->id && c->get_type() == type)
+			if (c->entity_id == entity_id && c->get_type() == type)
 				return c;
 	return nullptr;
 }
 
-vector<Component*> EntityManager::get_components_of_entity(Entity* e)
+vector<Component*> EntityManager::get_components_of_entity(int entity_id)
 {
 	vector<Component*> result;
 	for (auto pairs : components)
 		for (auto c : pairs.second)
-			if (c->entity_id == e->id)
+			if (c->entity_id == entity_id)
 				result.push_back(c);
 	return result;
+}
+
+bool EntityManager::has_component(Entity* e, string type) 
+{
+	auto c = components[type];
+	for (auto it = c.begin(); it != c.end(); ++it)
+		if ((*it)->entity_id == e->id)
+			return true;
+	return false;
 }
 
 void EntityManager::fire_event(Event* e)

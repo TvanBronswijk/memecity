@@ -25,6 +25,24 @@
     <Filter Include="Source Files\Systems">
       <UniqueIdentifier>{e40c52ec-964d-4257-a326-37920ddb895a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Components">
+      <UniqueIdentifier>{cf8d53bf-063f-47ff-a6b8-3bbe841ef165}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\City">
+      <UniqueIdentifier>{69be7a77-99c9-4639-be1f-3358806ed1a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\City">
+      <UniqueIdentifier>{0dbf50c0-d376-4205-9bd5-61396d320cc4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\City\Strategy">
+      <UniqueIdentifier>{a7b7af10-e482-4351-88bb-ed46f345485d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\City\Strategy">
+      <UniqueIdentifier>{4163cd46-6aa9-484e-8c7c-416715d66d3b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\City\Models">
+      <UniqueIdentifier>{e97041ac-e993-4d12-9f72-3c065d33f77c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameManager.h">
@@ -35,6 +53,18 @@
     </ClInclude>
     <ClInclude Include="DrawSystem.h">
       <Filter>Header Files\Systems</Filter>
+	</ClInclude>
+    <ClInclude Include="City.h">
+      <Filter>Header Files\City\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="CityGenerator.h">
+      <Filter>Header Files\City</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratorStrategy.h">
+      <Filter>Header Files\City\Strategy</Filter>
+    </ClInclude>
+    <ClInclude Include="BSPGenerator.h">
+      <Filter>Header Files\City\Strategy</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -49,6 +79,12 @@
     </ClCompile>
     <ClCompile Include="DrawSystem.cpp">
       <Filter>Source Files\Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="BSPGenerator.cpp">
+      <Filter>Source Files\City\Strategy</Filter>
+    </ClCompile>
+    <ClCompile Include="CityGenerator.cpp">
+      <Filter>Source Files\City</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
