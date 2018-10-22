@@ -4,14 +4,14 @@
 #include "Texture.h"
 #include "TimerFacade.h"
 
-class AnimatedTexture : public Texture, public Updatable
+class AnimatedCharacter : public Texture, public Updatable
 {
 public:
-	enum ANIMATION_DIRECTION { horizontal = 0, vertical = 1};
+	enum ANIMATION_DIRECTION { horizontal = 0, vertical = 1 };
 	enum WALKING_DIRECTION { down = 0, left = 1, up = 2, right = 3 };
 	
-	AnimatedTexture(TimerFacade* timer_facade, std::shared_ptr<GraphicsFacade> graphics_facade, SDL_Texture* texture, int x, int y, int w, int h, int frame_count, float animation_speed, ANIMATION_DIRECTION direction);
-	~AnimatedTexture();
+	AnimatedCharacter(TimerFacade* timer_facade, std::shared_ptr<GraphicsFacade> graphics_facade, SDL_Texture* texture, int x, int y, int w, int h, int frame_count, float animation_speed, ANIMATION_DIRECTION direction);
+	~AnimatedCharacter();
 	void set_walking_direction(WALKING_DIRECTION direction);
 	void update() override;
 

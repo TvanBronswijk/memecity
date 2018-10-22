@@ -1,5 +1,5 @@
 #include "GameManager.h"
-#include "AnimatedTexture.h"
+#include "AnimatedCharacter.h"
 
 bool GameManager::init()
 {
@@ -10,7 +10,7 @@ bool GameManager::init()
 		text = multimedia_manager->get_text_texture("Test", "Blazed.ttf", 50, { 255,10,10 });
 		text->translate({ 100.0f, 100.0f });
 
-		sprite = multimedia_manager->get_animated_texture(timer.get(), "SpriteSheet.png", 0, 0, 48, 48, 4, 0.5f, AnimatedTexture::vertical);
+		sprite = multimedia_manager->get_animated_texture(timer.get(), "SpriteSheet.png", 0, 0, 48, 48, 4, 0.5f, AnimatedCharacter::vertical);
 		sprite->set_position(Vector2(200.0, 200.0));
 		return true;
 	}
@@ -33,25 +33,25 @@ void GameManager::handle()
 
 		if (input_manager->is_pressed(UP))
 		{
-			sprite->set_walking_direction(AnimatedTexture::up);
+			sprite->set_walking_direction(AnimatedCharacter::up);
 			sprite->translate(Vector2(0.0f, -60.0f) * timer->get_delta_time());
 		}
 
 		if (input_manager->is_pressed(DOWN))
 		{
-			sprite->set_walking_direction(AnimatedTexture::down);
+			sprite->set_walking_direction(AnimatedCharacter::down);
 			sprite->translate(Vector2(0.0f, +60.0f) * timer->get_delta_time());
 		}
 
 		if (input_manager->is_pressed(LEFT))
 		{
-			sprite->set_walking_direction(AnimatedTexture::left);
+			sprite->set_walking_direction(AnimatedCharacter::left);
 			sprite->translate(Vector2(-60.0f, 0.0f) * timer->get_delta_time());
 		}
 
 		if (input_manager->is_pressed(RIGHT))
 		{
-			sprite->set_walking_direction(AnimatedTexture::right);
+			sprite->set_walking_direction(AnimatedCharacter::right);
 			sprite->translate(Vector2(+60.0f, 0.0f) * timer->get_delta_time());
 		}
 

@@ -1,7 +1,7 @@
-#include "AnimatedTexture.h"
+#include "AnimatedCharacter.h"
 #include <iostream>
 
-AnimatedTexture::AnimatedTexture(TimerFacade* timer_facade, std::shared_ptr<GraphicsFacade> graphics_facade, SDL_Texture* texture, int x, int y,
+AnimatedCharacter::AnimatedCharacter(TimerFacade* timer_facade, std::shared_ptr<GraphicsFacade> graphics_facade, SDL_Texture* texture, int x, int y,
 	int w, int h, int frame_count, float animation_speed, ANIMATION_DIRECTION direction) : Texture(graphics_facade, texture, x, y, w, h)
 {
 	this->timer_facade = timer_facade;
@@ -17,15 +17,15 @@ AnimatedTexture::AnimatedTexture(TimerFacade* timer_facade, std::shared_ptr<Grap
 	animation_direction = direction;
 }
 
-AnimatedTexture::~AnimatedTexture() = default;
+AnimatedCharacter::~AnimatedCharacter() = default;
 
-void AnimatedTexture::set_walking_direction(WALKING_DIRECTION direction)
+void AnimatedCharacter::set_walking_direction(WALKING_DIRECTION direction)
 {
 	this->walking_direction = direction;
 	this->start_x = direction * texture_width;
 }
 
-void AnimatedTexture::update()
+void AnimatedCharacter::update()
 {
 	if (previous_position.x == get_position().x && previous_position.y == get_position().y)
 	{
@@ -58,7 +58,7 @@ void AnimatedTexture::update()
 	this->previous_position = get_position();
 }
 
-void AnimatedTexture::idle()
+void AnimatedCharacter::idle()
 {
 	clipped_rect.y = 0;
 }
