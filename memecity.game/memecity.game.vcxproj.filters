@@ -18,12 +18,36 @@
     <ClInclude Include="GameManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Levelup_system.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="exp_system.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="stats_component.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="exp_component.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="GameManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="exp_system.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="exp_component.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="stats_component.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="levelup_system.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
