@@ -32,15 +32,8 @@ void BSPGenerator::split_h(Node* n)
 	n->left =	new Node(n->x, n->y,		n->w, split);
 	n->right =	new Node(n->x, n->left->y2, n->w, n->h - split);
 
-	if(rand() & 10 == 0)
-		this->split_h(n->left);
-	else
-		this->split_v(n->left);
-	
-	if (rand() & 10 == 0)
-		this->split_h(n->right);
-	else
-		this->split_v(n->right);
+	this->split_v(n->left);
+	this->split_v(n->right);
 }
 
 void BSPGenerator::split_v(Node* n)
@@ -48,19 +41,12 @@ void BSPGenerator::split_v(Node* n)
 	if (n->w - this->MIN_NODE_WIDTH < this->MIN_NODE_WIDTH)
 		return;
 
-	int split = this->MIN_NODE_WIDTH + (rand() % (n->w*2 - this->MIN_NODE_WIDTH) / 2);
+	int split = this->MIN_NODE_WIDTH + (rand() % (n->w - this->MIN_NODE_WIDTH));
 	n->left =	new Node(n->x,			n->y, split,		n->h);
 	n->right =	new Node(n->left->x2,	n->y, n->w - split, n->h);
 	
-	if (rand() & 4 == 0)
-		this->split_v(n->left);
-	else
-		this->split_h(n->left);
-
-	if (rand() & 4 == 0)
-		this->split_v(n->right);
-	else
-		this->split_h(n->right);
+	this->split_h(n->left);
+	this->split_h(n->right);
 }
 
 std::vector<Node*> BSPGenerator::get_leaves(Node* n) 

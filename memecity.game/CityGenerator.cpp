@@ -11,7 +11,7 @@ void CityGenerator::generate(int w, int h, std::unique_ptr<EntityManager> &em)
 
 	for (int x = c->x; x < c->x2; x++) {
 		for (int y = c->y; y < c->y2; y++) {
-			std::cout << c->coord(x, y);
+			std::cout << c->coord(y, x);
 		}
 		std::cout << std::endl;
 	}
