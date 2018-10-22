@@ -11,6 +11,7 @@ bool GameManager::init()
 		entity_manager = std::make_unique<EntityManager>();
 		city_generator->generate(64, 64, entity_manager, multimedia_manager);
 		entity_manager->register_system(new DrawSystem(multimedia_manager));
+
 		return true;
 	}
 	
@@ -26,6 +27,7 @@ void GameManager::handle()
 		input_manager->update();
 
 		entity_manager->update();
+
 		timer->reset();
 
 		if (input_manager->is_pressed(ESCAPE))

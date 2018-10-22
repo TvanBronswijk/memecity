@@ -12,7 +12,7 @@ struct Component {
 	
 	///<summary>Get the type of the component for filtering.</summary>
 	virtual std::string get_type() = 0;
-
+	virtual ~Component(){}
 };
 
 #endif

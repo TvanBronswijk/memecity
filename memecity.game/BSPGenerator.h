@@ -21,6 +21,12 @@ struct Node : Rectangle {
 	{
 		return right != NULL;
 	}
+
+	~Node()
+	{
+		delete left;
+		delete right;
+	}
 };
 
 class BSPGenerator : GeneratorStrategy {

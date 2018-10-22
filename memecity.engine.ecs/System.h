@@ -20,6 +20,8 @@ public:
 
 	///<summary>Do the activity of the System.</summary>
 	virtual void run(EntityManager &em, Event *e) = 0;
+
+	virtual ~System(){}
 };
 
 #endif
