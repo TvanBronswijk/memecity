@@ -24,3 +24,13 @@ std::string DrawSystem::get_type()
 {
 	return SYSTEM_TYPE;
 }
+
+bool DrawSystem::is_on_event(Event* e)
+{
+	return false;
+}
+
+void DrawSystem::run(EntityManager& em, Event* e)
+{
+	//nothing
+}

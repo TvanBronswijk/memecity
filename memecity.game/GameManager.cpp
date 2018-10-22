@@ -1,19 +1,19 @@
 #include "GameManager.h"
 
-
-
 bool GameManager::init()
 {
-	city_generator = std::make_unique<CityGenerator>();
-	auto em = std::make_unique<EntityManager>();
-	city_generator->generate(64, 64, em);
+	
 	if (multimedia_manager->init())
 	{
 		multimedia_manager->play_background_music("bgm.mp3", 50);
-		texture = multimedia_manager->get_texture("BlikBier.bmp");
-		text->translate({ 100.0f, 100.0f });
+
+		city_generator = std::make_unique<CityGenerator>();
+		entity_manager = std::make_unique<EntityManager>();
+		city_generator->generate(64, 64, entity_manager, multimedia_manager);
+		entity_manager->register_system(new DrawSystem(multimedia_manager));
 		return true;
 	}
+	
 	return false;
 }
 
@@ -25,11 +25,7 @@ void GameManager::handle()
 	{
 		input_manager->update();
 
-		texture->translate(Vector2(120.0f, 120.0f) * timer->get_delta_time());
-		multimedia_manager->clear_graphics();
-		texture->render();
-		text->render();
-		multimedia_manager->render_graphics();
+		entity_manager->update();
 		timer->reset();
 
 		if (input_manager->is_pressed(ESCAPE))
