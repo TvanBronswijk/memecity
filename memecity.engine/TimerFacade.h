@@ -12,9 +12,16 @@ private:
 	float delta_time{};
 
 public:
+	///<summary>Constructor.</summary>
 	TimerFacade();
+
+	///<summary>Resets the elapsed ticks.</summary>
 	void reset();
+
+	///<summary>Returns the current delta time.</summary>
 	float get_delta_time() const;
+
+	///<summary>Sets delta time to elapsed time since last update.</summary>
 	void update() override;
 };
 

@@ -11,7 +11,7 @@ bool GameManager::init()
 		text->translate({ 100.0f, 100.0f });
 
 		sprite = multimedia_manager->get_animated_texture(timer.get(), "SpriteSheet.png", 0, 0, 48, 48, 4, 0.5f, AnimatedTexture::vertical);
-		sprite->set_position(Vector2(100.0, 100.0));
+		sprite->set_position(Vector2(200.0, 200.0));
 		return true;
 	}
 
@@ -41,7 +41,6 @@ void GameManager::handle()
 		{
 			sprite->set_walking_direction(AnimatedTexture::down);
 			sprite->translate(Vector2(0.0f, +60.0f) * timer->get_delta_time());
-			//multimedia_manager->play_sound_effect("biem.mp3", 0, 50, 2);
 		}
 
 		if (input_manager->is_pressed(LEFT))
