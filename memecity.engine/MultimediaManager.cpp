@@ -1,65 +1,72 @@
 #include "MultimediaManager.h"
 
-MultimediaManager::MultimediaManager(bool isFullscreen)
+///<summary>Constructor which initializes the necessary classes.</summary>
+MultimediaManager::MultimediaManager(bool is_fullscreen)
 {
-	graphics_facade = std::make_shared<GraphicsFacade>(isFullscreen);
+	graphics_facade = std::make_shared<GraphicsFacade>(is_fullscreen);
 	asset_manager = std::make_unique<AssetManager>(graphics_facade);
 	audio_facade = std::make_unique<AudioFacade>();
 }
 
-bool MultimediaManager::Init() const
+///<summary>Initializes Graphics and Audio facades 
+/// Returns whether this succeeded or not.</summary>
+bool MultimediaManager::init() const
 {	
-	if (graphics_facade->Init())
+	if (graphics_facade->init() && audio_facade->init())
 	{
-		audio_facade->Init();
-		audio_facade->OpenAudio(44100, 2, 4096);
+		audio_facade->open_audio(44100, 2, 4096);
 		return true;
 	}
 
 	return false;
 }
 
-void MultimediaManager::PlayBackgroundMusic(std::string name, int volume) const
+///<summary>Gets the sound based on filename and plays it through the AudioFacade.</summary>
+void MultimediaManager::play_background_music(std::string name, int volume) const
 {
-	const auto music = asset_manager->GetMusic(name);
-	audio_facade->PlayBackgroundMusic(music, volume);
+	const auto music = asset_manager->get_music(name);
+	audio_facade->play_background_music(music, volume);
 }
 
-void MultimediaManager::PlaySoundEffect(std::string name, int repeats, int volume, int channel) const
+///<summary>Gets the sound effect based on filename and plays it through the AudioFacade.</summary>
+void MultimediaManager::play_sound_effect(std::string name, int repeats, int volume, int channel) const
 {
-	const auto sound = asset_manager->GetSFX(name);
-	audio_facade->PlaySoundEffect(sound, repeats, volume, channel);
+	const auto sound = asset_manager->get_sfx(name);
+	audio_facade->play_sound_effect(sound, repeats, volume, channel);
 }
 
-void MultimediaManager::PauseBackgroundMusic() const
+///<summary>Pauses background music.</summary>
+void MultimediaManager::pause_background_music() const
 {	
-	audio_facade->PauseBackgroundMusic();
+	audio_facade->pause_background_music();
 }
 
-void MultimediaManager::ClearGraphics() const
+///<summary>Clears the graphics.</summery>
+void MultimediaManager::clear_graphics() const
 {
-	graphics_facade->Clear();
+	graphics_facade->clear();
 }
 
-void MultimediaManager::RenderGraphics() const
+///<summary>Render the graphics.</summary>
+void MultimediaManager::render_graphics() const
 {
-	graphics_facade->Render();
+	graphics_facade->render();
 }
 
-void MultimediaManager::DrawTexture(SDL_Texture* texture, SDL_Rect* sdl_rect, SDL_Rect* render_rect) const
+///<summary>Get a texture.</summary>
+std::shared_ptr<Texture> MultimediaManager::get_texture(std::string filename)
 {
-	graphics_facade->DrawTexture(texture, sdl_rect, render_rect);
+	return std::make_shared<Texture>(graphics_facade, asset_manager->get_texture(filename));
 }
 
-SDL_Texture* MultimediaManager::GetText(const std::string& cs, const std::string& font_path, const int size, const SDL_Color& color) const
+///<summary>Get a texture.</summary>
+std::shared_ptr<Texture> MultimediaManager::get_texture(std::string filename, int x, int y, int width, int height)
 {
-	return asset_manager->GetText(cs, font_path, size, color);
+	return std::make_shared<Texture>(graphics_facade, asset_manager->get_texture(filename), x, y, width, height);
 }
 
-SDL_Texture* MultimediaManager::GetTexture(const std::string& cs) const
+///<summary>Gets a text texture.</summary>
+std::shared_ptr<Texture> MultimediaManager::get_text_texture(std::string text, std::string font_path, int size, Color color)
 {
-	return asset_manager->GetTexture(cs);
+	return std::make_shared<Texture>(graphics_facade, asset_manager->get_text(text, font_path, size, color.get_sdl_color()));
 }
-
-
-

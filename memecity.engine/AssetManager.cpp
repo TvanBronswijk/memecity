@@ -1,14 +1,16 @@
 ﻿#include "AssetManager.h"
 #include "GraphicsFacade.h"
 
-AssetManager::AssetManager(std::shared_ptr<GraphicsFacade> graphicsFacade)
+///<summary>Constructor which assigns a given graphics_facade to it's member variable.</summary>
+AssetManager::AssetManager(std::shared_ptr<GraphicsFacade> graphics_facade)
 {
-	graphics_facade = graphicsFacade;
+	this->graphics_facade = graphics_facade;
 }
 
+///<summary>Cleanup.</summary>
 AssetManager::~AssetManager()
 {
-	for (const auto texture : textures)
+	for (auto texture : textures)
 	{
 		if (texture.second != nullptr)
 		{
@@ -17,7 +19,7 @@ AssetManager::~AssetManager()
 	}
 	textures.clear();
 
-	for (const auto text : texts)
+	for (auto text : texts)
 	{
 		if (text.second != nullptr)
 		{
@@ -26,7 +28,7 @@ AssetManager::~AssetManager()
 	}
 	texts.clear();
 
-	for (const auto font : fonts)
+	for (auto font : fonts)
 	{
 		if (font.second != nullptr)
 		{
@@ -36,30 +38,36 @@ AssetManager::~AssetManager()
 	fonts.clear();
 }
 
-SDL_Texture* AssetManager::GetTexture(std::string filename)
+///<summary>Returns a texture based on given filename.</summary>
+SDL_Texture* AssetManager::get_texture(std::string filename)
 {
 	std::string fullPath = SDL_GetBasePath();
 	fullPath.append("Assets/" + filename);
 
 	if (textures[fullPath] == nullptr)
-		textures[fullPath] = graphics_facade->LoadTexture(fullPath);
+	{
+		textures[fullPath] = graphics_facade->load_texture(fullPath);
+	}
 
 	return textures[fullPath];
 }
 
-SDL_Texture* AssetManager::GetText(std::string text, std::string filename, int size, SDL_Color color)
+///<summary>Returns a text texture based on a given text and filename.</summary>
+SDL_Texture* AssetManager::get_text(std::string text, std::string filename, int size, SDL_Color color)
 {
-	TTF_Font* font = GetFont(filename, size);
+	TTF_Font* font = get_font(filename, size);
 	std::string key = text + filename + char(size) + char(color.r) + char(color.g) + char(color.b);
 
 	if (texts[key] == nullptr)
-		texts[key] = graphics_facade->LoadTextTexture(font, text, color);
+	{
+		texts[key] = graphics_facade->load_text_texture(font, text, color);
+	}
 
 	return texts[key];
 }
 
-
-TTF_Font* AssetManager::GetFont(std::string filename, int size)
+///<summary>Returns a font based on a given filename.</summary>
+TTF_Font* AssetManager::get_font(std::string filename, int size)
 {
 	std::string fullPath = SDL_GetBasePath();
 	fullPath.append("Assets/" + filename);
@@ -77,8 +85,8 @@ TTF_Font* AssetManager::GetFont(std::string filename, int size)
 
 	return fonts[key];
 }
-
-Mix_Music* AssetManager::GetMusic(std::string filename)
+///<summary>Returns music based on a given filename.</summary>
+Mix_Music* AssetManager::get_music(std::string filename)
 {
 	std::string fullPath = SDL_GetBasePath();
 	fullPath.append("Assets/" + filename);
@@ -96,7 +104,8 @@ Mix_Music* AssetManager::GetMusic(std::string filename)
 	return music[fullPath];
 }
 
-Mix_Chunk* AssetManager::GetSFX(std::string filename)
+///<summary>Returns a sound effect based on a given filename.</summary>
+Mix_Chunk* AssetManager::get_sfx(std::string filename)
 {
 	std::string fullPath = SDL_GetBasePath();
 	fullPath.append("Assets/" + filename);

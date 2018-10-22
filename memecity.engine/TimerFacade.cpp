@@ -1,25 +1,28 @@
 ﻿#include "TimerFacade.h"
-#include <SDL.h>
 
+///<summary>Constructor.</summary>
 TimerFacade::TimerFacade()
 {
-	Reset();
+	reset();
 }
 
-void TimerFacade::Reset()
+///<summary>Resets the elapsed ticks.</summary>
+void TimerFacade::reset()
 {
-	startTicks = SDL_GetTicks();
-	elapsedTicks = 0;
-	deltaTime = 0.0f;
+	start_ticks = SDL_GetTicks();
+	elapsed_ticks = 0;
+	delta_time = 0.0f;
 }
 
-float TimerFacade::DeltaTime() const
+///<summary>Returns the current delta time.</summary>
+float TimerFacade::get_delta_time() const
 {
-	return deltaTime;
+	return delta_time;
 }
 
-void TimerFacade::Update()
+///<summary>Sets delta time to elapsed time since last update.</summary>
+void TimerFacade::update()
 {
-	elapsedTicks = SDL_GetTicks() - startTicks;
-	deltaTime = elapsedTicks * 0.001f;
+	elapsed_ticks = SDL_GetTicks() - start_ticks;
+	delta_time = elapsed_ticks * 0.001f;
 }

@@ -2,29 +2,27 @@
 #define _TEXTURE_H
 
 #include <SDL.h>
-#include "Graphic.h"
-#include "MultimediaManager.h"
+#include "GameObject.h"
 
-class Texture : public Graphic
+class Texture : public GameObject
 {
-	protected:
-		SDL_Texture* texture;
-		std::shared_ptr<MultimediaManager> multimedia_manager;
-		bool is_clipped;
+protected:
+	SDL_Texture* texture;
+	std::shared_ptr<GraphicsFacade> graphics_facade;
+	bool is_clipped;
 
-		int texture_width;
-		int texture_height;
+	int texture_width;
+	int texture_height;
 
-		SDL_Rect render_rect;
-		SDL_Rect clipped_rect;
+	SDL_Rect render_rect;
+	SDL_Rect clipped_rect;
 
-	public:
-		Texture(std::shared_ptr<MultimediaManager> multimediaManager, std::string filename);
-		Texture(std::shared_ptr<MultimediaManager> multimediaManager, std::string filename, int x, int y, int width, int height);
-		Texture(std::shared_ptr<MultimediaManager> multimediaManager, std::string text, std::string font_path, int size, SDL_Color color);
-		~Texture();
+public:
+	Texture(std::shared_ptr<GraphicsFacade> graphics_facade, SDL_Texture* texture);
+	Texture(std::shared_ptr<GraphicsFacade> graphics_facade, SDL_Texture* texture, int x, int y, int width, int height);
+	~Texture();
 
-		virtual void Render();
+	void render() override;
 };
 
 #endif

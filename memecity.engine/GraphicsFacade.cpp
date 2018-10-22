@@ -1,15 +1,17 @@
 #include "GraphicsFacade.h"
 
-GraphicsFacade::GraphicsFacade(const bool isFullscreen)
+///<summary>Constructor with the default setting to disable fullscreen.</summary>
+GraphicsFacade::GraphicsFacade(bool is_fullscreen): is_initialized(false)
 {
-	is_fullscreen = isFullscreen;
+	this->is_fullscreen = is_fullscreen;
 	screen_height = 480;
 	screen_width = 640;
 }
 
-bool GraphicsFacade::Init()
+///<summary>Initializes the SDL Video and enables fullscreen if selected.</summary>
+bool GraphicsFacade::init()
 {
-	if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) < 0)
+	if (SDL_Init(SDL_INIT_VIDEO) < 0)
 	{
 		printf("SDL initialization error: %s\n", SDL_GetError());
 		return false;
@@ -40,11 +42,18 @@ bool GraphicsFacade::Init()
 		return false;
 	}
 
+	if (TTF_Init() == -1)
+	{
+		printf("TTF initialization error: %s\n", TTF_GetError());
+		return false;
+	}
+
 	window_surface = SDL_GetWindowSurface(sdl_window);
 	return true;
 }
 
-SDL_Texture* GraphicsFacade::LoadTexture(const std::string path) const
+///<summary>Loads texture from path into memory.</summary>
+SDL_Texture* GraphicsFacade::load_texture(const std::string path) const
 {
 	SDL_Texture* texture = nullptr;
 	SDL_Surface* surface = IMG_Load(path.c_str());
@@ -65,7 +74,8 @@ SDL_Texture* GraphicsFacade::LoadTexture(const std::string path) const
 	return texture;
 }
 
-SDL_Texture* GraphicsFacade::LoadTextTexture(TTF_Font* font, std::string text, const SDL_Color color) const
+///<summary>Loads a text texture from path into memory.</summary>
+SDL_Texture* GraphicsFacade::load_text_texture(TTF_Font* font, std::string text, const SDL_Color &color) const
 {
 	SDL_Surface* surface = TTF_RenderText_Solid(font, text.c_str(), color);
 	if (surface == nullptr)
@@ -85,20 +95,21 @@ SDL_Texture* GraphicsFacade::LoadTextTexture(TTF_Font* font, std::string text, c
 	return tex;
 }
 
-void GraphicsFacade::DrawTexture(SDL_Texture* texture, SDL_Rect* clipped_rect, SDL_Rect* render_rect) const
+///<summary>Loads a texture into the buffer of the SDL_Renderer object.</summary>
+void GraphicsFacade::draw_texture(SDL_Texture* texture, SDL_Rect* clipped_rect, SDL_Rect* render_rect) const
 {
 	SDL_RenderCopy(sdl_renderer, texture, clipped_rect, render_rect);
 }
 
-void GraphicsFacade::Clear() const
+///<summary>Clears the SDL_Renderer buffer.</summary>
+void GraphicsFacade::clear() const
 {
 	SDL_RenderClear(sdl_renderer);
 }
 
-void GraphicsFacade::Render() const
+
+///<summary>Renders the SDL_Renderer buffer.</summary>
+void GraphicsFacade::render() const
 {
 	SDL_RenderPresent(sdl_renderer);
 }
-
-
-

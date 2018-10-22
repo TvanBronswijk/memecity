@@ -7,17 +7,15 @@
 
 class AudioFacade
 {
-
-	public:
-
-		bool Init();
-		void OpenAudio(int frequency, int channel, int chunksize);
-		void PlaySoundEffect(Mix_Chunk* sound, int repeats, int volume, int channel = 0) const;
-		bool IsPlaying(int channel) const;
-		void PlayBackgroundMusic(Mix_Music* music, int volume) const;
-		void PauseBackgroundMusic() const;
-		void StopBackgroundMusic() const;
-		void CloseAudio() const;
+public:
+	bool init() const;
+	void open_audio(int frequency, int channels, int chunksize) const;
+	void play_sound_effect(Mix_Chunk* sound, int repeats, int volume, int channel = 0) const;
+	bool is_playing(int channel) const;
+	void play_background_music(Mix_Music* music, int volume) const;
+	void pause_background_music() const;
+	void stop_background_music() const;
+	void close_audio() const;
 };
 
 #endif
