@@ -8,8 +8,8 @@ public:
 	~example_guy();
 	std::string name;
 	int age;
-	std::map<std::string, AnyExtension> to_map() override;
-	void from_map(std::map<std::string, AnyExtension> map) override;
+	std::map<std::string, std::any> to_map() override;
+	void from_map(std::map<std::string, std::any> map) override;
 private:
 	int legCount;
 };

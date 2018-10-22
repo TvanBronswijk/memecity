@@ -7,6 +7,7 @@
 #include "InputFacade.h"
 #include "MultimediaManager.h"
 #include "ExampleGuy.h"
+#include "SerializationFacade.h"
 
 int main(int argc, char* argv[])
 {
@@ -15,7 +16,21 @@ int main(int argc, char* argv[])
 	guy.name = "piet";
 	guy.age = 9;
 
-	guy.to_map();
+	auto map = guy.to_map();
+
+	SerializationFacade f = SerializationFacade();
+	auto text = f.serialize(map);
+
+	guy.age = 20;
+
+	auto dmap = f.deserialize(text);
+
+	guy.from_map(dmap);
+
+
+
+
+
 
 
 	//DO NOT DELETE THIS LINE: ITS INTENDED TO FIND MEMORY LEAKS
