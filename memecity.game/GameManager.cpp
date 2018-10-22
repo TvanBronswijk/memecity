@@ -1,5 +1,4 @@
 #include "GameManager.h"
-#include "InputComponent.h"
 
 bool GameManager::init()
 {
@@ -9,14 +8,6 @@ bool GameManager::init()
 		texture = multimedia_manager->get_texture("BlikBier.bmp");
 		text = multimedia_manager->get_text_texture("Test", "Blazed.ttf", 50, { 255,10,10 });
 		text->translate({ 100.0f, 100.0f });
-		entity_manager = std::make_unique<EntityManager>();
-		entity = entity_manager->create_entity();
-		velocity_component = new VelocityComponent(entity);
-		input_component = new InputComponent(entity);
-		entity_manager->register_component(velocity_component);
-		entity_manager->register_component(input_component);
-		input_system = new InputSystem(input_manager);
-		entity_manager->register_system(input_system);
 		return true;
 	}
 	return false;
@@ -27,7 +18,6 @@ void GameManager::handle()
 	timer->update();
 	if (timer->get_delta_time() >= 1.0f / 60)
 	{
-		entity_manager->update();
 		input_manager->update();
 
 		texture->translate(Vector2(120.0f, 120.0f) * timer->get_delta_time());
