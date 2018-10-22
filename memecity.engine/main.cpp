@@ -15,13 +15,15 @@ int main(int argc, char* argv[])
 
 	guy.name = "piet";
 	guy.age = 9;
+	guy.friends = true;
+	//guy.money = 12.50;
 
 	auto map = guy.to_map();
 
 	SerializationFacade f = SerializationFacade();
 	auto text = f.serialize(map);
 
-	guy.age = 20;
+	guy = example_guy();
 
 	auto dmap = f.deserialize(text);
 

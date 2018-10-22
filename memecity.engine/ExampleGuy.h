@@ -8,6 +8,8 @@ public:
 	~example_guy();
 	std::string name;
 	int age;
+	//float money;
+	bool friends;
 	std::map<std::string, std::any> to_map() override;
 	void from_map(std::map<std::string, std::any> map) override;
 private:
