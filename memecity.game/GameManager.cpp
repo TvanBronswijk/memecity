@@ -1,5 +1,8 @@
 #include "GameManager.h"
-
+#include "../memecity.engine.ecs/Entity.h"
+#include "exp_component.h"
+#include "exp_system.h"
+#include "stats_component.h"
 
 
 bool GameManager::init()
@@ -10,6 +13,14 @@ bool GameManager::init()
 		texture = multimedia_manager->get_texture("BlikBier.bmp");
 		text = multimedia_manager->get_text_texture("Test", "Blazed.ttf", 50, { 255,10,10 });
 		text->translate({ 100.0f, 100.0f });
+
+		Entity* player = em.create_entity();
+		exp_component* player_exp_component = new exp_component(player);
+		stats_component* player_stats_component = new stats_component(player);
+		exp_system* player_exp_system = new exp_system();
+		em.register_component(player_exp_component);
+		em.register_system(player_exp_system);
+		em.register_component(player_stats_component);
 		return true;
 	}
 	return false;

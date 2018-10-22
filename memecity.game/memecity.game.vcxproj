@@ -22,14 +22,12 @@
     <ClInclude Include="exp_component.h" />
     <ClInclude Include="exp_system.h" />
     <ClInclude Include="GameManager.h" />
-    <ClInclude Include="Levelup_system.h" />
     <ClInclude Include="stats_component.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="exp_component.cpp" />
     <ClCompile Include="exp_system.cpp" />
     <ClCompile Include="GameManager.cpp" />
-    <ClCompile Include="levelup_system.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="stats_component.cpp" />
   </ItemGroup>
