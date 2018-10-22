@@ -8,6 +8,8 @@
 
 class DrawSystem : public System
 {
+	static std::string SYSTEM_TYPE;
+
 private:
 	std::weak_ptr<MultimediaManager> multimedia_manager;
 public:
