@@ -1,18 +1,15 @@
-#ifndef _AISYSTEM_H
-#define  _AISYSTEM_H
+#ifndef _FIGHTINGSYSTEM_H
+#define  _FIGHTINGSYSTEM_H
 #include "../memecity.engine.ecs/System.h"
-#include "PositionComponent.h"
-#include "velocityComponent.h"
-#include "AIComponent.h"
 #include "../memecity.engine.ecs/EntityManager.h"
 #include <cstdlib>
 
-class AISystem : public System {
+class FightingSystem : public System {
 
 	static std::string COMPONENT_TYPE;
 
 public:
-	AISystem();
+	FightingSystem();
 
 	bool is_on_event(Event *e) override;
 	std::string get_type() override;

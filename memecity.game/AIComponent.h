@@ -5,11 +5,18 @@
 struct AIComponent : public Component {
 	
 	static std::string COMPONENT_TYPE;
+	enum State
+	{
+		FIGHTING,
+		FLEEING,
+		STATIC
+
+	};
 
 public:
-	bool _fighting, _fleeing;
+	State _state;
 	AIComponent(Entity* e);
-	AIComponent(bool fighting, bool fleeing, Entity* e);
+	AIComponent(State state, Entity* e);
 	std::string get_type() override;
 };
 

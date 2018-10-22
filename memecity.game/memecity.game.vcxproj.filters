@@ -54,6 +54,9 @@
     <ClInclude Include="InteractionSystem.h">
       <Filter>Header Files\System</Filter>
     </ClInclude>
+    <ClInclude Include="FightingSystem.h">
+      <Filter>Header Files\System</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -84,6 +87,9 @@
       <Filter>Source Files\Component</Filter>
     </ClCompile>
     <ClCompile Include="InteractionSystem.cpp">
+      <Filter>Source Files\System</Filter>
+    </ClCompile>
+    <ClCompile Include="FightingSystem.cpp">
       <Filter>Source Files\System</Filter>
     </ClCompile>
   </ItemGroup>

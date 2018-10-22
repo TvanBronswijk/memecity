@@ -39,9 +39,7 @@ void GameManager::handle()
 			em.register_component(LC);
 			em.register_component(HC);
 			em.register_component(PC);
-			AISystem* AS = new AISystem();
 			em.register_system(AS);
-			AS->run(em);
 		}
 		
 		text->render();

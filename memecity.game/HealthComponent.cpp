@@ -16,3 +16,21 @@ HealthComponent::HealthComponent(int health, Entity* e) : Component(e) {
 std::string HealthComponent::get_type() {
 	return "HealthComponent";
 }
+
+std::map<std::string, AnyExtension> HealthComponent::to_map()
+{
+	std::map<std::string, AnyExtension> map;
+
+	map["health"] = this->_health;
+
+	nlohmann::json j = nlohmann::json(map);
+
+	std::cout << j.dump() << std::endl;
+
+	return map;
+}
+
+void HealthComponent::from_map(std::map<std::string, AnyExtension> map)
+{
+	this->_health = std::any_cast<int>(map["health"]);
+}

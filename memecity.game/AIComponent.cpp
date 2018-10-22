@@ -4,14 +4,12 @@ std::string AIComponent::COMPONENT_TYPE = "AIComponent";
 
 AIComponent::AIComponent(Entity* e) : Component(e) {
 	this->entity_id = e->id;
-	_fleeing = false;
-	_fighting = true;
+	this->_state = STATIC;
 }
 
-AIComponent::AIComponent(bool fighting, bool fleeing, Entity* e) : Component(e) {
+AIComponent::AIComponent(State state, Entity* e) : Component(e) {
 	this->entity_id = e->id;
-	_fleeing = fleeing;
-	_fighting = fighting;
+	this->_state = state;
 }
 
 std::string AIComponent::get_type() {
