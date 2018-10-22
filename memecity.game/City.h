@@ -38,6 +38,11 @@ struct Base64_Tilemap : Rectangle {
 	{
 		return tiles[x * h + y];
 	}
+
+	virtual ~Base64_Tilemap()
+	{
+		delete tiles;
+	}
 };
 
 struct City : Base64_Tilemap {

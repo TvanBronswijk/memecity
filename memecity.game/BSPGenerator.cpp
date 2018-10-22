@@ -19,7 +19,7 @@ std::unique_ptr<City> BSPGenerator::generate(int w, int h)
 	{
 		this->fill_node(node, city);
 	}
-
+	delete root;
 	return city;
 }
 

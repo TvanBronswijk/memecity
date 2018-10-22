@@ -9,9 +9,6 @@ bool GameManager::init()
 	city_generator->generate(64, 64, em);
 	if (multimedia_manager->init())
 	{
-		multimedia_manager->play_background_music("bgm.mp3", 50);
-		texture = multimedia_manager->get_texture("BlikBier.bmp");
-		text->translate({ 100.0f, 100.0f });
 		return true;
 	}
 	return false;
@@ -24,11 +21,7 @@ void GameManager::handle()
 	if (timer->get_delta_time() >= 1.0f / 60)
 	{
 		input_manager->update();
-
-		texture->translate(Vector2(120.0f, 120.0f) * timer->get_delta_time());
 		multimedia_manager->clear_graphics();
-		texture->render();
-		text->render();
 		multimedia_manager->render_graphics();
 		timer->reset();
 
