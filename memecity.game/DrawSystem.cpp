@@ -30,7 +30,7 @@ bool DrawSystem::is_on_event(Event* e)
 	return false;
 }
 
-void DrawSystem::run(EntityManager& em, Event* e)
+void DrawSystem::run(EntityManager &em, EventArgs e)
 {
 	//nothing
 }
