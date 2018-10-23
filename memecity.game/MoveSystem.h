@@ -6,6 +6,7 @@
 #include "PositionComponent.h"
 #include "DrawableComponent.h"
 #include "../memecity.engine/AnimatedCharacter.h"
+#include "PlayerComponent.h"
 
 
 class MoveSystem : public System
