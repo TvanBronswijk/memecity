@@ -5,7 +5,6 @@
 #include "VelocityComponent.h"
 #include "PositionComponent.h"
 
-class Event;
 
 class MoveSystem : public System
 {
