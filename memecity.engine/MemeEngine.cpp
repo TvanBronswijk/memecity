@@ -14,19 +14,7 @@ MemeEngine::MemeEngine()
 
 int MemeEngine::run()
 {
-	auto guy = example_guy();
-
-	guy.age = 5;
-	guy.name = "bob";
-	guy.friends = true;
-	guy.money = 5.5;
-	auto tomap = guy.to_map();
-	SerializationFacade serialization = SerializationFacade();
-	auto serialized = serialization.serialize(tomap);
-	guy = example_guy();
-
-	auto deserialize = serialization.deserialize(serialized);
-	guy.from_map(deserialize);
+	
 
 
 
