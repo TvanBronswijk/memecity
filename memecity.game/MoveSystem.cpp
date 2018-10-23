@@ -25,7 +25,7 @@ void MoveSystem::run(EntityManager& em)
 	}
 }
 
-void MoveSystem::run(EntityManager & em, Event * e)
+void MoveSystem::run(EntityManager &em, EventArgs e)
 {
 }
 

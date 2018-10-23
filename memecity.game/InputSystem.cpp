@@ -49,6 +49,6 @@ std::string InputSystem::get_type()
 	return SYSTEM_TYPE;
 }
 
-void InputSystem::run(EntityManager & em, Event * e)
+void InputSystem::run(EntityManager &em, EventArgs e)
 {
 }
