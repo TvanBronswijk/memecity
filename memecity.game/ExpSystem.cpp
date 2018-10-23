@@ -1,11 +1,6 @@
 #include "ExpSystem.h"
-#include <string>
-#include "ExpComponent.h"
-#include "../memecity.engine.ecs/EntityManager.h"
-#include "StatsComponent.h"
-#include "Event.h"
-#include "ExpEventArgs.h"
 
+std::string ExpSystem::SYSTEM_TYPE = "ExpSystem";
 
 ExpSystem::ExpSystem()
 {
@@ -19,7 +14,7 @@ ExpSystem::~ExpSystem()
 
 std::string ExpSystem::get_type()
 {
-	return std::string("ExpSystem");
+	return SYSTEM_TYPE;
 }
 
 void ExpSystem::run(EntityManager& em)

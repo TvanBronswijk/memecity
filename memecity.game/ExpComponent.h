@@ -1,4 +1,5 @@
-#pragma once
+#ifndef _EXP_COMPONENT_H
+#define _EXP_COMPONENT_H
 #include "../memecity.engine.ecs/Component.h"
 #include <string>
 
@@ -15,3 +16,4 @@ public:
 	~ExpComponent();
 };
 
+#endif

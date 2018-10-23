@@ -13,5 +13,5 @@ StatsComponent::~StatsComponent()
 
 std::string StatsComponent::get_type()
 {
-	return  std::string("StatsComponent");
+	return  COMPONENT_TYPE;
 }

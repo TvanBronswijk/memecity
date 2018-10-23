@@ -8,7 +8,7 @@ ExpComponent::ExpComponent(Entity* e): Component(e)
 
 std::string ExpComponent::get_type()
 {
-	return std::string("ExpComponent");
+	return COMPONENT_TYPE;
 }
 
 

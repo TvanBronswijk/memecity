@@ -1,6 +1,7 @@
-#pragma once
+#ifndef _EXP_EVENT_ARGS_H
+#define _EXP_EVENT_ARGS_H
 #include <EventArgs.h>
-class ExpEventArgs :
+struct ExpEventArgs :
 	public EventArgs
 	
 {
@@ -9,4 +10,6 @@ public:
 	ExpEventArgs();
 	~ExpEventArgs();
 };
+
+#endif
 

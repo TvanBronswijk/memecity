@@ -1,4 +1,5 @@
-#pragma once
+#ifndef _STATS_COMPONENT_H
+#define _STATS_COMPONENT_H
 #include "../memecity.engine.ecs/Component.h"
 #include <string>
 
@@ -20,3 +21,4 @@ public:
 	std::string get_type() override;
 };
 
+#endif

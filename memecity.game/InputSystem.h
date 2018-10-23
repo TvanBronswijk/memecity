@@ -4,7 +4,6 @@
 #include "../memecity.engine.ecs/System.h"
 #include "../memecity.engine.ecs/EntityManager.h"
 
-class Event;
 
 class InputSystem : public System
 {
