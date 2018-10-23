@@ -1,6 +1,4 @@
 ﻿#include "InputSystem.h"
-#include "PlayerComponent.h"
-#include "VelocityComponent.h"
 
 std::string InputSystem::SYSTEM_TYPE = "InputSystem";
 

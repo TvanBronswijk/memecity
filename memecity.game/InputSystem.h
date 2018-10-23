@@ -1,9 +1,10 @@
 ﻿#ifndef _INPUTSYSTEM_H
 #define  _INPUTSYSTEM_H
 #include "InputManager.h"
+#include "PlayerComponent.h"
+#include "VelocityComponent.h"
 #include "../memecity.engine.ecs/System.h"
 #include "../memecity.engine.ecs/EntityManager.h"
-
 
 class InputSystem : public System
 {
