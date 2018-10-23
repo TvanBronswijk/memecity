@@ -36,7 +36,7 @@ bool GameManager::init()
 		drawable_component->texture = animated_character;
 
 		//test to show an example  for a NPC
-		auto IS = new InteractionSystem();
+		auto IS = new InteractionSystem(multimedia_manager);
 		entity_manager->register_system(new AISystem());
 		entity_manager->register_system(new MoveSystem());
 		entity_manager->register_system(IS);

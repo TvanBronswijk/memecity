@@ -3,7 +3,7 @@
 
 std::string InteractionSystem::SYSTEM_TYPE = "InteractionSystem";
 
-InteractionSystem::InteractionSystem(MultimediaManager& multi_media) {
+InteractionSystem::InteractionSystem(std::weak_ptr<MultimediaManager> multi_media) {
 	this->multi_media_manager = multi_media;
 }
 
