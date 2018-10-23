@@ -9,11 +9,6 @@ InputSystem::InputSystem(std::weak_ptr<InputManager> input_manager)
 	this->input_manager = input_manager;
 }
 
-bool InputSystem::is_on_event(Event * e)
-{
-	return false;
-}
-
 void InputSystem::run(EntityManager& em)
 {
 	auto entities = em.get_entities_with_component(PlayerComponent::COMPONENT_TYPE);
@@ -49,6 +44,6 @@ std::string InputSystem::get_type()
 	return SYSTEM_TYPE;
 }
 
-void InputSystem::run(EntityManager & em, Event * e)
+void InputSystem::run(EntityManager& em, EventArgs& e)
 {
 }

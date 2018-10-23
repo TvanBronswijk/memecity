@@ -19,7 +19,7 @@ public:
 	}
 
 	///<summary>Fire the event with args.</summary>
-	void fire(EntityManager& em, EventArgs ea)
+	void fire(EntityManager& em, EventArgs& ea)
 	{
 		for(auto s : subscribers)
 			s->run(em, ea);

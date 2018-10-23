@@ -16,7 +16,7 @@ public:
 	virtual void run(EntityManager &em) = 0;
 
 	///<summary>Do the activity of the System.</summary>
-	virtual void run(EntityManager &em, EventArgs e) = 0;
+	virtual void run(EntityManager &em, EventArgs& e) = 0;
 };
 
 #endif

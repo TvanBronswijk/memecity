@@ -2,7 +2,7 @@
 #include "../memecity.engine.ecs/Component.h"
 #include <string>
 
-struct stats_component: public Component
+struct StatsComponent: public Component
 {
 	static std::string COMPONENT_TYPE;
 
@@ -15,8 +15,8 @@ public:
 	int agility = 0;
 	int luck = 0;
 
-	stats_component(Entity* e);
-	~stats_component();
+	StatsComponent(Entity* e);
+	~StatsComponent();
 	std::string get_type() override;
 };
 

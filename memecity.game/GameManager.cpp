@@ -1,8 +1,8 @@
 #include "GameManager.h"
 #include "../memecity.engine.ecs/Entity.h"
-#include "exp_component.h"
-#include "exp_system.h"
-#include "stats_component.h"
+#include "ExpComponent.h"
+#include "ExpSystem.h"
+#include "StatsComponent.h"
 
 
 bool GameManager::init()
@@ -15,9 +15,9 @@ bool GameManager::init()
 		text->translate({ 100.0f, 100.0f });
 
 		Entity* player = em.create_entity();
-		exp_component* player_exp_component = new exp_component(player);
-		stats_component* player_stats_component = new stats_component(player);
-		exp_system* player_exp_system = new exp_system();
+		ExpComponent* player_exp_component = new ExpComponent(player);
+		StatsComponent* player_stats_component = new StatsComponent(player);
+		ExpSystem* player_exp_system = new ExpSystem();
 		em.register_component(player_exp_component);
 		em.register_system(player_exp_system);
 		em.register_component(player_stats_component);

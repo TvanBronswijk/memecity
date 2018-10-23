@@ -19,24 +19,26 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="exp_component.h" />
-    <ClInclude Include="exp_system.h" />
+    <ClInclude Include="ExpComponent.h" />
+    <ClInclude Include="ExpEventArgs.h" />
+    <ClInclude Include="ExpSystem.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="PlayerComponent.h" />
     <ClInclude Include="InputSystem.h" />
     <ClInclude Include="MoveSystem.h" />
     <ClInclude Include="PositionComponent.h" />
     <ClInclude Include="VelocityComponent.h" />
-    <ClInclude Include="stats_component.h" />
+    <ClInclude Include="StatsComponent.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="exp_component.cpp" />
-    <ClCompile Include="exp_system.cpp" />
+    <ClCompile Include="ExpComponent.cpp" />
+    <ClCompile Include="ExpEventArgs.cpp" />
+    <ClCompile Include="ExpSystem.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="PlayerComponent.cpp" />
     <ClCompile Include="InputSystem.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="stats_component.cpp" />
+    <ClCompile Include="StatsComponent.cpp" />
     <ClCompile Include="MoveSystem.cpp" />
     <ClCompile Include="PositionComponent.cpp" />
     <ClCompile Include="VelocityComponent.cpp" />

@@ -2,7 +2,7 @@
 #include "../memecity.engine.ecs/Component.h"
 #include <string>
 
-struct exp_component: public Component
+struct ExpComponent: public Component
 {
 	static std::string COMPONENT_TYPE;
 
@@ -10,8 +10,8 @@ struct exp_component: public Component
 public:
 	int exp = 0;
 	int next_level = 0;
-	exp_component(Entity* e);
+	ExpComponent(Entity* e);
 	std::string get_type() override;
-	~exp_component();
+	~ExpComponent();
 };
 

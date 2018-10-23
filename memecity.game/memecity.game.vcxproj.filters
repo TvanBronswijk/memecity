@@ -45,13 +45,16 @@
     <ClInclude Include="PlayerComponent.h">
       <Filter>Header Files\Components</Filter>
     </ClInclude>
-    <ClInclude Include="exp_system.h">
+    <ClInclude Include="ExpComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="stats_component.h">
+    <ClInclude Include="ExpSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="exp_component.h">
+    <ClInclude Include="StatsComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ExpEventArgs.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -77,13 +80,16 @@
     <ClCompile Include="PlayerComponent.cpp">
       <Filter>Source Files\Components</Filter>
     </ClCompile>
-    <ClCompile Include="exp_system.cpp">
+    <ClCompile Include="ExpComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="exp_component.cpp">
+    <ClCompile Include="ExpSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="stats_component.cpp">
+    <ClCompile Include="StatsComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ExpEventArgs.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
