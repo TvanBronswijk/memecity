@@ -16,7 +16,7 @@ public:
 	DrawSystem(std::weak_ptr<MultimediaManager> multimedia_manager);
 	std::string get_type() override;
 	void run(EntityManager& em) override;
-	void run(EntityManager &em, EventArgs e) override;
+	void run(EntityManager& em, EventArgs& e) override;
 };
 
 #endif
