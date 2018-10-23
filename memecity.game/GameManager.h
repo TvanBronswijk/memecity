@@ -9,6 +9,7 @@ class GameManager : public MemeEngine
 private:
 	std::unique_ptr<CityGenerator> city_generator;
 	std::unique_ptr<EntityManager> entity_manager;
+	std::shared_ptr<AnimatedCharacter> animated_character;
 
 protected:
 	bool init() override;

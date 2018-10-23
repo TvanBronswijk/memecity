@@ -140,6 +140,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AnimatedCharacter.cpp" />
     <ClCompile Include="AssetManager.cpp" />
     <ClCompile Include="AudioFacade.cpp" />
     <ClCompile Include="Color.cpp" />
@@ -156,6 +157,7 @@
     <ClCompile Include="Updatable.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AnimatedCharacter.h" />
     <ClInclude Include="AssetManager.h" />
     <ClInclude Include="AudioFacade.h" />
     <ClInclude Include="Color.h" />

@@ -1,9 +1,10 @@
 #include "GraphicsFacade.h"
+#include <iostream>
 
 GraphicsFacade::GraphicsFacade(bool is_fullscreen): is_initialized(false)
 {
 	this->is_fullscreen = is_fullscreen;
-	screen_height = 1024;
+	screen_height = 600;
 	screen_width = 1280;
 }
 
@@ -100,7 +101,6 @@ void GraphicsFacade::clear() const
 {
 	SDL_RenderClear(sdl_renderer);
 }
-
 
 void GraphicsFacade::render() const
 {
