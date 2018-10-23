@@ -32,7 +32,7 @@ void AISystem::move_random(int element, EntityManager& em) {
 	int previousY = xy->y;
 
 
-	std::cout << "NPC has Placed with X: " << xy->x << "Y: " << xy->y << std::endl;
+	//std::cout << "NPC has Placed with X: " << xy->x << "Y: " << xy->y << std::endl;
 }
 
 std::string AISystem::get_type() {

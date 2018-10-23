@@ -43,8 +43,8 @@ void InputSystem::run(EntityManager& em)
 			auto vector = em.get_components_of_type(AIComponent::COMPONENT_TYPE);
 			for (auto & element : vector) {
 				PositionComponent* xy = (PositionComponent*)em.get_component_of_entity(element->entity_id, PositionComponent::COMPONENT_TYPE);
-				if ((player_position_component->x + 15) >= xy->x && (player_position_component->x - 15) <= xy->x) {
-					if ((player_position_component->y + 15) >= xy->y && (player_position_component->y - 15) <= xy->y) {
+				if ((player_position_component->x + 150) >= xy->x && (player_position_component->x - 150) <= xy->x) {
+					if ((player_position_component->y + 150) >= xy->y && (player_position_component->y - 150) <= xy->y) {
 						auto args = InteractionEventArgs(element->entity_id);
 						interaction_event->fire(em, args);
 					}

@@ -6,6 +6,7 @@
 #include "PositionComponent.h"
 #include "interactionComponent.h"
 #include "../memecity.engine/MultimediaManager.h"
+#include "DrawableComponent.h"
 
 class InteractionSystem : public System {
 

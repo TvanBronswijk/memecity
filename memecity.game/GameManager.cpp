@@ -23,11 +23,11 @@ bool GameManager::init()
 		entity_manager->register_component(d_component);
 
 		//test to show an example  for a NPC
-		/*auto IS = new InteractionSystem(multimedia_manager);
+		auto IS = new InteractionSystem(multimedia_manager);
 		entity_manager->register_system(new AISystem());
 		entity_manager->register_system(IS);
 		interaction_event = new InteractionEvent();
-		interaction_event->subscribe(IS);*/
+		interaction_event->subscribe(IS);
 
 		entity_manager->register_system(new InputSystem(input_manager, interaction_event));
 		entity_manager->register_system(new DrawSystem(multimedia_manager));
@@ -54,6 +54,7 @@ void GameManager::handle()
 			entity_manager->register_component(new HealthComponent(npc));
 			entity_manager->register_component(new StatsComponent(npc));
 			entity_manager->register_component(new PositionComponent(npc, 250, 250));
+			entity_manager->register_component(new InteractionComponent(npc));
 			
 			auto sprite = multimedia_manager->get_animated_texture(timer.get(), "SpriteSheet.png", 0, 0, 48, 48, 4, 0.5f, AnimatedCharacter::vertical);
 			sprite->set_position(Vector2(250.0, 250.0));
@@ -67,7 +68,7 @@ void GameManager::handle()
 		{
 			multimedia_manager->pause_background_music();
 		}
-		/*animated_character->set_walking_direction(AnimatedCharacter::idle);
+		animated_character->set_walking_direction(AnimatedCharacter::idle);
 		if (input_manager->is_pressed(LEFT))
 		{
 			animated_character->set_walking_direction(AnimatedCharacter::left);
@@ -86,7 +87,7 @@ void GameManager::handle()
 		if (input_manager->is_pressed(DOWN))
 		{
 			animated_character->set_walking_direction(AnimatedCharacter::down);
-		}*/
+		}
 		
 		timer->reset();
 	}
