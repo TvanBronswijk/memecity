@@ -19,32 +19,36 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AISystem.h" />
-    <ClInclude Include="FightingSystem.h" />
+    <ClInclude Include="ExpComponent.h" />
+    <ClInclude Include="ExpEventArgs.h" />
+    <ClInclude Include="ExpSystem.h" />
+    <ClInclude Include="City.h" />
+    <ClInclude Include="BSPGenerator.h" />
+    <ClInclude Include="CityGenerator.h" />
     <ClInclude Include="GameManager.h" />
-    <ClInclude Include="AIComponent.h" />
-    <ClInclude Include="HealthComponent.h" />
-    <ClInclude Include="InputComponent.h" />
+    <ClInclude Include="DrawableComponent.h" />
+    <ClInclude Include="DrawSystem.h" />
+    <ClInclude Include="GeneratorStrategy.h" />
+    <ClInclude Include="PlayerComponent.h" />
     <ClInclude Include="InputSystem.h" />
-    <ClInclude Include="InteractionComponent.h" />
-    <ClInclude Include="InteractionSystem.h" />
-    <ClInclude Include="LevelComponent.h" />
     <ClInclude Include="MoveSystem.h" />
     <ClInclude Include="PositionComponent.h" />
     <ClInclude Include="VelocityComponent.h" />
+    <ClInclude Include="StatsComponent.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="AIComponent.cpp" />
-    <ClCompile Include="AISystem.cpp" />
-    <ClCompile Include="FightingSystem.cpp" />
+    <ClCompile Include="BSPGenerator.cpp" />
+    <ClCompile Include="CityGenerator.cpp" />
+    <ClCompile Include="ExpComponent.cpp" />
+    <ClCompile Include="ExpEventArgs.cpp" />
+    <ClCompile Include="ExpSystem.cpp" />
     <ClCompile Include="GameManager.cpp" />
-    <ClCompile Include="HealthComponent.cpp" />
-    <ClCompile Include="InputComponent.cpp" />
+    <ClCompile Include="DrawableComponent.cpp" />
+    <ClCompile Include="DrawSystem.cpp" />
+    <ClCompile Include="PlayerComponent.cpp" />
     <ClCompile Include="InputSystem.cpp" />
-    <ClCompile Include="InteractionComponent.cpp" />
-    <ClCompile Include="InteractionSystem.cpp" />
-    <ClCompile Include="LevelComponent.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="StatsComponent.cpp" />
     <ClCompile Include="MoveSystem.cpp" />
     <ClCompile Include="PositionComponent.cpp" />
     <ClCompile Include="VelocityComponent.cpp" />
@@ -104,7 +108,7 @@
     <IncludePath>$(SolutionDir)memecity.engine;$(SolutionDir)dependencies\SDL2_mixer-2.0.2\include;$(SolutionDir)dependencies\SDL2_ttf-2.0.14\include;$(SolutionDir)dependencies\SDL2\include;$(SolutionDir)dependencies\SDL2_image-2.0.3\include;$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(SolutionDir)memecity.engine;$(SolutionDir)dependencies\SDL2_mixer-2.0.2\include;$(SolutionDir)dependencies\SDL2_ttf-2.0.14\include;$(SolutionDir)dependencies\SDL2\include;$(SolutionDir)dependencies\SDL2_image-2.0.3\include;$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)memecity.engine;$(SolutionDir)dependencies\SDL2_mixer-2.0.2\include;$(SolutionDir)dependencies\SDL2_ttf-2.0.14\include;$(SolutionDir)dependencies\SDL2\include;$(SolutionDir)dependencies\SDL2_image-2.0.3\include;$(VC_IncludePath);$(WindowsSDK_IncludePath);$(SolutionDir)memecity.engine.ecs</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

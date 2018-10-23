@@ -2,29 +2,21 @@
 #define _GAME_MANAGER_H
 #include "MemeEngine.h"
 #include "../memecity.engine.ecs/EntityManager.h"
-#include "PositionComponent.h"
-#include "AIComponent.h"
-#include "VelocityComponent.h"
-#include "LevelComponent.h"
-#include "HealthComponent.h"
-#include "AISystem.h"
-#include "MoveSystem.h"
+#include "CityGenerator.h"
+#include "DrawSystem.h"
 
-
-
-
-class GameManager : public MemeEngine{
+class GameManager : public MemeEngine 
+{
 private:
-	std::shared_ptr<Texture> texture;
+	std::unique_ptr<CityGenerator> city_generator;
+	std::unique_ptr<EntityManager> entity_manager;
+	std::shared_ptr<AnimatedCharacter> animated_character;
 	std::shared_ptr<Texture> text;
-	AISystem* AS;
-	MoveSystem* MS;
 	EntityManager em;
 
 protected:
 	bool init() override;
 	void handle() override;
-
 };
 
 
