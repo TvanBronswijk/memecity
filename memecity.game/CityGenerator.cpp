@@ -16,7 +16,6 @@ void CityGenerator::generate(int w, int h, std::unique_ptr<EntityManager> &em, s
 			std::cout << character;
 			auto entity = em->create_entity();
 			auto drawable_component = new DrawableComponent(entity);
-			auto position_component = new PositionComponent(entity);
 			auto filename = "purple.bmp";
 
 			switch (character)
@@ -36,12 +35,9 @@ void CityGenerator::generate(int w, int h, std::unique_ptr<EntityManager> &em, s
 			}
 			auto texture = multimedia_manager->get_texture(filename);
 			texture->set_position({ x * 64.0f, y * 64.0f });
-			position_component->x = x * 64.0f;
-			position_component->y = y * 64.0f;
 			drawable_component->texture = texture;
 
 			em->register_component(drawable_component);
-			em->register_component(position_component);
 		}
 		std::cout << std::endl;
 	}

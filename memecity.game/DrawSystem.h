@@ -7,7 +7,6 @@
 #include "../memecity.engine.ecs/EntityManager.h"
 #include "PlayerComponent.h"
 #include "PositionComponent.h"
-#include "VelocityComponent.h"
 
 class DrawSystem : public System
 {
