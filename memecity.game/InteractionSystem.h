@@ -4,7 +4,7 @@
 
 class InteractionSystem : public System {
 
-	static std::string COMPONENT_TYPE;
+	static std::string SYSTEM_TYPE;
 
 public:
 	InteractionSystem();

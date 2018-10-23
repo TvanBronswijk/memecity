@@ -10,6 +10,8 @@ bool GameManager::init()
 		text = multimedia_manager->get_text_texture("Test", "Blazed.ttf", 50, { 255,10,10 });
 		text->translate({ 100.0f, 100.0f });
 		AS = new AISystem();
+		MS = new MoveSystem();
+		em.register_system(MS);
 		return true;
 	}
 	return false;
@@ -31,7 +33,7 @@ void GameManager::handle()
 			VelocityComponent* VC = new VelocityComponent(npc);
 			LevelComponent* LC = new LevelComponent(npc);
 			HealthComponent* HC = new HealthComponent(npc);
-			PositionComponent* PC = new PositionComponent(1,1,npc);
+			PositionComponent* PC = new PositionComponent(npc,1,1);
 			em.register_component(AI);
 			em.register_component(VC);
 			em.register_component(LC);

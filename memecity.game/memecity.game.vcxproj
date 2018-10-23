@@ -24,9 +24,12 @@
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="AIComponent.h" />
     <ClInclude Include="HealthComponent.h" />
+    <ClInclude Include="InputComponent.h" />
+    <ClInclude Include="InputSystem.h" />
     <ClInclude Include="InteractionComponent.h" />
     <ClInclude Include="InteractionSystem.h" />
     <ClInclude Include="LevelComponent.h" />
+    <ClInclude Include="MoveSystem.h" />
     <ClInclude Include="PositionComponent.h" />
     <ClInclude Include="VelocityComponent.h" />
   </ItemGroup>
@@ -36,10 +39,13 @@
     <ClCompile Include="FightingSystem.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="HealthComponent.cpp" />
+    <ClCompile Include="InputComponent.cpp" />
+    <ClCompile Include="InputSystem.cpp" />
     <ClCompile Include="InteractionComponent.cpp" />
     <ClCompile Include="InteractionSystem.cpp" />
     <ClCompile Include="LevelComponent.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MoveSystem.cpp" />
     <ClCompile Include="PositionComponent.cpp" />
     <ClCompile Include="VelocityComponent.cpp" />
   </ItemGroup>

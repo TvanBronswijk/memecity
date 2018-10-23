@@ -9,8 +9,13 @@
 
 class AISystem : public System {
 
-	static std::string COMPONENT_TYPE;
+	static std::string SYSTEM_TYPE;
 
+private:
+	int random_x(VelocityComponent* velocity);
+	int random_y(VelocityComponent* velocity);
+	void move_sprites();
+	void check_health();
 public:
 	AISystem();
 
@@ -18,6 +23,7 @@ public:
 	std::string get_type() override;
 	void run(EntityManager &em) override;
 	void run(EntityManager &em, Event *e) override;
+	void move_random(Entity* element, EntityManager em);
 };
 
 #endif

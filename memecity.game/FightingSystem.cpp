@@ -1,7 +1,7 @@
 #include "FightingSystem.h"
 
 
-std::string FightingSystem::COMPONENT_TYPE = "FightingSystem";
+std::string FightingSystem::SYSTEM_TYPE = "FightingSystem";
 
 
 FightingSystem::FightingSystem() {
@@ -13,7 +13,7 @@ bool FightingSystem::is_on_event(Event *e) {
 
 
 std::string FightingSystem::get_type() {
-	return COMPONENT_TYPE;
+	return SYSTEM_TYPE;
 }
 void FightingSystem::run(EntityManager &em) {
 }

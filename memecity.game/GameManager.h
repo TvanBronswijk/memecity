@@ -8,6 +8,7 @@
 #include "LevelComponent.h"
 #include "HealthComponent.h"
 #include "AISystem.h"
+#include "MoveSystem.h"
 
 
 
@@ -17,6 +18,7 @@ private:
 	std::shared_ptr<Texture> texture;
 	std::shared_ptr<Texture> text;
 	AISystem* AS;
+	MoveSystem* MS;
 	EntityManager em;
 
 protected:

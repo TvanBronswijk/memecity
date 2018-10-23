@@ -1,7 +1,7 @@
 #include "InteractionSystem.h"
 
 
-std::string InteractionSystem::COMPONENT_TYPE = "InteractionSystem";
+std::string InteractionSystem::SYSTEM_TYPE = "InteractionSystem";
 
 InteractionSystem::InteractionSystem() {
 }
@@ -12,7 +12,7 @@ bool InteractionSystem::is_on_event(Event *e) {
 
 
 std::string InteractionSystem::get_type() {
-	return COMPONENT_TYPE;
+	return SYSTEM_TYPE;
 }
 void InteractionSystem::run(EntityManager &em) {
 
