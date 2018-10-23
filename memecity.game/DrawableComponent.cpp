@@ -7,7 +7,3 @@ std::string DrawableComponent::get_type()
 	return COMPONENT_TYPE;
 }
 
-//DrawableComponent::~DrawableComponent()
-//{
-//	//
-//}
