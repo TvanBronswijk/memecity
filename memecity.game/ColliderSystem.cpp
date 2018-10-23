@@ -8,11 +8,6 @@ std::string ColliderSystem::get_type()
 	return SYSTEM_TYPE;
 }
 
-bool ColliderSystem::is_on_event(Event* e)
-{
-	return false;
-}
-
 void ColliderSystem::run(EntityManager& em)
 {
 	auto components = em.get_components_of_type(ColliderComponent::COMPONENT_TYPE);
@@ -42,8 +37,7 @@ void ColliderSystem::run(EntityManager& em)
 	}
 }
 
-
-void ColliderSystem::run(EntityManager& em, Event* e)
+void ColliderSystem::run(EntityManager & em, EventArgs & e)
 {
 
 }

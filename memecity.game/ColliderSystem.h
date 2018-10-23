@@ -7,10 +7,9 @@ class ColliderSystem : public System
 {
 	static std::string SYSTEM_TYPE;
 public:
-	bool is_on_event(Event *e) override;
 	void run(EntityManager& em) override;
 	std::string get_type() override;
-	void run(EntityManager &em, Event *e) override;
+	void run(EntityManager &em, EventArgs& e);
 };
 
 #endif
