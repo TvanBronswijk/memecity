@@ -13,8 +13,6 @@
 #include "StatsComponent.h"
 #include "AISystem.h"
 #include "MoveSystem.h"
-#include "InteractionSystem.h"
-#include "Event.h"
 
 class GameManager : public MemeEngine 
 {

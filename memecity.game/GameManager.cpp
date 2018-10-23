@@ -7,7 +7,7 @@ bool GameManager::init()
 	{
 		city_generator = std::make_unique<CityGenerator>();
 		entity_manager = std::make_unique<EntityManager>();
-		city_generator->generate(128, 128, entity_manager, multimedia_manager);
+		city_generator->generate(12, 12, entity_manager, multimedia_manager);
 
 		auto entity = entity_manager->create_entity();
 		entity_manager->register_component(new PlayerComponent(entity));
@@ -22,19 +22,16 @@ bool GameManager::init()
 		d_component->texture->set_position({ position_component->x, position_component->y });
 		entity_manager->register_component(d_component);
 
-		entity_manager->register_system(new InputSystem(input_manager));
+		//test to show an example  for a NPC
+		/*auto IS = new InteractionSystem(multimedia_manager);
+		entity_manager->register_system(new AISystem());
+		entity_manager->register_system(IS);
+		interaction_event = new InteractionEvent();
+		interaction_event->subscribe(IS);*/
+
+		entity_manager->register_system(new InputSystem(input_manager, interaction_event));
 		entity_manager->register_system(new DrawSystem(multimedia_manager));
 		entity_manager->register_system(new MoveSystem());
-
-		// Test to show an example how to create a animated character
-		animated_character = multimedia_manager->get_animated_texture(timer.get(), "SpriteSheet.png", 0, 0, 48, 48, 4, 0.5f, AnimatedCharacter::vertical);
-		animated_character->set_position(Vector2(200.0, 200.0));
-
-		const auto animated_character_entity = entity_manager->create_entity();
-		const auto drawable_component = new DrawableComponent(animated_character_entity);
-		entity_manager->register_component(drawable_component);
-		drawable_component->texture = animated_character;
-
 		return true;
 	}
 	return false;
@@ -44,8 +41,6 @@ void GameManager::handle()
 	timer->update();
 	if (timer->get_delta_time() >= 1.0f / 60)
 	{
-		animated_character->update();
-
 		input_manager->update();
 		entity_manager->update();
 		animated_character->update();
@@ -72,7 +67,7 @@ void GameManager::handle()
 		{
 			multimedia_manager->pause_background_music();
 		}
-		animated_character->set_walking_direction(AnimatedCharacter::idle);
+		/*animated_character->set_walking_direction(AnimatedCharacter::idle);
 		if (input_manager->is_pressed(LEFT))
 		{
 			animated_character->set_walking_direction(AnimatedCharacter::left);
@@ -91,25 +86,8 @@ void GameManager::handle()
 		if (input_manager->is_pressed(DOWN))
 		{
 			animated_character->set_walking_direction(AnimatedCharacter::down);
-		}
-		//test for interaction with NPC
-		if (input_manager->is_pressed(INTERACTION))
-		{
-			auto position = animated_character->get_position();
-			auto vector = entity_manager->get_components_of_type(AIComponent::COMPONENT_TYPE);
-			for (auto & element : vector) {
-				PositionComponent* xy = (PositionComponent*)entity_manager->get_component_of_entity(element->entity_id, PositionComponent::COMPONENT_TYPE);
-				if ((position.x + 15) >= xy->x && (position.x - 15) <= xy->x) {
-					if ((position.y + 15) >= xy->y && (position.y - 15) <= xy->y) {
-						auto args = InteractionEventArgs(element->entity_id);
-
-						interaction_event->fire(entity_manager, args);
-					}
-				}
-			}
-		}
-
-
+		}*/
+		
 		timer->reset();
 	}
 }

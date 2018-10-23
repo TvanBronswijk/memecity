@@ -12,9 +12,9 @@ class InteractionSystem : public System {
 	static std::string SYSTEM_TYPE;
 
 private:
-	std::weak_ptr<MultimediaManager> multi_media_manager;
+	std::weak_ptr<MultimediaManager> multimedia_manager;
 public:
-	InteractionSystem(std::weak_ptr<MultimediaManager> multi_media_manager);
+	InteractionSystem(std::weak_ptr<MultimediaManager> multimedia_manager);
 	std::string get_type() override;
 	void run(EntityManager &em) override;
 	void run(EntityManager &em, EventArgs& e) override;
