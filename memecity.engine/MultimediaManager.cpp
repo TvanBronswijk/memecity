@@ -70,3 +70,13 @@ std::shared_ptr<Texture> MultimediaManager::get_text_texture(std::string text, s
 {
 	return std::make_shared<Texture>(graphics_facade, asset_manager->get_text(text, font_path, size, color.get_sdl_color()));
 }
+
+int MultimediaManager::get_screen_width()
+{
+	return graphics_facade->screen_width;
+}
+
+int MultimediaManager::get_screen_height()
+{
+	return graphics_facade->screen_height;
+}

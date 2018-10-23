@@ -6,6 +6,7 @@
 #include "../memecity.engine.ecs/EntityManager.h"
 #include "DrawableComponent.h"
 #include "MultimediaManager.h"
+#include "PositionComponent.h"
 
 class CityGenerator {
 private:

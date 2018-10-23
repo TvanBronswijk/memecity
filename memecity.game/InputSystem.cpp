@@ -27,19 +27,19 @@ void InputSystem::run(EntityManager& em)
 
 		if (this->input_manager.lock()->is_pressed(UP))
 		{
-			velocity_component->y += 2;
+			velocity_component->y += 5;
 		}
 		if (this->input_manager.lock()->is_pressed(DOWN))
 		{
-			velocity_component->y -= 2;
+			velocity_component->y -= 5;
 		}
 		if (this->input_manager.lock()->is_pressed(LEFT))
 		{
-			velocity_component->x -= 2;
+			velocity_component->x -= 5;
 		}
 		if (this->input_manager.lock()->is_pressed(RIGHT))
 		{
-			velocity_component->x += 2;
+			velocity_component->x += 5;
 		}
 	}
 }

@@ -1,4 +1,7 @@
 #include "GameManager.h"
+#include "InputSystem.h"
+#include "MoveSystem.h"
+#include "PlayerComponent.h"
 
 bool GameManager::init()
 {
@@ -9,8 +12,21 @@ bool GameManager::init()
 
 		city_generator = std::make_unique<CityGenerator>();
 		entity_manager = std::make_unique<EntityManager>();
-		city_generator->generate(64, 64, entity_manager, multimedia_manager);
+		city_generator->generate(50, 50, entity_manager, multimedia_manager);
+
+		auto entity = entity_manager->create_entity();
+		entity_manager->register_component(new PlayerComponent(entity));
+		entity_manager->register_component(new VelocityComponent(entity));
+		entity_manager->register_component(new PositionComponent(entity, 640.0f, 512.0f));
+
+		auto d_component = new DrawableComponent(entity);
+		d_component->texture = multimedia_manager->get_texture("red.bmp", 0, 0, 32, 32);
+		d_component->texture->translate({ 640.0f, 512.0f });
+		entity_manager->register_component(d_component);
+
+		entity_manager->register_system(new InputSystem(input_manager));
 		entity_manager->register_system(new DrawSystem(multimedia_manager));
+		entity_manager->register_system(new MoveSystem());
 
 		return true;
 	}
@@ -21,12 +37,10 @@ bool GameManager::init()
 void GameManager::handle()
 {
 	timer->update();
+	input_manager->update();
+	entity_manager->update();
 	if (timer->get_delta_time() >= 1.0f / 60)
 	{
-		input_manager->update();
-
-		entity_manager->update();
-
 		timer->reset();
 
 		if (input_manager->is_pressed(ESCAPE))

@@ -27,6 +27,9 @@ public:
 	std::shared_ptr<Texture> get_texture(std::string filename);
 	std::shared_ptr<Texture> get_texture(std::string filename, int x, int y, int width, int height);
 	std::shared_ptr<Texture> get_text_texture(std::string text, std::string font_path, int size, Color color);
+
+	int get_screen_width();
+	int get_screen_height();
 };
 
 #endif
