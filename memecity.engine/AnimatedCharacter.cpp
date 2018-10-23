@@ -1,5 +1,4 @@
 #include "AnimatedCharacter.h"
-#include <iostream>
 
 AnimatedCharacter::AnimatedCharacter(TimerFacade* timer_facade, std::shared_ptr<GraphicsFacade> graphics_facade, SDL_Texture* texture, int x, int y,
 	int w, int h, int frame_count, float animation_speed, ANIMATION_DIRECTION direction) : Texture(graphics_facade, texture, x, y, w, h)

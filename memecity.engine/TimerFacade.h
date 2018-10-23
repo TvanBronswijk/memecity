@@ -12,7 +12,6 @@ private:
 	float delta_time{};
 
 public:
-	///<summary>Constructor.</summary>
 	TimerFacade();
 
 	///<summary>Resets the elapsed ticks.</summary>
