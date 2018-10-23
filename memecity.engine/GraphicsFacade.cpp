@@ -94,7 +94,12 @@ SDL_Texture* GraphicsFacade::load_text_texture(TTF_Font* font, std::string text,
 
 void GraphicsFacade::draw_texture(SDL_Texture* texture, SDL_Rect* clipped_rect, SDL_Rect* render_rect) const
 {
-	SDL_RenderCopy(sdl_renderer, texture, clipped_rect, render_rect);
+	int offset = 90;
+
+	if (render_rect->x > -offset && render_rect->x < screen_width + offset &&
+		render_rect->y > -offset && render_rect->y < screen_height + offset) {
+		SDL_RenderCopy(sdl_renderer, texture, clipped_rect, render_rect);
+	}
 }
 
 void GraphicsFacade::clear() const

@@ -41,12 +41,23 @@ void MoveSystem::run(EntityManager& em)
 		if (current_velocity_component->x != 0)
 		{
 			current_position->x += current_velocity_component->x;
+			current_position->diffx = current_velocity_component->x;
 			current_velocity_component->x = 0;
 		}
+		else
+		{
+			current_position->diffx = 0;
+		}
+
 		if (current_velocity_component->y != 0)
 		{
 			current_position->y += current_velocity_component->y;
+			current_position->diffy = current_velocity_component->y;
 			current_velocity_component->y = 0;
+		}
+		else
+		{
+			current_position->diffy = 0;
 		}
 	}
 }

@@ -1,26 +1,36 @@
 #include "GameManager.h"
-#include "../memecity.engine.ecs/Entity.h"
-#include "ExpComponent.h"
-#include "ExpSystem.h"
-#include "StatsComponent.h"
 
 bool GameManager::init()
 {
 
 	if (multimedia_manager->init())
 	{
-		
-
+	
 		city_generator = std::make_unique<CityGenerator>();
 		entity_manager = std::make_unique<EntityManager>();
-		city_generator->generate(64, 64, entity_manager, multimedia_manager);
+		city_generator->generate(128, 128, entity_manager, multimedia_manager);
+
+		auto entity = entity_manager->create_entity();
+		entity_manager->register_component(new PlayerComponent(entity));
+		entity_manager->register_component(new VelocityComponent(entity));
+		auto position_component = new PositionComponent(entity, multimedia_manager->get_screen_width() / 2, multimedia_manager->get_screen_height() / 2);
+		entity_manager->register_component(position_component);
+
+		auto d_component = new DrawableComponent(entity);
+		d_component->texture = multimedia_manager->get_texture("red.bmp", 0, 0, 32, 32);
+		d_component->texture->set_position({ position_component->x, position_component->y});
+		entity_manager->register_component(d_component);
+
+		entity_manager->register_system(new InputSystem(input_manager));
+		entity_manager->register_system(new DrawSystem(multimedia_manager));
+		entity_manager->register_system(new MoveSystem());
 
 		// Test to show an example how to create a animated character
 		animated_character = multimedia_manager->get_animated_texture(timer.get(), "SpriteSheet.png", 0, 0, 48, 48, 4, 0.5f, AnimatedCharacter::vertical);
 		animated_character->set_position(Vector2(200.0, 200.0));
 
-		auto animated_character_entity = entity_manager->create_entity();
-		auto drawable_component = new DrawableComponent(animated_character_entity);
+		const auto animated_character_entity = entity_manager->create_entity();
+		const auto drawable_component = new DrawableComponent(animated_character_entity);
 		entity_manager->register_component(drawable_component);
 		entity_manager->register_system(new DrawSystem(multimedia_manager));
 		drawable_component->texture = animated_character;
@@ -42,6 +52,8 @@ void GameManager::handle()
 	timer->update();
 	if (timer->get_delta_time() >= 1.0f / 60)
 	{
+		animated_character->update();
+
 		input_manager->update();
 		entity_manager->update();
 		animated_character->update();
