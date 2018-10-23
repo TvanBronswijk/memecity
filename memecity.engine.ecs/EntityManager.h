@@ -1,8 +1,8 @@
+#ifndef _ENTITY_MANAGER_H
+#define  _ENTITY_MANAGER_H
 #include <iostream> 
 #include <map> 
 #include <iterator> 
-#ifndef _ENTITY_MANAGER_H
-#define  _ENTITY_MANAGER_H
 #include <vector>
 #include "Entity.h"
 #include "Component.h"
