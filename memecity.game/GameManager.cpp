@@ -10,17 +10,7 @@ bool GameManager::init()
 	
 	if (multimedia_manager->init())
 	{
-		multimedia_manager->play_background_music("bgm.mp3", 50);
-		text = multimedia_manager->get_text_texture("Test", "Blazed.ttf", 50, { 255,10,10 });
-		text->translate({ 100.0f, 100.0f });
-
-		Entity* player = em.create_entity();
-		ExpComponent* player_exp_component = new ExpComponent(player);
-		StatsComponent* player_stats_component = new StatsComponent(player);
-		ExpSystem* player_exp_system = new ExpSystem();
-		em.register_component(player_exp_component);
-		em.register_system(player_exp_system);
-		em.register_component(player_stats_component);
+		
 
 		city_generator = std::make_unique<CityGenerator>();
 		entity_manager = std::make_unique<EntityManager>();
