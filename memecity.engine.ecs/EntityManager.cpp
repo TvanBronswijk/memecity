@@ -69,13 +69,6 @@ bool EntityManager::has_component(Entity* e, string type)
 	return false;
 }
 
-void EntityManager::fire_event(Event* e)
-{
-	for (auto pair : systems)
-		if(pair.second->is_on_event(e))
-			pair.second->run(*this, e);
-}
-
 void EntityManager::update() 
 {
 	for (auto pair : systems)
