@@ -12,11 +12,12 @@ bool GameManager::init()
 		auto entity = entity_manager->create_entity();
 		entity_manager->register_component(new PlayerComponent(entity));
 		entity_manager->register_component(new VelocityComponent(entity));
-		entity_manager->register_component(new PositionComponent(entity, 640.0f, 512.0f));
+		auto position_component = new PositionComponent(entity, multimedia_manager->get_screen_width() / 2, multimedia_manager->get_screen_height() / 2);
+		entity_manager->register_component(position_component);
 
 		auto d_component = new DrawableComponent(entity);
 		d_component->texture = multimedia_manager->get_texture("red.bmp", 0, 0, 32, 32);
-		d_component->texture->translate({ 640.0f, 512.0f });
+		d_component->texture->translate({ position_component->x, position_component->y});
 		entity_manager->register_component(d_component);
 
 		entity_manager->register_system(new InputSystem(input_manager));
