@@ -1,4 +1,5 @@
 #include "MemeEngine.h"
+#include "SerializationFacade.h"
 
 MemeEngine::MemeEngine()
 {
