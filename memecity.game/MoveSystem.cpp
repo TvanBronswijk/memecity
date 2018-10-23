@@ -36,14 +36,10 @@ void MoveSystem::run(EntityManager& em)
 	}
 }
 
-void MoveSystem::run(EntityManager &em, EventArgs e)
+void MoveSystem::run(EntityManager& em, EventArgs& e)
 {
 }
 
-bool MoveSystem::is_on_event(Event * e)
-{
-	return false;
-}
 
 std::string MoveSystem::get_type()
 {

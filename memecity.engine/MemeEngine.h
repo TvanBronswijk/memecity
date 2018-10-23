@@ -15,6 +15,7 @@ protected:
 
 	virtual bool init() = 0;
 	virtual void handle() = 0;
+
 public:
 	int run();
 	MemeEngine();

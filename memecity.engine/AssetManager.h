@@ -19,14 +19,13 @@ private:
 	TTF_Font* get_font(std::string filename, int size);
 
 public:
-
 	AssetManager(std::shared_ptr<GraphicsFacade> graphics_facade);
+	~AssetManager();
+
 	SDL_Texture* get_texture(std::string filename);
 	SDL_Texture* get_text(std::string text, std::string filename, int size, SDL_Color color);
 	Mix_Music* get_music(std::string filename);
 	Mix_Chunk* get_sfx(std::string filename);
-
-	~AssetManager();
 };
 
 #endif

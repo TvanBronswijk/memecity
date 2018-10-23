@@ -21,7 +21,7 @@ public:
 	Texture(std::shared_ptr<GraphicsFacade> graphics_facade, SDL_Texture* texture);
 	Texture(std::shared_ptr<GraphicsFacade> graphics_facade, SDL_Texture* texture, int x, int y, int width, int height);
 	~Texture();
-
+	
 	void render() override;
 };
 
