@@ -8,7 +8,6 @@ MemeEngine::MemeEngine()
 	timer = std::make_unique<TimerFacade>();
 }
 
-
 int MemeEngine::run()
 {
 	if (init()) {
@@ -20,6 +19,3 @@ int MemeEngine::run()
 	}
 	return 1;
 }
-
-
-

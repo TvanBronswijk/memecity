@@ -1,11 +1,16 @@
 #include "GameManager.h"
+#include "../memecity.engine.ecs/Entity.h"
+#include "ExpComponent.h"
+#include "ExpSystem.h"
+#include "StatsComponent.h"
+
 
 bool GameManager::init()
 {
 	
 	if (multimedia_manager->init())
 	{
-		multimedia_manager->play_background_music("bgm.mp3", 50);
+		
 
 		city_generator = std::make_unique<CityGenerator>();
 		entity_manager = std::make_unique<EntityManager>();
