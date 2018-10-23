@@ -5,7 +5,6 @@
 #include "ExpComponent.h"
 #include "../memecity.engine.ecs/EntityManager.h"
 #include "StatsComponent.h"
-#include "Event.h"
 #include "ExpEventArgs.h"
 
 
