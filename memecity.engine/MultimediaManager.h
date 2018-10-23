@@ -1,6 +1,7 @@
 #ifndef _MULTIMEDIAMANAGER_H
 #define _MULTIMEDIAMANAGER_H
 
+#include "AnimatedCharacter.h"
 #include "AssetManager.h"
 #include "AudioFacade.h"
 #include "Texture.h"
@@ -26,7 +27,11 @@ public:
 
 	std::shared_ptr<Texture> get_texture(std::string filename);
 	std::shared_ptr<Texture> get_texture(std::string filename, int x, int y, int width, int height);
+	std::shared_ptr<AnimatedCharacter> get_animated_texture(TimerFacade *timer, std::string filename, int x, int y, int width, int height, int frame_count, float animation_speed, AnimatedCharacter::ANIMATION_DIRECTION direction);
 	std::shared_ptr<Texture> get_text_texture(std::string text, std::string font_path, int size, Color color);
+
+	int get_screen_width();
+	int get_screen_height();
 };
 
 #endif
