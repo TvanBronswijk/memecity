@@ -33,6 +33,12 @@ void CityGenerator::generate(int w, int h, std::unique_ptr<EntityManager> &em, s
 				filename = "green.bmp";
 				break;
 			}
+
+			if (character == 'W' || character == 'w')
+			{
+				em->register_component(new ColliderComponent(entity, x * 64.0f, y * 64.0f, 64.0f, 64.0f));
+			}
+
 			auto texture = multimedia_manager->get_texture(filename);
 			texture->set_position({ x * 64.0f, y * 64.0f });
 			drawable_component->texture = texture;

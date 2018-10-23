@@ -33,6 +33,11 @@ bool GameManager::init()
 		entity_manager->register_component(drawable_component);
 		drawable_component->texture = animated_character;
 
+		//auto collider_event = new ColliderEvent();
+		//const auto collider_system = new ColliderSystem(collider_event);
+		//entity_manager->register_system(collider_system);
+		//collider_event->subscribe(move_system);
+
 		return true;
 	}
 	
