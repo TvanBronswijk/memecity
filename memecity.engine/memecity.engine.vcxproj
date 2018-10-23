@@ -145,7 +145,6 @@
     <ClCompile Include="AudioFacade.cpp" />
     <ClCompile Include="Color.cpp" />
     <ClCompile Include="GameObject.cpp" />
-    <ClCompile Include="ExampleGuy.cpp" />
     <ClCompile Include="GraphicsFacade.cpp" />
     <ClCompile Include="InputFacade.cpp" />
     <ClCompile Include="InputManager.cpp" />
@@ -162,7 +161,6 @@
     <ClInclude Include="AudioFacade.h" />
     <ClInclude Include="Color.h" />
     <ClInclude Include="GameObject.h" />
-    <ClInclude Include="ExampleGuy.h" />
     <ClInclude Include="GraphicsFacade.h" />
     <ClInclude Include="InputFacade.h" />
     <ClInclude Include="InputKeys.h" />

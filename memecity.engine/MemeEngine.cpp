@@ -1,5 +1,4 @@
 #include "MemeEngine.h"
-#include "ExampleGuy.h"
 #include "SerializationFacade.h"
 
 MemeEngine::MemeEngine()
@@ -14,10 +13,6 @@ MemeEngine::MemeEngine()
 
 int MemeEngine::run()
 {
-	
-
-
-
 	if (init()) {
 		while (!input_manager->is_quit_pressed())
 		{
