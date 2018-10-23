@@ -26,17 +26,7 @@ void AnimatedCharacter::set_walking_direction(WALKING_DIRECTION direction)
 
 void AnimatedCharacter::update()
 {
-	if (previous_position.x == get_position().x && previous_position.y == get_position().y)
-	{
-		is_walking = false;
-		idle();
-	}
-	else
-	{
-		is_walking = true;
-	}
-
-	if (is_walking)
+	if (walking_direction != idle)
 	{
 		animation_timer += timer_facade->get_delta_time();
 		if (animation_timer >= animation_speed)
@@ -53,11 +43,11 @@ void AnimatedCharacter::update()
 			clipped_rect.y = start_y + int(animation_timer / time_per_frame) * texture_height;
 		}
 	}
+	else
+	{
+		clipped_rect.y = 0;
+	}
 
 	this->previous_position = get_position();
 }
 
-void AnimatedCharacter::idle()
-{
-	clipped_rect.y = 0;
-}

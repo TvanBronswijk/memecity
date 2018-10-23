@@ -44,29 +44,25 @@ void GameManager::handle()
 		{
 			multimedia_manager->pause_background_music();
 		}
-
+		animated_character->set_walking_direction(AnimatedCharacter::idle);
 		if (input_manager->is_pressed(LEFT))
 		{
 			animated_character->set_walking_direction(AnimatedCharacter::left);
-			animated_character->translate(Vector2(-60.0f, 0.0f) * timer->get_delta_time());
 		}
 
 		if (input_manager->is_pressed(RIGHT))
 		{
 			animated_character->set_walking_direction(AnimatedCharacter::right);
-			animated_character->translate(Vector2(+60.0f, 0.0f) * timer->get_delta_time());
 		}
 
 		if (input_manager->is_pressed(UP))
 		{
 			animated_character->set_walking_direction(AnimatedCharacter::up);
-			animated_character->translate(Vector2(0.0f, -60.0f) * timer->get_delta_time());
 		}
 
 		if (input_manager->is_pressed(DOWN))
 		{
 			animated_character->set_walking_direction(AnimatedCharacter::down);
-			animated_character->translate(Vector2(0.0f, +60.0f) * timer->get_delta_time());
 		}
 
 		timer->reset();
