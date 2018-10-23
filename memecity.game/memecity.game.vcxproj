@@ -19,16 +19,25 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AIComponent.h" />
+    <ClInclude Include="AISystem.h" />
     <ClInclude Include="ExpComponent.h" />
     <ClInclude Include="ExpEventArgs.h" />
     <ClInclude Include="ExpSystem.h" />
     <ClInclude Include="City.h" />
     <ClInclude Include="BSPGenerator.h" />
     <ClInclude Include="CityGenerator.h" />
+    <ClInclude Include="FightingSystem.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="DrawableComponent.h" />
     <ClInclude Include="DrawSystem.h" />
     <ClInclude Include="GeneratorStrategy.h" />
+    <ClInclude Include="HealthComponent.h" />
+    <ClInclude Include="InteractionComponent.h" />
+    <ClInclude Include="InteractionEvent.h" />
+    <ClInclude Include="InteractionEventArgs.h" />
+    <ClInclude Include="InteractionSystem.h" />
+    <ClInclude Include="LevelComponent.h" />
     <ClInclude Include="PlayerComponent.h" />
     <ClInclude Include="InputSystem.h" />
     <ClInclude Include="MoveSystem.h" />
@@ -37,14 +46,23 @@
     <ClInclude Include="StatsComponent.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AIComponent.cpp" />
+    <ClCompile Include="AISystem.cpp" />
     <ClCompile Include="BSPGenerator.cpp" />
     <ClCompile Include="CityGenerator.cpp" />
     <ClCompile Include="ExpComponent.cpp" />
     <ClCompile Include="ExpEventArgs.cpp" />
     <ClCompile Include="ExpSystem.cpp" />
+    <ClCompile Include="FightingSystem.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="DrawableComponent.cpp" />
     <ClCompile Include="DrawSystem.cpp" />
+    <ClCompile Include="HealthComponent.cpp" />
+    <ClCompile Include="InteractionComponent.cpp" />
+    <ClCompile Include="InteractionEventArgs.cpp" />
+    <ClCompile Include="InteractionEventcpp.cpp" />
+    <ClCompile Include="InteractionSystem.cpp" />
+    <ClCompile Include="LevelComponent.cpp" />
     <ClCompile Include="PlayerComponent.cpp" />
     <ClCompile Include="InputSystem.cpp" />
     <ClCompile Include="main.cpp" />
@@ -124,6 +142,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(SolutionDir)dependencies\SDL2_mixer-2.0.2\lib\x64;$(SolutionDir)dependencies\SDL2_ttf-2.0.14\lib\x64;$(SolutionDir)dependencies\SDL2_image-2.0.3\lib\x64;$(SolutionDir)x64\Debug;$(SolutionDir)dependencies\SDL2\lib\x64</AdditionalLibraryDirectories>

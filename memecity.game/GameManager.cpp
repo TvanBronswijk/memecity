@@ -19,20 +19,20 @@ bool GameManager::init()
 		animated_character = multimedia_manager->get_animated_texture(timer.get(), "SpriteSheet.png", 0, 0, 48, 48, 4, 0.5f, AnimatedCharacter::vertical);
 		animated_character->set_position(Vector2(200.0, 200.0));
 
-		const auto animated_character_entity = entity_manager->create_entity();
-		const auto draw_system = new DrawSystem(multimedia_manager);
-		const auto drawable_component = new DrawableComponent(animated_character_entity);
+		auto animated_character_entity = entity_manager->create_entity();
+		auto drawable_component = new DrawableComponent(animated_character_entity);
 		entity_manager->register_component(drawable_component);
-		entity_manager->register_system(draw_system);
+		entity_manager->register_system(new DrawSystem(multimedia_manager));
 		drawable_component->texture = animated_character;
 
-		multimedia_manager->play_background_music("bgm.mp3", 50);
-		texture = multimedia_manager->get_texture("BlikBier.bmp");
-		text = multimedia_manager->get_text_texture("Test", "Blazed.ttf", 50, { 255,10,10 });
-		text->translate({ 100.0f, 100.0f });
-		AS = new AISystem();
-		MS = new MoveSystem();
-		em.register_system(MS);
+		//test to show an example  for a NPC
+		auto IS = new InteractionSystem();
+		entity_manager->register_system(new AISystem());
+		entity_manager->register_system(new MoveSystem());
+		entity_manager->register_system(IS);
+		interaction_event = new InteractionEvent();
+		interaction_event->subscribe(IS);
+
 		return true;
 	}
 	return false;
@@ -45,7 +45,25 @@ void GameManager::handle()
 		input_manager->update();
 		entity_manager->update();
 		animated_character->update();
+		
+		if (input_manager->is_pressed(ONE))
+		{
+			Entity* npc = entity_manager->create_entity();
+			entity_manager->register_component(new AIComponent(npc));
+			entity_manager->register_component(new VelocityComponent(npc));
+			entity_manager->register_component(new LevelComponent(npc));
+			entity_manager->register_component(new HealthComponent(npc));
+			entity_manager->register_component(new StatsComponent(npc));
+			entity_manager->register_component(new PositionComponent(npc, 250, 250));
+			
+			auto sprite = multimedia_manager->get_animated_texture(timer.get(), "SpriteSheet.png", 0, 0, 48, 48, 4, 0.5f, AnimatedCharacter::vertical);
+			sprite->set_position(Vector2(250.0, 250.0));
 
+			auto DC = new DrawableComponent(npc);
+			entity_manager->register_component(DC);
+			DC->texture = sprite;
+		}
+		
 		if (input_manager->is_pressed(ESCAPE))
 		{
 			multimedia_manager->pause_background_music();
@@ -74,6 +92,23 @@ void GameManager::handle()
 			animated_character->set_walking_direction(AnimatedCharacter::down);
 			animated_character->translate(Vector2(0.0f, +60.0f) * timer->get_delta_time());
 		}
+		//test for interaction with NPC
+		if (input_manager->is_pressed(INTERACTION))
+		{
+			auto position = animated_character->get_position();
+			auto vector = entity_manager->get_components_of_type(AIComponent::COMPONENT_TYPE);
+			for (auto & element : vector) {
+				PositionComponent* xy = (PositionComponent*)entity_manager->get_component_of_entity(element->entity_id, PositionComponent::COMPONENT_TYPE);
+				if ((position.x + 15) >= xy->x && (position.x - 15) <= xy->x) {
+					if ((position.y + 15) >= xy->y && (position.y - 15) <= xy->y) {
+						auto args = InteractionEventArgs(element->entity_id);
+
+						interaction_event->fire(entity_manager, args);
+					}
+				}
+			}
+		}
+
 
 		timer->reset();
 	}

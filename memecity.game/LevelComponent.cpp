@@ -22,20 +22,16 @@ std::string LevelComponent::get_type() {
 	return "levelComponent";
 }
 
-std::map<std::string, AnyExtension> LevelComponent::to_map()
+std::map<std::string, std::any> LevelComponent::to_map()
 {
-	std::map<std::string, AnyExtension> map;
+	std::map<std::string, std::any> map;
 
 	map["level"] = this->_level;
-
-	nlohmann::json j = nlohmann::json(map);
-
-	std::cout << j.dump() << std::endl;
 
 	return map;
 }
 
-void LevelComponent::from_map(std::map<std::string, AnyExtension> map)
+void LevelComponent::from_map(std::map<std::string, std::any> map)
 {
 	this->_level = std::any_cast<int>(map["level"]);
 }

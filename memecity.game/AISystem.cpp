@@ -13,35 +13,17 @@ void AISystem::check_health() {
 }
 
 int AISystem::random_x(VelocityComponent* velocity) {
-	return velocity->x = (rand() % (2 - -1)) + -1;
+	return (rand() % (2 - -1)) + -1;
 }
 
 int AISystem::random_y(VelocityComponent* velocity) {
-	return velocity->y = (rand() % (2 - -1)) + -1;
+	return (rand() % (2 - -1)) + -1;
 }
 
-void AISystem::move_sprites() {
-	/*
-if(previousY > xy->y_position){
-	texture.animate(up);
-}
-else if(previousY < xy->y_position){
-	texture.animate(down);
-}
-else if(previousX < xy->x_position){
-	texture.animate(left);
-}
-else if(previousX > xy->x_position){
-	texture.animate(right);
-}else{
-	texture.animate(hold);
-}*/
-}
+void AISystem::move_random(int element, EntityManager& em) {
 
-void AISystem::move_random(Entity* element, EntityManager em) {
-
-	VelocityComponent* velocity = (VelocityComponent*)em.get_component_of_entity(element->id, "VelocityComponent");
-	PositionComponent* xy = (PositionComponent*)em.get_component_of_entity(element->id, "PositionComponent");
+	VelocityComponent* velocity = (VelocityComponent*)em.get_component_of_entity(element, VelocityComponent::COMPONENT_TYPE);
+	PositionComponent* xy = (PositionComponent*)em.get_component_of_entity(element, PositionComponent::COMPONENT_TYPE);
 
 	velocity->x += random_x(velocity);
 	velocity->y += random_y(velocity);
@@ -53,18 +35,14 @@ void AISystem::move_random(Entity* element, EntityManager em) {
 	std::cout << "NPC has Placed with X: " << xy->x << "Y: " << xy->y << std::endl;
 }
 
-bool AISystem::is_on_event(Event *e) {
-	return false;
-}
-
 std::string AISystem::get_type() {
 	return SYSTEM_TYPE;
 }
 void AISystem::run(EntityManager &em) {
-	auto vector = em.get_entities_with_component(AIComponent::COMPONENT_TYPE);
+	auto vector = em.get_components_of_type(AIComponent::COMPONENT_TYPE);
 
 	for (auto & element : vector) {
-		AIComponent* AI = (AIComponent*)em.get_component_of_entity(element->id, AIComponent::COMPONENT_TYPE);
+		AIComponent* AI = (AIComponent*)element;
 		switch (AI->_state)
 		{
 
@@ -81,15 +59,14 @@ void AISystem::run(EntityManager &em) {
 			//move in oposite direction
 			break;
 		case AIComponent::STATIC:
-			move_random(element , em);
+			move_random(element->entity_id , em);
 			break;
 		default:
 			break;
 		}
-		move_sprites();
 	}
 }
-void AISystem::run(EntityManager &em, Event *e) {
+void AISystem::run(EntityManager &em, EventArgs& e) {
 	/*
 	 if(e.message == interaction){
 		texture.showtext(interaction.smalltalk[rand]);

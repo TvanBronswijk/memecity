@@ -4,6 +4,8 @@
 #include "../memecity.engine.ecs/EntityManager.h"
 #include "VelocityComponent.h"
 #include "PositionComponent.h"
+#include "DrawableComponent.h"
+#include "../memecity.engine/AnimatedCharacter.h"
 
 
 class MoveSystem : public System

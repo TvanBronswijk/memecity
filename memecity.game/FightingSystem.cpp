@@ -7,9 +7,6 @@ std::string FightingSystem::SYSTEM_TYPE = "FightingSystem";
 FightingSystem::FightingSystem() {
 }
 
-bool FightingSystem::is_on_event(Event *e) {
-	return false;
-}
 
 
 std::string FightingSystem::get_type() {
@@ -17,7 +14,7 @@ std::string FightingSystem::get_type() {
 }
 void FightingSystem::run(EntityManager &em) {
 }
-void FightingSystem::run(EntityManager &em, Event *e) {
+void FightingSystem::run(EntityManager &em, EventArgs& e) {
 	/*auto vector = em.get_entities_with_component(AIComponent::COMPONENT_TYPE);// change to player
 
 	for (auto & element : vector) {

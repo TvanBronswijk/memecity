@@ -18,20 +18,16 @@ std::string InteractionComponent::get_type() {
 	return "InteractionComponent";
 }
 
-std::map<std::string, AnyExtension> InteractionComponent::to_map()
+std::map<std::string, std::any> InteractionComponent::to_map()
 {
-	std::map<std::string, AnyExtension> map;
+	std::map<std::string, std::any> map;
 
 	map["smallTalk"] = this->_smallTalk;
-
-	nlohmann::json j = nlohmann::json(map);
-
-	std::cout << j.dump() << std::endl;
 
 	return map;
 }
 
-void InteractionComponent::from_map(std::map<std::string, AnyExtension> map)
+void InteractionComponent::from_map(std::map<std::string, std::any> map)
 {
-	this->_smallTalk = std::any_cast</*TODO vector*/>(map["smallTalk"]);
+	//this->_smallTalk = std::any_cast</*TODO vector*/>(map["smallTalk"]);
 }
