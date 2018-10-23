@@ -15,11 +15,11 @@ struct Node : Rectangle {
 
 	bool has_left()
 	{
-		return left != NULL;
+		return left != nullptr;
 	}
 	bool has_right()
 	{
-		return right != NULL;
+		return right != nullptr;
 	}
 
 	~Node()
