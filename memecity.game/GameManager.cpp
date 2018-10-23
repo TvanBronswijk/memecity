@@ -26,7 +26,6 @@ bool GameManager::init()
 	return false;
 }
 
-
 void GameManager::handle()
 {
 	timer->update();
