@@ -17,7 +17,7 @@ bool GameManager::init()
 
 		auto d_component = new DrawableComponent(entity);
 		d_component->texture = multimedia_manager->get_texture("red.bmp", 0, 0, 32, 32);
-		d_component->texture->translate({ position_component->x, position_component->y});
+		d_component->texture->set_position({ position_component->x, position_component->y});
 		entity_manager->register_component(d_component);
 
 		entity_manager->register_system(new InputSystem(input_manager));
