@@ -1,5 +1,5 @@
 ﻿#include "InputSystem.h"
-#include "InputComponent.h"
+#include "PlayerComponent.h"
 #include "VelocityComponent.h"
 
 std::string InputSystem::SYSTEM_TYPE = "InputSystem";
@@ -16,7 +16,7 @@ bool InputSystem::is_on_event(Event * e)
 
 void InputSystem::run(EntityManager& em)
 {
-	auto entities = em.get_entities_with_component(InputComponent::COMPONENT_TYPE);
+	auto entities = em.get_entities_with_component(PlayerComponent::COMPONENT_TYPE);
 
 	for (auto entity : entities)
 	{
