@@ -7,6 +7,7 @@
 
 bool GameManager::init()
 {
+	
 	if (multimedia_manager->init())
 	{
 		multimedia_manager->play_background_music("bgm.mp3", 50);
@@ -21,8 +22,15 @@ bool GameManager::init()
 		em.register_component(player_exp_component);
 		em.register_system(player_exp_system);
 		em.register_component(player_stats_component);
+
+		city_generator = std::make_unique<CityGenerator>();
+		entity_manager = std::make_unique<EntityManager>();
+		city_generator->generate(64, 64, entity_manager, multimedia_manager);
+		entity_manager->register_system(new DrawSystem(multimedia_manager));
+
 		return true;
 	}
+	
 	return false;
 }
 
@@ -33,11 +41,8 @@ void GameManager::handle()
 	{
 		input_manager->update();
 
-		texture->translate(Vector2(120.0f, 120.0f) * timer->get_delta_time());
-		multimedia_manager->clear_graphics();
-		texture->render();
-		text->render();
-		multimedia_manager->render_graphics();
+		entity_manager->update();
+
 		timer->reset();
 
 		if (input_manager->is_pressed(ESCAPE))

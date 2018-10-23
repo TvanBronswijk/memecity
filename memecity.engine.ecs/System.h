@@ -3,6 +3,7 @@
 #include <iostream>
 #include "EventArgs.h"
 
+class Event;
 class EntityManager;
 
 class System {
@@ -17,6 +18,9 @@ public:
 
 	///<summary>Do the activity of the System.</summary>
 	virtual void run(EntityManager &em, EventArgs& e) = 0;
+
+	virtual ~System(){}
+
 };
 
 #endif
