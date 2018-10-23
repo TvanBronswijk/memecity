@@ -6,10 +6,20 @@
 struct ColliderComponent : public Component
 {
 	static std::string COMPONENT_TYPE;
-	Texture *texture;
 
-	ColliderComponent(Entity *e);
-	ColliderComponent(Entity *e, Texture *texture);
+	int x, y, w, h, x2, y2;
+
+	ColliderComponent(Entity *e) : ColliderComponent(e, 0, 0, 0, 0) {};
+	ColliderComponent(Entity *e, int x, int y, int w, int h) : Component(e)
+	{
+		this->x = x;
+		this->y = y;
+		this->w = w;
+		this->h = h;
+		this->x2 = x + w - 1;
+		this->y2 = y + h - 1;
+	};
+
 	std::string get_type() override;
 };
 

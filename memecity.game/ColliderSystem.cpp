@@ -22,10 +22,23 @@ void ColliderSystem::run(EntityManager& em)
 		auto current_collider_component =
 			dynamic_cast<ColliderComponent*>(em.get_component_of_entity(collider_component->entity_id, ColliderComponent::COMPONENT_TYPE));
 
-		auto texture_position = current_collider_component->texture->get_position();
+		auto all_collider_components = em.get_components_of_type(ColliderComponent::COMPONENT_TYPE);
 
-		texture_position.x = 0.0f;
-		texture_position.y = 0.0f;
+		for (auto other_collider_component : all_collider_components)
+		{
+			auto current_other_collider_component = dynamic_cast<ColliderComponent*>(em.get_component_of_entity(other_collider_component->entity_id, ColliderComponent::COMPONENT_TYPE));
+
+			if (current_collider_component->entity_id != current_other_collider_component->entity_id)
+			{
+				if (current_collider_component->x2 >= current_other_collider_component->x &&
+					current_other_collider_component->x2 >= current_collider_component->x &&
+					current_collider_component->y2 >= current_other_collider_component->y &&
+					current_other_collider_component->y2 >= current_collider_component->y)
+				{
+
+				}
+			}
+		}
 	}
 }
 
