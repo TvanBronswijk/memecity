@@ -3,8 +3,8 @@
 GraphicsFacade::GraphicsFacade(bool is_fullscreen): is_initialized(false)
 {
 	this->is_fullscreen = is_fullscreen;
-	screen_height = 480;
-	screen_width = 640;
+	screen_height = 1024;
+	screen_width = 1280;
 }
 
 bool GraphicsFacade::init()

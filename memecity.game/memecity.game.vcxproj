@@ -19,13 +19,31 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\memecity.engine\AnimatedCharacter.h" />
+    <ClInclude Include="City.h" />
+    <ClInclude Include="BSPGenerator.h" />
+    <ClInclude Include="CityGenerator.h" />
     <ClInclude Include="GameManager.h" />
+    <ClInclude Include="DrawableComponent.h" />
+    <ClInclude Include="DrawSystem.h" />
+    <ClInclude Include="GeneratorStrategy.h" />
+    <ClInclude Include="PlayerComponent.h" />
+    <ClInclude Include="InputSystem.h" />
+    <ClInclude Include="MoveSystem.h" />
+    <ClInclude Include="PositionComponent.h" />
+    <ClInclude Include="VelocityComponent.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\memecity.engine\AnimatedCharacter.cpp" />
+    <ClCompile Include="BSPGenerator.cpp" />
+    <ClCompile Include="CityGenerator.cpp" />
     <ClCompile Include="GameManager.cpp" />
+    <ClCompile Include="DrawableComponent.cpp" />
+    <ClCompile Include="DrawSystem.cpp" />
+    <ClCompile Include="PlayerComponent.cpp" />
+    <ClCompile Include="InputSystem.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MoveSystem.cpp" />
+    <ClCompile Include="PositionComponent.cpp" />
+    <ClCompile Include="VelocityComponent.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
@@ -82,7 +100,7 @@
     <IncludePath>$(SolutionDir)memecity.engine;$(SolutionDir)dependencies\SDL2_mixer-2.0.2\include;$(SolutionDir)dependencies\SDL2_ttf-2.0.14\include;$(SolutionDir)dependencies\SDL2\include;$(SolutionDir)dependencies\SDL2_image-2.0.3\include;$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(SolutionDir)memecity.engine;$(SolutionDir)dependencies\SDL2_mixer-2.0.2\include;$(SolutionDir)dependencies\SDL2_ttf-2.0.14\include;$(SolutionDir)dependencies\SDL2\include;$(SolutionDir)dependencies\SDL2_image-2.0.3\include;$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)memecity.engine;$(SolutionDir)dependencies\SDL2_mixer-2.0.2\include;$(SolutionDir)dependencies\SDL2_ttf-2.0.14\include;$(SolutionDir)dependencies\SDL2\include;$(SolutionDir)dependencies\SDL2_image-2.0.3\include;$(VC_IncludePath);$(WindowsSDK_IncludePath);$(SolutionDir)memecity.engine.ecs</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
