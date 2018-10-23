@@ -11,7 +11,7 @@ private:
 public:
 	///<summary>Get the type of the event for filtering.</summary>
 	virtual std::string get_type() = 0;
-	
+
 	///<summary>Subscribe a system to this event.</summary>
 	void subscribe(System* s)
 	{
@@ -19,11 +19,13 @@ public:
 	}
 
 	///<summary>Fire the event with args.</summary>
-	void fire(EntityManager& em, EventArgs& ea)
+	void fire(EntityManager& em, const EventArgs& ea)
 	{
-		for(auto s : subscribers)
+		for (auto s : subscribers)
 			s->run(em, ea);
 	}
+
+	virtual ~Event() {}
 };
 
 #endif

@@ -25,8 +25,25 @@ void MoveSystem::run(EntityManager& em)
 	}
 }
 
-void MoveSystem::run(EntityManager& em, EventArgs& e)
+void MoveSystem::run(EntityManager& em, const EventArgs& e)
 {
+	const auto collider_event_args = dynamic_cast<const ColliderEventArgs*>(&e);
+	if (collider_event_args != nullptr)
+	{
+		auto components = em.get_components_of_type(VelocityComponent::COMPONENT_TYPE);
+
+		for (auto velocity_component : components)
+		{
+			const auto current_position =
+				dynamic_cast<PositionComponent*>(em.get_component_of_entity(velocity_component->entity_id, PositionComponent::COMPONENT_TYPE));
+
+			if (velocity_component->entity_id == collider_event_args->source_entity_id)
+			{
+				current_position->x = -1;
+				current_position->y = -1;
+			}
+		}
+	}
 }
 
 

@@ -26,7 +26,7 @@ std::string DrawSystem::get_type()
 }
 
 
-void DrawSystem::run(EntityManager& em, EventArgs& e)
+void DrawSystem::run(EntityManager& em, const EventArgs& e)
 {
 }
 

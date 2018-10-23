@@ -5,6 +5,7 @@
 #include "BSPGenerator.h"
 #include "../memecity.engine.ecs/EntityManager.h"
 #include "DrawableComponent.h"
+#include "ColliderComponent.h"
 #include "MultimediaManager.h"
 
 class CityGenerator {

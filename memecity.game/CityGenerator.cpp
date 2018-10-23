@@ -35,6 +35,11 @@ void CityGenerator::generate(int w, int h, std::unique_ptr<EntityManager> &em, s
 				break;
 			}
 
+			if (character == 'W' || character == 'w')
+			{
+				em->register_component(new ColliderComponent(entity, x * 16.0f, y * 16.0f, 16, 16));
+			}
+
 			auto texture = multimedia_manager->get_texture(filename, 0, 0, 16, 16);
 			texture->set_position({ x * 16.0f, y * 16.0f });
 			component->texture = texture;

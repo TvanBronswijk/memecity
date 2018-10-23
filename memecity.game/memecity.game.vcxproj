@@ -20,6 +20,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ColliderComponent.h" />
+    <ClInclude Include="ColliderEvent.h" />
+    <ClInclude Include="ColliderEventArgs.h" />
     <ClInclude Include="ColliderSystem.h" />
     <ClInclude Include="ExpComponent.h" />
     <ClInclude Include="ExpEventArgs.h" />
@@ -42,6 +44,8 @@
     <ClCompile Include="BSPGenerator.cpp" />
     <ClCompile Include="CityGenerator.cpp" />
     <ClCompile Include="ColliderComponent.cpp" />
+    <ClCompile Include="ColliderEvent.cpp" />
+    <ClCompile Include="ColliderEventArgs.cpp" />
     <ClCompile Include="ColliderSystem.cpp" />
     <ClCompile Include="ExpComponent.cpp" />
     <ClCompile Include="ExpEventArgs.cpp" />
@@ -128,6 +132,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(SolutionDir)dependencies\SDL2_mixer-2.0.2\lib\x64;$(SolutionDir)dependencies\SDL2_ttf-2.0.14\lib\x64;$(SolutionDir)dependencies\SDL2_image-2.0.3\lib\x64;$(SolutionDir)x64\Debug;$(SolutionDir)dependencies\SDL2\lib\x64</AdditionalLibraryDirectories>
