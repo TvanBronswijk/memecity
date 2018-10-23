@@ -168,6 +168,7 @@
     <ClInclude Include="MathHelper.h" />
     <ClInclude Include="MemeEngine.h" />
     <ClInclude Include="MultimediaManager.h" />
+    <ClInclude Include="Serializable.h" />
     <ClInclude Include="SerializationFacade.h" />
     <ClInclude Include="StorageManager.h" />
     <ClInclude Include="Texture.h" />

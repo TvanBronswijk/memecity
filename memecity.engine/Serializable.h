@@ -8,7 +8,7 @@ class Serializable
 public:
 	virtual std::map<std::string, std::any>  to_map() =0;
 	virtual void from_map(std::map<std::string, std::any> map)=0;
-
+};
 	/* example of how to use
 	 * std::map<std::string, std::any> example_guy::to_map()
 	{
@@ -32,6 +32,6 @@ public:
 		this->money = std::any_cast<float>(map["money"]);
 	}
 	 */
-};
+
 
 #endif
