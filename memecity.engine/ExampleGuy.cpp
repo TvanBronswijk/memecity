@@ -21,7 +21,7 @@ std::map<std::string, std::any> example_guy::to_map()
 	map["age"] = this->age;
 	map["legCount"] = this->legCount;
 	map["friends"] = this->friends;
-	//map["money"] = this->money;
+	map["money"] = this->money;
 	
 	return map;
 }
@@ -32,6 +32,6 @@ void example_guy::from_map(std::map<std::string, std::any> map)
 	this->age = std::any_cast<int>(map["age"]);
 	this->legCount = std::any_cast<int>(map["legCount"]);
 	this->friends = std::any_cast<bool>(map["friends"]);
-	//this->money = std::any_cast<float>(map["money"]);
+	this->money = std::any_cast<float>(map["money"]);
 }
 

@@ -1,5 +1,4 @@
-#ifndef _SERIALIZABLE
-#define _SERIALIZABLE
+#pragma once
 #include <map>
 #include <any>
 
@@ -10,6 +9,4 @@ public:
 	virtual void from_map(std::map<std::string, std::any> map)=0;
 
 };
-
-#endif
 

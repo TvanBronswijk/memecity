@@ -141,19 +141,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="AnyExtension.cpp" />
     <ClCompile Include="AssetManager.cpp" />
     <ClCompile Include="AudioFacade.cpp" />
     <ClCompile Include="Color.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="ExampleGuy.cpp" />
-    <ClCompile Include="Graphic.cpp" />
     <ClCompile Include="GraphicsFacade.cpp" />
     <ClCompile Include="InputFacade.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="MemeEngine.cpp" />
     <ClCompile Include="MultimediaManager.cpp" />
-    <ClCompile Include="SerializableClass.cpp" />
     <ClCompile Include="SerializationFacade.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="StorageManager.cpp" />
@@ -161,13 +158,11 @@
     <ClCompile Include="Updatable.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AnyExtension.h" />
     <ClInclude Include="AssetManager.h" />
     <ClInclude Include="AudioFacade.h" />
     <ClInclude Include="Color.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="ExampleGuy.h" />
-    <ClInclude Include="Graphic.h" />
     <ClInclude Include="GraphicsFacade.h" />
     <ClInclude Include="InputFacade.h" />
     <ClInclude Include="InputKeys.h" />
@@ -175,7 +170,6 @@
     <ClInclude Include="MathHelper.h" />
     <ClInclude Include="MemeEngine.h" />
     <ClInclude Include="MultimediaManager.h" />
-    <ClInclude Include="SerializableClass.h" />
     <ClInclude Include="SerializationFacade.h" />
     <ClInclude Include="StorageManager.h" />
     <ClInclude Include="Texture.h" />

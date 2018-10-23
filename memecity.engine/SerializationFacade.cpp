@@ -1,63 +1,58 @@
 ﻿#include "SerializationFacade.h"
 
 
-std::string SerializationFacade::serialize(std::map<std::string, std::any> map)
+std::string SerializationFacade::serialize(std::map<std::string, std::any> map) const
 {
 	nlohmann::json json;
 
-	for (auto line : map)
+	for (auto entry : map)
 	{
-		if (line.second.type().name() == typeid(int).name())
+		if (entry.second.type().name() == typeid(int).name())
 		{
-			auto val = std::any_cast<int>(line.second);
-			json[line.first] = val;
-		}else if (line.second.type().name() == typeid(std::string).name())
+			auto val = std::any_cast<int>(entry.second);
+			json[entry.first] = val;
+		}else if (entry.second.type().name() == typeid(std::string).name())
 		{
-			auto val = std::any_cast<std::string>(line.second);
-			json[line.first] = val;
-		}else if(line.second.type().name() == typeid(double).name())
+			auto val = std::any_cast<std::string>(entry.second);
+			json[entry.first] = val;
+		}else if(entry.second.type().name() == typeid(float).name())
 		{
-			auto val = std::any_cast<double>(line.second);
-			json[line.first] = val;
-		}else if (line.second.type().name() == typeid(bool).name())
+			auto val = std::any_cast<float>(entry.second);
+			json[entry.first] = val;
+		}else if (entry.second.type().name() == typeid(bool).name())
 		{
-			auto val = std::any_cast<bool>(line.second);
-			json[line.first] = val;
+			auto val = std::any_cast<bool>(entry.second);
+			json[entry.first] = val;
 		}
 	}
 	return json.dump();
 }
 
-std::map<std::string, std::any> SerializationFacade::deserialize(std::string json_string)
+std::map<std::string, std::any> SerializationFacade::deserialize(const std::string& json_string) const
 {
 	std::map<std::string, std::any> map;
 	auto json = nlohmann::json::parse(json_string);
 
 	
-	for (auto line : json.items())
+	for (const auto& entry : json.items())
 	{
-
-		auto idk = line.value().is_string();
-
-		auto b = line.value().type_name();
-		auto c = line.value();
-		if(line.value().is_number())
+		if(entry.value().is_number())
 		{
-			map[line.key()] = int( line.value());
-		} else if (line.value().is_string())
+			if(entry.value().is_number_float())
+			{
+				map[entry.key()] = float(entry.value());
+			}
+			else {
+				map[entry.key()] = int(entry.value());
+			}
+		} else if (entry.value().is_string())
 		{
-			map[line.key()] = std::string(line.value());
+			map[entry.key()] = std::string(entry.value());
 		}
-		/*else if (line.value().is() )
+		else if (entry.value().is_boolean())
 		{
-			map[line.key()] = float(line.value());
-		}*/
-		else if (line.value().is_boolean())
-		{
-			map[line.key()] = bool(line.value());
+			map[entry.key()] = bool(entry.value());
 		}
-
-
 	}
 	return map;
 }
