@@ -19,6 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ColliderComponent.h" />
+    <ClInclude Include="ColliderSystem.h" />
     <ClInclude Include="ExpComponent.h" />
     <ClInclude Include="ExpEventArgs.h" />
     <ClInclude Include="ExpSystem.h" />
@@ -39,6 +41,8 @@
   <ItemGroup>
     <ClCompile Include="BSPGenerator.cpp" />
     <ClCompile Include="CityGenerator.cpp" />
+    <ClCompile Include="ColliderComponent.cpp" />
+    <ClCompile Include="ColliderSystem.cpp" />
     <ClCompile Include="ExpComponent.cpp" />
     <ClCompile Include="ExpEventArgs.cpp" />
     <ClCompile Include="ExpSystem.cpp" />
