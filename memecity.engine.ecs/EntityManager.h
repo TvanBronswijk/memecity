@@ -1,3 +1,5 @@
+#ifndef _ENTITY_MANAGER_H
+#define  _ENTITY_MANAGER_H
 #include <iostream> 
 #include <map> 
 #include <iterator> 
@@ -5,11 +7,7 @@
 #include "Entity.h"
 #include "Component.h"
 #include "System.h"
-#include "Event.h"
 using namespace std;
-
-#ifndef _ENTITY_MANAGER_H
-#define  _ENTITY_MANAGER_H
 
 class EntityManager {
 private:
@@ -48,9 +46,6 @@ public:
 
 	///<summary>Checks if entity has component.</summary>
 	bool has_component(Entity* e, string type);
-
-	///<summary>Run all systems that are subscribed to the event.</summary>
-	void fire_event(Event* e);
 
 	///<summary>Run all systems.</summary>
 	void update();
