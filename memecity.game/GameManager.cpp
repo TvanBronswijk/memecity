@@ -1,7 +1,5 @@
 #include "GameManager.h"
 
-
-
 bool GameManager::init()
 {
 	if (multimedia_manager->init())
@@ -14,7 +12,6 @@ bool GameManager::init()
 	}
 	return false;
 }
-
 
 void GameManager::handle()
 {

@@ -1,6 +1,7 @@
 #ifndef _COMPONENT_H
 #define  _COMPONENT_H
 #include "Entity.h"
+#include <string>
 
 struct Component {
 	int entity_id;

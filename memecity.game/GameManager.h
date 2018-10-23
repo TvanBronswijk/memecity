@@ -11,7 +11,6 @@ private:
 protected:
 	bool init() override;
 	void handle() override;
-
 };
 
 
