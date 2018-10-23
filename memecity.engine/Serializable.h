@@ -1,4 +1,5 @@
-#pragma once
+#ifndef _SERIALIZABLE_H
+#define _SERIALIZABLE_H
 #include <map>
 #include <any>
 
@@ -10,3 +11,4 @@ public:
 
 };
 
+#endif
