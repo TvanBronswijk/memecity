@@ -32,7 +32,7 @@ void DrawSystem::run(EntityManager& em)
 	multimedia_manager.lock()->render_graphics();
 }
 
-std::string DrawSystem::get_type()
+std::string DrawSystem::get_type() const
 {
 	return SYSTEM_TYPE;
 }

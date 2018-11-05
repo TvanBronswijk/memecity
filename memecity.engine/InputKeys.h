@@ -5,7 +5,7 @@
 /**
  * Abstraction of the SDL Scancodes
  */
-enum InputKeys
+const enum InputKeys
 {
 	UP = SDL_SCANCODE_W,
 	DOWN = SDL_SCANCODE_S,

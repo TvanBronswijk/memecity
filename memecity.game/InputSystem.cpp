@@ -1,8 +1,6 @@
 ﻿#include "InputSystem.h"
-#include "PlayerComponent.h"
-#include "VelocityComponent.h"
 
-std::string InputSystem::SYSTEM_TYPE = "InputSystem";
+std::string const InputSystem::SYSTEM_TYPE = "InputSystem";
 
 InputSystem::InputSystem(std::weak_ptr<InputManager> input_manager)
 {
@@ -39,7 +37,7 @@ void InputSystem::run(EntityManager& em)
 	}
 }
 
-std::string InputSystem::get_type()
+std::string InputSystem::get_type() const
 {
 	return SYSTEM_TYPE;
 }
