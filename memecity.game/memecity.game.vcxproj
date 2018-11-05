@@ -21,6 +21,8 @@
   <ItemGroup>
     <ClInclude Include="AIComponent.h" />
     <ClInclude Include="AISystem.h" />
+    <ClInclude Include="AttackEvent.h" />
+    <ClInclude Include="AttackEventArgs.h" />
     <ClInclude Include="ExpComponent.h" />
     <ClInclude Include="ExpEventArgs.h" />
     <ClInclude Include="ExpSystem.h" />
@@ -48,6 +50,8 @@
   <ItemGroup>
     <ClCompile Include="AIComponent.cpp" />
     <ClCompile Include="AISystem.cpp" />
+    <ClCompile Include="AttackEvent.cpp" />
+    <ClCompile Include="AttackEventArgs.cpp" />
     <ClCompile Include="BSPGenerator.cpp" />
     <ClCompile Include="CityGenerator.cpp" />
     <ClCompile Include="ExpComponent.cpp" />
@@ -60,7 +64,7 @@
     <ClCompile Include="HealthComponent.cpp" />
     <ClCompile Include="InteractionComponent.cpp" />
     <ClCompile Include="InteractionEventArgs.cpp" />
-    <ClCompile Include="InteractionEventcpp.cpp" />
+    <ClCompile Include="InteractionEvent.cpp" />
     <ClCompile Include="InteractionSystem.cpp" />
     <ClCompile Include="LevelComponent.cpp" />
     <ClCompile Include="PlayerComponent.cpp" />

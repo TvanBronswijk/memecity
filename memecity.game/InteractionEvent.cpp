@@ -1,6 +1,6 @@
 #include "InteractionEvent.h"
 
-std::string InteractionEvent::EVENT_TYPE = "ColliderComponent";
+std::string InteractionEvent::EVENT_TYPE = "InteractionEvent";
 
 
 std::string InteractionEvent::get_type()

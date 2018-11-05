@@ -15,15 +15,9 @@ std::string FightingSystem::get_type() {
 void FightingSystem::run(EntityManager &em) {
 }
 void FightingSystem::run(EntityManager &em, EventArgs& e) {
-	/*auto vector = em.get_entities_with_component(AIComponent::COMPONENT_TYPE);// change to player
+	const auto attack_event_args = static_cast<AttackEventArgs&>(e);
+	auto health_source = dynamic_cast<HealthComponent*>(em.get_component_of_entity(attack_event_args.source_entity_id, HealthComponent::COMPONENT_TYPE));
+	auto health_target = dynamic_cast<HealthComponent*>(em.get_component_of_entity(attack_event_args.target_entity_id, HealthComponent::COMPONENT_TYPE));
 
-	for (auto & element : vector) {
-		AIComponent* AI = (AIComponent*)em.get_component_of_entity(element->id, AIComponent::COMPONENT_TYPE); //change to player
-		if (AI._state == AICOmponent::FIGHTING) {
-			if (player.x > (xy.x - (range / 2)) && player.y < (xy.y + (range / 2))) {
-				texture.animate(fight);
-				player.health = -damage;
-			}
-		}
-	}*/
+	health_target->_health -= 10;
 }

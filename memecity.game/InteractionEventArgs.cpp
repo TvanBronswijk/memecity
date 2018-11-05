@@ -9,3 +9,7 @@ std::string InteractionEventArgs::get_type() {
 InteractionEventArgs::InteractionEventArgs(int id) {
 	source_entity_id = id;
 }
+
+InteractionEventArgs::~InteractionEventArgs() {
+
+}

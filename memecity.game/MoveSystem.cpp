@@ -22,12 +22,14 @@ void MoveSystem::run(EntityManager& em)
 
 				auto animated_charater = std::dynamic_pointer_cast<AnimatedCharacter>(drawable->texture);
 				animated_charater->update();
-
-				if (current_velocity_component->y < 0)
+				if (current_velocity_component->x == 0 && current_velocity_component->y == 0) {
+					animated_charater->set_walking_direction(AnimatedCharacter::idle);
+				}
+				else if (current_velocity_component->y > 0)
 				{
 					animated_charater->set_walking_direction(AnimatedCharacter::up);
 				}
-				else if (current_velocity_component->y > 0)
+				else if (current_velocity_component->y < 0)
 				{
 					animated_charater->set_walking_direction(AnimatedCharacter::down);
 				}
@@ -40,7 +42,7 @@ void MoveSystem::run(EntityManager& em)
 					animated_charater->set_walking_direction(AnimatedCharacter::right);
 				}
 
-				animated_charater->translate(Vector2(current_velocity_component->x, current_velocity_component->y));
+				animated_charater->translate(Vector2(current_velocity_component->x, (current_velocity_component->y - current_velocity_component->y * 2))); //TODO: check y axes it is inverted.
 			}
 		}
 

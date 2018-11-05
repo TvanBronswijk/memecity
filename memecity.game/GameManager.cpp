@@ -22,16 +22,43 @@ bool GameManager::init()
 		d_component->texture->set_position({ position_component->x, position_component->y });
 		entity_manager->register_component(d_component);
 
+
+
 		//test to show an example  for a NPC
+		auto FS = new FightingSystem();
 		auto IS = new InteractionSystem(multimedia_manager);
+		entity_manager->register_system(FS);
 		entity_manager->register_system(new AISystem());
 		entity_manager->register_system(IS);
-		interaction_event = new InteractionEvent();
-		interaction_event->subscribe(IS);
-
-		entity_manager->register_system(new InputSystem(input_manager, interaction_event));
 		entity_manager->register_system(new DrawSystem(multimedia_manager));
 		entity_manager->register_system(new MoveSystem());
+
+		for (size_t i = 0; i < 5; i++) {
+			Entity* npc = entity_manager->create_entity();
+			entity_manager->register_component(new AIComponent(npc));
+			entity_manager->register_component(new VelocityComponent(npc));
+			entity_manager->register_component(new LevelComponent(npc));
+			entity_manager->register_component(new HealthComponent(10,npc));
+			entity_manager->register_component(new StatsComponent(npc));
+			PositionComponent* npc_position = new PositionComponent(npc, 200 * i, 100 * i);
+			entity_manager->register_component(npc_position);
+			entity_manager->register_component(new InteractionComponent(npc));
+			std::shared_ptr<AnimatedCharacter> animated_npc = multimedia_manager->get_animated_texture(timer.get(), "SpriteFireman.png", 0, 0, 48, 48, 4, 0.5f, AnimatedCharacter::vertical);
+			auto DC = new DrawableComponent(npc);
+			entity_manager->register_component(DC);
+			DC->texture = animated_npc;
+			DC->texture->set_position({ npc_position->x , npc_position->y + (multimedia_manager->get_screen_height() - (npc_position->y * 2)) });
+		}
+		// end test	
+
+		// events
+		interaction_event = new InteractionEvent(); // mem leak
+		attack_event = new AttackEvent(); // mem leak
+		interaction_event->subscribe(IS);
+		attack_event->subscribe(FS);
+
+		entity_manager->register_system(new InputSystem(input_manager, interaction_event, attack_event));
+
 		return true;
 	}
 	return false;
@@ -45,24 +72,6 @@ void GameManager::handle()
 		entity_manager->update();
 		animated_character->update();
 		
-		if (input_manager->is_pressed(ONE))
-		{
-			Entity* npc = entity_manager->create_entity();
-			entity_manager->register_component(new AIComponent(npc));
-			entity_manager->register_component(new VelocityComponent(npc));
-			entity_manager->register_component(new LevelComponent(npc));
-			entity_manager->register_component(new HealthComponent(npc));
-			entity_manager->register_component(new StatsComponent(npc));
-			entity_manager->register_component(new PositionComponent(npc, 250, 250));
-			entity_manager->register_component(new InteractionComponent(npc));
-			
-			auto sprite = multimedia_manager->get_animated_texture(timer.get(), "SpriteSheet.png", 0, 0, 48, 48, 4, 0.5f, AnimatedCharacter::vertical);
-			sprite->set_position(Vector2(250.0, 250.0));
-
-			auto DC = new DrawableComponent(npc);
-			entity_manager->register_component(DC);
-			DC->texture = sprite;
-		}
 		
 		if (input_manager->is_pressed(ESCAPE))
 		{

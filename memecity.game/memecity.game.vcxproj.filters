@@ -135,6 +135,12 @@
     <ClInclude Include="InteractionEventArgs.h">
       <Filter>Header Files\Event</Filter>
     </ClInclude>
+    <ClInclude Include="AttackEvent.h">
+      <Filter>Header Files\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="AttackEventArgs.h">
+      <Filter>Header Files\Event</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -203,10 +209,16 @@
     <ClCompile Include="StatsComponent.cpp">
       <Filter>Source Files\Components</Filter>
     </ClCompile>
-    <ClCompile Include="InteractionEventcpp.cpp">
+    <ClCompile Include="InteractionEventArgs.cpp">
       <Filter>Source Files\Event</Filter>
     </ClCompile>
-    <ClCompile Include="InteractionEventArgs.cpp">
+    <ClCompile Include="InteractionEvent.cpp">
+      <Filter>Source Files\Event</Filter>
+    </ClCompile>
+    <ClCompile Include="AttackEventArgs.cpp">
+      <Filter>Source Files\Event</Filter>
+    </ClCompile>
+    <ClCompile Include="AttackEvent.cpp">
       <Filter>Source Files\Event</Filter>
     </ClCompile>
   </ItemGroup>

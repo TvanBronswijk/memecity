@@ -2,6 +2,8 @@
 #define  _FIGHTINGSYSTEM_H
 #include "../memecity.engine.ecs/System.h"
 #include "../memecity.engine.ecs/EntityManager.h"
+#include "AttackEventArgs.h"
+#include "HealthComponent.h"
 #include <cstdlib>
 
 class FightingSystem : public System {

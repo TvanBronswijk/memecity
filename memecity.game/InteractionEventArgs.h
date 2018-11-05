@@ -10,6 +10,7 @@ public:
 	int source_entity_id;
 	std::string get_type();
 	InteractionEventArgs(int source_entity_id);
+	~InteractionEventArgs();
 };
 
 #endif

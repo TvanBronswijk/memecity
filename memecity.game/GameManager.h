@@ -13,6 +13,9 @@
 #include "StatsComponent.h"
 #include "AISystem.h"
 #include "MoveSystem.h"
+#include "FightingSystem.h"
+#include "AttackEvent.h"
+#include "InteractionEvent.h"
 
 class GameManager : public MemeEngine 
 {
@@ -22,6 +25,7 @@ private:
 	std::shared_ptr<AnimatedCharacter> animated_character;
 	std::shared_ptr<Texture> text;
 	InteractionEvent* interaction_event;
+	AttackEvent* attack_event;
 
 protected:
 	bool init() override;
