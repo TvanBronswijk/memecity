@@ -1,5 +1,4 @@
 #define _CRTDBG_MAP_ALLOC
-#include <memory>
 #include "GameManager.h"
 
 int main(int argc, char* argv[])
