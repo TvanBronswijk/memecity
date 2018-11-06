@@ -25,7 +25,7 @@ private:
 	bool is_walking = false;
 
 public:	
-	AnimatedCharacter(TimerFacade* timer_facade, std::shared_ptr<GraphicsFacade> graphics_facade, SDL_Texture* texture, int x, int y, int w, int h, int frame_count, float animation_speed, ANIMATION_DIRECTION direction);
+	AnimatedCharacter(TimerFacade* timer_facade, std::string filename, int x, int y, int w, int h, int frame_count, float animation_speed, ANIMATION_DIRECTION direction);
 	~AnimatedCharacter();
 	void set_walking_direction(WALKING_DIRECTION direction);
 	void update() override;

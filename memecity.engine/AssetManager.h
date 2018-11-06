@@ -10,6 +10,7 @@ class AssetManager
 private:
 	std::shared_ptr<GraphicsFacade> graphics_facade;
 
+	const std::string base_path = SDL_GetBasePath();
 	std::map<std::string, SDL_Texture*> textures;
 	std::map<std::string, SDL_Texture*> texts;
 	std::map<std::string, TTF_Font*> fonts;

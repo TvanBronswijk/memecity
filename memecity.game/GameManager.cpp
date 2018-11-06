@@ -6,7 +6,7 @@ bool GameManager::init()
 	{
 		city_generator = std::make_unique<CityGenerator>();
 		entity_manager = std::make_unique<EntityManager>();
-		city_generator->generate(128, 128, entity_manager, multimedia_manager);
+		city_generator->generate(32, 32, entity_manager, multimedia_manager);
 
 		auto entity = entity_manager->create_entity();
 		entity_manager->register_component(new PlayerComponent(entity));
@@ -20,6 +20,13 @@ bool GameManager::init()
 		d_component->texture = animated_character;
 		d_component->texture->set_position({ position_component->x, position_component->y });
 		entity_manager->register_component(d_component);
+
+		text = multimedia_manager->get_text_texture("Barrie pooter", "Blazed.ttf", 36, { 255,255,255 });
+		text->set_parent(animated_character);
+		auto text_entity = entity_manager->create_entity();
+		auto text_d_component = new DrawableComponent(text_entity);
+		text_d_component->texture = text;
+		entity_manager->register_component(text_d_component);
 
 		entity_manager->register_system(new InputSystem(input_manager));
 		entity_manager->register_system(new DrawSystem(multimedia_manager));

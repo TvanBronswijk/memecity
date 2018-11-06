@@ -87,6 +87,9 @@
     <ClCompile Include="AnimatedCharacter.cpp">
       <Filter>Source Files\Graphics</Filter>
     </ClCompile>
+    <ClCompile Include="TextTexture.cpp">
+      <Filter>Source Files\Graphics</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GraphicsFacade.h">
@@ -142,6 +145,12 @@
     </ClInclude>
     <ClInclude Include="Serializable.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RectangleFacade.h">
+      <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="TextTexture.h">
+      <Filter>Header Files\Graphics</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

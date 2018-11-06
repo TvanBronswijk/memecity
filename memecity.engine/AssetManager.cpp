@@ -41,7 +41,7 @@ AssetManager::~AssetManager()
 ///<summary>Returns a texture based on given filename.</summary>
 SDL_Texture* AssetManager::get_texture(std::string filename)
 {
-	std::string fullPath = SDL_GetBasePath();
+	std::string fullPath = base_path;
 	fullPath.append("Assets/" + filename);
 
 	if (textures[fullPath] == nullptr)
@@ -69,7 +69,7 @@ SDL_Texture* AssetManager::get_text(std::string text, std::string filename, int 
 ///<summary>Returns a font based on a given filename.</summary>
 TTF_Font* AssetManager::get_font(std::string filename, int size)
 {
-	std::string fullPath = SDL_GetBasePath();
+	std::string fullPath = base_path;
 	fullPath.append("Assets/" + filename);
 	const std::string key = fullPath + char(size);
 
@@ -88,7 +88,7 @@ TTF_Font* AssetManager::get_font(std::string filename, int size)
 ///<summary>Returns music based on a given filename.</summary>
 Mix_Music* AssetManager::get_music(std::string filename)
 {
-	std::string fullPath = SDL_GetBasePath();
+	std::string fullPath = base_path;
 	fullPath.append("Assets/" + filename);
 
 	if (music[fullPath] == nullptr)
@@ -107,7 +107,7 @@ Mix_Music* AssetManager::get_music(std::string filename)
 ///<summary>Returns a sound effect based on a given filename.</summary>
 Mix_Chunk* AssetManager::get_sfx(std::string filename)
 {
-	std::string fullPath = SDL_GetBasePath();
+	std::string fullPath = base_path;
 	fullPath.append("Assets/" + filename);
 
 	if (sfx[fullPath] == nullptr)
