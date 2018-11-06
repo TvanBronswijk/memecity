@@ -1,6 +1,6 @@
 ﻿#include "AudioFacade.h"
 
-bool AudioFacade::init() const
+bool AudioFacade::init()
 {
 	if (SDL_Init(SDL_INIT_AUDIO) < 0) {
 		std::cout << "Audio Initialization error: " << SDL_GetError() << std::endl;
@@ -10,7 +10,7 @@ bool AudioFacade::init() const
 	return true;
 }
 
-void AudioFacade::open_audio(int frequency, int channels, int chunksize) const
+void AudioFacade::open_audio(int frequency, int channels, int chunksize)
 {
 	if (Mix_OpenAudio(frequency, MIX_DEFAULT_FORMAT, channels, chunksize) < 0) 
 	{
@@ -18,7 +18,7 @@ void AudioFacade::open_audio(int frequency, int channels, int chunksize) const
 	}
 }
 
-void AudioFacade::play_sound_effect(Mix_Chunk* sound, int repeats, int volume, int channel) const
+void AudioFacade::play_sound_effect(Mix_Chunk* sound, int repeats, int volume, int channel)
 {
 	if (!is_playing(channel))
 	{
@@ -27,12 +27,12 @@ void AudioFacade::play_sound_effect(Mix_Chunk* sound, int repeats, int volume, i
 	}
 }
 
-bool AudioFacade::is_playing(int channel) const
+bool AudioFacade::is_playing(int channel)
 {
 	return Mix_Playing(channel) == 1;
 }
 
-void AudioFacade::play_background_music(Mix_Music* music, int volume) const
+void AudioFacade::play_background_music(Mix_Music* music, int volume)
 {
 
 	Mix_VolumeMusic(volume);
@@ -43,7 +43,7 @@ void AudioFacade::play_background_music(Mix_Music* music, int volume) const
 
 }
 
-void AudioFacade::pause_background_music() const
+void AudioFacade::pause_background_music()
 {
 	if (Mix_PausedMusic() == 1)
 	{
@@ -55,7 +55,7 @@ void AudioFacade::pause_background_music() const
 	}
 }
 
-void AudioFacade::stop_background_music() const
+void AudioFacade::stop_background_music()
 {
 	if (Mix_PlayingMusic) 
 	{
@@ -63,7 +63,7 @@ void AudioFacade::stop_background_music() const
 	}
 }
 
-void AudioFacade::close_audio() const
+void AudioFacade::close_audio()
 {
 	Mix_Quit();
 }
