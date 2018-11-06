@@ -5,7 +5,7 @@
 #include "TimerFacade.h"
 #include <iostream>
 
-class AnimatedTexture : public Texture, public Updatable
+class AnimatedTexture : public Texture
 {
 public:
 	enum class AnimationDirection { horizontal, vertical };
@@ -30,7 +30,7 @@ public:
 	AnimatedTexture(TimerFacade* timer_facade, std::string filename, int x, int y, int w, int h, int frame_count, float animation_speed, AnimationDirection direction);
 	~AnimatedTexture();
 	void set_direction(Direction direction);
-	void update() override;
+	void update();
 };
 
 #endif
