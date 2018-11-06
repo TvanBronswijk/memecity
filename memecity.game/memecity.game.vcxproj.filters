@@ -62,7 +62,7 @@
     </ClInclude>
     <ClInclude Include="DrawSystem.h">
       <Filter>Header Files\Systems</Filter>
-	</ClInclude>
+    </ClInclude>
     <ClInclude Include="City.h">
       <Filter>Header Files\City\Models</Filter>
     </ClInclude>
@@ -101,6 +101,12 @@
     </ClInclude>
     <ClInclude Include="ExpEventArgs.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationComponent.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationSystem.h">
+      <Filter>Header Files\Systems</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -148,6 +154,12 @@
     </ClCompile>
     <ClCompile Include="ExpEventArgs.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationComponent.cpp">
+      <Filter>Source Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationSystem.cpp">
+      <Filter>Source Files\Systems</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

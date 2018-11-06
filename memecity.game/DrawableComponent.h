@@ -10,7 +10,7 @@ struct DrawableComponent : public Component
 
 public:
 	std::string get_type() override;
-	std::shared_ptr<Texture>  texture;
+	std::shared_ptr<Texture> texture;
 	DrawableComponent(Entity* entity) : Component(entity){};
 };
 
