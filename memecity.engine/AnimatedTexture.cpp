@@ -1,6 +1,6 @@
 #include "AnimatedTexture.h"
 
-AnimatedTexture::AnimatedTexture(TimerFacade* timer_facade, std::string filename, int x, int y,
+AnimatedTexture::AnimatedTexture(TimerFacade *timer_facade, std::string filename, int x, int y,
                                      const int w, const int h, const int frame_count, const float animation_speed, const AnimationDirection direction) : Texture(filename, x, y, w, h)
 {
 	this->timer_facade = timer_facade;

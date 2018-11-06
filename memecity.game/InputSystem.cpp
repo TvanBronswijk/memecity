@@ -1,6 +1,7 @@
 ﻿#include "InputSystem.h"
 #include "PlayerComponent.h"
 #include "VelocityComponent.h"
+#include "AnimationComponent.h"
 
 std::string InputSystem::SYSTEM_TYPE = "InputSystem";
 
@@ -15,11 +16,14 @@ void InputSystem::run(EntityManager& em)
 
 	for (auto entity : entities)
 	{
-
-		auto velocity_component =
-			dynamic_cast<VelocityComponent*>(em.get_component_of_entity(entity->id, VelocityComponent::COMPONENT_TYPE));
-
-
+		auto velocity_component = dynamic_cast<VelocityComponent*>(em.get_component_of_entity(entity->id, VelocityComponent::COMPONENT_TYPE));
+		
+		auto animation_component = dynamic_cast<AnimationComponent*>(em.get_component_of_entity(entity->id, AnimationComponent::COMPONENT_TYPE));
+		
+		if (this->input_manager.lock()->is_pressed(ATTACK))
+		{
+			animation_component->is_fighting = true;
+		}
 		if (this->input_manager.lock()->is_pressed(UP))
 		{
 			velocity_component->y += 5;

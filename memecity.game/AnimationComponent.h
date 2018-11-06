@@ -7,8 +7,8 @@
 struct AnimationComponent : public Component
 {
 	static std::string COMPONENT_TYPE;
+	bool is_fighting = false;
 
-public:
 	std::string get_type() override;
 	AnimationComponent(Entity* entity) : Component(entity){}
 };
