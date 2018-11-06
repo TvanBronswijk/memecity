@@ -8,7 +8,7 @@ bool GameManager::init()
 	{
 		city_generator = std::make_unique<CityGenerator>();
 		entity_manager = std::make_unique<EntityManager>();
-		city_generator->generate(128, 128, entity_manager, multimedia_manager);
+		city_generator->generate(32, 32, entity_manager, multimedia_manager);
 
 		auto entity = entity_manager->create_entity();
 		entity_manager->register_component(new PlayerComponent(entity));

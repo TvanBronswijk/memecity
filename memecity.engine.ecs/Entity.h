@@ -4,8 +4,7 @@
 namespace ecs {
 	struct Entity {
 		int id;
-
-		Entity(int id)
+		Entity(int id) : id(id)
 		{
 			this->id = id;
 		}

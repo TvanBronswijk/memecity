@@ -1,5 +1,4 @@
 #include "EntityManager.h"
-using namespace std;
 
 ecs::EntityManager::EntityManager()
 {
@@ -23,26 +22,26 @@ void ecs::EntityManager::register_system(ecs::System* s)
 	systems[s->get_type_token()] = s;
 }
 
-vector<ecs::Entity*> ecs::EntityManager::get_entities()
+std::vector<ecs::Entity*> ecs::EntityManager::get_entities()
 {
 	return entities;
 }
 
-vector<ecs::Entity*> ecs::EntityManager::get_entities_with_component(string type)
+std::vector<ecs::Entity*> ecs::EntityManager::get_entities_with_component(component_typetoken type)
 {
-	vector<ecs::Entity*> result;
+	std::vector<ecs::Entity*> result;
 	for (auto it = entities.begin(); it != entities.end(); ++it)
 		if (this->has_component(*it, type))
 			result.push_back(*it);
 	return result;
 }
 
-vector<ecs::Component*> ecs::EntityManager::get_components_of_type(string type)
+std::vector<ecs::Component*> ecs::EntityManager::get_components_of_type(component_typetoken type)
 {
 	return components[type];
 }
 
-ecs::Component* ecs::EntityManager::get_component_of_entity(int entity_id, string token)
+ecs::Component* ecs::EntityManager::get_component_of_entity(int entity_id, component_typetoken token)
 {
 	for (auto pairs : components)
 		for (auto c : pairs.second)
@@ -51,9 +50,9 @@ ecs::Component* ecs::EntityManager::get_component_of_entity(int entity_id, strin
 	return nullptr;
 }
 
-vector<ecs::Component*> ecs::EntityManager::get_components_of_entity(int entity_id)
+std::vector<ecs::Component*> ecs::EntityManager::get_components_of_entity(int entity_id)
 {
-	vector<ecs::Component*> result;
+	std::vector<ecs::Component*> result;
 	for (auto pairs : components)
 		for (auto c : pairs.second)
 			if (c->entity_id == entity_id)
@@ -61,7 +60,7 @@ vector<ecs::Component*> ecs::EntityManager::get_components_of_entity(int entity_
 	return result;
 }
 
-bool ecs::EntityManager::has_component(ecs::Entity* e, string type) 
+bool ecs::EntityManager::has_component(ecs::Entity* e, component_typetoken type)
 {
 	auto c = components[type];
 	for (auto it = c.begin(); it != c.end(); ++it)

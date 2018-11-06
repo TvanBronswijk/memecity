@@ -13,8 +13,8 @@ namespace ecs {
 	private:
 		int id = 0;
 		std::vector<Entity*> entities;
-		std::map<std::string, std::vector<Component*>> components;
-		std::map<std::string, System*> systems;
+		std::map<component_typetoken, std::vector<Component*>> components;
+		std::map<system_typetoken, System*> systems;
 
 	public:
 		EntityManager();
@@ -32,19 +32,19 @@ namespace ecs {
 		std::vector<Entity*> get_entities();
 
 		///<summary>Get all entities with a certain component.</summary>
-		std::vector<Entity*> get_entities_with_component(std::string type);
+		std::vector<Entity*> get_entities_with_component(component_typetoken type);
 
 		///<summary>Get components of a specific type.</summary>
-		std::vector<Component*> get_components_of_type(std::string type);
+		std::vector<Component*> get_components_of_type(component_typetoken type);
 
 		///<summary>Get specific component of entity</summary>
-		Component* get_component_of_entity(int entity_id, std::string type);
+		Component* get_component_of_entity(int entity_id, component_typetoken type);
 
 		///<summary>Get components with a specific entity ID.</summary>
 		std::vector<Component*> get_components_of_entity(int entity_id);
 
 		///<summary>Checks if entity has component.</summary>
-		bool has_component(Entity* e, std::string type);
+		bool has_component(Entity* e, component_typetoken type);
 
 		///<summary>Run all systems.</summary>
 		void update();
