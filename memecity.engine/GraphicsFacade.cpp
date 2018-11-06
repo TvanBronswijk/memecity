@@ -1,5 +1,4 @@
 #include "GraphicsFacade.h"
-#include <iostream>
 
 GraphicsFacade::GraphicsFacade(bool is_fullscreen): is_initialized(false)
 {
@@ -92,14 +91,32 @@ SDL_Texture* GraphicsFacade::load_text_texture(TTF_Font* font, std::string text,
 	return tex;
 }
 
-void GraphicsFacade::draw_texture(SDL_Texture* texture, SDL_Rect* clipped_rect, SDL_Rect* render_rect) const
+void GraphicsFacade::draw_texture(SDL_Texture* texture, RectangleFacade* clipped_rect, RectangleFacade* render_rect) const
 {
 	int offset = 90;
 
+	SDL_Rect* sdl_clipped_rect = nullptr;
+	if (clipped_rect != nullptr) {
+		sdl_clipped_rect = new SDL_Rect();
+		sdl_clipped_rect->x = clipped_rect->x;
+		sdl_clipped_rect->y = clipped_rect->y;
+		sdl_clipped_rect->w = clipped_rect->w;
+		sdl_clipped_rect->h = clipped_rect->h;
+	}
+	SDL_Rect* sdl_render_rect = new SDL_Rect();
+	sdl_render_rect->x = render_rect->x;
+	sdl_render_rect->y = render_rect->y;
+	sdl_render_rect->w = render_rect->w;
+	sdl_render_rect->h = render_rect->h;
+
+
 	if (render_rect->x > -offset && render_rect->x < screen_width + offset &&
 		render_rect->y > -offset && render_rect->y < screen_height + offset) {
-		SDL_RenderCopy(sdl_renderer, texture, clipped_rect, render_rect);
+		SDL_RenderCopy(sdl_renderer, texture, sdl_clipped_rect, sdl_render_rect);
 	}
+
+	delete sdl_clipped_rect;
+	delete sdl_render_rect;
 }
 
 void GraphicsFacade::clear() const

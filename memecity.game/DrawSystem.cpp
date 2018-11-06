@@ -27,7 +27,17 @@ void DrawSystem::run(EntityManager& em)
 	multimedia_manager.lock()->clear_graphics();
 	for (Component* component : drawable_components)
 	{
-		dynamic_cast<DrawableComponent*>(component)->texture->render();
+		auto texture = dynamic_cast<DrawableComponent*>(component)->texture;
+
+		auto text_texture = dynamic_cast<TextTexture*>(&*texture);
+		if (text_texture == NULL) 
+		{
+			multimedia_manager.lock()->render_texture(*texture);
+		}
+		else
+		{
+			multimedia_manager.lock()->render_text_texture(*text_texture);
+		}
 	}
 	multimedia_manager.lock()->render_graphics();
 }

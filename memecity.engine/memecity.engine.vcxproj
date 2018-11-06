@@ -153,6 +153,7 @@
     <ClCompile Include="MemeEngine.cpp" />
     <ClCompile Include="MultimediaManager.cpp" />
     <ClCompile Include="SerializationFacade.cpp" />
+    <ClCompile Include="TextTexture.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="StorageManager.cpp" />
     <ClCompile Include="TimerFacade.cpp" />
@@ -171,9 +172,11 @@
     <ClInclude Include="MathHelper.h" />
     <ClInclude Include="MemeEngine.h" />
     <ClInclude Include="MultimediaManager.h" />
+    <ClInclude Include="RectangleFacade.h" />
     <ClInclude Include="Serializable.h" />
     <ClInclude Include="SerializationFacade.h" />
     <ClInclude Include="StorageManager.h" />
+    <ClInclude Include="TextTexture.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="TimerFacade.h" />
     <ClInclude Include="Updatable.h" />

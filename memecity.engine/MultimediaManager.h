@@ -4,7 +4,7 @@
 #include "AnimatedTexture.h"
 #include "AssetManager.h"
 #include "AudioFacade.h"
-#include "Texture.h"
+#include "TextTexture.h"
 #include "Color.h"
 
 class MultimediaManager
@@ -23,12 +23,14 @@ public:
 	void pause_background_music() const;
 
 	void clear_graphics() const;
+	void render_texture(Texture &texture) const;
+	void render_text_texture(TextTexture &texture) const;
 	void render_graphics() const;
 
 	std::shared_ptr<Texture> get_texture(std::string filename);
 	std::shared_ptr<Texture> get_texture(std::string filename, int x, int y, int width, int height);
-	std::shared_ptr<AnimatedTexture> get_animated_texture(TimerFacade *timer, std::string filename, int x, int y, int width, int height, int frame_count, float animation_speed, AnimatedTexture::AnimationDirection direction);
-	std::shared_ptr<Texture> get_text_texture(std::string text, std::string font_path, int size, Color color);
+	std::shared_ptr<AnimatedTexture> get_animated_texture(TimerFacade *timer, std::string filename, int x, int y, int width, int height, int frame_count, float animation_speed, AnimatedCharacter::AnimationDirection direction);
+	std::shared_ptr<TextTexture> get_text_texture(std::string text, std::string font_path, int size, Color color);
 
 	int get_screen_width();
 	int get_screen_height();

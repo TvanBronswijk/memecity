@@ -50,7 +50,6 @@ public:
 	///<summary>Update position based on given vector.</summary>
 	void translate(Vector2 vector);
 
-	virtual void render() = 0;
 };
 
 #endif
