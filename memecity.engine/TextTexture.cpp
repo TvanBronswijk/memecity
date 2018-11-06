@@ -12,6 +12,12 @@ std::string TextTexture::get_text() const
 	return text;
 }
 
+void TextTexture::set_text(std::string text)
+{
+	this->text = text;
+}
+
+
 int TextTexture::get_font_size() const
 {
 	return font_size;

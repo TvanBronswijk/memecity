@@ -30,7 +30,7 @@ void DrawSystem::run(EntityManager& em)
 		auto texture = dynamic_cast<DrawableComponent*>(component)->texture;
 
 		auto text_texture = dynamic_cast<TextTexture*>(&*texture);
-		if (text_texture == NULL) 
+		if (text_texture == nullptr) 
 		{
 			multimedia_manager.lock()->render_texture(*texture);
 		}
