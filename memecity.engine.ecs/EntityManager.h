@@ -13,8 +13,8 @@ namespace ecs {
 	private:
 		int last_id = -1;
 		std::vector<Entity> entities;
-		std::map<component_typetoken, std::vector<Component*>> components;
-		std::map<system_typetoken, System*> systems;
+		std::map<component_typetoken, std::vector<std::unique_ptr<Component>>> components;
+		std::map<system_typetoken, std::unique_ptr<System>> systems;
 
 	public:
 		EntityManager() {}
@@ -32,9 +32,10 @@ namespace ecs {
 		{
 			static_assert(std::is_convertible<C*, Component*>::value, "This function can only construct concrete subclasses of Component");
 			static_assert(std::is_constructible<C, Args...>::value, "The requested type cannot be constructed from the arguments provided.");
-			C* component = new C(std::forward<Args>(args)...);
-			components[component->get_type_token()].push_back(component);
-			return *(component);
+			std::unique_ptr<C> component = std::make_unique<C>(std::forward<Args>(args)...);
+			component_typetoken token = component->get_type_token();
+			components[token].push_back(std::move(component));
+			return *(dynamic_cast<C*>(components[token].back().get()));
 		}
 
 		///<summary>Register a system to the EntityManager.</summary>
@@ -43,9 +44,10 @@ namespace ecs {
 		{
 			static_assert(std::is_convertible<S*, System*>::value, "This function can only construct concrete subclasses of System");
 			static_assert(std::is_constructible<S, Args...>::value, "The requested type cannot be constructed from the arguments provided.");
-			S* system = new S(std::forward<Args>(args)...);
-			systems[system->get_type_token()] = system;
-			return *(system);
+			std::unique_ptr<S> system = std::make_unique<S>(std::forward<Args>(args)...);
+			system_typetoken token = system->get_type_token();
+			systems[token] = std::move(system);
+			return *(dynamic_cast<S*>(systems[token].get()));
 		}
 
 		///<summary>Get all entities</summary>
@@ -58,9 +60,9 @@ namespace ecs {
 		std::vector<std::reference_wrapper<Entity>> get_entities_with_component(component_typetoken token)
 		{
 			std::vector<std::reference_wrapper<Entity>> result;
-			for (auto it = entities.begin(); it != entities.end(); ++it)
-				if (this->has_component(*it, token))
-					result.push_back(std::ref(*it));
+			for (auto& e : entities)
+				if (this->has_component(e, token))
+					result.push_back(std::ref(e));
 			return result;
 		}
 
@@ -71,8 +73,8 @@ namespace ecs {
 			static_assert(std::is_convertible<C*, Component*>::value, "This function can only retrieve concrete subclasses of Component");
 
 			std::vector<std::reference_wrapper<C>> result;
-			for (auto c : components[token])
-				result.push_back(std::ref(*(dynamic_cast<C*>(c))));
+			for (auto& c : components[token])
+				result.push_back(std::ref(*(dynamic_cast<C*>(c.get()))));
 			return result;
 		}
 
@@ -81,10 +83,10 @@ namespace ecs {
 		C* get_component_of_entity(Entity& entity, component_typetoken token)
 		{
 			static_assert(std::is_convertible<C*, Component*>::value, "This function can only retrieve concrete subclasses of Component");
-			for (auto pairs : components)
-				for (auto c : pairs.second)
+			for (auto& pairs : components)
+				for (auto& c : pairs.second)
 					if (c->entity == entity && c->get_type_token() == token)
-						return (dynamic_cast<C*>(c));
+						return dynamic_cast<C*>(c.get());
 			return nullptr;
 		}
 
@@ -94,19 +96,18 @@ namespace ecs {
 		{
 			static_assert(std::is_convertible<C*, Component*>::value, "This function can only retrieve concrete subclasses of Component");
 			std::vector<std::reference_wrapper<C>> result;
-			for (auto pairs : components)
-				for (auto c : pairs.second)
+			for (auto& pairs : components)
+				for (auto& c : pairs.second)
 					if (c->entity == entity)
-						result.push_back(std::ref(*(dynamic_cast<C*>(c))));
+						result.push_back(std::ref(*(dynamic_cast<C*>(c.get()))));
 			return result;
 		}
 
 		///<summary>Checks if entity has component.</summary>
 		bool has_component(Entity& entity, component_typetoken token)
 		{
-			auto c = components[token];
-			for (auto it = c.begin(); it != c.end(); ++it)
-				if ((*it)->entity == entity)
+			for (auto& c : components[token])
+				if (c->entity == entity)
 					return true;
 			return false;
 		}
@@ -114,14 +115,14 @@ namespace ecs {
 		///<summary>Run all systems.</summary>
 		void update()
 		{
-			for (auto pair : systems)
+			for (auto& pair : systems)
 				pair.second->run(*this);
 		}
 
 		~EntityManager()
 		{
 			entities.clear();
-			for (auto pair : components)
+			for (auto& pair : components)
 			{
 				pair.second.clear();
 			}

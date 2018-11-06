@@ -10,7 +10,7 @@ bool GameManager::init()
 		entity_manager = std::make_unique<EntityManager>();
 		city_generator->generate(32, 32, entity_manager, multimedia_manager);
 
-		auto entity = entity_manager->create_entity();
+		auto& entity = entity_manager->create_entity();
 		entity_manager->create_component<PlayerComponent>(entity);
 		entity_manager->create_component<VelocityComponent>(entity);
 		auto& position_component = entity_manager->create_component<PositionComponent>(entity, multimedia_manager->get_screen_width() / 2, multimedia_manager->get_screen_height() / 2);
