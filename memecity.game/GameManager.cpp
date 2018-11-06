@@ -24,8 +24,9 @@ bool GameManager::init()
 		d_component->texture->set_position({ position_component->x, position_component->y });
 		entity_manager->register_component(d_component);
 
-		text = multimedia_manager->get_text_texture("Barrie pooter", "Blazed.ttf", 36, { 255,255,255 });
-		text->set_parent(animated_character);
+		text = multimedia_manager->get_text_texture("Barrie Pooter", "Blazed.ttf", 36, { 255,255,255 });
+		text->set_parent(animated_texture);
+
 		auto text_entity = entity_manager->create_entity();
 		auto text_d_component = new DrawableComponent(text_entity);
 		text_d_component->texture = text;

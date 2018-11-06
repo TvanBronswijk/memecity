@@ -29,7 +29,7 @@ public:
 
 	std::shared_ptr<Texture> get_texture(std::string filename);
 	std::shared_ptr<Texture> get_texture(std::string filename, int x, int y, int width, int height);
-	std::shared_ptr<AnimatedTexture> get_animated_texture(TimerFacade *timer, std::string filename, int x, int y, int width, int height, int frame_count, float animation_speed, AnimatedCharacter::AnimationDirection direction);
+	std::shared_ptr<AnimatedTexture> get_animated_texture(TimerFacade *timer, std::string filename, int x, int y, int width, int height, int frame_count, float animation_speed, AnimatedTexture::AnimationDirection direction);
 	std::shared_ptr<TextTexture> get_text_texture(std::string text, std::string font_path, int size, Color color);
 
 	int get_screen_width();

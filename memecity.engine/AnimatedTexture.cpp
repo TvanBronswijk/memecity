@@ -1,7 +1,7 @@
 #include "AnimatedTexture.h"
 
-AnimatedTexture::AnimatedTexture(TimerFacade* timer_facade, std::shared_ptr<GraphicsFacade> graphics_facade, SDL_Texture* texture, int x, int y,
-                                     const int w, const int h, const int frame_count, const float animation_speed, const AnimationDirection direction) : Texture(graphics_facade, texture, x, y, w, h)
+AnimatedTexture::AnimatedTexture(TimerFacade* timer_facade, std::string filename, int x, int y,
+                                     const int w, const int h, const int frame_count, const float animation_speed, const AnimationDirection direction) : Texture(filename, x, y, w, h)
 {
 	this->timer_facade = timer_facade;
 	this->direction = Direction::down;

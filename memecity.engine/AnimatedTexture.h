@@ -27,7 +27,7 @@ private:
 	float time_per_frame;
 
 public:	
-	AnimatedTexture(TimerFacade* timer_facade, std::shared_ptr<GraphicsFacade> graphics_facade, SDL_Texture* texture, int x, int y, int w, int h, int frame_count, float animation_speed, AnimationDirection direction);
+	AnimatedTexture(TimerFacade* timer_facade, std::string filename, int x, int y, int w, int h, int frame_count, float animation_speed, AnimationDirection direction);
 	~AnimatedTexture();
 	void set_direction(Direction direction);
 	void update() override;
