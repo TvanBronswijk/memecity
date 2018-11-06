@@ -2,31 +2,35 @@
 #define  _EVENT_H
 #include <functional>
 #include <iostream>
+#include <tuple>
 #include <vector>
 #include "EntityManager.h"
 
 namespace ecs {
 	namespace eventing {
-		template<typename T>
-		class EventHandler {
+		template<typename TEventArgs>
+		class Event {
 		protected:
-			//std::vector<std::function<EntityManager&(), T()>&> subscribers;
+			std::vector<std::tuple<System&, std::function<void(EntityManager&, TEventArgs)>>> subscribers;
 		public:
-			EventHandler() {};
-
-			/*virtual += (std::function<EntityManager&(), T()>& lambda) override
+			Event() {};
+			
+			///<summary>subscribe to an event</summary>
+			virtual void bind(System& system, std::function<void(EntityManager&, TEventArgs)> function)
 			{
-				subscribers->add(lambda);
+				subscribers->add(std::make_tuple(system, function));
 			}
 
 			///<summary>Fire the event with args.</summary>
-			virtual void Invoke(EntityManager& em, T ea)
+			virtual void fire(EntityManager& em, TEventArgs ea)
 			{
-				for (auto s : subscribers)
-					s(em, ea);
-			}*/
+				for (auto sub : subscribers) {
+					auto[system, function] = sub;
+					std::bind(function, std::ref(system))(em, ea);
+				}
+			}
 
-			virtual ~EventHandler() {};
+			virtual ~Event() {};
 		};
 	};
 };

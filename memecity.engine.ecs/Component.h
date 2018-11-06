@@ -6,10 +6,9 @@ namespace ecs {
 	using component_typetoken = const char*;
 
 	struct Component {
-		int entity_id;
-		Component(Entity* e)
+		Entity& entity;
+		Component(Entity& e) : entity(e)
 		{	
-			this->entity_id = e->id;
 		}
 		Component(const Component &) = delete;
 		Component(Component &&) = delete;

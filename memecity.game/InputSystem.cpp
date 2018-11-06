@@ -15,9 +15,7 @@ void InputSystem::run(EntityManager& em)
 
 	for (auto entity : entities)
 	{
-
-		auto velocity_component =
-			dynamic_cast<VelocityComponent*>(em.get_component_of_entity(entity->id, VelocityComponent::COMPONENT_TYPE));
+		auto velocity_component = em.get_component_of_entity<VelocityComponent>(entity.get(), VelocityComponent::COMPONENT_TYPE);
 
 
 		if (this->input_manager.lock()->is_pressed(UP))
