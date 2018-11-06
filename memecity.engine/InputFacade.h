@@ -17,10 +17,10 @@ public:
 	void update() override;
 
 	///<summary>Returns if a given key is pressed.</summary>
-	bool is_pressed(InputKeys key) const;
+	bool is_pressed(InputKeys key);
 
 	///<summary>Returns whether quit is pressed.</summary>
-	bool is_quit_pressed() const;
+	bool is_quit_pressed();
 };
 
 #endif

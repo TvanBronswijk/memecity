@@ -11,8 +11,8 @@ private:
 public:
 	InputManager();
 	void update() override;
-	bool is_pressed(InputKeys key) const;
-	bool is_quit_pressed() const;
+	bool is_pressed(InputKeys key);
+	bool is_quit_pressed();
 };
 
 #endif
