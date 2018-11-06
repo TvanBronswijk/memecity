@@ -10,7 +10,13 @@ int MemeEngine::run()
 	if (init()) {
 		while (!input_manager.is_quit_pressed())
 		{
-			handle();
+			timer->update();
+			if (timer->get_delta_time() >= 1.0f / 60)
+			{
+				input_manager.update();
+				handle();
+				timer->reset();
+			}
 		}
 		return 0;
 	}
