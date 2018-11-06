@@ -2,12 +2,11 @@
 #define  _PLAYERCOMPONENT_H
 #include "../memecity.engine.ecs/Component.h"
 
-struct PlayerComponent : public Component
+struct PlayerComponent : public ecs::Component
 {
-	static std::string COMPONENT_TYPE;
-
-	PlayerComponent(Entity* e) : Component(e) {};
-	std::string get_type() override;
+	static ecs::component_typetoken COMPONENT_TYPE;
+	PlayerComponent(ecs::Entity* e) : ecs::Component(e) {};
+	ecs::component_typetoken get_type_token() override { return PlayerComponent::COMPONENT_TYPE; }
 };
 
 #endif;

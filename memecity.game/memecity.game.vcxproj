@@ -20,7 +20,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ExpComponent.h" />
-    <ClInclude Include="ExpEventArgs.h" />
     <ClInclude Include="ExpSystem.h" />
     <ClInclude Include="City.h" />
     <ClInclude Include="BSPGenerator.h" />
@@ -40,7 +39,6 @@
     <ClCompile Include="BSPGenerator.cpp" />
     <ClCompile Include="CityGenerator.cpp" />
     <ClCompile Include="ExpComponent.cpp" />
-    <ClCompile Include="ExpEventArgs.cpp" />
     <ClCompile Include="ExpSystem.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="DrawableComponent.cpp" />

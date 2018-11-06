@@ -3,24 +3,28 @@
 #include <iostream>
 #include "EventArgs.h"
 
-class Event;
-class EntityManager;
+namespace ecs {
+	using system_typetoken = const char*;
 
-class System {
-private:
+	class EntityManager;
+	class System {
+	protected:
+	public:
+		System() {};
+		System(const System &) = delete;
+		System(System &&) = delete;
 
-public:
-	///<summary>Get the type of the System.</summary>
-	virtual std::string get_type() = 0;
+		///<summary>Get a type token.</summary>
+		virtual system_typetoken get_type_token() = 0;
 
-	///<summary>Do the activity of the System.</summary>
-	virtual void run(EntityManager &em) = 0;
+		///<summary>Do the activity of the System.</summary>
+		virtual void run(EntityManager &em) = 0;
 
-	///<summary>Do the activity of the System.</summary>
-	virtual void run(EntityManager &em, EventArgs& e) = 0;
-
-	virtual ~System(){}
-
+		virtual ~System() {}
+	};
 };
+
+
+
 
 #endif

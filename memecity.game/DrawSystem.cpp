@@ -1,12 +1,13 @@
 ﻿#include "DrawSystem.h"
 
-std::string DrawSystem::SYSTEM_TYPE = "DrawSystem";
+using namespace ecs;
+
+system_typetoken DrawSystem::SYSTEM_TYPE = "DrawSystem";
 
 DrawSystem::DrawSystem(std::weak_ptr<MultimediaManager> multimedia_manager)
 {
 	this->multimedia_manager = multimedia_manager;
 }
-
 
 void DrawSystem::run(EntityManager& em)
 {
@@ -31,14 +32,3 @@ void DrawSystem::run(EntityManager& em)
 	}
 	multimedia_manager.lock()->render_graphics();
 }
-
-std::string DrawSystem::get_type()
-{
-	return SYSTEM_TYPE;
-}
-
-
-void DrawSystem::run(EntityManager& em, EventArgs& e)
-{
-}
-

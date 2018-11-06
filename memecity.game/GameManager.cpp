@@ -1,5 +1,7 @@
 #include "GameManager.h"
 
+using namespace ecs;
+
 bool GameManager::init()
 {
 	if (multimedia_manager->init())

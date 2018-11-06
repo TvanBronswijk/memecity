@@ -1,29 +1,34 @@
 #ifndef _EVENT_H
 #define  _EVENT_H
+#include <functional>
 #include <iostream>
 #include <vector>
-#include "System.h"
-#include "EventArgs.h"
+#include "EntityManager.h"
 
-class Event {
-private:
-	std::vector<System*> subscribers;
-public:
-	///<summary>Get the type of the event for filtering.</summary>
-	virtual std::string get_type() = 0;
-	
-	///<summary>Subscribe a system to this event.</summary>
-	void subscribe(System* s)
-	{
-		subscribers.push_back(s);
-	}
+namespace ecs {
+	namespace eventing {
+		template<typename T>
+		class EventHandler {
+		protected:
+			//std::vector<std::function<EntityManager&(), T()>&> subscribers;
+		public:
+			EventHandler() {};
 
-	///<summary>Fire the event with args.</summary>
-	void fire(EntityManager& em, EventArgs& ea)
-	{
-		for(auto s : subscribers)
-			s->run(em, ea);
-	}
+			/*virtual += (std::function<EntityManager&(), T()>& lambda) override
+			{
+				subscribers->add(lambda);
+			}
+
+			///<summary>Fire the event with args.</summary>
+			virtual void Invoke(EntityManager& em, T ea)
+			{
+				for (auto s : subscribers)
+					s(em, ea);
+			}*/
+
+			virtual ~EventHandler() {};
+		};
+	};
 };
 
 #endif

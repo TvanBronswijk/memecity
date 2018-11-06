@@ -1,58 +1,59 @@
 #include "EntityManager.h"
+using namespace std;
 
-EntityManager::EntityManager()
+ecs::EntityManager::EntityManager()
 {
 
 }
 
-Entity* EntityManager::create_entity()
+ecs::Entity* ecs::EntityManager::create_entity()
 {
-	auto e = new Entity(id++);
+	auto e = new ecs::Entity(id++);
 	entities.push_back(e);
 	return e;
 }
 
-void EntityManager::register_component(Component* c)
+void ecs::EntityManager::register_component(ecs::Component* c)
 {
-	components[c->get_type()].push_back(c);
+	components[c->get_type_token()].push_back(c);
 }
 
-void EntityManager::register_system(System* s)
+void ecs::EntityManager::register_system(ecs::System* s)
 {
-	systems[s->get_type()] = s;
+	systems[s->get_type_token()] = s;
 }
 
-vector<Entity*> EntityManager::get_entities()
+vector<ecs::Entity*> ecs::EntityManager::get_entities()
 {
 	return entities;
 }
 
-vector<Entity*> EntityManager::get_entities_with_component(string type)
+vector<ecs::Entity*> ecs::EntityManager::get_entities_with_component(string type)
 {
-	vector<Entity*> result;
+	vector<ecs::Entity*> result;
 	for (auto it = entities.begin(); it != entities.end(); ++it)
 		if (this->has_component(*it, type))
 			result.push_back(*it);
 	return result;
 }
 
-vector<Component*> EntityManager::get_components_of_type(string type)
+vector<ecs::Component*> ecs::EntityManager::get_components_of_type(string type)
 {
 	return components[type];
 }
 
-Component* EntityManager::get_component_of_entity(int entity_id, string type)
+ecs::Component* ecs::EntityManager::get_component_of_entity(int entity_id, string token)
 {
 	for (auto pairs : components)
 		for (auto c : pairs.second)
-			if (c->entity_id == entity_id && c->get_type() == type)
+			if (c->entity_id == entity_id && c->get_type_token() == token)
 				return c;
 	return nullptr;
 }
 
-vector<Component*> EntityManager::get_components_of_entity(int entity_id)
+vector<ecs::Component*> ecs::EntityManager::get_components_of_entity(int entity_id)
 {
-	vector<Component*> result;
+	vector<ecs::Component*> result;
 	for (auto pairs : components)
 		for (auto c : pairs.second)
 			if (c->entity_id == entity_id)
@@ -60,7 +61,7 @@ vector<Component*> EntityManager::get_components_of_entity(int entity_id)
 	return result;
 }
 
-bool EntityManager::has_component(Entity* e, string type) 
+bool ecs::EntityManager::has_component(ecs::Entity* e, string type) 
 {
 	auto c = components[type];
 	for (auto it = c.begin(); it != c.end(); ++it)
@@ -69,13 +70,13 @@ bool EntityManager::has_component(Entity* e, string type)
 	return false;
 }
 
-void EntityManager::update() 
+void ecs::EntityManager::update() 
 {
 	for (auto pair : systems)
 		pair.second->run(*this);
 }
 
-EntityManager::~EntityManager()
+ecs::EntityManager::~EntityManager()
 {
 	for (auto it = entities.begin(); it != entities.end(); ++it)
 		delete(*it);

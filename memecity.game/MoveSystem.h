@@ -6,13 +6,13 @@
 #include "PositionComponent.h"
 
 
-class MoveSystem : public System
+class MoveSystem : public ecs::System
 {
-	static std::string SYSTEM_TYPE;
 public:
-	std::string get_type() override;
-	void run(EntityManager& em) override;
-	void run(EntityManager& em, EventArgs& e) override;
+	static ecs::system_typetoken SYSTEM_TYPE;
+	MoveSystem();
+	void run(ecs::EntityManager& em) override;
+	ecs::system_typetoken get_type_token() override { return MoveSystem::SYSTEM_TYPE; }
 };
 
 #endif

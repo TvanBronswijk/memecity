@@ -1,6 +1,13 @@
 ﻿#include "MoveSystem.h"
 
-std::string MoveSystem::SYSTEM_TYPE = "MoveSystem";
+using namespace ecs;
+
+system_typetoken MoveSystem::SYSTEM_TYPE = "MoveSystem";
+
+MoveSystem::MoveSystem() : System() 
+{
+
+}
 
 void MoveSystem::run(EntityManager& em)
 {
@@ -34,14 +41,4 @@ void MoveSystem::run(EntityManager& em)
 			current_position->diffy = 0;
 		}
 	}
-}
-
-void MoveSystem::run(EntityManager& em, EventArgs& e)
-{
-}
-
-
-std::string MoveSystem::get_type()
-{
-	return SYSTEM_TYPE;
 }

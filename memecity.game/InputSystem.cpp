@@ -1,8 +1,8 @@
 ﻿#include "InputSystem.h"
-#include "PlayerComponent.h"
-#include "VelocityComponent.h"
 
-std::string InputSystem::SYSTEM_TYPE = "InputSystem";
+using namespace ecs;
+
+system_typetoken InputSystem::SYSTEM_TYPE = "InputSystem";
 
 InputSystem::InputSystem(std::weak_ptr<InputManager> input_manager)
 {
@@ -37,13 +37,4 @@ void InputSystem::run(EntityManager& em)
 			velocity_component->x += 5;
 		}
 	}
-}
-
-std::string InputSystem::get_type()
-{
-	return SYSTEM_TYPE;
-}
-
-void InputSystem::run(EntityManager& em, EventArgs& e)
-{
 }

@@ -1,5 +1,7 @@
 #include "CityGenerator.h"
 
+using namespace ecs;
+
 CityGenerator::CityGenerator()
 {
 	this->strategy = std::make_unique<BSPGenerator>();
