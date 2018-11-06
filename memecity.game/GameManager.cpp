@@ -33,17 +33,17 @@ bool GameManager::init()
 		entity_manager->register_system(new DrawSystem(multimedia_manager));
 		entity_manager->register_system(new MoveSystem());
 
-		for (size_t i = 0; i < 5; i++) {
+		for (size_t i = 0; i < 1; i++) {
 			Entity* npc = entity_manager->create_entity();
 			entity_manager->register_component(new AIComponent(npc));
 			entity_manager->register_component(new VelocityComponent(npc));
 			entity_manager->register_component(new LevelComponent(npc));
 			entity_manager->register_component(new HealthComponent(10,npc));
 			entity_manager->register_component(new StatsComponent(npc));
-			PositionComponent* npc_position = new PositionComponent(npc, 200 * i, 100 * i);
+			PositionComponent* npc_position = new PositionComponent(npc, 10 * i, 10 * i);
 			entity_manager->register_component(npc_position);
 			entity_manager->register_component(new InteractionComponent(npc));
-			std::shared_ptr<AnimatedCharacter> animated_npc = multimedia_manager->get_animated_texture(timer.get(), "SpriteFireman.png", 0, 0, 48, 48, 4, 0.5f, AnimatedCharacter::vertical);
+			std::shared_ptr<AnimatedCharacter> animated_npc = multimedia_manager->get_animated_texture(timer.get(), "SpriteSheet.png", 0, 0, 48, 48, 4, 0.5f, AnimatedCharacter::vertical);
 			auto DC = new DrawableComponent(npc);
 			entity_manager->register_component(DC);
 			DC->texture = animated_npc;

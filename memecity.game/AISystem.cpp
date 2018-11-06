@@ -15,40 +15,32 @@ bool AISystem::check_health(EntityManager & em, Component*& element) {
 	return true;
 }
 
-int AISystem::random_x(VelocityComponent* velocity) {
-	return (rand() % (2 - -1)) + -1;
-}
+inline int AISystem::random_x(VelocityComponent* velocity) {return (rand() % (2 - -1)) + -1;}
+inline int AISystem::random_y(VelocityComponent* velocity) {return (rand() % (2 - -1)) + -1;}
 
-int AISystem::random_y(VelocityComponent* velocity) {
-	return (rand() % (2 - -1)) + -1;
-}
-std::list <std::pair< int, int >> AISystem::calculate_next_positions(std::pair< int, int >start , std::pair< int, int >end) {
-	std::list <std::pair< int, int >> next_positions;
-	int x;
-	int y;
+std::list <std::pair< int, int >> AISystem::calculate_next_positions(std::pair< int, int >start , std::pair< int, int >end, std::list <std::pair< int, int >> queue) {
+	if (start.first < end.first - range) { start.first += 10; }
+	else if (start.first >  end.first + range) { start.first -= 10;}
+	if (start.second < end.second - range) { start.second += 10; }
+	else if(start.second > end.second + range) { start.second -= 10;}
 
-	if (start.first < end.first) { x = 10; }
-	else { x = -10;}
-	if (start.second < end.second) { y = 10; }
-	else { y = -10;}
+	queue.push_front(std::pair<int, int>(start.first - (start.first * 2), start.second - (start.first * 2)));
+	queue.push_front(std::pair<int, int>(start.first - (start.first * 2), start.second));
+	queue.push_front(std::pair<int, int>(start.first, start.second - (start.first * 2)));
+	queue.push_front(std::pair<int, int>(start.first, start.second));
 
-	next_positions.push_back(std::pair<int, int>(start.first + x, start.second + y));
-	next_positions.push_back(std::pair<int, int>(start.first - x, start.second + y));
-	next_positions.push_back(std::pair<int, int>(start.first + x, start.second - y));
-	next_positions.push_back(std::pair<int, int>(start.first - x, start.second - y));
-
-	return next_positions;
+	return queue;
 }
 
 bool AISystem::check_player_position_Y(std::pair<int, int> location, std::pair<int, int> end) {
-	if ((location.second > end.second - 6) && (location.second < end.second + 5)) {
+	if ((location.second >= end.second - range) && (location.second <= end.second + range)) {
 		return true;
 	}
 	return false;
 }
 
 bool AISystem::check_player_position_X(std::pair<int, int> location , std::pair<int, int> end) {
-	if ((location.first > end.first - 6) && (location.first < end.first + 5)) {
+	if ((location.first >= end.first - range) && (location.first <= end.first + range)) {
 		return true;
 	}
 	return false;
@@ -57,49 +49,47 @@ bool AISystem::check_player_position_X(std::pair<int, int> location , std::pair<
 
 void AISystem::best_first_search(EntityManager & em, PositionComponent* npc_xy) {
 	VelocityComponent* velocity = dynamic_cast<VelocityComponent*>(em.get_component_of_entity(npc_xy->entity_id, VelocityComponent::COMPONENT_TYPE));
-	DrawableComponent* drawable = dynamic_cast<DrawableComponent*>(em.get_component_of_entity(npc_xy->entity_id, DrawableComponent::COMPONENT_TYPE));//testing
 	auto player = em.get_entities_with_component(PlayerComponent::COMPONENT_TYPE);
-	PositionComponent* player_position = nullptr;
-	DrawableComponent* player_drawable = nullptr;
+
+	DrawableComponent* drawable = dynamic_cast<DrawableComponent*>(em.get_component_of_entity(npc_xy->entity_id, DrawableComponent::COMPONENT_TYPE));//testing
+	PositionComponent* player_position = nullptr;//testing
+	DrawableComponent* player_drawable = nullptr;//testing
 
 	for (auto & player : player) {
 		player_position = dynamic_cast<PositionComponent*>(em.get_component_of_entity(player->id, PositionComponent::COMPONENT_TYPE));
 		player_drawable = dynamic_cast<DrawableComponent*>(em.get_component_of_entity(player->id, DrawableComponent::COMPONENT_TYPE));
 	}
 
-	std::pair< int, int> end(player_position->x, player_position->y);
-	//list of all active boundingboxes.
+	std::pair< int, int> end(player_position->x, player_position->y); // end location
+	std::pair<int, int> start(npc_xy->x, npc_xy->y); // start location
 
-	std::list <std::pair< std::pair<int,int>,std::pair<int,int>>> path;
-	std::list <std::pair< int, int >> visited;
-	std::list <std::pair< int, int >> queue;
+	std::list <std::pair< std::pair<int,int>,std::pair<int,int>>> path; // path to end location
+	std::list <std::pair< int, int >> queue; // need to visited these positions
 
-	std::pair<int, int> start(npc_xy->x, npc_xy->y);
-	queue.push_back(start);
-	std::list <std::pair< int, int >>::iterator i;
+	queue = calculate_next_positions(start, end, queue);
 
+	while (!queue.empty()) {
+		std::pair<int, int> location = queue.front(); // first location
+		queue.pop_front();
 
-		while (!queue.empty()) {
-			start = queue.front();
-			queue.pop_front();
-			visited.push_back(start);
-			std::list <std::pair< int, int >> next_positions = calculate_next_positions(start, end);
-			/*for (//list of active boudingboxes) {*/
-			std::pair<int,int> location = next_positions.front();
-			// check if new location doenst hit the boundingbox
-			std::pair< std::pair<int, int>, std::pair<int, int>> node(start, location);
-			path.push_back(node);
-			visited.push_back(location);
-
-			//std::cout << "player: X: " << end.first << " Y: " << end.second << " Drawable X: " << player_drawable->texture->get_position().x << " Y: " << player_drawable->texture->get_position().y << std::endl;
-			//std::cout << "npc: X: " << start.first << " Y: " << start.second << " Drawable X: " << drawable->texture->get_position().x << " Y: " << drawable->texture->get_position().y << std::endl;
-			if(!check_player_position_X(location, end) && !check_player_position_Y(location,end)){
-				queue.push_back(location);
-			}
-			//}
-
+		if (path.size() == 0) {
+			std::pair< std::pair<int, int>, std::pair<int, int>> next_value(start, location);
+			path.push_back(next_value);
 		}
-
+		else {
+			std::pair< std::pair<int, int>, std::pair<int, int>> next_value(path.back().second, location);
+			path.push_back(next_value);
+		}
+	
+		if (check_player_position_X(location, end) && check_player_position_Y(location, end)) {
+			queue.clear();
+		}
+		else { 
+			queue = calculate_next_positions(location, end, queue); 
+		}
+	//std::cout << "player: X: " << end.first << " Y: " << end.second << " Drawable X: " << player_drawable->texture->get_position().x << " Y: " << player_drawable->texture->get_position().y << std::endl;
+	//std::cout << "npc: X: " << start.first << " Y: " << start.second << " Drawable X: " << drawable->texture->get_position().x << " Y: " << drawable->texture->get_position().y << std::endl;
+	}
 	auto direction = path.front();
 
 	if (direction.first.first < direction.second.first) { 
@@ -114,8 +104,6 @@ void AISystem::best_first_search(EntityManager & em, PositionComponent* npc_xy) 
 	else if(direction.first.second < direction.second.second) { 
 		if (!check_player_position_Y(direction.first, end)) velocity->y += 2; 
 	}
-
-
 }
 
 void AISystem::move_random(int element, EntityManager& em) {
