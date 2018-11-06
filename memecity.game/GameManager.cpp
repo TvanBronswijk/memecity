@@ -17,7 +17,7 @@ bool GameManager::init()
 		const auto position_component = new PositionComponent(entity, multimedia_manager->get_screen_width() / 2, multimedia_manager->get_screen_height() / 2);
 		entity_manager->register_component(position_component);
 
-		const auto animated_texture = multimedia_manager->get_animated_texture(timer.get(), "SpriteSheet.png", 0, 0, 48, 48, 4, 0.5f, AnimatedTexture::AnimationDirection::vertical);
+		const auto animated_texture = multimedia_manager->get_animated_texture(timer.get(), "SpriteSheet.png", 0, 0, 48, 48, 4, 0.25f, AnimatedTexture::AnimationDirection::vertical);
 		auto d_component = new DrawableComponent(entity);
 		
 		d_component->texture = animated_texture;
