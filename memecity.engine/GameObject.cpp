@@ -1,4 +1,5 @@
 #include "GameObject.h"
+#include <iostream>
 
 GameObject::GameObject(float x, float y)
 {
@@ -22,10 +23,11 @@ void GameObject::set_position(Vector2 position)
 
 Vector2 GameObject::get_position(SPACE space)
 {
+
 	if (space == local || parent == nullptr)
 	{
 		return position;
-	}
+	}	
 
 	return parent->get_position(world) + RotateVector(position, parent->get_rotation(local));
 }
@@ -78,5 +80,6 @@ std::shared_ptr<GameObject> GameObject::get_parent() const
 
 void GameObject::translate(Vector2 vector)
 {
-	position += vector;
+	if (parent == nullptr)
+		position += vector;
 }

@@ -13,6 +13,7 @@ private:
 public:
 	TextTexture(std::string text, std::string font_path, int size, Color &color, int width, int height);
 	std::string get_text() const;
+	void set_text(std::string text);
 	int get_font_size() const;
 	Color get_color() const;
 };

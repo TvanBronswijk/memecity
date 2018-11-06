@@ -24,8 +24,9 @@ bool GameManager::init()
 		d_component->texture->set_position({ position_component->x, position_component->y });
 		entity_manager->register_component(d_component);
 
-		text = multimedia_manager->get_text_texture("Barrie Pooter", "Blazed.ttf", 36, { 255,255,255 });
+		text = multimedia_manager->get_text_texture("Health: 500", "Minecraftia-Regular.ttf", 16, { 255,255,255 });
 		text->set_parent(animated_texture);
+		text->set_position({ 0, -30 });
 
 		auto text_entity = entity_manager->create_entity();
 		auto text_d_component = new DrawableComponent(text_entity);
