@@ -16,10 +16,12 @@ void GameManager::init()
 	auto position_component = new PositionComponent(entity, multimedia_manager.get_screen_width() / 2, multimedia_manager.get_screen_height() / 2);
 	entity_manager->register_component(position_component);
 
-	auto d_component = new DrawableComponent(entity);
-	d_component->texture = multimedia_manager.get_texture("red.bmp", 0, 0, 32, 32);
-	d_component->texture->set_position({ position_component->x, position_component->y });
-	entity_manager->register_component(d_component);
+		auto d_component = new DrawableComponent(entity);
+
+		animated_character = multimedia_manager->get_animated_texture(timer.get(), "SpriteSheet.png", 0, 0, 48, 48, 4, 0.5f, AnimatedCharacter::vertical);
+		d_component->texture = animated_character;
+		d_component->texture->set_position({ position_component->x, position_component->y });
+		entity_manager->register_component(d_component);
 
 	entity_manager->register_system(new InputSystem(input_manager));
 	entity_manager->register_system(new DrawSystem(multimedia_manager));
