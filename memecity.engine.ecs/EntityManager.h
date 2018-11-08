@@ -35,7 +35,7 @@ namespace ecs {
 			std::unique_ptr<C> component = std::make_unique<C>(std::forward<Args>(args)...);
 			component_typetoken token = component->get_type_token();
 			components[token].push_back(std::move(component));
-			return *(dynamic_cast<C*>(components[token].back().get()));
+			return *(static_cast<C*>(components[token].back().get()));
 		}
 
 		///<summary>Register a system to the EntityManager.</summary>
@@ -47,7 +47,7 @@ namespace ecs {
 			std::unique_ptr<S> system = std::make_unique<S>(std::forward<Args>(args)...);
 			system_typetoken token = system->get_type_token();
 			systems[token] = std::move(system);
-			return *(dynamic_cast<S*>(systems[token].get()));
+			return *(static_cast<S*>(systems[token].get()));
 		}
 
 		///<summary>Get all entities</summary>
@@ -68,25 +68,25 @@ namespace ecs {
 
 		///<summary>Get components of a specific type.</summary>
 		template<class C>
-		std::vector<std::reference_wrapper<C>> get_components_of_type(component_typetoken token) const
+		std::vector<std::reference_wrapper<C>> get_components_of_type(component_typetoken token)
 		{
 			static_assert(std::is_convertible<C*, Component*>::value, "This function can only retrieve concrete subclasses of Component");
 
 			std::vector<std::reference_wrapper<C>> result;
 			for (auto& c : components.at(token))
-				result.push_back(std::ref(*(dynamic_cast<C*>(c.get()))));
+				result.push_back(std::ref(*(static_cast<C*>(c.get()))));
 			return result;
 		}
 
 		///<summary>Get specific component of entity</summary>
 		template<class C>
-		C* get_component_of_entity(const Entity& entity, component_typetoken token) const
+		C* get_component_of_entity(const Entity& entity, component_typetoken token)
 		{
 			static_assert(std::is_convertible<C*, Component*>::value, "This function can only retrieve concrete subclasses of Component");
 			for (auto& pairs : components)
 				for (auto& c : pairs.second)
 					if (c->entity == entity && c->get_type_token() == token)
-						return dynamic_cast<C*>(c.get());
+						return static_cast<C*>(c.get());
 			return nullptr;
 		}
 
@@ -99,7 +99,7 @@ namespace ecs {
 			for (auto& pairs : components)
 				for (auto& c : pairs.second)
 					if (c->entity == entity)
-						result.push_back(std::ref(*(dynamic_cast<C*>(c.get()))));
+						result.push_back(std::ref(*(static_cast<C*>(c.get()))));
 			return result;
 		}
 

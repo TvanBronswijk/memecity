@@ -16,9 +16,8 @@ namespace ecs {
 			Event() {};
 			
 			///<summary>subscribe to an event</summary>
-			virtual void bind(const System& system, std::function<void(EntityManager&, TEventArgs)> function)
+			virtual void bind(std::function<void(EntityManager&, TEventArgs)> function)
 			{
-				std::bind(function, system);
 				subscribers.push_back(function);
 			}
 
