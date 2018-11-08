@@ -10,7 +10,7 @@ bool AudioFacade::init()
 	return true;
 }
 
-void AudioFacade::open_audio(int frequency, int channels, int chunksize)
+void AudioFacade::open_audio(int frequency, int channels, int chunksize) const
 {
 	if (Mix_OpenAudio(frequency, MIX_DEFAULT_FORMAT, channels, chunksize) < 0) 
 	{
@@ -18,7 +18,7 @@ void AudioFacade::open_audio(int frequency, int channels, int chunksize)
 	}
 }
 
-void AudioFacade::play_sound_effect(Mix_Chunk* sound, int repeats, int volume, int channel)
+void AudioFacade::play_sound_effect(Mix_Chunk* sound, int repeats, int volume, int channel) const
 {
 	if (!is_playing(channel))
 	{
@@ -27,12 +27,12 @@ void AudioFacade::play_sound_effect(Mix_Chunk* sound, int repeats, int volume, i
 	}
 }
 
-bool AudioFacade::is_playing(int channel)
+bool AudioFacade::is_playing(int channel) const
 {
 	return Mix_Playing(channel) == 1;
 }
 
-void AudioFacade::play_background_music(Mix_Music* music, int volume)
+void AudioFacade::play_background_music(Mix_Music* music, int volume) const
 {
 
 	Mix_VolumeMusic(volume);
