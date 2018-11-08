@@ -21,12 +21,12 @@ void InputFacade::update()
 	}
 }
 
-bool InputFacade::is_pressed(InputKeys key)
+bool InputFacade::is_pressed(InputKeys key) const
 {
 	return state[key] != 0;
 }
 
-bool InputFacade::is_quit_pressed()
+bool InputFacade::is_quit_pressed() const 
 {
 	return quit_pressed;
 }

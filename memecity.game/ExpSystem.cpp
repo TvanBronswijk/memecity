@@ -12,7 +12,7 @@ ExpSystem::~ExpSystem()
 }
 
 
-std::string ExpSystem::get_type() const
+std::string ExpSystem::get_type()
 {
 	return SYSTEM_TYPE;
 }

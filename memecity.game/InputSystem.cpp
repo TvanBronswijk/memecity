@@ -1,6 +1,6 @@
 ﻿#include "InputSystem.h"
 
-std::string const InputSystem::SYSTEM_TYPE = "InputSystem";
+std::string InputSystem::SYSTEM_TYPE = "InputSystem";
 
 InputSystem::InputSystem(std::weak_ptr<InputManager> input_manager)
 {

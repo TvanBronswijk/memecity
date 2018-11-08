@@ -10,7 +10,7 @@ class MoveSystem : public System
 {
 	static std::string SYSTEM_TYPE;
 public:
-	std::string get_type() const override;
+	std::string get_type() override;
 	void run(EntityManager& em) override;
 	void run(EntityManager& em, EventArgs& e) override;
 };

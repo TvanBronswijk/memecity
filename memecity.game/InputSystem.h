@@ -15,7 +15,7 @@ private:
 public:
 	InputSystem(std::weak_ptr<InputManager> input_manager);
 	void run(EntityManager& em) override;
-	std::string get_type() const override; 
+	std::string get_type() override; 
 	void run(EntityManager& em, EventArgs& e) override;
 };
 

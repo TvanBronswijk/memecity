@@ -41,7 +41,7 @@ void MoveSystem::run(EntityManager& em, EventArgs& e)
 }
 
 
-std::string MoveSystem::get_type() const 
+std::string MoveSystem::get_type()
 {
 	return SYSTEM_TYPE;
 }

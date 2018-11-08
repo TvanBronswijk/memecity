@@ -15,7 +15,7 @@ public:
 	
 	ExpSystem();
 	~ExpSystem();
-	std::string get_type() const override;
+	std::string get_type() override;
 	void run(EntityManager& em) override;
 	void run(EntityManager& em, EventArgs& e) override;
 };
