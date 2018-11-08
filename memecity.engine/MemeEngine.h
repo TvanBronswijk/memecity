@@ -13,7 +13,7 @@ protected:
 	InputManager input_manager{};
 	std::unique_ptr<TimerFacade> timer;
 
-	virtual bool init() = 0;
+	virtual void init() = 0;
 	virtual void handle() = 0;
 
 public:

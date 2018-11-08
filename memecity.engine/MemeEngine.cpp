@@ -7,7 +7,8 @@ MemeEngine::MemeEngine()
 
 int MemeEngine::run()
 {
-	if (init()) {
+	if (multimedia_manager.init()) {
+		init();
 		while (!input_manager.is_quit_pressed())
 		{
 			timer->update();
