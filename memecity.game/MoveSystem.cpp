@@ -4,7 +4,7 @@ using namespace ecs;
 
 system_typetoken MoveSystem::SYSTEM_TYPE = "MoveSystem";
 
-MoveSystem::MoveSystem() : System() 
+MoveSystem::MoveSystem() : System()
 {
 
 }
@@ -42,24 +42,33 @@ void MoveSystem::run(EntityManager& em) const
 	}
 }
 
-void MoveSystem::run(EntityManager& em, const EventArgs& e)
+void MoveSystem::on_collision(EntityManager& em, ColliderEventArgs ea)
 {
-	const auto collider_event_args = dynamic_cast<const ColliderEventArgs*>(&e);
-	if (collider_event_args != nullptr)
+	auto position_target = em.get_component_of_entity<PositionComponent>(ea.target, PositionComponent::COMPONENT_TYPE);
+	auto position = em.get_component_of_entity<PositionComponent>(ea.source, PositionComponent::COMPONENT_TYPE);
+	auto velocity = em.get_component_of_entity<VelocityComponent>(ea.source, VelocityComponent::COMPONENT_TYPE);
+
+	if (velocity != nullptr)
 	{
-		auto components = em.get_components_of_type(VelocityComponent::COMPONENT_TYPE);
-
-		for (auto velocity_component : components)
+		if (position_target->x > position->x)
 		{
-			const auto current_position =
-				dynamic_cast<PositionComponent*>(em.get_component_of_entity(velocity_component->entity_id, PositionComponent::COMPONENT_TYPE));
-
-			if (velocity_component->entity_id == collider_event_args->source_entity_id)
-			{
-				current_position->x = -1;
-				current_position->y = -1;
-			}
+			position->x -= 5;
+			position->diffx = -5;
+		}
+		else if (position_target->x < position->x)
+		{
+			position->x += 5;
+			position->diffx = 5;
+		}
+		if (position_target->y > position->y)
+		{
+			position->y -= 5;
+			position->diffy = -5;
+		}
+		else if (position_target->y < position->y)
+		{
+			position->y += 5;
+			position->diffy = 5;
 		}
 	}
 }
-

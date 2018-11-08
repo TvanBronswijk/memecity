@@ -1,4 +1,5 @@
 #include "CityGenerator.h"
+#include "PositionComponent.h"
 
 using namespace ecs;
 
@@ -38,7 +39,8 @@ void CityGenerator::generate(int w, int h, EntityManager& em, MultimediaManager 
 
 			if (character == 'W' || character == 'w')
 			{
-				em->register_component(new ColliderComponent(entity, x * 64.0f, y * 64.0f, 64.0f, 64.0f));
+				em.create_component<ColliderComponent>(entity, 64.0f, 64.0f);
+				em.create_component<PositionComponent>(entity, x * 64.0f, y * 64.0f);
 			}
 
 			auto texture = multimedia_manager.get_texture(filename);

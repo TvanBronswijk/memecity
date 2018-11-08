@@ -1,26 +1,21 @@
 #ifndef _COLLIDERCOMPONENT_H
 #define _COLLIDERCOMPONENT_H
 #include "../memecity.engine.ecs/Component.h"
-#include "../memecity.engine/Texture.h"
 
-struct ColliderComponent : public Component
+struct ColliderComponent : public ecs::Component
 {
-	static std::string COMPONENT_TYPE;
+	static ecs::component_typetoken COMPONENT_TYPE;
+	int w, h;
 
-	int x, y, w, h, x2, y2;
-
-	ColliderComponent(Entity *e) : ColliderComponent(e, 0, 0, 0, 0) {};
-	ColliderComponent(Entity *e, int x, int y, int w, int h) : Component(e)
+	ColliderComponent(const ecs::Entity& entity) : ColliderComponent(entity, 0, 0) {};
+	ColliderComponent(const ecs::Entity& entity, int w, int h) : ecs::Component(entity)
 	{
-		this->x = x;
-		this->y = y;
 		this->w = w;
 		this->h = h;
-		this->x2 = x + w - 1;
-		this->y2 = y + h - 1;
 	};
 
-	std::string get_type() override;
+	ecs::component_typetoken get_type_token() const override { return ColliderComponent::COMPONENT_TYPE; }
+
 };
 
 #endif

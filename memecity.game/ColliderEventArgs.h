@@ -2,22 +2,11 @@
 #define _COLLIDER_EVENT_ARGS_H
 #include "EventArgs.h"
 
-struct ColliderEventArgs : public EventArgs
+struct ColliderEventArgs : public ecs::eventing::EventArgs
 {
-	static std::string EVENT_ARGS_TYPE;
+	const ecs::Entity &source, &target;
 
-	int source_entity_id, target_entity_id;
-
-	std::string get_type() override
-	{
-		return EVENT_ARGS_TYPE;
-	}
-
-	ColliderEventArgs(int source_entity_id, int target_entity_id)
-	{
-		this->source_entity_id = source_entity_id;
-		this->target_entity_id = target_entity_id;
-	}
+	ColliderEventArgs(const ecs::Entity& source, const ecs::Entity& target) : source(source), target(target) {}
 };
 
 #endif

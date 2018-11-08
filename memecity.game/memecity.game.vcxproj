@@ -20,7 +20,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ColliderComponent.h" />
-    <ClInclude Include="ColliderEvent.h" />
     <ClInclude Include="ColliderEventArgs.h" />
     <ClInclude Include="ColliderSystem.h" />
     <ClInclude Include="ExpComponent.h" />
@@ -43,8 +42,6 @@
     <ClCompile Include="BSPGenerator.cpp" />
     <ClCompile Include="CityGenerator.cpp" />
     <ClCompile Include="ColliderComponent.cpp" />
-    <ClCompile Include="ColliderEvent.cpp" />
-    <ClCompile Include="ColliderEventArgs.cpp" />
     <ClCompile Include="ColliderSystem.cpp" />
     <ClCompile Include="ExpComponent.cpp" />
     <ClCompile Include="ExpSystem.cpp" />

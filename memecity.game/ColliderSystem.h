@@ -3,22 +3,18 @@
 #include "../memecity.engine.ecs/System.h"
 #include "../memecity.engine.ecs/EntityManager.h"
 #include "ColliderEventArgs.h"
-#include "ColliderEvent.h"
 #include "ColliderComponent.h"
+#include "Event.h"
 
-class ColliderEvent;
 
-class ColliderSystem : public System
+class ColliderSystem : public ecs::System
 {
-	static std::string SYSTEM_TYPE;
-private:
-	ColliderEvent *collider_event;
 public:
-	ColliderSystem(ColliderEvent *collider_event);
-	~ColliderSystem();
-	void run(EntityManager& em) override;
-	std::string get_type() override;
-	void run(EntityManager &em, const EventArgs& e) override;
+	ColliderSystem() = default;
+	static ecs::system_typetoken SYSTEM_TYPE;
+	void run(ecs::EntityManager& em) const override;
+	ecs::system_typetoken get_type_token() const override { return ColliderSystem::SYSTEM_TYPE; }
+	ecs::eventing::Event<ColliderEventArgs> collider_event;
 };
 
 #endif

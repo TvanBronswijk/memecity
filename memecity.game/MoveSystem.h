@@ -13,6 +13,7 @@ public:
 	static ecs::system_typetoken SYSTEM_TYPE;
 	MoveSystem();
 	void run(ecs::EntityManager& em) const override;
+	void on_collision(ecs::EntityManager & em, ColliderEventArgs ea);
 	ecs::system_typetoken get_type_token() const override { return MoveSystem::SYSTEM_TYPE; }
 };
 
