@@ -6,7 +6,7 @@ struct ExpComponent: public ecs::Component
 {
 	static ecs::component_typetoken COMPONENT_TYPE;
 	int exp, next_level;
-	ExpComponent(const ecs::Entity& e) : ecs::Component(e) {};
+	ExpComponent(const ecs::Entity& entity) : ecs::Component(entity) {};
 	ecs::component_typetoken get_type_token() const override { return ExpComponent::COMPONENT_TYPE; }
 };
 

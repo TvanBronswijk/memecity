@@ -6,8 +6,8 @@ struct PositionComponent : public ecs::Component
 {
 	static ecs::component_typetoken COMPONENT_TYPE;
 	float x, y, diffx, diffy;
-	PositionComponent(const ecs::Entity& e) : PositionComponent(e, 0.0f, 0.0f ) {};
-	PositionComponent(const ecs::Entity& e, float x, float y) : ecs::Component(e) 
+	PositionComponent(const ecs::Entity& entity) : PositionComponent(entity, 0.0f, 0.0f ) {};
+	PositionComponent(const ecs::Entity& entity, float x, float y) : ecs::Component(entity) 
 	{ 
 		this->x = x; 
 		this->y = y; 

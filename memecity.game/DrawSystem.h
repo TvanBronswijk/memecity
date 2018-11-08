@@ -10,10 +10,10 @@
 class DrawSystem : public ecs::System
 {
 private:
-	std::weak_ptr<MultimediaManager> multimedia_manager;	
+	MultimediaManager &multimedia_manager;
 public:
 	static ecs::system_typetoken SYSTEM_TYPE;
-	DrawSystem(std::weak_ptr<MultimediaManager> multimedia_manager);
+	DrawSystem(MultimediaManager& multimedia_manager);
 	void run(ecs::EntityManager& em) const override;
 	ecs::system_typetoken get_type_token() const override { return DrawSystem::SYSTEM_TYPE; }
 };

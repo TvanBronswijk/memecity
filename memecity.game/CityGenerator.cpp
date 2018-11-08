@@ -7,7 +7,7 @@ CityGenerator::CityGenerator()
 	this->strategy = std::make_unique<BSPGenerator>();
 }
 
-void CityGenerator::generate(int w, int h, std::unique_ptr<EntityManager> &em, std::shared_ptr<MultimediaManager> multimedia_manager)
+void CityGenerator::generate(int w, int h, EntityManager& em, MultimediaManager &multimedia_manager)
 {
 	auto c = this->strategy->generate(w, h);
 
@@ -16,8 +16,8 @@ void CityGenerator::generate(int w, int h, std::unique_ptr<EntityManager> &em, s
 			auto character = c->coord(x, y);
 
 			std::cout << character;
-			auto& entity = em->create_entity();
-			auto& drawable_component = em->create_component<DrawableComponent>(entity);
+			auto& entity = em.create_entity();
+			auto& drawable_component = em.create_component<DrawableComponent>(entity);
 			auto filename = "purple.bmp";
 
 			switch (character)
@@ -35,7 +35,7 @@ void CityGenerator::generate(int w, int h, std::unique_ptr<EntityManager> &em, s
 				filename = "green.bmp";
 				break;
 			}
-			auto texture = multimedia_manager->get_texture(filename);
+			auto texture = multimedia_manager.get_texture(filename);
 			texture->set_position({ x * 64.0f, y * 64.0f });
 			drawable_component.texture = texture;
 		}

@@ -4,9 +4,8 @@ using namespace ecs;
 
 system_typetoken DrawSystem::SYSTEM_TYPE = "DrawSystem";
 
-DrawSystem::DrawSystem(std::weak_ptr<MultimediaManager> multimedia_manager)
+DrawSystem::DrawSystem(MultimediaManager &multimedia_manager) : multimedia_manager(multimedia_manager)
 {
-	this->multimedia_manager = multimedia_manager;
 }
 
 void DrawSystem::run(EntityManager& em) const
@@ -25,10 +24,13 @@ void DrawSystem::run(EntityManager& em) const
 		}
 	}
 
-	multimedia_manager.lock()->clear_graphics();
+	multimedia_manager.clear_graphics();
 	for (auto component : drawable_components)
 	{
 		component.get().texture->render();
 	}
-	multimedia_manager.lock()->render_graphics();
+	multimedia_manager.render_graphics();
 }
+
+
+

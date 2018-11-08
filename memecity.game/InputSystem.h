@@ -10,10 +10,10 @@
 class InputSystem : public ecs::System
 {
 private:
-	std::weak_ptr<InputManager> input_manager;
+	InputManager &input_manager;
 public:
 	static ecs::system_typetoken SYSTEM_TYPE;
-	InputSystem(std::weak_ptr<InputManager> input_manager);
+	InputSystem(InputManager& input_manager);
 	void run(ecs::EntityManager& em) const override;
 	ecs::system_typetoken get_type_token() const override { return InputSystem::SYSTEM_TYPE; }
 };
