@@ -2,16 +2,11 @@
 #define _ATTACK_EVENT_ARGS_H
 #include "EventArgs.h"
 
-struct AttackEventArgs : public EventArgs
+struct AttackEventArgs : public  ecs::eventing::EventArgs
 {
-	static std::string EVENT_ARGS_TYPE;
+	const ecs::Entity &source, &target;
 
-public:
-	int source_entity_id;
-	int target_entity_id;
-	std::string get_type();
-	AttackEventArgs(int source_entity_id, int target_entity_id);
-	~AttackEventArgs();
+	AttackEventArgs(const ecs::Entity& source, const ecs::Entity& target) : source(source), target(target) {}
 };
 
 #endif

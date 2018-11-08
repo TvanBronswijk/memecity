@@ -1,28 +1,29 @@
 #include "AISystem.h"
 
+using namespace ecs;
 
-std::string AISystem::SYSTEM_TYPE = "AISystem";
+system_typetoken AISystem::SYSTEM_TYPE = "AISystem";
 
 AISystem::AISystem(){
 }
 
-bool AISystem::check_health(EntityManager & em, Component*& element) {
-	AIComponent* AI = dynamic_cast<AIComponent*>(em.get_component_of_entity(element->entity_id, AIComponent::COMPONENT_TYPE));
-	HealthComponent* health = dynamic_cast<HealthComponent*>(em.get_component_of_entity(element->entity_id, HealthComponent::COMPONENT_TYPE));
+bool AISystem::check_health(EntityManager& em, Component& element) const{
+	auto AI = em.get_component_of_entity<AIComponent>(element.entity, AIComponent::COMPONENT_TYPE);
+	auto health = em.get_component_of_entity<HealthComponent>(element.entity, HealthComponent::COMPONENT_TYPE);
 	if(health->_health <= 0) {
 		std::cout << "i am dead!!!" << std::endl;
 		return false;
 	}
 	else if (health->_health <= 10) {
-		AI->_state = AI->FLEEING;
+		AI->_state = AI->Fleeing;
 	}
 	return true;
 }
 
-int AISystem::random_x(VelocityComponent* velocity) {return (rand() % (2 - -1)) + -1;}
-int AISystem::random_y(VelocityComponent* velocity) {return (rand() % (2 - -1)) + -1;}
+int AISystem::random_x(VelocityComponent* velocity) const {return (rand() % (2 - -1)) + -1;}
+int AISystem::random_y(VelocityComponent* velocity) const {return (rand() % (2 - -1)) + -1;}
 
-std::list <std::pair< int, int >> AISystem::calculate_next_positions(std::pair< int, int >start , std::pair< int, int >end, std::list <std::pair< int, int >> queue) {
+std::list <std::pair< int, int >> AISystem::calculate_next_positions(std::pair< int, int >start , std::pair< int, int >end, std::list <std::pair< int, int >> queue) const{
 	if (start.first < end.first - range) { start.first += 10; }
 	else if (start.first >  end.first + range) { start.first -= 10;}
 	if (start.second < end.second - range) { start.second += 10; }
@@ -36,14 +37,14 @@ std::list <std::pair< int, int >> AISystem::calculate_next_positions(std::pair< 
 	return queue;
 }
 
-bool AISystem::check_player_position_Y(std::pair<int, int> location, std::pair<int, int> end) {
+bool AISystem::check_player_position_Y(std::pair<int, int> location, std::pair<int, int> end) const{
 	if ((location.second >= end.second - range) && (location.second <= end.second + range)) {
 		return true;
 	}
 	return false;
 }
 
-bool AISystem::check_player_position_X(std::pair<int, int> location , std::pair<int, int> end) {
+bool AISystem::check_player_position_X(std::pair<int, int> location , std::pair<int, int> end) const{
 	if ((location.first >= end.first - range) && (location.first <= end.first + range)) {
 		return true;
 	}
@@ -51,21 +52,16 @@ bool AISystem::check_player_position_X(std::pair<int, int> location , std::pair<
 }
 
 
-void AISystem::best_first_search(EntityManager & em, PositionComponent* npc_xy) {
-	VelocityComponent* velocity = dynamic_cast<VelocityComponent*>(em.get_component_of_entity(npc_xy->entity_id, VelocityComponent::COMPONENT_TYPE));
-	auto player = em.get_entities_with_component(PlayerComponent::COMPONENT_TYPE);
+void AISystem::best_first_search(EntityManager& em, PositionComponent& npc_xy) const{
+	auto velocity = em.get_component_of_entity<VelocityComponent>(npc_xy.entity, VelocityComponent::COMPONENT_TYPE);
+	auto player_component = em.get_components_of_type<PlayerComponent>(PlayerComponent::COMPONENT_TYPE)[0];
 
-	DrawableComponent* drawable = dynamic_cast<DrawableComponent*>(em.get_component_of_entity(npc_xy->entity_id, DrawableComponent::COMPONENT_TYPE));//testing
-	PositionComponent* player_position = nullptr;//testing
-	DrawableComponent* player_drawable = nullptr;//testing
-
-	for (auto & player : player) {
-		player_position = dynamic_cast<PositionComponent*>(em.get_component_of_entity(player->id, PositionComponent::COMPONENT_TYPE));
-		player_drawable = dynamic_cast<DrawableComponent*>(em.get_component_of_entity(player->id, DrawableComponent::COMPONENT_TYPE));
-	}
+	auto drawable = em.get_component_of_entity<DrawableComponent>(npc_xy.entity, DrawableComponent::COMPONENT_TYPE);//testing
+	auto player_position = em.get_component_of_entity<PositionComponent>(player_component.get().entity, PositionComponent::COMPONENT_TYPE);//testing
+	auto player_drawable = em.get_component_of_entity<DrawableComponent>(player_component.get().entity, DrawableComponent::COMPONENT_TYPE);//testing
 
 	std::pair< int, int> end(player_position->x, player_position->y); // end location
-	std::pair<int, int> start(npc_xy->x, npc_xy->y); // start location
+	std::pair<int, int> start(npc_xy.x, npc_xy.y); // start location
 
 	std::list <std::pair< std::pair<int,int>,std::pair<int,int>>> path; // path to end location
 	std::list <std::pair< int, int >> queue; // need to visited these positions
@@ -91,9 +87,9 @@ void AISystem::best_first_search(EntityManager & em, PositionComponent* npc_xy) 
 		else { 
 			queue = calculate_next_positions(location, end, queue); 
 		}
+	}
 	//std::cout << "player: X: " << end.first << " Y: " << end.second << " Drawable X: " << player_drawable->texture->get_position().x << " Y: " << player_drawable->texture->get_position().y << std::endl;
 	//std::cout << "npc: X: " << start.first << " Y: " << start.second << " Drawable X: " << drawable->texture->get_position().x << " Y: " << drawable->texture->get_position().y << std::endl;
-	}
 	auto direction = path.front();
 
 	if (direction.first.first < direction.second.first) { 
@@ -110,49 +106,36 @@ void AISystem::best_first_search(EntityManager & em, PositionComponent* npc_xy) 
 	}
 }
 
-void AISystem::move_random(int element, EntityManager& em) {
+void AISystem::move_random(const Entity& entity, EntityManager& em) const{
 
-	VelocityComponent* velocity = (VelocityComponent*)em.get_component_of_entity(element, VelocityComponent::COMPONENT_TYPE);
+	auto velocity = em.get_component_of_entity<VelocityComponent>(entity, VelocityComponent::COMPONENT_TYPE);
 
 	velocity->x += random_x(velocity);
 	velocity->y += random_y(velocity);
 
-
-
-	//std::cout << "NPC has Placed with X: " << xy->x << "Y: " << xy->y << std::endl;
 }
 
-std::string AISystem::get_type() {
-	return SYSTEM_TYPE;
-}
-void AISystem::run(EntityManager &em) {
-	auto vector = em.get_components_of_type(AIComponent::COMPONENT_TYPE);
+void AISystem::run(EntityManager& em) const {
+	auto vector = em.get_components_of_type<AIComponent>(AIComponent::COMPONENT_TYPE);
 	auto player = em.get_entities_with_component(PlayerComponent::COMPONENT_TYPE);
 
-	for (auto & element : vector) {
+	for (auto& element : vector) {
 		if (check_health(em, element)) {
-			AIComponent* AI = dynamic_cast<AIComponent*>(em.get_component_of_entity(element->entity_id, AIComponent::COMPONENT_TYPE));
-			PositionComponent* xy = dynamic_cast<PositionComponent*>(em.get_component_of_entity(element->entity_id, PositionComponent::COMPONENT_TYPE));
+			auto AI = em.get_component_of_entity<AIComponent>(element.get().entity, AIComponent::COMPONENT_TYPE);
+			auto xy = em.get_component_of_entity<PositionComponent>(element.get().entity, PositionComponent::COMPONENT_TYPE);
 			switch (AI->_state)
 			{
-			case AIComponent::FIGHTING:
-				best_first_search(em, xy);
+			case AIComponent::Fighting:
+				best_first_search(em, *xy);
 				break;
-			case AIComponent::FLEEING:
+			case AIComponent::Fleeing:
 				break;
-			case AIComponent::STATIC:
-				move_random(element->entity_id, em);
+			case AIComponent::Static:
+				move_random(element.get().entity, em);
 				break;
 			default:
 				break;
 			}
 		}
 	}
-}
-void AISystem::run(EntityManager &em, EventArgs& e) {
-	/*
-	 if(e.message == interaction){
-		texture.showtext(interaction.smalltalk[rand]);
-	 }
-	*/
 }

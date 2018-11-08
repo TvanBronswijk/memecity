@@ -2,15 +2,12 @@
 #define _INTERACTION_EVENT_ARGS_H
 #include "EventArgs.h"
 
-struct InteractionEventArgs : public EventArgs
+struct InteractionEventArgs : public ecs::eventing::EventArgs
 {
-	static std::string EVENT_ARGS_TYPE;
+	const ecs::Entity &source;
 
-public:
-	int source_entity_id;
-	std::string get_type();
-	InteractionEventArgs(int source_entity_id);
-	~InteractionEventArgs();
+	InteractionEventArgs(const ecs::Entity& source) : source(source) {}
+
 };
 
 #endif

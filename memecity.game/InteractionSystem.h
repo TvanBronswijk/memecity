@@ -2,21 +2,18 @@
 #include "../memecity.engine.ecs/EntityManager.h"
 #include <cstdlib>
 #include "InteractionEventArgs.h"
-#include "InteractionEvent.h"
 #include "PositionComponent.h"
 #include "interactionComponent.h"
 #include "../memecity.engine/MultimediaManager.h"
 #include "DrawableComponent.h"
 
-class InteractionSystem : public System {
-
-	static std::string SYSTEM_TYPE;
+class InteractionSystem : public ecs::System {
 
 private:
-	std::weak_ptr<MultimediaManager> multimedia_manager;
+	MultimediaManager &multimedia_manager;
 public:
-	InteractionSystem(std::weak_ptr<MultimediaManager> multimedia_manager);
-	std::string get_type() override;
-	void run(EntityManager &em) override;
-	void run(EntityManager &em, EventArgs& e) override;
+	static ecs::system_typetoken SYSTEM_TYPE;
+	InteractionSystem(MultimediaManager& multimedia_manager);
+	void run(ecs::EntityManager& em) const override;
+	ecs::system_typetoken get_type_token() const override { return InteractionSystem::SYSTEM_TYPE; }
 };

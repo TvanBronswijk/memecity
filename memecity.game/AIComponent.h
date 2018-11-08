@@ -2,22 +2,24 @@
 #define  _AICOMPONENT_H
 #include "../memecity.engine.ecs/Component.h"
 
-struct AIComponent : public Component {
+struct AIComponent : public ecs::Component {
 	
-	static std::string COMPONENT_TYPE;
+
+	static ecs::component_typetoken COMPONENT_TYPE;
 	enum State
 	{
-		FIGHTING,
-		FLEEING,
-		STATIC
+		Fighting,
+		Fleeing,
+		Static
 
 	};
 
 public:
 	State _state;
-	AIComponent(Entity* e);
-	AIComponent(State state, Entity* e);
-	std::string get_type() override;
+	AIComponent(const ecs::Entity& entity) : ecs::Component(entity) {
+			this->_state = Static;
+	};
+	ecs::component_typetoken get_type_token() const override { return AIComponent::COMPONENT_TYPE; }
 };
 
 #endif

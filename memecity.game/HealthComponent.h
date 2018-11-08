@@ -5,15 +5,20 @@
 #include <iostream>
 #include <map>
 
-struct HealthComponent : public Component, public Serializable {
+struct HealthComponent : public ecs::Component, public Serializable {
 
-	static std::string COMPONENT_TYPE;
+
+	static ecs::component_typetoken COMPONENT_TYPE;
 
 public:
 	int _health;
-	HealthComponent(Entity* e);
-	HealthComponent(int health, Entity* e);
-	std::string get_type() override;
+	HealthComponent(const ecs::Entity& entity) : ecs::Component(entity) {
+		_health = 1;
+	};
+	HealthComponent(const ecs::Entity& entity, int health) : ecs::Component(entity) {
+		_health = health;
+	};
+	ecs::component_typetoken get_type_token() const override { return HealthComponent::COMPONENT_TYPE; }
 	std::map<std::string, std::any> to_map() override;
 	void from_map(std::map<std::string, std::any> map) override;
 };

@@ -1,21 +1,7 @@
 #include"HealthComponent.h"
 
+ecs::component_typetoken HealthComponent::COMPONENT_TYPE = "HealthComponent";
 
-std::string HealthComponent::COMPONENT_TYPE = "HealthComponent";
-
-HealthComponent::HealthComponent(Entity* e) : Component(e) {
-	this->entity_id = e->id;
-	_health = 0;
-}
-
-HealthComponent::HealthComponent(int health, Entity* e) : Component(e) {
-	this->entity_id = e->id;
-	_health = health;
-}
-
-std::string HealthComponent::get_type() {
-	return "HealthComponent";
-}
 
 std::map<std::string, std::any> HealthComponent::to_map()
 {

@@ -7,16 +7,13 @@
 #include "AIcomponent.h"
 #include <cstdlib>
 
-class FightingSystem : public System {
-
-	static std::string SYSTEM_TYPE;
+class FightingSystem : public ecs::System {
 
 public:
+	static ecs::system_typetoken SYSTEM_TYPE;
 	FightingSystem();
-
-	std::string get_type() override;
-	void run(EntityManager &em) override;
-	void run(EntityManager &em, EventArgs& e) override;
+	ecs::system_typetoken get_type_token() const override { return FightingSystem::SYSTEM_TYPE; }
+	void run(ecs::EntityManager& em) const override;
 };
 
 #endif

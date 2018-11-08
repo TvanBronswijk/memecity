@@ -1,18 +1,16 @@
 #include "InteractionSystem.h"
 
+using namespace ecs;
 
-std::string InteractionSystem::SYSTEM_TYPE = "InteractionSystem";
+system_typetoken InteractionSystem::SYSTEM_TYPE = "InteractionSystem";
 
-InteractionSystem::InteractionSystem(std::weak_ptr<MultimediaManager> multi_media) {
-	this->multimedia_manager = multi_media;
+InteractionSystem::InteractionSystem(MultimediaManager &multimedia_manager) : multimedia_manager(multimedia_manager) {
 }
 
-std::string InteractionSystem::get_type() {
-	return SYSTEM_TYPE;
-}
-void InteractionSystem::run(EntityManager &em) {
+void InteractionSystem::run(EntityManager &em) const {
 
 }
+/*
 void InteractionSystem::run(EntityManager &em, EventArgs& e) {
 
 	const auto interaction_event_args = static_cast<InteractionEventArgs&>(e);
@@ -26,3 +24,4 @@ void InteractionSystem::run(EntityManager &em, EventArgs& e) {
 	}
 
 }
+*/
