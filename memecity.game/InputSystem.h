@@ -9,7 +9,7 @@
 
 class InputSystem : public System
 {
-	static const std::string SYSTEM_TYPE;
+	static std::string SYSTEM_TYPE;
 private:
 	std::weak_ptr<InputManager> input_manager;
 public:
