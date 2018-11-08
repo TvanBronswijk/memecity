@@ -5,8 +5,8 @@
 struct PlayerComponent : public ecs::Component
 {
 	static ecs::component_typetoken COMPONENT_TYPE;
-	PlayerComponent(ecs::Entity& e) : ecs::Component(e) {};
-	ecs::component_typetoken get_type_token() override { return PlayerComponent::COMPONENT_TYPE; }
+	PlayerComponent(const ecs::Entity& e) : ecs::Component(e) {};
+	ecs::component_typetoken get_type_token() const override { return PlayerComponent::COMPONENT_TYPE; }
 };
 
 #endif;

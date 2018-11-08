@@ -20,7 +20,7 @@ namespace ecs {
 		EntityManager() {}
 
 		///<summary>Creates a new entity with an unused ID.</summary>
-		Entity& create_entity()
+		const Entity& create_entity()
 		{
 			entities.push_back(Entity(++last_id));
 			return entities[last_id];
@@ -51,15 +51,15 @@ namespace ecs {
 		}
 
 		///<summary>Get all entities</summary>
-		std::vector<std::reference_wrapper<Entity>> get_entities()
+		std::vector<std::reference_wrapper<const Entity>> get_entities() const
 		{
-			return std::vector<std::reference_wrapper<Entity>>(entities.begin(), entities.end());
+			return std::vector<std::reference_wrapper<const Entity>>(entities.begin(), entities.end());
 		}
 
 		///<summary>Get all entities with a certain component.</summary>
-		std::vector<std::reference_wrapper<Entity>> get_entities_with_component(component_typetoken token)
+		std::vector<std::reference_wrapper<const Entity>> get_entities_with_component(component_typetoken token) const
 		{
-			std::vector<std::reference_wrapper<Entity>> result;
+			std::vector<std::reference_wrapper<const Entity>> result;
 			for (auto& e : entities)
 				if (this->has_component(e, token))
 					result.push_back(std::ref(e));
@@ -68,19 +68,19 @@ namespace ecs {
 
 		///<summary>Get components of a specific type.</summary>
 		template<class C>
-		std::vector<std::reference_wrapper<C>> get_components_of_type(component_typetoken token)
+		std::vector<std::reference_wrapper<C>> get_components_of_type(component_typetoken token) const
 		{
 			static_assert(std::is_convertible<C*, Component*>::value, "This function can only retrieve concrete subclasses of Component");
 
 			std::vector<std::reference_wrapper<C>> result;
-			for (auto& c : components[token])
+			for (auto& c : components.at(token))
 				result.push_back(std::ref(*(dynamic_cast<C*>(c.get()))));
 			return result;
 		}
 
 		///<summary>Get specific component of entity</summary>
 		template<class C>
-		C* get_component_of_entity(Entity& entity, component_typetoken token)
+		C* get_component_of_entity(const Entity& entity, component_typetoken token) const
 		{
 			static_assert(std::is_convertible<C*, Component*>::value, "This function can only retrieve concrete subclasses of Component");
 			for (auto& pairs : components)
@@ -92,7 +92,7 @@ namespace ecs {
 
 		///<summary>Get components with a specific entity ID.</summary>
 		template<class C>
-		std::vector<std::reference_wrapper<C>> get_components_of_entity(Entity& entity)
+		std::vector<std::reference_wrapper<C>> get_components_of_entity(const Entity& entity)
 		{
 			static_assert(std::is_convertible<C*, Component*>::value, "This function can only retrieve concrete subclasses of Component");
 			std::vector<std::reference_wrapper<C>> result;
@@ -104,9 +104,9 @@ namespace ecs {
 		}
 
 		///<summary>Checks if entity has component.</summary>
-		bool has_component(Entity& entity, component_typetoken token)
+		bool has_component(const Entity& entity, component_typetoken token) const
 		{
-			for (auto& c : components[token])
+			for (auto& c : components.at(token))
 				if (c->entity == entity)
 					return true;
 			return false;
@@ -123,9 +123,7 @@ namespace ecs {
 		{
 			entities.clear();
 			for (auto& pair : components)
-			{
 				pair.second.clear();
-			}
 			components.clear();
 			systems.clear();
 		}

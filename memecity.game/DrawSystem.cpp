@@ -9,7 +9,7 @@ DrawSystem::DrawSystem(std::weak_ptr<MultimediaManager> multimedia_manager)
 	this->multimedia_manager = multimedia_manager;
 }
 
-void DrawSystem::run(EntityManager& em)
+void DrawSystem::run(EntityManager& em) const
 {
 	auto player_components = em.get_components_of_type<PlayerComponent>(PlayerComponent::COMPONENT_TYPE);
 	auto player_position_component = em.get_component_of_entity<PositionComponent>(player_components[0].get().entity, PositionComponent::COMPONENT_TYPE);

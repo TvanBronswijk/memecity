@@ -14,8 +14,8 @@ private:
 public:
 	static ecs::system_typetoken SYSTEM_TYPE;
 	InputSystem(std::weak_ptr<InputManager> input_manager);
-	void run(ecs::EntityManager& em) override;
-	ecs::system_typetoken get_type_token() override { return InputSystem::SYSTEM_TYPE; }
+	void run(ecs::EntityManager& em) const override;
+	ecs::system_typetoken get_type_token() const override { return InputSystem::SYSTEM_TYPE; }
 };
 
 #endif

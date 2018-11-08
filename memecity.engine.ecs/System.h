@@ -15,10 +15,10 @@ namespace ecs {
 		System(System &&) = delete;
 
 		///<summary>Get a type token.</summary>
-		virtual system_typetoken get_type_token() = 0;
+		virtual system_typetoken get_type_token() const = 0;
 
 		///<summary>Do the activity of the System.</summary>
-		virtual void run(EntityManager &em) = 0;
+		virtual void run(EntityManager &em) const = 0;
 
 		virtual ~System() {}
 	};

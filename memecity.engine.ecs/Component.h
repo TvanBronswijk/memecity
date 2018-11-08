@@ -6,13 +6,13 @@ namespace ecs {
 	using component_typetoken = const char*;
 
 	struct Component {
-		Entity& entity;
-		Component(Entity& e) : entity(e)
+		const Entity& entity;
+		Component(const Entity& e) : entity(e)
 		{	
 		}
 		Component(const Component &) = delete;
 		Component(Component &&) = delete;
-		virtual component_typetoken get_type_token() = 0;
+		virtual component_typetoken get_type_token() const = 0;
 		virtual ~Component() {}
 	};
 };

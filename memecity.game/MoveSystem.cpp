@@ -9,7 +9,7 @@ MoveSystem::MoveSystem() : System()
 
 }
 
-void MoveSystem::run(EntityManager& em)
+void MoveSystem::run(EntityManager& em) const
 {
 	auto components = em.get_components_of_type<VelocityComponent>(VelocityComponent::COMPONENT_TYPE);
 

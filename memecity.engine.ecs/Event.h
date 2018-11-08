@@ -11,22 +11,23 @@ namespace ecs {
 		template<typename TEventArgs>
 		class Event {
 		protected:
-			std::vector<std::tuple<System&, std::function<void(EntityManager&, TEventArgs)>>> subscribers;
+			std::vector<std::function<void(EntityManager&, TEventArgs)>> subscribers;
 		public:
 			Event() {};
 			
 			///<summary>subscribe to an event</summary>
-			virtual void bind(System& system, std::function<void(EntityManager&, TEventArgs)> function)
+			virtual void bind(const System& system, std::function<void(EntityManager&, TEventArgs)> function)
 			{
-				subscribers->add(std::make_tuple(system, function));
+				std::bind(function, system);
+				subscribers.push_back(function);
 			}
 
 			///<summary>Fire the event with args.</summary>
-			virtual void fire(EntityManager& em, TEventArgs ea)
+			virtual void fire(EntityManager& em, TEventArgs ea) const
 			{
 				for (auto sub : subscribers) {
-					auto[system, function] = sub;
-					std::bind(function, std::ref(system))(em, ea);
+					sub(em, ea);
+
 				}
 			}
 

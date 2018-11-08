@@ -8,12 +8,12 @@ ExpSystem::ExpSystem()
 {
 }
 
-void ExpSystem::run(EntityManager& em)
+void ExpSystem::run(EntityManager& em) const
 {
 
 }
 
-void ExpSystem::on_exp_gain(EntityManager& em, int exp)
+void ExpSystem::on_exp_gain(EntityManager& em, int exp) const
 {
 	auto players = em.get_entities_with_component(ExpComponent::COMPONENT_TYPE);
 

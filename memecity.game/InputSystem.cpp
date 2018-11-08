@@ -9,7 +9,7 @@ InputSystem::InputSystem(std::weak_ptr<InputManager> input_manager)
 	this->input_manager = input_manager;
 }
 
-void InputSystem::run(EntityManager& em)
+void InputSystem::run(EntityManager& em) const
 {
 	auto entities = em.get_entities_with_component(PlayerComponent::COMPONENT_TYPE);
 
