@@ -1,47 +1,37 @@
 ﻿#include "InputSystem.h"
 
-std::string InputSystem::SYSTEM_TYPE = "InputSystem";
+using namespace ecs;
 
-InputSystem::InputSystem(std::weak_ptr<InputManager> input_manager)
+system_typetoken InputSystem::SYSTEM_TYPE = "InputSystem";
+
+InputSystem::InputSystem(InputManager &input_manager) : input_manager(input_manager)
 {
-	this->input_manager = input_manager;
 }
 
-void InputSystem::run(EntityManager& em)
+void InputSystem::run(EntityManager& em) const
 {
 	auto entities = em.get_entities_with_component(PlayerComponent::COMPONENT_TYPE);
 
 	for (auto entity : entities)
 	{
-
-		auto velocity_component =
-			dynamic_cast<VelocityComponent*>(em.get_component_of_entity(entity->id, VelocityComponent::COMPONENT_TYPE));
+		auto velocity_component = em.get_component_of_entity<VelocityComponent>(entity.get(), VelocityComponent::COMPONENT_TYPE);
 
 
-		if (this->input_manager.lock()->is_pressed(UP))
+		if (this->input_manager.is_pressed(UP))
 		{
 			velocity_component->y += 5;
 		}
-		if (this->input_manager.lock()->is_pressed(DOWN))
+		if (this->input_manager.is_pressed(DOWN))
 		{
 			velocity_component->y -= 5;
 		}
-		if (this->input_manager.lock()->is_pressed(LEFT))
+		if (this->input_manager.is_pressed(LEFT))
 		{
 			velocity_component->x -= 5;
 		}
-		if (this->input_manager.lock()->is_pressed(RIGHT))
+		if (this->input_manager.is_pressed(RIGHT))
 		{
 			velocity_component->x += 5;
 		}
 	}
-}
-
-std::string InputSystem::get_type()
-{
-	return SYSTEM_TYPE;
-}
-
-void InputSystem::run(EntityManager& em, const EventArgs& e)
-{
 }

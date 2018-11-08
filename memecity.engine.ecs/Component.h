@@ -1,19 +1,21 @@
 #ifndef _COMPONENT_H
 #define  _COMPONENT_H
 #include "Entity.h"
-#include <string>
 
-struct Component {
-	int entity_id;
+namespace ecs {
+	using component_typetoken = const char*;
 
-	Component(Entity* e) 
-	{
-		this->entity_id = e->id;
-	}
-	
-	///<summary>Get the type of the component for filtering.</summary>
-	virtual std::string get_type() = 0;
-	virtual ~Component(){}
+	struct Component {
+		const Entity& entity;
+		Component(const Entity& e) : entity(e)
+		{	
+		}
+		Component(const Component &) = delete;
+		Component(Component &&) = delete;
+		virtual component_typetoken get_type_token() const = 0;
+		virtual ~Component() {}
+	};
 };
+
 
 #endif

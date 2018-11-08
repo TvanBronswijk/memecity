@@ -1,44 +1,37 @@
 #include "ExpSystem.h"
 
-std::string ExpSystem::SYSTEM_TYPE = "ExpSystem";
+using namespace ecs;
+
+system_typetoken ExpSystem::SYSTEM_TYPE = "ExpSystem";
 
 ExpSystem::ExpSystem()
 {
 }
 
-
-ExpSystem::~ExpSystem()
+void ExpSystem::run(EntityManager& em) const
 {
+
 }
 
-
-std::string ExpSystem::get_type()
+void ExpSystem::on_exp_gain(EntityManager& em, int exp) const
 {
-	return SYSTEM_TYPE;
-}
-
-void ExpSystem::run(EntityManager& em)
-{
-}
-
-void ExpSystem::run(EntityManager& em, const EventArgs& e)
-{
-	const auto exp_event_args = dynamic_cast<const ExpEventArgs*>(&e);
 	auto players = em.get_entities_with_component(ExpComponent::COMPONENT_TYPE);
 
 	for (auto & player : players)
 	{
-		auto exp = dynamic_cast<ExpComponent*>(em.get_component_of_entity(player->id, ExpComponent::COMPONENT_TYPE));
-		exp->exp = exp->exp += exp_event_args->exp;
-		if (exp->exp >= exp->next_level)
+		auto exp_component = em.get_component_of_entity<ExpComponent>(player.get(), ExpComponent::COMPONENT_TYPE);
+		exp_component->exp = exp_component->exp += exp;
+		if (exp_component->exp >= exp_component->next_level)
 		{
 			auto stats = em.get_entities_with_component(StatsComponent::COMPONENT_TYPE);
 			for (auto & stat : stats)
 			{
-				auto stats = dynamic_cast<StatsComponent*>(em.get_component_of_entity(stat->id, StatsComponent::COMPONENT_TYPE));
+				StatsComponent* stats = em.get_component_of_entity<StatsComponent>(stat.get(), StatsComponent::COMPONENT_TYPE);
+				if (!stats)
+					continue;
 				stats->strength++;
-				exp->next_level = exp->next_level + exp->next_level / 10;
-				exp->exp = 0;
+				exp_component->next_level = exp_component->next_level + exp_component->next_level / 10;
+				exp_component->exp = 0;
 			}
 		}
 	}

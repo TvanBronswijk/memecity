@@ -1,24 +1,18 @@
 #ifndef _EXP_SYSTEM_H
 #define _EXP_SYSTEM_H
-#include "../memecity.engine.ecs/System.h"
-#include <string>
+#include "../memecity.engine.ecs/ECS.h"
 #include "ExpComponent.h"
-#include "../memecity.engine.ecs/EntityManager.h"
 #include "StatsComponent.h"
-#include "Event.h"
-#include "ExpEventArgs.h"
 
 
-class ExpSystem: public System
+class ExpSystem: public ecs::System
 {
-	static std::string SYSTEM_TYPE;
 public:
-	
+	static ecs::system_typetoken SYSTEM_TYPE;
 	ExpSystem();
-	~ExpSystem();
-	std::string get_type() override;
-	void run(EntityManager& em) override;
-	void run(EntityManager& em, const EventArgs& e) override;
+	void run(ecs::EntityManager& em) const override;
+	void on_exp_gain(ecs::EntityManager& em, int exp) const;
+	ecs::system_typetoken get_type_token() const override { return ExpSystem::SYSTEM_TYPE; }
 };
 
 #endif
