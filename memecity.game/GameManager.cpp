@@ -38,7 +38,7 @@ bool GameManager::init()
 			entity_manager->register_component(new AIComponent(npc));
 			entity_manager->register_component(new VelocityComponent(npc));
 			entity_manager->register_component(new LevelComponent(npc));
-			entity_manager->register_component(new HealthComponent(10,npc));
+			entity_manager->register_component(new HealthComponent(100,npc));
 			entity_manager->register_component(new StatsComponent(npc));
 			PositionComponent* npc_position = new PositionComponent(npc, 10 * i, 10 * i);
 			entity_manager->register_component(npc_position);

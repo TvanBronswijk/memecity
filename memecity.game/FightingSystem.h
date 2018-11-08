@@ -4,6 +4,7 @@
 #include "../memecity.engine.ecs/EntityManager.h"
 #include "AttackEventArgs.h"
 #include "HealthComponent.h"
+#include "AIcomponent.h"
 #include <cstdlib>
 
 class FightingSystem : public System {

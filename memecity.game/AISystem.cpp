@@ -7,16 +7,20 @@ AISystem::AISystem(){
 }
 
 bool AISystem::check_health(EntityManager & em, Component*& element) {
+	AIComponent* AI = dynamic_cast<AIComponent*>(em.get_component_of_entity(element->entity_id, AIComponent::COMPONENT_TYPE));
 	HealthComponent* health = dynamic_cast<HealthComponent*>(em.get_component_of_entity(element->entity_id, HealthComponent::COMPONENT_TYPE));
 	if(health->_health <= 0) {
 		std::cout << "i am dead!!!" << std::endl;
 		return false;
 	}
+	else if (health->_health <= 10) {
+		AI->_state = AI->FLEEING;
+	}
 	return true;
 }
 
-inline int AISystem::random_x(VelocityComponent* velocity) {return (rand() % (2 - -1)) + -1;}
-inline int AISystem::random_y(VelocityComponent* velocity) {return (rand() % (2 - -1)) + -1;}
+int AISystem::random_x(VelocityComponent* velocity) {return (rand() % (2 - -1)) + -1;}
+int AISystem::random_y(VelocityComponent* velocity) {return (rand() % (2 - -1)) + -1;}
 
 std::list <std::pair< int, int >> AISystem::calculate_next_positions(std::pair< int, int >start , std::pair< int, int >end, std::list <std::pair< int, int >> queue) {
 	if (start.first < end.first - range) { start.first += 10; }
@@ -109,13 +113,10 @@ void AISystem::best_first_search(EntityManager & em, PositionComponent* npc_xy) 
 void AISystem::move_random(int element, EntityManager& em) {
 
 	VelocityComponent* velocity = (VelocityComponent*)em.get_component_of_entity(element, VelocityComponent::COMPONENT_TYPE);
-	PositionComponent* xy = (PositionComponent*)em.get_component_of_entity(element, PositionComponent::COMPONENT_TYPE);
 
 	velocity->x += random_x(velocity);
 	velocity->y += random_y(velocity);
 
-	int previousX = xy->x;
-	int previousY = xy->y;
 
 
 	//std::cout << "NPC has Placed with X: " << xy->x << "Y: " << xy->y << std::endl;
@@ -130,7 +131,7 @@ void AISystem::run(EntityManager &em) {
 
 	for (auto & element : vector) {
 		if (check_health(em, element)) {
-			AIComponent* AI = (AIComponent*)element;
+			AIComponent* AI = dynamic_cast<AIComponent*>(em.get_component_of_entity(element->entity_id, AIComponent::COMPONENT_TYPE));
 			PositionComponent* xy = dynamic_cast<PositionComponent*>(em.get_component_of_entity(element->entity_id, PositionComponent::COMPONENT_TYPE));
 			switch (AI->_state)
 			{
