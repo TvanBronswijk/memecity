@@ -57,7 +57,7 @@ void AudioFacade::pause_background_music() const
 
 void AudioFacade::stop_background_music() const
 {
-	if (Mix_PlayingMusic) 
+	if (Mix_PlayingMusic()) 
 	{
 		Mix_HaltMusic();
 	}

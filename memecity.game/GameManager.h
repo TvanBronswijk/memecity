@@ -17,19 +17,20 @@
 #include "AttackEvent.h"
 #include "InteractionEvent.h"
 
-class GameManager : public MemeEngine 
+class GameManager : public MemeEngine
 {
 private:
-	std::unique_ptr<CityGenerator> city_generator;
-	std::unique_ptr<EntityManager> entity_manager;
-	std::shared_ptr<AnimatedCharacter> animated_character;
-	std::shared_ptr<Texture> text;
+	ecs::EntityManager entity_manager;
+	CityGenerator city_generator;
 	InteractionEvent* interaction_event;
 	AttackEvent* attack_event;
 
 protected:
-	bool init() override;
+	void init() override;
 	void handle() override;
+
+public:
+	GameManager();
 };
 
 

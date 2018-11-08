@@ -181,6 +181,8 @@
     </ClCompile>
     <ClCompile Include="ExpComponent.cpp">
       <Filter>Source Files\Components</Filter>
+    <ClCompile Include="StatsComponent.cpp">
+      <Filter>Source Files\Components</Filter>
     </ClCompile>
     <ClCompile Include="ExpSystem.cpp">
       <Filter>Source Files\Systems</Filter>
@@ -220,6 +222,8 @@
     </ClCompile>
     <ClCompile Include="AttackEvent.cpp">
       <Filter>Source Files\Event</Filter>
+    <ClCompile Include="ExpComponent.cpp">
+      <Filter>Source Files\Components</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

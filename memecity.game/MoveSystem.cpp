@@ -1,13 +1,19 @@
 ﻿#include "MoveSystem.h"
 
-std::string MoveSystem::SYSTEM_TYPE = "MoveSystem";
+using namespace ecs;
 
-void MoveSystem::run(EntityManager& em)
+system_typetoken MoveSystem::SYSTEM_TYPE = "MoveSystem";
+
+MoveSystem::MoveSystem() : System() 
+{
+
+}
+
+void MoveSystem::run(EntityManager& em) const
 {
 	auto player_component = em.get_components_of_type(PlayerComponent::COMPONENT_TYPE)[0];
 
-
-	auto components = em.get_components_of_type(VelocityComponent::COMPONENT_TYPE);
+	auto components = em.get_components_of_type<VelocityComponent>(VelocityComponent::COMPONENT_TYPE);
 
 	for (auto velocity_component : components)
 	{
@@ -46,31 +52,29 @@ void MoveSystem::run(EntityManager& em)
 			}
 		}
 
-		if (current_velocity_component->x != 0)
+		if (current_velocity_component.get().x != 0)
 		{
-			current_position->x += current_velocity_component->x;
-			current_position->diffx = current_velocity_component->x;
-			current_velocity_component->x = 0;
+			current_position->x += current_velocity_component.get().x;
+			current_position->diffx = current_velocity_component.get().x;
+			current_velocity_component.get().x = 0;
 		}
 		else
 		{
 			current_position->diffx = 0;
 		}
 
-		if (current_velocity_component->y != 0)
+		if (current_velocity_component.get().y != 0)
 		{
-			current_position->y += current_velocity_component->y;
-			current_position->diffy = current_velocity_component->y;
-			current_velocity_component->y = 0;
+			current_position->y += current_velocity_component.get().y;
+			current_position->diffy = current_velocity_component.get().y;
+			current_velocity_component.get().y = 0;
 		}
 		else
 		{
 			current_position->diffy = 0;
 		}
-		
 	}
 }
-
 
 void MoveSystem::run(EntityManager& em, EventArgs& e)
 {

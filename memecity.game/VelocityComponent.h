@@ -2,15 +2,17 @@
 #define  _VELOCITYCOMPONENT_H
 #include "../memecity.engine.ecs/Component.h"
 
-struct VelocityComponent : public Component
+struct VelocityComponent : public ecs::Component
 {
-	static std::string COMPONENT_TYPE;
-
+	static ecs::component_typetoken COMPONENT_TYPE;
 	float x, y;
-
-	VelocityComponent(Entity* e) : VelocityComponent(e, 0.0f, 0.0f) {};
-	VelocityComponent(Entity* e, float x, float y) : Component(e) { this->x = x; this->y = y; };
-	std::string get_type() override;
+	VelocityComponent(const ecs::Entity& entity) : VelocityComponent(entity, 0.0f, 0.0f) {};
+	VelocityComponent(const ecs::Entity& entity, float x, float y) : ecs::Component(entity) 
+	{ 
+		this->x = x; 
+		this->y = y; 
+	};
+	ecs::component_typetoken get_type_token() const override { return VelocityComponent::COMPONENT_TYPE; }
 };
 
 #endif

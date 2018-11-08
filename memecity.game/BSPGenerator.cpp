@@ -2,7 +2,7 @@
 
 std::unique_ptr<City> BSPGenerator::generate(int w, int h)
 {
-	srand(time(NULL));
+	srand(time(0));
 	Node* root = new Node(0, 0, w, h);
 
 	if (rand() % 2 == 0)
