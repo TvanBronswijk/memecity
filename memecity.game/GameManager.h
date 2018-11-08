@@ -12,7 +12,7 @@
 #include "ExpSystem.h"
 #include "StatsComponent.h"
 
-class GameManager : public MemeEngine 
+class GameManager : public MemeEngine
 {
 private:
 	std::unique_ptr<CityGenerator> city_generator;
@@ -22,8 +22,11 @@ private:
 	EntityManager em;
 
 protected:
-	bool init() override;
+	void init() override;
 	void handle() override;
+
+public:
+	GameManager();
 };
 
 

@@ -13,9 +13,9 @@ class DrawSystem : public System
 	static std::string SYSTEM_TYPE;
 
 private:
-	std::weak_ptr<MultimediaManager> multimedia_manager;	
+	MultimediaManager &multimedia_manager;
 public:
-	DrawSystem(std::weak_ptr<MultimediaManager> multimedia_manager);
+	DrawSystem(MultimediaManager &multimedia_manager);
 	std::string get_type() override;
 	void run(EntityManager& em) override;
 	void run(EntityManager& em, EventArgs& e) override;

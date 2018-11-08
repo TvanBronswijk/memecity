@@ -4,9 +4,8 @@
 
 std::string InputSystem::SYSTEM_TYPE = "InputSystem";
 
-InputSystem::InputSystem(std::weak_ptr<InputManager> input_manager)
+InputSystem::InputSystem(InputManager &input_manager) : input_manager(input_manager)
 {
-	this->input_manager = input_manager;
 }
 
 void InputSystem::run(EntityManager& em)
@@ -20,19 +19,19 @@ void InputSystem::run(EntityManager& em)
 			dynamic_cast<VelocityComponent*>(em.get_component_of_entity(entity->id, VelocityComponent::COMPONENT_TYPE));
 
 
-		if (this->input_manager.lock()->is_pressed(UP))
+		if (this->input_manager.is_pressed(UP))
 		{
 			velocity_component->y += 5;
 		}
-		if (this->input_manager.lock()->is_pressed(DOWN))
+		if (this->input_manager.is_pressed(DOWN))
 		{
 			velocity_component->y -= 5;
 		}
-		if (this->input_manager.lock()->is_pressed(LEFT))
+		if (this->input_manager.is_pressed(LEFT))
 		{
 			velocity_component->x -= 5;
 		}
-		if (this->input_manager.lock()->is_pressed(RIGHT))
+		if (this->input_manager.is_pressed(RIGHT))
 		{
 			velocity_component->x += 5;
 		}
