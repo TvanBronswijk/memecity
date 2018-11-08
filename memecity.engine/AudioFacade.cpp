@@ -1,6 +1,6 @@
 ﻿#include "AudioFacade.h"
 
-bool AudioFacade::init()
+bool AudioFacade::init() const
 {
 	if (SDL_Init(SDL_INIT_AUDIO) < 0) {
 		std::cout << "Audio Initialization error: " << SDL_GetError() << std::endl;
@@ -43,7 +43,7 @@ void AudioFacade::play_background_music(Mix_Music* music, int volume) const
 
 }
 
-void AudioFacade::pause_background_music()
+void AudioFacade::pause_background_music() const
 {
 	if (Mix_PausedMusic() == 1)
 	{
@@ -55,7 +55,7 @@ void AudioFacade::pause_background_music()
 	}
 }
 
-void AudioFacade::stop_background_music()
+void AudioFacade::stop_background_music() const
 {
 	if (Mix_PlayingMusic) 
 	{
@@ -63,7 +63,7 @@ void AudioFacade::stop_background_music()
 	}
 }
 
-void AudioFacade::close_audio()
+void AudioFacade::close_audio() const
 {
 	Mix_Quit();
 }

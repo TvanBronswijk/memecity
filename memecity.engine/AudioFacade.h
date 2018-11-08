@@ -9,7 +9,7 @@ class AudioFacade
 {
 public:
 	///<summary>Initializes the SDL Audio.</summary>
-	bool init();
+	bool init() const;
 
 	///<summary>Open the SDL audio mixer with a given audio format.</summary>
 	void open_audio(int frequency, int channels, int chunksize) const;
@@ -24,13 +24,13 @@ public:
 	void play_background_music(Mix_Music* music, int volume) const;
 
 	///<summary>If the music is paused, resume. Otherwise pause.</summary>
-	void pause_background_music();
+	void pause_background_music() const;
 
 	///<summary>If background music is playing, stop it.</summary>
-	void stop_background_music();
+	void stop_background_music() const;
 
 	///<summary>Cleanup audio</summary>
-	void close_audio();
+	void close_audio() const;
 };
 
 #endif
