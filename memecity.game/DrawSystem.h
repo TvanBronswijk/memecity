@@ -1,6 +1,6 @@
 ﻿#ifndef _DRAWSYSTEM_H
 #define _DRAWSYSTEM_H
-#include "../memecity.engine.ecs/ECS.h"
+#include <ECS.h>
 #include <vector>
 #include "MultimediaManager.h"
 #include "DrawableComponent.h"

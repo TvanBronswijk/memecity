@@ -1,6 +1,6 @@
 ﻿#ifndef _PLAYERCOMPONENT_H
 #define  _PLAYERCOMPONENT_H
-#include "../memecity.engine.ecs/Component.h"
+#include <ECS.h>
 
 struct PlayerComponent : public ecs::Component
 {

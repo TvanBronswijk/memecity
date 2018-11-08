@@ -1,6 +1,6 @@
 ﻿#ifndef _DRAWABLECOMPONENT_H
 #define _DRAWABLECOMPONENT_H
-#include "../memecity.engine.ecs/Component.h"
+#include <ECS.h>
 #include "Texture.h"
 
 struct DrawableComponent : public ecs::Component
