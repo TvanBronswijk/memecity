@@ -15,7 +15,7 @@ public:
 	void open_audio(int frequency, int channels, int chunksize) const;
 
 	///<summary>Play a sound effect with a given amount of repeats, volume and the selected channel.</summary>
-	void play_sound_effect(Mix_Chunk* sound, int repeats, int volume,  int channel = 0) const;
+	void play_sound_effect(Mix_Chunk* sound, int repeats, int volume, int channel = 0) const;
 
 	///<summary>Checks if audio is playing on the given channel.</summary>
 	bool is_playing(int channel) const;
