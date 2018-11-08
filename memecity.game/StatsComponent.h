@@ -1,6 +1,6 @@
 #ifndef _STATS_COMPONENT_H
 #define _STATS_COMPONENT_H
-#include "../memecity.engine.ecs/Component.h"
+#include <ECS.h>
 #include <string>
 
 struct StatsComponent: public ecs::Component

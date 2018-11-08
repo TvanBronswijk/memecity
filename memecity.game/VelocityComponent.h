@@ -1,6 +1,6 @@
 ﻿#ifndef _VELOCITYCOMPONENT_H
 #define  _VELOCITYCOMPONENT_H
-#include "../memecity.engine.ecs/Component.h"
+#include <ECS.h>
 
 struct VelocityComponent : public ecs::Component
 {

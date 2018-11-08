@@ -1,10 +1,9 @@
 #ifndef _CITY_GENERATOR_H
 #define _CITY_GENERATOR_H
-#include "../memecity.engine.ecs/ECS.h"
+#include <ECS.h>
 #include "MultimediaManager.h"
 #include "GeneratorStrategy.h"
 #include "BSPGenerator.h"
-#include "DrawableComponent.h"
 
 class CityGenerator {
 private:
