@@ -2,12 +2,7 @@
 
 using namespace ecs;
 
-CityGenerator::CityGenerator()
-{
-	this->strategy = std::make_unique<BSPGenerator>();
-}
-
-void CityGenerator::generate(int w, int h, EntityManager& em, MultimediaManager &multimedia_manager)
+void generate::CityGenerator::generate(int w, int h, EntityManager& em, MultimediaManager &multimedia_manager)
 {
 	auto c = this->strategy->generate(w, h);
 

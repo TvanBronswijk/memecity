@@ -1,9 +1,9 @@
 #include "BSPGenerator.h"
 
-std::unique_ptr<City> BSPGenerator::generate(int w, int h)
+std::unique_ptr<generate::models::City> generate::strategy::bsp::BSPGenerator::generate(int w, int h)
 {
 	srand(time(0));
-	Node* root = new Node(0, 0, w, h);
+	generate::strategy::bsp::Node* root = new generate::strategy::bsp::Node(0, 0, w, h);
 
 	if (rand() % 2 == 0)
 		this->split_h(root);
@@ -11,7 +11,7 @@ std::unique_ptr<City> BSPGenerator::generate(int w, int h)
 		this->split_v(root);
 
 	auto nodes = this->get_leaves(root);
-	auto city = std::make_unique<City>(w, h);
+	auto city = std::make_unique<generate::models::City>(w, h);
 	for (int x = 0; x < w; x++)
 		for (int y = 0; y < h; y++)
 			city->coord(x, y) = '-';
@@ -23,33 +23,33 @@ std::unique_ptr<City> BSPGenerator::generate(int w, int h)
 	return city;
 }
 
-void BSPGenerator::split_h(Node* n) 
+void generate::strategy::bsp::BSPGenerator::split_h(generate::strategy::bsp::Node* n)
 {
 	if (n->h - this->MIN_NODE_HEIGHT < this->MIN_NODE_HEIGHT)
 		return;
 	
 	int split = this->MIN_NODE_HEIGHT + rand() % (n->h - this->MIN_NODE_HEIGHT);
-	n->left =	new Node(n->x, n->y,		n->w, split);
-	n->right =	new Node(n->x, n->left->y2, n->w, n->h - split);
+	n->left =	new generate::strategy::bsp::Node(n->x, n->y,		n->w, split);
+	n->right =	new generate::strategy::bsp::Node(n->x, n->left->y2, n->w, n->h - split);
 
 	this->split_v(n->left);
 	this->split_v(n->right);
 }
 
-void BSPGenerator::split_v(Node* n)
+void generate::strategy::bsp::BSPGenerator::split_v(generate::strategy::bsp::Node* n)
 {
 	if (n->w - this->MIN_NODE_WIDTH < this->MIN_NODE_WIDTH)
 		return;
 
 	int split = this->MIN_NODE_WIDTH + (rand() % (n->w - this->MIN_NODE_WIDTH));
-	n->left =	new Node(n->x,			n->y, split,		n->h);
-	n->right =	new Node(n->left->x2,	n->y, n->w - split, n->h);
+	n->left =	new generate::strategy::bsp::Node(n->x,			n->y, split,		n->h);
+	n->right =	new generate::strategy::bsp::Node(n->left->x2,	n->y, n->w - split, n->h);
 	
 	this->split_h(n->left);
 	this->split_h(n->right);
 }
 
-std::vector<Node*> BSPGenerator::get_leaves(Node* n) 
+std::vector<generate::strategy::bsp::Node*> generate::strategy::bsp::BSPGenerator::get_leaves(generate::strategy::bsp::Node* n)
 {
 	if (!(n->has_left() && n->has_right()))
 	{
@@ -63,7 +63,7 @@ std::vector<Node*> BSPGenerator::get_leaves(Node* n)
 	return left;
 }
 
-void BSPGenerator::fill_node(Node* n, std::unique_ptr<City> &c)
+void generate::strategy::bsp::BSPGenerator::fill_node(generate::strategy::bsp::Node* n, std::unique_ptr<generate::models::City> &c)
 {
 	int r = rand() % 100;
 	if (r > 90)
@@ -74,7 +74,7 @@ void BSPGenerator::fill_node(Node* n, std::unique_ptr<City> &c)
 		fill_building(n, c);
 }
 
-void BSPGenerator::fill_building(Node * n, std::unique_ptr<City> &c)
+void generate::strategy::bsp::BSPGenerator::fill_building(generate::strategy::bsp::Node * n, std::unique_ptr<generate::models::City> &c)
 {
 	int r_size = 1;
 	for (int x = n->x; x <= n->x2; x++)
@@ -112,7 +112,7 @@ void BSPGenerator::fill_building(Node * n, std::unique_ptr<City> &c)
 
 }
 
-void BSPGenerator::fill_water(Node * n, std::unique_ptr<City> &c)
+void generate::strategy::bsp::BSPGenerator::fill_water(Node * n, std::unique_ptr<generate::models::City> &c)
 {
 	int WATER_GEN = this->MIN_NODE_HEIGHT * 2 + this->MIN_NODE_WIDTH * 2;
 	for (int x = n->x; x <= n->x2; x++)
@@ -149,13 +149,13 @@ void BSPGenerator::fill_water(Node * n, std::unique_ptr<City> &c)
 	}
 }
 
-void BSPGenerator::fill_empty(Node * n, std::unique_ptr<City> &c)
+void generate::strategy::bsp::BSPGenerator::fill_empty(generate::strategy::bsp::Node * n, std::unique_ptr<generate::models::City> &c)
 {
 	for (int x = n->x; x <= n->x2; x++)
 		for (int y = n->y; y <= n->y2; y++)
 			c->coord(x, y) = '-';
 }
 
-void BSPGenerator::fill_prefab(Node * n, std::unique_ptr<City> &c)
+void generate::strategy::bsp::BSPGenerator::fill_prefab(generate::strategy::bsp::Node * n, std::unique_ptr<generate::models::City> &c)
 {
 }

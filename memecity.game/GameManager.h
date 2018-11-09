@@ -16,7 +16,7 @@ class GameManager : public MemeEngine
 {
 private:
 	ecs::EntityManager entity_manager;
-	CityGenerator city_generator;
+	generate::CityGenerator city_generator;
 
 protected:
 	void init() override;
