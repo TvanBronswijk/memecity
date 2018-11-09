@@ -1,6 +1,6 @@
 #ifndef _EXP_SYSTEM_H
 #define _EXP_SYSTEM_H
-#include "../memecity.engine.ecs/ECS.h"
+#include <ECS.h>
 #include "ExpComponent.h"
 #include "StatsComponent.h"
 

@@ -4,7 +4,6 @@
 #include "MultimediaManager.h"
 #include "GeneratorStrategy.h"
 #include "BSPGenerator.h"
-#include "DrawableComponent.h"
 
 namespace generate {
 	class CityGenerator {

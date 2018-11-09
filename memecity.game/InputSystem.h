@@ -1,7 +1,6 @@
 ﻿#ifndef _INPUTSYSTEM_H
 #define  _INPUTSYSTEM_H
-#include "../memecity.engine.ecs/System.h"
-#include "../memecity.engine.ecs/EntityManager.h"
+#include <ECS.h>
 #include "InputManager.h"
 #include "PlayerComponent.h"
 #include "VelocityComponent.h"

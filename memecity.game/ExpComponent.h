@@ -1,6 +1,6 @@
 #ifndef _EXP_COMPONENT_H
 #define _EXP_COMPONENT_H
-#include "../memecity.engine.ecs/Component.h"
+#include <ECS.h>
 
 struct ExpComponent: public ecs::Component
 {

@@ -1,5 +1,7 @@
 #include "CityGenerator.h"
 
+#include "DrawableComponent.h"
+
 using namespace ecs;
 
 void generate::CityGenerator::generate(int w, int h, EntityManager& em, MultimediaManager &multimedia_manager)
@@ -13,8 +15,8 @@ void generate::CityGenerator::generate(int w, int h, EntityManager& em, Multimed
 			std::cout << character;
 			auto& entity = em.create_entity();
 			auto& drawable_component = em.create_component<DrawableComponent>(entity);
-			auto filename = "purple.bmp";
-
+			
+			std::string filename;
 			switch (character)
 			{
 			case  '-':

@@ -1,6 +1,6 @@
 ﻿#ifndef _POSITIONCOMPONENT_H
 #define  _POSITIONCOMPONENT_H
-#include "../memecity.engine.ecs/Component.h"
+#include <ECS.h>
 
 struct PositionComponent : public ecs::Component
 {
