@@ -1,17 +1,14 @@
 ﻿#ifndef _DRAWABLECOMPONENT_H
 #define _DRAWABLECOMPONENT_H
-
+#include <ECS.h>
 #include "Texture.h"
-#include "../memecity.engine.ecs/Component.h"
 
-struct DrawableComponent : public Component
+struct DrawableComponent : public ecs::Component
 {
-	static std::string COMPONENT_TYPE;
-
-public:
-	std::string get_type() override;
-	std::shared_ptr<Texture> texture;
-	DrawableComponent(Entity* entity) : Component(entity){};
+	static ecs::component_typetoken COMPONENT_TYPE;
+	std::shared_ptr<Texture>  texture;
+	DrawableComponent(const ecs::Entity& entity) : ecs::Component(entity){};
+	ecs::component_typetoken get_type_token() const override { return DrawableComponent::COMPONENT_TYPE; }
 };
 
 #endif

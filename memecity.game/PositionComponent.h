@@ -1,16 +1,20 @@
 ﻿#ifndef _POSITIONCOMPONENT_H
 #define  _POSITIONCOMPONENT_H
-#include "../memecity.engine.ecs/Component.h"
+#include <ECS.h>
 
-struct PositionComponent : public Component
+struct PositionComponent : public ecs::Component
 {
-	static std::string COMPONENT_TYPE;
-
+	static ecs::component_typetoken COMPONENT_TYPE;
 	float x, y, diffx, diffy;
-
-	PositionComponent(Entity* e) : PositionComponent(e, 0.0f, 0.0f ) {};
-	PositionComponent(Entity* e, float x, float y) : Component(e) { this->x = x; this->y = y; this->diffx = 0.0f; this->diffy = 0.0f; };
-	std::string get_type() override;
+	PositionComponent(const ecs::Entity& entity) : PositionComponent(entity, 0.0f, 0.0f ) {};
+	PositionComponent(const ecs::Entity& entity, float x, float y) : ecs::Component(entity) 
+	{ 
+		this->x = x; 
+		this->y = y; 
+		this->diffx = 0.0f; 
+		this->diffy = 0.0f; 
+	};
+	ecs::component_typetoken get_type_token() const override { return PositionComponent::COMPONENT_TYPE; }
 };
 
 #endif

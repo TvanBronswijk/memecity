@@ -10,7 +10,7 @@ void InputManager::update()
 	input_facade->update();
 }
 
-bool InputManager::is_pressed(const InputKeys key) const
+bool InputManager::is_pressed(InputKeys key) const
 {
 	return input_facade->is_pressed(key);
 }

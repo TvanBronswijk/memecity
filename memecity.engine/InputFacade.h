@@ -8,7 +8,7 @@ class InputFacade
 {
 private:
 	SDL_Event event;
-	const Uint8 *state = SDL_GetKeyboardState(nullptr);
+	const std::uint8_t *state = SDL_GetKeyboardState(nullptr);
 	bool quit_pressed = false;
 
 public:

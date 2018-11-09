@@ -1,11 +1,15 @@
 #include "CityGenerator.h"
 
+#include "DrawableComponent.h"
+
+using namespace ecs;
+
 CityGenerator::CityGenerator()
 {
 	this->strategy = std::make_unique<BSPGenerator>();
 }
 
-void CityGenerator::generate(int w, int h, std::unique_ptr<EntityManager> &em, std::shared_ptr<MultimediaManager> multimedia_manager)
+void CityGenerator::generate(int w, int h, EntityManager& em, MultimediaManager &multimedia_manager)
 {
 	auto c = this->strategy->generate(w, h);
 
@@ -14,10 +18,10 @@ void CityGenerator::generate(int w, int h, std::unique_ptr<EntityManager> &em, s
 			auto character = c->coord(x, y);
 
 			std::cout << character;
-			auto entity = em->create_entity();
-			auto drawable_component = new DrawableComponent(entity);
-			auto filename = "purple.bmp";
-
+			auto& entity = em.create_entity();
+			auto& drawable_component = em.create_component<DrawableComponent>(entity);
+			
+			std::string filename;
 			switch (character)
 			{
 			case  '-':
@@ -33,11 +37,9 @@ void CityGenerator::generate(int w, int h, std::unique_ptr<EntityManager> &em, s
 				filename = "green.bmp";
 				break;
 			}
-			auto texture = multimedia_manager->get_texture(filename);
+			auto texture = multimedia_manager.get_texture(filename);
 			texture->set_position({ x * 64.0f, y * 64.0f });
-			drawable_component->texture = texture;
-
-			em->register_component(drawable_component);
+			drawable_component.texture = texture;
 		}
 		std::cout << std::endl;
 	}
