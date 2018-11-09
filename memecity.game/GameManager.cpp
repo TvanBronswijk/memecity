@@ -25,8 +25,8 @@ void GameManager::init()
 
 	auto& position_component = entity_manager.create_component<PositionComponent>(entity, multimedia_manager.get_screen_width() / 2, multimedia_manager.get_screen_height() / 2);
 	auto& d_component = entity_manager.create_component<DrawableComponent>(entity);
-	
-	const auto animated_texture = multimedia_manager.get_animated_texture(timer.get(), "SpriteSheet.png", 0, 0, 48, 48, 4, 0.5f, AnimatedTexture::AnimationDirection::vertical);
+
+	const auto animated_texture = multimedia_manager.get_animated_texture(*timer, "SpriteSheet.png", 0, 0, 48, 48, 4, 0.25f, AnimatedTexture::AnimationDirection::vertical);
 	d_component.texture = animated_texture;
 	d_component.texture->set_position({ position_component.x, position_component.y });
 

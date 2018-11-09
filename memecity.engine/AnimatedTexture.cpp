@@ -1,9 +1,7 @@
 #include "AnimatedTexture.h"
 
-AnimatedTexture::AnimatedTexture(TimerFacade *timer_facade, std::string filename, int x, int y,
-                                     const int w, const int h, const int frame_count, const float animation_speed, const AnimationDirection direction) : Texture(filename, x, y, w, h)
-{
-	this->timer_facade = timer_facade;
+AnimatedTexture::AnimatedTexture(TimerFacade &timer_facade, std::string filename, int x, int y,
+	const int w, const int h, const int frame_count, const float animation_speed, const AnimationDirection direction) : Texture(filename, x, y, w, h), timer_facade(timer_facade) {
 	this->direction = Direction::down;
 
 	start_x = x;
@@ -28,7 +26,7 @@ void AnimatedTexture::update()
 {
 	if (direction != Direction::idle)
 	{
-		animation_timer += timer_facade->get_delta_time();
+		animation_timer += timer_facade.get_delta_time();
 		if (animation_timer >= animation_speed)
 		{
 			animation_timer -= animation_speed;

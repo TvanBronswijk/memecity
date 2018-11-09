@@ -12,7 +12,7 @@ public:
 	enum class Direction { down, left, up, right, idle };
 
 private:
-	TimerFacade *timer_facade;
+	TimerFacade &timer_facade;
 	AnimationDirection animation_direction;
 	Direction direction;
 
@@ -27,7 +27,7 @@ private:
 	float time_per_frame;
 
 public:	
-	AnimatedTexture(TimerFacade *timer_facade, std::string filename, int x, int y, int w, int h, int frame_count, float animation_speed, AnimationDirection direction);
+	AnimatedTexture(TimerFacade &timer_facade, std::string filename, int x, int y, int w, int h, int frame_count, float animation_speed, AnimationDirection direction);
 	~AnimatedTexture();
 	void set_direction(Direction direction);
 	void update();
