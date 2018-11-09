@@ -7,7 +7,6 @@ system_typetoken AnimationSystem::SYSTEM_TYPE = "AnimationSystem";
 void AnimationSystem::run(ecs::EntityManager& em) const
 {
 	auto animation_components = em.get_components_of_type<AnimationComponent>(AnimationComponent::COMPONENT_TYPE);
-
 	for (auto animation_component : animation_components)
 	{	
 		const auto current_position = em.get_component_of_entity<PositionComponent>(animation_component.get().entity, PositionComponent::COMPONENT_TYPE);

@@ -1,17 +1,6 @@
 #include "GameManager.h"
 
-#include "DrawSystem.h"
-#include "InputSystem.h"
-#include "MoveSystem.h"
-#include "ExpSystem.h"
-#include "PlayerComponent.h"
-#include "ExpComponent.h"
-#include "StatsComponent.h"
-#include "AnimationSystem.h"
-
-GameManager::GameManager()
-{
-}
+GameManager::GameManager() = default;
 
 void GameManager::init()
 {

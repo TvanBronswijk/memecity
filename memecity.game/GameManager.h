@@ -4,6 +4,12 @@
 #include "MemeEngine.h"
 #include <ECS.h>
 #include "CityGenerator.h"
+#include "DrawSystem.h"
+#include "InputSystem.h"
+#include "MoveSystem.h"
+#include "PlayerComponent.h"
+#include "StatsComponent.h"
+#include "AnimationSystem.h"
 
 class GameManager : public MemeEngine
 {
