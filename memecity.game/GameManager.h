@@ -2,7 +2,7 @@
 #define _GAME_MANAGER_H
 #include "MemeEngine.h"
 #include <ECS.h>
-#include "CityGenerator.h"
+#include "Generate\CityGenerator.h"
 
 class GameManager : public MemeEngine
 {

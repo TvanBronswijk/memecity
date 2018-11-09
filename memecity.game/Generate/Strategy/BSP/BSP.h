@@ -3,7 +3,7 @@
 #include <vector>
 #include <iostream>
 #include <time.h>
-#include "GeneratorStrategy.h"
+#include "..\Strategy.h"
 
 namespace generate {
 	namespace strategy {
@@ -31,7 +31,7 @@ namespace generate {
 				}
 			};
 
-			class BSPGenerator : public GeneratorStrategy {
+			class BSP : public generate::strategy::Strategy {
 			private:
 				const static int MIN_NODE_WIDTH = 8;
 				const static int MIN_NODE_HEIGHT = 8;

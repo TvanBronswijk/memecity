@@ -21,13 +21,13 @@
   <ItemGroup>
     <ClInclude Include="ExpComponent.h" />
     <ClInclude Include="ExpSystem.h" />
-    <ClInclude Include="City.h" />
-    <ClInclude Include="BSPGenerator.h" />
-    <ClInclude Include="CityGenerator.h" />
+    <ClInclude Include="Generate\Models\Models.h" />
+    <ClInclude Include="Generate\Strategy\BSP\BSP.h" />
+    <ClInclude Include="Generate\CityGenerator.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="DrawableComponent.h" />
     <ClInclude Include="DrawSystem.h" />
-    <ClInclude Include="GeneratorStrategy.h" />
+    <ClInclude Include="Generate\Strategy\Strategy.h" />
     <ClInclude Include="PlayerComponent.h" />
     <ClInclude Include="InputSystem.h" />
     <ClInclude Include="MoveSystem.h" />
@@ -36,8 +36,8 @@
     <ClInclude Include="StatsComponent.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="BSPGenerator.cpp" />
-    <ClCompile Include="CityGenerator.cpp" />
+    <ClCompile Include="Generate\Strategy\BSP\BSP.cpp" />
+    <ClCompile Include="Generate\CityGenerator.cpp" />
     <ClCompile Include="ExpComponent.cpp" />
     <ClCompile Include="ExpSystem.cpp" />
     <ClCompile Include="GameManager.cpp" />

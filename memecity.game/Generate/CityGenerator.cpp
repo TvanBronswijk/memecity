@@ -1,5 +1,5 @@
 #include "CityGenerator.h"
-#include "DrawableComponent.h"
+#include "..\DrawableComponent.h"
 
 using namespace ecs;
 

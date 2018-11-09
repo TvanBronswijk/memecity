@@ -63,18 +63,6 @@
     <ClInclude Include="DrawSystem.h">
       <Filter>Header Files\Systems</Filter>
     </ClInclude>
-    <ClInclude Include="City.h">
-      <Filter>Header Files\City\Models</Filter>
-    </ClInclude>
-    <ClInclude Include="CityGenerator.h">
-      <Filter>Header Files\City</Filter>
-    </ClInclude>
-    <ClInclude Include="GeneratorStrategy.h">
-      <Filter>Header Files\City\Strategy</Filter>
-    </ClInclude>
-    <ClInclude Include="BSPGenerator.h">
-      <Filter>Header Files\City\Strategy</Filter>
-    </ClInclude>
     <ClInclude Include="PositionComponent.h">
       <Filter>Header Files\Components</Filter>
     </ClInclude>
@@ -99,6 +87,18 @@
     <ClInclude Include="StatsComponent.h">
       <Filter>Header Files\Components</Filter>
     </ClInclude>
+    <ClInclude Include="Generate\CityGenerator.h">
+      <Filter>Header Files\City</Filter>
+    </ClInclude>
+    <ClInclude Include="Generate\Strategy\Strategy.h">
+      <Filter>Header Files\City\Strategy</Filter>
+    </ClInclude>
+    <ClInclude Include="Generate\Strategy\BSP\BSP.h">
+      <Filter>Header Files\City\Strategy</Filter>
+    </ClInclude>
+    <ClInclude Include="Generate\Models\Models.h">
+      <Filter>Header Files\City\Models</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -112,12 +112,6 @@
     </ClCompile>
     <ClCompile Include="DrawSystem.cpp">
       <Filter>Source Files\Systems</Filter>
-    </ClCompile>
-    <ClCompile Include="BSPGenerator.cpp">
-      <Filter>Source Files\City\Strategy</Filter>
-    </ClCompile>
-    <ClCompile Include="CityGenerator.cpp">
-      <Filter>Source Files\City</Filter>
     </ClCompile>
     <ClCompile Include="PositionComponent.cpp">
       <Filter>Source Files\Components</Filter>
@@ -142,6 +136,12 @@
     </ClCompile>
     <ClCompile Include="ExpComponent.cpp">
       <Filter>Source Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Generate\CityGenerator.cpp">
+      <Filter>Source Files\City</Filter>
+    </ClCompile>
+    <ClCompile Include="Generate\Strategy\BSP\BSP.cpp">
+      <Filter>Source Files\City\Strategy</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

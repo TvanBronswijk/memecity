@@ -1,6 +1,6 @@
-#include "BSPGenerator.h"
+#include "BSP.h"
 
-generate::models::City generate::strategy::bsp::BSPGenerator::generate(int w, int h) const
+generate::models::City generate::strategy::bsp::BSP::generate(int w, int h) const
 {
 	srand(time(0));
 	generate::strategy::bsp::Node root(0, 0, w, h);
@@ -22,7 +22,7 @@ generate::models::City generate::strategy::bsp::BSPGenerator::generate(int w, in
 	return std::move(city);
 }
 
-void generate::strategy::bsp::BSPGenerator::split_h(generate::strategy::bsp::Node& n) const
+void generate::strategy::bsp::BSP::split_h(generate::strategy::bsp::Node& n) const
 {
 	if (n.h - this->MIN_NODE_HEIGHT < this->MIN_NODE_HEIGHT)
 		return;
@@ -35,7 +35,7 @@ void generate::strategy::bsp::BSPGenerator::split_h(generate::strategy::bsp::Nod
 	this->split_v(*n.right);
 }
 
-void generate::strategy::bsp::BSPGenerator::split_v(generate::strategy::bsp::Node& n) const
+void generate::strategy::bsp::BSP::split_v(generate::strategy::bsp::Node& n) const
 {
 	if (n.w - this->MIN_NODE_WIDTH < this->MIN_NODE_WIDTH)
 		return;
@@ -48,7 +48,7 @@ void generate::strategy::bsp::BSPGenerator::split_v(generate::strategy::bsp::Nod
 	this->split_h(*n.right);
 }
 
-void generate::strategy::bsp::BSPGenerator::fill_node(generate::models::City &c, const generate::strategy::bsp::Node& n) const
+void generate::strategy::bsp::BSP::fill_node(generate::models::City &c, const generate::strategy::bsp::Node& n) const
 {
 	int r = rand() % 100;
 	if (r > 90)
@@ -59,7 +59,7 @@ void generate::strategy::bsp::BSPGenerator::fill_node(generate::models::City &c,
 		fill_building(c, n);
 }
 
-void generate::strategy::bsp::BSPGenerator::fill_building(generate::models::City &c, const generate::strategy::bsp::Node& n) const
+void generate::strategy::bsp::BSP::fill_building(generate::models::City &c, const generate::strategy::bsp::Node& n) const
 {
 	int r_size = 1;
 	for (int x = n.x; x <= n.x2; x++)
@@ -97,7 +97,7 @@ void generate::strategy::bsp::BSPGenerator::fill_building(generate::models::City
 
 }
 
-void generate::strategy::bsp::BSPGenerator::fill_water(generate::models::City &c, const generate::strategy::bsp::Node& n) const
+void generate::strategy::bsp::BSP::fill_water(generate::models::City &c, const generate::strategy::bsp::Node& n) const
 {
 	int WATER_GEN = this->MIN_NODE_HEIGHT * 2 + this->MIN_NODE_WIDTH * 2;
 	for (int x = n.x; x <= n.x2; x++)
@@ -134,13 +134,13 @@ void generate::strategy::bsp::BSPGenerator::fill_water(generate::models::City &c
 	}
 }
 
-void generate::strategy::bsp::BSPGenerator::fill_empty(generate::models::City &c, const generate::strategy::bsp::Node& n) const
+void generate::strategy::bsp::BSP::fill_empty(generate::models::City &c, const generate::strategy::bsp::Node& n) const
 {
 	for (int x = n.x; x <= n.x2; x++)
 		for (int y = n.y; y <= n.y2; y++)
 			c.coord(x, y) = '-';
 }
 
-void generate::strategy::bsp::BSPGenerator::fill_prefab(generate::models::City &c, const generate::strategy::bsp::Node& n) const
+void generate::strategy::bsp::BSP::fill_prefab(generate::models::City &c, const generate::strategy::bsp::Node& n) const
 {
 }
