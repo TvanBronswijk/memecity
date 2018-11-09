@@ -13,8 +13,8 @@ namespace ecs {
 		protected:
 			std::vector<std::function<void(EntityManager&, TEventArgs)>> subscribers;
 		public:
-			Event() {};
-			
+			Event() = default;
+
 			///<summary>subscribe to an event</summary>
 			virtual void bind(std::function<void(EntityManager&, TEventArgs)> function)
 			{

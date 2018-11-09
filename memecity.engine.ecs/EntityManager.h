@@ -17,13 +17,11 @@ namespace ecs {
 		std::map<system_typetoken, std::unique_ptr<System>> systems;
 
 	public:
-		EntityManager() {}
-
 		///<summary>Creates a new entity with an unused ID.</summary>
 		const Entity& create_entity()
 		{
-			entities.push_back(Entity(++last_id));
-			return entities[last_id];
+			entities.emplace_back(++last_id);
+			return entities.back();
 		}
 
 		///<summary>Register a component to the EntityManager.</summary>
