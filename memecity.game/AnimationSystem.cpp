@@ -1,33 +1,30 @@
 ﻿#include "AnimationSystem.h"
 
-std::string const AnimationSystem::SYSTEM_TYPE = "AnimationSystem";
+using namespace ecs;
 
-std::string AnimationSystem::get_type()
-{
-	return SYSTEM_TYPE;
-}
+system_typetoken AnimationSystem::SYSTEM_TYPE = "AnimationSystem";
 
-void AnimationSystem::run(EntityManager& em)
+void AnimationSystem::run(ecs::EntityManager& em) const
 {
-	auto animation_components = em.get_components_of_type(AnimationComponent::COMPONENT_TYPE);
+	auto animation_components = em.get_components_of_type<AnimationComponent>(AnimationComponent::COMPONENT_TYPE);
 
 	for (auto animation_component : animation_components)
 	{	
-		const auto current_position = dynamic_cast<PositionComponent*>(em.get_component_of_entity(animation_component->entity_id, PositionComponent::COMPONENT_TYPE));
-		shared_ptr<Texture> texture = dynamic_cast<DrawableComponent*>(em.get_component_of_entity(animation_component->entity_id, DrawableComponent::COMPONENT_TYPE))->texture;
-		shared_ptr<AnimatedTexture> animated_texture = static_pointer_cast<AnimatedTexture>(texture);
-		
-		auto test = dynamic_cast<AnimationComponent*>(animation_component);
+		const auto current_position = em.get_component_of_entity<PositionComponent>(animation_component.get().entity, PositionComponent::COMPONENT_TYPE);
+		auto texture = em.get_component_of_entity<DrawableComponent>(animation_component.get().entity, DrawableComponent::COMPONENT_TYPE)->texture;
+
+		// Cast from base class (Texture) to derived class (AnimatedTexture)
+		auto animated_texture = std::dynamic_pointer_cast<AnimatedTexture>(texture);
 
 		if (animated_texture != nullptr && current_position != nullptr)
 		{
 			animated_texture->update();
 			animated_texture->set_direction(AnimatedTexture::Direction::idle);
 
-			if (test->is_fighting)
+			if (animation_component.get().is_fighting)
 			{
 				std::cout << "IS FIGHTING" << std::endl;
-				test->is_fighting = false;
+				animation_component.get().is_fighting = false;
 			}
 			if (current_position->diffx > 0)
 			{
@@ -51,8 +48,4 @@ void AnimationSystem::run(EntityManager& em)
 			}
 		}
 	}
-}
-
-void AnimationSystem::run(EntityManager& em, EventArgs& e)
-{
 }

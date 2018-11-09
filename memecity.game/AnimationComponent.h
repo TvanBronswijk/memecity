@@ -4,13 +4,13 @@
 #include "../memecity.engine.ecs/Component.h"
 #include "AnimatedTexture.h"
 
-struct AnimationComponent : public Component
+struct AnimationComponent : public ecs::Component
 {
-	static std::string COMPONENT_TYPE;
+	static ecs::component_typetoken COMPONENT_TYPE;
 	bool is_fighting = false;
 
-	std::string get_type() override;
-	AnimationComponent(Entity* entity) : Component(entity){}
+	AnimationComponent(const ecs::Entity& entity) : ecs::Component(entity){}
+	ecs::component_typetoken get_type_token() const override { return AnimationComponent::COMPONENT_TYPE; }
 };
 
 #endif

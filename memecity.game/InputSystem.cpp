@@ -16,27 +16,28 @@ void InputSystem::run(EntityManager& em) const
 	{
 
 		auto velocity_component =
-			dynamic_cast<VelocityComponent*>(em.get_component_of_entity(entity->id, VelocityComponent::COMPONENT_TYPE));
+			em.get_component_of_entity<VelocityComponent>(entity, VelocityComponent::COMPONENT_TYPE);
 		
-		auto animation_component = dynamic_cast<AnimationComponent*>(em.get_component_of_entity(entity->id, AnimationComponent::COMPONENT_TYPE));
+		auto animation_component = 
+			em.get_component_of_entity<AnimationComponent>(entity, AnimationComponent::COMPONENT_TYPE);
 
-		if (this->input_manager.is_pressed(ATTACK))
+		if (this->input_manager.is_pressed(Attack))
 		{
 			animation_component->is_fighting = true;
 		}
-		if (this->input_manager.is_pressed(UP))
+		if (this->input_manager.is_pressed(Up))
 		{
 			velocity_component->y += 5;
 		}
-		if (this->input_manager.is_pressed(DOWN))
+		if (this->input_manager.is_pressed(Down))
 		{
 			velocity_component->y -= 5;
 		}
-		if (this->input_manager.is_pressed(LEFT))
+		if (this->input_manager.is_pressed(Left))
 		{
 			velocity_component->x -= 5;
 		}
-		if (this->input_manager.is_pressed(RIGHT))
+		if (this->input_manager.is_pressed(Right))
 		{
 			velocity_component->x += 5;
 		}

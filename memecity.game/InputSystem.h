@@ -4,6 +4,7 @@
 #include "InputManager.h"
 #include "PlayerComponent.h"
 #include "VelocityComponent.h"
+#include "AnimationComponent.h"
 
 
 class InputSystem : public ecs::System

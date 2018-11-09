@@ -8,14 +8,13 @@
 #include "../memecity.engine.ecs/System.h"
 #include "../memecity.engine.ecs/EntityManager.h"
 
-class AnimationSystem : public System
+class AnimationSystem : public ecs::System
 {
-	static std::string const SYSTEM_TYPE;
 
 public:
-	std::string get_type() override;
-	void run(EntityManager& em) override;
-	void run(EntityManager& em, EventArgs& e) override;
+	static ecs::system_typetoken SYSTEM_TYPE;
+	void run(ecs::EntityManager& em) const override;
+	ecs::system_typetoken get_type_token() const override { return AnimationSystem::SYSTEM_TYPE; }
 };
 
 #endif

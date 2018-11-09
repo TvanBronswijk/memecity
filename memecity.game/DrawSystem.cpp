@@ -15,7 +15,7 @@ void DrawSystem::run(EntityManager& em) const
 
 	auto drawable_components = em.get_components_of_type<DrawableComponent>(DrawableComponent::COMPONENT_TYPE);
 
-	for (auto drawable_component : drawable_components)
+	for (auto& drawable_component : drawable_components)
 	{
 		if (drawable_component.get().entity != player_position_component->entity)
 		{
@@ -25,9 +25,9 @@ void DrawSystem::run(EntityManager& em) const
 	}
 
 	multimedia_manager.clear_graphics();
-	for (auto component : drawable_components)
+	for (auto& component : drawable_components)
 	{
-		component.get().texture->render();
+		multimedia_manager.render_texture(*component.get().texture);
 	}
 	multimedia_manager.render_graphics();
 }
