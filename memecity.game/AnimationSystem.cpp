@@ -26,7 +26,7 @@ void AnimationSystem::run(EntityManager& em)
 
 			if (test->is_fighting)
 			{
-				std::cout << "FIGHTING" << std::endl;
+				std::cout << "IS FIGHTING" << std::endl;
 				test->is_fighting = false;
 			}
 			if (current_position->diffx > 0)
