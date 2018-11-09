@@ -1,5 +1,6 @@
 #include "GameManager.h"
 
+#include "Generate\Strategy\BSP\BSP.h"
 #include "DrawSystem.h"
 #include "InputSystem.h"
 #include "MoveSystem.h"
@@ -14,6 +15,7 @@ GameManager::GameManager()
 
 void GameManager::init()
 {
+	city_generator.set_strategy<generate::strategy::bsp::BSP>();
 	city_generator.generate(50, 50, entity_manager, multimedia_manager);
 	auto& entity = entity_manager.create_entity();
 	entity_manager.create_component<PlayerComponent>(entity);

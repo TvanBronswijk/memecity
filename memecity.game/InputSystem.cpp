@@ -17,19 +17,19 @@ void InputSystem::run(EntityManager& em) const
 		auto velocity_component = em.get_component_of_entity<VelocityComponent>(entity.get(), VelocityComponent::COMPONENT_TYPE);
 
 
-		if (this->input_manager.is_pressed(UP))
+		if (this->input_manager.is_pressed(Up))
 		{
 			velocity_component->y += 5;
 		}
-		if (this->input_manager.is_pressed(DOWN))
+		if (this->input_manager.is_pressed(Down))
 		{
 			velocity_component->y -= 5;
 		}
-		if (this->input_manager.is_pressed(LEFT))
+		if (this->input_manager.is_pressed(Left))
 		{
 			velocity_component->x -= 5;
 		}
-		if (this->input_manager.is_pressed(RIGHT))
+		if (this->input_manager.is_pressed(Right))
 		{
 			velocity_component->x += 5;
 		}
