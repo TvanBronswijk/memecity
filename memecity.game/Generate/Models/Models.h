@@ -16,8 +16,8 @@ namespace generate {
 		protected:
 			char* tiles;
 		public:
-			Base64_Tilemap(int w, int h)
-				: Rectangle(0, 0, w, h) { this->tiles = new char[w*h]; }
+			Base64_Tilemap(int w, int h) 
+				: Rectangle(0, 0, w, h), tiles(new char[w*h]) { }
 			Base64_Tilemap(const Base64_Tilemap& copy) : Base64_Tilemap(copy.w, copy.h) { 
 				for(int i = 0; i < w*h; i++)
 					tiles[i] = (copy.tiles[i]); 

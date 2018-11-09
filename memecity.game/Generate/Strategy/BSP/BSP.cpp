@@ -3,7 +3,7 @@
 generate::models::City generate::strategy::bsp::BSP::generate(int w, int h) const
 {
 	srand(time(0));
-	generate::strategy::bsp::Node root(0, 0, w, h);
+	generate::strategy::bsp::Node root = { 0, 0, w, h };
 
 	if (rand() % 2 == 0)
 		this->split_h(root);
@@ -11,7 +11,7 @@ generate::models::City generate::strategy::bsp::BSP::generate(int w, int h) cons
 		this->split_v(root);
 
 	auto nodes = root.get_leaves();
-	generate::models::City city(w, h);
+	generate::models::City city = { w, h };
 	for (int x = 0; x < w; x++)
 		for (int y = 0; y < h; y++)
 			city.coord(x, y) = '-';

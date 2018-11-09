@@ -11,7 +11,7 @@ namespace generate {
 			struct Node : public generate::models::Rectangle {
 				Node *left, *right;
 				Node(int x, int y, int w, int h)
-					: Rectangle(x, y, w, h), left(nullptr), right(nullptr) {}
+					: Rectangle( x, y, w, h ), left(nullptr), right(nullptr) {}
 
 				bool has_left() const { return left != nullptr; }
 				bool has_right() const { return right != nullptr; }

@@ -4,6 +4,8 @@
 namespace ecs {
 	namespace eventing {
 		struct EventArgs {
+			EventArgs() = default;
+			virtual ~EventArgs() = default;
 		};
 	};
 };
