@@ -3,7 +3,6 @@
 #include <ECS.h>
 #include "MultimediaManager.h"
 #include "GeneratorStrategy.h"
-#include "BSPGenerator.h"
 
 namespace generate {
 	class CityGenerator {
@@ -20,7 +19,7 @@ namespace generate {
 			strategy = std::make_unique<T>(std::forward<Args>(args)...);
 		}
 
-		void generate(int w, int h, ecs::EntityManager& em, MultimediaManager &multimedia_manager);
+		void generate(int w, int h, ecs::EntityManager& em, MultimediaManager &multimedia_manager) const;
 	};
 }
 

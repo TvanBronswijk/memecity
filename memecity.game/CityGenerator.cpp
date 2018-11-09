@@ -1,16 +1,15 @@
 #include "CityGenerator.h"
-
 #include "DrawableComponent.h"
 
 using namespace ecs;
 
-void generate::CityGenerator::generate(int w, int h, EntityManager& em, MultimediaManager &multimedia_manager)
+void generate::CityGenerator::generate(int w, int h, EntityManager& em, MultimediaManager &multimedia_manager) const
 {
-	auto c = this->strategy->generate(w, h);
+	const auto& c = this->strategy->generate(w, h);
 
-	for (int x = c->x; x < c->x2; x++) {
-		for (int y = c->y; y < c->y2; y++) {
-			auto character = c->coord(x, y);
+	for (int x = c.x; x < c.x2; x++) {
+		for (int y = c.y; y < c.y2; y++) {
+			auto& character = c.coord(x, y);
 
 			std::cout << character;
 			auto& entity = em.create_entity();
@@ -31,6 +30,8 @@ void generate::CityGenerator::generate(int w, int h, EntityManager& em, Multimed
 			case 'g':
 				filename = "green.bmp";
 				break;
+			default:
+				std::cout << "ERROR!" << std::endl;
 			}
 			auto texture = multimedia_manager.get_texture(filename);
 			texture->set_position({ x * 64.0f, y * 64.0f });

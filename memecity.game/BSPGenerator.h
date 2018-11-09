@@ -13,9 +13,17 @@ namespace generate {
 				Node(int x, int y, int w, int h)
 					: Rectangle(x, y, w, h), left(nullptr), right(nullptr) {}
 
-				bool has_left() { return left != nullptr; }
-				bool has_right() { return right != nullptr; }
-
+				bool has_left() const { return left != nullptr; }
+				bool has_right() const { return right != nullptr; }
+				std::vector<const Node*> get_leaves() const 
+				{
+					if (!has_left() && !has_right())
+						return { this };
+					std::vector<const Node*> left_leaves = left->get_leaves();
+					std::vector<const Node*> right_leaves = right->get_leaves();
+					left_leaves.insert(left_leaves.end(), right_leaves.begin(), right_leaves.end());
+					return left_leaves;
+				}
 				~Node()
 				{
 					delete left;
@@ -28,16 +36,15 @@ namespace generate {
 				const static int MIN_NODE_WIDTH = 8;
 				const static int MIN_NODE_HEIGHT = 8;
 
-				void split_h(Node* n);
-				void split_v(Node* n);
-				std::vector<Node*> get_leaves(Node* n);
-				void fill_node(Node* n, std::unique_ptr<generate::models::City> &c);
-				void fill_building(Node* n, std::unique_ptr<generate::models::City> &c);
-				void fill_water(Node* n, std::unique_ptr<generate::models::City> &c);
-				void fill_empty(Node* n, std::unique_ptr<generate::models::City> &c);
-				void fill_prefab(Node* n, std::unique_ptr<generate::models::City> &c);
+				void split_h(Node& n) const;
+				void split_v(Node& n) const;
+				void fill_node(generate::models::City &c, const Node& n) const;
+				void fill_building(generate::models::City &c, const Node& n) const;
+				void fill_water(generate::models::City &c, const Node& n) const;
+				void fill_empty(generate::models::City &c, const Node& n) const;
+				void fill_prefab(generate::models::City &c, const Node& n) const;
 			public:
-				std::unique_ptr<generate::models::City> generate(int w, int h);
+				generate::models::City generate(int w, int h) const override;
 			};
 		}
 	}

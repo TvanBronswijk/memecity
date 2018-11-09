@@ -1,6 +1,6 @@
 #include "GameManager.h"
-#include "BSPGenerator.h"
 
+#include "BSPGenerator.h"
 #include "DrawSystem.h"
 #include "InputSystem.h"
 #include "MoveSystem.h"
