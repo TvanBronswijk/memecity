@@ -1,5 +1,6 @@
 #ifndef _ENTITY_MANAGER_H
 #define  _ENTITY_MANAGER_H
+#include <typeindex>
 #include <iostream>
 #include <iterator>
 #include <vector>
@@ -7,14 +8,18 @@
 #include "Entity.h"
 #include "Component.h"
 #include "System.h"
+namespace ecs {	
+	
+	using TypeToken = std::type_index;
+	template<class T>
+	TypeToken token() { return typeid(T); };
 
-namespace ecs {
 	class EntityManager {
 	private:
 		int last_id = -1;
 		std::vector<Entity> entities;
-		std::map<component_typetoken, std::vector<std::unique_ptr<Component>>> components;
-		std::map<system_typetoken, std::unique_ptr<System>> systems;
+		std::map<TypeToken, std::vector<std::unique_ptr<Component>>> components;
+		std::map<TypeToken, std::unique_ptr<System>> systems;
 
 	public:
 		///<summary>Creates a new entity with an unused ID.</summary>
@@ -30,10 +35,8 @@ namespace ecs {
 		{
 			static_assert(std::is_convertible<C*, Component*>::value, "This function can only construct concrete subclasses of Component");
 			static_assert(std::is_constructible<C, Args...>::value, "The requested type cannot be constructed from the arguments provided.");
-			std::unique_ptr<C> component = std::make_unique<C>(std::forward<Args>(args)...);
-			component_typetoken token = component->get_type_token();
-			components[token].push_back(std::move(component));
-			return *(static_cast<C*>(components[token].back().get()));
+			components[token<C>()].emplace_back(std::make_unique<C>(std::forward<Args>(args)...));
+			return *(static_cast<C*>(components[token<C>()].back().get()));
 		}
 
 		///<summary>Register a system to the EntityManager.</summary>
@@ -42,10 +45,8 @@ namespace ecs {
 		{
 			static_assert(std::is_convertible<S*, System*>::value, "This function can only construct concrete subclasses of System");
 			static_assert(std::is_constructible<S, Args...>::value, "The requested type cannot be constructed from the arguments provided.");
-			std::unique_ptr<S> system = std::make_unique<S>(std::forward<Args>(args)...);
-			system_typetoken token = system->get_type_token();
-			systems[token] = std::move(system);
-			return *(static_cast<S*>(systems[token].get()));
+			systems[token<S>()] = std::make_unique<S>(std::forward<Args>(args)...);
+			return *(static_cast<S*>(systems[token<S>()].get()));
 		}
 
 		///<summary>Get all entities</summary>
@@ -55,35 +56,36 @@ namespace ecs {
 		}
 
 		///<summary>Get all entities with a certain component.</summary>
-		std::vector<std::reference_wrapper<const Entity>> get_entities_with_component(component_typetoken token) const
+		template<class C>
+		std::vector<std::reference_wrapper<const Entity>> get_entities_with_component() const
 		{
 			std::vector<std::reference_wrapper<const Entity>> result;
 			for (auto& e : entities)
-				if (this->has_component(e, token))
+				if (this->has_component<C>(e))
 					result.push_back(std::ref(e));
 			return result;
 		}
 
 		///<summary>Get components of a specific type.</summary>
 		template<class C>
-		std::vector<std::reference_wrapper<C>> get_components_of_type(component_typetoken token)
+		std::vector<std::reference_wrapper<C>> get_components_of_type()
 		{
 			static_assert(std::is_convertible<C*, Component*>::value, "This function can only retrieve concrete subclasses of Component");
 
 			std::vector<std::reference_wrapper<C>> result;
-			for (auto& c : components.at(token))
+			for (auto& c : components.at(token<C>()))
 				result.push_back(std::ref(*(static_cast<C*>(c.get()))));
 			return result;
 		}
 
 		///<summary>Get specific component of entity</summary>
 		template<class C>
-		C* get_component_of_entity(const Entity& entity, component_typetoken token)
+		C* get_component_of_entity(const Entity& entity)
 		{
 			static_assert(std::is_convertible<C*, Component*>::value, "This function can only retrieve concrete subclasses of Component");
 			for (auto& pairs : components)
 				for (auto& c : pairs.second)
-					if (c->entity == entity && c->get_type_token() == token)
+					if (c->entity == entity && token<C>() == pairs.first)
 						return static_cast<C*>(c.get());
 			return nullptr;
 		}
@@ -102,9 +104,10 @@ namespace ecs {
 		}
 
 		///<summary>Checks if entity has component.</summary>
-		bool has_component(const Entity& entity, component_typetoken token) const
+		template<class C>
+		bool has_component(const Entity& entity) const
 		{
-			for (auto& c : components.at(token))
+			for (auto& c : components.at(token<C>()))
 				if (c->entity == entity)
 					return true;
 			return false;
@@ -127,7 +130,4 @@ namespace ecs {
 		}
 	};
 };
-
-
-
 #endif

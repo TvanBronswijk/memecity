@@ -8,6 +8,9 @@
 #include "PlayerComponent.h"
 #include "ExpComponent.h"
 #include "StatsComponent.h"
+#include "VelocityComponent.h"
+#include "PositionComponent.h"
+#include "DrawableComponent.h"
 
 GameManager::GameManager()
 {

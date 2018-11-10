@@ -1,21 +1,15 @@
 ﻿#include "MoveSystem.h"
-
+#include "VelocityComponent.h"
+#include "PositionComponent.h"
 using namespace ecs;
-
-system_typetoken MoveSystem::SYSTEM_TYPE = "MoveSystem";
-
-MoveSystem::MoveSystem() : System() 
-{
-
-}
 
 void MoveSystem::run(EntityManager& em) const
 {
-	auto components = em.get_components_of_type<VelocityComponent>(VelocityComponent::COMPONENT_TYPE);
+	auto components = em.get_components_of_type<VelocityComponent>();
 
 	for (auto velocity_component : components)
 	{
-		auto current_position = em.get_component_of_entity<PositionComponent>(velocity_component.get().entity, PositionComponent::COMPONENT_TYPE);
+		auto current_position = em.get_component_of_entity<PositionComponent>(velocity_component.get().entity);
 		const auto current_velocity_component = velocity_component;
 
 		if (current_velocity_component.get().x != 0)
