@@ -6,13 +6,13 @@ using namespace ecs;
 void generate::CityGenerator::generate(int w, int h, EntityManager& em, MultimediaManager &multimedia_manager) const
 {
 	const auto& c = this->strategy->generate(w, h);
-
-	for (int x = c.x; x < c.x2; x++) {
-		for (int y = c.y; y < c.y2; y++) {
+	
+	for (int y = c.y; y < c.y2; y++) {
+		for (int x = c.x; x < c.x2; x++) {
 			auto& character = c.coord(x, y);
 
 			std::cout << character;
-			auto& entity = em.create_entity();
+			auto& entity = builder::EntityBuilder(em).build();
 			auto& drawable_component = em.create_component<DrawableComponent>(entity);
 			
 			std::string filename;

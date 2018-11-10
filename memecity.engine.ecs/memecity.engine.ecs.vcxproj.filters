@@ -19,6 +19,9 @@
     <Filter Include="Header Files\ECS\Eventing">
       <UniqueIdentifier>{37e0bde5-bfe1-4142-848b-b41d5ead12e2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\ECS\Builder">
+      <UniqueIdentifier>{055524f8-b7f2-4d39-832b-7b3d82a38e28}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ECS.h">
@@ -41,6 +44,9 @@
     </ClInclude>
     <ClInclude Include="ECS\System.h">
       <Filter>Header Files\ECS</Filter>
+    </ClInclude>
+    <ClInclude Include="ECS\Builder\EntityBuilder.h">
+      <Filter>Header Files\ECS\Builder</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
