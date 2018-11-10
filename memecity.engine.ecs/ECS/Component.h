@@ -4,7 +4,6 @@
 namespace ecs {
 	struct Component {
 		const Entity& entity;
-		Component() = default;
 		Component(const Entity& e) : entity(e) {}
 		Component(const Component &) = delete;
 		Component(Component &&) = delete;
