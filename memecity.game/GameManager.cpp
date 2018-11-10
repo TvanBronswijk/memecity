@@ -29,12 +29,17 @@ void GameManager::init()
 	d_component.texture = animated_character;
 	d_component.texture->set_position({ position_component.x, position_component.y });
 
-	entity_manager.create_system<InputSystem>(input_manager);
-	entity_manager.create_system<DrawSystem>(multimedia_manager);
-	entity_manager.create_system<MoveSystem>();
+	entity_manager.create_system<DrawSystem>(ecs::System::draw);
+	entity_manager.create_system<InputSystem>(ecs::System::update, input_manager);
+	entity_manager.create_system<MoveSystem>(ecs::System::update);
 }
 
-void GameManager::handle()
+void GameManager::update(float dt)
 {
-	entity_manager.update();
+	entity_manager.update(ecs::System::update);
+}
+
+void GameManager::draw() 
+{
+	entity_manager.update(ecs::System::draw);
 }

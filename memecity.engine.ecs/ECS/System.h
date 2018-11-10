@@ -2,8 +2,10 @@
 #define  _SYSTEM_H
 namespace ecs {
 	class EntityManager;
-	class System {
+	class System {	
 	public:
+		const enum Scope { draw, update };
+
 		System() = default;
 		System(const System &) = delete;
 		System(System &&) = delete;
@@ -11,7 +13,7 @@ namespace ecs {
 		System& operator=(System&&) = delete;
 		virtual ~System() = default;
 
-		///<summary>Do the activity of the System.</summary>
+		///<summary>Run the System.</summary>
 		virtual void run(EntityManager &em) const = 0;
 	};
 };

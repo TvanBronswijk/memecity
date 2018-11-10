@@ -19,7 +19,10 @@ namespace ecs {
 		int last_id = -1;
 		std::vector<Entity> entities;
 		std::map<TypeToken, std::vector<std::unique_ptr<Component>>> components;
-		std::map<TypeToken, std::unique_ptr<System>> systems;
+		std::map<System::Scope, std::map<TypeToken, std::unique_ptr<System>>> systems {
+		};
+		std::map<TypeToken, std::unique_ptr<System>> draw_systems;
+		std::map<TypeToken, std::unique_ptr<System>> update_systems;
 
 	public:
 		///<summary>Creates a new entity with an unused ID.</summary>
@@ -41,12 +44,12 @@ namespace ecs {
 
 		///<summary>Register a system to the EntityManager.</summary>
 		template<class S, class... Args>
-		S& create_system(Args&&... args)
+		S& create_system(System::Scope scope, Args&&... args)
 		{
 			static_assert(std::is_convertible<S*, System*>::value, "This function can only construct concrete subclasses of System");
 			static_assert(std::is_constructible<S, Args...>::value, "The requested type cannot be constructed from the arguments provided.");
-			systems[token<S>()] = std::make_unique<S>(std::forward<Args>(args)...);
-			return *(static_cast<S*>(systems[token<S>()].get()));
+			systems[scope][token<S>()] = std::make_unique<S>(std::forward<Args>(args)...);
+			return *(static_cast<S*>(systems[scope][token<S>()].get()));
 		}
 
 		///<summary>Get all entities</summary>
@@ -114,9 +117,9 @@ namespace ecs {
 		}
 
 		///<summary>Run all systems.</summary>
-		void update()
+		void update(System::Scope scope = System::update)
 		{
-			for (auto& pair : systems)
+			for (auto& pair : systems[scope])
 				pair.second->run(*this);
 		}
 
@@ -126,6 +129,8 @@ namespace ecs {
 			for (auto& pair : components)
 				pair.second.clear();
 			components.clear();
+			for (auto& pair : systems)
+				pair.second.clear();
 			systems.clear();
 		}
 	};

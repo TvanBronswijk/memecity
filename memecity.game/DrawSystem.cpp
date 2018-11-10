@@ -19,13 +19,10 @@ void DrawSystem::run(EntityManager& em) const
 			tex->translate({ (player_position_component->diffx*-1) , player_position_component->diffy });
 		}
 	}
-
-	multimedia_manager.clear_graphics();
 	for (auto component : drawable_components)
 	{
 		component.get().texture->render();
 	}
-	multimedia_manager.render_graphics();
 }
 
 
