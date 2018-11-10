@@ -14,10 +14,6 @@ protected:
 	void init() override;
 	void update(float dt) override;
 	void draw() override;
-
-public:
-	GameManager() = default;
-	~GameManager() = default;
 };
 
 

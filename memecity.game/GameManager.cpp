@@ -26,7 +26,7 @@ void GameManager::init()
 	entity_manager.create_component<DrawableComponent>(
 			entity, 
 			multimedia_manager.get_animated_texture(timer.get(), "SpriteSheet.png", 0, 0, 48, 48, 4, 0.5f, AnimatedCharacter::vertical)
-			).texture->set_position({ (float)multimedia_manager.get_screen_width() / 2, (float)multimedia_manager.get_screen_height() / 2 });;
+			).texture->set_position({ (float)multimedia_manager.get_screen_width() / 2, (float)multimedia_manager.get_screen_height() / 2 });
 
 	entity_manager.create_system<DrawSystem>(ecs::System::draw);
 	entity_manager.create_system<InputSystem>(ecs::System::update, input_manager);
