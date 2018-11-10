@@ -16,7 +16,8 @@ protected:
 	void draw() override;
 
 public:
-	GameManager();
+	GameManager() = default;
+	~GameManager() = default;
 };
 
 

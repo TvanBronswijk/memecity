@@ -44,7 +44,7 @@ namespace ecs {
 
 		///<summary>Register a system to the EntityManager.</summary>
 		template<class S, class... Args>
-		S& create_system(System::Scope scope, Args&&... args)
+		S& create_system(System::Scope scope = System::update, Args&&... args)
 		{
 			static_assert(std::is_convertible<S*, System*>::value, "This function can only construct concrete subclasses of System");
 			static_assert(std::is_constructible<S, Args...>::value, "The requested type cannot be constructed from the arguments provided.");
