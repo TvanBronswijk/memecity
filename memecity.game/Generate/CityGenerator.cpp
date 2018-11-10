@@ -10,11 +10,7 @@ void generate::CityGenerator::generate(int w, int h, EntityManager& em, Multimed
 	for (int y = c.y; y < c.y2; y++) {
 		for (int x = c.x; x < c.x2; x++) {
 			auto& character = c.coord(x, y);
-
 			std::cout << character;
-			auto& entity = builder::EntityBuilder(em).build();
-			auto& drawable_component = em.create_component<DrawableComponent>(entity);
-			
 			std::string filename;
 			switch (character)
 			{
@@ -35,7 +31,9 @@ void generate::CityGenerator::generate(int w, int h, EntityManager& em, Multimed
 			}
 			auto texture = multimedia_manager.get_texture(filename);
 			texture->set_position({ x * 64.0f, y * 64.0f });
-			drawable_component.texture = texture;
+			builder::EntityBuilder(em)
+				.add_component<DrawableComponent>(texture)
+				.build();
 		}
 		std::cout << std::endl;
 	}

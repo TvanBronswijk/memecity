@@ -17,16 +17,14 @@ void GameManager::init()
 	city_generator.set_strategy<generate::strategy::bsp::BSP>();
 	city_generator.generate(50, 50, entity_manager, multimedia_manager);
 
-	auto& entity = ecs::builder::EntityBuilder(entity_manager)
+	auto texture = multimedia_manager.get_animated_texture(timer.get(), "SpriteSheet.png", 0, 0, 48, 48, 4, 0.5f, AnimatedCharacter::vertical);
+	texture->set_position({ (float)multimedia_manager.get_screen_width() / 2, (float)multimedia_manager.get_screen_height() / 2 });
+	ecs::builder::EntityBuilder(entity_manager)
 		.add_component<PlayerComponent>()
 		.add_component<PositionComponent>(multimedia_manager.get_screen_width() / 2, multimedia_manager.get_screen_height() / 2)
 		.add_component<VelocityComponent>()
+		.add_component<DrawableComponent>(texture)
 		.build();
-
-	entity_manager.create_component<DrawableComponent>(
-			entity, 
-			multimedia_manager.get_animated_texture(timer.get(), "SpriteSheet.png", 0, 0, 48, 48, 4, 0.5f, AnimatedCharacter::vertical)
-			).texture->set_position({ (float)multimedia_manager.get_screen_width() / 2, (float)multimedia_manager.get_screen_height() / 2 });
 
 	entity_manager.create_system<DrawSystem>(ecs::System::draw);
 	entity_manager.create_system<InputSystem>(ecs::System::update, input_manager);
