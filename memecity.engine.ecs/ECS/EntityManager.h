@@ -22,10 +22,7 @@ namespace ecs {
 		int last_id = -1;
 		std::vector<Entity> entities;
 		std::map<TypeToken, std::vector<std::unique_ptr<Component>>> components;
-		std::map<System::Scope, std::map<TypeToken, std::unique_ptr<System>>> systems {
-		};
-		std::map<TypeToken, std::unique_ptr<System>> draw_systems;
-		std::map<TypeToken, std::unique_ptr<System>> update_systems;
+		std::map<System::Scope, std::map<TypeToken, std::unique_ptr<System>>> systems;
 
 	public:
 		///<summary>Creates a new entity with an unused ID.</summary>
@@ -77,7 +74,7 @@ namespace ecs {
 		std::vector<std::reference_wrapper<C>> get_components_of_type()
 		{
 			static_assert(std::is_convertible<C*, Component*>::value, "This function can only retrieve concrete subclasses of Component");
-			return Query<C>(components[token<C>()])
+			return ComponentQuery<C>(components[token<C>()])
 				.to_vector();
 		}
 
@@ -86,7 +83,7 @@ namespace ecs {
 		C* get_component_of_entity(const Entity& entity)
 		{
 			static_assert(std::is_convertible<C*, Component*>::value, "This function can only retrieve concrete subclasses of Component");
-			return Query<C>(components[token<C>()])
+			return ComponentQuery<C>(components[token<C>()])
 				.first([&](C& component) { return component.entity == entity; });
 		}
 
@@ -95,8 +92,17 @@ namespace ecs {
 		std::vector<std::reference_wrapper<C>> get_components_of_entity(const Entity& entity)
 		{
 			static_assert(std::is_convertible<C*, Component*>::value, "This function can only retrieve concrete subclasses of Component");
-			Query<C>(components[token<C>()])
-				.where([&](C& component) { return component.entity == entity; });
+			return ComponentQuery<C>(components[token<C>()])
+				.where([&](C& component) { return component.entity == entity; })
+				.to_vector();
+		}
+
+		///<summary>Get a query object.</summary>
+		template<class C>
+		ComponentQuery<C> query() 
+		{
+			static_assert(std::is_convertible<C*, Component*>::value, "This function can only retrieve concrete subclasses of Component");
+			return ComponentQuery<C>(components[token<C>()]);
 		}
 
 		///<summary>Checks if entity has component.</summary>

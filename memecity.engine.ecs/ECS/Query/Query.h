@@ -6,27 +6,27 @@
 namespace ecs {
 	namespace query {
 		template<class T>
-		class Query {
+		class ComponentQuery {
 		protected:
 			std::vector<std::reference_wrapper<T>> _collection;
 		public:
 
-			Query(std::vector<std::reference_wrapper<T>> collection) : _collection(collection) {}
+			ComponentQuery(std::vector<std::reference_wrapper<T>> collection) : _collection(collection) {}
 
 			template<class C>
-			Query(std::vector<std::unique_ptr<C>>& collection)
+			ComponentQuery(std::vector<std::unique_ptr<C>>& collection)
 			{
 				for (auto& element : collection)
 					_collection.emplace_back(std::ref(static_cast<T&>(*element)));
 			};
 
-			Query<T> where(std::function<bool(T&)> predicate) const
+			ComponentQuery<T> where(std::function<bool(T&)> predicate) const
 			{
 				std::vector<std::reference_wrapper<T>> result;
 				for (auto& c : _collection)
 					if (predicate(c))
 						result.emplace_back(c);
-				return Query<T>(result);
+				return ComponentQuery<T>(result);
 			}
 			T* first(std::function<bool(T&)> predicate) const
 			{
@@ -46,7 +46,7 @@ namespace ecs {
 			{			
 				return _collection;
 			}
-			~Query() = default;
+			~ComponentQuery() = default;
 		};
 	}
 };

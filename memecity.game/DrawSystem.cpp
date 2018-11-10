@@ -6,9 +6,8 @@ using namespace ecs;
 
 void DrawSystem::run(EntityManager& em) const
 {
-	auto player_components = em.get_components_of_type<PlayerComponent>();
-	auto player_position_component = em.get_component_of_entity<PositionComponent>(player_components[0].get().entity);
-
+	auto player_component = em.query<PlayerComponent>().first();
+	auto player_position_component = em.get_component_of_entity<PositionComponent>(player_component->entity);
 	auto drawable_components = em.get_components_of_type<DrawableComponent>();
 
 	for (auto drawable_component : drawable_components)
@@ -18,10 +17,7 @@ void DrawSystem::run(EntityManager& em) const
 			auto tex = drawable_component.get().texture;
 			tex->translate({ (player_position_component->diffx*-1) , player_position_component->diffy });
 		}
-	}
-	for (auto component : drawable_components)
-	{
-		component.get().texture->render();
+		drawable_component.get().texture->render();
 	}
 }
 
