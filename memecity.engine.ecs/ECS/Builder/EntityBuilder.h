@@ -5,12 +5,12 @@ namespace ecs {
 	namespace builder {
 		struct EntityBuilder {
 			EntityManager& em;
-			const Entity& entity;
+			Entity& entity;
 			EntityBuilder(EntityManager& em) : em(em), entity(em.create_entity()) {};
 			template<class T, class... Args>
 			const EntityBuilder& add_component(Args&&... args) const
 			{
-				em.create_component<T>(entity, std::forward<Args>(args)...);
+				entity.add<T>(em.create_component<T>(entity, std::forward<Args>(args)...));
 				return *this;
 			}
 			const Entity& build() const { return entity; }

@@ -11,7 +11,7 @@ void ExpSystem::on_exp_gain(EntityManager& em, int exp) const
 
 	for (auto & player : players)
 	{
-		auto exp_component = em.get_component_of_entity<ExpComponent>(player.get());
+		/*auto exp_component = em.get_component_of_entity<ExpComponent>(player.get());
 		exp_component->exp = exp_component->exp += exp;
 		if (exp_component->exp >= exp_component->next_level)
 		{
@@ -25,6 +25,6 @@ void ExpSystem::on_exp_gain(EntityManager& em, int exp) const
 				exp_component->next_level = exp_component->next_level + exp_component->next_level / 10;
 				exp_component->exp = 0;
 			}
-		}
+		}*/
 	}
 }

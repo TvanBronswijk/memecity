@@ -5,17 +5,13 @@
 #include <iterator>
 #include <vector>
 #include <map>
+#include "Type.h"
 #include "Entity.h"
 #include "Component.h"
 #include "System.h"
 #include "Query/Query.h"
 
-
 namespace ecs {	
-	using TypeToken = std::type_index;
-	template<class T>
-	TypeToken token() { return typeid(T); };
-
 	using namespace query;
 	class EntityManager {
 	private:
@@ -26,7 +22,7 @@ namespace ecs {
 
 	public:
 		///<summary>Creates a new entity with an unused ID.</summary>
-		const Entity& create_entity()
+		Entity& create_entity()
 		{
 			entities.emplace_back(++last_id);
 			return entities.back();
@@ -64,7 +60,7 @@ namespace ecs {
 		{
 			std::vector<std::reference_wrapper<const Entity>> result;
 			for (auto& e : entities)
-				if (this->has_component<C>(e))
+				if (e.has<C>())
 					result.push_back(std::ref(e));
 			return result;
 		}
@@ -78,41 +74,12 @@ namespace ecs {
 				.to_vector();
 		}
 
-		///<summary>Get specific component of entity</summary>
-		template<class C>
-		C* get_component_of_entity(const Entity& entity)
-		{
-			static_assert(std::is_convertible<C*, Component*>::value, "This function can only retrieve concrete subclasses of Component");
-			return ComponentQuery<C>(components[token<C>()])
-				.first([&](C& component) { return component.entity == entity; });
-		}
-
-		///<summary>Get components with a specific entity ID.</summary>
-		template<class C>
-		std::vector<std::reference_wrapper<C>> get_components_of_entity(const Entity& entity)
-		{
-			static_assert(std::is_convertible<C*, Component*>::value, "This function can only retrieve concrete subclasses of Component");
-			return ComponentQuery<C>(components[token<C>()])
-				.where([&](C& component) { return component.entity == entity; })
-				.to_vector();
-		}
-
 		///<summary>Get a query object.</summary>
 		template<class C>
 		ComponentQuery<C> query() 
 		{
 			static_assert(std::is_convertible<C*, Component*>::value, "This function can only retrieve concrete subclasses of Component");
 			return ComponentQuery<C>(components[token<C>()]);
-		}
-
-		///<summary>Checks if entity has component.</summary>
-		template<class C>
-		bool has_component(const Entity& entity) const
-		{
-			for (auto& c : components.at(token<C>()))
-				if (c->entity == entity)
-					return true;
-			return false;
 		}
 
 		///<summary>Run all systems.</summary>

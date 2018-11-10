@@ -125,6 +125,7 @@
     <ClInclude Include="ECS\System.h" />
     <ClInclude Include="ECS\Builder\EntityBuilder.h" />
     <ClInclude Include="ECS\Query\Query.h" />
+    <ClInclude Include="ECS\Type.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ECS.cpp" />

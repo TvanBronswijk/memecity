@@ -9,7 +9,7 @@ void InputSystem::run(EntityManager& em) const
 
 	for (auto entity : entities)
 	{
-		auto velocity_component = em.get_component_of_entity<VelocityComponent>(entity);
+		auto velocity_component = entity.get().get<VelocityComponent>();
 
 		if (this->input_manager.is_pressed(Up))
 		{
