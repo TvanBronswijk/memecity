@@ -1,7 +1,13 @@
 #include "CityGenerator.h"
+#include "Strategy\BSP\BSP.h"
 #include "..\DrawableComponent.h"
 
 using namespace ecs;
+
+generate::CityGenerator::CityGenerator()
+{
+	set_strategy<generate::strategy::bsp::BSP>();
+}
 
 void generate::CityGenerator::generate(int w, int h, EntityManager& em, MultimediaManager &multimedia_manager) const
 {

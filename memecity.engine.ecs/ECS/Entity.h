@@ -6,8 +6,8 @@ namespace ecs {
 		Entity(int id) 
 			: id(id) {}
 
-		bool operator==(const Entity& e) const { return id == e.id; }
-		bool operator!=(const Entity& e) const { return id != e.id; }
+		bool operator==(const Entity& e) const { return this->id == e.id; }
+		bool operator!=(const Entity& e) const { return this->id != e.id; }
 	};
 };
 #endif

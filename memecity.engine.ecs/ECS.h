@@ -6,6 +6,7 @@
 #include "ECS\System.h"
 #include "ECS\EntityManager.h"
 #include "ECS\Builder\EntityBuilder.h"
+#include "ECS\Query\Query.h"
 #include "ECS\Eventing\Event.h"
 #include "ECS\Eventing\EventArgs.h"
 

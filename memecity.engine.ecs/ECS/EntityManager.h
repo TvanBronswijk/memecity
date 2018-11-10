@@ -8,12 +8,15 @@
 #include "Entity.h"
 #include "Component.h"
 #include "System.h"
+#include "Query/Query.h"
+
+
 namespace ecs {	
-	
 	using TypeToken = std::type_index;
 	template<class T>
 	TypeToken token() { return typeid(T); };
 
+	using namespace query;
 	class EntityManager {
 	private:
 		int last_id = -1;
@@ -74,11 +77,8 @@ namespace ecs {
 		std::vector<std::reference_wrapper<C>> get_components_of_type()
 		{
 			static_assert(std::is_convertible<C*, Component*>::value, "This function can only retrieve concrete subclasses of Component");
-
-			std::vector<std::reference_wrapper<C>> result;
-			for (auto& c : components.at(token<C>()))
-				result.push_back(std::ref(*(static_cast<C*>(c.get()))));
-			return result;
+			return Query<C>(components[token<C>()])
+				.to_vector();
 		}
 
 		///<summary>Get specific component of entity</summary>
@@ -86,11 +86,8 @@ namespace ecs {
 		C* get_component_of_entity(const Entity& entity)
 		{
 			static_assert(std::is_convertible<C*, Component*>::value, "This function can only retrieve concrete subclasses of Component");
-			for (auto& pairs : components)
-				for (auto& c : pairs.second)
-					if (c->entity == entity && token<C>() == pairs.first)
-						return static_cast<C*>(c.get());
-			return nullptr;
+			return Query<C>(components[token<C>()])
+				.first([&](C& component) { return component.entity == entity; });
 		}
 
 		///<summary>Get components with a specific entity ID.</summary>
@@ -98,12 +95,8 @@ namespace ecs {
 		std::vector<std::reference_wrapper<C>> get_components_of_entity(const Entity& entity)
 		{
 			static_assert(std::is_convertible<C*, Component*>::value, "This function can only retrieve concrete subclasses of Component");
-			std::vector<std::reference_wrapper<C>> result;
-			for (auto& pairs : components)
-				for (auto& c : pairs.second)
-					if (c->entity == entity)
-						result.push_back(std::ref(*(static_cast<C*>(c.get()))));
-			return result;
+			Query<C>(components[token<C>()])
+				.where([&](C& component) { return component.entity == entity; });
 		}
 
 		///<summary>Checks if entity has component.</summary>

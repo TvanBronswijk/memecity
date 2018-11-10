@@ -22,6 +22,9 @@
     <Filter Include="Header Files\ECS\Builder">
       <UniqueIdentifier>{055524f8-b7f2-4d39-832b-7b3d82a38e28}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\ECS\Query">
+      <UniqueIdentifier>{9084c7ce-d9de-45a1-9ddf-4c15f956cea1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ECS.h">
@@ -47,6 +50,9 @@
     </ClInclude>
     <ClInclude Include="ECS\Builder\EntityBuilder.h">
       <Filter>Header Files\ECS\Builder</Filter>
+    </ClInclude>
+    <ClInclude Include="ECS\Query\Query.h">
+      <Filter>Header Files\ECS\Query</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

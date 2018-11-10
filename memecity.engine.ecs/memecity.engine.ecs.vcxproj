@@ -124,6 +124,7 @@
     <ClInclude Include="ECS\Eventing\EventArgs.h" />
     <ClInclude Include="ECS\System.h" />
     <ClInclude Include="ECS\Builder\EntityBuilder.h" />
+    <ClInclude Include="ECS\Query\Query.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ECS.cpp" />
