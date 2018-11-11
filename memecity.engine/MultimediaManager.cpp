@@ -2,8 +2,8 @@
 
 MultimediaManager::MultimediaManager(bool is_fullscreen)
 {
-	graphics_facade = std::make_shared<GraphicsFacade>(is_fullscreen);
-	asset_manager = std::make_unique<AssetManager>(graphics_facade);
+	graphics_facade = std::make_unique<GraphicsFacade>(is_fullscreen);
+	asset_manager = std::make_unique<AssetManager>(*graphics_facade);
 	audio_facade = std::make_unique<AudioFacade>();
 }
 
@@ -57,37 +57,37 @@ void MultimediaManager::render_graphics() const
 	graphics_facade->render();
 }
 
-std::shared_ptr<Texture> MultimediaManager::get_texture(const std::string filename)
+std::unique_ptr<Texture> MultimediaManager::get_texture(const std::string filename)
 {	
 	int width, height;
 	auto sdl_texture = asset_manager->get_texture(filename);
 	// Used to determine width and height of the given texture
-	SDL_QueryTexture(sdl_texture, nullptr, nullptr, &width, &height);
+	SDL_QueryTexture(*sdl_texture, nullptr, nullptr, &width, &height);
 
-	return std::make_shared<Texture>(filename, width, height);
+	return std::make_unique<Texture>(filename, width, height);
 }
 
-std::shared_ptr<Texture> MultimediaManager::get_texture(std::string const filename, int x, int y, int width, int height)
+std::unique_ptr<Texture> MultimediaManager::get_texture(std::string const filename, int x, int y, int width, int height)
 {
 	asset_manager->get_texture(filename);
 
-	return std::make_shared<Texture>(filename, x, y, width, height);
+	return std::make_unique<Texture>(filename, x, y, width, height);
 }
 
-std::shared_ptr<AnimatedTexture> MultimediaManager::get_animated_texture(TimerFacade &timer, std::string filename, int x, int y, int width, int height, int frame_count, float animation_speed, AnimatedTexture::AnimationDirection direction)
+std::unique_ptr<AnimatedTexture> MultimediaManager::get_animated_texture(TimerFacade &timer, std::string filename, int x, int y, int width, int height, int frame_count, float animation_speed, AnimatedTexture::AnimationDirection direction)
 {
 	asset_manager->get_texture(filename);
-	return std::make_shared<AnimatedTexture>(timer, filename, x, y, width, height, frame_count, animation_speed, direction);
+	return std::make_unique<AnimatedTexture>(timer, filename, x, y, width, height, frame_count, animation_speed, direction);
 }
 
-std::shared_ptr<TextTexture> MultimediaManager::get_text_texture(std::string const text, std::string const font_path, const int size, Color color)
+std::unique_ptr<TextTexture> MultimediaManager::get_text_texture(std::string const text, std::string const font_path, const int size, Color color)
 {
 	int width, height;
 	auto sdl_texture = asset_manager->get_text(text, font_path, size, color.get_sdl_color());
 	// Used to determine width and height of the given texture
-	SDL_QueryTexture(sdl_texture, nullptr, nullptr, &width, &height);
+	SDL_QueryTexture(*sdl_texture, nullptr, nullptr, &width, &height);
 
-	return std::make_shared<TextTexture>(text, font_path, size, color, width, height);
+	return std::make_unique<TextTexture>(text, font_path, size, color, width, height);
 }
 
 int MultimediaManager::get_screen_width()

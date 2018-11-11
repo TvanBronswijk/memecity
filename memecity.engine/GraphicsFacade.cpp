@@ -1,4 +1,6 @@
 #include "GraphicsFacade.h"
+#include "RawTextureWrapper.h"
+#include <SDL_image.h>
 
 GraphicsFacade::GraphicsFacade(bool is_fullscreen): is_initialized(false)
 {
@@ -50,28 +52,28 @@ bool GraphicsFacade::init()
 	return true;
 }
 
-SDL_Texture* GraphicsFacade::load_texture(const std::string path) const
+std::unique_ptr<RawTextureWrapper> GraphicsFacade::load_texture(const std::string path) const
 {
 	SDL_Texture* texture = nullptr;
 	SDL_Surface* surface = IMG_Load(path.c_str());
 	if (surface == nullptr)
 	{
 		printf("Image load error: Path(%s) - Error(%s)\n", path.c_str(), IMG_GetError());
-		return texture;
+		return std::make_unique<RawTextureWrapper>(texture);
 	}
 
 	texture = SDL_CreateTextureFromSurface(sdl_renderer, surface);
 	if (texture == nullptr)
 	{
 		printf("Create texture error: %s\n", IMG_GetError());
-		return texture;
+		return std::make_unique<RawTextureWrapper>(texture);
 	}
 
 	SDL_FreeSurface(surface);
-	return texture;
+	return std::make_unique<RawTextureWrapper>(texture);
 }
 
-SDL_Texture* GraphicsFacade::load_text_texture(TTF_Font* font, std::string text, const SDL_Color &color) const
+std::unique_ptr<RawTextureWrapper> GraphicsFacade::load_text_texture(TTF_Font* font, std::string text, const SDL_Color &color) const
 {
 	SDL_Surface* surface = TTF_RenderText_Solid(font, text.c_str(), color);
 	if (surface == nullptr)
@@ -88,10 +90,10 @@ SDL_Texture* GraphicsFacade::load_text_texture(TTF_Font* font, std::string text,
 	}
 
 	SDL_FreeSurface(surface);
-	return tex;
+	return std::make_unique<RawTextureWrapper>(tex);
 }
 
-void GraphicsFacade::draw_texture(SDL_Texture* texture, RectangleFacade* clipped_rect, RectangleFacade* render_rect) const
+void GraphicsFacade::draw_texture(const RawTextureWrapper& texture, RectangleFacade* clipped_rect, RectangleFacade* render_rect) const
 {
 	int offset = 90;
 
@@ -112,7 +114,7 @@ void GraphicsFacade::draw_texture(SDL_Texture* texture, RectangleFacade* clipped
 
 	if (render_rect->x > -offset && render_rect->x < screen_width + offset &&
 		render_rect->y > -offset && render_rect->y < screen_height + offset) {
-		SDL_RenderCopy(sdl_renderer, texture, sdl_clipped_rect, sdl_render_rect);
+		SDL_RenderCopy(sdl_renderer, *texture, sdl_clipped_rect, sdl_render_rect);
 	}
 
 	delete sdl_clipped_rect;

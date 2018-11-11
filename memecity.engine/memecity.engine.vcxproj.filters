@@ -87,6 +87,9 @@
     <ClCompile Include="TextTexture.cpp">
       <Filter>Source Files\Graphics</Filter>
     </ClCompile>
+    <ClCompile Include="RawTextureWrapper.cpp">
+      <Filter>Source Files\Graphics</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GraphicsFacade.h">
@@ -144,6 +147,9 @@
       <Filter>Header Files\Graphics</Filter>
     </ClInclude>
     <ClInclude Include="TextTexture.h">
+      <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="RawTextureWrapper.h">
       <Filter>Header Files\Graphics</Filter>
     </ClInclude>
   </ItemGroup>

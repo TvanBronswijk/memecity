@@ -2,30 +2,29 @@
 #include "GraphicsFacade.h"
 
 ///<summary>Constructor which assigns a given graphics_facade to it's member variable.</summary>
-AssetManager::AssetManager(std::shared_ptr<GraphicsFacade> graphics_facade)
+AssetManager::AssetManager(GraphicsFacade& graphics_facade) : graphics_facade(graphics_facade)
 {
-	this->graphics_facade = graphics_facade;
 }
 
 ///<summary>Cleanup.</summary>
 AssetManager::~AssetManager()
 {
-	for (auto texture : textures)
+	/*for (auto texture : textures)
 	{
 		if (texture.second != nullptr)
 		{
 			SDL_DestroyTexture(texture.second);
 		}
-	}
-	textures.clear();
+	}*/
+//	textures.clear();
 
-	for (auto text : texts)
+	/*for (auto text : texts)
 	{
 		if (text.second != nullptr)
 		{
 			SDL_DestroyTexture(text.second);
 		}
-	}
+	}*/
 	texts.clear();
 
 	for (auto font : fonts)
@@ -39,31 +38,31 @@ AssetManager::~AssetManager()
 }
 
 ///<summary>Returns a texture based on given filename.</summary>
-SDL_Texture* AssetManager::get_texture(std::string filename)
+const RawTextureWrapper& AssetManager::get_texture(std::string filename)
 {
 	std::string fullPath = base_path;
 	fullPath.append("Assets/" + filename);
 
-	if (textures[fullPath] == nullptr)
+	if (textures.find(fullPath) == textures.end())
 	{
-		textures[fullPath] = graphics_facade->load_texture(fullPath);
+		textures[fullPath] = graphics_facade.load_texture(fullPath);
 	}
 
-	return textures[fullPath];
+	return *textures[fullPath];
 }
 
 ///<summary>Returns a text texture based on a given text and filename.</summary>
-SDL_Texture* AssetManager::get_text(std::string text, std::string filename, int size, SDL_Color color)
+const RawTextureWrapper&  AssetManager::get_text(std::string text, std::string filename, int size, SDL_Color color)
 {
 	TTF_Font* font = get_font(filename, size);
 	std::string key = text + filename + char(size) + char(color.r) + char(color.g) + char(color.b);
 
-	if (texts[key] == nullptr)
+	if (texts.find(key) == texts.end())
 	{
-		texts[key] = graphics_facade->load_text_texture(font, text, color);
+		texts[key] = graphics_facade.load_text_texture(font, text, color);
 	}
 
-	return texts[key];
+	return *texts[key];
 }
 
 ///<summary>Returns a font based on a given filename.</summary>

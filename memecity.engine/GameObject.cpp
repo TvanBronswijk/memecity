@@ -67,13 +67,13 @@ bool GameObject::get_active() const
 	return is_active;
 }
 
-void GameObject::set_parent(std::shared_ptr<GameObject> parent)
+void GameObject::set_parent(std::unique_ptr<GameObject>::pointer parent)
 {
 	position = get_position(world) - parent->get_position(world);
 	this->parent = parent;
 }
 
-std::shared_ptr<GameObject> GameObject::get_parent() const
+std::unique_ptr<GameObject>::pointer GameObject::get_parent() const
 {
 	return parent;
 }

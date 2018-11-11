@@ -33,9 +33,9 @@ void generate::CityGenerator::generate(int w, int h, EntityManager& em, Multimed
 			default:
 				std::cout << "ERROR!" << std::endl;
 			}
-			auto texture = multimedia_manager.get_texture(filename);
-			texture->set_position({ x * 64.0f, y * 64.0f });
-			drawable_component.texture = texture;
+
+			drawable_component.texture = multimedia_manager.get_texture(filename);
+			drawable_component.texture->set_position({ x * 64.0f, y * 64.0f });
 		}
 		std::cout << std::endl;
 	}

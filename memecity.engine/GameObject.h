@@ -14,7 +14,7 @@ private:
 	float rotation;
 
 	bool is_active;
-	std::shared_ptr<GameObject> parent;
+	std::unique_ptr<GameObject>::pointer parent;
 
 public:
 	///<summary>Create a new GameObject on given x and y values (position).</summary>
@@ -42,10 +42,10 @@ public:
 	bool get_active() const;
 
 	///<summary>Sets the parent.</summary>
-	void set_parent(std::shared_ptr<GameObject> parent);
+	void set_parent(std::unique_ptr<GameObject>::pointer parent);
 	
 	///<summary>Returns the parent.</summary>
-	std::shared_ptr<GameObject> get_parent() const;
+	std::unique_ptr<GameObject>::pointer get_parent() const;
 
 	///<summary>Update position based on given vector.</summary>
 	void translate(Vector2 vector);

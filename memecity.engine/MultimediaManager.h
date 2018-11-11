@@ -12,7 +12,7 @@ class MultimediaManager
 private:
 	std::unique_ptr<AssetManager> asset_manager;
 	std::unique_ptr<AudioFacade> audio_facade;
-	std::shared_ptr<GraphicsFacade> graphics_facade;
+	std::unique_ptr<GraphicsFacade> graphics_facade;
 
 public:
 	MultimediaManager(bool is_fullscreen);
@@ -27,10 +27,10 @@ public:
 	void render_text_texture(TextTexture &texture) const;
 	void render_graphics() const;
 
-	std::shared_ptr<Texture> get_texture(std::string filename);
-	std::shared_ptr<Texture> get_texture(std::string filename, int x, int y, int width, int height);
-	std::shared_ptr<AnimatedTexture> get_animated_texture(TimerFacade &timer, std::string filename, int x, int y, int width, int height, int frame_count, float animation_speed, AnimatedTexture::AnimationDirection direction);
-	std::shared_ptr<TextTexture> get_text_texture(std::string text, std::string font_path, int size, Color color);
+	std::unique_ptr<Texture> get_texture(std::string filename);
+	std::unique_ptr<Texture> get_texture(std::string filename, int x, int y, int width, int height);
+	std::unique_ptr<AnimatedTexture> get_animated_texture(TimerFacade &timer, std::string filename, int x, int y, int width, int height, int frame_count, float animation_speed, AnimatedTexture::AnimationDirection direction);
+	std::unique_ptr<TextTexture> get_text_texture(std::string text, std::string font_path, int size, Color color);
 
 	int get_screen_width();
 	int get_screen_height();
