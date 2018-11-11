@@ -1,4 +1,7 @@
 ﻿#include "AnimationSystem.h"
+#include "AnimatedTexture.h"
+#include "PositionComponent.h"
+#include "AnimationComponent.h"
 
 using namespace ecs;
 

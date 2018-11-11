@@ -1,11 +1,18 @@
 #include "GameManager.h"
+#include "Generate\Strategy\BSP\BSP.h"
+#include "DrawSystem.h"
+#include "InputSystem.h"
+#include "MoveSystem.h"
+#include "PlayerComponent.h"
+#include "AnimationSystem.h"
 
 GameManager::GameManager() = default;
 
+
 void GameManager::init()
 {
-	city_generator.generate(24, 24, entity_manager, multimedia_manager);
-
+	city_generator.set_strategy<generate::strategy::bsp::BSP>();
+	city_generator.generate(50, 50, entity_manager, multimedia_manager);
 	auto& entity = entity_manager.create_entity();
 
 	entity_manager.create_component<PlayerComponent>(entity);
@@ -18,6 +25,13 @@ void GameManager::init()
 	const auto animated_texture = multimedia_manager.get_animated_texture(*timer, "SpriteSheet.png", 0, 0, 48, 48, 4, 0.25f, AnimatedTexture::AnimationDirection::vertical);
 	d_component.texture = animated_texture;
 	d_component.texture->set_position({ position_component.x, position_component.y });
+
+	auto text = multimedia_manager.get_text_texture("Health: 500", "Minecraftia-Regular.ttf", 16, { 255,255,255 });
+	text->set_parent(animated_texture);
+	text->set_position({ 0, -30 });
+	auto text_entity = entity_manager.create_entity();
+	auto& text_d_component = entity_manager.create_component<DrawableComponent>(text_entity);
+	text_d_component.texture = text;
 
 	entity_manager.create_system<InputSystem>(input_manager);
 	entity_manager.create_system<AnimationSystem>();

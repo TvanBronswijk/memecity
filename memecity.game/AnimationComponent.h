@@ -1,8 +1,7 @@
 ﻿#ifndef _ANIMATION_COMPONENT_H
 #define _ANIMATION_COMPONENT_H
+#include "ECS/Component.h"
 
-#include "../memecity.engine.ecs/Component.h"
-#include "AnimatedTexture.h"
 
 struct AnimationComponent : public ecs::Component
 {

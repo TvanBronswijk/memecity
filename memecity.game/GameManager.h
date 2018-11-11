@@ -3,19 +3,13 @@
 
 #include "MemeEngine.h"
 #include <ECS.h>
-#include "CityGenerator.h"
-#include "DrawSystem.h"
-#include "InputSystem.h"
-#include "MoveSystem.h"
-#include "PlayerComponent.h"
-#include "StatsComponent.h"
-#include "AnimationSystem.h"
+#include "Generate\CityGenerator.h"
 
 class GameManager : public MemeEngine
 {
 private:
 	ecs::EntityManager entity_manager;
-	CityGenerator city_generator;
+	generate::CityGenerator city_generator;
 
 protected:
 	void init() override;
