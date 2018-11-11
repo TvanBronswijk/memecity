@@ -25,9 +25,19 @@ void DrawSystem::run(EntityManager& em) const
 	}
 
 	multimedia_manager.clear_graphics();
-	for (auto& component : drawable_components)
+	for (auto component : drawable_components)
 	{
-		multimedia_manager.render_texture(*component.get().texture);
+		auto texture = component.get().texture;
+
+		auto text_texture = dynamic_cast<TextTexture*>(&*texture);
+		if (text_texture == nullptr)
+		{
+			multimedia_manager.render_texture(*texture);
+		}
+		else
+		{
+			multimedia_manager.render_text_texture(*text_texture);
+		}
 	}
 	multimedia_manager.render_graphics();
 }
