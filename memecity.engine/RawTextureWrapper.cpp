@@ -2,7 +2,7 @@
 
 RawTextureWrapper::RawTextureWrapper(SDL_Texture* tex) 
 {
-	texture = tex;
+	this->texture = tex;
 }
 
 RawTextureWrapper::~RawTextureWrapper()

@@ -1,11 +1,14 @@
 #ifndef _MULTIMEDIAMANAGER_H
 #define _MULTIMEDIAMANAGER_H
-
-#include "AnimatedTexture.h"
+#include <memory>
 #include "AssetManager.h"
 #include "AudioFacade.h"
-#include "TextTexture.h"
-#include "Color.h"
+#include "AnimatedTexture.h"
+
+
+class Color;
+class TextTexture;
+class Texture;
 
 class MultimediaManager
 {

@@ -1,6 +1,7 @@
 #include "GraphicsFacade.h"
 #include "RawTextureWrapper.h"
 #include <SDL_image.h>
+#include "RawFontWrapper.h"
 
 GraphicsFacade::GraphicsFacade(bool is_fullscreen): is_initialized(false)
 {
@@ -73,9 +74,9 @@ std::unique_ptr<RawTextureWrapper> GraphicsFacade::load_texture(const std::strin
 	return std::make_unique<RawTextureWrapper>(texture);
 }
 
-std::unique_ptr<RawTextureWrapper> GraphicsFacade::load_text_texture(TTF_Font* font, std::string text, const SDL_Color &color) const
+std::unique_ptr<RawTextureWrapper> GraphicsFacade::load_text_texture(RawFontWrapper& font, std::string text, const SDL_Color &color) const
 {
-	SDL_Surface* surface = TTF_RenderText_Solid(font, text.c_str(), color);
+	SDL_Surface* surface = TTF_RenderText_Solid(*font, text.c_str(), color);
 	if (surface == nullptr)
 	{
 		printf("Text render error: %s\n", TTF_GetError());

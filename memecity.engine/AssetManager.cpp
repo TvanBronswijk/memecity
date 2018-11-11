@@ -1,5 +1,4 @@
 ﻿#include "AssetManager.h"
-#include "GraphicsFacade.h"
 
 ///<summary>Constructor which assigns a given graphics_facade to it's member variable.</summary>
 AssetManager::AssetManager(GraphicsFacade& graphics_facade) : graphics_facade(graphics_facade)
@@ -27,13 +26,13 @@ AssetManager::~AssetManager()
 	}*/
 	texts.clear();
 
-	for (auto font : fonts)
+	/*for (auto font : fonts)
 	{
 		if (font.second != nullptr)
 		{
 			TTF_CloseFont(font.second);
 		}
-	}
+	}*/
 	fonts.clear();
 }
 
@@ -54,7 +53,7 @@ const RawTextureWrapper& AssetManager::get_texture(std::string filename)
 ///<summary>Returns a text texture based on a given text and filename.</summary>
 const RawTextureWrapper&  AssetManager::get_text(std::string text, std::string filename, int size, SDL_Color color)
 {
-	TTF_Font* font = get_font(filename, size);
+	auto font = get_font(filename, size);
 	std::string key = text + filename + char(size) + char(color.r) + char(color.g) + char(color.b);
 
 	if (texts.find(key) == texts.end())
@@ -66,7 +65,7 @@ const RawTextureWrapper&  AssetManager::get_text(std::string text, std::string f
 }
 
 ///<summary>Returns a font based on a given filename.</summary>
-TTF_Font* AssetManager::get_font(std::string filename, int size)
+RawFontWrapper& AssetManager::get_font(std::string filename, int size)
 {
 	std::string fullPath = base_path;
 	fullPath.append("Assets/" + filename);
@@ -74,7 +73,7 @@ TTF_Font* AssetManager::get_font(std::string filename, int size)
 
 	if (fonts[key] == nullptr)
 	{
-		fonts[key] = TTF_OpenFont(fullPath.c_str(), size);
+		fonts[key] = std::make_unique<RawFontWrapper>(TTF_OpenFont(fullPath.c_str(), size));
 
 		if (fonts[key] == nullptr)
 		{
@@ -82,17 +81,17 @@ TTF_Font* AssetManager::get_font(std::string filename, int size)
 		}
 	}
 
-	return fonts[key];
+	return *fonts[key];
 }
 ///<summary>Returns music based on a given filename.</summary>
-Mix_Music* AssetManager::get_music(std::string filename)
+const RawMusicWrapper& AssetManager::get_music(std::string filename)
 {
 	std::string fullPath = base_path;
 	fullPath.append("Assets/" + filename);
 
 	if (music[fullPath] == nullptr)
 	{
-		music[fullPath] = Mix_LoadMUS(fullPath.c_str());
+		music[fullPath] = std::make_unique<RawMusicWrapper>(Mix_LoadMUS(fullPath.c_str()));
 
 		if (music[fullPath] == nullptr)
 		{
@@ -100,23 +99,23 @@ Mix_Music* AssetManager::get_music(std::string filename)
 		}
 	}
 
-	return music[fullPath];
+	return *music[fullPath];
 }
 
 ///<summary>Returns a sound effect based on a given filename.</summary>
-Mix_Chunk* AssetManager::get_sfx(std::string filename)
+const RawSfxWrapper& AssetManager::get_sfx(std::string filename)
 {
 	std::string fullPath = base_path;
 	fullPath.append("Assets/" + filename);
 
 	if (sfx[fullPath] == nullptr)
 	{
-		sfx[fullPath] = Mix_LoadWAV(fullPath.c_str());
+		sfx[fullPath] = std::make_unique<RawSfxWrapper>(Mix_LoadWAV(fullPath.c_str()));
 		if (sfx[fullPath] == nullptr)
 		{
 			printf("SFX loading error: file-%s Error-%s", filename.c_str(), Mix_GetError());
 		}
 	}
 
-	return sfx[fullPath];
+	return *sfx[fullPath];
 }

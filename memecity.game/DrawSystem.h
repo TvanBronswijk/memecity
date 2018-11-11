@@ -1,11 +1,7 @@
 ﻿#ifndef _DRAWSYSTEM_H
 #define _DRAWSYSTEM_H
 #include <ECS.h>
-#include <vector>
 #include "MultimediaManager.h"
-#include "DrawableComponent.h"
-#include "PlayerComponent.h"
-#include "PositionComponent.h"
 
 class DrawSystem : public ecs::System
 {

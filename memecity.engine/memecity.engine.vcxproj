@@ -152,6 +152,9 @@
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="MemeEngine.cpp" />
     <ClCompile Include="MultimediaManager.cpp" />
+    <ClCompile Include="RawFontWrapper.cpp" />
+    <ClCompile Include="RawMusicWrapper.cpp" />
+    <ClCompile Include="RawSfxWrapper.cpp" />
     <ClCompile Include="RawTextureWrapper.cpp" />
     <ClCompile Include="SerializationFacade.cpp" />
     <ClCompile Include="TextTexture.cpp" />
@@ -172,6 +175,9 @@
     <ClInclude Include="MathHelper.h" />
     <ClInclude Include="MemeEngine.h" />
     <ClInclude Include="MultimediaManager.h" />
+    <ClInclude Include="RawFontWrapper.h" />
+    <ClInclude Include="RawMusicWrapper.h" />
+    <ClInclude Include="RawSfxWrapper.h" />
     <ClInclude Include="RawTextureWrapper.h" />
     <ClInclude Include="RectangleFacade.h" />
     <ClInclude Include="Serializable.h" />

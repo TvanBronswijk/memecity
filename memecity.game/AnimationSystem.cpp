@@ -2,7 +2,7 @@
 #include "AnimatedTexture.h"
 #include "PositionComponent.h"
 #include "AnimationComponent.h"
-
+#include "DrawableComponent.h"
 using namespace ecs;
 
 system_typetoken AnimationSystem::SYSTEM_TYPE = "AnimationSystem";

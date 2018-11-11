@@ -1,4 +1,8 @@
 ﻿#include "DrawSystem.h"
+#include "PlayerComponent.h"
+#include "PositionComponent.h"
+#include "DrawableComponent.h"
+#include "TextTexture.h"
 
 using namespace ecs;
 

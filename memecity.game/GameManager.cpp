@@ -5,6 +5,9 @@
 #include "MoveSystem.h"
 #include "PlayerComponent.h"
 #include "AnimationSystem.h"
+#include "DrawableComponent.h"
+#include "Color.h"
+#include "TextTexture.h"
 
 GameManager::GameManager() = default;
 

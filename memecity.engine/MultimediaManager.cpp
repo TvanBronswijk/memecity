@@ -1,4 +1,7 @@
 #include "MultimediaManager.h"
+#include "TextTexture.h"
+#include "Texture.h"
+#include  "Color.h"
 
 MultimediaManager::MultimediaManager(bool is_fullscreen)
 {
@@ -20,13 +23,13 @@ bool MultimediaManager::init() const
 
 void MultimediaManager::play_background_music(std::string const name, int const volume) const
 {
-	const auto music = asset_manager->get_music(name);
+	auto music = asset_manager->get_music(name);
 	audio_facade->play_background_music(music, volume);
 }
 
 void MultimediaManager::play_sound_effect(std::string const name, int const repeats, int const volume, int const channel) const
 {
-	const auto sound = asset_manager->get_sfx(name);
+	auto sound = asset_manager->get_sfx(name);
 	audio_facade->play_sound_effect(sound, repeats, volume, channel);
 }
 

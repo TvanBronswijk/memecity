@@ -1,7 +1,7 @@
 ﻿#ifndef _ANIMATION_SYSTEM_H
 #define _ANIMATION_SYSTEM_H
 
-#include "DrawableComponent.h"
+#include "ECS/System.h"
 
 class AnimationSystem : public ecs::System
 {
