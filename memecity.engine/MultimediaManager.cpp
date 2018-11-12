@@ -46,13 +46,13 @@ void MultimediaManager::clear_graphics() const
 void MultimediaManager::render_texture(Texture &texture) const
 {
 	texture.update_render_rect();
-	graphics_facade->draw_texture(asset_manager->get_texture(texture.get_filename()), (texture.get_is_clipped()) ? &texture.get_clipped_rect() : nullptr, &texture.get_render_rect());
+	graphics_facade->draw_texture(asset_manager->get_texture(texture.get_filename()), texture.get_render_rect(), (texture.get_is_clipped()) ? &texture.get_clipped_rect() : nullptr);
 }
 
 void MultimediaManager::render_text_texture(TextTexture& texture) const
 {
 	texture.update_render_rect();
-	graphics_facade->draw_texture(asset_manager->get_text(texture.get_text(), texture.get_filename(), texture.get_font_size(), texture.get_color().get_sdl_color()), nullptr, &texture.get_render_rect());
+	graphics_facade->draw_texture(asset_manager->get_text(texture.get_text(), texture.get_filename(), texture.get_font_size(), texture.get_color().get_sdl_color()), texture.get_render_rect(), nullptr);
 }
 
 void MultimediaManager::render_graphics() const
@@ -64,7 +64,7 @@ std::unique_ptr<Texture> MultimediaManager::get_texture(std::string filename) co
 {	
 	int width, height;
 	auto& sdl_texture = asset_manager->get_texture(filename);
-	// Used to determine width and height of the given texture
+	// Used to determine width and height of the given surface
 	SDL_QueryTexture(*sdl_texture, nullptr, nullptr, &width, &height);
 
 	return std::make_unique<Texture>(filename, width, height);
@@ -87,7 +87,7 @@ std::unique_ptr<TextTexture> MultimediaManager::get_text_texture(std::string tex
 {
 	int width, height;
 	auto& sdl_texture = asset_manager->get_text(text, font_path, size, color.get_sdl_color());
-	// Used to determine width and height of the given texture
+	// Used to determine width and height of the given surface
 	SDL_QueryTexture(*sdl_texture, nullptr, nullptr, &width, &height);
 
 	return std::make_unique<TextTexture>(text, font_path, size, color, width, height);

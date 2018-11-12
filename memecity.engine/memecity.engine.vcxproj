@@ -173,8 +173,11 @@
     <ClInclude Include="MultimediaManager.h" />
     <ClInclude Include="RawFontWrapper.h" />
     <ClInclude Include="RawMusicWrapper.h" />
+    <ClInclude Include="RawRendererWrapper.h" />
     <ClInclude Include="RawSfxWrapper.h" />
+    <ClInclude Include="RawSurfaceWrapper.h" />
     <ClInclude Include="RawTextureWrapper.h" />
+    <ClInclude Include="RawWindowWrapper.h" />
     <ClInclude Include="Rectangle.h" />
     <ClInclude Include="Serializable.h" />
     <ClInclude Include="SerializationFacade.h" />
