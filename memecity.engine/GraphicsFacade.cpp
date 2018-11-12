@@ -96,7 +96,6 @@ std::unique_ptr<RawTextureWrapper> GraphicsFacade::load_text_texture(RawFontWrap
 
 void GraphicsFacade::draw_texture(const RawTextureWrapper& texture, const Rectangle* clipped_rect, const Rectangle* render_rect) const
 {
-	int offset = 90;
 
 	std::unique_ptr<SDL_Rect> sdl_clipped_rect;
 	if (clipped_rect != nullptr) {
@@ -113,8 +112,8 @@ void GraphicsFacade::draw_texture(const RawTextureWrapper& texture, const Rectan
 	sdl_render_rect->h = render_rect->h;
 
 
-	if (render_rect->x > -offset && render_rect->x < screen_width + offset &&
-		render_rect->y > -offset && render_rect->y < screen_height + offset) {
+	if (render_rect->x > -viewport_offset && render_rect->x < screen_width + viewport_offset &&
+		render_rect->y > -viewport_offset && render_rect->y < screen_height + viewport_offset) {
 		SDL_RenderCopy(sdl_renderer, *texture, sdl_clipped_rect.get(), sdl_render_rect.get());
 	}
 }

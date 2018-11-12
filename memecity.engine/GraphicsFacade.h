@@ -15,7 +15,7 @@ private:
 	SDL_Window* sdl_window{};
 	SDL_Surface* window_surface{};
 	SDL_Renderer* sdl_renderer{};
-
+	const int viewport_offset = 90;
 public:
 	///<summary>Constructor with the default setting to disable fullscreen.</summary>
 	GraphicsFacade(bool is_fullscreen);
