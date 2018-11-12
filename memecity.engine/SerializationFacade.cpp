@@ -1,7 +1,7 @@
 ﻿#include "SerializationFacade.h"
 
 
-std::string SerializationFacade::serialize(std::map<std::string, std::any> map) const
+std::string SerializationFacade::serialize(std::map<std::string, std::any&> map) const
 {
 	nlohmann::json json;
 

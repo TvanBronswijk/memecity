@@ -8,7 +8,7 @@
 class SerializationFacade
 {
 public:
-	std::string serialize(std::map<std::string, std::any> map) const;
+	std::string serialize(std::map<std::string, std::any&> map) const;
 	std::map<std::string, std::any> deserialize(const std::string& json_string) const;
 
 };
