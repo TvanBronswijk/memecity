@@ -44,7 +44,7 @@ void MoveSystem::run(EntityManager& em) const
 					animated_charater->set_walking_direction(AnimatedCharacter::right);
 				}
 
-				animated_charater->translate(Vector2(current_velocity_component->x, (current_velocity_component->y - current_velocity_component->y * 2))); //TODO: check y axes it is inverted.
+				animated_charater->translate(Vector2(current_velocity_component->x, (current_velocity_component->y - current_velocity_component->y * 2))); //TODO: x and y = *2
 
 			}
 		}
