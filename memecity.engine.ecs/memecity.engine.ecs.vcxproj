@@ -116,15 +116,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="EntityManager.cpp" />
+    <ClInclude Include="ECS\Component.h" />
+    <ClInclude Include="ECS.h" />
+    <ClInclude Include="ECS\Entity.h" />
+    <ClInclude Include="ECS\EntityManager.h" />
+    <ClInclude Include="ECS\Eventing\Event.h" />
+    <ClInclude Include="ECS\Eventing\EventArgs.h" />
+    <ClInclude Include="ECS\System.h" />
+    <ClInclude Include="ECS\Builder\EntityBuilder.h" />
+    <ClInclude Include="ECS\Query\Query.h" />
+    <ClInclude Include="ECS\Type.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Component.h" />
-    <ClInclude Include="Entity.h" />
-    <ClInclude Include="EntityManager.h" />
-    <ClInclude Include="Event.h" />
-    <ClInclude Include="EventArgs.h" />
-    <ClInclude Include="System.h" />
+    <ClCompile Include="ECS.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

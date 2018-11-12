@@ -1,20 +1,26 @@
 #include "MemeEngine.h"
-#include "SerializationFacade.h"
 
 MemeEngine::MemeEngine()
 {
-
-	multimedia_manager = std::make_shared<MultimediaManager>(false);
-	input_manager = std::make_unique<InputManager>();
 	timer = std::make_unique<TimerFacade>();
 }
 
 int MemeEngine::run()
 {
-	if (init()) {
-		while (!input_manager->is_quit_pressed())
+	if (multimedia_manager.init()) {
+		init();
+		while (!input_manager.is_quit_pressed())
 		{
-			handle();
+			timer->update();
+			update(timer->get_delta_time());
+			if (timer->get_delta_time() >= 1.0f / 60)
+			{
+				input_manager.update();
+				multimedia_manager.clear_graphics();
+				draw();
+				multimedia_manager.render_graphics();
+				timer->reset();
+			}
 		}
 		return 0;
 	}

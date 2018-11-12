@@ -1,20 +1,21 @@
 #ifndef _MEME_ENGINE_H
 #define _MEME_ENGINE_H
 
-#include <memory>
-#include "MultimediaManager.h"
 #include "InputManager.h"
-#include "TimerFacade.h"
+#include "MultimediaManager.h"
+
+class TimerFacade;
 
 class MemeEngine
 {
 protected:
-	std::shared_ptr<MultimediaManager> multimedia_manager;
-	std::shared_ptr<InputManager> input_manager;
-	std::shared_ptr<TimerFacade> timer;
+	MultimediaManager multimedia_manager{ false };
+	InputManager input_manager{};
+	std::unique_ptr<TimerFacade> timer;
 
-	virtual bool init() = 0;
-	virtual void handle() = 0;
+	virtual void init() = 0;
+	virtual void update(float dt) = 0;
+	virtual void draw() = 0;
 
 public:
 	int run();

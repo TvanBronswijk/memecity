@@ -1,16 +1,16 @@
 ﻿#include "MoveSystem.h"
+#include "VelocityComponent.h"
+#include "PositionComponent.h"
+using namespace ecs;
 
-std::string MoveSystem::SYSTEM_TYPE = "MoveSystem";
-
-void MoveSystem::run(EntityManager& em)
+void MoveSystem::run(EntityManager& em) const
 {
-	auto components = em.get_components_of_type(VelocityComponent::COMPONENT_TYPE);
+	auto entities = em.get_entities_with_component<VelocityComponent>();
 
-	for (auto velocity_component : components)
+	for (auto entity : entities)
 	{
-		auto current_position =
-			dynamic_cast<PositionComponent*>(em.get_component_of_entity(velocity_component->entity_id, PositionComponent::COMPONENT_TYPE));
-		const auto current_velocity_component = dynamic_cast<VelocityComponent*>(velocity_component);
+		auto current_position = entity.get().get<PositionComponent>();
+		auto current_velocity_component = entity.get().get<VelocityComponent>();
 
 		if (current_velocity_component->x != 0)
 		{
@@ -34,14 +34,4 @@ void MoveSystem::run(EntityManager& em)
 			current_position->diffy = 0;
 		}
 	}
-}
-
-void MoveSystem::run(EntityManager& em, EventArgs& e)
-{
-}
-
-
-std::string MoveSystem::get_type()
-{
-	return SYSTEM_TYPE;
 }
