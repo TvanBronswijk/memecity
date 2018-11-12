@@ -9,7 +9,7 @@ namespace generate {
 	private:
 		std::unique_ptr<strategy::Strategy> strategy;
 	public:
-		CityGenerator() = default;
+		CityGenerator();
 		
 		template<class T, class... Args>
 		void set_strategy(Args&&... args)
@@ -20,6 +20,7 @@ namespace generate {
 		}
 
 		void generate(int w, int h, ecs::EntityManager& em, MultimediaManager &multimedia_manager) const;
+		~CityGenerator() = default;
 	};
 }
 

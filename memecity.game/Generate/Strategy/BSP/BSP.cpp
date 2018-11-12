@@ -1,8 +1,9 @@
 #include "BSP.h"
+#include <ctime>
 
 generate::models::City generate::strategy::bsp::BSP::generate(int w, int h) const
 {
-	srand(time(0));
+	srand(time(nullptr));
 	generate::strategy::bsp::Node root = { 0, 0, w, h };
 
 	if (rand() % 2 == 0)

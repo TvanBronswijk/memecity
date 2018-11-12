@@ -12,10 +12,8 @@ private:
 
 protected:
 	void init() override;
-	void handle() override;
-
-public:
-	GameManager();
+	void update(float dt) override;
+	void draw() override;
 };
 
 

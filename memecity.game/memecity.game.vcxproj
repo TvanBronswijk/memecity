@@ -38,18 +38,12 @@
   <ItemGroup>
     <ClCompile Include="Generate\Strategy\BSP\BSP.cpp" />
     <ClCompile Include="Generate\CityGenerator.cpp" />
-    <ClCompile Include="ExpComponent.cpp" />
     <ClCompile Include="ExpSystem.cpp" />
     <ClCompile Include="GameManager.cpp" />
-    <ClCompile Include="DrawableComponent.cpp" />
     <ClCompile Include="DrawSystem.cpp" />
-    <ClCompile Include="PlayerComponent.cpp" />
     <ClCompile Include="InputSystem.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="StatsComponent.cpp" />
     <ClCompile Include="MoveSystem.cpp" />
-    <ClCompile Include="PositionComponent.cpp" />
-    <ClCompile Include="VelocityComponent.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
