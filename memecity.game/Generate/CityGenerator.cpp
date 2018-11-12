@@ -38,8 +38,8 @@ void generate::CityGenerator::generate(int w, int h, EntityManager& em, Multimed
 			auto texture = multimedia_manager.get_texture(filename);
 			texture->set_position({ x * 64.0f, y * 64.0f });
 			builder::EntityBuilder(em)
-				.add_component<DrawableComponent>(texture)
-				.build();
+				.create_entity()
+				.with_component<DrawableComponent>(texture);
 		}
 		std::cout << std::endl;
 	}

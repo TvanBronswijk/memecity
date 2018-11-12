@@ -18,11 +18,11 @@ void GameManager::init()
 	auto texture = multimedia_manager.get_animated_texture(timer.get(), "SpriteSheet.png", 0, 0, 48, 48, 4, 0.5f, AnimatedCharacter::vertical);
 	texture->set_position({ (float)multimedia_manager.get_screen_width() / 2, (float)multimedia_manager.get_screen_height() / 2 });
 	ecs::builder::EntityBuilder(entity_manager)
-		.add_component<PlayerComponent>()
-		.add_component<PositionComponent>(multimedia_manager.get_screen_width() / 2, multimedia_manager.get_screen_height() / 2)
-		.add_component<VelocityComponent>()
-		.add_component<DrawableComponent>(texture)
-		.build();
+		.create_entity()
+		.with_component<PlayerComponent>()
+		.with_component<PositionComponent>(multimedia_manager.get_screen_width() / 2, multimedia_manager.get_screen_height() / 2)
+		.with_component<VelocityComponent>()
+		.with_component<DrawableComponent>(texture);
 
 	entity_manager.create_system<DrawSystem>(ecs::System::draw);
 	entity_manager.create_system<InputSystem>(ecs::System::update, input_manager);

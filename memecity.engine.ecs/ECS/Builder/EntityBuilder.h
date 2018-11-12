@@ -5,15 +5,21 @@ namespace ecs {
 	namespace builder {
 		struct EntityBuilder {
 			EntityManager& em;
-			Entity& entity;
-			EntityBuilder(EntityManager& em) : em(em), entity(em.create_entity()) {};
-			template<class T, class... Args>
-			const EntityBuilder& add_component(Args&&... args) const
-			{
-				entity.add<T>(em.create_component<T>(entity, std::forward<Args>(args)...));
+			Entity* entity;
+			EntityBuilder(EntityManager& em) : em(em), entity(nullptr) {};
+			const EntityBuilder& create_entity() 
+			{ 
+				entity = &em.create_entity();
 				return *this;
 			}
-			const Entity& build() const { return entity; }
+			template<class T, class... Args>
+			const EntityBuilder& with_component(Args&&... args) const
+			{
+				if (entity == nullptr) throw - 1;
+				entity->add<T>(em.create_component<T>(*entity, std::forward<Args>(args)...));
+				return *this;
+			}
+			const Entity& get() const { return *entity; }
 			~EntityBuilder() = default;
 		};
 	}

@@ -6,6 +6,9 @@
 namespace ecs {
 	namespace query {
 		template<class T>
+		using Predicate = std::function<bool(T&)>;
+
+		template<class T>
 		class ComponentQuery {
 		protected:
 			std::vector<std::reference_wrapper<T>> _collection;
@@ -20,7 +23,7 @@ namespace ecs {
 					_collection.emplace_back(std::ref(static_cast<T&>(*element)));
 			};
 
-			ComponentQuery<T> where(std::function<bool(T&)> predicate) const
+			ComponentQuery<T> where(Predicate<T> predicate) const
 			{
 				std::vector<std::reference_wrapper<T>> result;
 				for (auto& c : _collection)
@@ -28,7 +31,7 @@ namespace ecs {
 						result.emplace_back(c);
 				return ComponentQuery<T>(result);
 			}
-			T* first(std::function<bool(T&)> predicate) const
+			T* first(Predicate<T> predicate) const
 			{
 				for (auto& c : _collection)
 					if (predicate(c))
