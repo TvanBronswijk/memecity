@@ -6,7 +6,7 @@ using namespace ecs;
 
 void DrawSystem::run(EntityManager& em) const
 {
-	auto player = em.get_entities_with_component<PlayerComponent>().front().get();
+	auto& player = em.get_entities_with_component<PlayerComponent>().front().get();
 	
 	auto components = em.get_components_of_type<DrawableComponent>();
 	for (auto& drawable : components)

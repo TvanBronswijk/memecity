@@ -1,4 +1,5 @@
 #include "GameManager.h"
+#include "ColliderSystem.h"
 
 #include "DrawSystem.h"
 #include "InputSystem.h"
@@ -24,10 +25,11 @@ void GameManager::init()
 	city_generator.generate(50, 50, entity_manager, multimedia_manager);
 
 	auto texture = multimedia_manager.get_animated_texture(timer.get(), "SpriteSheet.png", 0, 0, 48, 48, 4, 0.5f, AnimatedCharacter::vertical);
-	texture->set_position({ (float)multimedia_manager.get_screen_width() / 2, (float)multimedia_manager.get_screen_height() / 2 });
+	texture->set_position({ static_cast<float>(multimedia_manager.get_screen_width()) / 2, static_cast<float>(multimedia_manager.get_screen_height()) / 2 });
 	ecs::builder::EntityBuilder(entity_manager)
 		.create_entity()
 		.with_component<PlayerComponent>()
+		//.with_component<ColliderComponent>(64.0f, 64.0f)
 		.with_component<PositionComponent>(multimedia_manager.get_screen_width() / 2, multimedia_manager.get_screen_height() / 2)
 		.with_component<VelocityComponent>()
 		.with_component<DrawableComponent>(texture);
@@ -72,7 +74,7 @@ void GameManager::update(float dt)
 	entity_manager.update(ecs::System::update);
 }
 
-void GameManager::draw() 
+void GameManager::draw()
 {
 	entity_manager.update(ecs::System::draw);
 }

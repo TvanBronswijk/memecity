@@ -22,6 +22,9 @@
     <ClInclude Include="AIComponent.h" />
     <ClInclude Include="AISystem.h" />
     <ClInclude Include="AttackEventArgs.h" />
+    <ClInclude Include="ColliderComponent.h" />
+    <ClInclude Include="ColliderEventArgs.h" />
+    <ClInclude Include="ColliderSystem.h" />
     <ClInclude Include="ExpComponent.h" />
     <ClInclude Include="ExpSystem.h" />
     <ClInclude Include="City.h" />
@@ -48,6 +51,7 @@
     <ClInclude Include="StatsComponent.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ColliderSystem.cpp" />
     <ClCompile Include="AISystem.cpp" />
     <ClCompile Include="Generate\Strategy\BSP\BSP.cpp" />
     <ClCompile Include="Generate\CityGenerator.cpp" />
