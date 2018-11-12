@@ -38,22 +38,15 @@
     <ClInclude Include="StatsComponent.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="AnimationComponent.cpp" />
     <ClCompile Include="AnimationSystem.cpp" />
     <ClCompile Include="Generate\Strategy\BSP\BSP.cpp" />
     <ClCompile Include="Generate\CityGenerator.cpp" />
-    <ClCompile Include="ExpComponent.cpp" />
     <ClCompile Include="ExpSystem.cpp" />
     <ClCompile Include="GameManager.cpp" />
-    <ClCompile Include="DrawableComponent.cpp" />
     <ClCompile Include="DrawSystem.cpp" />
-    <ClCompile Include="PlayerComponent.cpp" />
     <ClCompile Include="InputSystem.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="StatsComponent.cpp" />
     <ClCompile Include="MoveSystem.cpp" />
-    <ClCompile Include="PositionComponent.cpp" />
-    <ClCompile Include="VelocityComponent.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
@@ -107,7 +100,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>$(SolutionDir)memecity.engine;$(SolutionDir)dependencies\SDL2_mixer-2.0.2\include;$(SolutionDir)dependencies\SDL2_ttf-2.0.14\include;$(SolutionDir)dependencies\SDL2\include;$(SolutionDir)dependencies\SDL2_image-2.0.3\include;$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)memecity.engine;$(SolutionDir)dependencies\SDL2_mixer-2.0.2\include;$(SolutionDir)dependencies\SDL2_ttf-2.0.14\include;$(SolutionDir)dependencies\SDL2\include;$(SolutionDir)dependencies\SDL2_image-2.0.3\include;$(VC_IncludePath);$(WindowsSDK_IncludePath);$(SolutionDir)memecity.engine.ecs</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <IncludePath>$(SolutionDir)memecity.engine;$(SolutionDir)dependencies\SDL2_mixer-2.0.2\include;$(SolutionDir)dependencies\SDL2_ttf-2.0.14\include;$(SolutionDir)dependencies\SDL2\include;$(SolutionDir)dependencies\SDL2_image-2.0.3\include;$(VC_IncludePath);$(WindowsSDK_IncludePath);$(SolutionDir)memecity.engine.ecs</IncludePath>
@@ -153,12 +146,13 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <Optimization>MaxSpeed</Optimization>
-      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <Optimization>Disabled</Optimization>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>

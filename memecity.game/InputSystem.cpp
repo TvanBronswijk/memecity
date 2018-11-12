@@ -1,25 +1,20 @@
 ﻿#include "InputSystem.h"
+#include "PlayerComponent.h"
+#include "VelocityComponent.h"
+#include "AnimationComponent.h"
 
 using namespace ecs;
 
-system_typetoken InputSystem::SYSTEM_TYPE = "InputSystem";
-
-InputSystem::InputSystem(InputManager &input_manager) : input_manager(input_manager)
-{
-}
-
 void InputSystem::run(EntityManager& em) const
 {
-	auto entities = em.get_entities_with_component(PlayerComponent::COMPONENT_TYPE);
+	auto entities = em.get_entities_with_component<PlayerComponent>();
 
 	for (auto entity : entities)
 	{
 
-		auto velocity_component =
-			em.get_component_of_entity<VelocityComponent>(entity, VelocityComponent::COMPONENT_TYPE);
-		
-		auto animation_component = 
-			em.get_component_of_entity<AnimationComponent>(entity, AnimationComponent::COMPONENT_TYPE);
+		auto velocity_component = entity.get().get<VelocityComponent>();
+			
+		auto animation_component = entity.get().get<AnimationComponent>();
 
 		if (this->input_manager.is_pressed(Attack))
 		{

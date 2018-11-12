@@ -5,18 +5,18 @@
 #include "DrawableComponent.h"
 using namespace ecs;
 
-system_typetoken AnimationSystem::SYSTEM_TYPE = "AnimationSystem";
-
 void AnimationSystem::run(ecs::EntityManager& em) const
 {
-	auto animation_components = em.get_components_of_type<AnimationComponent>(AnimationComponent::COMPONENT_TYPE);
-	for (auto animation_component : animation_components)
+	auto animation_components = em.get_components_of_type<AnimationComponent>();
+	for (auto& animation_component : animation_components)
 	{	
-		const auto current_position = em.get_component_of_entity<PositionComponent>(animation_component.get().entity, PositionComponent::COMPONENT_TYPE);
-		auto texture = em.get_component_of_entity<DrawableComponent>(animation_component.get().entity, DrawableComponent::COMPONENT_TYPE)->texture.get();
+
+		const auto& current_position = animation_component.get().entity.get<PositionComponent>();
+
+		auto& texture = animation_component.get().entity.get<DrawableComponent>()->get_texture();
 
 		// Cast from base class (Texture) to derived class (AnimatedTexture)
-		auto animated_texture = dynamic_cast<AnimatedTexture*>(&*texture);
+		auto animated_texture = dynamic_cast<AnimatedTexture*>(&texture);
 
 		if (animated_texture != nullptr && current_position != nullptr)
 		{

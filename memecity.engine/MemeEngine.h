@@ -14,7 +14,8 @@ protected:
 	std::unique_ptr<TimerFacade> timer;
 
 	virtual void init() = 0;
-	virtual void handle() = 0;
+	virtual void update(float dt) = 0;
+	virtual void draw() = 0;
 
 public:
 	int run();

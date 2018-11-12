@@ -6,18 +6,6 @@ void InputFacade::update()
 	{
 		if (event.type == SDL_QUIT) { quit_pressed = true; }
 		state = SDL_GetKeyboardState(nullptr);
-
-		switch (event.type)
-		{
-		case SDL_KEYDOWN:
-			std::cout << "you have pressed: " << SDL_GetKeyName(event.key.keysym.sym) << std::endl;
-			break;
-		case SDL_KEYUP:
-			std::cout << "you have released: " << SDL_GetKeyName(event.key.keysym.sym) << std::endl;
-			break;
-		default: 
-			break;
-		}
 	}
 }
 

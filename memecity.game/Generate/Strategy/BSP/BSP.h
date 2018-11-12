@@ -2,7 +2,6 @@
 #define _BSP_GENERATOR_H
 #include <vector>
 #include <iostream>
-#include <time.h>
 #include "..\Strategy.h"
 
 namespace generate {

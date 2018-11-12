@@ -103,7 +103,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <Optimization>MaxSpeed</Optimization>
+      <Optimization>Disabled</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
@@ -123,6 +123,9 @@
     <ClInclude Include="ECS\Eventing\Event.h" />
     <ClInclude Include="ECS\Eventing\EventArgs.h" />
     <ClInclude Include="ECS\System.h" />
+    <ClInclude Include="ECS\Builder\EntityBuilder.h" />
+    <ClInclude Include="ECS\Query\Query.h" />
+    <ClInclude Include="ECS\Type.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ECS.cpp" />
