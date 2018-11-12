@@ -8,13 +8,7 @@
 
 using namespace ecs;
 
-system_typetoken InputSystem::SYSTEM_TYPE = "InputSystem";
 
-InputSystem::InputSystem(InputManager &input_manager) : input_manager(input_manager)
-{
-	this->interaction_event = interaction_event;
-	this->attack_event = attack_event;
-}
 
 bool InputSystem::check_collision(EntityManager& em, Component& element , int range) const{
 	auto player = em.get_components_of_type<PlayerComponent>(PlayerComponent::COMPONENT_TYPE)[0];
@@ -30,12 +24,11 @@ bool InputSystem::check_collision(EntityManager& em, Component& element , int ra
 
 void InputSystem::run(EntityManager& em) const
 {
-	auto entities = em.get_entities_with_component(PlayerComponent::COMPONENT_TYPE);
+	auto entities = em.get_entities_with_component<PlayerComponent>();
 
 	for (auto entity : entities)
 	{
-		auto velocity_component = em.get_component_of_entity<VelocityComponent>(entity.get(), VelocityComponent::COMPONENT_TYPE);
-
+		auto velocity_component = entity.get().get<VelocityComponent>();
 
 		if (this->input_manager.is_pressed(Up))
 		{

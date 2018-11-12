@@ -62,6 +62,54 @@
     <ClCompile Include="VelocityComponent.cpp">
       <Filter>Source Files\Component</Filter>
     </ClCompile>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header Files\Components">
+      <UniqueIdentifier>{b4e2e74a-fe61-4c54-b48c-84052a02c61a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Systems">
+      <UniqueIdentifier>{8c5af50c-0856-410d-b82e-9b1cb52ddf39}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Systems">
+      <UniqueIdentifier>{e40c52ec-964d-4257-a326-37920ddb895a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Components">
+      <UniqueIdentifier>{cf8d53bf-063f-47ff-a6b8-3bbe841ef165}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\City">
+      <UniqueIdentifier>{69be7a77-99c9-4639-be1f-3358806ed1a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\City">
+      <UniqueIdentifier>{0dbf50c0-d376-4205-9bd5-61396d320cc4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\City\Strategy">
+      <UniqueIdentifier>{a7b7af10-e482-4351-88bb-ed46f345485d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\City\Strategy">
+      <UniqueIdentifier>{4163cd46-6aa9-484e-8c7c-416715d66d3b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\City\Models">
+      <UniqueIdentifier>{e97041ac-e993-4d12-9f72-3c065d33f77c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Components">
+      <UniqueIdentifier>{532fe351-f6bf-45d5-afd7-8d67834047f8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Systems">
+      <UniqueIdentifier>{309dd4aa-5921-4d7c-8220-0119735ebf6c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Systems">
+      <UniqueIdentifier>{7cbc1162-2772-44b0-9071-d39d93342fdf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AIComponent.h">
@@ -108,6 +156,8 @@
     </ClInclude>
     <ClInclude Include="InputSystem.h">
       <Filter>Header Files\System</Filter>
+    <ClInclude Include="PositionComponent.h">
+      <Filter>Header Files\Components</Filter>
     </ClInclude>
     <ClInclude Include="InteractionComponent.h">
       <Filter>Header Files\Component</Filter>
@@ -135,6 +185,18 @@
     </ClInclude>
     <ClInclude Include="PlayerComponent.h">
       <Filter>Header Files\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Generate\CityGenerator.h">
+      <Filter>Header Files\City</Filter>
+    </ClInclude>
+    <ClInclude Include="Generate\Strategy\Strategy.h">
+      <Filter>Header Files\City\Strategy</Filter>
+    </ClInclude>
+    <ClInclude Include="Generate\Strategy\BSP\BSP.h">
+      <Filter>Header Files\City\Strategy</Filter>
+    </ClInclude>
+    <ClInclude Include="Generate\Models\Models.h">
+      <Filter>Header Files\City\Models</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -174,5 +236,29 @@
     <Filter Include="Source Files\Manager">
       <UniqueIdentifier>{4aeb2e0a-84e0-4e82-aff1-7b4226b1d57b}</UniqueIdentifier>
     </Filter>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GameManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DrawSystem.cpp">
+      <Filter>Source Files\Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="MoveSystem.cpp">
+      <Filter>Source Files\Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="InputSystem.cpp">
+      <Filter>Source Files\Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="ExpSystem.cpp">
+      <Filter>Source Files\Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="Generate\CityGenerator.cpp">
+      <Filter>Source Files\City</Filter>
+    </ClCompile>
+    <ClCompile Include="Generate\Strategy\BSP\BSP.cpp">
+      <Filter>Source Files\City\Strategy</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

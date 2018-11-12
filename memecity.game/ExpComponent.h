@@ -1,13 +1,14 @@
 #ifndef _EXP_COMPONENT_H
 #define _EXP_COMPONENT_H
-#include "../memecity.engine.ecs/Component.h"
+#include <ECS.h>
 
-struct ExpComponent: public ecs::Component
+struct ExpComponent : public ecs::Component
 {
-	static ecs::component_typetoken COMPONENT_TYPE;
 	int exp, next_level;
-	ExpComponent(const ecs::Entity& entity) : ecs::Component(entity) {};
-	ecs::component_typetoken get_type_token() const override { return ExpComponent::COMPONENT_TYPE; }
+	ExpComponent(const ecs::Entity& entity)
+		: ExpComponent(entity, 0, 0) {};
+	ExpComponent(const ecs::Entity& entity, int exp, int next_level) 
+		: ecs::Component(entity), exp(exp), next_level(next_level) {};
 };
 
 #endif

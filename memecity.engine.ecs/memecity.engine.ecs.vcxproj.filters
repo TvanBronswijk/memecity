@@ -13,28 +13,49 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\ECS">
+      <UniqueIdentifier>{c59ef740-0370-4714-a540-828b43f5723d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ECS\Eventing">
+      <UniqueIdentifier>{37e0bde5-bfe1-4142-848b-b41d5ead12e2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ECS\Builder">
+      <UniqueIdentifier>{055524f8-b7f2-4d39-832b-7b3d82a38e28}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ECS\Query">
+      <UniqueIdentifier>{9084c7ce-d9de-45a1-9ddf-4c15f956cea1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="System.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="EntityManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Entity.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Component.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Event.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="EventArgs.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ECS.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ECS\Component.h">
+      <Filter>Header Files\ECS</Filter>
+    </ClInclude>
+    <ClInclude Include="ECS\Entity.h">
+      <Filter>Header Files\ECS</Filter>
+    </ClInclude>
+    <ClInclude Include="ECS\EntityManager.h">
+      <Filter>Header Files\ECS</Filter>
+    </ClInclude>
+    <ClInclude Include="ECS\Eventing\Event.h">
+      <Filter>Header Files\ECS\Eventing</Filter>
+    </ClInclude>
+    <ClInclude Include="ECS\Eventing\EventArgs.h">
+      <Filter>Header Files\ECS\Eventing</Filter>
+    </ClInclude>
+    <ClInclude Include="ECS\System.h">
+      <Filter>Header Files\ECS</Filter>
+    </ClInclude>
+    <ClInclude Include="ECS\Builder\EntityBuilder.h">
+      <Filter>Header Files\ECS\Builder</Filter>
+    </ClInclude>
+    <ClInclude Include="ECS\Query\Query.h">
+      <Filter>Header Files\ECS\Query</Filter>
+    </ClInclude>
+    <ClInclude Include="ECS\Type.h">
+      <Filter>Header Files\ECS</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
