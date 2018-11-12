@@ -1,6 +1,8 @@
 #ifndef _EXP_SYSTEM_H
 #define _EXP_SYSTEM_H
 #include <ECS.h>
+#include "..\Components.h"
+
 class ExpSystem: public memecity::engine::ecs::System
 {
 public:

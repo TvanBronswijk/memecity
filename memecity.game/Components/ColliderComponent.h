@@ -1,6 +1,6 @@
 #ifndef _COLLIDERCOMPONENT_H
 #define _COLLIDERCOMPONENT_H
-#include "ECS.h"
+#include <ECS.h>
 
 struct ColliderComponent : public memecity::engine::ecs::Component
 {

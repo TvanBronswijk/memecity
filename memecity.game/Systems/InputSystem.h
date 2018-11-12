@@ -1,9 +1,10 @@
 ﻿#ifndef _INPUTSYSTEM_H
 #define  _INPUTSYSTEM_H
+#include <Engine\InputManager.h>
 #include <ECS.h>
-#include "Engine\InputManager.h"
-#include "InteractionEventArgs.h"
-#include "AttackEventArgs.h"
+#include "..\Components.h"
+#include "..\Event\AttackEventArgs.h"
+#include "..\Event\InteractionEventArgs.h"
 
 class InputSystem : public memecity::engine::ecs::System
 {

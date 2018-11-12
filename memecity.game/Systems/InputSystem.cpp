@@ -1,12 +1,5 @@
 ﻿#include "InputSystem.h"
 
-#include "AIComponent.h"
-#include "PositionComponent.h"
-#include "PlayerComponent.h"
-#include "VelocityComponent.h"
-#include "AnimationComponent.h"
-
-#include "InteractionSystem.h"
 using namespace memecity::engine;
 using namespace memecity::engine::ecs;
 

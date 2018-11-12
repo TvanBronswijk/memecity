@@ -1,8 +1,5 @@
 #include "FightingSystem.h"
 
-#include "HealthComponent.h"
-#include "AIcomponent.h"
-
 using namespace memecity::engine::ecs;
 
 

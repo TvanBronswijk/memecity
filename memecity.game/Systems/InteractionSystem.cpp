@@ -1,9 +1,5 @@
 #include "InteractionSystem.h"
 
-#include "PositionComponent.h"
-#include "interactionComponent.h"
-#include "DrawableComponent.h"
-
 using namespace memecity::engine::ecs;
 
 void InteractionSystem::run(EntityManager &em) const {

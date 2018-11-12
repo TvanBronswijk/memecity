@@ -1,8 +1,7 @@
 #ifndef _AISYSTEM_H
 #define  _AISYSTEM_H
 #include <ECS.h>
-#include "velocityComponent.h"
-#include "PositionComponent.h"
+#include "..\Components.h"
 #include <list>
 
 struct Point {

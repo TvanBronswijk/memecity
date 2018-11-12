@@ -1,14 +1,5 @@
 #include "AISystem.h"
 
-#include "AIComponent.h"
-#include "HealthComponent.h"
-#include "StatsComponent.h"
-#include "LevelComponent.h"
-#include "PlayerComponent.h"
-#include "drawableComponent.h"
-#include "PositionComponent.h"
-
-
 using namespace memecity::engine::ecs;
 
 

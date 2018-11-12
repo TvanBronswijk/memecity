@@ -1,8 +1,6 @@
 #include "CityGenerator.h"
 #include "Strategy\BSP\BSP.h"
-#include "..\DrawableComponent.h"
-#include "..\ColliderComponent.h"
-#include "..\PositionComponent.h"
+#include "..\Components.h"
 
 using namespace memecity::engine;
 using namespace memecity::engine::ecs;

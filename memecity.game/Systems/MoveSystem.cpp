@@ -1,11 +1,6 @@
 ﻿#include "MoveSystem.h"
-#include "Engine\Textures\AnimatedTexture.h"
-#include "VelocityComponent.h"
-#include "PositionComponent.h"
-#include "PlayerComponent.h"
-#include "MoveSystem.h"
-#include "VelocityComponent.h"
-#include "PositionComponent.h"
+#include <Engine\Textures.h>
+
 using namespace memecity::engine::texture;
 using namespace memecity::engine::ecs;
 

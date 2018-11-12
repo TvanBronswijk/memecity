@@ -1,8 +1,5 @@
 ﻿#include "DrawSystem.h"
-#include "Engine\Textures\TextTexture.h"
-#include "PlayerComponent.h"
-#include "PositionComponent.h"
-#include "DrawableComponent.h"
+#include <Engine\Textures.h>
 
 using namespace memecity::engine::ecs;
 

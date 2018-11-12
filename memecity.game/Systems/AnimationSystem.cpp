@@ -1,8 +1,6 @@
 ﻿#include "AnimationSystem.h"
-#include "Engine\Textures\AnimatedTexture.h" //TODO
-#include "PositionComponent.h"
-#include "AnimationComponent.h"
-#include "DrawableComponent.h"
+#include <Engine\Textures.h>
+
 using namespace memecity::engine::texture;
 using namespace memecity::engine::ecs;
 

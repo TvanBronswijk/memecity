@@ -1,6 +1,6 @@
 ﻿#ifndef _ANIMATION_COMPONENT_H
 #define _ANIMATION_COMPONENT_H
-#include "ECS/Component.h"
+#include <ECS.h>
 
 
 struct AnimationComponent : public memecity::engine::ecs::Component

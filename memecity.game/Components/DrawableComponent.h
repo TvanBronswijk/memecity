@@ -1,7 +1,7 @@
 ﻿#ifndef _DRAWABLECOMPONENT_H
 #define _DRAWABLECOMPONENT_H
+#include <Engine\Textures.h>
 #include <ECS.h>
-#include "Engine\Textures\Texture.h"
 
 struct DrawableComponent : public memecity::engine::ecs::Component
 {

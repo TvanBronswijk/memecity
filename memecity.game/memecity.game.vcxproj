@@ -19,50 +19,53 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AIComponent.h" />
-    <ClInclude Include="AISystem.h" />
-    <ClInclude Include="AttackEventArgs.h" />
-    <ClInclude Include="AnimationComponent.h" />
-    <ClInclude Include="AnimationSystem.h" />
-    <ClInclude Include="ColliderComponent.h" />
-    <ClInclude Include="ColliderEventArgs.h" />
-    <ClInclude Include="ColliderSystem.h" />
-    <ClInclude Include="ExpComponent.h" />
-    <ClInclude Include="ExpSystem.h" />
-    <ClInclude Include="FightingSystem.h" />
+    <ClInclude Include="Components.h" />
+    <ClInclude Include="Components\AIComponent.h" />
+    <ClInclude Include="Generate.h" />
+    <ClInclude Include="Systems.h" />
+    <ClInclude Include="Systems\AISystem.h" />
+    <ClInclude Include="Event\AttackEventArgs.h" />
+    <ClInclude Include="Components\AnimationComponent.h" />
+    <ClInclude Include="Systems\AnimationSystem.h" />
+    <ClInclude Include="Components\ColliderComponent.h" />
+    <ClInclude Include="Event\ColliderEventArgs.h" />
+    <ClInclude Include="Systems\ColliderSystem.h" />
+    <ClInclude Include="Components\ExpComponent.h" />
+    <ClInclude Include="Systems\ExpSystem.h" />
+    <ClInclude Include="Systems\FightingSystem.h" />
     <ClInclude Include="Generate\Models\Models.h" />
     <ClInclude Include="Generate\Strategy\BSP\BSP.h" />
     <ClInclude Include="Generate\CityGenerator.h" />
     <ClInclude Include="GameManager.h" />
-    <ClInclude Include="DrawableComponent.h" />
-    <ClInclude Include="DrawSystem.h" />
-    <ClInclude Include="HealthComponent.h" />
-    <ClInclude Include="InteractionComponent.h" />
-    <ClInclude Include="InteractionEventArgs.h" />
-    <ClInclude Include="InteractionSystem.h" />
-    <ClInclude Include="LevelComponent.h" />
+    <ClInclude Include="Components\DrawableComponent.h" />
+    <ClInclude Include="Systems\DrawSystem.h" />
+    <ClInclude Include="Components\HealthComponent.h" />
+    <ClInclude Include="Components\InteractionComponent.h" />
+    <ClInclude Include="Event\InteractionEventArgs.h" />
+    <ClInclude Include="Systems\InteractionSystem.h" />
+    <ClInclude Include="Components\LevelComponent.h" />
     <ClInclude Include="Generate\Strategy\Strategy.h" />
-    <ClInclude Include="PlayerComponent.h" />
-    <ClInclude Include="InputSystem.h" />
-    <ClInclude Include="MoveSystem.h" />
-    <ClInclude Include="PositionComponent.h" />
-    <ClInclude Include="VelocityComponent.h" />
-    <ClInclude Include="StatsComponent.h" />
+    <ClInclude Include="Components\PlayerComponent.h" />
+    <ClInclude Include="Systems\InputSystem.h" />
+    <ClInclude Include="Systems\MoveSystem.h" />
+    <ClInclude Include="Components\PositionComponent.h" />
+    <ClInclude Include="Components\VelocityComponent.h" />
+    <ClInclude Include="Components\StatsComponent.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="AnimationSystem.cpp" />
-    <ClCompile Include="ColliderSystem.cpp" />
-    <ClCompile Include="AISystem.cpp" />
+    <ClCompile Include="Systems\AnimationSystem.cpp" />
+    <ClCompile Include="Systems\ColliderSystem.cpp" />
+    <ClCompile Include="Systems\AISystem.cpp" />
     <ClCompile Include="Generate\Strategy\BSP\BSP.cpp" />
     <ClCompile Include="Generate\CityGenerator.cpp" />
-    <ClCompile Include="ExpSystem.cpp" />
-    <ClCompile Include="FightingSystem.cpp" />
+    <ClCompile Include="Systems\ExpSystem.cpp" />
+    <ClCompile Include="Systems\FightingSystem.cpp" />
     <ClCompile Include="GameManager.cpp" />
-    <ClCompile Include="DrawSystem.cpp" />
-    <ClCompile Include="InteractionSystem.cpp" />
-    <ClCompile Include="InputSystem.cpp" />
+    <ClCompile Include="Systems\DrawSystem.cpp" />
+    <ClCompile Include="Systems\InteractionSystem.cpp" />
+    <ClCompile Include="Systems\InputSystem.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="MoveSystem.cpp" />
+    <ClCompile Include="Systems\MoveSystem.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

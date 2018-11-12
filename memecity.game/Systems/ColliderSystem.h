@@ -1,8 +1,8 @@
 ﻿#ifndef _COLLIDERSYSTEM_H
 #define  _COLLIDERSYSTEM_H
 #include <ECS.h>
-#include "ColliderEventArgs.h"
-#include "ColliderComponent.h"
+#include "..\Components.h"
+#include "..\Event\ColliderEventArgs.h"
 
 class ColliderSystem : public memecity::engine::ecs::System
 {

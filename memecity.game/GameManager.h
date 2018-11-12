@@ -1,9 +1,8 @@
 #ifndef _GAME_MANAGER_H
 #define _GAME_MANAGER_H
-
-#include "MemeEngine.h"
+#include <Engine.h>
 #include <ECS.h>
-#include "Generate\CityGenerator.h"
+#include "Generate.h"
 
 class GameManager : public memecity::engine::MemeEngine
 {

@@ -1,7 +1,8 @@
 ﻿#ifndef _DRAWSYSTEM_H
 #define _DRAWSYSTEM_H
+#include <Engine\MultimediaManager.h>
 #include <ECS.h>
-#include "Engine\MultimediaManager.h"
+#include "..\Components.h"
 
 class DrawSystem : public memecity::engine::ecs::System
 {

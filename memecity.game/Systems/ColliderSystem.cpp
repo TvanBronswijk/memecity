@@ -1,6 +1,5 @@
 ﻿#include "ColliderSystem.h"
-#include "MoveSystem.h"
-#include "PositionComponent.h"
+
 using namespace memecity::engine::ecs;
 
 

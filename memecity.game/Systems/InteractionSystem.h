@@ -1,6 +1,7 @@
+#include <Engine\MultimediaManager.h>
 #include <ECS.h>
-#include "InteractionEventArgs.h"
-#include "Engine\MultimediaManager.h"
+#include "..\Components.h"
+#include "..\Event\InteractionEventArgs.h"
 
 class InteractionSystem : public memecity::engine::ecs::System {
 

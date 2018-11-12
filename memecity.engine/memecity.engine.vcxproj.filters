@@ -134,9 +134,6 @@
     <ClInclude Include="Engine\SDL\TimerFacade.h">
       <Filter>Header Files\Facades</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Serialization\Serializable.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Engine\Serialization\SerializationFacade.h">
       <Filter>Header Files\Facades</Filter>
     </ClInclude>
@@ -166,6 +163,21 @@
     </ClInclude>
     <ClInclude Include="Engine\Util\Rectangle.h">
       <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Serialization\Serializable.h">
+      <Filter>Header Files\Facades</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\SDL.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Textures.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Serialize.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

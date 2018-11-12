@@ -1,7 +1,8 @@
 #ifndef _FIGHTINGSYSTEM_H
 #define  _FIGHTINGSYSTEM_H
 #include <ECS.h>
-#include "AttackEventArgs.h"
+#include "..\Components.h"
+#include "..\Event\AttackEventArgs.h"
 
 class FightingSystem : public memecity::engine::ecs::System {
 

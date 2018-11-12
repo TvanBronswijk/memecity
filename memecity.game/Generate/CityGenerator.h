@@ -1,7 +1,7 @@
 #ifndef _CITY_GENERATOR_H
 #define _CITY_GENERATOR_H
+#include <Engine\MultimediaManager.h>
 #include <ECS.h>
-#include "Engine\MultimediaManager.h"
 #include "strategy\Strategy.h"
 
 namespace generate {
