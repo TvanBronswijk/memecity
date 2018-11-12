@@ -6,5 +6,5 @@ class InteractionSystem : public ecs::System {
 
 public:
 	void run(ecs::EntityManager& em) const override;
-	void interact(ecs::EntityManager& em, InteractionEventArgs args);
+	void on_interact(ecs::EntityManager& em, InteractionEventArgs args);
 };

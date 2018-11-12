@@ -5,10 +5,10 @@
 struct HealthComponent : public ecs::Component{
 
 public:
-	int _health;
+	int health;
 
 	HealthComponent(const ecs::Entity& entity) : HealthComponent(entity, 1) {};
-	HealthComponent(const ecs::Entity& entity, int health) : ecs::Component(entity), _health(health) {};
+	HealthComponent(const ecs::Entity& entity, int health) : ecs::Component(entity), health(health) {};
 };
 
 #endif

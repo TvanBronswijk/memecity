@@ -5,6 +5,8 @@
 #include "MoveSystem.h"
 #include "VelocityComponent.h"
 #include "PositionComponent.h"
+#include "AnimatedCharacter.h"
+
 using namespace ecs;
 
 void MoveSystem::run(EntityManager& em) const

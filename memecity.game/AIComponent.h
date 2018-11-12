@@ -5,12 +5,12 @@
 struct AIComponent : public ecs::Component {
 	
 public:
-	enum State { Fighting, Fleeing, Static };
-	State _state;
+	enum class State { Fighting, Fleeing, Roaming };
+	State state;
 
-	AIComponent(const ecs::Entity& entity) : AIComponent(entity, Fighting) {};
+	AIComponent(const ecs::Entity& entity) : AIComponent(entity, AIComponent::State::Fightings) {};
 
-	AIComponent(const ecs::Entity& entity, State type) : ecs::Component(entity), _state(type) {};
+	AIComponent(const ecs::Entity& entity, State type) : ecs::Component(entity), state(type) {};
 };
 
 #endif

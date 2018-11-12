@@ -15,42 +15,42 @@ using namespace ecs;
 bool AISystem::check_health(EntityManager& em, const Entity& entity) const{
 	auto AI = entity.get<AIComponent>();
 	auto health = entity.get<HealthComponent>();
-	if(health->_health <= 0) {
+	if(health->health <= 0) {
 		std::cout << "i am dead!!!" << std::endl;//testing
 		return false;
 	}
-	else if (health->_health <= 10) {
-		AI->_state = AI->Fleeing;
+	else if (health->health <= 10) {
+		AI->state = AIComponent::State::Fleeing;
 	}
 	return true;
 }
 
-int AISystem::random_x(VelocityComponent* velocity) const {return (rand() % (2 - -1)) + -1;}
-int AISystem::random_y(VelocityComponent* velocity) const {return (rand() % (2 - -1)) + -1;}
+int AISystem::random_x() const {return (rand() % (2 - -1)) + -1;}
+int AISystem::random_y() const {return (rand() % (2 - -1)) + -1;}
 
-std::list <std::pair< int, int >> AISystem::calculate_next_positions(std::pair< int, int >start , std::pair< int, int >end, std::list <std::pair< int, int >> queue) const{
-	if (start.first < end.first - range) { start.first += 10; }
-	else if (start.first >  end.first + range) { start.first -= 10;}
-	if (start.second < end.second - range) { start.second += 10; }
-	else if(start.second > end.second + range) { start.second -= 10;}
+std::list <Point> AISystem::calculate_next_positions(Point start , Point end, std::list <Point> queue) const{
+	if (start.x < end.x - range) { start.x += 10; }
+	else if (start.x >  end.x + range) { start.x -= 10;}
+	if (start.y < end.y - range) { start.y += 10; }
+	else if(start.y > end.y + range) { start.y -= 10;}
 
-	queue.push_front(std::pair<int, int>(start.first - (start.first * 2), start.second - (start.first * 2)));
-	queue.push_front(std::pair<int, int>(start.first - (start.first * 2), start.second));
-	queue.push_front(std::pair<int, int>(start.first, start.second - (start.first * 2)));
-	queue.push_front(std::pair<int, int>(start.first, start.second));
+	queue.push_front(Point(start.x - (start.x * 2), start.y - (start.y * 2)));
+	queue.push_front(Point(start.x - (start.x * 2), start.y));
+	queue.push_front(Point(start.x, start.y - (start.x * 2)));
+	queue.push_front(Point(start.x, start.y));
 
 	return queue;
 }
 
-bool AISystem::check_player_position_Y(std::pair<int, int> location, std::pair<int, int> end) const{
-	if ((location.second >= end.second - range) && (location.second <= end.second + range)) {
+bool AISystem::check_player_position_Y(Point location, Point end) const{
+	if ((location.y >= end.y - range) && (location.y <= end.y + range)) {
 		return true;
 	}
 	return false;
 }
 
-bool AISystem::check_player_position_X(std::pair<int, int> location , std::pair<int, int> end) const{
-	if ((location.first >= end.first - range) && (location.first <= end.first + range)) {
+bool AISystem::check_player_position_X(Point location , Point end) const{
+	if ((location.x >= end.x - range) && (location.x <= end.x + range)) {
 		return true;
 	}
 	return false;
@@ -65,25 +65,23 @@ void AISystem::best_first_search(EntityManager& em, PositionComponent& npc_xy) c
 	auto player_drawable = player_component.entity.get<DrawableComponent>();//testing
 	auto drawable = npc_xy.entity.get<DrawableComponent>();//testing
 
-	std::pair< int, int> end(player_position->x, player_position->y); // end location
-	std::pair<int, int> start(npc_xy.x, npc_xy.y); // start location
+	Point end(player_position->x, player_position->y); // end location
+	Point start(npc_xy.x, npc_xy.y); // start location
 
-	std::list <std::pair< std::pair<int,int>,std::pair<int,int>>> path; // path to end location
-	std::list <std::pair< int, int >> queue; // need to visited these positions
+	std::list <Point> path; // path to end location
+	std::list <Point> queue; // need to visited these positions
 
 	queue = calculate_next_positions(start, end, queue);
 
 	while (!queue.empty()) {
-		std::pair<int, int> location = queue.front();
+		Point location = queue.front();
 		queue.pop_front();
 
 		if (path.size() == 0) {
-			std::pair< std::pair<int, int>, std::pair<int, int>> next_value(start, location);
-			path.push_back(next_value);
+			path.push_back(location);
 		}
 		else {
-			std::pair< std::pair<int, int>, std::pair<int, int>> next_value(path.back().second, location);
-			path.push_back(next_value);
+			path.push_back(location);
 		}
 	
 		if (check_player_position_X(location, end) && check_player_position_Y(location, end)) {
@@ -97,17 +95,17 @@ void AISystem::best_first_search(EntityManager& em, PositionComponent& npc_xy) c
 	//std::cout << "npc: X: " << start.first << " Y: " << start.second << " Drawable X: " << drawable->texture->get_position().x << " Y: " << drawable->texture->get_position().y << std::endl;
 	auto direction = path.front();
 
-	if (direction.first.first < direction.second.first) { 
-		if (!check_player_position_X(direction.first, end)) velocity->x += 2;
+	if (npc_xy.x < direction.x) { 
+		if (!check_player_position_X(direction, end)) velocity->x += 2;
 	}
-	else if(direction.first.first > direction.second.first){ 
-		if(!check_player_position_X(direction.first, end)) velocity->x -= 2; 
+	else if(npc_xy.x > direction.x){
+		if(!check_player_position_X(direction, end)) velocity->x -= 2; 
 	}
-	if (direction.first.second > direction.second.second) { 
-		if (!check_player_position_Y(direction.first, end)) velocity->y -= 2; 
+	if (npc_xy.y > direction.y) {
+		if (!check_player_position_Y(direction, end)) velocity->y -= 2; 
 	}
-	else if(direction.first.second < direction.second.second) { 
-		if (!check_player_position_Y(direction.first, end)) velocity->y += 2; 
+	else if(npc_xy.y < direction.y) {
+		if (!check_player_position_Y(direction, end)) velocity->y += 2; 
 	}
 }
 
@@ -115,8 +113,8 @@ void AISystem::move_random(const Entity& entity, EntityManager& em) const{
 
 	auto velocity = entity.get<VelocityComponent>();
 
-	velocity->x += random_x(velocity);
-	velocity->y += random_y(velocity);
+	velocity->x += random_x();
+	velocity->y += random_y();
 
 }
 
@@ -128,15 +126,15 @@ void AISystem::run(EntityManager& em) const {
 		if (check_health(em, element.get().entity)) {
 			auto AI = element.get().entity.get<AIComponent>();
 			auto xy = element.get().entity.get<PositionComponent>();
-			switch (AI->_state)
+			switch (AI->state)
 			{
-			case AIComponent::Fighting:
+			case AIComponent::State::Fighting:
 				best_first_search(em, *xy);
 				break;
-			case AIComponent::Fleeing:
+			case AIComponent::State::Fleeing:
 				//TODO:implement Fleeing
 				break;
-			case AIComponent::Static:
+			case AIComponent::State::Roaming:
 				move_random(element.get().entity, em);
 				break;
 			default:

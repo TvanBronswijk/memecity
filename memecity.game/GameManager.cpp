@@ -65,8 +65,8 @@ void GameManager::init()
 	// end test	
 
 	// events
-	input_system.interaction_event.bind([&](ecs::EntityManager& em, InteractionEventArgs args) { interaciton_system.interact(em, args); });
-	input_system.attack_event.bind([&](ecs::EntityManager& em, AttackEventArgs args) { fighting_system.attack(em, args); });
+	input_system.interaction_event.bind([&](ecs::EntityManager& em, InteractionEventArgs args) { interaciton_system.on_interact(em, args); });
+	input_system.attack_event.bind([&](ecs::EntityManager& em, AttackEventArgs args) { fighting_system.on_attack(em, args); });
 }
 
 void GameManager::update(float dt)

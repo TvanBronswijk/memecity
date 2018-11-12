@@ -6,7 +6,7 @@
 class FightingSystem : public ecs::System {
 
 public:
-	void attack(ecs::EntityManager& em, AttackEventArgs args);
+	void on_attack(ecs::EntityManager& em, AttackEventArgs args);
 	void run(ecs::EntityManager& em) const override;
 };
 

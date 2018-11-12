@@ -5,17 +5,22 @@
 #include "PositionComponent.h"
 #include <list>
 
+struct Point {
+	int x, y;
+	Point(int x, int y) : x(x), y(y) {};
+};
+
 class AISystem : public ecs::System {
 
 private:
-	int random_x(VelocityComponent* velocity) const;
-	int random_y(VelocityComponent* velocity) const;
+	int random_x() const;
+	int random_y() const;
 	void move_random(const ecs::Entity& entity, ecs::EntityManager& em) const;
 	bool check_health(ecs::EntityManager& em, const ecs::Entity& entity) const;
 	void best_first_search(ecs::EntityManager& em, PositionComponent& xy) const;
-	std::list <std::pair< int, int >> calculate_next_positions(std::pair< int, int > start, std::pair< int, int > end, std::list <std::pair< int, int >> queue) const;
-	bool check_player_position_X(std::pair<int, int> location, std::pair<int, int> end) const;
-	bool check_player_position_Y(std::pair<int, int> location, std::pair<int, int> end) const;
+	std::list <Point> calculate_next_positions(Point start, Point end, std::list <Point> queue) const;
+	bool check_player_position_X(Point location, Point end) const;
+	bool check_player_position_Y(Point location, Point end) const;
 public:
 	static const int range = 5;
 	void run(ecs::EntityManager& em) const override;
