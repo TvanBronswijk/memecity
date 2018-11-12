@@ -13,7 +13,7 @@ public:
 	std::string serialize(T object) const
 	{
 		static_assert(std::is_convertible<T, Serializable>::value, "This function can only construct concrete subclasses of Serializable");
-		std::map<std::string, std::any&> map = object.serialize();
+		SerializeInfo map = object.serialize();
 		nlohmann::json json;
 
 		for (auto entry : map)
@@ -51,7 +51,7 @@ public:
 	T deserialize(std::string json_string) const
 	{
 		static_assert(std::is_convertible<T, Serializable>::value, "This function can only construct concrete subclasses of Serializable");
-		std::map<std::string, std::any> map;
+		SerializeInfo map;
 		auto json = nlohmann::json::parse(json_string);
 
 

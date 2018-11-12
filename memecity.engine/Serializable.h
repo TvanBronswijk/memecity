@@ -3,11 +3,12 @@
 #include <map>
 #include <any>
 
+using SerializeInfo = std::map<std::string, std::any>;
 class Serializable
 {
 public:
-	virtual std::map<std::string, std::any>  to_map() const =0 ;
-	virtual void from_map(std::map<std::string, std::any> map)=0;
+	virtual SerializeInfo to_map() const =0 ;
+	virtual void from_map(SerializeInfo map)=0;
 
 	Serializable(const Serializable &) = delete;
 	Serializable(Serializable &&) = delete;
