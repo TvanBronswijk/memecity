@@ -19,6 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AIComponent.h" />
+    <ClInclude Include="AISystem.h" />
+    <ClInclude Include="AttackEventArgs.h" />
     <ClInclude Include="AnimationComponent.h" />
     <ClInclude Include="AnimationSystem.h" />
     <ClInclude Include="ColliderComponent.h" />
@@ -26,12 +29,21 @@
     <ClInclude Include="ColliderSystem.h" />
     <ClInclude Include="ExpComponent.h" />
     <ClInclude Include="ExpSystem.h" />
+    <ClInclude Include="City.h" />
+    <ClInclude Include="BSPGenerator.h" />
+    <ClInclude Include="FightingSystem.h" />
     <ClInclude Include="Generate\Models\Models.h" />
     <ClInclude Include="Generate\Strategy\BSP\BSP.h" />
     <ClInclude Include="Generate\CityGenerator.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="DrawableComponent.h" />
     <ClInclude Include="DrawSystem.h" />
+    <ClInclude Include="GeneratorStrategy.h" />
+    <ClInclude Include="HealthComponent.h" />
+    <ClInclude Include="InteractionComponent.h" />
+    <ClInclude Include="InteractionEventArgs.h" />
+    <ClInclude Include="InteractionSystem.h" />
+    <ClInclude Include="LevelComponent.h" />
     <ClInclude Include="Generate\Strategy\Strategy.h" />
     <ClInclude Include="PlayerComponent.h" />
     <ClInclude Include="InputSystem.h" />
@@ -43,11 +55,14 @@
   <ItemGroup>
     <ClCompile Include="AnimationSystem.cpp" />
     <ClCompile Include="ColliderSystem.cpp" />
+    <ClCompile Include="AISystem.cpp" />
     <ClCompile Include="Generate\Strategy\BSP\BSP.cpp" />
     <ClCompile Include="Generate\CityGenerator.cpp" />
     <ClCompile Include="ExpSystem.cpp" />
+    <ClCompile Include="FightingSystem.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="DrawSystem.cpp" />
+    <ClCompile Include="InteractionSystem.cpp" />
     <ClCompile Include="InputSystem.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MoveSystem.cpp" />
