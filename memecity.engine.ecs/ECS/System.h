@@ -1,6 +1,6 @@
 #ifndef _SYSTEM_H
 #define  _SYSTEM_H
-namespace ecs {
+namespace memecity::engine::ecs {
 	class EntityManager;
 	class System {	
 	public:

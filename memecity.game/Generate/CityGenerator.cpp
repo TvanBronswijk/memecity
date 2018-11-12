@@ -4,7 +4,8 @@
 #include "..\ColliderComponent.h"
 #include "..\PositionComponent.h"
 
-using namespace ecs;
+using namespace memecity::engine;
+using namespace memecity::engine::ecs;
 
 generate::CityGenerator::CityGenerator()
 {

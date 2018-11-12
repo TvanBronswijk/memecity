@@ -1,13 +1,13 @@
 ﻿#include "MoveSystem.h"
+#include "Engine\Textures\AnimatedTexture.h"
 #include "VelocityComponent.h"
 #include "PositionComponent.h"
 #include "PlayerComponent.h"
 #include "MoveSystem.h"
 #include "VelocityComponent.h"
 #include "PositionComponent.h"
-#include "AnimatedTexture.h"
-
-using namespace ecs;
+using namespace memecity::engine::texture;
+using namespace memecity::engine::ecs;
 
 void MoveSystem::run(EntityManager& em) const
 {

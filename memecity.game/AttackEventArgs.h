@@ -2,11 +2,11 @@
 #define _ATTACK_EVENT_ARGS_H
 #include "ECS.h"
 
-struct AttackEventArgs : public  ecs::eventing::EventArgs
+struct AttackEventArgs : public  memecity::engine::ecs::eventing::EventArgs
 {
-	const ecs::Entity &source, &target;
+	const memecity::engine::ecs::Entity &source, &target;
 
-	AttackEventArgs(const ecs::Entity& source, const ecs::Entity& target) : source(source), target(target) {}
+	AttackEventArgs(const memecity::engine::ecs::Entity& source, const memecity::engine::ecs::Entity& target) : source(source), target(target) {}
 };
 
 #endif

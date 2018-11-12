@@ -5,10 +5,10 @@
 #include <ECS.h>
 #include "Generate\CityGenerator.h"
 
-class GameManager : public MemeEngine
+class GameManager : public memecity::engine::MemeEngine
 {
 private:
-	ecs::EntityManager entity_manager;
+	memecity::engine::ecs::EntityManager entity_manager;
 	generate::CityGenerator city_generator;
 
 protected:

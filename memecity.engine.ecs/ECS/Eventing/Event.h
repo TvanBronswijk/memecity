@@ -6,9 +6,8 @@
 #include <vector>
 #include "..\EntityManager.h"
 
-namespace ecs {
-	namespace eventing {
-		template<typename TEventArgs>
+namespace memecity::engine::ecs::eventing {
+	template<typename TEventArgs>
 		class Event {
 		protected:
 			std::vector<std::function<void(EntityManager&, TEventArgs)>> subscribers;
@@ -32,7 +31,6 @@ namespace ecs {
 
 			virtual ~Event() {};
 		};
-	};
 };
 
 #endif

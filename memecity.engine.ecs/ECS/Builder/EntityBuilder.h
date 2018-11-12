@@ -1,8 +1,7 @@
 #ifndef _ENTITY_BUILDER_H
 #define  _ENTITY_BUILDER_H
 #include "..\EntityManager.h"
-namespace ecs {
-	namespace builder {
+namespace memecity::engine::ecs::builder {
 		struct EntityBuilder {
 			EntityManager& em;
 			Entity* entity;
@@ -22,7 +21,5 @@ namespace ecs {
 			const Entity& get() const { return *entity; }
 			~EntityBuilder() = default;
 		};
-	}
-
 };
 #endif

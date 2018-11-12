@@ -1,8 +1,10 @@
 ﻿#include "ColliderSystem.h"
 #include "MoveSystem.h"
 #include "PositionComponent.h"
+using namespace memecity::engine::ecs;
 
-void ColliderSystem::run(ecs::EntityManager& em) const
+
+void ColliderSystem::run(EntityManager& em) const
 {
 	auto entities = em.get_entities_with_component<ColliderComponent>();
 

@@ -11,7 +11,7 @@
 #include "System.h"
 #include "Query/Query.h"
 
-namespace ecs {	
+namespace memecity::engine::ecs {	
 	using namespace query;
 	class EntityManager {
 	private:

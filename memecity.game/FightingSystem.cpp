@@ -3,7 +3,7 @@
 #include "HealthComponent.h"
 #include "AIcomponent.h"
 
-using namespace ecs;
+using namespace memecity::engine::ecs;
 
 
 void FightingSystem::run(EntityManager &em) const {

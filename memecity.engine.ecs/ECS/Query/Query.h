@@ -3,8 +3,7 @@
 #include <algorithm>
 #include <functional>
 #include <vector>
-namespace ecs {
-	namespace query {
+namespace memecity::engine::ecs::query {
 		template<class T>
 		using Predicate = std::function<bool(T&)>;
 
@@ -51,6 +50,5 @@ namespace ecs {
 			}
 			~ComponentQuery() = default;
 		};
-	}
 };
 #endif

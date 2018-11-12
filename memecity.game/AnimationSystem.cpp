@@ -1,11 +1,12 @@
 ﻿#include "AnimationSystem.h"
-#include "AnimatedTexture.h"
+#include "Engine\Textures\AnimatedTexture.h" //TODO
 #include "PositionComponent.h"
 #include "AnimationComponent.h"
 #include "DrawableComponent.h"
-using namespace ecs;
+using namespace memecity::engine::texture;
+using namespace memecity::engine::ecs;
 
-void AnimationSystem::run(ecs::EntityManager& em) const
+void AnimationSystem::run(EntityManager& em) const
 {
 	auto animation_components = em.get_components_of_type<AnimationComponent>();
 	for (auto& animation_component : animation_components)
@@ -16,12 +17,12 @@ void AnimationSystem::run(ecs::EntityManager& em) const
 		auto& texture = animation_component.get().entity.get<DrawableComponent>()->get_texture();
 
 		// Cast from base class (Texture) to derived class (AnimatedTexture)
-		auto animated_texture = dynamic_cast<AnimatedTexture*>(&texture);
+		auto animated_texture = dynamic_cast<memecity::engine::texture::AnimatedTexture*>(&texture);
 
 		if (animated_texture != nullptr && current_position != nullptr)
 		{
 			animated_texture->update();
-			animated_texture->set_direction(AnimatedTexture::Direction::idle);
+			animated_texture->set_direction(memecity::engine::texture::AnimatedTexture::Direction::idle);
 
 			if (animation_component.get().is_fighting)
 			{

@@ -102,9 +102,6 @@
     <ClInclude Include="AttackEventArgs.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="GeneratorStrategy.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="InteractionEventArgs.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -113,12 +110,6 @@
     </ClInclude>
     <ClInclude Include="AISystem.h">
       <Filter>Header Files\Systems</Filter>
-    </ClInclude>
-    <ClInclude Include="BSPGenerator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="City.h">
-      <Filter>Header Files\City</Filter>
     </ClInclude>
     <ClInclude Include="FightingSystem.h">
       <Filter>Header Files\Systems</Filter>

@@ -7,10 +7,8 @@
 #include "AnimationComponent.h"
 
 #include "InteractionSystem.h"
-
-using namespace ecs;
-
-
+using namespace memecity::engine;
+using namespace memecity::engine::ecs;
 
 bool InputSystem::check_collision(EntityManager& em, Component& element , int range) const{
 	auto player = em.get_components_of_type<PlayerComponent>()[0];
@@ -35,28 +33,28 @@ void InputSystem::run(EntityManager& em) const
 			
 		auto animation_component = entity.get().get<AnimationComponent>();
 
-		if (this->input_manager.is_pressed(Attack))
+		if (this->input_manager.is_pressed(sdl::Attack))
 		{
 			animation_component->is_fighting = true;
 		}
-		if (this->input_manager.is_pressed(Up))
+		if (this->input_manager.is_pressed(sdl::Up))
 		{
 			velocity_component->y += 5;
 		}
-		if (this->input_manager.is_pressed(Down))
+		if (this->input_manager.is_pressed(sdl::Down))
 		{
 			velocity_component->y -= 5;
 		}
-		if (this->input_manager.is_pressed(Left))
+		if (this->input_manager.is_pressed(sdl::Left))
 		{
 			velocity_component->x -= 5;
 		}
-		if (this->input_manager.is_pressed(Right))
+		if (this->input_manager.is_pressed(sdl::Right))
 		{
 			velocity_component->x += 5;
 		}
 		//test for interaction with NPC
-		if (this->input_manager.is_pressed(Interaction))
+		if (this->input_manager.is_pressed(sdl::Interaction))
 		{
 			auto vector = em.get_components_of_type<AIComponent>();
 			for (auto& element : vector) {
@@ -65,7 +63,7 @@ void InputSystem::run(EntityManager& em) const
 				}
 			}
 		}
-		if (this->input_manager.is_pressed(Attack)) {
+		if (this->input_manager.is_pressed(sdl::Attack)) {
 			auto player = em.get_components_of_type<PlayerComponent>()[0];
 			auto vector = em.get_components_of_type<AIComponent>();
 			for (auto & element : vector) {

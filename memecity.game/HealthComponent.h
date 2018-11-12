@@ -2,13 +2,13 @@
 #define  _HEALTHCOMPONENT_H
 #include <ECS.h>
 
-struct HealthComponent : public ecs::Component{
+struct HealthComponent : public memecity::engine::ecs::Component{
 
 public:
 	int health;
 
-	HealthComponent(const ecs::Entity& entity) : HealthComponent(entity, 0) {};
-	HealthComponent(const ecs::Entity& entity, int health) : ecs::Component(entity), health(health) {};
+	HealthComponent(const memecity::engine::ecs::Entity& entity) : HealthComponent(entity, 0) {};
+	HealthComponent(const memecity::engine::ecs::Entity& entity, int health) : memecity::engine::ecs::Component(entity), health(health) {};
 };
 
 #endif

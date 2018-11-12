@@ -1,7 +1,7 @@
 #ifndef _CITY_GENERATOR_H
 #define _CITY_GENERATOR_H
 #include <ECS.h>
-#include "MultimediaManager.h"
+#include "Engine\MultimediaManager.h"
 #include "strategy\Strategy.h"
 
 namespace generate {
@@ -19,7 +19,7 @@ namespace generate {
 			strategy = std::make_unique<T>(std::forward<Args>(args)...);
 		}
 
-		void generate(int w, int h, ecs::EntityManager& em, MultimediaManager &multimedia_manager) const;
+		void generate(int w, int h, memecity::engine::ecs::EntityManager& em, memecity::engine::MultimediaManager &multimedia_manager) const;
 		~CityGenerator() = default;
 	};
 }

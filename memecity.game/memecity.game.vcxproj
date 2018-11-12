@@ -29,8 +29,6 @@
     <ClInclude Include="ColliderSystem.h" />
     <ClInclude Include="ExpComponent.h" />
     <ClInclude Include="ExpSystem.h" />
-    <ClInclude Include="City.h" />
-    <ClInclude Include="BSPGenerator.h" />
     <ClInclude Include="FightingSystem.h" />
     <ClInclude Include="Generate\Models\Models.h" />
     <ClInclude Include="Generate\Strategy\BSP\BSP.h" />
@@ -38,7 +36,6 @@
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="DrawableComponent.h" />
     <ClInclude Include="DrawSystem.h" />
-    <ClInclude Include="GeneratorStrategy.h" />
     <ClInclude Include="HealthComponent.h" />
     <ClInclude Include="InteractionComponent.h" />
     <ClInclude Include="InteractionEventArgs.h" />

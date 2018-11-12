@@ -7,10 +7,10 @@
 #include "PlayerComponent.h"
 #include "ColliderEventArgs.h"
 
-class MoveSystem : public ecs::System
+class MoveSystem : public memecity::engine::ecs::System
 {
 public:
-	void run(ecs::EntityManager& em) const override;
-	void on_collision(ecs::EntityManager & em, ColliderEventArgs ea);
+	void run(memecity::engine::ecs::EntityManager& em) const override;
+	void on_collision(memecity::engine::ecs::EntityManager & em, ColliderEventArgs ea);
 };
 #endif

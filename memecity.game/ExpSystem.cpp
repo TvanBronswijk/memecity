@@ -1,7 +1,7 @@
 #include "ExpSystem.h"
 #include "ExpComponent.h"
 #include "StatsComponent.h"
-using namespace ecs;
+using namespace memecity::engine::ecs;
 
 void ExpSystem::run(EntityManager& em) const {}
 

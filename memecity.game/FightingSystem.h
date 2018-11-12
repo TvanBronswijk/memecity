@@ -3,11 +3,11 @@
 #include <ECS.h>
 #include "AttackEventArgs.h"
 
-class FightingSystem : public ecs::System {
+class FightingSystem : public memecity::engine::ecs::System {
 
 public:
-	void on_attack(ecs::EntityManager& em, AttackEventArgs args);
-	void run(ecs::EntityManager& em) const override;
+	void on_attack(memecity::engine::ecs::EntityManager& em, AttackEventArgs args);
+	void run(memecity::engine::ecs::EntityManager& em) const override;
 };
 
 #endif

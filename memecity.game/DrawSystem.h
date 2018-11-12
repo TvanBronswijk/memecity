@@ -1,18 +1,18 @@
 ﻿#ifndef _DRAWSYSTEM_H
 #define _DRAWSYSTEM_H
-#include "ECS/System.h"
-#include "MultimediaManager.h"
+#include <ECS.h>
+#include "Engine\MultimediaManager.h"
 
-class DrawSystem : public ecs::System
+class DrawSystem : public memecity::engine::ecs::System
 {
 private:
-	MultimediaManager& multimedia_manager;
+	memecity::engine::MultimediaManager& multimedia_manager;
 
 public:
-	DrawSystem(MultimediaManager& multimedia_manager)
+	DrawSystem(memecity::engine::MultimediaManager& multimedia_manager)
 		: multimedia_manager(multimedia_manager) {}
 
-	void run(ecs::EntityManager& em) const override;
+	void run(memecity::engine::ecs::EntityManager& em) const override;
 };
 #endif
 

@@ -1,10 +1,10 @@
 ﻿#include "DrawSystem.h"
+#include "Engine\Textures\TextTexture.h"
 #include "PlayerComponent.h"
 #include "PositionComponent.h"
 #include "DrawableComponent.h"
-#include "TextTexture.h"
 
-using namespace ecs;
+using namespace memecity::engine::ecs;
 
 void DrawSystem::run(EntityManager& em) const
 {
@@ -13,15 +13,15 @@ void DrawSystem::run(EntityManager& em) const
 
 	auto drawable_components = em.get_components_of_type<DrawableComponent>();
 
-	for (auto& drawable_component : drawable_components)
+	for (DrawableComponent& drawable_component : drawable_components)
 	{
-		auto& tex = drawable_component.get().get_texture();
-		if (drawable_component.get().entity != player_position_component->entity)
+		auto& tex = drawable_component.get_texture();
+		if (drawable_component.entity != player_position_component->entity)
 		{
 			tex.translate({ (player_position_component->diffx*-1) , player_position_component->diffy });
 		}
 
-		auto text_texture = dynamic_cast<TextTexture*>(&tex);
+		auto text_texture = dynamic_cast<memecity::engine::texture::TextTexture*>(&tex);
 		if (text_texture)
 		{
 			multimedia_manager.render_text_texture(*text_texture);

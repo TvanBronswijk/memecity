@@ -9,7 +9,7 @@
 #include "PositionComponent.h"
 
 
-using namespace ecs;
+using namespace memecity::engine::ecs;
 
 
 bool AISystem::check_health(EntityManager& em, const Entity& entity) const{

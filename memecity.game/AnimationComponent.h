@@ -3,11 +3,11 @@
 #include "ECS/Component.h"
 
 
-struct AnimationComponent : public ecs::Component
+struct AnimationComponent : public memecity::engine::ecs::Component
 {
 	bool is_fighting = false;
 
-	AnimationComponent(const ecs::Entity& entity) : ecs::Component(entity){}
+	AnimationComponent(const memecity::engine::ecs::Entity& entity) : memecity::engine::ecs::Component(entity){}
 };
 
 #endif

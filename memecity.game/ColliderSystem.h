@@ -1,15 +1,15 @@
 ﻿#ifndef _COLLIDERSYSTEM_H
 #define  _COLLIDERSYSTEM_H
+#include <ECS.h>
 #include "ColliderEventArgs.h"
 #include "ColliderComponent.h"
-#include "ECS.h"
 
-class ColliderSystem : public ecs::System
+class ColliderSystem : public memecity::engine::ecs::System
 {
 public:
 	ColliderSystem() = default;
-	void run(ecs::EntityManager& em) const override;
-	ecs::eventing::Event<ColliderEventArgs> collider_event;
+	void run(memecity::engine::ecs::EntityManager& em) const override;
+	memecity::engine::ecs::eventing::Event<ColliderEventArgs> collider_event;
 };
 
 #endif

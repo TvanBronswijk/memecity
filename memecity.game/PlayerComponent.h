@@ -2,9 +2,9 @@
 #define  _PLAYERCOMPONENT_H
 #include <ECS.h>
 
-struct PlayerComponent : public ecs::Component
+struct PlayerComponent : public memecity::engine::ecs::Component
 {
-	PlayerComponent(const ecs::Entity& entity) : ecs::Component(entity) {};
+	PlayerComponent(const memecity::engine::ecs::Entity& entity) : memecity::engine::ecs::Component(entity) {};
 };
 
 #endif;
