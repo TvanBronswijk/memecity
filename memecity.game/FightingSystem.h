@@ -1,7 +1,6 @@
 #ifndef _FIGHTINGSYSTEM_H
 #define  _FIGHTINGSYSTEM_H
-#include "../memecity.engine.ecs/System.h"
-#include "../memecity.engine.ecs/EntityManager.h"
+#include <ECS.h>
 #include "AttackEventArgs.h"
 
 class FightingSystem : public ecs::System {

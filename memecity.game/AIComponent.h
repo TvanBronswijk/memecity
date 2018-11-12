@@ -1,6 +1,6 @@
 #ifndef _AICOMPONENT_H
 #define  _AICOMPONENT_H
-#include "../memecity.engine.ecs/Component.h"
+#include <ECS.h>
 
 struct AIComponent : public ecs::Component {
 	

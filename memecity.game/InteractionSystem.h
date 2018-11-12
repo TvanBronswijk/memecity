@@ -1,6 +1,4 @@
-#include "../memecity.engine.ecs/System.h"
-#include "../memecity.engine.ecs/EntityManager.h"
-#include "../memecity.engine/MultimediaManager.h"
+#include <ECS.h>
 #include "InteractionEventArgs.h"
 
 class InteractionSystem : public ecs::System {

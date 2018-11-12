@@ -1,7 +1,6 @@
 #ifndef _AISYSTEM_H
 #define  _AISYSTEM_H
-#include "../memecity.engine.ecs/EntityManager.h"
-#include "../memecity.engine.ecs/System.h"
+#include <ECS.h>
 #include "velocityComponent.h"
 #include "PositionComponent.h"
 #include <list>

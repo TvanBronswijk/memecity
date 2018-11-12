@@ -1,6 +1,6 @@
 #ifndef _LEVELCOMPONENT_H
 #define  _LEVELCOMPONENT_H
-#include "../memecity.engine.ecs/Component.h"
+#include <ECS.h>
 #include <iostream>
 
 struct LevelComponent : public ecs::Component{
