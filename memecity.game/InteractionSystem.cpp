@@ -6,18 +6,13 @@
 
 using namespace ecs;
 
-system_typetoken InteractionSystem::SYSTEM_TYPE = "InteractionSystem";
-
-InteractionSystem::InteractionSystem(MultimediaManager &multimedia_manager) : multimedia_manager(multimedia_manager) {
-}
-
 void InteractionSystem::run(EntityManager &em) const {
 
 }
 
 void InteractionSystem::interact(EntityManager &em, InteractionEventArgs args) {
-	auto xy = em.get_component_of_entity<PositionComponent>(args.source.id, PositionComponent::COMPONENT_TYPE);
-	auto interaction = em.get_component_of_entity<InteractionComponent>(args.source.id, InteractionComponent::COMPONENT_TYPE);
+	auto xy = args.source.get<PositionComponent>();
+	auto interaction = args.source.get<InteractionComponent>();
 
 	if (interaction != nullptr) {
 		//TODO:: make texture with text

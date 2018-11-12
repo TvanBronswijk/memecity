@@ -26,7 +26,6 @@
     <ClInclude Include="ExpSystem.h" />
     <ClInclude Include="City.h" />
     <ClInclude Include="BSPGenerator.h" />
-    <ClInclude Include="CityGenerator.h" />
     <ClInclude Include="FightingSystem.h" />
     <ClInclude Include="Generate\Models\Models.h" />
     <ClInclude Include="Generate\Strategy\BSP\BSP.h" />
@@ -49,20 +48,14 @@
     <ClInclude Include="StatsComponent.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="AIComponent.cpp" />
     <ClCompile Include="AISystem.cpp" />
-    <ClCompile Include="ExpComponent.cpp" />
     <ClCompile Include="Generate\Strategy\BSP\BSP.cpp" />
     <ClCompile Include="Generate\CityGenerator.cpp" />
     <ClCompile Include="ExpSystem.cpp" />
     <ClCompile Include="FightingSystem.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="DrawSystem.cpp" />
-    <ClCompile Include="HealthComponent.cpp" />
-    <ClCompile Include="InteractionComponent.cpp" />
     <ClCompile Include="InteractionSystem.cpp" />
-    <ClCompile Include="LevelComponent.cpp" />
-    <ClCompile Include="PlayerComponent.cpp" />
     <ClCompile Include="InputSystem.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MoveSystem.cpp" />

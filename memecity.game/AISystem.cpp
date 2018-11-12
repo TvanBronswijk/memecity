@@ -4,20 +4,17 @@
 #include "HealthComponent.h"
 #include "StatsComponent.h"
 #include "LevelComponent.h"
-#include "playerComponent.h"
+#include "PlayerComponent.h"
 #include "drawableComponent.h"
+#include "PositionComponent.h"
 
 
 using namespace ecs;
 
-system_typetoken AISystem::SYSTEM_TYPE = "AISystem";
 
-AISystem::AISystem(){
-}
-
-bool AISystem::check_health(EntityManager& em, Component& element) const{
-	auto AI = em.get_component_of_entity<AIComponent>(element.entity, AIComponent::COMPONENT_TYPE);
-	auto health = em.get_component_of_entity<HealthComponent>(element.entity, HealthComponent::COMPONENT_TYPE);
+bool AISystem::check_health(EntityManager& em, const Entity& entity) const{
+	auto AI = entity.get<AIComponent>();
+	auto health = entity.get<HealthComponent>();
 	if(health->_health <= 0) {
 		std::cout << "i am dead!!!" << std::endl;//testing
 		return false;
@@ -61,12 +58,12 @@ bool AISystem::check_player_position_X(std::pair<int, int> location , std::pair<
 
 
 void AISystem::best_first_search(EntityManager& em, PositionComponent& npc_xy) const{
-	auto velocity = em.get_component_of_entity<VelocityComponent>(npc_xy.entity, VelocityComponent::COMPONENT_TYPE);
-	auto player_component = em.get_components_of_type<PlayerComponent>(PlayerComponent::COMPONENT_TYPE)[0];
+	auto velocity = npc_xy.entity.get<VelocityComponent>();
+	auto& player_component = em.get_components_of_type<PlayerComponent>()[0].get();
 
-	auto drawable = em.get_component_of_entity<DrawableComponent>(npc_xy.entity, DrawableComponent::COMPONENT_TYPE);//testing
-	auto player_position = em.get_component_of_entity<PositionComponent>(player_component.get().entity, PositionComponent::COMPONENT_TYPE);//testing
-	auto player_drawable = em.get_component_of_entity<DrawableComponent>(player_component.get().entity, DrawableComponent::COMPONENT_TYPE);//testing
+	auto player_position = player_component.entity.get<PositionComponent>();
+	auto player_drawable = player_component.entity.get<DrawableComponent>();//testing
+	auto drawable = npc_xy.entity.get<DrawableComponent>();//testing
 
 	std::pair< int, int> end(player_position->x, player_position->y); // end location
 	std::pair<int, int> start(npc_xy.x, npc_xy.y); // start location
@@ -96,8 +93,8 @@ void AISystem::best_first_search(EntityManager& em, PositionComponent& npc_xy) c
 			queue = calculate_next_positions(location, end, queue); 
 		}
 	}
-	//std::cout << "player: X: " << end.first << " Y: " << end.second << " Drawable X: " << player_drawable->texture->get_position().x << " Y: " << player_drawable->texture->get_position().y << std::endl;
-	//std::cout << "npc: X: " << start.first << " Y: " << start.second << " Drawable X: " << drawable->texture->get_position().x << " Y: " << drawable->texture->get_position().y << std::endl;
+	std::cout << "player: X: " << end.first << " Y: " << end.second << " Drawable X: " << player_drawable->texture->get_position().x << " Y: " << player_drawable->texture->get_position().y << std::endl;
+	std::cout << "npc: X: " << start.first << " Y: " << start.second << " Drawable X: " << drawable->texture->get_position().x << " Y: " << drawable->texture->get_position().y << std::endl;
 	auto direction = path.front();
 
 	if (direction.first.first < direction.second.first) { 
@@ -116,7 +113,7 @@ void AISystem::best_first_search(EntityManager& em, PositionComponent& npc_xy) c
 
 void AISystem::move_random(const Entity& entity, EntityManager& em) const{
 
-	auto velocity = em.get_component_of_entity<VelocityComponent>(entity, VelocityComponent::COMPONENT_TYPE);
+	auto velocity = entity.get<VelocityComponent>();
 
 	velocity->x += random_x(velocity);
 	velocity->y += random_y(velocity);
@@ -124,13 +121,13 @@ void AISystem::move_random(const Entity& entity, EntityManager& em) const{
 }
 
 void AISystem::run(EntityManager& em) const {
-	auto vector = em.get_components_of_type<AIComponent>(AIComponent::COMPONENT_TYPE);
-	auto player = em.get_entities_with_component(PlayerComponent::COMPONENT_TYPE);
+	auto vector = em.get_components_of_type<AIComponent>();
+	auto player = em.get_entities_with_component<PlayerComponent>()[0];
 
 	for (auto& element : vector) {
-		if (check_health(em, element)) {
-			auto AI = em.get_component_of_entity<AIComponent>(element.get().entity, AIComponent::COMPONENT_TYPE);
-			auto xy = em.get_component_of_entity<PositionComponent>(element.get().entity, PositionComponent::COMPONENT_TYPE);
+		if (check_health(em, element.get().entity)) {
+			auto AI = element.get().entity.get<AIComponent>();
+			auto xy = element.get().entity.get<PositionComponent>();
 			switch (AI->_state)
 			{
 			case AIComponent::Fighting:

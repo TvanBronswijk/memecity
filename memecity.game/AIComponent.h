@@ -4,17 +4,13 @@
 
 struct AIComponent : public ecs::Component {
 	
-
-	static ecs::component_typetoken COMPONENT_TYPE;
-
 public:
 	enum State { Fighting, Fleeing, Static };
-
 	State _state;
-	AIComponent(const ecs::Entity& entity) : ecs::Component(entity) {
-			this->_state = Static;
-	};
-	ecs::component_typetoken get_type_token() const override { return AIComponent::COMPONENT_TYPE; }
+
+	AIComponent(const ecs::Entity& entity) : AIComponent(entity, Fighting) {};
+
+	AIComponent(const ecs::Entity& entity, State type) : ecs::Component(entity), _state(type) {};
 };
 
 #endif

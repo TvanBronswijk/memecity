@@ -5,19 +5,14 @@
 
 using namespace ecs;
 
-system_typetoken FightingSystem::SYSTEM_TYPE = "FightingSystem";
-
-
-FightingSystem::FightingSystem() {
-}
 
 void FightingSystem::run(EntityManager &em) const {
 }
 
 void FightingSystem::attack(EntityManager &em, AttackEventArgs args) {
-	auto health_source = em.get_component_of_entity<HealthComponent>(args.source.id, HealthComponent::COMPONENT_TYPE);
-	auto health_target = em.get_component_of_entity<HealthComponent>(args.target.id, HealthComponent::COMPONENT_TYPE);
-	auto AI = em.get_component_of_entity<AIComponent>(args.target.id, AIComponent::COMPONENT_TYPE);
+	auto health_source = args.source.get<HealthComponent>();
+	auto health_target = args.target.get<HealthComponent>();
+	auto AI = args.target.get<AIComponent>();
 
 	if (AI != nullptr) {
 		AI->_state = AI->Fighting;
