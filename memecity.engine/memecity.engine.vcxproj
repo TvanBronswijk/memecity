@@ -126,7 +126,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <Optimization>MaxSpeed</Optimization>
+      <Optimization>Disabled</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
@@ -142,41 +142,52 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="AnimatedCharacter.cpp" />
-    <ClCompile Include="AssetManager.cpp" />
-    <ClCompile Include="AudioFacade.cpp" />
-    <ClCompile Include="Color.cpp" />
-    <ClCompile Include="GameObject.cpp" />
-    <ClCompile Include="GraphicsFacade.cpp" />
-    <ClCompile Include="InputFacade.cpp" />
-    <ClCompile Include="InputManager.cpp" />
+    <ClCompile Include="Engine\Textures\AnimatedTexture.cpp" />
+    <ClCompile Include="Engine\AssetManager.cpp" />
+    <ClCompile Include="Engine\SDL\AudioFacade.cpp" />
+    <ClCompile Include="Engine\SDL\Wrappers\Color.cpp" />
+    <ClCompile Include="Engine\Textures\GameObject.cpp" />
+    <ClCompile Include="Engine\SDL\GraphicsFacade.cpp" />
+    <ClCompile Include="Engine\SDL\InputFacade.cpp" />
+    <ClCompile Include="Engine\InputManager.cpp" />
     <ClCompile Include="MemeEngine.cpp" />
-    <ClCompile Include="MultimediaManager.cpp" />
-    <ClCompile Include="SerializationFacade.cpp" />
-    <ClCompile Include="Texture.cpp" />
-    <ClCompile Include="StorageManager.cpp" />
-    <ClCompile Include="TimerFacade.cpp" />
-    <ClCompile Include="Updatable.cpp" />
+    <ClCompile Include="Engine\MultimediaManager.cpp" />
+    <ClCompile Include="Engine\Textures\TextTexture.cpp" />
+    <ClCompile Include="Engine\Textures\Texture.cpp" />
+    <ClCompile Include="Engine\StorageManager.cpp" />
+    <ClCompile Include="Engine\SDL\TimerFacade.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AnimatedCharacter.h" />
-    <ClInclude Include="AssetManager.h" />
-    <ClInclude Include="AudioFacade.h" />
-    <ClInclude Include="Color.h" />
-    <ClInclude Include="GameObject.h" />
-    <ClInclude Include="GraphicsFacade.h" />
-    <ClInclude Include="InputFacade.h" />
-    <ClInclude Include="InputKeys.h" />
-    <ClInclude Include="InputManager.h" />
-    <ClInclude Include="MathHelper.h" />
+    <ClInclude Include="Engine.h" />
+    <ClInclude Include="Engine\SDL.h" />
+    <ClInclude Include="Engine\Serialize.h" />
+    <ClInclude Include="Engine\Textures.h" />
+    <ClInclude Include="Engine\Textures\AnimatedTexture.h" />
+    <ClInclude Include="Engine\AssetManager.h" />
+    <ClInclude Include="Engine\SDL\AudioFacade.h" />
+    <ClInclude Include="Engine\SDL\Wrappers\Color.h" />
+    <ClInclude Include="Engine\Textures\GameObject.h" />
+    <ClInclude Include="Engine\SDL\GraphicsFacade.h" />
+    <ClInclude Include="Engine\SDL\InputFacade.h" />
+    <ClInclude Include="Engine\SDL\InputKeys.h" />
+    <ClInclude Include="Engine\InputManager.h" />
+    <ClInclude Include="Engine\Util\MathHelper.h" />
     <ClInclude Include="MemeEngine.h" />
-    <ClInclude Include="MultimediaManager.h" />
-    <ClInclude Include="Serializable.h" />
-    <ClInclude Include="SerializationFacade.h" />
-    <ClInclude Include="StorageManager.h" />
-    <ClInclude Include="Texture.h" />
-    <ClInclude Include="TimerFacade.h" />
-    <ClInclude Include="Updatable.h" />
+    <ClInclude Include="Engine\MultimediaManager.h" />
+    <ClInclude Include="Engine\SDL\Wrappers\RawFontWrapper.h" />
+    <ClInclude Include="Engine\SDL\Wrappers\RawMusicWrapper.h" />
+    <ClInclude Include="Engine\SDL\Wrappers\RawRendererWrapper.h" />
+    <ClInclude Include="Engine\SDL\Wrappers\RawSfxWrapper.h" />
+    <ClInclude Include="Engine\SDL\Wrappers\RawSurfaceWrapper.h" />
+    <ClInclude Include="Engine\SDL\Wrappers\RawTextureWrapper.h" />
+    <ClInclude Include="Engine\SDL\Wrappers\RawWindowWrapper.h" />
+    <ClInclude Include="Engine\Util\Rectangle.h" />
+    <ClInclude Include="Engine\Serialization\Serializable.h" />
+    <ClInclude Include="Engine\Serialization\SerializationFacade.h" />
+    <ClInclude Include="Engine\StorageManager.h" />
+    <ClInclude Include="Engine\Textures\TextTexture.h" />
+    <ClInclude Include="Engine\Textures\Texture.h" />
+    <ClInclude Include="Engine\SDL\TimerFacade.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

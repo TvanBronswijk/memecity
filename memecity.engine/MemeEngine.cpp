@@ -1,25 +1,31 @@
 #include "MemeEngine.h"
+#include "Engine\SDL\TimerFacade.h"
 
-MemeEngine::MemeEngine()
-{
-	timer = std::make_unique<TimerFacade>();
-}
-
-int MemeEngine::run()
-{
-	if (multimedia_manager.init()) {
-		init();
-		while (!input_manager.is_quit_pressed())
-		{
-			timer->update();
-			if (timer->get_delta_time() >= 1.0f / 60)
-			{
-				input_manager.update();
-				handle();
-				timer->reset();
-			}
-		}
-		return 0;
+namespace memecity::engine {
+	MemeEngine::MemeEngine()
+	{
+		timer = std::make_unique<sdl::TimerFacade>();
 	}
-	return 1;
+
+	int MemeEngine::run()
+	{
+		if (multimedia_manager.init()) {
+			init();
+			while (!input_manager.is_quit_pressed())
+			{
+				timer->update();
+				update(timer->get_delta_time());
+				if (timer->get_delta_time() >= 1.0f / 60)
+				{
+					input_manager.update();
+					multimedia_manager.clear_graphics();
+					draw();
+					multimedia_manager.render_graphics();
+					timer->reset();
+				}
+			}
+			return 0;
+		}
+		return 1;
+	}
 }

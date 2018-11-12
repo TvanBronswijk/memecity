@@ -16,17 +16,11 @@
     <Filter Include="Header Files\Components">
       <UniqueIdentifier>{b4e2e74a-fe61-4c54-b48c-84052a02c61a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Components">
-      <UniqueIdentifier>{b567a55d-9846-4565-84f6-b7e573c5798d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Systems">
       <UniqueIdentifier>{8c5af50c-0856-410d-b82e-9b1cb52ddf39}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\Systems">
       <UniqueIdentifier>{e40c52ec-964d-4257-a326-37920ddb895a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Components">
-      <UniqueIdentifier>{cf8d53bf-063f-47ff-a6b8-3bbe841ef165}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\City">
       <UniqueIdentifier>{69be7a77-99c9-4639-be1f-3358806ed1a9}</UniqueIdentifier>
@@ -52,52 +46,106 @@
     <Filter Include="Source Files\Systems">
       <UniqueIdentifier>{7cbc1162-2772-44b0-9071-d39d93342fdf}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\EventArgs">
+      <UniqueIdentifier>{18c95c8e-c82e-49fd-8e02-8ba386bb4940}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="DrawableComponent.h">
-      <Filter>Header Files\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="DrawSystem.h">
-      <Filter>Header Files\Systems</Filter>
-    </ClInclude>
-    <ClInclude Include="City.h">
-      <Filter>Header Files\City\Models</Filter>
-    </ClInclude>
-    <ClInclude Include="CityGenerator.h">
+    <ClInclude Include="Generate\CityGenerator.h">
       <Filter>Header Files\City</Filter>
     </ClInclude>
-    <ClInclude Include="GeneratorStrategy.h">
+    <ClInclude Include="Generate\Strategy\Strategy.h">
       <Filter>Header Files\City\Strategy</Filter>
     </ClInclude>
-    <ClInclude Include="BSPGenerator.h">
+    <ClInclude Include="Generate\Strategy\BSP\BSP.h">
       <Filter>Header Files\City\Strategy</Filter>
     </ClInclude>
-    <ClInclude Include="PositionComponent.h">
+    <ClInclude Include="Generate\Models\Models.h">
+      <Filter>Header Files\City\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\AIComponent.h">
       <Filter>Header Files\Components</Filter>
     </ClInclude>
-    <ClInclude Include="VelocityComponent.h">
+    <ClInclude Include="Components\AnimationComponent.h">
       <Filter>Header Files\Components</Filter>
     </ClInclude>
-    <ClInclude Include="MoveSystem.h">
+    <ClInclude Include="Components\ColliderComponent.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\DrawableComponent.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\ExpComponent.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\HealthComponent.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\VelocityComponent.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\StatsComponent.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\PositionComponent.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\PlayerComponent.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\LevelComponent.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\InteractionComponent.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Systems\AISystem.h">
       <Filter>Header Files\Systems</Filter>
     </ClInclude>
-    <ClInclude Include="InputSystem.h">
+    <ClInclude Include="Systems\AnimationSystem.h">
       <Filter>Header Files\Systems</Filter>
     </ClInclude>
-    <ClInclude Include="PlayerComponent.h">
-      <Filter>Header Files\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="ExpSystem.h">
+    <ClInclude Include="Systems\ColliderSystem.h">
       <Filter>Header Files\Systems</Filter>
     </ClInclude>
-    <ClInclude Include="ExpComponent.h">
-      <Filter>Header Files\Components</Filter>
+    <ClInclude Include="Systems\DrawSystem.h">
+      <Filter>Header Files\Systems</Filter>
     </ClInclude>
-    <ClInclude Include="StatsComponent.h">
-      <Filter>Header Files\Components</Filter>
+    <ClInclude Include="Systems\ExpSystem.h">
+      <Filter>Header Files\Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="Systems\FightingSystem.h">
+      <Filter>Header Files\Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="Systems\InputSystem.h">
+      <Filter>Header Files\Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="Systems\InteractionSystem.h">
+      <Filter>Header Files\Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="Systems\MoveSystem.h">
+      <Filter>Header Files\Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="Event\AttackEventArgs.h">
+      <Filter>Header Files\EventArgs</Filter>
+    </ClInclude>
+    <ClInclude Include="Event\ColliderEventArgs.h">
+      <Filter>Header Files\EventArgs</Filter>
+    </ClInclude>
+    <ClInclude Include="Event\InteractionEventArgs.h">
+      <Filter>Header Files\EventArgs</Filter>
+    </ClInclude>
+    <ClInclude Include="Components.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Systems.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Generate.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -107,41 +155,38 @@
     <ClCompile Include="GameManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DrawableComponent.cpp">
-      <Filter>Source Files\Components</Filter>
-    </ClCompile>
-    <ClCompile Include="DrawSystem.cpp">
-      <Filter>Source Files\Systems</Filter>
-    </ClCompile>
-    <ClCompile Include="BSPGenerator.cpp">
-      <Filter>Source Files\City\Strategy</Filter>
-    </ClCompile>
-    <ClCompile Include="CityGenerator.cpp">
+    <ClCompile Include="Generate\CityGenerator.cpp">
       <Filter>Source Files\City</Filter>
     </ClCompile>
-    <ClCompile Include="PositionComponent.cpp">
-      <Filter>Source Files\Components</Filter>
+    <ClCompile Include="Generate\Strategy\BSP\BSP.cpp">
+      <Filter>Source Files\City\Strategy</Filter>
     </ClCompile>
-    <ClCompile Include="VelocityComponent.cpp">
-      <Filter>Source Files\Components</Filter>
-    </ClCompile>
-    <ClCompile Include="MoveSystem.cpp">
+    <ClCompile Include="Systems\AISystem.cpp">
       <Filter>Source Files\Systems</Filter>
     </ClCompile>
-    <ClCompile Include="InputSystem.cpp">
+    <ClCompile Include="Systems\AnimationSystem.cpp">
       <Filter>Source Files\Systems</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerComponent.cpp">
-      <Filter>Source Files\Components</Filter>
-    </ClCompile>
-    <ClCompile Include="StatsComponent.cpp">
-      <Filter>Source Files\Components</Filter>
-    </ClCompile>
-    <ClCompile Include="ExpSystem.cpp">
+    <ClCompile Include="Systems\ColliderSystem.cpp">
       <Filter>Source Files\Systems</Filter>
     </ClCompile>
-    <ClCompile Include="ExpComponent.cpp">
-      <Filter>Source Files\Components</Filter>
+    <ClCompile Include="Systems\DrawSystem.cpp">
+      <Filter>Source Files\Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="Systems\ExpSystem.cpp">
+      <Filter>Source Files\Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="Systems\FightingSystem.cpp">
+      <Filter>Source Files\Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="Systems\InputSystem.cpp">
+      <Filter>Source Files\Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="Systems\InteractionSystem.cpp">
+      <Filter>Source Files\Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="Systems\MoveSystem.cpp">
+      <Filter>Source Files\Systems</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
