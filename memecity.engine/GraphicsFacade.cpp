@@ -94,7 +94,7 @@ std::unique_ptr<RawTextureWrapper> GraphicsFacade::load_text_texture(RawFontWrap
 	return std::make_unique<RawTextureWrapper>(tex);
 }
 
-void GraphicsFacade::draw_texture(const RawTextureWrapper& texture, RectangleFacade* clipped_rect, RectangleFacade* render_rect) const
+void GraphicsFacade::draw_texture(const RawTextureWrapper& texture, const RectangleFacade* clipped_rect, const RectangleFacade* render_rect) const
 {
 	int offset = 90;
 

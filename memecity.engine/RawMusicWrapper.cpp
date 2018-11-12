@@ -7,5 +7,5 @@ RawMusicWrapper::RawMusicWrapper(Mix_Music* music)
 
 RawMusicWrapper::~RawMusicWrapper()
 {
-	
+	Mix_FreeMusic(music);
 }

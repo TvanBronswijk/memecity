@@ -23,13 +23,13 @@ bool MultimediaManager::init() const
 
 void MultimediaManager::play_background_music(std::string const name, int const volume) const
 {
-	auto music = asset_manager->get_music(name);
+	auto& music = asset_manager->get_music(name);
 	audio_facade->play_background_music(music, volume);
 }
 
 void MultimediaManager::play_sound_effect(std::string const name, int const repeats, int const volume, int const channel) const
 {
-	auto sound = asset_manager->get_sfx(name);
+	auto& sound = asset_manager->get_sfx(name);
 	audio_facade->play_sound_effect(sound, repeats, volume, channel);
 }
 
@@ -63,7 +63,7 @@ void MultimediaManager::render_graphics() const
 std::unique_ptr<Texture> MultimediaManager::get_texture(const std::string filename)
 {	
 	int width, height;
-	auto sdl_texture = asset_manager->get_texture(filename);
+	auto& sdl_texture = asset_manager->get_texture(filename);
 	// Used to determine width and height of the given texture
 	SDL_QueryTexture(*sdl_texture, nullptr, nullptr, &width, &height);
 
@@ -86,7 +86,7 @@ std::unique_ptr<AnimatedTexture> MultimediaManager::get_animated_texture(TimerFa
 std::unique_ptr<TextTexture> MultimediaManager::get_text_texture(std::string const text, std::string const font_path, const int size, Color color)
 {
 	int width, height;
-	auto sdl_texture = asset_manager->get_text(text, font_path, size, color.get_sdl_color());
+	auto& sdl_texture = asset_manager->get_text(text, font_path, size, color.get_sdl_color());
 	// Used to determine width and height of the given texture
 	SDL_QueryTexture(*sdl_texture, nullptr, nullptr, &width, &height);
 

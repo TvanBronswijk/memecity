@@ -22,7 +22,7 @@ void AudioFacade::open_audio(int frequency, int channels, int chunksize) const
 	}
 }
 
-void AudioFacade::play_sound_effect(RawSfxWrapper& sound, int repeats, int volume, int channel) const
+void AudioFacade::play_sound_effect(const RawSfxWrapper& sound, int repeats, int volume, int channel) const
 {
 	if (!is_playing(channel))
 	{
@@ -36,7 +36,7 @@ bool AudioFacade::is_playing(int channel) const
 	return Mix_Playing(channel) == 1;
 }
 
-void AudioFacade::play_background_music(RawMusicWrapper& music, int volume) const
+void AudioFacade::play_background_music(const RawMusicWrapper& music, int volume) const
 {
 
 	Mix_VolumeMusic(volume);

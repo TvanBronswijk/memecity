@@ -7,5 +7,5 @@ RawTextureWrapper::RawTextureWrapper(SDL_Texture* tex)
 
 RawTextureWrapper::~RawTextureWrapper()
 {
-	//SDL_DestroyTexture(texture);
+	SDL_DestroyTexture(texture);
 }

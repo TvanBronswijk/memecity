@@ -7,4 +7,5 @@ RawSfxWrapper::RawSfxWrapper(Mix_Chunk* sfx)
 
 RawSfxWrapper::~RawSfxWrapper()
 {
+	Mix_FreeChunk(sfx);
 }

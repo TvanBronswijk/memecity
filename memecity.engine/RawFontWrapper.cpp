@@ -7,4 +7,5 @@ RawFontWrapper::RawFontWrapper(TTF_Font* font)
 
 RawFontWrapper::~RawFontWrapper()
 {
+	TTF_CloseFont(font);
 }

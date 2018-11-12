@@ -8,32 +8,11 @@ AssetManager::AssetManager(GraphicsFacade& graphics_facade) : graphics_facade(gr
 ///<summary>Cleanup.</summary>
 AssetManager::~AssetManager()
 {
-	/*for (auto texture : textures)
-	{
-		if (texture.second != nullptr)
-		{
-			SDL_DestroyTexture(texture.second);
-		}
-	}*/
-//	textures.clear();
-
-	/*for (auto text : texts)
-	{
-		if (text.second != nullptr)
-		{
-			SDL_DestroyTexture(text.second);
-		}
-	}*/
+	textures.clear();
 	texts.clear();
-
-	/*for (auto font : fonts)
-	{
-		if (font.second != nullptr)
-		{
-			TTF_CloseFont(font.second);
-		}
-	}*/
 	fonts.clear();
+	music.clear();
+	sfx.clear();
 }
 
 ///<summary>Returns a texture based on given filename.</summary>
@@ -53,7 +32,7 @@ const RawTextureWrapper& AssetManager::get_texture(std::string filename)
 ///<summary>Returns a text texture based on a given text and filename.</summary>
 const RawTextureWrapper&  AssetManager::get_text(std::string text, std::string filename, int size, SDL_Color color)
 {
-	auto font = get_font(filename, size);
+	auto& font = get_font(filename, size);
 	std::string key = text + filename + char(size) + char(color.r) + char(color.g) + char(color.b);
 
 	if (texts.find(key) == texts.end())

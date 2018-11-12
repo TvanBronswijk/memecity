@@ -19,30 +19,27 @@ void DrawSystem::run(EntityManager& em) const
 
 	auto drawable_components = em.get_components_of_type<DrawableComponent>(DrawableComponent::COMPONENT_TYPE);
 
+	multimedia_manager.clear_graphics();
+
 	for (auto& drawable_component : drawable_components)
 	{
+		auto tex = drawable_component.get().texture.get();
 		if (drawable_component.get().entity != player_position_component->entity)
 		{
-			auto tex = drawable_component.get().texture.get();
 			tex->translate({ (player_position_component->diffx*-1) , player_position_component->diffy });
 		}
-	}
 
-	multimedia_manager.clear_graphics();
-	for (auto component : drawable_components)
-	{
-		auto texture = component.get().texture.get();
-
-		auto text_texture = dynamic_cast<TextTexture*>(&*texture);
+		auto text_texture = dynamic_cast<TextTexture*>(&*tex);
 		if (text_texture == nullptr)
 		{
-			multimedia_manager.render_texture(*texture);
+			multimedia_manager.render_texture(*tex);
 		}
 		else
 		{
 			multimedia_manager.render_text_texture(*text_texture);
 		}
 	}
+
 	multimedia_manager.render_graphics();
 }
 

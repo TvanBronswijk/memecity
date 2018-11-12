@@ -29,7 +29,7 @@ void GameManager::init()
 	d_component.texture->set_position({ position_component.x, position_component.y });
 
 
-	auto text_entity = entity_manager.create_entity();
+	auto& text_entity = entity_manager.create_entity();
 	auto& text_d_component = entity_manager.create_component<DrawableComponent>(text_entity);
 	text_d_component.texture = multimedia_manager.get_text_texture("Health: 500", "Minecraftia-Regular.ttf", 16, { 255,255,255 });
 	text_d_component.texture->set_parent(d_component.texture.get());
