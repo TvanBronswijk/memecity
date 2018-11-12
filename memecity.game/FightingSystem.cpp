@@ -1,5 +1,8 @@
 #include "FightingSystem.h"
 
+#include "HealthComponent.h"
+#include "AIcomponent.h"
+
 using namespace ecs;
 
 system_typetoken FightingSystem::SYSTEM_TYPE = "FightingSystem";
@@ -10,17 +13,15 @@ FightingSystem::FightingSystem() {
 
 void FightingSystem::run(EntityManager &em) const {
 }
-/*
-void FightingSystem::run(EntityManager &em, EventArgs& e) {
-	const auto attack_event_args = static_cast<AttackEventArgs&>(e);
-	HealthComponent* health_source = dynamic_cast<HealthComponent*>(em.get_component_of_entity(attack_event_args.source_entity_id, HealthComponent::COMPONENT_TYPE));
-	HealthComponent* health_target = dynamic_cast<HealthComponent*>(em.get_component_of_entity(attack_event_args.target_entity_id, HealthComponent::COMPONENT_TYPE));
-	AIComponent* AI = dynamic_cast<AIComponent*>(em.get_component_of_entity(attack_event_args.target_entity_id, AIComponent::COMPONENT_TYPE));
+
+void FightingSystem::attack(EntityManager &em, AttackEventArgs args) {
+	auto health_source = em.get_component_of_entity<HealthComponent>(args.source.id, HealthComponent::COMPONENT_TYPE);
+	auto health_target = em.get_component_of_entity<HealthComponent>(args.target.id, HealthComponent::COMPONENT_TYPE);
+	auto AI = em.get_component_of_entity<AIComponent>(args.target.id, AIComponent::COMPONENT_TYPE);
 
 	if (AI != nullptr) {
-		AI->_state = AI->FIGHTING;
+		AI->_state = AI->Fighting;
 	}
 
 	health_target->_health -= 10;
 }
-*/

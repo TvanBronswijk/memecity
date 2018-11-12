@@ -6,15 +6,10 @@ struct AIComponent : public ecs::Component {
 	
 
 	static ecs::component_typetoken COMPONENT_TYPE;
-	enum State
-	{
-		Fighting,
-		Fleeing,
-		Static
-
-	};
 
 public:
+	enum State { Fighting, Fleeing, Static };
+
 	State _state;
 	AIComponent(const ecs::Entity& entity) : ecs::Component(entity) {
 			this->_state = Static;

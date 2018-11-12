@@ -1,11 +1,7 @@
 ﻿#ifndef _INPUTSYSTEM_H
 #define  _INPUTSYSTEM_H
-#include <ECS.h>
-#include "AIComponent.h"
-#include "PositionComponent.h"
 #include "InteractionEventArgs.h"
 #include "AttackEventArgs.h"
-#include "Event.h"
 #include "InputManager.h"
 
 

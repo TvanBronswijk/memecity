@@ -1,5 +1,7 @@
 ﻿#include "InputSystem.h"
 
+#include "AIComponent.h"
+#include "PositionComponent.h"
 #include "PlayerComponent.h"
 #include "VelocityComponent.h"
 #include "InteractionSystem.h"
@@ -57,8 +59,7 @@ void InputSystem::run(EntityManager& em) const
 			auto vector = em.get_components_of_type<AIComponent>(AIComponent::COMPONENT_TYPE);
 			for (auto& element : vector) {
 				if(check_collision(em, element, 30)){
-					auto args = InteractionEventArgs(element.get().entity.id);
-					//interaction_event->fire(em, args);
+					interaction_event.fire(em, { element.get().entity.id });
 				}
 			}
 		}
@@ -68,7 +69,8 @@ void InputSystem::run(EntityManager& em) const
 			for (auto & element : vector) {
 				if (check_collision(em, element, 30)) {
 					auto args = AttackEventArgs(player.get().entity.id, element.get().entity.id);
-					//attack_event->fire(em, args);
+					attack_event.fire(em, {player.get().entity.id, element.get().entity.id });
+
 				}
 			}
 		}

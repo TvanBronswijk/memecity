@@ -1,16 +1,9 @@
 #ifndef _AISYSTEM_H
 #define  _AISYSTEM_H
-#include "../memecity.engine.ecs/System.h"
-#include "PositionComponent.h"
-#include "velocityComponent.h"
-#include "AIComponent.h"
-#include "HealthComponent.h"
-#include "StatsComponent.h"
-#include "LevelComponent.h"
-#include "playerComponent.h"
-#include "drawableComponent.h"
 #include "../memecity.engine.ecs/EntityManager.h"
-#include <cstdlib>
+#include "../memecity.engine.ecs/System.h"
+#include "velocityComponent.h"
+#include "PositionComponent.h"
 #include <list>
 
 class AISystem : public ecs::System {
@@ -27,6 +20,7 @@ private:
 public:
 	static ecs::system_typetoken SYSTEM_TYPE;
 	static const int range = 5;
+
 	AISystem();
 	void run(ecs::EntityManager& em) const override;
 	ecs::system_typetoken get_type_token() const override { return AISystem::SYSTEM_TYPE; }

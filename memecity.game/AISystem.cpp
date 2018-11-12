@@ -1,5 +1,13 @@
 #include "AISystem.h"
 
+#include "AIComponent.h"
+#include "HealthComponent.h"
+#include "StatsComponent.h"
+#include "LevelComponent.h"
+#include "playerComponent.h"
+#include "drawableComponent.h"
+
+
 using namespace ecs;
 
 system_typetoken AISystem::SYSTEM_TYPE = "AISystem";
@@ -11,7 +19,7 @@ bool AISystem::check_health(EntityManager& em, Component& element) const{
 	auto AI = em.get_component_of_entity<AIComponent>(element.entity, AIComponent::COMPONENT_TYPE);
 	auto health = em.get_component_of_entity<HealthComponent>(element.entity, HealthComponent::COMPONENT_TYPE);
 	if(health->_health <= 0) {
-		std::cout << "i am dead!!!" << std::endl;
+		std::cout << "i am dead!!!" << std::endl;//testing
 		return false;
 	}
 	else if (health->_health <= 10) {
@@ -69,7 +77,7 @@ void AISystem::best_first_search(EntityManager& em, PositionComponent& npc_xy) c
 	queue = calculate_next_positions(start, end, queue);
 
 	while (!queue.empty()) {
-		std::pair<int, int> location = queue.front(); // first location
+		std::pair<int, int> location = queue.front();
 		queue.pop_front();
 
 		if (path.size() == 0) {
@@ -129,6 +137,7 @@ void AISystem::run(EntityManager& em) const {
 				best_first_search(em, *xy);
 				break;
 			case AIComponent::Fleeing:
+				//TODO:implement Fleeing
 				break;
 			case AIComponent::Static:
 				move_random(element.get().entity, em);

@@ -60,7 +60,7 @@
       <Filter>Source Files\Component</Filter>
     </ClCompile>
     <ClCompile Include="VelocityComponent.cpp">
-      <Filter>Header Files\Component</Filter>
+      <Filter>Source Files\Component</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

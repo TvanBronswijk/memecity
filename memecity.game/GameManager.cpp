@@ -20,7 +20,7 @@ GameManager::GameManager()
 
 void GameManager::init()
 {
-	city_generator.generate(50, 50, entity_manager, multimedia_manager);
+	city_generator.generate(10, 10, entity_manager, multimedia_manager);
 	auto& entity = entity_manager.create_entity();
 	entity_manager.create_component<PlayerComponent>(entity);
 	entity_manager.create_component<VelocityComponent>(entity);
@@ -34,9 +34,9 @@ void GameManager::init()
 	entity_manager.create_system<DrawSystem>(multimedia_manager);
 	entity_manager.create_system<MoveSystem>();
 	//test to show an example  for a NPC
-	entity_manager.create_system<FightingSystem>();
+	auto& fighting_system = entity_manager.create_system<FightingSystem>();
 	entity_manager.create_system<AISystem>();
-	entity_manager.create_system<InteractionSystem>(multimedia_manager);
+	auto& interaciton_system = entity_manager.create_system<InteractionSystem>(multimedia_manager);
 
 	for (size_t i = 0; i < 1; i++) {
 		auto& npc = entity_manager.create_entity();
@@ -56,11 +56,10 @@ void GameManager::init()
 
 	// events
 	auto& input_system = entity_manager.create_system<InputSystem>(input_manager);
-	//input_system.attack_event.bind(ExpSystem::on_exp_gain);
-
+	input_system.interaction_event.bind([&](ecs::EntityManager& em, InteractionEventArgs args) { interaciton_system.interact(em, args); });
+	input_system.attack_event.bind([&](ecs::EntityManager& em, AttackEventArgs args) { fighting_system.attack(em, args); });
 }
 
-void GameManager::handle()
-{
+void GameManager::handle(){
 	entity_manager.update();
 }
