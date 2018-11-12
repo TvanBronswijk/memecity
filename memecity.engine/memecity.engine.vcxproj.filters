@@ -45,127 +45,139 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="GraphicsFacade.cpp">
-      <Filter>Source Files\Facades</Filter>
-    </ClCompile>
-    <ClCompile Include="AudioFacade.cpp">
-      <Filter>Source Files\Facades</Filter>
-    </ClCompile>
-    <ClCompile Include="InputFacade.cpp">
-      <Filter>Source Files\Facades</Filter>
-    </ClCompile>
-    <ClCompile Include="MultimediaManager.cpp">
-      <Filter>Source Files\Managers</Filter>
-    </ClCompile>
-    <ClCompile Include="InputManager.cpp">
-      <Filter>Source Files\Managers</Filter>
-    </ClCompile>
-    <ClCompile Include="StorageManager.cpp">
-      <Filter>Source Files\Managers</Filter>
-    </ClCompile>
-    <ClCompile Include="AssetManager.cpp">
-      <Filter>Source Files\Managers</Filter>
-    </ClCompile>
-    <ClCompile Include="TimerFacade.cpp">
-      <Filter>Source Files\Facades</Filter>
-    </ClCompile>
-    <ClCompile Include="Texture.cpp">
-      <Filter>Source Files\Graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="GameObject.cpp">
-      <Filter>Source Files\Graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="Color.cpp">
-      <Filter>Source Files\Graphics</Filter>
-    </ClCompile>
     <ClCompile Include="MemeEngine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="AnimatedTexture.cpp">
+    <ClCompile Include="Engine\AssetManager.cpp">
+      <Filter>Source Files\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\InputManager.cpp">
+      <Filter>Source Files\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\MultimediaManager.cpp">
+      <Filter>Source Files\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\StorageManager.cpp">
+      <Filter>Source Files\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\SDL\GraphicsFacade.cpp">
+      <Filter>Source Files\Facades</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\SDL\AudioFacade.cpp">
+      <Filter>Source Files\Facades</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\SDL\TimerFacade.cpp">
+      <Filter>Source Files\Facades</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Textures\AnimatedTexture.cpp">
       <Filter>Source Files\Graphics</Filter>
     </ClCompile>
-    <ClCompile Include="TextTexture.cpp">
+    <ClCompile Include="Engine\Textures\GameObject.cpp">
+      <Filter>Source Files\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Textures\TextTexture.cpp">
+      <Filter>Source Files\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Textures\Texture.cpp">
+      <Filter>Source Files\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\SDL\InputFacade.cpp">
+      <Filter>Source Files\Facades</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\SDL\Wrappers\Color.cpp">
       <Filter>Source Files\Graphics</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="GraphicsFacade.h">
-      <Filter>Header Files\Facades</Filter>
-    </ClInclude>
-    <ClInclude Include="AudioFacade.h">
-      <Filter>Header Files\Facades</Filter>
-    </ClInclude>
-    <ClInclude Include="InputFacade.h">
-      <Filter>Header Files\Facades</Filter>
-    </ClInclude>
-    <ClInclude Include="SerializationFacade.h">
-      <Filter>Header Files\Facades</Filter>
-    </ClInclude>
-    <ClInclude Include="MultimediaManager.h">
-      <Filter>Header Files\Managers</Filter>
-    </ClInclude>
-    <ClInclude Include="InputManager.h">
-      <Filter>Header Files\Managers</Filter>
-    </ClInclude>
-    <ClInclude Include="StorageManager.h">
-      <Filter>Header Files\Managers</Filter>
-    </ClInclude>
-    <ClInclude Include="AssetManager.h">
-      <Filter>Header Files\Managers</Filter>
-    </ClInclude>
-    <ClInclude Include="TimerFacade.h">
-      <Filter>Header Files\Facades</Filter>
-    </ClInclude>
-    <ClInclude Include="MathHelper.h">
-      <Filter>Header Files\Utilities</Filter>
-    </ClInclude>
-    <ClInclude Include="Texture.h">
-      <Filter>Header Files\Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="InputKeys.h">
-      <Filter>Header Files\Enum</Filter>
-    </ClInclude>
-    <ClInclude Include="GameObject.h">
-      <Filter>Header Files\Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="Color.h">
-      <Filter>Header Files\Graphics</Filter>
-    </ClInclude>
     <ClInclude Include="MemeEngine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Serializable.h">
+    <ClInclude Include="Engine\AssetManager.h">
+      <Filter>Header Files\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\InputManager.h">
+      <Filter>Header Files\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\MultimediaManager.h">
+      <Filter>Header Files\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\StorageManager.h">
+      <Filter>Header Files\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\SDL\Wrappers\RawWindowWrapper.h">
+      <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\SDL\Wrappers\RawFontWrapper.h">
+      <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\SDL\Wrappers\RawMusicWrapper.h">
+      <Filter>Header Files\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\SDL\Wrappers\RawRendererWrapper.h">
+      <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\SDL\Wrappers\RawSfxWrapper.h">
+      <Filter>Header Files\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\SDL\Wrappers\RawSurfaceWrapper.h">
+      <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\SDL\Wrappers\RawTextureWrapper.h">
+      <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\SDL\GraphicsFacade.h">
+      <Filter>Header Files\Facades</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\SDL\AudioFacade.h">
+      <Filter>Header Files\Facades</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\SDL\TimerFacade.h">
+      <Filter>Header Files\Facades</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Serialization\SerializationFacade.h">
+      <Filter>Header Files\Facades</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Textures\AnimatedTexture.h">
+      <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Textures\GameObject.h">
+      <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Textures\TextTexture.h">
+      <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Textures\Texture.h">
+      <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\SDL\InputFacade.h">
+      <Filter>Header Files\Facades</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\SDL\InputKeys.h">
+      <Filter>Header Files\Enum</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Util\MathHelper.h">
+      <Filter>Header Files\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\SDL\Wrappers\Color.h">
+      <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Util\Rectangle.h">
+      <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Serialization\Serializable.h">
+      <Filter>Header Files\Facades</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\SDL.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="AnimatedTexture.h">
-      <Filter>Header Files\Graphics</Filter>
+    <ClInclude Include="Engine\Textures.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="TextTexture.h">
-      <Filter>Header Files\Graphics</Filter>
+    <ClInclude Include="Engine\Serialize.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="RawTextureWrapper.h">
-      <Filter>Header Files\Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="RawMusicWrapper.h">
-      <Filter>Header Files\Audio</Filter>
-    </ClInclude>
-    <ClInclude Include="RawSfxWrapper.h">
-      <Filter>Header Files\Audio</Filter>
-    </ClInclude>
-    <ClInclude Include="RawFontWrapper.h">
-      <Filter>Header Files\Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="Rectangle.h">
-      <Filter>Header Files\Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="RawWindowWrapper.h">
-      <Filter>Header Files\Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="RawSurfaceWrapper.h">
-      <Filter>Header Files\Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="RawRendererWrapper.h">
-      <Filter>Header Files\Graphics</Filter>
+    <ClInclude Include="Engine.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -1,25 +1,32 @@
 #ifndef _MEME_ENGINE_H
 #define _MEME_ENGINE_H
 
-#include "InputManager.h"
-#include "MultimediaManager.h"
+#include "Engine\InputManager.h"
+#include "Engine\MultimediaManager.h"
+#include "Engine\StorageManager.h"
 
-class TimerFacade;
 
-class MemeEngine
-{
-protected:
-	MultimediaManager multimedia_manager{ false };
-	InputManager input_manager{};
-	std::unique_ptr<TimerFacade> timer;
+namespace memecity::engine {
+	namespace sdl {
+		class TimerFacade;
+	};
 
-	virtual void init() = 0;
-	virtual void update(float dt) = 0;
-	virtual void draw() = 0;
+	class MemeEngine
+	{
+	protected:
+		StorageManager storage_manager;
+		MultimediaManager multimedia_manager{ false };
+		InputManager input_manager{};
+		std::unique_ptr<sdl::TimerFacade> timer;
 
-public:
-	int run();
-	MemeEngine();
-};
+		virtual void init() = 0;
+		virtual void update(float dt) = 0;
+		virtual void draw() = 0;
+
+	public:
+		int run();
+		MemeEngine();
+	};
+}
 
 #endif

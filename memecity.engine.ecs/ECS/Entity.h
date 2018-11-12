@@ -3,7 +3,7 @@
 #include <algorithm>
 #include <vector>
 #include "Type.h"
-namespace ecs {
+namespace memecity::engine::ecs {
 	struct Component;
 	struct Entity {
 	protected:

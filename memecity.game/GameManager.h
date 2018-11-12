@@ -1,14 +1,13 @@
 #ifndef _GAME_MANAGER_H
 #define _GAME_MANAGER_H
-
-#include "MemeEngine.h"
+#include <Engine.h>
 #include <ECS.h>
-#include "Generate\CityGenerator.h"
+#include "Generate.h"
 
-class GameManager : public MemeEngine
+class GameManager : public memecity::engine::MemeEngine
 {
 private:
-	ecs::EntityManager entity_manager;
+	memecity::engine::ecs::EntityManager entity_manager;
 	generate::CityGenerator city_generator;
 
 protected:
