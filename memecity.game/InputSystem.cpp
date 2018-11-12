@@ -4,6 +4,8 @@
 #include "PositionComponent.h"
 #include "PlayerComponent.h"
 #include "VelocityComponent.h"
+#include "AnimationComponent.h"
+
 #include "InteractionSystem.h"
 
 using namespace ecs;
@@ -28,8 +30,15 @@ void InputSystem::run(EntityManager& em) const
 
 	for (auto entity : entities)
 	{
-		auto velocity_component = entity.get().get<VelocityComponent>();
 
+		auto velocity_component = entity.get().get<VelocityComponent>();
+			
+		auto animation_component = entity.get().get<AnimationComponent>();
+
+		if (this->input_manager.is_pressed(Attack))
+		{
+			animation_component->is_fighting = true;
+		}
 		if (this->input_manager.is_pressed(Up))
 		{
 			velocity_component->y += 5;

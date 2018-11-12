@@ -1,23 +1,20 @@
 #include "Texture.h"
 
-Texture::Texture(std::shared_ptr<GraphicsFacade> graphics_facade, SDL_Texture* texture)
+Texture::Texture(std::string filename, int width, int height)
 {
-	this->graphics_facade = graphics_facade;
-	this->texture = texture;
-
-	// Used to determine width and height of the given texture
-	SDL_QueryTexture(texture, nullptr, nullptr, &texture_width, &texture_height);
-
+	this->filename = filename;
 	is_clipped = false;
+
+	texture_width = width;
+	texture_height = height;
 
 	render_rect.w = texture_width;
 	render_rect.h = texture_height;
 }
 
-Texture::Texture(std::shared_ptr<GraphicsFacade> graphics_facade, SDL_Texture* texture, int x, int y, int width, int height)
+Texture::Texture(std::string filename, int x, int y, int width, int height)
 {
-	this->graphics_facade = graphics_facade;
-	this->texture = texture;
+	this->filename = filename;
 	is_clipped = true;
 
 	texture_width = width;
@@ -32,15 +29,31 @@ Texture::Texture(std::shared_ptr<GraphicsFacade> graphics_facade, SDL_Texture* t
 	clipped_rect.h = texture_height;
 }
 
-Texture::~Texture()
-{
-	texture = nullptr;
-}
 
-void Texture::render()
+void Texture::update_render_rect()
 {
 	const auto pos = get_position(world);
 	render_rect.x = int(pos.x - texture_width * 0.5f);
 	render_rect.y = int(pos.y - texture_height * 0.5f);
-	graphics_facade->draw_texture(texture, (is_clipped) ? &clipped_rect : nullptr, &render_rect);
 }
+
+bool Texture::get_is_clipped() const
+{
+	return is_clipped;
+}
+
+Rectangle Texture::get_render_rect() const
+{
+	return render_rect;
+}
+
+Rectangle Texture::get_clipped_rect() const
+{
+	return clipped_rect;
+}
+
+std::string Texture::get_filename() const
+{
+	return filename;
+}
+

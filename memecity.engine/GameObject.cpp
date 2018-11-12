@@ -22,10 +22,11 @@ void GameObject::set_position(Vector2 position)
 
 Vector2 GameObject::get_position(SPACE space)
 {
+
 	if (space == local || parent == nullptr)
 	{
 		return position;
-	}
+	}	
 
 	return parent->get_position(world) + RotateVector(position, parent->get_rotation(local));
 }
@@ -65,18 +66,19 @@ bool GameObject::get_active() const
 	return is_active;
 }
 
-void GameObject::set_parent(std::shared_ptr<GameObject> parent)
+void GameObject::set_parent(GameObject* parent)
 {
 	position = get_position(world) - parent->get_position(world);
 	this->parent = parent;
 }
 
-std::shared_ptr<GameObject> GameObject::get_parent() const
+GameObject* GameObject::get_parent() const
 {
 	return parent;
 }
 
 void GameObject::translate(Vector2 vector)
 {
-	position += vector;
+	if (parent == nullptr)
+		position += vector;
 }

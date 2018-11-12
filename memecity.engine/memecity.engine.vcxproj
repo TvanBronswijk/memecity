@@ -126,7 +126,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <Optimization>MaxSpeed</Optimization>
+      <Optimization>Disabled</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
@@ -142,7 +142,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="AnimatedCharacter.cpp" />
+    <ClCompile Include="AnimatedTexture.cpp" />
     <ClCompile Include="AssetManager.cpp" />
     <ClCompile Include="AudioFacade.cpp" />
     <ClCompile Include="Color.cpp" />
@@ -152,13 +152,13 @@
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="MemeEngine.cpp" />
     <ClCompile Include="MultimediaManager.cpp" />
+    <ClCompile Include="TextTexture.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="StorageManager.cpp" />
     <ClCompile Include="TimerFacade.cpp" />
-    <ClCompile Include="Updatable.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AnimatedCharacter.h" />
+    <ClInclude Include="AnimatedTexture.h" />
     <ClInclude Include="AssetManager.h" />
     <ClInclude Include="AudioFacade.h" />
     <ClInclude Include="Color.h" />
@@ -170,12 +170,20 @@
     <ClInclude Include="MathHelper.h" />
     <ClInclude Include="MemeEngine.h" />
     <ClInclude Include="MultimediaManager.h" />
+    <ClInclude Include="RawFontWrapper.h" />
+    <ClInclude Include="RawMusicWrapper.h" />
+    <ClInclude Include="RawRendererWrapper.h" />
+    <ClInclude Include="RawSfxWrapper.h" />
+    <ClInclude Include="RawSurfaceWrapper.h" />
+    <ClInclude Include="RawTextureWrapper.h" />
+    <ClInclude Include="RawWindowWrapper.h" />
+    <ClInclude Include="Rectangle.h" />
     <ClInclude Include="Serializable.h" />
     <ClInclude Include="SerializationFacade.h" />
     <ClInclude Include="StorageManager.h" />
+    <ClInclude Include="TextTexture.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="TimerFacade.h" />
-    <ClInclude Include="Updatable.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

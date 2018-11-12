@@ -3,9 +3,8 @@
 
 #include <iostream>
 #include "InputKeys.h"
-#include "Updatable.h"
 
-class InputFacade : public Updatable
+class InputFacade
 {
 private:
 	SDL_Event event;
@@ -14,7 +13,7 @@ private:
 
 public:
 	///<summary>Updates the Keyboard State to find out which keys are pressed.</summary>
-	void update() override;
+	void update();
 
 	///<summary>Returns if a given key is pressed.</summary>
 	bool is_pressed(InputKeys key) const;

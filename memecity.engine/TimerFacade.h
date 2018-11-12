@@ -2,9 +2,8 @@
 #define _TIMERFACADE_H
 
 #include <SDL.h>
-#include "Updatable.h"
 
-class TimerFacade : public Updatable
+class TimerFacade
 {
 private:
 	unsigned int start_ticks{};
@@ -21,7 +20,7 @@ public:
 	float get_delta_time() const;
 
 	///<summary>Sets delta time to elapsed time since last update.</summary>
-	void update() override;
+	void update();
 };
 
 #endif
