@@ -51,9 +51,6 @@
     <ClCompile Include="InputFacade.cpp">
       <Filter>Source Files\Facades</Filter>
     </ClCompile>
-    <ClCompile Include="SerializationFacade.cpp">
-      <Filter>Source Files\Facades</Filter>
-    </ClCompile>
     <ClCompile Include="MultimediaManager.cpp">
       <Filter>Source Files\Managers</Filter>
     </ClCompile>
