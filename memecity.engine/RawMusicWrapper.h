@@ -19,6 +19,10 @@ public:
 		Mix_FreeMusic(music);
 	}
 
+	Mix_Music* get() const
+	{
+		return music;
+	}
 	Mix_Music* operator->() const
 	{
 		return music;

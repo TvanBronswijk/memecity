@@ -30,10 +30,10 @@ public:
 	int screen_height;
 	bool is_initialized;
 
-	///<summary>Loads surface from path into memory.</summary>
+	///<summary>Loads texture from path into memory.</summary>
 	std::unique_ptr<RawTextureWrapper> load_texture(std::string file) const;
 
-	///<summary>Loads a text surface from path into memory.</summary>
+	///<summary>Loads a text texture from path into memory.</summary>
 	std::unique_ptr<RawTextureWrapper> load_text_texture(RawFontWrapper& font, std::string text, const SDL_Color &color) const;
 	
 	///<summary>Loads a surface into the buffer of the SDL_Renderer object.</summary>

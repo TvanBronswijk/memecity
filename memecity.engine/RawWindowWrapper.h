@@ -19,6 +19,10 @@ public:
 		SDL_DestroyWindow(window);
 	}
 
+	SDL_Window* get() const
+	{
+		return window;
+	}
 	SDL_Window* operator->() const
 	{
 		return window;

@@ -27,16 +27,16 @@ bool GraphicsFacade::init()
 
 	if (is_fullscreen)
 	{
-		if (SDL_SetWindowFullscreen(sdl_window->operator*(), SDL_WINDOW_FULLSCREEN_DESKTOP) != 0)
+		if (SDL_SetWindowFullscreen(sdl_window->get(), SDL_WINDOW_FULLSCREEN_DESKTOP) != 0)
 		{
 			printf("Window FullScreen error: %s\n", SDL_GetError());
 			return false;
 		}	
 	}
 
-	SDL_GetWindowSize(sdl_window->operator*(), &screen_width, &screen_height);
+	SDL_GetWindowSize(sdl_window->get(), &screen_width, &screen_height);
 
-	sdl_renderer = std::make_unique<RawRendererWrapper>(SDL_CreateRenderer(sdl_window->operator*(), -1, SDL_RENDERER_ACCELERATED));
+	sdl_renderer = std::make_unique<RawRendererWrapper>(SDL_CreateRenderer(sdl_window->get(), -1, SDL_RENDERER_ACCELERATED));
 	if (sdl_renderer == nullptr)
 	{
 		printf("Renderer creation error: %s\n", SDL_GetError());
@@ -49,7 +49,7 @@ bool GraphicsFacade::init()
 		return false;
 	}
 
-	window_surface = std::make_unique<RawSurfaceWrapper>(SDL_GetWindowSurface(sdl_window->operator*()));
+	window_surface = std::make_unique<RawSurfaceWrapper>(SDL_GetWindowSurface(sdl_window->get()));
 	return true;
 }
 
@@ -57,16 +57,16 @@ std::unique_ptr<RawTextureWrapper> GraphicsFacade::load_texture(const std::strin
 {
 	std::unique_ptr<RawTextureWrapper> texture;
 	std::unique_ptr<RawSurfaceWrapper> surface = std::make_unique<RawSurfaceWrapper>(IMG_Load(path.c_str()));
-	if (surface->operator*() == nullptr)
+	if (surface->get() == nullptr)
 	{
 		printf("Image load error: Path(%s) - Error(%s)\n", path.c_str(), IMG_GetError());
 		return texture;
 	}
 
-	texture = std::make_unique<RawTextureWrapper>(SDL_CreateTextureFromSurface(sdl_renderer->operator*(), surface->operator*()));
-	if (texture->operator*() == nullptr)
+	texture = std::make_unique<RawTextureWrapper>(SDL_CreateTextureFromSurface(sdl_renderer->get(), surface->get()));
+	if (texture->get() == nullptr)
 	{
-		printf("Create window error: %s\n", IMG_GetError());
+		printf("Create texture error: %s\n", IMG_GetError());
 		return texture;
 	}
 
@@ -77,15 +77,15 @@ std::unique_ptr<RawTextureWrapper> GraphicsFacade::load_text_texture(RawFontWrap
 {
 	std::unique_ptr<RawSurfaceWrapper> surface = std::make_unique<RawSurfaceWrapper>(TTF_RenderText_Solid(*font, text.c_str(), color));
 
-	if (surface->operator*() == nullptr)
+	if (surface->get() == nullptr)
 	{
 		printf("Text render error: %s\n", TTF_GetError());
 		return nullptr;
 	}
-	std::unique_ptr<RawTextureWrapper> texture = std::make_unique<RawTextureWrapper>(SDL_CreateTextureFromSurface(sdl_renderer->operator*(), surface->operator*()));
-	if (texture->operator*() == nullptr)
+	std::unique_ptr<RawTextureWrapper> texture = std::make_unique<RawTextureWrapper>(SDL_CreateTextureFromSurface(sdl_renderer->get(), surface->get()));
+	if (texture->get() == nullptr)
 	{
-		printf("Text window creation error: %s\n", SDL_GetError());
+		printf("Text texture creation error: %s\n", SDL_GetError());
 		return nullptr;
 	}
 
@@ -112,16 +112,16 @@ void GraphicsFacade::draw_texture(const RawTextureWrapper& texture, const Rectan
 
 	if (render_rect.x > -viewport_offset && render_rect.x < screen_width + viewport_offset &&
 		render_rect.y > -viewport_offset && render_rect.y < screen_height + viewport_offset) {
-		SDL_RenderCopy(sdl_renderer->operator*(), *texture, sdl_clipped_rect.get(), sdl_render_rect.get());
+		SDL_RenderCopy(sdl_renderer->get(), *texture, sdl_clipped_rect.get(), sdl_render_rect.get());
 	}
 }
 
 void GraphicsFacade::clear() const
 {
-	SDL_RenderClear(sdl_renderer->operator*());
+	SDL_RenderClear(sdl_renderer->get());
 }
 
 void GraphicsFacade::render() const
 {
-	SDL_RenderPresent(sdl_renderer->operator*());
+	SDL_RenderPresent(sdl_renderer->get());
 }

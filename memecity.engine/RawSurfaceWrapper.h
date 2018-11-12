@@ -19,6 +19,10 @@ public:
 		SDL_FreeSurface(surface);
 	}
 
+	SDL_Surface* get() const
+	{
+		return surface;
+	}
 	SDL_Surface* operator->() const
 	{
 		return surface;

@@ -15,7 +15,7 @@ AssetManager::~AssetManager()
 	sfx.clear();
 }
 
-///<summary>Returns a surface based on given filename.</summary>
+///<summary>Returns a texture based on given filename.</summary>
 const RawTextureWrapper& AssetManager::get_texture(std::string filename)
 {
 	std::string fullPath = base_path;
@@ -29,7 +29,7 @@ const RawTextureWrapper& AssetManager::get_texture(std::string filename)
 	return *textures[fullPath];
 }
 
-///<summary>Returns a text surface based on a given text and filename.</summary>
+///<summary>Returns a text texture based on a given text and filename.</summary>
 const RawTextureWrapper&  AssetManager::get_text(std::string text, std::string filename, int size, SDL_Color color)
 {
 	auto& font = get_font(filename, size);

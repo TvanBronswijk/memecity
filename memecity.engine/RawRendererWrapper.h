@@ -19,6 +19,10 @@ public:
 		SDL_DestroyRenderer(renderer);
 	}
 
+	SDL_Renderer* get() const
+	{
+		return renderer;
+	}
 	SDL_Renderer* operator->() const
 	{
 		return renderer;

@@ -18,7 +18,10 @@ public:
 	{
 		SDL_DestroyTexture(texture);
 	}
-
+	SDL_Texture* get() const
+	{
+		return texture;
+	}
 	SDL_Texture* operator->() const
 	{
 		return texture;

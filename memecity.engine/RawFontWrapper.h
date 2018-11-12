@@ -18,6 +18,10 @@ public:
 		TTF_CloseFont(font);
 	}
 
+	TTF_Font* get() const
+	{
+		return font;
+	}
 	TTF_Font* operator->() const
 	{
 		return font;

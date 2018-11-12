@@ -18,6 +18,10 @@ public:
 		Mix_FreeChunk(sfx);
 	}
 
+	Mix_Chunk* get() const
+	{
+		return sfx;
+	}
 	Mix_Chunk* operator->() const
 	{
 		return sfx;
