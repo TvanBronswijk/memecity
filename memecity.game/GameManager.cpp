@@ -48,9 +48,7 @@ void GameManager::init()
 		.create_entity()
 		.with_component<DrawableComponent>(std::move(text_texture));
 
-	entity_manager.create_system<DrawSystem>(ecs::System::draw);
-	auto& input_system = entity_manager.create_system<InputSystem>(ecs::System::update, input_manager);
-	entity_manager.create_system<MoveSystem>();
+
 	//test to show an example  for a NPC
 	auto& fighting_system = entity_manager.create_system<FightingSystem>();
 	entity_manager.create_system<AISystem>();
@@ -60,7 +58,7 @@ void GameManager::init()
 		float x = 10 * i;
 		float y = 10 * i;
 
-		auto texture = multimedia_manager.get_animated_texture(timer.get(), "SpriteSheet.png", 0, 0, 48, 48, 4, 0.5f, AnimatedCharacter::vertical);
+		auto texture = multimedia_manager.get_animated_texture(*timer, "SpriteSheet.png", 0, 0, 48, 48, 4, 0.5f, AnimatedTexture::AnimationDirection::vertical);
 		texture->set_position({ x , y + (multimedia_manager.get_screen_height() - (y * 2)) });
 
 		ecs::builder::EntityBuilder(entity_manager)
@@ -71,22 +69,21 @@ void GameManager::init()
 			.with_component<HealthComponent>(100)
 			.with_component<StatsComponent>()
 			.with_component<InteractionComponent>()
-			.with_component<DrawableComponent>(texture)
-			.with_component<PositionComponent>(x, y)
-			.with_component<InteractionComponent>();
+			.with_component<DrawableComponent>(std::move(texture))
+			.with_component<PositionComponent>(x, y);
 
 	}
 	// end test	
 
+	entity_manager.create_system<AnimationSystem>(ecs::System::draw);
+	entity_manager.create_system<DrawSystem>(ecs::System::draw, multimedia_manager);
+	auto& input_system = entity_manager.create_system<InputSystem>(ecs::System::update, input_manager);
+	auto& move_system = entity_manager.create_system<MoveSystem>();
+	//auto& collider_system = entity_manager.create_system<ColliderSystem>();
+
 	// events
 	input_system.interaction_event.bind([&](ecs::EntityManager& em, InteractionEventArgs args) { interaciton_system.on_interact(em, args); });
 	input_system.attack_event.bind([&](ecs::EntityManager& em, AttackEventArgs args) { fighting_system.on_attack(em, args); });
-
-	entity_manager.create_system<AnimationSystem>(ecs::System::draw);
-	entity_manager.create_system<DrawSystem>(ecs::System::draw, multimedia_manager);
-	entity_manager.create_system<InputSystem>(ecs::System::update, input_manager);
-	auto& move_system = entity_manager.create_system<MoveSystem>();
-	//auto& collider_system = entity_manager.create_system<ColliderSystem>();
 	//collider_system.collider_event.bind([&](ecs::EntityManager& em, ColliderEventArgs args) { move_system.on_collision(em, args); });
 }
 

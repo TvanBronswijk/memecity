@@ -4,7 +4,6 @@
 #include "VelocityComponent.h"
 #include "PositionComponent.h"
 #include "DrawableComponent.h"
-#include "../memecity.engine/AnimatedCharacter.h"
 #include "PlayerComponent.h"
 #include "ColliderEventArgs.h"
 
