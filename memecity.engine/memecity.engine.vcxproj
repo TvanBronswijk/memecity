@@ -152,7 +152,6 @@
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="MemeEngine.cpp" />
     <ClCompile Include="MultimediaManager.cpp" />
-    <ClCompile Include="SerializationFacade.cpp" />
     <ClCompile Include="TextTexture.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="StorageManager.cpp" />

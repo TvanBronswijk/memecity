@@ -1,4 +1,5 @@
 #include "GameManager.h"
+#include "ColliderSystem.h"
 #include "DrawSystem.h"
 #include "InputSystem.h"
 #include "MoveSystem.h"
@@ -22,6 +23,7 @@ void GameManager::init()
 		.create_entity()
 		.with_component<PlayerComponent>()
 		.with_component<AnimationComponent>()
+		//.with_component<ColliderComponent>(64.0f, 64.0f)
 		.with_component<PositionComponent>(multimedia_manager.get_screen_width() / 2, multimedia_manager.get_screen_height() / 2)
 		.with_component<VelocityComponent>()
 		.with_component<DrawableComponent>(std::move(texture))
@@ -38,7 +40,9 @@ void GameManager::init()
 	entity_manager.create_system<AnimationSystem>(ecs::System::draw);
 	entity_manager.create_system<DrawSystem>(ecs::System::draw, multimedia_manager);
 	entity_manager.create_system<InputSystem>(ecs::System::update, input_manager);
-	entity_manager.create_system<MoveSystem>();
+	auto& move_system = entity_manager.create_system<MoveSystem>();
+	//auto& collider_system = entity_manager.create_system<ColliderSystem>();
+	//collider_system.collider_event.bind([&](ecs::EntityManager& em, ColliderEventArgs args) { move_system.on_collision(em, args); });
 }
 
 void GameManager::update(float dt)
@@ -46,7 +50,7 @@ void GameManager::update(float dt)
 	entity_manager.update(ecs::System::update);
 }
 
-void GameManager::draw() 
+void GameManager::draw()
 {
 	entity_manager.update(ecs::System::draw);
 }

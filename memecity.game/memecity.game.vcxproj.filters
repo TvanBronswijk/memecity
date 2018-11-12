@@ -99,6 +99,15 @@
     <ClInclude Include="Generate\Models\Models.h">
       <Filter>Header Files\City\Models</Filter>
     </ClInclude>
+    <ClInclude Include="ColliderEventArgs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ColliderComponent.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="ColliderSystem.h">
+      <Filter>Header Files\Systems</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -127,6 +136,9 @@
     </ClCompile>
     <ClCompile Include="Generate\Strategy\BSP\BSP.cpp">
       <Filter>Source Files\City\Strategy</Filter>
+    </ClCompile>
+    <ClCompile Include="ColliderSystem.cpp">
+      <Filter>Source Files\Systems</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
