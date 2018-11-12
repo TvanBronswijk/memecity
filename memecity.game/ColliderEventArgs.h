@@ -1,6 +1,6 @@
 ﻿#ifndef _COLLIDER_EVENT_ARGS_H
 #define _COLLIDER_EVENT_ARGS_H
-#include "EventArgs.h"
+#include "ECS.h"
 
 struct ColliderEventArgs : public ecs::eventing::EventArgs
 {

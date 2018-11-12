@@ -15,7 +15,7 @@ namespace ecs {
 	using namespace query;
 	class EntityManager {
 	private:
-		int last_id = -1;
+		int last_id = 0;
 		std::vector<Entity> entities;
 		std::map<TypeToken, std::vector<std::unique_ptr<Component>>> components;
 		std::map<System::Scope, std::map<TypeToken, std::unique_ptr<System>>> systems;

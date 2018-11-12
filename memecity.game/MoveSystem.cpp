@@ -38,9 +38,9 @@ void MoveSystem::run(EntityManager& em) const
 
 void MoveSystem::on_collision(EntityManager& em, ColliderEventArgs ea)
 {
-	auto position_target = em.get_component_of_entity<PositionComponent>(ea.target, PositionComponent::COMPONENT_TYPE);
-	auto position = em.get_component_of_entity<PositionComponent>(ea.source, PositionComponent::COMPONENT_TYPE);
-	auto velocity = em.get_component_of_entity<VelocityComponent>(ea.source, VelocityComponent::COMPONENT_TYPE);
+	auto position_target = ea.target.get<PositionComponent>();
+	auto position = ea.source.get<PositionComponent>();
+	auto velocity = ea.source.get<VelocityComponent>();
 
 	if (velocity != nullptr)
 	{

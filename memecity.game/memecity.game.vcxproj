@@ -39,6 +39,7 @@
     <ClInclude Include="StatsComponent.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ColliderSystem.cpp" />
     <ClCompile Include="Generate\Strategy\BSP\BSP.cpp" />
     <ClCompile Include="Generate\CityGenerator.cpp" />
     <ClCompile Include="ExpSystem.cpp" />
