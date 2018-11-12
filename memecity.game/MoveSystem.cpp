@@ -35,3 +35,34 @@ void MoveSystem::run(EntityManager& em) const
 		}
 	}
 }
+
+void MoveSystem::on_collision(EntityManager& em, ColliderEventArgs ea)
+{
+	auto position_target = ea.target.get<PositionComponent>();
+	auto position = ea.source.get<PositionComponent>();
+	auto velocity = ea.source.get<VelocityComponent>();
+
+	if (velocity != nullptr)
+	{
+		if (position_target->x > position->x)
+		{
+			position->x -= 5;
+			position->diffx = -5;
+		}
+		else if (position_target->x < position->x)
+		{
+			position->x += 5;
+			position->diffx = 5;
+		}
+		if (position_target->y > position->y)
+		{
+			position->y -= 5;
+			position->diffy = -5;
+		}
+		else if (position_target->y < position->y)
+		{
+			position->y += 5;
+			position->diffy = 5;
+		}
+	}
+}
