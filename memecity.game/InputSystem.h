@@ -1,9 +1,11 @@
 ﻿#ifndef _INPUTSYSTEM_H
 #define  _INPUTSYSTEM_H
+#include "../memecity.engine.ecs/EntityManager.h"
+#include "../memecity.engine.ecs/System.h"
 #include "InteractionEventArgs.h"
 #include "AttackEventArgs.h"
 #include "InputManager.h"
-
+#include "Event.h"
 
 class InputSystem : public ecs::System
 {
