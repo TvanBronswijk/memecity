@@ -16,9 +16,6 @@
     <Filter Include="Header Files\Components">
       <UniqueIdentifier>{b4e2e74a-fe61-4c54-b48c-84052a02c61a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Components">
-      <UniqueIdentifier>{b567a55d-9846-4565-84f6-b7e573c5798d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Systems">
       <UniqueIdentifier>{8c5af50c-0856-410d-b82e-9b1cb52ddf39}</UniqueIdentifier>
     </Filter>
@@ -63,18 +60,6 @@
     <ClInclude Include="DrawSystem.h">
       <Filter>Header Files\Systems</Filter>
     </ClInclude>
-    <ClInclude Include="City.h">
-      <Filter>Header Files\City\Models</Filter>
-    </ClInclude>
-    <ClInclude Include="CityGenerator.h">
-      <Filter>Header Files\City</Filter>
-    </ClInclude>
-    <ClInclude Include="GeneratorStrategy.h">
-      <Filter>Header Files\City\Strategy</Filter>
-    </ClInclude>
-    <ClInclude Include="BSPGenerator.h">
-      <Filter>Header Files\City\Strategy</Filter>
-    </ClInclude>
     <ClInclude Include="PositionComponent.h">
       <Filter>Header Files\Components</Filter>
     </ClInclude>
@@ -99,14 +84,17 @@
     <ClInclude Include="StatsComponent.h">
       <Filter>Header Files\Components</Filter>
     </ClInclude>
-    <ClInclude Include="ColliderEventArgs.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Generate\CityGenerator.h">
+      <Filter>Header Files\City</Filter>
     </ClInclude>
-    <ClInclude Include="ColliderSystem.h">
-      <Filter>Header Files\Systems</Filter>
+    <ClInclude Include="Generate\Strategy\Strategy.h">
+      <Filter>Header Files\City\Strategy</Filter>
     </ClInclude>
-    <ClInclude Include="ColliderComponent.h">
-      <Filter>Header Files\Components</Filter>
+    <ClInclude Include="Generate\Strategy\BSP\BSP.h">
+      <Filter>Header Files\City\Strategy</Filter>
+    </ClInclude>
+    <ClInclude Include="Generate\Models\Models.h">
+      <Filter>Header Files\City\Models</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -116,23 +104,8 @@
     <ClCompile Include="GameManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DrawableComponent.cpp">
-      <Filter>Source Files\Components</Filter>
-    </ClCompile>
     <ClCompile Include="DrawSystem.cpp">
       <Filter>Source Files\Systems</Filter>
-    </ClCompile>
-    <ClCompile Include="BSPGenerator.cpp">
-      <Filter>Source Files\City\Strategy</Filter>
-    </ClCompile>
-    <ClCompile Include="CityGenerator.cpp">
-      <Filter>Source Files\City</Filter>
-    </ClCompile>
-    <ClCompile Include="PositionComponent.cpp">
-      <Filter>Source Files\Components</Filter>
-    </ClCompile>
-    <ClCompile Include="VelocityComponent.cpp">
-      <Filter>Source Files\Components</Filter>
     </ClCompile>
     <ClCompile Include="MoveSystem.cpp">
       <Filter>Source Files\Systems</Filter>
@@ -140,23 +113,14 @@
     <ClCompile Include="InputSystem.cpp">
       <Filter>Source Files\Systems</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerComponent.cpp">
-      <Filter>Source Files\Components</Filter>
-    </ClCompile>
-    <ClCompile Include="StatsComponent.cpp">
-      <Filter>Source Files\Components</Filter>
-    </ClCompile>
     <ClCompile Include="ExpSystem.cpp">
       <Filter>Source Files\Systems</Filter>
     </ClCompile>
-    <ClCompile Include="ExpComponent.cpp">
-      <Filter>Source Files\Components</Filter>
+    <ClCompile Include="Generate\CityGenerator.cpp">
+      <Filter>Source Files\City</Filter>
     </ClCompile>
-    <ClCompile Include="ColliderComponent.cpp">
-      <Filter>Source Files\Components</Filter>
-    </ClCompile>
-    <ClCompile Include="ColliderSystem.cpp">
-      <Filter>Source Files\Systems</Filter>
+    <ClCompile Include="Generate\Strategy\BSP\BSP.cpp">
+      <Filter>Source Files\City\Strategy</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

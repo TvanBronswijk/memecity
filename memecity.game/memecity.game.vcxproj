@@ -24,13 +24,13 @@
     <ClInclude Include="ColliderSystem.h" />
     <ClInclude Include="ExpComponent.h" />
     <ClInclude Include="ExpSystem.h" />
-    <ClInclude Include="City.h" />
-    <ClInclude Include="BSPGenerator.h" />
-    <ClInclude Include="CityGenerator.h" />
+    <ClInclude Include="Generate\Models\Models.h" />
+    <ClInclude Include="Generate\Strategy\BSP\BSP.h" />
+    <ClInclude Include="Generate\CityGenerator.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="DrawableComponent.h" />
     <ClInclude Include="DrawSystem.h" />
-    <ClInclude Include="GeneratorStrategy.h" />
+    <ClInclude Include="Generate\Strategy\Strategy.h" />
     <ClInclude Include="PlayerComponent.h" />
     <ClInclude Include="InputSystem.h" />
     <ClInclude Include="MoveSystem.h" />
@@ -39,22 +39,14 @@
     <ClInclude Include="StatsComponent.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="BSPGenerator.cpp" />
-    <ClCompile Include="CityGenerator.cpp" />
-    <ClCompile Include="ColliderComponent.cpp" />
-    <ClCompile Include="ColliderSystem.cpp" />
-    <ClCompile Include="ExpComponent.cpp" />
+    <ClCompile Include="Generate\Strategy\BSP\BSP.cpp" />
+    <ClCompile Include="Generate\CityGenerator.cpp" />
     <ClCompile Include="ExpSystem.cpp" />
     <ClCompile Include="GameManager.cpp" />
-    <ClCompile Include="DrawableComponent.cpp" />
     <ClCompile Include="DrawSystem.cpp" />
-    <ClCompile Include="PlayerComponent.cpp" />
     <ClCompile Include="InputSystem.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="StatsComponent.cpp" />
     <ClCompile Include="MoveSystem.cpp" />
-    <ClCompile Include="PositionComponent.cpp" />
-    <ClCompile Include="VelocityComponent.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
@@ -119,6 +111,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -143,6 +136,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
