@@ -1,22 +1,7 @@
 #include "AnimatedTexture.h"
 
-AnimatedTexture::AnimatedTexture(TimerFacade &timer_facade, std::string filename, int x, int y,
-	const int w, const int h, const int frame_count, const float animation_speed, const AnimationDirection direction) : Texture(filename, x, y, w, h), timer_facade(timer_facade) {
-	this->direction = Direction::down;
 
-	start_x = x;
-	start_y = y;
-
-	this->frame_count = frame_count;
-	this->animation_speed = animation_speed;
-	time_per_frame = animation_speed / frame_count;
-	animation_timer = 0.0f;
-	animation_direction = direction;
-}
-
-AnimatedTexture::~AnimatedTexture() = default;
-
-void AnimatedTexture::set_direction(const Direction direction)
+void AnimatedTexture::set_direction(Direction direction)
 {
 	this->direction = direction;
 	this->start_x = static_cast<int>(direction) * texture_width;

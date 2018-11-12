@@ -5,12 +5,19 @@
 class RawTextureWrapper
 {
 private:
-	SDL_Texture* texture = nullptr;
+	SDL_Texture* texture;
 
 public:
-	RawTextureWrapper() = default;
-	RawTextureWrapper(SDL_Texture* tex);
-	~RawTextureWrapper();
+	RawTextureWrapper()
+		: texture(nullptr) {}
+
+	RawTextureWrapper(SDL_Texture* tex)
+		: texture(tex) {}
+
+	~RawTextureWrapper()
+	{
+		SDL_DestroyTexture(texture);
+	}
 
 	SDL_Texture* operator->() const
 	{

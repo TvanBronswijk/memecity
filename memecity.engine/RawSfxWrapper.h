@@ -5,11 +5,18 @@
 class RawSfxWrapper
 {
 private:
-	Mix_Chunk* sfx = nullptr;
+	Mix_Chunk* sfx;
 public:
-	RawSfxWrapper() = default;
-	RawSfxWrapper(Mix_Chunk* sfx);
-	~RawSfxWrapper();
+	RawSfxWrapper()
+		:sfx(nullptr) {}
+
+	RawSfxWrapper(Mix_Chunk* sfx) 
+	: sfx(sfx) {}
+
+	~RawSfxWrapper()
+	{
+		Mix_FreeChunk(sfx);
+	}
 
 	Mix_Chunk* operator->() const
 	{

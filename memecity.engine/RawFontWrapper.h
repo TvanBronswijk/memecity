@@ -5,11 +5,18 @@
 class RawFontWrapper
 {
 private:
-	TTF_Font* font = nullptr;
+	TTF_Font* font;
 public:
-	RawFontWrapper() = default;
-	RawFontWrapper(TTF_Font* font);
-	~RawFontWrapper();
+	RawFontWrapper()
+		: font(nullptr) {}
+
+	RawFontWrapper(TTF_Font* font)
+		: font(font) {}
+
+	~RawFontWrapper()
+	{
+		TTF_CloseFont(font);
+	}
 
 	TTF_Font* operator->() const
 	{

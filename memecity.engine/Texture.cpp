@@ -42,12 +42,12 @@ bool Texture::get_is_clipped() const
 	return is_clipped;
 }
 
-RectangleFacade Texture::get_render_rect() const
+Rectangle Texture::get_render_rect() const
 {
 	return render_rect;
 }
 
-RectangleFacade Texture::get_clipped_rect() const
+Rectangle Texture::get_clipped_rect() const
 {
 	return clipped_rect;
 }

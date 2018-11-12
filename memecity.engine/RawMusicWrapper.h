@@ -5,12 +5,19 @@
 class RawMusicWrapper
 {
 private:
-	Mix_Music* music = nullptr;
+	Mix_Music* music;
 
 public:
-	RawMusicWrapper() = default;
-	RawMusicWrapper(Mix_Music* music);
-	~RawMusicWrapper();
+	RawMusicWrapper() 
+	: music(nullptr) {};
+
+	RawMusicWrapper(Mix_Music* music) 
+	: music(music) {};
+
+	~RawMusicWrapper()
+	{
+		Mix_FreeMusic(music);
+	}
 
 	Mix_Music* operator->() const
 	{

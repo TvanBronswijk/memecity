@@ -94,19 +94,19 @@ std::unique_ptr<RawTextureWrapper> GraphicsFacade::load_text_texture(RawFontWrap
 	return std::make_unique<RawTextureWrapper>(tex);
 }
 
-void GraphicsFacade::draw_texture(const RawTextureWrapper& texture, const RectangleFacade* clipped_rect, const RectangleFacade* render_rect) const
+void GraphicsFacade::draw_texture(const RawTextureWrapper& texture, const Rectangle* clipped_rect, const Rectangle* render_rect) const
 {
 	int offset = 90;
 
-	SDL_Rect* sdl_clipped_rect = nullptr;
+	std::unique_ptr<SDL_Rect> sdl_clipped_rect;
 	if (clipped_rect != nullptr) {
-		sdl_clipped_rect = new SDL_Rect();
+		sdl_clipped_rect = std::make_unique<SDL_Rect>();
 		sdl_clipped_rect->x = clipped_rect->x;
 		sdl_clipped_rect->y = clipped_rect->y;
 		sdl_clipped_rect->w = clipped_rect->w;
 		sdl_clipped_rect->h = clipped_rect->h;
 	}
-	SDL_Rect* sdl_render_rect = new SDL_Rect();
+	std::unique_ptr<SDL_Rect> sdl_render_rect = std::make_unique<SDL_Rect>();
 	sdl_render_rect->x = render_rect->x;
 	sdl_render_rect->y = render_rect->y;
 	sdl_render_rect->w = render_rect->w;
@@ -115,11 +115,8 @@ void GraphicsFacade::draw_texture(const RawTextureWrapper& texture, const Rectan
 
 	if (render_rect->x > -offset && render_rect->x < screen_width + offset &&
 		render_rect->y > -offset && render_rect->y < screen_height + offset) {
-		SDL_RenderCopy(sdl_renderer, *texture, sdl_clipped_rect, sdl_render_rect);
+		SDL_RenderCopy(sdl_renderer, *texture, sdl_clipped_rect.get(), sdl_render_rect.get());
 	}
-
-	delete sdl_clipped_rect;
-	delete sdl_render_rect;
 }
 
 void GraphicsFacade::clear() const

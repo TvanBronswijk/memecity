@@ -60,7 +60,7 @@ void MultimediaManager::render_graphics() const
 	graphics_facade->render();
 }
 
-std::unique_ptr<Texture> MultimediaManager::get_texture(const std::string filename)
+std::unique_ptr<Texture> MultimediaManager::get_texture(std::string filename) const
 {	
 	int width, height;
 	auto& sdl_texture = asset_manager->get_texture(filename);
@@ -70,20 +70,20 @@ std::unique_ptr<Texture> MultimediaManager::get_texture(const std::string filena
 	return std::make_unique<Texture>(filename, width, height);
 }
 
-std::unique_ptr<Texture> MultimediaManager::get_texture(std::string const filename, int x, int y, int width, int height)
+std::unique_ptr<Texture> MultimediaManager::get_texture(std::string filename, int x, int y, int width, int height) const
 {
 	asset_manager->get_texture(filename);
 
 	return std::make_unique<Texture>(filename, x, y, width, height);
 }
 
-std::unique_ptr<AnimatedTexture> MultimediaManager::get_animated_texture(TimerFacade &timer, std::string filename, int x, int y, int width, int height, int frame_count, float animation_speed, AnimatedTexture::AnimationDirection direction)
+std::unique_ptr<AnimatedTexture> MultimediaManager::get_animated_texture(TimerFacade &timer, std::string filename, int x, int y, int width, int height, int frame_count, float animation_speed, AnimatedTexture::AnimationDirection direction) const
 {
 	asset_manager->get_texture(filename);
 	return std::make_unique<AnimatedTexture>(timer, filename, x, y, width, height, frame_count, animation_speed, direction);
 }
 
-std::unique_ptr<TextTexture> MultimediaManager::get_text_texture(std::string const text, std::string const font_path, const int size, Color color)
+std::unique_ptr<TextTexture> MultimediaManager::get_text_texture(std::string text, std::string font_path, int size, Color color) const
 {
 	int width, height;
 	auto& sdl_texture = asset_manager->get_text(text, font_path, size, color.get_sdl_color());
@@ -93,12 +93,12 @@ std::unique_ptr<TextTexture> MultimediaManager::get_text_texture(std::string con
 	return std::make_unique<TextTexture>(text, font_path, size, color, width, height);
 }
 
-int MultimediaManager::get_screen_width()
+int MultimediaManager::get_screen_width() const
 {
 	return graphics_facade->screen_width;
 }
 
-int MultimediaManager::get_screen_height()
+int MultimediaManager::get_screen_height() const
 {
 	return graphics_facade->screen_height;
 }

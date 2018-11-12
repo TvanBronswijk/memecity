@@ -3,7 +3,7 @@
 
 #include <SDL.h>
 #include <string>
-#include "RectangleFacade.h"
+#include "Rectangle.h"
 
 class RawFontWrapper;
 class RawTextureWrapper;
@@ -34,7 +34,7 @@ public:
 	std::unique_ptr<RawTextureWrapper> load_text_texture(RawFontWrapper& font, std::string text, const SDL_Color &color) const;
 	
 	///<summary>Loads a texture into the buffer of the SDL_Renderer object.</summary>
-	void draw_texture(const RawTextureWrapper& texture, const RectangleFacade* clipped_rect, const RectangleFacade* render_rect) const;
+	void draw_texture(const RawTextureWrapper& texture, const Rectangle* clipped_rect, const Rectangle* render_rect) const;
 
 	///<summary>Renders the SDL_Renderer buffer.</summary>
 	void render() const;

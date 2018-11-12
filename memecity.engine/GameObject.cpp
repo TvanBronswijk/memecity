@@ -1,5 +1,4 @@
 #include "GameObject.h"
-#include <iostream>
 
 GameObject::GameObject(float x, float y)
 {
@@ -67,13 +66,13 @@ bool GameObject::get_active() const
 	return is_active;
 }
 
-void GameObject::set_parent(std::unique_ptr<GameObject>::pointer parent)
+void GameObject::set_parent(GameObject* parent)
 {
 	position = get_position(world) - parent->get_position(world);
 	this->parent = parent;
 }
 
-std::unique_ptr<GameObject>::pointer GameObject::get_parent() const
+GameObject* GameObject::get_parent() const
 {
 	return parent;
 }
