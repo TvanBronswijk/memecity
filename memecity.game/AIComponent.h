@@ -8,7 +8,7 @@ public:
 	enum class State { Fighting, Fleeing, Roaming };
 	State state;
 
-	AIComponent(const ecs::Entity& entity) : AIComponent(entity, AIComponent::State::Fightings) {};
+	AIComponent(const ecs::Entity& entity) : AIComponent(entity, AIComponent::State::Fighting) {};
 
 	AIComponent(const ecs::Entity& entity, State type) : ecs::Component(entity), state(type) {};
 };
