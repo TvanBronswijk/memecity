@@ -1,5 +1,6 @@
 #ifndef _GAME_MANAGER_H
 #define _GAME_MANAGER_H
+
 #include "MemeEngine.h"
 #include <ECS.h>
 #include "Generate\CityGenerator.h"

@@ -22,9 +22,6 @@
     <Filter Include="Source Files\Systems">
       <UniqueIdentifier>{e40c52ec-964d-4257-a326-37920ddb895a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Components">
-      <UniqueIdentifier>{cf8d53bf-063f-47ff-a6b8-3bbe841ef165}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\City">
       <UniqueIdentifier>{69be7a77-99c9-4639-be1f-3358806ed1a9}</UniqueIdentifier>
     </Filter>
@@ -84,6 +81,12 @@
     <ClInclude Include="StatsComponent.h">
       <Filter>Header Files\Components</Filter>
     </ClInclude>
+    <ClInclude Include="AnimationComponent.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationSystem.h">
+      <Filter>Header Files\Systems</Filter>
+    </ClInclude>
     <ClInclude Include="Generate\CityGenerator.h">
       <Filter>Header Files\City</Filter>
     </ClInclude>
@@ -123,6 +126,9 @@
       <Filter>Source Files\Systems</Filter>
     </ClCompile>
     <ClCompile Include="ExpSystem.cpp">
+      <Filter>Source Files\Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationSystem.cpp">
       <Filter>Source Files\Systems</Filter>
     </ClCompile>
     <ClCompile Include="Generate\CityGenerator.cpp">

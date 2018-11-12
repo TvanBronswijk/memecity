@@ -43,8 +43,7 @@ void generate::CityGenerator::generate(int w, int h, EntityManager& em, Multimed
 
 			auto& builder = builder::EntityBuilder(em)
 				.create_entity()
-				.with_component<DrawableComponent>(texture);
-
+				.with_component<DrawableComponent>(std::move(texture));
 			if (character == 'W' || character == 'w')
 			{
 				builder

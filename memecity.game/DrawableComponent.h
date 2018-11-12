@@ -5,12 +5,18 @@
 
 struct DrawableComponent : public ecs::Component
 {
-	std::shared_ptr<Texture> texture;
-	DrawableComponent(const ecs::Entity& entity)
-		: DrawableComponent(entity, nullptr) {};
-	DrawableComponent(const ecs::Entity& entity, std::shared_ptr<Texture> texture) 
-		: ecs::Component(entity), texture(texture) {};
+private:
+	std::unique_ptr<Texture> texture;
 
+public:
+	DrawableComponent(const ecs::Entity& entity)
+		: DrawableComponent(entity, nullptr) {}
+	DrawableComponent(const ecs::Entity& entity, std::unique_ptr<Texture> texture)
+		: ecs::Component(entity), texture(std::move(texture)){}
+	Texture& get_texture()
+	{
+		return *texture;
+	}
 };
 
 #endif

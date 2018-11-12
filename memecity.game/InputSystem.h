@@ -2,6 +2,7 @@
 #define  _INPUTSYSTEM_H
 #include <ECS.h>
 #include "InputManager.h"
+
 class InputSystem : public ecs::System
 {
 private:

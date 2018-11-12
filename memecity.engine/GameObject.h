@@ -2,7 +2,6 @@
 #define  _GRAPHIC_H
 
 #include "MathHelper.h"
-#include "GraphicsFacade.h"
 
 class GameObject
 {
@@ -14,7 +13,7 @@ private:
 	float rotation;
 
 	bool is_active;
-	std::shared_ptr<GameObject> parent;
+	GameObject* parent;
 
 public:
 	///<summary>Create a new GameObject on given x and y values (position).</summary>
@@ -42,15 +41,14 @@ public:
 	bool get_active() const;
 
 	///<summary>Sets the parent.</summary>
-	void set_parent(std::shared_ptr<GameObject> parent);
+	void set_parent(GameObject* parent);
 	
 	///<summary>Returns the parent.</summary>
-	std::shared_ptr<GameObject> get_parent() const;
+	GameObject* get_parent() const;
 
 	///<summary>Update position based on given vector.</summary>
 	void translate(Vector2 vector);
 
-	virtual void render() = 0;
 };
 
 #endif
