@@ -82,8 +82,8 @@ void AISystem::best_first_search(EntityManager& em, const PositionComponent& npc
 			queue = calculate_next_positions(location, end, queue); 
 		}
 	}
-	std::cout << "player: X: " << end.x << " Y: " << end.y << " Drawable X: " << player_drawable->get_texture->get_position().x << " Y: " << player_drawable->get_texture->get_position().y << std::endl;
-	std::cout << "npc: X: " << start.x << " Y: " << start.y << " Drawable X: " << drawable->get_texture->get_position().x << " Y: " << drawable->get_texture->get_position().y << std::endl;
+	//std::cout << "player: X: " << end.x << " Y: " << end.y << " Drawable X: " << player_drawable->get_texture().get_position().x << " Y: " << player_drawable->get_texture().get_position().y << std::endl;
+	//std::cout << "npc: X: " << start.x << " Y: " << start.y << " Drawable X: " << drawable->get_texture().get_position().x << " Y: " << drawable->get_texture().get_position().y << std::endl;
 	auto direction = path.front();
 
 	if (npc_xy.x < direction.x) { 
