@@ -48,7 +48,7 @@ bool AISystem::check_player_position_X(Point location , Point end) const{
 }
 
 
-void AISystem::best_first_search(EntityManager& em, PositionComponent& npc_xy) const{
+void AISystem::best_first_search(EntityManager& em, const PositionComponent& npc_xy) const{
 	auto velocity = npc_xy.entity.get<VelocityComponent>();
 	auto& player_component = em.get_components_of_type<PlayerComponent>()[0].get();
 
@@ -82,8 +82,8 @@ void AISystem::best_first_search(EntityManager& em, PositionComponent& npc_xy) c
 			queue = calculate_next_positions(location, end, queue); 
 		}
 	}
-	//std::cout << "player: X: " << end.first << " Y: " << end.second << " Drawable X: " << player_drawable->texture->get_position().x << " Y: " << player_drawable->texture->get_position().y << std::endl;
-	//std::cout << "npc: X: " << start.first << " Y: " << start.second << " Drawable X: " << drawable->texture->get_position().x << " Y: " << drawable->texture->get_position().y << std::endl;
+	std::cout << "player: X: " << end.x << " Y: " << end.y << " Drawable X: " << player_drawable->get_texture->get_position().x << " Y: " << player_drawable->get_texture->get_position().y << std::endl;
+	std::cout << "npc: X: " << start.x << " Y: " << start.y << " Drawable X: " << drawable->get_texture->get_position().x << " Y: " << drawable->get_texture->get_position().y << std::endl;
 	auto direction = path.front();
 
 	if (npc_xy.x < direction.x) { 
@@ -100,13 +100,24 @@ void AISystem::best_first_search(EntityManager& em, PositionComponent& npc_xy) c
 	}
 }
 
-void AISystem::move_random(const Entity& entity, EntityManager& em) const{
+void AISystem::move_random(const Entity& entity) const{
 
 	auto velocity = entity.get<VelocityComponent>();
 
 	velocity->x += random_x();
 	velocity->y += random_y();
 
+}
+
+void AISystem::fleeing(EntityManager& em, const PositionComponent& npc_xy) const { 
+	auto velocity = npc_xy.entity.get<VelocityComponent>();
+	auto& player_component = em.get_components_of_type<PlayerComponent>()[0].get();
+	auto player_position = player_component.entity.get<PositionComponent>();
+
+	if (npc_xy.x < player_position->x) { velocity->x -= 10; }
+	else if (npc_xy.x > player_position->x) { velocity->x += 10; }
+	if (npc_xy.y < player_position->y) { velocity->y -= 10; }
+	else if (npc_xy.y > player_position->y) { velocity->y += 10; }
 }
 
 void AISystem::run(EntityManager& em) const {
@@ -123,10 +134,12 @@ void AISystem::run(EntityManager& em) const {
 				best_first_search(em, *xy);
 				break;
 			case AIComponent::State::Fleeing:
-				//TODO:implement Fleeing
+				fleeing(em, *xy);
 				break;
 			case AIComponent::State::Roaming:
-				move_random(element.get().entity, em);
+				move_random(element.get().entity);
+				break;
+			case AIComponent::State::Idle:
 				break;
 			default:
 				break;

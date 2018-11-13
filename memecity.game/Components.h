@@ -1,7 +1,6 @@
 #ifndef MEMECITY_COMPONENTS_H
 #define MEMECITY_COMPONENTS_H
 
-#include "Components\AIComponent.h"
 #include "Components\AnimationComponent.h"
 #include "Components\ColliderComponent.h"
 #include "Components\DrawableComponent.h"
@@ -13,5 +12,6 @@
 #include "Components\PositionComponent.h"
 #include "Components\StatsComponent.h"
 #include "Components\VelocityComponent.h"
+#include "Components\AIComponent.h"
 
 #endif

@@ -4,11 +4,10 @@
 
 struct AIComponent : public memecity::engine::ecs::Component {
 	
-public:
-	enum class State { Fighting, Fleeing, Roaming };
+	enum class State { Fighting, Fleeing, Roaming, Idle };
 	State state;
 
-	AIComponent(const memecity::engine::ecs::Entity& entity) : AIComponent(entity, AIComponent::State::Fighting) {};
+	AIComponent(const memecity::engine::ecs::Entity& entity) : AIComponent(entity, AIComponent::State::Fleeing) {};
 
 	AIComponent(const memecity::engine::ecs::Entity& entity, State type) : memecity::engine::ecs::Component(entity), state(type) {};
 };

@@ -14,38 +14,7 @@ void MoveSystem::run(EntityManager& em) const
 		auto current_velocity_component = entity.get().get<VelocityComponent>();
 		auto& player_component = em.get_components_of_type<PlayerComponent>()[0].get();
 
-		if (entity.get().id != player_component.entity.id) {
-
-			auto drawable = current_velocity_component->entity.get<DrawableComponent>();
-
-			if (drawable != nullptr) {
-				auto& animated_charater = dynamic_cast<AnimatedTexture&>(drawable->get_texture());
-				animated_charater.update();
-				if (current_velocity_component->x == 0 && current_velocity_component->y == 0) {
-					animated_charater.set_direction(AnimatedTexture::Direction::idle);
-				}
-				else if (current_velocity_component->y > 0)
-				{
-					animated_charater.set_direction(AnimatedTexture::Direction::up);
-				}
-				else if (current_velocity_component->y < 0)
-				{
-					animated_charater.set_direction(AnimatedTexture::Direction::down);
-				}
-				else if (current_velocity_component->x < 0)
-				{
-					animated_charater.set_direction(AnimatedTexture::Direction::left);
-				}
-				else if (current_velocity_component->x > 0)
-				{
-					animated_charater.set_direction(AnimatedTexture::Direction::right);
-				}
-
-				animated_charater.translate(Vector2(current_velocity_component->x, (current_velocity_component->y - current_velocity_component->y * 2))); //TODO: x and y = *2
-
-			}
-		}
-
+		
 		if (current_velocity_component->x != 0)
 		{
 			current_position->x += current_velocity_component->x;
