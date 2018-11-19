@@ -56,9 +56,9 @@ namespace generate::strategy::bsp {
 		if (choice == building)
 			Building().write(c, n);
 		else if (choice == park)
-			Park(100).write(c, n);
+			Park(n.w + n.h).write(c, n);
 		else if (choice == empty)
-			Empty().write(c, n);
+			Empty('-').write(c, n);
 		else if (choice == prefab)
 			return;
 		else

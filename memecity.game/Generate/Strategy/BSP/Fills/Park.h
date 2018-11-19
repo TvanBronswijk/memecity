@@ -10,17 +10,18 @@ namespace generate::strategy::bsp {
 		Park(int iterations) : _iterations(iterations) {};
 		~Park() = default;
 		void write(models::City& c, const Node& n) const override {
-			for (int x = n.begin.x; x <= n.end.x; x++)
-				for (int y = n.begin.y; y <= n.end.y; y++) {
+			iterate(n, [&](int x, int y){
 					c(x, y) = '-';
 					if ((x > n.begin.x && x < n.end.x - 1) && (y > n.begin.y && y < n.end.y - 1))
 						c(x, y) = 'g';
-				}
+			});
 
 			int x = n.center.x;
 			int y = n.center.y;
 			for (int i = 0; i < _iterations; i++)
 			{
+				if (c(x, y) == 'w')
+					i--;
 				c(x, y) = 'w';
 				switch (rand() % 4)
 				{
