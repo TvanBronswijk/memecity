@@ -48,8 +48,8 @@ namespace memecity::engine::texture {
 		else if (animation_direction == AnimationDirection::horizontal)
 		{
 			const auto start_x_index = 0;
+			clipped_rect.y = 4 * texture_width;
 			clipped_rect.x = start_x_index + int(animation_timer / time_per_frame) * texture_width;
-			clipped_rect.y = 0;
 		}
 		else
 		{
