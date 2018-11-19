@@ -10,7 +10,7 @@ namespace generate {
 		std::unique_ptr<strategy::Strategy> strategy;
 	public:
 		CityGenerator();
-		
+
 		template<class T, class... Args>
 		void set_strategy(Args&&... args)
 		{
