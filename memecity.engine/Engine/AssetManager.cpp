@@ -20,7 +20,7 @@ namespace memecity::engine {
 	const sdl::RawTextureWrapper& AssetManager::get_texture(std::string filename)
 	{
 		std::string fullPath = base_path;
-		fullPath.append("Assets/" + filename);
+		fullPath.append("Assets\\" + filename);
 
 		if (textures.find(fullPath) == textures.end())
 		{
