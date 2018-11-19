@@ -53,9 +53,12 @@ namespace generate::strategy::bsp {
 		const static int MIN_NODE_HEIGHT = 8;
 
 		void split_recursively(Node& n, bool h) const;
-		void write_node(generate::models::City &c, const Node& n) const;
+		void write_node(generate::models::City &c, const Node& n);
 	public:
-		generate::models::City generate(int w, int h) const override;
+		BSP() = default;
+		BSP(std::vector<models::Prefab> prefabs) : Strategy(prefabs) {}
+		~BSP() = default;
+		generate::models::City generate(int w, int h) override;
 	};
 }
 

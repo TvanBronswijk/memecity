@@ -14,7 +14,7 @@ namespace generate::strategy::bsp {
 		{prefab, 5}
 	};
 
-	models::City BSP::generate(int w, int h) const
+	models::City BSP::generate(int w, int h)
 	{
 		srand(time(nullptr));
 		Node root = { 0, 0, w, h };
@@ -41,7 +41,7 @@ namespace generate::strategy::bsp {
 		}
 	}
 
-	void BSP::write_node(models::City &c, const Node& n) const
+	void BSP::write_node(models::City &c, const Node& n)
 	{
 		int r = rand() % 100;
 		int i = 0;
@@ -59,8 +59,12 @@ namespace generate::strategy::bsp {
 			Park(n.w + n.h).write(c, n);
 		else if (choice == empty)
 			Empty('-').write(c, n);
-		else if (choice == prefab)
-			return;
+		else if (choice == prefab) {
+			auto prefab = get_next_prefab();
+			if(prefab != nullptr)
+				Prefab(*prefab).write(c, n);
+		}
+
 		else
 			return;
 	}
