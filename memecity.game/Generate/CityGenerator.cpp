@@ -22,7 +22,7 @@ void generate::CityGenerator::generate(int w, int h, EntityManager& em, Multimed
 			std::string filename;
 			switch (character)
 			{
-			case  '-':
+			case '-':
 				filename = "gray.bmp";
 				break;
 			case  'W':

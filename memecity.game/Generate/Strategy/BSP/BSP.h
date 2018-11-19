@@ -8,26 +8,43 @@
 
 namespace generate::strategy::bsp {
 	struct Node : public generate::models::Rectangle {
-		Node *left, *right;
+	private:
+		std::unique_ptr<Node> _left, _right;
+		bool _horizontal;
+	public:
 		Node(int x, int y, int w, int h)
-			: Rectangle(x, y, w, h), left(nullptr), right(nullptr) {}
-
-		bool has_left() const { return left != nullptr; }
-		bool has_right() const { return right != nullptr; }
-		std::vector<const Node*> get_leaves() const
+			: Rectangle(x, y, w, h), _left(nullptr), _right(nullptr), _horizontal(false) {}
+		Node& left() const { return *_left;  }
+		Node& right() const { return *_right;  }
+		bool horizontal() const { return _horizontal; }
+		std::vector<std::reference_wrapper<const Node>> get_leaves() const
 		{
-			if (!has_left() && !has_right())
-				return { this };
-			std::vector<const Node*> left_leaves = left->get_leaves();
-			std::vector<const Node*> right_leaves = right->get_leaves();
+			if (_left == nullptr && _right == nullptr)
+				return { std::ref(*this) };
+			auto left_leaves = _left->get_leaves();
+			auto right_leaves = _right->get_leaves();
 			left_leaves.insert(left_leaves.end(), right_leaves.begin(), right_leaves.end());
 			return left_leaves;
 		}
-		~Node()
+		bool split(int min_width, int min_height, bool horizontal) 
 		{
-			delete left;
-			delete right;
+			this->_horizontal = horizontal;
+			if (horizontal && h > min_height * 2) {
+				int split = min_height + (rand() % (h - (min_height * 2)));
+				_left = std::make_unique<Node>(begin.x, begin.y, w, split);
+				_right = std::make_unique<Node>(begin.x, _left->end.y, w, h - split);
+			}
+			else if (!horizontal && w > min_width * 2) {
+				int split = min_width + (rand() % (this->w - (min_width * 2)));
+				_left = std::make_unique<Node>(begin.x, begin.y, split, h);
+				_right = std::make_unique<Node>(_left->end.x, begin.y, w - split, h);
+			} 
+			else {
+				return false;
+			}
+			return true;
 		}
+		~Node() = default;
 	};
 
 	class BSP : public generate::strategy::Strategy {
@@ -35,13 +52,8 @@ namespace generate::strategy::bsp {
 		const static int MIN_NODE_WIDTH = 8;
 		const static int MIN_NODE_HEIGHT = 8;
 
-		void split_h(Node& n) const;
-		void split_v(Node& n) const;
-		void fill_node(generate::models::City &c, const Node& n) const;
-		void fill_building(generate::models::City &c, const Node& n) const;
-		void fill_water(generate::models::City &c, const Node& n) const;
-		void fill_empty(generate::models::City &c, const Node& n) const;
-		void fill_prefab(generate::models::City &c, const Node& n) const;
+		void split_recursively(Node& n, bool h) const;
+		void write_node(generate::models::City &c, const Node& n) const;
 	public:
 		generate::models::City generate(int w, int h) const override;
 	};

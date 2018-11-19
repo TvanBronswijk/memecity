@@ -22,6 +22,11 @@
     <ClInclude Include="Components.h" />
     <ClInclude Include="Components\AIComponent.h" />
     <ClInclude Include="Generate.h" />
+    <ClInclude Include="Generate\Strategy\BSP\Fills\Building.h" />
+    <ClInclude Include="Generate\Strategy\BSP\Fills\Empty.h" />
+    <ClInclude Include="Generate\Strategy\BSP\Fills\Fill.h" />
+    <ClInclude Include="Generate\Strategy\BSP\Fills\Park.h" />
+    <ClInclude Include="Generate\Strategy\BSP\Fills\Prefab.h" />
     <ClInclude Include="Systems.h" />
     <ClInclude Include="Systems\AISystem.h" />
     <ClInclude Include="Event\AttackEventArgs.h" />

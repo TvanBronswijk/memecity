@@ -41,13 +41,13 @@ namespace generate::models {
 	};
 
 	struct Prefab : Base64_Tilemap {
-		Prefab(int w, int h, char* tiles)
+		Prefab(int w, int h, const char* tiles)
 			: Base64_Tilemap(w, h) {
 			for (int x = 0; x < w; x++)
 				for (int y = 0; y < h; y++)
 					this->coord(x, y) = tiles[x * h + y];
 		}
-		Prefab(int w, int h, char** tiles) :
+		Prefab(int w, int h, const char** tiles) :
 			Base64_Tilemap(w, h) {
 			for (int x = 0; x < w; x++)
 				for (int y = 0; y < h; y++)
@@ -61,6 +61,13 @@ namespace generate::models {
 			: name(name), base64_character(base64_character), filename(filename) {};
 		~TileInfo() = default;
 	};
+
+	namespace Tiles {
+		static const TileInfo ROAD = { "Road", '-', "gray.bmp" };
+		static const TileInfo WALL = { "Wall", 'W', "brown.bmp" };
+		static const TileInfo WATER = { "Water", 'w', "blue.bmp" };
+		static const TileInfo GRASS = { "Grass", 'g', "green.bmp" };
+	}
 }
 
 
