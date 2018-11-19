@@ -13,11 +13,11 @@ generate::CityGenerator::CityGenerator()
 
 void generate::CityGenerator::generate(int w, int h, EntityManager& em, MultimediaManager &multimedia_manager) const
 {
-	const auto& c = this->strategy->generate(w, h);
+	const auto& c = this->_strategy->generate(w, h);
 
-	for (int y = c.y; y < c.y2; y++) {
-		for (int x = c.x; x < c.x2; x++) {
-			auto& character = c.coord(x, y);
+	for (int y = c.begin.y; y < c.end.y; y++) {
+		for (int x = c.begin.x; x < c.end.x; x++) {
+			auto& character = c(x, y);
 			std::cout << character;
 			std::string filename;
 			switch (character)

@@ -1,14 +1,21 @@
 #ifndef _CITY_MODELS_H
 #define _CITY_MODELS_H
 #include <vector>
-#include <iostream>
+#include <map>
 
 namespace generate::models {
+	struct Point {
+		int x, y;
+		Point(int x, int y) : x(x), y(y) {}
+		~Point() = default;
+	};
+
 	struct Rectangle {
-		const int x, y, w, h;
-		const int x2, y2, center_x, center_y;
+		int x, y, w, h;
+		const Point begin, end, center;
 		Rectangle(int x, int y, int w, int h)
-			: x(x), y(y), w(w), h(h), x2(x + w - 1), y2(y + h - 1), center_x((x + x2) / 2), center_y((y + y2) / 2) {}
+			: x(x), y(y), w(w), h(h), begin(x, y), end((x + w - 1), (y + h - 1)), center({x + (w/2), y + (h/2)}) {}
+		virtual ~Rectangle() = default;
 	};
 
 	struct Base64_Tilemap : Rectangle {
@@ -21,18 +28,11 @@ namespace generate::models {
 			for (int i = 0; i < w*h; i++)
 				tiles[i] = (copy.tiles[i]);
 		}
-		virtual char& coord(int x, int y)
-		{
-			return tiles[x * h + y];
-		}
-		virtual const char& coord(int x, int y) const
-		{
-			return tiles[x * h + y];
-		}
-		virtual ~Base64_Tilemap()
-		{
-			delete tiles;
-		}
+		virtual char& coord(int x, int y) { return tiles[x * h + y]; }
+		virtual const char& coord(int x, int y) const { return tiles[x * h + y]; }
+		virtual char& operator () (int x, int y) { return coord(x, y); }
+		virtual const char& operator () (int x, int y) const { return coord(x, y); }
+		virtual ~Base64_Tilemap() override { delete tiles; }
 	};
 
 	struct City : Base64_Tilemap {
@@ -43,7 +43,15 @@ namespace generate::models {
 	struct Prefab : Base64_Tilemap {
 		Prefab(int w, int h, char* tiles)
 			: Base64_Tilemap(w, h) {
-			this->tiles = tiles;
+			for (int x = 0; x < w; x++)
+				for (int y = 0; y < h; y++)
+					this->coord(x, y) = tiles[x * h + y];
+		}
+		Prefab(int w, int h, char** tiles) :
+			Base64_Tilemap(w, h) {
+			for (int x = 0; x < w; x++)
+				for (int y = 0; y < h; y++)
+					this->coord(x, y) = tiles[x][y];
 		}
 	};
 

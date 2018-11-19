@@ -26,12 +26,12 @@ namespace generate::strategy::bsp {
 
 	void BSP::split_h(Node& n) const
 	{
-		if (n.h - this->MIN_NODE_HEIGHT < this->MIN_NODE_HEIGHT)
+		if (n.h <= this->MIN_NODE_HEIGHT*2)
 			return;
 
-		int split = this->MIN_NODE_HEIGHT + rand() % (n.h - this->MIN_NODE_HEIGHT);
-		n.left = new Node(n.x, n.y, n.w, split);
-		n.right = new Node(n.x, n.left->y2, n.w, n.h - split);
+		int split = this->MIN_NODE_HEIGHT + (rand() % (n.h - (this->MIN_NODE_HEIGHT*2)));
+		n.left = new Node(n.begin.x, n.begin.y, n.w, split);
+		n.right = new Node(n.begin.x, n.left->end.y, n.w, n.h - split);
 
 		this->split_v(*n.left);
 		this->split_v(*n.right);
@@ -39,12 +39,12 @@ namespace generate::strategy::bsp {
 
 	void BSP::split_v(Node& n) const
 	{
-		if (n.w - this->MIN_NODE_WIDTH < this->MIN_NODE_WIDTH)
+		if (n.w <= this->MIN_NODE_WIDTH*2)
 			return;
 
-		int split = this->MIN_NODE_WIDTH + (rand() % (n.w - this->MIN_NODE_WIDTH));
-		n.left = new Node(n.x, n.y, split, n.h);
-		n.right = new Node(n.left->x2, n.y, n.w - split, n.h);
+		int split = this->MIN_NODE_WIDTH + (rand() % (n.w - (this->MIN_NODE_WIDTH*2)));
+		n.left = new Node(n.begin.x, n.begin.y, split, n.h);
+		n.right = new Node(n.left->end.x, n.begin.y, n.w - split, n.h);
 
 		this->split_h(*n.left);
 		this->split_h(*n.right);
@@ -64,36 +64,36 @@ namespace generate::strategy::bsp {
 	void BSP::fill_building(models::City &c, const Node& n) const
 	{
 		int r_size = 1;
-		for (int x = n.x; x <= n.x2; x++)
-			for (int y = n.y; y <= n.y2; y++) {
+		for (int x = n.begin.x; x <= n.end.x; x++)
+			for (int y = n.begin.y; y <= n.end.y; y++) {
 				c.coord(x, y) = '-';
-				if (x >= (n.x + r_size) && x <= (n.x2 - r_size)) {
-					c.coord(x, n.y + r_size) = 'W';
-					c.coord(x, n.y2 - r_size) = 'W';
+				if (x >= (n.begin.x + r_size) && x <= (n.end.x - r_size)) {
+					c.coord(x, n.begin.y + r_size) = 'W';
+					c.coord(x, n.end.y - r_size) = 'W';
 				}
-				if (y >= (n.y + r_size) && y <= (n.y2 - r_size)) {
-					c.coord(n.x + r_size, y) = 'W';
-					c.coord(n.x2 - r_size, y) = 'W';
+				if (y >= (n.begin.y + r_size) && y <= (n.end.y - r_size)) {
+					c.coord(n.begin.x + r_size, y) = 'W';
+					c.coord(n.end.x - r_size, y) = 'W';
 				}
 			}
 
 		switch (rand() % 4)
 		{
 		case 0:
-			for (int i = n.center_x; i < n.x2; i++)
-				c.coord(i, n.center_y) = '-';
+			for (int i = n.center.x; i < n.end.x; i++)
+				c.coord(i, n.center.y) = '-';
 			break;
 		case 1:
-			for (int i = n.center_x; i > n.x; i--)
-				c.coord(i, n.center_y) = '-';
+			for (int i = n.center.x; i > n.begin.x; i--)
+				c.coord(i, n.center.y) = '-';
 			break;
 		case 2:
-			for (int i = n.center_y; i < n.y2; i++)
-				c.coord(n.center_x, i) = '-';
+			for (int i = n.center.y; i < n.end.y; i++)
+				c.coord(n.center.x, i) = '-';
 			break;
 		case 3:
-			for (int i = n.center_y; i > n.y; i--)
-				c.coord(n.center_x, i) = '-';
+			for (int i = n.center.y; i > n.begin.y; i--)
+				c.coord(n.center.x, i) = '-';
 			break;
 		}
 
@@ -102,34 +102,34 @@ namespace generate::strategy::bsp {
 	void BSP::fill_water(models::City &c, const Node& n) const
 	{
 		int WATER_GEN = this->MIN_NODE_HEIGHT * 2 + this->MIN_NODE_WIDTH * 2;
-		for (int x = n.x; x <= n.x2; x++)
-			for (int y = n.y; y <= n.y2; y++) {
+		for (int x = n.begin.x; x <= n.end.x; x++)
+			for (int y = n.begin.y; y <= n.end.y; y++) {
 				c.coord(x, y) = '-';
-				if ((x > n.x && x < n.x2 - 1) && (y > n.y && y < n.y2 - 1))
+				if ((x > n.begin.x && x < n.end.x - 1) && (y > n.begin.y && y < n.end.y - 1))
 					c.coord(x, y) = 'g';
 			}
 
-		int x = n.center_x;
-		int y = n.center_y;
+		int x = n.center.x;
+		int y = n.center.y;
 		for (int i = 0; i < WATER_GEN; i++)
 		{
 			c.coord(x, y) = 'w';
 			switch (rand() % 4)
 			{
 			case 0:
-				if (x > n.x + 1)
+				if (x > n.begin.x + 1)
 					x--;
 				break;
 			case 1:
-				if (x < (n.x2 - 2))
+				if (x < (n.end.x - 2))
 					x++;
 				break;
 			case 2:
-				if (y > n.y + 1)
+				if (y > n.begin.y + 1)
 					y--;
 				break;
 			case 3:
-				if (y < (n.y2 - 2))
+				if (y < (n.end.y - 2))
 					y++;
 				break;
 			}
@@ -138,8 +138,8 @@ namespace generate::strategy::bsp {
 
 	void BSP::fill_empty(models::City &c, const Node& n) const
 	{
-		for (int x = n.x; x <= n.x2; x++)
-			for (int y = n.y; y <= n.y2; y++)
+		for (int x = n.begin.x; x <= n.end.x; x++)
+			for (int y = n.begin.y; y <= n.end.y; y++)
 				c.coord(x, y) = '-';
 	}
 
