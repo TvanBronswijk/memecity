@@ -3,7 +3,7 @@
 #include "Systems.h"
 
 using namespace memecity::engine;
-using namespace memecity::engine::ecs;
+using namespace ecs;
 
 void GameManager::init()
 {
@@ -66,14 +66,30 @@ void GameManager::init()
 	input_system.interaction_event.bind([&](EntityManager& em, InteractionEventArgs args) { interaciton_system.on_interact(em, args); });
 	input_system.attack_event.bind([&](EntityManager& em, AttackEventArgs args) { fighting_system.on_attack(em, args); });
 	//collider_system.collider_event.bind([&](ecs::EntityManager& em, ColliderEventArgs args) { move_system.on_collision(em, args); });
+
+	menu.add_menu_item(std::make_unique<menu::MenuItem>(multimedia_manager, input_manager, "Start Game", menu));
+	menu.add_menu_item(std::make_unique<menu::MenuItem>(multimedia_manager, input_manager, "Select level", menu));
+
+	auto settings_menu = new menu::Menu(multimedia_manager, input_manager);
+	settings_menu->add_menu_item(std::make_unique<menu::MenuItem>(multimedia_manager, input_manager, "Enable fullscreen", *settings_menu));
+	settings_menu->add_menu_item(std::make_unique<menu::MenuItem>(multimedia_manager, input_manager, "Disable fullscreen", *settings_menu));
+	settings_menu->add_menu_item(std::make_unique<menu::MenuItem>(multimedia_manager, input_manager, "<-Back", *settings_menu));
+
+	menu.add_menu_item(std::make_unique<menu::MenuItem>(multimedia_manager, input_manager, "Settings", menu, settings_menu));
+	menu.add_menu_item(std::make_unique<menu::MenuItem>(multimedia_manager, input_manager, "Credits", menu));
+	menu.add_menu_item(std::make_unique<menu::MenuItem>(multimedia_manager, input_manager, "Exit", menu));
+
 }
 
 void GameManager::update(float dt)
 {
+	menu.handle_input();
 	entity_manager.update(System::update);
 }
 
 void GameManager::draw()
 {
 	entity_manager.update(System::draw);
+
+	menu.render();
 }
