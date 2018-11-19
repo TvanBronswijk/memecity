@@ -156,6 +156,7 @@
     <ClCompile Include="Engine\Textures\Texture.cpp" />
     <ClCompile Include="Engine\StorageManager.cpp" />
     <ClCompile Include="Engine\SDL\TimerFacade.cpp" />
+    <ClCompile Include="QuadTree.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine.h" />
@@ -188,6 +189,7 @@
     <ClInclude Include="Engine\Textures\TextTexture.h" />
     <ClInclude Include="Engine\Textures\Texture.h" />
     <ClInclude Include="Engine\SDL\TimerFacade.h" />
+    <ClInclude Include="QuadTree.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
