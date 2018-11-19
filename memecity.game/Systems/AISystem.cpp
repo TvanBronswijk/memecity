@@ -7,7 +7,7 @@ bool AISystem::check_health(EntityManager& em, const Entity& entity) const{
 	auto AI = entity.get<AIComponent>();
 	auto health = entity.get<HealthComponent>();
 	if(health->health <= 0) {
-		std::cout << "i am dead!!!" << std::endl;//testing
+		//std::cout << "i am dead!!!" << std::endl;//testing
 		return false;
 	}
 	else if (health->health <= 10) {
