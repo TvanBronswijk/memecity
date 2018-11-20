@@ -3,7 +3,7 @@
 #include "Systems.h"
 
 using namespace memecity::engine;
-using namespace memecity::engine::ecs;
+using namespace ecs;
 
 void GameManager::init()
 {

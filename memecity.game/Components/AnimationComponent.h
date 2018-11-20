@@ -6,7 +6,6 @@
 struct AnimationComponent : public memecity::engine::ecs::Component
 {
 	bool is_fighting = false;
-
 	AnimationComponent(const memecity::engine::ecs::Entity& entity) : memecity::engine::ecs::Component(entity){}
 };
 
