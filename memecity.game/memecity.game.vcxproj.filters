@@ -147,6 +147,19 @@
     <ClInclude Include="Generate.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Generate\Strategy\BSP\Fills\Fill.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Generate\Strategy\BSP\Fills\Building.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Generate\Strategy\BSP\Fills\Park.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Generate\Strategy\BSP\Fills\Empty.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Generate\Strategy\BSP\Fills\Prefab.h">
     <ClInclude Include="States\GameState.h">
       <Filter>Header Files</Filter>
     </ClInclude>

@@ -59,9 +59,11 @@ namespace memecity::engine::ecs {
 		std::vector<std::reference_wrapper<const Entity>> get_entities_with_component() const
 		{
 			std::vector<std::reference_wrapper<const Entity>> result;
-			for (auto& e : entities)
-				if (e.has<C>())
+			for (auto& e : entities) {
+				if (e.has<C>()) {
 					result.push_back(std::ref(e));
+				}
+			}
 			return result;
 		}
 
@@ -85,18 +87,21 @@ namespace memecity::engine::ecs {
 		///<summary>Run all systems.</summary>
 		void update(System::Scope scope = System::update)
 		{
-			for (auto& pair : systems[scope])
+			for (auto& pair : systems[scope]) {
 				pair.second->run(*this);
+			}
 		}
 
 		~EntityManager()
 		{
 			entities.clear();
-			for (auto& pair : components)
+			for (auto& pair : components) {
 				pair.second.clear();
+			}
 			components.clear();
-			for (auto& pair : systems)
+			for (auto& pair : systems) {
 				pair.second.clear();
+			}
 			systems.clear();
 		}
 	};
