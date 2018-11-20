@@ -7,20 +7,28 @@ using namespace memecity::engine::ecs;
 
 void GameManager::init()
 {
-	city_generator.generate(24, 24, entity_manager, multimedia_manager);
+	city_generator.generate(24, 24, entity_manager, multimedia_manager, _quad_tree);
+
+	auto player_position_x = multimedia_manager.get_screen_width() / 2; 
+	auto player_position_y = multimedia_manager.get_screen_height() / 2;
 
 	auto texture = multimedia_manager.get_animated_texture(*timer, "SpriteSheet.png", 0, 0, 48, 48, 4, 0.25f, texture::AnimatedTexture::AnimationDirection::vertical);
-	texture->set_position({ static_cast<float>(multimedia_manager.get_screen_width()) / 2, static_cast<float>(multimedia_manager.get_screen_height()) / 2 });
+	texture->set_position({ static_cast<float>(player_position_x), static_cast<float>(player_position_y) });
 	auto& player = builder::EntityBuilder(entity_manager)
 		.create_entity()
 		.with_component<PlayerComponent>()
 		.with_component<AnimationComponent>()
 		.with_component<ColliderComponent>(64.0f, 64.0f)
-		.with_component<PositionComponent>(multimedia_manager.get_screen_width() / 2, multimedia_manager.get_screen_height() / 2)
+		.with_component<PositionComponent>(player_position_x, player_position_y)
 		.with_component<VelocityComponent>()
 		.with_component<DrawableComponent>(std::move(texture))
 		.get();
 
+	auto position_component = player.get<PositionComponent>();
+	auto collider_component = player.get<ColliderComponent>();
+
+	const auto player_collider = BoundaryRectangle(position_component->x, position_component->y, collider_component->w, collider_component->h);
+	_quad_tree.insert(player_collider);
 
 	auto text_texture = multimedia_manager.get_text_texture("Health: 500", "Minecraftia-Regular.ttf", 16, { 255,255,255 });
 	text_texture->set_parent(&player.get<DrawableComponent>()->get_texture());

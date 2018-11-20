@@ -10,8 +10,14 @@ generate::CityGenerator::CityGenerator()
 	set_strategy<generate::strategy::bsp::BSP>();
 }
 
-void generate::CityGenerator::generate(int w, int h, EntityManager& em, MultimediaManager &multimedia_manager) const
+void generate::CityGenerator::generate(int w, int h, EntityManager& em, MultimediaManager &multimedia_manager, QuadTree &quad_tree) const
 {
+	auto zero = 0.0f;
+	auto screen_width = w * 64.0f;
+	auto screen_height = h * 64.0f;
+	auto boundary = BoundaryRectangle(zero, zero, screen_width, screen_height);
+	quad_tree = QuadTree(4, boundary);
+
 	const auto& c = this->strategy->generate(w, h);
 
 	for (int y = c.y; y < c.y2; y++) {
@@ -48,6 +54,12 @@ void generate::CityGenerator::generate(int w, int h, EntityManager& em, Multimed
 				builder
 					.with_component<ColliderComponent>(64.0f, 64.0f)
 					.with_component<PositionComponent>(x * 64.0f, y * 64.0f);
+
+				auto collider_x = x * 64.0f;
+				auto collider_y = y * 64.0f;
+				auto test = 64.0f;
+				auto boundary = BoundaryRectangle(collider_x, collider_y, test, test);
+				quad_tree.insert(boundary);
 			}
 		}
 		std::cout << std::endl;

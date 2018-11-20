@@ -3,6 +3,7 @@
 #include <Engine\MultimediaManager.h>
 #include <ECS.h>
 #include "strategy\Strategy.h"
+#include "QuadTree.h"
 
 namespace generate {
 	class CityGenerator {
@@ -19,7 +20,7 @@ namespace generate {
 			strategy = std::make_unique<T>(std::forward<Args>(args)...);
 		}
 
-		void generate(int w, int h, memecity::engine::ecs::EntityManager& em, memecity::engine::MultimediaManager &multimedia_manager) const;
+		void generate(int w, int h, memecity::engine::ecs::EntityManager& em, memecity::engine::MultimediaManager &multimedia_manager, QuadTree &quad_tree) const;
 		~CityGenerator() = default;
 	};
 }

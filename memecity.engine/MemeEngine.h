@@ -4,7 +4,7 @@
 #include "Engine\InputManager.h"
 #include "Engine\MultimediaManager.h"
 #include "Engine\StorageManager.h"
-
+#include "QuadTree.h"
 
 namespace memecity::engine {
 	namespace sdl {
@@ -14,6 +14,7 @@ namespace memecity::engine {
 	class MemeEngine
 	{
 	protected:
+		QuadTree _quad_tree;
 		StorageManager storage_manager;
 		MultimediaManager multimedia_manager{ false };
 		InputManager input_manager{};
