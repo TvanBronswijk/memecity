@@ -35,10 +35,10 @@ namespace memecity::engine::texture
 		{};
 		~AnimatedTexture() = default;
 
-		void set_direction(Direction direction);
-		void set_animation_direction(AnimationDirection direction);
-		AnimationDirection get_animation_direction() const;
-		Direction get_direction() const;
+		void set_direction(const Direction direction);
+		void set_animation_direction(const AnimationDirection direction);
+		const AnimationDirection& get_animation_direction() const;
+		const Direction& get_direction() const;
 
 		void update();
 	};

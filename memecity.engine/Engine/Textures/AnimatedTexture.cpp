@@ -8,17 +8,17 @@ namespace memecity::engine::texture {
 		this->start_x = static_cast<int>(direction) * texture_width;
 	}
 
-	void AnimatedTexture::set_animation_direction(const AnimationDirection direction)
+	void AnimatedTexture::set_animation_direction(AnimationDirection direction)
 	{
 		this->animation_direction = direction;
 	}
 
-	AnimatedTexture::AnimationDirection AnimatedTexture::get_animation_direction() const
+	const AnimatedTexture::AnimationDirection& AnimatedTexture::get_animation_direction() const
 	{
 		return this->animation_direction;
 	}
 
-	AnimatedTexture::Direction AnimatedTexture::get_direction() const
+	const AnimatedTexture::Direction& AnimatedTexture::get_direction() const
 	{
 		return this->direction;
 	}
