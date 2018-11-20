@@ -5,5 +5,7 @@ enum State
 	starting,
 	running,
 	paused,
-	menu
+	menu,
+	quiting
+	
 };

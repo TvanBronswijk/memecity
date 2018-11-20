@@ -1,6 +1,6 @@
 #define _CRTDBG_MAP_ALLOC
 #include "GameManager.h"
-#include "StateMachine.h"
+//#include "StateMachine.h"
 
 int main(int argc, char* argv[])
 {
@@ -11,8 +11,8 @@ int main(int argc, char* argv[])
 	GameManager game_manager;
 	return game_manager.run();
 
-	StateMachine state_machine{game_manager};
-	state_machine.start();
+	//StateMachine state_machine{game_manager};
+	//state_machine.start();
 
 	return 0;
 }

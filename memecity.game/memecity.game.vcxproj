@@ -22,8 +22,6 @@
     <ClInclude Include="Components.h" />
     <ClInclude Include="Components\AIComponent.h" />
     <ClInclude Include="Generate.h" />
-    <ClInclude Include="State.h" />
-    <ClInclude Include="StateMachine.h" />
     <ClInclude Include="Systems.h" />
     <ClInclude Include="Systems\AISystem.h" />
     <ClInclude Include="Event\AttackEventArgs.h" />
@@ -55,7 +53,6 @@
     <ClInclude Include="Components\StatsComponent.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="StateMachine.cpp" />
     <ClCompile Include="Systems\AnimationSystem.cpp" />
     <ClCompile Include="Systems\ColliderSystem.cpp" />
     <ClCompile Include="Systems\AISystem.cpp" />
