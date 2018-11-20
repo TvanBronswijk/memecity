@@ -30,7 +30,6 @@ namespace memecity::engine::texture {
 		clipped_rect.h = texture_height;
 	}
 
-
 	void Texture::update_render_rect()
 	{
 		const auto pos = get_position(world);
