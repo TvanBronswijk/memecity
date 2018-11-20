@@ -1,12 +1,28 @@
 ﻿#include "Menu.h"
 
+using namespace menu;
 
-void menu::Menu::add_menu_item(std::unique_ptr<MenuItem> item)
+MenuItem& Menu::add_menu_item(std::unique_ptr<MenuItem> item)
 {
-	menu_items.emplace_back(std::move(item));
+	return *menu_items.emplace_back(std::move(item));
 }
 
-void menu::Menu::handle_input()
+MenuItem& Menu::create_menu_item(std::string text)
+{
+	return add_menu_item(std::make_unique<MenuItem>(multimedia_manager, input_manager, text, *this));
+}
+
+MenuItem& Menu::create_menu_item(std::string text, Menu* sub_menu)
+{
+	return add_menu_item(std::make_unique<MenuItem>(multimedia_manager, input_manager, text, *this, sub_menu));
+}
+
+MenuItem& Menu::create_menu_item(std::string text, std::function<void(MenuItem& menu_item)> callback)
+{
+	return add_menu_item(std::make_unique<MenuItem>(multimedia_manager, input_manager, text, *this, nullptr, callback));
+}
+
+void Menu::handle_input()
 {
 	if (is_locked)
 	{
@@ -56,7 +72,7 @@ void menu::Menu::handle_input()
 	}
 }
 
-void menu::Menu::render()
+void Menu::render()
 {
 	if (is_locked)
 	{
@@ -81,17 +97,21 @@ void menu::Menu::render()
 	multimedia_manager.render_graphics();
 }
 
-void menu::Menu::set_parent(MenuItem* parent)
+void Menu::set_parent(MenuItem* parent)
 {
 	this->parent = parent;
 }
 
-void menu::Menu::unlock()
+void Menu::unlock()
 {
+	if (parent != nullptr && !is_locked)
+	{
+		parent->unlock();
+	}
 	is_locked = false;
 }
 
-void menu::Menu::lock()
+void Menu::lock()
 {
 	is_locked = true;
 }

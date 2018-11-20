@@ -23,6 +23,7 @@
     <ClInclude Include="Components\AIComponent.h" />
     <ClInclude Include="Generate.h" />
     <ClInclude Include="Menu\Menu.h" />
+    <ClInclude Include="Menu\MenuBuilder.h" />
     <ClInclude Include="Menu\MenuItem.h" />
     <ClInclude Include="Systems.h" />
     <ClInclude Include="Systems\AISystem.h" />
@@ -56,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Menu\Menu.cpp" />
+    <ClCompile Include="Menu\MenuBuilder.cpp" />
     <ClCompile Include="Menu\MenuItem.cpp" />
     <ClCompile Include="Systems\AnimationSystem.cpp" />
     <ClCompile Include="Systems\ColliderSystem.cpp" />

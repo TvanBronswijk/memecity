@@ -10,7 +10,10 @@ class GameManager : public memecity::engine::MemeEngine
 private:
 	memecity::engine::ecs::EntityManager entity_manager;
 	generate::CityGenerator city_generator;
-	menu::Menu menu {multimedia_manager, input_manager};
+	std::unique_ptr<menu::Menu> advanced_graphics_menu;
+	std::unique_ptr<menu::Menu> settings_menu;
+	std::unique_ptr<menu::Menu> menu;
+	
 protected:
 	void init() override;
 	void update(float dt) override;

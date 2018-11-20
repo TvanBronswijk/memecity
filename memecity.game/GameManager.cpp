@@ -1,6 +1,7 @@
 #include "GameManager.h"
 #include "Components.h"
 #include "Systems.h"
+#include "Menu/MenuBuilder.h"
 
 using namespace memecity::engine;
 using namespace ecs;
@@ -54,7 +55,7 @@ void GameManager::init()
 			.with_component<PositionComponent>(x, y);
 
 	}
-	// end test	
+	// end test
 
 	entity_manager.create_system<AnimationSystem>(System::draw);
 	entity_manager.create_system<DrawSystem>(System::draw, multimedia_manager);
@@ -67,23 +68,36 @@ void GameManager::init()
 	input_system.attack_event.bind([&](EntityManager& em, AttackEventArgs args) { fighting_system.on_attack(em, args); });
 	//collider_system.collider_event.bind([&](ecs::EntityManager& em, ColliderEventArgs args) { move_system.on_collision(em, args); });
 
-	menu.add_menu_item(std::make_unique<menu::MenuItem>(multimedia_manager, input_manager, "Start Game", menu));
-	menu.add_menu_item(std::make_unique<menu::MenuItem>(multimedia_manager, input_manager, "Select level", menu));
+	auto& mm = multimedia_manager;
+	auto enable_fullscreen = [&](menu::MenuItem& menu_item) { mm.set_fullscreen(true); };
+	auto disable_fullscreen = [&](menu::MenuItem& menu_item) { mm.set_fullscreen(false); };
 
-	auto settings_menu = new menu::Menu(multimedia_manager, input_manager);
-	settings_menu->add_menu_item(std::make_unique<menu::MenuItem>(multimedia_manager, input_manager, "Enable fullscreen", *settings_menu));
-	settings_menu->add_menu_item(std::make_unique<menu::MenuItem>(multimedia_manager, input_manager, "Disable fullscreen", *settings_menu));
-	settings_menu->add_menu_item(std::make_unique<menu::MenuItem>(multimedia_manager, input_manager, "<-Back", *settings_menu));
+	advanced_graphics_menu = menu::MenuBuilder(multimedia_manager, input_manager)
+		.create_menu()
+		.with_back_menu_item()
+		.get_menu();
 
-	menu.add_menu_item(std::make_unique<menu::MenuItem>(multimedia_manager, input_manager, "Settings", menu, settings_menu));
-	menu.add_menu_item(std::make_unique<menu::MenuItem>(multimedia_manager, input_manager, "Credits", menu));
-	menu.add_menu_item(std::make_unique<menu::MenuItem>(multimedia_manager, input_manager, "Exit", menu));
+	settings_menu = menu::MenuBuilder(multimedia_manager, input_manager)
+		.create_menu()
+		.with_menu_item("Enable fullscreen", enable_fullscreen)
+		.with_menu_item("Disable fullscreen", disable_fullscreen)
+		.with_menu_item("Advanced Graphics", advanced_graphics_menu.get())
+		.with_back_menu_item()
+		.get_menu();
 
+
+	menu = menu::MenuBuilder(multimedia_manager, input_manager)
+		.create_menu()
+		.with_menu_item("Start Game")
+		.with_menu_item("Settings",	settings_menu.get())
+		.with_menu_item("Credits")
+		.with_menu_item("Exit")
+		.get_menu();
 }
 
 void GameManager::update(float dt)
 {
-	menu.handle_input();
+	menu->handle_input();
 	entity_manager.update(System::update);
 }
 
@@ -91,5 +105,5 @@ void GameManager::draw()
 {
 	entity_manager.update(System::draw);
 
-	menu.render();
+	menu->render();
 }

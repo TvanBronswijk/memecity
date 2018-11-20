@@ -22,7 +22,10 @@ namespace menu {
 		: selected_menu_items_index(0), multimedia_manager(multimedia_manager), input_manager(input_manager), is_locked(false), parent(parent), debounce_counter(100) {}
 
 		void set_parent(MenuItem* parent);
-		void add_menu_item(std::unique_ptr<MenuItem> item);
+		MenuItem& add_menu_item(std::unique_ptr<MenuItem> item);
+		MenuItem& create_menu_item(std::string text);
+		MenuItem& create_menu_item(std::string text, Menu* sub_menu);
+		MenuItem& create_menu_item(std::string text, std::function<void(MenuItem& menu_item)> callback);
 		void handle_input();
 		void render();
 		void unlock();

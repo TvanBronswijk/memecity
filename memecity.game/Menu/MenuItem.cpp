@@ -1,9 +1,11 @@
 ﻿#include "MenuItem.h"
 #include "Menu.h"
 
-menu::MenuItem::MenuItem(memecity::engine::MultimediaManager& multimedia_manager,
-	memecity::engine::InputManager& input_manager, std::string text, Menu& parent, Menu* sub_menu)
-	: multimedia_manager(multimedia_manager), input_manager(input_manager), text(text), standard_color(255, 255, 255), selected_color(237, 210, 4), is_selected(false), parent(parent), sub_menu(sub_menu), debounce_counter(100)
+using namespace menu;
+
+MenuItem::MenuItem(memecity::engine::MultimediaManager& multimedia_manager,
+	memecity::engine::InputManager& input_manager, std::string text, Menu& parent, Menu* sub_menu, std::function<void(MenuItem& menu_item)> callback)
+	: multimedia_manager(multimedia_manager), input_manager(input_manager), text(text), standard_color(255, 255, 255), selected_color(237, 210, 4), is_selected(false), parent(parent), sub_menu(sub_menu), debounce_counter(100), callback(callback)
 {
 	if (sub_menu !=nullptr)
 	{
@@ -12,17 +14,17 @@ menu::MenuItem::MenuItem(memecity::engine::MultimediaManager& multimedia_manager
 }
 
 
-void menu::MenuItem::set_selected(bool selected)
+void MenuItem::set_selected(bool selected)
 {
 	is_selected = selected;
 }
 
-std::unique_ptr<memecity::engine::texture::TextTexture> menu::MenuItem::get_texture()
+std::unique_ptr<memecity::engine::texture::TextTexture> MenuItem::get_texture() const
 {
 	return  multimedia_manager.get_text_texture(text, "Minecraftia-Regular.ttf", 24, is_selected ? selected_color : standard_color);
 }
 
-void menu::MenuItem::handle_input()
+void MenuItem::handle_input()
 {
 	if (sub_menu != nullptr)
 	{
@@ -46,7 +48,7 @@ void menu::MenuItem::handle_input()
 	}
 }
 
-void menu::MenuItem::render()
+void MenuItem::render() const
 {
 	if (sub_menu != nullptr)
 	{
@@ -54,12 +56,19 @@ void menu::MenuItem::render()
 	}
 }
 
-void menu::MenuItem::unlock()
+void MenuItem::unlock() const
 {
 	parent.unlock();
 }
 
-void menu::MenuItem::handle()
+void MenuItem::handle()
 {
-	parent.lock();
+	if (callback != nullptr)
+	{
+		callback(*this);
+	}
+	else 
+	{
+		parent.lock();
+	}
 }
