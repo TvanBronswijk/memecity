@@ -22,13 +22,11 @@ void AnimationSystem::run(EntityManager& em) const
 
 			if (animation_component.get().is_fighting)
 			{
-				std::cout << "IS FIGHTING" << "\n";
 				animated_texture->set_animation_direction(AnimatedTexture::AnimationDirection::horizontal);
 				animation_component.get().is_fighting = false;
 			}
 			else
 			{
-				std::cout << "(NOT FIGHTING)" << "\n";
 				animated_texture->set_animation_direction(AnimatedTexture::AnimationDirection::vertical);
 
 				if (current_position->diffx > 0)

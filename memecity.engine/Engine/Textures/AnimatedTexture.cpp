@@ -4,19 +4,13 @@ namespace memecity::engine::texture {
 
 	void AnimatedTexture::set_direction(Direction direction)
 	{
-		if (this->direction != direction)
-		{
-			this->direction = direction;
-			this->start_x = static_cast<int>(direction) * texture_width;
-		}
+		this->direction = direction;
+		this->start_x = static_cast<int>(direction) * texture_width;
 	}
 
 	void AnimatedTexture::set_animation_direction(const AnimationDirection direction)
 	{
-		if (this->animation_direction != direction)
-		{
-			this->animation_direction = direction;
-		}
+		this->animation_direction = direction;
 	}
 
 	AnimatedTexture::AnimationDirection AnimatedTexture::get_animation_direction() const
