@@ -9,6 +9,7 @@ class QuadTree
 public:
 	QuadTree(Rectangle &rectangle, size_t capacity) : is_divided(false), boundary(rectangle), capacity(capacity) {}
 	bool insert(const Rectangle& rectangle);
+	std::vector<Rectangle> query(Rectangle& range);
 
 private:
 	bool is_divided;
@@ -19,7 +20,6 @@ private:
 	std::unique_ptr<QuadTree> southeast;
 
 	std::vector<Rectangle> rectangles;
-	std::vector<Rectangle> query(Rectangle& range);
 	Rectangle boundary;
 	size_t capacity;
 

@@ -5,13 +5,14 @@ using namespace memecity::engine::ecs;
 
 void ColliderSystem::run(EntityManager& em) const
 {
-	auto entities = em.get_entities_with_component<ColliderComponent>();
+	auto entities = em.get_entities_with_component<VelocityComponent>();
 
 	for (auto& entity_ref : entities)
 	{
+		auto collider_entities = em.get_entities_with_component<ColliderComponent>();
 		auto& entity = entity_ref.get();
 
-		for (auto& other_entity_ref : entities)
+		for (auto& other_entity_ref : collider_entities)
 		{
 			auto& other_entity = other_entity_ref.get();
 
