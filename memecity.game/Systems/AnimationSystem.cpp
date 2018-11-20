@@ -32,22 +32,18 @@ void AnimationSystem::run(EntityManager& em) const
 				if (current_position->diffx > 0)
 				{
 					animated_texture->set_direction(AnimatedTexture::Direction::right);
-					return;
 				}
-				if (current_position->diffx < 0)
+				else if (current_position->diffx < 0)
 				{
 					animated_texture->set_direction(AnimatedTexture::Direction::left);
-					return;
 				}
-				if (current_position->diffy > 0)
+				else if (current_position->diffy > 0)
 				{
 					animated_texture->set_direction(AnimatedTexture::Direction::up);
-					return;
 				}
-				if (current_position->diffy < 0)
+				else if (current_position->diffy < 0)
 				{
 					animated_texture->set_direction(AnimatedTexture::Direction::down);
-					return;
 				}
 			}
 		}
