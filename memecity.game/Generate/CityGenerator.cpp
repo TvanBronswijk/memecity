@@ -1,5 +1,4 @@
 #include "CityGenerator.h"
-#include "CityGenerator.h"
 #include "Strategy\BSP\BSP.h"
 #include "..\Components.h"
 

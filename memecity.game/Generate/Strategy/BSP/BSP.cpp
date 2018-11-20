@@ -70,9 +70,9 @@ namespace generate::strategy::bsp {
 				Prefab(*prefab).write(c, n);
 			}
 		}
-
-		else
+		else {
 			return;
+		}
 	}
 }
 

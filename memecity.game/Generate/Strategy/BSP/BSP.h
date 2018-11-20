@@ -19,8 +19,9 @@ namespace generate::strategy::bsp {
 		bool horizontal() const { return _horizontal; }
 		std::vector<std::reference_wrapper<const Node>> get_leaves() const
 		{
-			if (_left == nullptr && _right == nullptr)
+			if (_left == nullptr && _right == nullptr) {
 				return { std::ref(*this) };
+			}
 			auto left_leaves = _left->get_leaves();
 			auto right_leaves = _right->get_leaves();
 			left_leaves.insert(left_leaves.end(), right_leaves.begin(), right_leaves.end());
