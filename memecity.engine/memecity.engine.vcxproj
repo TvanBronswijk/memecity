@@ -156,10 +156,10 @@
     <ClCompile Include="Engine\Textures\Texture.cpp" />
     <ClCompile Include="Engine\StorageManager.cpp" />
     <ClCompile Include="Engine\SDL\TimerFacade.cpp" />
-    <ClCompile Include="QuadTree.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine.h" />
+    <ClInclude Include="Engine\Collider.h" />
     <ClInclude Include="Engine\SDL.h" />
     <ClInclude Include="Engine\Serialize.h" />
     <ClInclude Include="Engine\Textures.h" />
