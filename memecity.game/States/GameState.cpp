@@ -32,7 +32,7 @@ void GameState::init()
 
 	//test to show an example  for a NPC
 	auto& fighting_system = entity_manager.create_system<FightingSystem>();
-	entity_manager.create_system<AISystem>();
+	auto& ai_system = entity_manager.create_system<AISystem>();
 	auto& interaciton_system = entity_manager.create_system<InteractionSystem>();
 
 	for (size_t i = 0; i < 1; i++) {

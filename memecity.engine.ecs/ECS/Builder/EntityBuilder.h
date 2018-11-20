@@ -14,6 +14,8 @@ namespace memecity::engine::ecs::builder {
 			template<class T, class... Args>
 			const EntityBuilder& with_component(Args&&... args) const
 			{
+				static_assert(std::is_convertible<T*, Component*>::value, "This function can only construct concrete subclasses of Component");
+				static_assert(std::is_constructible<T, Entity&, Args...>::value, "The requested type cannot be constructed from the arguments provided.");
 				if (entity == nullptr) throw - 1;
 				entity->add<T>(em.create_component<T>(*entity, std::forward<Args>(args)...));
 				return *this;

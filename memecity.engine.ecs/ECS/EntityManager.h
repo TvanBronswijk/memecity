@@ -43,7 +43,7 @@ namespace memecity::engine::ecs {
 		{
 			static_assert(std::is_convertible<C*, Component*>::value, "This function can only construct concrete subclasses of Component");
 			static_assert(std::is_constructible<C, Args...>::value, "The requested type cannot be constructed from the arguments provided.");
-			components[token<C>()].emplace_back(std::make_unique<C>(std::forward<Args>(args)...));
+			components[token<C>()].push_back(std::make_unique<C>(std::forward<Args>(args)...));
 			return *(static_cast<C*>(components[token<C>()].back().get()));
 		}
 
