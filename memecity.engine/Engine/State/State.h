@@ -15,7 +15,7 @@ namespace memecity::engine::state {
 		virtual void init() = 0;
 		virtual void update(float dt) = 0;
 		virtual void draw() = 0;
-		virtual void back() { _state_machine.pop(); }
+		virtual void back() const { _state_machine.pop(); }
 		virtual ~State() = default;
 	};
 }

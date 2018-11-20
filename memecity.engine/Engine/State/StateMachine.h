@@ -7,7 +7,7 @@ namespace memecity::engine::state {
 	class StateMachine {
 	private:
 		std::stack<std::unique_ptr<State>> _stack;
-		void init();
+		void init() const;
 	public:
 		StateMachine() = default;
 		template<class T, class ... Args>
@@ -21,11 +21,11 @@ namespace memecity::engine::state {
 			_stack.pop();
 
 		}
-		State& current_state() {
+		State& current_state() const {
 			return *(_stack.top());
 		}
-		void update(float dt);
-		void draw();
+		void update(float dt) const;
+		void draw() const;
 	};
 }
 #endif
