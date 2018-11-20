@@ -2,17 +2,20 @@
 #define _STATE_MACHINE_H
 #include <memory>
 #include <stack>
-#include "State.h"
 namespace memecity::engine::state {
+	class State;
 	class StateMachine {
 	private:
 		std::stack<std::unique_ptr<State>> _stack;
+		void init();
 	public:
 		StateMachine() = default;
 		template<class T, class ... Args>
 		void create_state(Args&& ... args) {
-			_stack.push(std::make_unique<T>(std::forward<Args>(args)...));
-			current_state().init();
+			static_assert(std::is_convertible<T*, State*>::value, "This function can only construct concrete subclasses of State");
+			static_assert(std::is_constructible<T, StateMachine&, Args...>::value, "The requested type cannot be constructed from the arguments provided.");
+			_stack.push(std::make_unique<T>(*this, std::forward<Args>(args)...));
+			init();
 		}
 		void pop() {
 			_stack.pop();
@@ -21,13 +24,8 @@ namespace memecity::engine::state {
 		State& current_state() {
 			return *(_stack.top());
 		}
-
-		void update(float dt) {
-			current_state().update(dt);
-		}
-		void draw() {
-			current_state().draw();
-		}
+		void update(float dt);
+		void draw();
 	};
 }
 #endif

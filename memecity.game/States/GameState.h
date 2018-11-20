@@ -13,8 +13,8 @@ private:
 	memecity::engine::ecs::EntityManager entity_manager;
 	generate::CityGenerator city_generator;
 public:
-	GameState(memecity::engine::MultimediaManager& mmm, memecity::engine::InputManager& im, memecity::engine::sdl::TimerFacade& tf)
-		: multimedia_manager(mmm), input_manager(im), timer(tf) {}
+	GameState(memecity::engine::state::StateMachine& sm, memecity::engine::MultimediaManager& mmm, memecity::engine::InputManager& im, memecity::engine::sdl::TimerFacade& tf)
+		: State(sm), multimedia_manager(mmm), input_manager(im), timer(tf) {}
 	void init() override;
 	void update(float dt) override;
 	void draw() override;

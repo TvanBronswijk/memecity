@@ -87,6 +87,9 @@
     <ClCompile Include="Engine\SDL\Wrappers\Color.cpp">
       <Filter>Source Files\Graphics</Filter>
     </ClCompile>
+    <ClCompile Include="Engine\State\StateMachine.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MemeEngine.h">

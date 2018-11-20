@@ -142,6 +142,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Engine\State\StateMachine.cpp" />
     <ClCompile Include="Engine\Textures\AnimatedTexture.cpp" />
     <ClCompile Include="Engine\AssetManager.cpp" />
     <ClCompile Include="Engine\SDL\AudioFacade.cpp" />
