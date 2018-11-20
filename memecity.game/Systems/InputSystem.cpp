@@ -5,8 +5,8 @@ using namespace memecity::engine::ecs;
 
 bool InputSystem::check_collision(EntityManager& em, Component& element , int range) const{
 	auto player = em.get_components_of_type<PlayerComponent>()[0];
-	auto player_position_component = player.get().entity.get<PositionComponent>();
-	auto xy = element.entity.get<PositionComponent>();
+	auto player_position_component = player.get().entity().get<PositionComponent>();
+	auto xy = element.entity().get<PositionComponent>();
 	if ((player_position_component->x + range) >= xy->x && (player_position_component->x - range) <= xy->x) {
 		if ((player_position_component->y + range) >= xy->y && (player_position_component->y - range) <= xy->y) {
 			return true;
@@ -19,7 +19,7 @@ void InputSystem::run(EntityManager& em) const
 {
 	auto entities = em.get_entities_with_component<PlayerComponent>();
 
-	for (auto entity : entities)
+	for (auto& entity : entities)
 	{
 
 		auto velocity_component = entity.get().get<VelocityComponent>();
@@ -52,7 +52,7 @@ void InputSystem::run(EntityManager& em) const
 			auto vector = em.get_components_of_type<AIComponent>();
 			for (auto& element : vector) {
 				if(check_collision(em, element, 30)){
-					interaction_event.fire(em, { element.get().entity });
+					interaction_event.fire(em, { element.get().entity() });
 				}
 			}
 		}
@@ -61,7 +61,7 @@ void InputSystem::run(EntityManager& em) const
 			auto vector = em.get_components_of_type<AIComponent>();
 			for (auto & element : vector) {
 				if (check_collision(em, element, 30)) {
-					attack_event.fire(em, {player.get().entity, element.get().entity });
+					attack_event.fire(em, {player.get().entity(), element.get().entity() });
 
 				}
 			}

@@ -20,6 +20,15 @@ namespace memecity::engine::ecs {
 		std::map<TypeToken, std::vector<std::unique_ptr<Component>>> components;
 		std::map<System::Scope, std::map<TypeToken, std::unique_ptr<System>>> systems;
 
+		template<class T>
+		std::vector<std::reference_wrapper<T>> get_components() {
+			std::vector<std::reference_wrapper<T>> result;
+			auto& cs = components[token<T>()];
+			std::transform(cs.begin(), cs.end(), std::back_inserter(result),
+				[](std::unique_ptr<Component>& c) -> std::reference_wrapper<T> { return std::ref(*(static_cast<T*>(c.get()))); });
+			return result;
+		}
+
 	public:
 		///<summary>Creates a new entity with an unused ID.</summary>
 		Entity& create_entity()
@@ -72,7 +81,7 @@ namespace memecity::engine::ecs {
 		std::vector<std::reference_wrapper<C>> get_components_of_type()
 		{
 			static_assert(std::is_convertible<C*, Component*>::value, "This function can only retrieve concrete subclasses of Component");
-			return ComponentQuery<C>(components[token<C>()])
+			return ComponentQuery<C>(get_components<C>())
 				.to_vector();
 		}
 
@@ -81,7 +90,7 @@ namespace memecity::engine::ecs {
 		ComponentQuery<C> query() 
 		{
 			static_assert(std::is_convertible<C*, Component*>::value, "This function can only retrieve concrete subclasses of Component");
-			return ComponentQuery<C>(components[token<C>()]);
+			return ComponentQuery<C>(get_components<C>());
 		}
 
 		///<summary>Run all systems.</summary>

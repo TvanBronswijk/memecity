@@ -8,9 +8,9 @@ public:
 	enum class State { Fighting, Fleeing, Roaming };
 	State state;
 
-	AIComponent(const memecity::engine::ecs::Entity& entity) : AIComponent(entity, AIComponent::State::Fighting) {};
+	AIComponent(memecity::engine::ecs::Entity& entity) : AIComponent(entity, AIComponent::State::Fighting) {};
 
-	AIComponent(const memecity::engine::ecs::Entity& entity, State type) : memecity::engine::ecs::Component(entity), state(type) {};
+	AIComponent(memecity::engine::ecs::Entity& entity, State type) : memecity::engine::ecs::Component(entity), state(type) {};
 };
 
 #endif

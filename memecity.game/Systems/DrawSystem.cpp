@@ -13,7 +13,7 @@ void DrawSystem::run(EntityManager& em) const
 	for (DrawableComponent& drawable_component : drawable_components)
 	{
 		auto& tex = drawable_component.get_texture();
-		if (drawable_component.entity != player_position_component->entity)
+		if (drawable_component.entity() != player_position_component->entity())
 		{
 			tex.translate({ (player_position_component->diffx*-1) , player_position_component->diffy });
 		}

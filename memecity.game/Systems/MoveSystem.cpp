@@ -14,9 +14,9 @@ void MoveSystem::run(EntityManager& em) const
 		auto current_velocity_component = entity.get().get<VelocityComponent>();
 		auto& player_component = em.get_components_of_type<PlayerComponent>()[0].get();
 
-		if (entity.get().id != player_component.entity.id) {
+		if (entity.get().id != player_component.entity().id) {
 
-			auto drawable = current_velocity_component->entity.get<DrawableComponent>();
+			auto drawable = current_velocity_component->entity().get<DrawableComponent>();
 
 			if (drawable != nullptr) {
 				auto& animated_charater = dynamic_cast<AnimatedTexture&>(drawable->get_texture());

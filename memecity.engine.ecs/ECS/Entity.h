@@ -21,7 +21,7 @@ namespace memecity::engine::ecs {
 			if (has<T>()) {
 				return false;
 			}
-			_components.push_back(component);
+			_components.push_back(std::ref(component));
 			return true;
 		}
 
@@ -42,8 +42,8 @@ namespace memecity::engine::ecs {
 			return nullptr;
 		}
 
-		bool operator==(const Entity& e) const { return this->id == e.id; }
-		bool operator!=(const Entity& e) const { return this->id != e.id; }
+		bool operator==(const Entity& e) const { return id == e.id; }
+		bool operator!=(const Entity& e) const { return id != e.id; }
 	};
 };
 #endif
