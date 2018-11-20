@@ -14,8 +14,9 @@ namespace generate::strategy {
 		virtual ~Strategy() = default;
 		virtual models::City generate(int w, int h) = 0;
 		virtual models::Prefab* get_next_prefab() {
-			if (_prefab_index >= _prefabs.size())
+			if (_prefab_index >= _prefabs.size()) {
 				return nullptr;
+			}
 			return &(_prefabs[_prefab_index++]);
 		}
 	};

@@ -17,8 +17,9 @@ namespace memecity::engine::ecs {
 		bool add(T& component)
 		{
 			static_assert(std::is_convertible<T*, Component*>::value, "This function can only add concrete subclasses of Component");
-			if (has<T>())
+			if (has<T>()) {
 				return false;
+			}
 			_components.push_back(component);
 			return true;
 		}
@@ -26,15 +27,17 @@ namespace memecity::engine::ecs {
 		template<class T>
 		bool has() const
 		{
-			return std::any_of(_components.begin(), _components.end(), [](Component& c) {return token<T>() == typeid(c); });
+			return std::any_of(_components.begin(), _components.end(), [](Component& c) { return token<T>() == typeid(c); });
 		}
 
 		template<class T>
 		T* get() const
 		{
-			for (auto& component : _components)
-				if (token<T>() == typeid(component.get()))
+			for (auto& component : _components) {
+				if (token<T>() == typeid(component.get())) {
 					return static_cast<T*>(&(component.get()));
+				}
+			}
 			return nullptr;
 		}
 

@@ -27,20 +27,24 @@ namespace generate::strategy::bsp {
 			switch (rand() % 4)
 			{
 			case 0:
-				for (int i = n.center.x; i < n.end.x; i++)
+				for (int i = n.center.x; i < n.end.x; i++) {
 					c(i, n.center.y) = '-';
+				}
 				break;
 			case 1:
-				for (int i = n.center.x; i > n.begin.x; i--)
+				for (int i = n.center.x; i > n.begin.x; i--) {
 					c(i, n.center.y) = '-';
+				}
 				break;
 			case 2:
-				for (int i = n.center.y; i < n.end.y; i++)
+				for (int i = n.center.y; i < n.end.y; i++) {
 					c(n.center.x, i) = '-';
+				}
 				break;
 			case 3:
-				for (int i = n.center.y; i > n.begin.y; i--)
+				for (int i = n.center.y; i > n.begin.y; i--) {
 					c(n.center.x, i) = '-';
+				}
 				break;
 			}
 		}

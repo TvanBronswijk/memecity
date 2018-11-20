@@ -25,8 +25,9 @@ namespace generate::models {
 		Base64_Tilemap(int w, int h)
 			: Rectangle(0, 0, w, h), tiles(new char[w*h]) { }
 		Base64_Tilemap(const Base64_Tilemap& copy) : Base64_Tilemap(copy.w, copy.h) {
-			for (int i = 0; i < w*h; i++)
+			for (int i = 0; i < w*h; i++) {
 				tiles[i] = (copy.tiles[i]);
+			}
 		}
 		virtual char& coord(int x, int y) { return tiles[x * h + y]; }
 		virtual const char& coord(int x, int y) const { return tiles[x * h + y]; }
@@ -43,15 +44,19 @@ namespace generate::models {
 	struct Prefab : Base64_Tilemap {
 		Prefab(int w, int h, const char* tiles)
 			: Base64_Tilemap(w, h) {
-			for (int x = 0; x < w; x++)
-				for (int y = 0; y < h; y++)
+			for (int x = 0; x < w; x++) {
+				for (int y = 0; y < h; y++) {
 					this->coord(x, y) = tiles[x * h + y];
+				}
+			}
 		}
 		Prefab(int w, int h, const char** tiles) :
 			Base64_Tilemap(w, h) {
-			for (int x = 0; x < w; x++)
-				for (int y = 0; y < h; y++)
+			for (int x = 0; x < w; x++) {
+				for (int y = 0; y < h; y++) {
 					this->coord(x, y) = tiles[x][y];
+				}
+			}
 		}
 	};
 

@@ -22,9 +22,11 @@ namespace generate::strategy::bsp {
 
 		auto nodes = root.get_leaves();
 		models::City city = { w, h };
-		for (int x = 0; x < w; x++)
-			for (int y = 0; y < h; y++)
+		for (int x = 0; x < w; x++) {
+			for (int y = 0; y < h; y++) {
 				city(x, y) = '-';
+			}
+		}
 		for (auto& node : nodes)
 		{
 			this->write_node(city, node);
@@ -53,16 +55,20 @@ namespace generate::strategy::bsp {
 				break;
 			}
 		}
-		if (choice == building)
+		if (choice == building) {
 			Building().write(c, n);
-		else if (choice == park)
+		}
+		else if (choice == park) {
 			Park(n.w + n.h).write(c, n);
-		else if (choice == empty)
+		}
+		else if (choice == empty) {
 			Empty('-').write(c, n);
+		}
 		else if (choice == prefab) {
 			auto prefab = get_next_prefab();
-			if(prefab != nullptr)
+			if (prefab != nullptr) {
 				Prefab(*prefab).write(c, n);
+			}
 		}
 
 		else
