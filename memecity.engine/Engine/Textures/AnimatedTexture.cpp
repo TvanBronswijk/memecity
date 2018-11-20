@@ -31,13 +31,10 @@ namespace memecity::engine::texture {
 			animation_timer -= animation_speed;
 		}
 
-		if (direction != Direction::idle)
+		if (direction != Direction::idle && animation_direction == AnimationDirection::vertical)
 		{
-			if (animation_direction == AnimationDirection::vertical)
-			{
-				clipped_rect.x = start_x;
-				clipped_rect.y = start_y + int(animation_timer / time_per_frame) * texture_height;
-			}
+			clipped_rect.x = start_x;
+			clipped_rect.y = start_y + int(animation_timer / time_per_frame) * texture_height;
 		}
 		else if (animation_direction == AnimationDirection::horizontal)
 		{
