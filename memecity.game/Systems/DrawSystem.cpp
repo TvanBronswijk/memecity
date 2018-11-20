@@ -1,6 +1,6 @@
 ﻿#include "DrawSystem.h"
 #include <Engine\Textures.h>
-#include "../Components/AIComponent.h"
+#include "../Components/VelocityComponent.h"
 
 using namespace memecity::engine::ecs;
 
@@ -12,17 +12,12 @@ void DrawSystem::run(EntityManager& em) const
 	auto drawable_components = em.get_components_of_type<DrawableComponent>();
 	
 	for (DrawableComponent& drawable_component : drawable_components)
-	{
+	{	
 		auto& tex = drawable_component.get_texture();
-		if (drawable_component.entity != player_position_component->entity)
+		//bool found = drawable_component.entity.has<VelocityComponent>();
+		if (drawable_component.entity != player_component)
 		{
-			//auto AI_Component = drawable_component.entity.get<AIComponent>(); //TODO:ask tobi. read access violation
-			//auto AIPosition =  drawable_component.entity.get<PositionComponent>();
-
-			//if (AI_Component != NULL) {
-			//	tex.translate({ (player_position_component->diffx*-1) + AIPosition->x , player_position_component->diffy + AIPosition->y });
-			//}else
-				tex.translate({ (player_position_component->diffx*-1) , player_position_component->diffy });
+			tex.translate({ (player_position_component->diffx*-1) , player_position_component->diffy });
 		}
 
 		auto text_texture = dynamic_cast<memecity::engine::texture::TextTexture*>(&tex);

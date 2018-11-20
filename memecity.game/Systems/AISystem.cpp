@@ -7,10 +7,9 @@ bool AISystem::check_health(EntityManager& em, const Entity& entity) const{
 	auto AI = entity.get<AIComponent>();
 	auto health = entity.get<HealthComponent>();
 	if(health->health <= 0) {
-		std::cout << "i am dead!!!" << std::endl;//testing
 		return false;
 	}
-	else if (health->health <= 10) {
+	else if (health->health < (health->maxhealth/10)) {
 		AI->state = AIComponent::State::Fleeing;
 	}
 	return true;
@@ -82,8 +81,8 @@ void AISystem::best_first_search(EntityManager& em, const PositionComponent& npc
 			queue = calculate_next_positions(location, end, queue); 
 		}
 	}
-	//std::cout << "player: X: " << end.x << " Y: " << end.y << " Drawable X: " << player_drawable->get_texture().get_position().x << " Y: " << player_drawable->get_texture().get_position().y << std::endl;
-	//std::cout << "npc: X: " << start.x << " Y: " << start.y << " Drawable X: " << drawable->get_texture().get_position().x << " Y: " << drawable->get_texture().get_position().y << std::endl;
+	std::cout << "player: X: " << end.x << " Y: " << end.y << " Drawable X: " << player_drawable->get_texture().get_position().x << " Y: " << player_drawable->get_texture().get_position().y << std::endl;
+	std::cout << "npc: X: " << start.x << " Y: " << start.y << " Drawable X: " << drawable->get_texture().get_position().x << " Y: " << drawable->get_texture().get_position().y << std::endl;
 	auto direction = path.front();
 
 	if (npc_xy.x < direction.x) { 

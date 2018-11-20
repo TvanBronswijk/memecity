@@ -28,8 +28,10 @@ namespace memecity::engine::texture {
 		{
 			return position;
 		}
-
-		return parent->get_position(world) + RotateVector(position, parent->get_rotation(local));
+		auto parent_posititon = parent->get_position(world);
+		//auto local_position = RotateVector(position, parent->get_rotation(local));
+		auto new_position = parent_posititon + position;
+		return new_position;
 	}
 
 	void GameObject::set_rotation(float rotation)
@@ -69,7 +71,6 @@ namespace memecity::engine::texture {
 
 	void GameObject::set_parent(GameObject* parent)
 	{
-		position = get_position(world) - parent->get_position(world);
 		this->parent = parent;
 	}
 

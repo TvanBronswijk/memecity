@@ -13,5 +13,6 @@
 #include "Components\StatsComponent.h"
 #include "Components\VelocityComponent.h"
 #include "Components\AIComponent.h"
+#include "FightingComponent.h"
 
 #endif

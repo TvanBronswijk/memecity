@@ -32,6 +32,7 @@ void InputSystem::run(EntityManager& em) const
 		}
 		if (this->input_manager.is_pressed(sdl::Up))
 		{
+			std::cout << "walking /n";
 			velocity_component->y += 5;
 		}
 		if (this->input_manager.is_pressed(sdl::Down))

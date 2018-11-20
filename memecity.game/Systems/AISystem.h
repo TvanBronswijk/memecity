@@ -5,8 +5,8 @@
 #include <list>
 
 struct Point {
-	int x, y;
-	Point(int x, int y) : x(x), y(y) {};
+	float x, y;
+	Point(float x, float y) : x(x), y(y) {};
 };
 
 class AISystem : public memecity::engine::ecs::System {
