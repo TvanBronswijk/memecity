@@ -160,6 +160,10 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Generate\Strategy\BSP\Fills\Prefab.h">
+    <ClInclude Include="States\GameState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="States.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -202,6 +206,9 @@
     </ClCompile>
     <ClCompile Include="Systems\MoveSystem.cpp">
       <Filter>Source Files\Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="States\GameState.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
