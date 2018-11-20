@@ -25,6 +25,15 @@
     <ClInclude Include="Menu\Menu.h" />
     <ClInclude Include="Menu\MenuBuilder.h" />
     <ClInclude Include="Menu\MenuItem.h" />
+    <ClInclude Include="Generate\Strategy\BSP\Fills\Building.h" />
+    <ClInclude Include="Generate\Strategy\BSP\Fills\Empty.h" />
+    <ClInclude Include="Generate\Strategy\BSP\Fills\Fill.h" />
+    <ClInclude Include="Generate\Strategy\BSP\Fills\Park.h" />
+    <ClInclude Include="Generate\Strategy\BSP\Fills\Prefab.h" />
+    <ClInclude Include="States\GameState.h" />
+    <ClInclude Include="States.h" />
+    <ClInclude Include="States\MenuState.h" />
+    <ClInclude Include="States\PauseMenuState.h" />
     <ClInclude Include="Systems.h" />
     <ClInclude Include="Systems\AISystem.h" />
     <ClInclude Include="Event\AttackEventArgs.h" />
@@ -59,6 +68,9 @@
     <ClCompile Include="Menu\Menu.cpp" />
     <ClCompile Include="Menu\MenuBuilder.cpp" />
     <ClCompile Include="Menu\MenuItem.cpp" />
+    <ClCompile Include="States\GameState.cpp" />
+    <ClCompile Include="States\MenuState.cpp" />
+    <ClCompile Include="States\PauseMenuState.cpp" />
     <ClCompile Include="Systems\AnimationSystem.cpp" />
     <ClCompile Include="Systems\ColliderSystem.cpp" />
     <ClCompile Include="Systems\AISystem.cpp" />

@@ -8,6 +8,7 @@
 #include "Engine\InputManager.h"
 #include "Engine\MultimediaManager.h"
 #include "Engine\StorageManager.h"
+#include "Engine\State.h"
 #include "MemeEngine.h"
 
 #endif

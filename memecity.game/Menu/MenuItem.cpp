@@ -4,15 +4,14 @@
 using namespace menu;
 
 MenuItem::MenuItem(memecity::engine::MultimediaManager& multimedia_manager,
-	memecity::engine::InputManager& input_manager, std::string text, Menu& parent, Menu* sub_menu, std::function<void(MenuItem& menu_item)> callback)
-	: multimedia_manager(multimedia_manager), input_manager(input_manager), text(text), standard_color(255, 255, 255), selected_color(237, 210, 4), is_selected(false), parent(parent), sub_menu(sub_menu), debounce_counter(100), callback(callback)
+	memecity::engine::InputManager& input_manager, Menu& parent, std::string text, Menu* sub_menu, std::function<void(MenuItem& menu_item)> callback)
+	: multimedia_manager(multimedia_manager), input_manager(input_manager), text(text), standard_color(255, 255, 255), selected_color(237, 210, 4), is_selected(false), parent(parent), sub_menu(sub_menu), callback(callback)
 {
 	if (sub_menu !=nullptr)
 	{
 		sub_menu->set_parent(this);
 	}
 }
-
 
 void MenuItem::set_selected(bool selected)
 {
@@ -29,22 +28,6 @@ void MenuItem::handle_input()
 	if (sub_menu != nullptr)
 	{
 		sub_menu->handle_input();
-	}
-	else {
-		input_manager.update();
-		if (input_manager.is_pressed(memecity::engine::sdl::InputKeys::Escape) && debounce_counter == 0)
-		{
-			parent.unlock();
-			debounce_counter = 100;
-		}
-		else
-		{
-			debounce_counter--;
-			if (debounce_counter < 0)
-			{
-				debounce_counter = 0;
-			}
-		}
 	}
 }
 
@@ -67,7 +50,7 @@ void MenuItem::handle()
 	{
 		callback(*this);
 	}
-	else 
+	else if (sub_menu != nullptr)
 	{
 		parent.lock();
 	}

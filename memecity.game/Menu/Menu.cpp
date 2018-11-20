@@ -7,19 +7,15 @@ MenuItem& Menu::add_menu_item(std::unique_ptr<MenuItem> item)
 	return *menu_items.emplace_back(std::move(item));
 }
 
-MenuItem& Menu::create_menu_item(std::string text)
+std::unique_ptr<memecity::engine::texture::TextTexture> Menu::get_texture() const
 {
-	return add_menu_item(std::make_unique<MenuItem>(multimedia_manager, input_manager, text, *this));
+	return  multimedia_manager.get_text_texture(title, "Minecraftia-Regular.ttf", 36, {255,255,255});
+
 }
 
-MenuItem& Menu::create_menu_item(std::string text, Menu* sub_menu)
+int Menu::reset_debounce_counter()
 {
-	return add_menu_item(std::make_unique<MenuItem>(multimedia_manager, input_manager, text, *this, sub_menu));
-}
-
-MenuItem& Menu::create_menu_item(std::string text, std::function<void(MenuItem& menu_item)> callback)
-{
-	return add_menu_item(std::make_unique<MenuItem>(multimedia_manager, input_manager, text, *this, nullptr, callback));
+	return debounce_counter = 10;
 }
 
 void Menu::handle_input()
@@ -38,7 +34,7 @@ void Menu::handle_input()
 		{
 			selected_menu_items_index = menu_items.size()-1;
 		}
-		debounce_counter=100;
+		reset_debounce_counter();
 	}
 	else if (input_manager.is_pressed(memecity::engine::sdl::InputKeys::Down) && debounce_counter == 0)
 	{
@@ -47,12 +43,12 @@ void Menu::handle_input()
 		{
 			selected_menu_items_index = 0;
 		}
-		debounce_counter=100;
+		reset_debounce_counter();
 	}
 	else if (input_manager.is_pressed(memecity::engine::sdl::InputKeys::Enter) && debounce_counter == 0)
 	{
 		menu_items.at(selected_menu_items_index)->handle();
-		debounce_counter = 100;
+		reset_debounce_counter();
 	}
 	else if (input_manager.is_pressed(memecity::engine::sdl::InputKeys::Escape) && debounce_counter == 0)
 	{
@@ -60,7 +56,7 @@ void Menu::handle_input()
 		{
 			parent->unlock();
 		}
-		debounce_counter = 100;
+		reset_debounce_counter();
 	}
 	else
 	{
@@ -82,6 +78,10 @@ void Menu::render()
 	multimedia_manager.clear_graphics();
 
 	Vector2 position {multimedia_manager.get_screen_width()/2.0f, 200};
+	auto title_texture = get_texture();
+	title_texture->translate(position);
+	multimedia_manager.render_text_texture(*title_texture);
+	position.y += 50;
 
 	int index = 0;
 	for (auto& menu_item : menu_items)

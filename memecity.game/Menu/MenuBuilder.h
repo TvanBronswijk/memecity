@@ -4,6 +4,7 @@
 #include "Engine/MultimediaManager.h"
 #include "Engine/InputManager.h"
 #include "MenuItem.h"
+#include "Menu.h"
 
 namespace menu {
 
@@ -16,10 +17,15 @@ namespace menu {
 	public:
 		MenuBuilder(memecity::engine::MultimediaManager& multimedia_manager, memecity::engine::InputManager& input_manager) 
 		: multimedia_manager(multimedia_manager), input_manager(input_manager) {}
-		MenuBuilder& create_menu();
-		MenuBuilder& with_menu_item(std::string text);
-		MenuBuilder& with_menu_item(std::string text, Menu* sub_menu);
-		MenuBuilder& with_menu_item(std::string text, std::function<void(MenuItem& menu_item)> callback);
+		MenuBuilder& create_menu(std::string title);
+
+		template<class C, class... Args>
+		MenuBuilder& with_menu_item(Args&&... args)
+		{
+			menu->create_menu_item<MenuItem>(std::forward<Args>(args)...);
+			return *this;
+		}
+
 		MenuBuilder& with_back_menu_item();
 		std::unique_ptr<Menu> get_menu();
 	};

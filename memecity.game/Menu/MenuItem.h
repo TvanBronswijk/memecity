@@ -19,10 +19,10 @@ namespace menu {
 		bool is_selected;
 		Menu& parent;
 		Menu* sub_menu;
-		int debounce_counter;
 		std::function<void(MenuItem& menu_item)> callback;
+		
 	public:
-		MenuItem(memecity::engine::MultimediaManager& multimedia_manager, memecity::engine::InputManager& input_manager, std::string text, Menu& parent, Menu* sub_menu = nullptr, std::function<void(MenuItem& menu_item)> callback = nullptr);
+		MenuItem(memecity::engine::MultimediaManager& multimedia_manager, memecity::engine::InputManager& input_manager, Menu& parent, std::string text, Menu* sub_menu = nullptr, std::function<void(MenuItem& menu_item)> callback = nullptr);
 			
 		void set_selected(bool selected);
 		std::unique_ptr<memecity::engine::texture::TextTexture> get_texture() const;
