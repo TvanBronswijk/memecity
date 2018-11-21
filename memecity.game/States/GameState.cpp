@@ -10,7 +10,8 @@ void GameState::init()
 	auto& multimedia_manager = _context.multimedia_manager;
 	auto& input_manager = _context.input_manager;
 	auto& timer = _context.timer;
-	city_generator.generate(24, 24, entity_manager, multimedia_manager);
+	auto& quad_tree = _context.quad_tree;
+	city_generator.generate(24, 24, entity_manager, multimedia_manager, quad_tree);
 
 	auto texture = multimedia_manager.get_animated_texture(timer, "SpriteSheet.png", 0, 0, 48, 48, 4, 0.25f, texture::AnimatedTexture::AnimationDirection::vertical);
 	texture->set_position({ static_cast<float>(multimedia_manager.get_screen_width()) / 2, static_cast<float>(multimedia_manager.get_screen_height()) / 2 });

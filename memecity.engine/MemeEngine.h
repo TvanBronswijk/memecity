@@ -27,7 +27,7 @@ namespace memecity::engine {
 	public:
 		int run();
 		MemeEngine();
-		 MultimediaManager& get_multimedia_manager()
+		MultimediaManager& get_multimedia_manager()
 		{
 			return multimedia_manager;
 		}
@@ -38,6 +38,10 @@ namespace memecity::engine {
 		sdl::TimerFacade& get_timer()
 		{
 			return timer;
+		}
+		QuadTree& get_quad_tree()
+		{
+			return _quad_tree;
 		}
 	};
 }

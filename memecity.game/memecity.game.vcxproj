@@ -19,9 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ColliderComponent.h" />
     <ClInclude Include="Components.h" />
     <ClInclude Include="Components\AIComponent.h" />
+    <ClInclude Include="Components\ColliderComponent.h" />
     <ClInclude Include="Generate.h" />
     <ClInclude Include="Generate\Strategy\BSP\Fills\Building.h" />
     <ClInclude Include="Generate\Strategy\BSP\Fills\Empty.h" />
