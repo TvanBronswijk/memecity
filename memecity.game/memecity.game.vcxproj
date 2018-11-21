@@ -21,9 +21,7 @@
   <ItemGroup>
     <ClInclude Include="Components.h" />
     <ClInclude Include="Components\AIComponent.h" />
-    <ClInclude Include="FightingComponent.h" />
     <ClInclude Include="Generate.h" />
-    <ClInclude Include="OverlaySystem.h" />
     <ClInclude Include="Generate\Strategy\BSP\Fills\Building.h" />
     <ClInclude Include="Generate\Strategy\BSP\Fills\Empty.h" />
     <ClInclude Include="Generate\Strategy\BSP\Fills\Fill.h" />
@@ -60,9 +58,9 @@
     <ClInclude Include="Components\PositionComponent.h" />
     <ClInclude Include="Components\VelocityComponent.h" />
     <ClInclude Include="Components\StatsComponent.h" />
+    <ClInclude Include="Systems\OverlaySystem.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="OverlaySystem.cpp" />
     <ClCompile Include="States\GameState.cpp" />
     <ClCompile Include="Systems\AnimationSystem.cpp" />
     <ClCompile Include="Systems\ColliderSystem.cpp" />
@@ -77,6 +75,7 @@
     <ClCompile Include="Systems\InputSystem.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Systems\MoveSystem.cpp" />
+    <ClCompile Include="Systems\OverlaySystem.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

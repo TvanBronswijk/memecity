@@ -147,12 +147,6 @@
     <ClInclude Include="Generate.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="OverlaySystem.h">
-      <Filter>Header Files\Systems</Filter>
-    </ClInclude>
-    <ClInclude Include="FightingComponent.h">
-      <Filter>Header Files\Components</Filter>
-    </ClInclude>
     <ClInclude Include="Generate\Strategy\BSP\Fills\Fill.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -166,11 +160,16 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Generate\Strategy\BSP\Fills\Prefab.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="States\GameState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="States.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Systems\OverlaySystem.h">
+      <Filter>Header Files\Systems</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -213,11 +212,11 @@
     <ClCompile Include="Systems\MoveSystem.cpp">
       <Filter>Source Files\Systems</Filter>
     </ClCompile>
-    <ClCompile Include="OverlaySystem.cpp">
-      <Filter>Source Files\Systems</Filter>
-    </ClCompile>
     <ClCompile Include="States\GameState.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Systems\OverlaySystem.cpp">
+      <Filter>Source Files\Systems</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

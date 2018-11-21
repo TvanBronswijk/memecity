@@ -2,7 +2,7 @@
 #define _OVERLAYSYSTEM_H
 #include <Engine\MultimediaManager.h>
 #include <ECS.h>
-#include "Components.h"
+#include "../Components.h"
 
 class OverlaySystem : public memecity::engine::ecs::System
 {
