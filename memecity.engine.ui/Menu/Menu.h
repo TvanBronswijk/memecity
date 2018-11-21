@@ -10,7 +10,7 @@ namespace memecity::engine::ui::menu {
 	{
 	private:
 		std::vector<std::unique_ptr<MenuItem>> menu_items;
-		int selected_menu_items_index;
+		size_t selected_menu_items_index;
 		MultimediaManager& multimedia_manager;
 		bool is_locked;
 		MenuItem* parent;

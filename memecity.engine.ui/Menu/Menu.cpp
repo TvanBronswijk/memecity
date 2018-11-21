@@ -57,10 +57,13 @@ namespace memecity::engine::ui::menu {
 			return;
 		}
 
-		selected_menu_items_index--;
-		if (selected_menu_items_index < 0)
+		if (selected_menu_items_index == 0)
 		{
 			selected_menu_items_index = menu_items.size() - 1;
+		}
+		else 
+		{
+			selected_menu_items_index--;
 		}
 	}
 
