@@ -168,6 +168,12 @@
     <ClInclude Include="States.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Systems\OverlaySystem.h">
+      <Filter>Header Files\Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="NPCFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="States\MenuState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -216,6 +222,12 @@
       <Filter>Source Files\Systems</Filter>
     </ClCompile>
     <ClCompile Include="States\GameState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Systems\OverlaySystem.cpp">
+      <Filter>Source Files\Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="NPCFactory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="States\MenuState.cpp">

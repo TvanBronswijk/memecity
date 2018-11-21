@@ -3,9 +3,11 @@
 #include <Engine.h>
 #include <ECS.h>
 #include "..\Generate.h"
+#include "..\NPCFactory.h"
 
 struct GameState : public memecity::engine::state::State {
 private:
+	NPCFactory npc_factory{ get_context().multimedia_manager, get_context().timer, entity_manager };
 	memecity::engine::ecs::EntityManager entity_manager;
 	generate::CityGenerator city_generator;
 public:

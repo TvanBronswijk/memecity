@@ -13,6 +13,7 @@ public:
 		: DrawableComponent(entity, nullptr) {}
 	DrawableComponent(const memecity::engine::ecs::Entity& entity, std::unique_ptr<memecity::engine::texture::Texture> texture)
 		: memecity::engine::ecs::Component(entity), texture(std::move(texture)){}
+
 	memecity::engine::texture::Texture& get_texture()
 	{
 		return *texture;

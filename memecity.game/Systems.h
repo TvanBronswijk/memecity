@@ -10,5 +10,6 @@
 #include "Systems\InputSystem.h"
 #include "Systems\InteractionSystem.h"
 #include "Systems\MoveSystem.h"
+#include "Systems\OverlaySystem.h"
 
 #endif
