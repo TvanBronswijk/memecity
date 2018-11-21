@@ -44,6 +44,8 @@ namespace memecity::engine::sdl {
 
 		///<summary>Clears the SDL_Renderer buffer.</summary>
 		void clear() const;
+
+		void set_fullscreen(bool fullscreen_enabled);
 	};
 }
 

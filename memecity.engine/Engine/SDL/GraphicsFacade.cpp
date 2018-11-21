@@ -122,6 +122,27 @@ namespace memecity::engine::sdl {
 		SDL_RenderClear(sdl_renderer->get());
 	}
 
+	void GraphicsFacade::set_fullscreen(bool fullscreen_enabled)
+	{
+		is_fullscreen = fullscreen_enabled;
+
+		if (is_fullscreen)
+		{
+			if (SDL_SetWindowFullscreen(sdl_window->get(), SDL_WINDOW_FULLSCREEN_DESKTOP) != 0)
+			{
+				printf("Window FullScreen error: %s\n", SDL_GetError());
+			}
+		}
+		else
+		{
+			if (SDL_SetWindowFullscreen(sdl_window->get(), 0) != 0)
+			{
+				printf("Window FullScreen Disable error: %s\n", SDL_GetError());
+			}
+		}
+		SDL_GetWindowSize(sdl_window->get(), &screen_width, &screen_height);
+	}
+
 	void GraphicsFacade::render() const
 	{
 		SDL_RenderPresent(sdl_renderer->get());

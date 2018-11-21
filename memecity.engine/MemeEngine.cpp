@@ -4,8 +4,7 @@
 namespace memecity::engine {
 	MemeEngine::MemeEngine()
 	{
-		_quad_tree = QuadTree(4, {0, 0, 1356, 1356});
-		timer = std::make_unique<sdl::TimerFacade>();
+		_quad_tree = QuadTree(4, { 0, 0, 1356, 1356 });
 	}
 
 	int MemeEngine::run()
@@ -14,15 +13,15 @@ namespace memecity::engine {
 			init();
 			while (!input_manager.is_quit_pressed())
 			{
-				timer->update();
-				update(timer->get_delta_time());
-				if (timer->get_delta_time() >= 1.0f / 60)
+				timer.update();
+				update(timer.get_delta_time());
+				if (timer.get_delta_time() >= 1.0f / 60)
 				{
 					input_manager.update();
 					multimedia_manager.clear_graphics();
 					draw();
 					multimedia_manager.render_graphics();
-					timer->reset();
+					timer.reset();
 				}
 			}
 			return 0;

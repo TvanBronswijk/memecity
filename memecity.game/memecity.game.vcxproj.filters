@@ -72,6 +72,9 @@
     <ClInclude Include="Components\AnimationComponent.h">
       <Filter>Header Files\Components</Filter>
     </ClInclude>
+    <ClInclude Include="Components\ColliderComponent.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
     <ClInclude Include="Components\DrawableComponent.h">
       <Filter>Header Files\Components</Filter>
     </ClInclude>
@@ -144,11 +147,32 @@
     <ClInclude Include="Generate.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Components\DimensionComponent.h">
-      <Filter>Header Files\Components</Filter>
+    <ClInclude Include="Generate\Strategy\BSP\Fills\Fill.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ColliderComponent.h">
-      <Filter>Header Files\Components</Filter>
+    <ClInclude Include="Generate\Strategy\BSP\Fills\Building.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Generate\Strategy\BSP\Fills\Park.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Generate\Strategy\BSP\Fills\Empty.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Generate\Strategy\BSP\Fills\Prefab.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="States\GameState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="States.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="States\MenuState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="States\PauseMenuState.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -190,6 +214,15 @@
     </ClCompile>
     <ClCompile Include="Systems\MoveSystem.cpp">
       <Filter>Source Files\Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="States\GameState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="States\MenuState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="States\PauseMenuState.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

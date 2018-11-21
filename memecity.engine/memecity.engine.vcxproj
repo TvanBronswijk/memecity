@@ -142,6 +142,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Engine\State\StateMachine.cpp" />
     <ClCompile Include="Engine\Textures\AnimatedTexture.cpp" />
     <ClCompile Include="Engine\AssetManager.cpp" />
     <ClCompile Include="Engine\SDL\AudioFacade.cpp" />
@@ -156,14 +157,12 @@
     <ClCompile Include="Engine\Textures\Texture.cpp" />
     <ClCompile Include="Engine\StorageManager.cpp" />
     <ClCompile Include="Engine\SDL\TimerFacade.cpp" />
-    <ClCompile Include="QuadTree.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="BoundaryRectangle.h" />
     <ClInclude Include="Engine.h" />
-    <ClInclude Include="Engine\Collider.h" />
     <ClInclude Include="Engine\SDL.h" />
     <ClInclude Include="Engine\Serialize.h" />
+    <ClInclude Include="Engine\State.h" />
     <ClInclude Include="Engine\Textures.h" />
     <ClInclude Include="Engine\Textures\AnimatedTexture.h" />
     <ClInclude Include="Engine\AssetManager.h" />
@@ -191,7 +190,9 @@
     <ClInclude Include="Engine\Textures\TextTexture.h" />
     <ClInclude Include="Engine\Textures\Texture.h" />
     <ClInclude Include="Engine\SDL\TimerFacade.h" />
-    <ClInclude Include="QuadTree.h" />
+    <ClInclude Include="Engine\State\State.h" />
+    <ClInclude Include="Engine\State\StateMachine.h" />
+    <ClInclude Include="StateContext.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

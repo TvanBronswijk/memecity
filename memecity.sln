@@ -13,6 +13,11 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "memecity.game", "memecity.g
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "memecity.engine.ecs", "memecity.engine.ecs\memecity.engine.ecs.vcxproj", "{D5A27F09-E7B0-49A2-BC01-B743FA2FD17A}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "memecity.engine.ui", "memecity.engine.ui\memecity.engine.ui.vcxproj", "{2EC6A73C-EDDB-4A88-89E9-FFD8FD4CB1E7}"
+	ProjectSection(ProjectDependencies) = postProject
+		{C3F37A8B-3CC6-4209-ADB5-35C2E95496CF} = {C3F37A8B-3CC6-4209-ADB5-35C2E95496CF}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -45,6 +50,14 @@ Global
 		{D5A27F09-E7B0-49A2-BC01-B743FA2FD17A}.Release|x64.Build.0 = Release|x64
 		{D5A27F09-E7B0-49A2-BC01-B743FA2FD17A}.Release|x86.ActiveCfg = Release|Win32
 		{D5A27F09-E7B0-49A2-BC01-B743FA2FD17A}.Release|x86.Build.0 = Release|Win32
+		{2EC6A73C-EDDB-4A88-89E9-FFD8FD4CB1E7}.Debug|x64.ActiveCfg = Debug|x64
+		{2EC6A73C-EDDB-4A88-89E9-FFD8FD4CB1E7}.Debug|x64.Build.0 = Debug|x64
+		{2EC6A73C-EDDB-4A88-89E9-FFD8FD4CB1E7}.Debug|x86.ActiveCfg = Debug|Win32
+		{2EC6A73C-EDDB-4A88-89E9-FFD8FD4CB1E7}.Debug|x86.Build.0 = Debug|Win32
+		{2EC6A73C-EDDB-4A88-89E9-FFD8FD4CB1E7}.Release|x64.ActiveCfg = Release|x64
+		{2EC6A73C-EDDB-4A88-89E9-FFD8FD4CB1E7}.Release|x64.Build.0 = Release|x64
+		{2EC6A73C-EDDB-4A88-89E9-FFD8FD4CB1E7}.Release|x86.ActiveCfg = Release|Win32
+		{2EC6A73C-EDDB-4A88-89E9-FFD8FD4CB1E7}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -13,6 +13,7 @@ namespace memecity::engine {
 		void update();
 		bool is_pressed(sdl::InputKeys key) const;
 		bool is_quit_pressed() const;
+		void quit();
 	};
 }
 
