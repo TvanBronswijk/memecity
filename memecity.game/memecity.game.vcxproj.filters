@@ -168,17 +168,16 @@
     <ClInclude Include="States.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-<<<<<<< HEAD
     <ClInclude Include="Systems\OverlaySystem.h">
       <Filter>Header Files\Systems</Filter>
     </ClInclude>
     <ClInclude Include="NPCFactory.h">
-=======
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="States\MenuState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="States\PauseMenuState.h">
->>>>>>> dev
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
