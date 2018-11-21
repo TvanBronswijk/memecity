@@ -25,7 +25,7 @@ void MenuState::init()
 		.with_back_menu_item()
 		.get_menu();
 
-	auto start_game = [&](MenuItem& menu_item) { _state_machine.create_state<GameState>(_context); };
+	auto start_game = [&](MenuItem& menu_item) { left_state = true; _state_machine.create_state<GameState>(_context); };
 	auto exit = [&](MenuItem& menu_item) {input_manager.quit(); };
 
 	menu = MenuBuilder(multimedia_manager)
@@ -38,6 +38,11 @@ void MenuState::init()
 
 void MenuState::update(float dt)
 {
+	if (left_state)
+	{
+		left_state = false;
+		_context.multimedia_manager.play_background_music("bgm-menu.mp3", 100);
+	}
 }
 
 void MenuState::draw()

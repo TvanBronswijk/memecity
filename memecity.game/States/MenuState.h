@@ -16,10 +16,11 @@ private:
 	{
 		return debounce_counter = 10;
 	}
+	bool left_state;
 
 public:
 	MenuState(memecity::engine::state::StateMachine& sm, memecity::engine::state::StateContext& sc)
-		: State(sm, sc), debounce_counter(reset_debounce_counter()) {}
+		: State(sm, sc), debounce_counter(reset_debounce_counter()), left_state(true) {}
 	void init() override;
 	void update(float dt) override;
 	void draw() override;

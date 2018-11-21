@@ -27,6 +27,7 @@ namespace memecity::engine {
 	void MultimediaManager::play_background_music(std::string const name, int const volume) const
 	{
 		auto& music = asset_manager->get_music(name);
+		audio_facade->stop_background_music();
 		audio_facade->play_background_music(music, volume);
 	}
 
