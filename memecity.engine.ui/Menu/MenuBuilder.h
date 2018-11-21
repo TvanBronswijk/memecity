@@ -11,11 +11,10 @@ namespace memecity::engine::ui::menu {
 	{
 	private:
 		MultimediaManager& multimedia_manager;
-		InputManager& input_manager;
 		std::unique_ptr<Menu> menu;
 	public:
-		MenuBuilder(MultimediaManager& multimedia_manager, InputManager& input_manager) 
-		: multimedia_manager(multimedia_manager), input_manager(input_manager) {}
+		MenuBuilder(MultimediaManager& multimedia_manager) 
+		: multimedia_manager(multimedia_manager) {}
 		MenuBuilder& create_menu(std::string title);
 
 		template<class... Args>

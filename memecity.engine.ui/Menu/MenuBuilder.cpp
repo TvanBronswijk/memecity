@@ -4,7 +4,7 @@ namespace memecity::engine::ui::menu {
 
 	MenuBuilder& MenuBuilder::create_menu(std::string title)
 	{
-		menu = std::make_unique<Menu>(multimedia_manager, input_manager, title);
+		menu = std::make_unique<Menu>(multimedia_manager, title);
 		return *this;
 	}
 

@@ -49,11 +49,11 @@ namespace memecity::engine::ui::menu {
 		is_locked = true;
 	}
 
-	void Menu::handle_up()
+	void Menu::next()
 	{
 		if (is_locked)
 		{
-			menu_items.at(selected_menu_items_index)->handle_up();
+			menu_items.at(selected_menu_items_index)->next();
 			return;
 		}
 
@@ -64,11 +64,11 @@ namespace memecity::engine::ui::menu {
 		}
 	}
 
-	void Menu::handle_down()
+	void Menu::previous()
 	{
 		if (is_locked)
 		{
-			menu_items.at(selected_menu_items_index)->handle_down();
+			menu_items.at(selected_menu_items_index)->previous();
 			return;
 		}
 
@@ -79,22 +79,22 @@ namespace memecity::engine::ui::menu {
 		}
 	}
 
-	void Menu::handle_enter()
+	void Menu::select()
 	{
 		if (is_locked)
 		{
-			menu_items.at(selected_menu_items_index)->handle_enter();
+			menu_items.at(selected_menu_items_index)->select();
 			return;
 		}
 
 		menu_items.at(selected_menu_items_index)->handle();
 	}
 
-	void Menu::handle_escape()
+	void Menu::back()
 	{
 		if (is_locked)
 		{
-			menu_items.at(selected_menu_items_index)->handle_escape();
+			menu_items.at(selected_menu_items_index)->back();
 			return;
 		}
 

@@ -8,8 +8,6 @@ namespace memecity::engine::ui::menu {
 	class MenuItem
 	{
 	private:
-		MultimediaManager& multimedia_manager;
-		InputManager& input_manager;
 		std::string text;
 		bool is_selected;
 		Menu& parent;
@@ -19,7 +17,7 @@ namespace memecity::engine::ui::menu {
 		std::unique_ptr<texture::TextTexture> selected_texture;
 
 	public:
-		MenuItem(MultimediaManager& multimedia_manager, InputManager& input_manager, Menu& parent, std::string text, Menu* sub_menu = nullptr, std::function<void(MenuItem& menu_item)> callback = nullptr);
+		MenuItem(MultimediaManager& multimedia_manager, Menu& parent, std::string text, Menu* sub_menu = nullptr, std::function<void(MenuItem& menu_item)> callback = nullptr);
 			
 		void set_selected(bool selected);
 		texture::TextTexture& get_texture() const;
@@ -27,10 +25,10 @@ namespace memecity::engine::ui::menu {
 		void unlock() const;
 		void handle();
 
-		void handle_up() const;
-		void handle_down() const;
-		void handle_enter() const;
-		void handle_escape() const;
+		void next() const;
+		void previous() const;
+		void select() const;
+		void back() const;
 	};
 };
 #endif

@@ -4,9 +4,8 @@
 using namespace memecity::engine;
 namespace memecity::engine::ui::menu {
 
-	MenuItem::MenuItem(MultimediaManager& multimedia_manager, InputManager& input_manager, Menu& parent, std::string text, Menu* sub_menu, std::function<void(MenuItem& menu_item)> callback)
-		: multimedia_manager(multimedia_manager), input_manager(input_manager), text(text),
-			is_selected(false), parent(parent), sub_menu(sub_menu), callback(callback)
+	MenuItem::MenuItem(MultimediaManager& multimedia_manager, Menu& parent, std::string text, Menu* sub_menu, std::function<void(MenuItem& menu_item)> callback)
+		:  text(text), is_selected(false), parent(parent), sub_menu(sub_menu), callback(callback)
 	{
 		standard_texture = multimedia_manager.get_text_texture(text, "Minecraftia-Regular.ttf", 24, { 255, 255, 255});
 		selected_texture = multimedia_manager.get_text_texture(text, "Minecraftia-Regular.ttf", 24, { 237, 210, 4 });
@@ -51,35 +50,35 @@ namespace memecity::engine::ui::menu {
 		}
 	}
 
-	void MenuItem::handle_up() const
+	void MenuItem::next() const
 	{
 		if (sub_menu != nullptr)
 		{
-			sub_menu->handle_up();
+			sub_menu->next();
 		}
 	}
 
-	void MenuItem::handle_down() const
+	void MenuItem::previous() const
 	{
 		if (sub_menu != nullptr)
 		{
-			sub_menu->handle_down();
+			sub_menu->previous();
 		}
 	}
 
-	void MenuItem::handle_enter() const
+	void MenuItem::select() const
 	{
 		if (sub_menu != nullptr)
 		{
-			sub_menu->handle_enter();
+			sub_menu->select();
 		}
 	}
 
-	void MenuItem::handle_escape() const
+	void MenuItem::back() const
 	{
 		if (sub_menu != nullptr)
 		{
-			sub_menu->handle_escape();
+			sub_menu->back();
 		}
 	}
 }
