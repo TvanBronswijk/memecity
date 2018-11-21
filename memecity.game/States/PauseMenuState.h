@@ -14,8 +14,8 @@ private:
 	}
 
 public:
-	PauseMenuState(memecity::engine::state::StateMachine& sm)
-		: State(sm) {}
+	PauseMenuState(memecity::engine::state::StateMachine& sm, memecity::engine::state::StateContext& sc)
+		: State(sm, sc) {}
 	void init() override;
 	void update(float dt) override;
 	void draw() override;

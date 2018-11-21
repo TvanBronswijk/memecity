@@ -9,11 +9,9 @@ namespace memecity::engine::state {
 	class StateMachine {
 	private:
 		std::stack<std::unique_ptr<State>> _stack;
-		StateContext _context;
 		void init() const;
 	public:
-		StateMachine(StateContext context)
-			: _context(context) {}
+		StateMachine() = default;
 		template<class T, class ... Args>
 		void create_state(Args&& ... args) {
 			static_assert(std::is_convertible<T*, State*>::value, "This function can only construct concrete subclasses of State");
@@ -31,10 +29,6 @@ namespace memecity::engine::state {
 			return *(_stack.top());
 		}
 
-		const StateContext& get_context() const
-		{
-			return _context; 
-		}
 		void update(float dt) const;
 		void draw() const;
 	};

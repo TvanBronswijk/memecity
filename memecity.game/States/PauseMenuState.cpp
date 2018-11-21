@@ -9,7 +9,7 @@ void PauseMenuState::init()
 	auto main_menu = [&](MenuItem& menu_item) { _state_machine.pop(2);  };
 
 
-	menu = MenuBuilder(_state_machine.get_context().multimedia_manager)
+	menu = MenuBuilder(_context.multimedia_manager)
 		.create_menu("Paused")
 		.with_menu_item("Resume Game", nullptr, resume_game)
 		.with_menu_item("Main menu", nullptr, main_menu)
@@ -24,7 +24,7 @@ void PauseMenuState::draw()
 {
 	menu->render();
 
-	auto& input_manager = _state_machine.get_context().input_manager;
+	auto& input_manager = _context.input_manager;
 	input_manager.update();
 	if (input_manager.is_pressed(memecity::engine::sdl::InputKeys::Up) && debounce_counter == 0)
 	{

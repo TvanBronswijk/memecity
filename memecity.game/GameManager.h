@@ -5,7 +5,8 @@
 class GameManager : public memecity::engine::MemeEngine
 {
 private:
-	memecity::engine::state::StateMachine _states{memecity::engine::state::StateContext{*this}};
+	memecity::engine::state::StateContext _context{ *this };
+	memecity::engine::state::StateMachine _states{};
 
 	protected:
 	void init() override;

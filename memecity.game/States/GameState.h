@@ -9,8 +9,8 @@ private:
 	memecity::engine::ecs::EntityManager entity_manager;
 	generate::CityGenerator city_generator;
 public:
-	GameState(memecity::engine::state::StateMachine& sm)
-		: State(sm){}
+	GameState(memecity::engine::state::StateMachine& sm, memecity::engine::state::StateContext& sc)
+		: State(sm, sc){}
 	void init() override;
 	void update(float dt) override;
 	void draw() override;

@@ -18,8 +18,8 @@ private:
 	}
 
 public:
-	MenuState(memecity::engine::state::StateMachine& sm)
-		: State(sm), debounce_counter(reset_debounce_counter()) {}
+	MenuState(memecity::engine::state::StateMachine& sm, memecity::engine::state::StateContext& sc)
+		: State(sm, sc), debounce_counter(reset_debounce_counter()) {}
 	void init() override;
 	void update(float dt) override;
 	void draw() override;

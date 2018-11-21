@@ -3,7 +3,7 @@
 
 void GameManager::init()
 {
-	_states.create_state<MenuState>();
+	_states.create_state<MenuState>(_context);
 }
 
 void GameManager::update(float dt)
