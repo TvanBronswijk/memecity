@@ -5,9 +5,11 @@ using namespace memecity::engine;
 namespace memecity::engine::ui::menu {
 
 	MenuItem::MenuItem(MultimediaManager& multimedia_manager, InputManager& input_manager, Menu& parent, std::string text, Menu* sub_menu, std::function<void(MenuItem& menu_item)> callback)
-		: multimedia_manager(multimedia_manager), input_manager(input_manager), text(text), standard_color(255, 255, 255),
-		selected_color(237, 210, 4), is_selected(false), parent(parent), sub_menu(sub_menu), callback(callback)
+		: multimedia_manager(multimedia_manager), input_manager(input_manager), text(text),
+			is_selected(false), parent(parent), sub_menu(sub_menu), callback(callback)
 	{
+		standard_texture = multimedia_manager.get_text_texture(text, "Minecraftia-Regular.ttf", 24, { 255, 255, 255});
+		selected_texture = multimedia_manager.get_text_texture(text, "Minecraftia-Regular.ttf", 24, { 237, 210, 4 });
 		if (sub_menu != nullptr)
 		{
 			sub_menu->set_parent(this);
@@ -19,17 +21,9 @@ namespace memecity::engine::ui::menu {
 		is_selected = selected;
 	}
 
-	std::unique_ptr<memecity::engine::texture::TextTexture> MenuItem::get_texture() const
+	texture::TextTexture& MenuItem::get_texture() const
 	{
-		return  multimedia_manager.get_text_texture(text, "Minecraftia-Regular.ttf", 24, is_selected ? selected_color : standard_color);
-	}
-
-	void MenuItem::handle_input()
-	{
-		if (sub_menu != nullptr)
-		{
-			sub_menu->handle_input();
-		}
+		return  is_selected ? *selected_texture : *standard_texture;
 	}
 
 	void MenuItem::render() const
@@ -54,6 +48,38 @@ namespace memecity::engine::ui::menu {
 		else if (sub_menu != nullptr)
 		{
 			parent.lock();
+		}
+	}
+
+	void MenuItem::handle_up() const
+	{
+		if (sub_menu != nullptr)
+		{
+			sub_menu->handle_up();
+		}
+	}
+
+	void MenuItem::handle_down() const
+	{
+		if (sub_menu != nullptr)
+		{
+			sub_menu->handle_down();
+		}
+	}
+
+	void MenuItem::handle_enter() const
+	{
+		if (sub_menu != nullptr)
+		{
+			sub_menu->handle_enter();
+		}
+	}
+
+	void MenuItem::handle_escape() const
+	{
+		if (sub_menu != nullptr)
+		{
+			sub_menu->handle_escape();
 		}
 	}
 }

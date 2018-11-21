@@ -21,15 +21,17 @@ namespace memecity::engine::state {
 			_stack.push(std::make_unique<T>(*this, std::forward<Args>(args)...));
 			init();
 		}
-		void pop() {
-			_stack.pop();
-
+		void pop(int items = 1) {
+			for (int i = 0; i < items; i++) 
+			{
+				_stack.pop();
+			}
 		}
 		State& current_state() const {
 			return *(_stack.top());
 		}
 
-		StateContext& get_context()
+		const StateContext& get_context() const
 		{
 			return _context; 
 		}
