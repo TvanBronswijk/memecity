@@ -34,7 +34,7 @@ void GameState::init()
 	for (size_t i = 0; i < 1; i++) {
 		float x = player.get<PositionComponent>()->x;//TODO: change when position can be placed correctly
 		float y = player.get<PositionComponent>()->y;//TODO: change when position can be placed correctly
-		npc_factory.getRandomNPC(100);
+		npc_factory.getRandomNPC(10, player.get<PositionComponent>()->x, player.get<PositionComponent>()->y);
 	}
 	auto& fighting_system = entity_manager.create_system<FightingSystem>(System::draw, multimedia_manager);
 	entity_manager.create_system<AISystem>();

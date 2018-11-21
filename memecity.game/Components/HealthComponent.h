@@ -13,9 +13,9 @@ public:
 	std::unique_ptr<memecity::engine::texture::Texture> texture;
 
 	HealthComponent(const memecity::engine::ecs::Entity& entity)
-		: HealthComponent(entity, nullptr) {}
-	HealthComponent(const memecity::engine::ecs::Entity& entity, std::unique_ptr<memecity::engine::texture::Texture> texture)
-		: memecity::engine::ecs::Component(entity), texture(std::move(texture)) {}
+		: HealthComponent(entity,0, nullptr) {}
+	HealthComponent(const memecity::engine::ecs::Entity& entity,int health, std::unique_ptr<memecity::engine::texture::Texture> texture)
+		: memecity::engine::ecs::Component(entity), maxhealth(health),health(health), texture(std::move(texture)) {}
 
 	memecity::engine::texture::Texture& get_texture()
 	{
