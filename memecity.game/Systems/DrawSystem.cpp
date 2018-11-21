@@ -14,7 +14,6 @@ void DrawSystem::run(EntityManager& em) const
 	for (DrawableComponent& drawable_component : drawable_components)
 	{	
 		auto& tex = drawable_component.get_texture();
-		//bool found = drawable_component.entity.has<VelocityComponent>();
 		if (drawable_component.entity != player_component)
 		{
 			tex.translate({ (player_position_component->diffx*-1) , player_position_component->diffy });

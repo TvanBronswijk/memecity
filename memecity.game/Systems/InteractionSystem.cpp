@@ -29,7 +29,7 @@ void InteractionSystem::on_interact(EntityManager &em, InteractionEventArgs args
 			auto text_texture = dynamic_cast<memecity::engine::texture::TextTexture*>(&interaction->get_texture());
 			auto npc_interaciton_texture = multimedia_manager.get_text_texture(interaction->smallTalk[1], "Minecraftia-Regular.ttf", 14, { 255,255,255 });
 			npc_interaciton_texture->set_position({ 0, -35 });
-			npc_interaciton_texture->set_parent(text_texture->get_parent());//??
+			npc_interaciton_texture->set_parent(text_texture->get_parent());
 			interaction->texture = std::move(npc_interaciton_texture);
 
 		}

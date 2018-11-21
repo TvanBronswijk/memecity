@@ -73,7 +73,4 @@ const memecity::engine::ecs::Entity& NPCFactory::getRandomNPC(int maxlevel, floa
 	return npc;
 }
 
-//const memecity::engine::ecs::Entity& NPCFactory::getNPC(int level) {
-//
-//}
 
