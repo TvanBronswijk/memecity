@@ -26,6 +26,18 @@ namespace memecity::engine {
 	public:
 		int run();
 		MemeEngine();
+		 MultimediaManager& get_multimedia_manager()
+		{
+			return multimedia_manager;
+		}
+		InputManager& get_input_manager()
+		{
+			return input_manager;
+		}
+		sdl::TimerFacade& get_timer() const
+		{
+			return *timer;
+		}
 	};
 }
 
