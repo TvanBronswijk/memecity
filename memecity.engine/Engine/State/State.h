@@ -6,8 +6,13 @@ namespace memecity::engine::state {
 	class State {
 	protected:
 		StateMachine& _state_machine;
+		StateContext& _context;
+
+
 	public:
-		State(StateMachine& sm) : _state_machine(sm) {};
+		State(StateMachine& sm, StateContext& sc) 
+		: _state_machine(sm), _context(sc) {}
+
 		State(const State &) = delete;
 		State(State &&) = delete;
 		State& operator=(const State&) = delete;
@@ -17,6 +22,11 @@ namespace memecity::engine::state {
 		virtual void draw() = 0;
 		virtual void back() const { _state_machine.pop(); }
 		virtual ~State() = default;
+
+		StateContext& get_context() 
+		{
+			return _context;
+		}
 	};
 }
 

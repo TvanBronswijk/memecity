@@ -21,7 +21,8 @@ namespace memecity::engine::sdl {
 		Six = SDL_SCANCODE_6,
 		Inventory = SDL_SCANCODE_TAB,
 		Attack = SDL_SCANCODE_SPACE,
-		Escape = SDL_SCANCODE_ESCAPE
+		Escape = SDL_SCANCODE_ESCAPE,
+		Enter = SDL_SCANCODE_RETURN
 	};
 }
 

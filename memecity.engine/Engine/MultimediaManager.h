@@ -45,6 +45,8 @@ namespace memecity::engine {
 
 		int get_screen_width() const;
 		int get_screen_height() const;
+
+		void set_fullscreen(bool fullscreen_enabled);
 	};
 }
 

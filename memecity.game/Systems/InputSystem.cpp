@@ -1,4 +1,6 @@
 ﻿#include "InputSystem.h"
+#include "Engine/State/State.h"
+#include "../States.h"
 
 using namespace memecity::engine;
 using namespace memecity::engine::ecs;
@@ -66,6 +68,9 @@ void InputSystem::run(EntityManager& em) const
 
 				}
 			}
+		}
+		if (this->input_manager.is_pressed(sdl::Escape)) {
+			state_machine.create_state<PauseMenuState>(state_machine.current_state().get_context());
 		}
 	}
 }
