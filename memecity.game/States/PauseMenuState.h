@@ -1,12 +1,12 @@
 ﻿#ifndef _PAUSE_MENU_STATE_H
 #define _PAUSE_MENU_STATE_H
 #include "Engine/State/State.h"
-#include "../Menu/Menu.h"
+#include <UI.h>
 
 class PauseMenuState : public memecity::engine::state::State
 {
 private:
-	std::unique_ptr<menu::Menu> menu;
+	std::unique_ptr<memecity::engine::ui::menu::Menu> menu;
 
 public:
 	PauseMenuState(memecity::engine::state::StateMachine& sm)
