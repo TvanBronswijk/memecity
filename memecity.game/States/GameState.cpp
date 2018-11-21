@@ -34,30 +34,12 @@ void GameState::init()
 	for (size_t i = 0; i < 1; i++) {
 		float x = player.get<PositionComponent>()->x;//TODO: change when position can be placed correctly
 		float y = player.get<PositionComponent>()->y;//TODO: change when position can be placed correctly
-
-		auto texture = multimedia_manager.get_animated_texture(timer, "SpriteSheet.png", 0, 0, 48, 48, 4, 0.5f, texture::AnimatedTexture::AnimationDirection::vertical);//did not move bcause of the *timer
-		texture->set_position({ x , y + (multimedia_manager.get_screen_height() - (y * 2)) });//TODO: change when position can be placed correctly
-
-		auto& npc = builder::EntityBuilder(entity_manager)
-			.create_entity()
-			.with_component<AIComponent>()
-			.with_component<VelocityComponent>()
-			.with_component<PositionComponent>(x, y)
-			.with_component<LevelComponent>(2)
-			.with_component<StatsComponent>()
-			.with_component<DrawableComponent>(std::move(texture))//body of npc
-			.with_component<HealthComponent>(multimedia_manager)
-			.with_component<InteractionComponent>(multimedia_manager)
-			.get();
-
+		npc_factory.getRandomNPC(100);
 	}
 	auto& fighting_system = entity_manager.create_system<FightingSystem>(System::draw, multimedia_manager);
 	entity_manager.create_system<AISystem>();
 	auto& interaciton_system = entity_manager.create_system<InteractionSystem>(System::draw, multimedia_manager);
 	entity_manager.create_system<OverlaySystem>(System::draw, multimedia_manager);
-
-	// end test	
-
 	entity_manager.create_system<AnimationSystem>(System::draw);
 	entity_manager.create_system<DrawSystem>(System::draw, multimedia_manager);
 	auto& input_system = entity_manager.create_system<InputSystem>(System::update, input_manager);

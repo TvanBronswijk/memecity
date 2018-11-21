@@ -7,13 +7,13 @@ void InteractionSystem::run(EntityManager &em) const {
 	for (auto& component : vector) {
 		auto text_texture = dynamic_cast<memecity::engine::texture::TextTexture*>(&component.get().get_texture());
 		if (text_texture->get_text() != " ") {
-			component.get().increment_timer();
-			if (component.get().get_timer() > 100) {
+			component.get().timer++;
+			if (component.get().timer > 100) {
 				auto npc_interaciton_texture = multimedia_manager.get_text_texture(" ", "Minecraftia-Regular.ttf", 14, { 255,255,255 });
 				npc_interaciton_texture->set_position({ 0, -35 });
 				npc_interaciton_texture->set_parent(text_texture->get_parent());//??
 				component.get().texture = std::move(npc_interaciton_texture);
-				component.get().reset_timer();
+				component.get().timer = 0;
 			}
 		}
 	}
