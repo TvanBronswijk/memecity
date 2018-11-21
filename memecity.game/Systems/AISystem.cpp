@@ -86,16 +86,16 @@ void AISystem::best_first_search(EntityManager& em, const PositionComponent& npc
 	auto direction = path.front();
 
 	if (npc_xy.x < direction.x) { 
-		if (!check_player_position_X(direction, end)) velocity->x += 2;
+		if (!check_player_position_X(direction, end)) velocity->x += 3;
 	}
 	else if(npc_xy.x > direction.x){
-		if(!check_player_position_X(direction, end)) velocity->x -= 2; 
+		if(!check_player_position_X(direction, end)) velocity->x -= 3; 
 	}
 	if (npc_xy.y > direction.y) {
-		if (!check_player_position_Y(direction, end)) velocity->y -= 2; 
+		if (!check_player_position_Y(direction, end)) velocity->y -= 3; 
 	}
 	else if(npc_xy.y < direction.y) {
-		if (!check_player_position_Y(direction, end)) velocity->y += 2; 
+		if (!check_player_position_Y(direction, end)) velocity->y += 3; 
 	}
 }
 
@@ -113,10 +113,10 @@ void AISystem::fleeing(EntityManager& em, const PositionComponent& npc_xy) const
 	auto& player_component = em.get_components_of_type<PlayerComponent>()[0].get();
 	auto player_position = player_component.entity.get<PositionComponent>();
 
-	if (npc_xy.x < player_position->x) { velocity->x -= 10; }
-	else if (npc_xy.x > player_position->x) { velocity->x += 10; }
-	if (npc_xy.y < player_position->y) { velocity->y -= 10; }
-	else if (npc_xy.y > player_position->y) { velocity->y += 10; }
+	if (npc_xy.x < player_position->x) { velocity->x -= 4; }
+	else if (npc_xy.x > player_position->x) { velocity->x += 4; }
+	if (npc_xy.y < player_position->y) { velocity->y -= 4; }
+	else if (npc_xy.y > player_position->y) { velocity->y += 4; }
 }
 
 void AISystem::run(EntityManager& em) const {
