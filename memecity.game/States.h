@@ -2,5 +2,6 @@
 #define MEMECITY_STATES_H
 
 #include "States\GameState.h"
-
+#include "States\MenuState.h"
+#include "States\PauseMenuState.h"
 #endif

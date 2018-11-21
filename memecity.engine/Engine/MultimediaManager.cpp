@@ -105,4 +105,9 @@ namespace memecity::engine {
 	{
 		return graphics_facade->screen_height;
 	}
+
+	void MultimediaManager::set_fullscreen(bool fullscreen_enabled)
+	{
+		graphics_facade->set_fullscreen(fullscreen_enabled);
+	}
 }

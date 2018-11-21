@@ -7,6 +7,9 @@ using namespace memecity::engine::ecs;
 
 void GameState::init()
 {
+	auto& multimedia_manager = _context.multimedia_manager;
+	auto& input_manager = _context.input_manager;
+	auto& timer = _context.timer;
 	city_generator.generate(24, 24, entity_manager, multimedia_manager);
 
 	auto texture = multimedia_manager.get_animated_texture(timer, "SpriteSheet.png", 0, 0, 48, 48, 4, 0.25f, texture::AnimatedTexture::AnimationDirection::vertical);
@@ -58,7 +61,7 @@ void GameState::init()
 
 	entity_manager.create_system<AnimationSystem>(System::draw);
 	entity_manager.create_system<DrawSystem>(System::draw, multimedia_manager);
-	auto& input_system = entity_manager.create_system<InputSystem>(System::update, input_manager);
+	auto& input_system = entity_manager.create_system<InputSystem>(System::update, input_manager, _state_machine);
 	auto& move_system = entity_manager.create_system<MoveSystem>();
 	//auto& collider_system = entity_manager.create_system<ColliderSystem>();
 

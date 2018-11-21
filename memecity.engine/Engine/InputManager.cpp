@@ -20,4 +20,9 @@ namespace memecity::engine {
 	{
 		return input_facade->is_quit_pressed();
 	}
+
+	void InputManager::quit()
+	{
+		input_facade->quit();
+	}
 }
