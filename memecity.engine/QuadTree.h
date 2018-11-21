@@ -4,7 +4,6 @@
 #include <utility>
 #include <vector>
 #include <memory>
-#include "Engine/Collider.h"
 #include "BoundaryRectangle.h"
 
 class QuadTree
@@ -24,7 +23,9 @@ private:
 	void subdivide();
 
 public:
-	QuadTree(std::size_t capacity, BoundaryRectangle boundary) : _capacity(capacity), _boundary(std::move(boundary)) {}
+	QuadTree() : _boundary(BoundaryRectangle(0.0f, 0.0f, 0.0f, 0.0f)) {}
+
+	QuadTree(int capacity, const BoundaryRectangle& boundary) : _capacity(capacity), _boundary(boundary) {}
 	
 	bool insert(const BoundaryRectangle& collider);
 	std::vector<BoundaryRectangle> query(const BoundaryRectangle& range);

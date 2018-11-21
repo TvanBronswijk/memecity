@@ -6,7 +6,8 @@
 class BoundaryRectangle : public Rectangle
 {
 public:
-	BoundaryRectangle(float x, float y, float w, float h) : Rectangle(x, y, w, h) {};
+	BoundaryRectangle(const float& x, const float& y, const float& w, const float& h) : Rectangle(x, y, w, h) {};
+
 	bool contains(const BoundaryRectangle &other) const
 	{
 		return this->contains(other.x, other.y);
@@ -27,6 +28,8 @@ public:
 			other.y - other.h > y + h ||
 			other.y + other.h < x - h);
 	}
+
+	~BoundaryRectangle() override = default;
 };
 
 #endif

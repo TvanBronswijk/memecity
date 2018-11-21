@@ -5,8 +5,7 @@ namespace memecity::engine {
 	MemeEngine::MemeEngine()
 	{
 		auto boundary = BoundaryRectangle(0, 0, 1356, 1356);
-		auto &test = boundary;
-		_quad_tree = QuadTree(4, test);
+		_quad_tree = QuadTree(4, boundary);
 		timer = std::make_unique<sdl::TimerFacade>();
 	}
 
