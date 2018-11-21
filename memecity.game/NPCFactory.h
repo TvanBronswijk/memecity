@@ -23,6 +23,7 @@ public:
 		memecity::engine::ecs::EntityManager& entity_manager) : multimedia_manager(multimedia_manager), timer(timer), entity_manager(entity_manager) {};
 
 	//const memecity::engine::ecs::Entity& getNPC(int level);
+	int random_int(int max);
 	const memecity::engine::ecs::Entity& getRandomNPC(int level, float x, float y);
 };
 

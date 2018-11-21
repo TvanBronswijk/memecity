@@ -5,30 +5,36 @@
 using namespace memecity::engine;
 using namespace memecity::engine::ecs;
 
-const memecity::engine::ecs::Entity& NPCFactory::getRandomNPC(int maxlevel, float x, float y) {
+int NPCFactory::random_int(int max) {
 	srand(time(NULL));
+	if (max <= 0) {
+		return 0;
+	}
+	return (rand() % max);
+}
 
+const memecity::engine::ecs::Entity& NPCFactory::getRandomNPC(int maxlevel, float x, float y) {
 	this->level = rand() % maxlevel + 1;
 	this->x = x;
 	this->y = y;
 
 	int points = level * 5;
-	int strength_points = (rand() % points) + 5;
+	int strength_points = random_int(points) + 5;
 	strength += strength_points;
 	points -= strength_points;
-	int perception_points = (rand() % points) + 5;
+	int perception_points = random_int(points) + 5;
 	perception += perception_points;
 	points -= perception_points;
-	int endurance_points = (rand() % points) + 5;
+	int endurance_points = random_int(points) + 5;
 	endurance += endurance_points;
 	points -= endurance_points;
-	int charisma_points = (rand() % points) + 5;
+	int charisma_points = random_int(points) + 5;
 	charisma += charisma_points;
 	points -= charisma_points;
-	int intelligence_points = (rand() % points) + 5;
+	int intelligence_points = random_int(points) + 5;
 	intelligence += intelligence_points;
 	points -= intelligence_points;
-	int agility_points = (rand() % points) + 5;
+	int agility_points = random_int(points) + 5;
 	agility += agility_points;
 	points -= agility_points;
 	luck += points + 5;
@@ -61,6 +67,7 @@ const memecity::engine::ecs::Entity& NPCFactory::getRandomNPC(int maxlevel, floa
 		.with_component<DrawableComponent>(std::move(animation_texture))//body of npc
 		.with_component<HealthComponent>(health, std::move(health_texture))
 		.with_component<InteractionComponent>(std::move(interaction_texture))
+		.with_component<AnimationComponent>()
 		.get();
 
 	return npc;

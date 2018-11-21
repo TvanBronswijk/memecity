@@ -29,7 +29,6 @@ namespace memecity::engine::texture {
 			return position;
 		}
 		auto parent_posititon = parent->get_position(world);
-		//auto local_position = RotateVector(position, parent->get_rotation(local));
 		auto new_position = parent_posititon + position;
 		return new_position;
 	}

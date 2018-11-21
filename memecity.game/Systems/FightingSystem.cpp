@@ -44,7 +44,7 @@ void FightingSystem::on_attack(EntityManager &em, AttackEventArgs args) {
 		drawable_health_target->texture = std::move(target_health_texture);
 	}
 
-	//if (AI != nullptr) {
-	//	AI->state = AIComponent::State::Fighting;
-	//}
+	if (AI != nullptr) {
+		AI->state = AIComponent::State::Fighting;
+	}
 }

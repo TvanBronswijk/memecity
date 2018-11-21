@@ -22,7 +22,7 @@ void MoveSystem::run(EntityManager& em) const
 		if (current_velocity_component->x != 0)
 		{
 			current_position->x += current_velocity_component->x;
-			current_position->diffx = current_velocity_component->x * 5;
+			current_position->diffx = current_velocity_component->x;
 			current_velocity_component->x = 0;
 		}
 		else
@@ -33,7 +33,7 @@ void MoveSystem::run(EntityManager& em) const
 		if (current_velocity_component->y != 0)
 		{
 			current_position->y += current_velocity_component->y;
-			current_position->diffy = current_velocity_component->y * 5;
+			current_position->diffy = current_velocity_component->y;
 			current_velocity_component->y = 0;
 		}
 		else
