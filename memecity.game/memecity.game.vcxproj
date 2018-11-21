@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ColliderComponent.h" />
     <ClInclude Include="Components.h" />
     <ClInclude Include="Components\AIComponent.h" />
     <ClInclude Include="Generate.h" />
@@ -27,7 +28,7 @@
     <ClInclude Include="Event\AttackEventArgs.h" />
     <ClInclude Include="Components\AnimationComponent.h" />
     <ClInclude Include="Systems\AnimationSystem.h" />
-    <ClInclude Include="Components\ColliderComponent.h" />
+    <ClInclude Include="Components\DimensionComponent.h" />
     <ClInclude Include="Event\ColliderEventArgs.h" />
     <ClInclude Include="Systems\ColliderSystem.h" />
     <ClInclude Include="Components\ExpComponent.h" />

@@ -4,8 +4,7 @@
 namespace memecity::engine {
 	MemeEngine::MemeEngine()
 	{
-		auto boundary = BoundaryRectangle(0, 0, 1356, 1356);
-		_quad_tree = QuadTree(4, boundary);
+		_quad_tree = QuadTree(4, {0, 0, 1356, 1356});
 		timer = std::make_unique<sdl::TimerFacade>();
 	}
 
@@ -23,7 +22,6 @@ namespace memecity::engine {
 					multimedia_manager.clear_graphics();
 					draw();
 					multimedia_manager.render_graphics();
-					_quad_tree.update();
 					timer->reset();
 				}
 			}

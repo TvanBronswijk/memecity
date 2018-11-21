@@ -4,6 +4,7 @@
 #include "Components\AIComponent.h"
 #include "Components\AnimationComponent.h"
 #include "Components\ColliderComponent.h"
+#include "Components\DimensionComponent.h"
 #include "Components\DrawableComponent.h"
 #include "Components\ExpComponent.h"
 #include "Components\HealthComponent.h"

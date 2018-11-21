@@ -12,11 +12,7 @@ generate::CityGenerator::CityGenerator()
 
 void generate::CityGenerator::generate(int w, int h, EntityManager& em, MultimediaManager &multimedia_manager, QuadTree &quad_tree) const
 {
-	auto zero = 0.0f;
-	auto screen_width = w * 64.0f;
-	auto screen_height = h * 64.0f;
-	auto boundary = BoundaryRectangle(zero, zero, screen_width, screen_height);
-	quad_tree = QuadTree(4, boundary);
+	quad_tree = QuadTree(16, Rectangle(0, 0, w * 64.0f, h * 64.0f));
 
 	const auto& c = this->strategy->generate(w, h);
 
@@ -51,15 +47,19 @@ void generate::CityGenerator::generate(int w, int h, EntityManager& em, Multimed
 				.with_component<DrawableComponent>(std::move(texture));
 			if (character == 'W' || character == 'w')
 			{
-				builder
-					.with_component<ColliderComponent>(64.0f, 64.0f)
-					.with_component<PositionComponent>(x * 64.0f, y * 64.0f);
+				auto& entity = builder
+					.with_component<DimensionComponent>(64.0f, 64.0f)
+					.with_component<PositionComponent>(x * 64.0f, y * 64.0f).get();
 
-				auto collider_x = x * 64.0f;
-				auto collider_y = y * 64.0f;
-				auto test = 64.0f;
-				auto boundary = BoundaryRectangle(collider_x, collider_y, test, test);
-				quad_tree.insert(boundary);
+				auto dimension_component = entity.get<DimensionComponent>();
+				auto position_component = entity.get<PositionComponent>();
+
+				builder
+				.with_component<ColliderComponent>(BoundaryRectangle(position_component->x, position_component->y, dimension_component->w, dimension_component->h));
+
+				auto collider_component = entity.get<ColliderComponent>();
+
+				quad_tree.insert(collider_component->boundary_rectangle);
 			}
 		}
 		std::cout << std::endl;

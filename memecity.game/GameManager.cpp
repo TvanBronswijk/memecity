@@ -14,21 +14,28 @@ void GameManager::init()
 
 	auto texture = multimedia_manager.get_animated_texture(*timer, "SpriteSheet.png", 0, 0, 48, 48, 4, 0.25f, texture::AnimatedTexture::AnimationDirection::vertical);
 	texture->set_position({ static_cast<float>(player_position_x), static_cast<float>(player_position_y) });
-	auto& player = builder::EntityBuilder(entity_manager)
+	auto builder = builder::EntityBuilder(entity_manager)
 		.create_entity()
 		.with_component<PlayerComponent>()
 		.with_component<AnimationComponent>()
-		.with_component<ColliderComponent>(64.0f, 64.0f)
+		.with_component<DimensionComponent>(64.0f, 64.0f)
 		.with_component<PositionComponent>(player_position_x, player_position_y)
 		.with_component<VelocityComponent>()
-		.with_component<DrawableComponent>(std::move(texture))
-		.get();
+		.with_component<DrawableComponent>(std::move(texture));
+
+	auto& player = builder.get();
+
 
 	auto position_component = player.get<PositionComponent>();
+	auto dimension_component = player.get<DimensionComponent>();
+
+	const auto player_collider = BoundaryRectangle(position_component->x, position_component->y, dimension_component->w, dimension_component->h);
+
+	builder.with_component<ColliderComponent>(player_collider);
+
 	auto collider_component = player.get<ColliderComponent>();
 
-	const auto player_collider = BoundaryRectangle(position_component->x, position_component->y, collider_component->w, collider_component->h);
-	_quad_tree.insert(player_collider);
+	_quad_tree.insert(collider_component->boundary_rectangle);
 
 	auto text_texture = multimedia_manager.get_text_texture("Health: 500", "Minecraftia-Regular.ttf", 16, { 255,255,255 });
 	text_texture->set_parent(&player.get<DrawableComponent>()->get_texture());
@@ -57,7 +64,7 @@ void GameManager::init()
 			.with_component<LevelComponent>()
 			.with_component<HealthComponent>(100)
 			.with_component<StatsComponent>()
-			.with_component<ColliderComponent>(64.0f, 64.0f)
+			.with_component<DimensionComponent>(64.0f, 64.0f)
 			.with_component<InteractionComponent>()
 			.with_component<DrawableComponent>(std::move(texture))
 			.with_component<PositionComponent>(x, y);
@@ -69,7 +76,7 @@ void GameManager::init()
 	entity_manager.create_system<DrawSystem>(System::draw, multimedia_manager);
 	auto& input_system = entity_manager.create_system<InputSystem>(System::update, input_manager);
 	auto& move_system = entity_manager.create_system<MoveSystem>();
-	auto& collider_system = entity_manager.create_system<ColliderSystem>();
+	auto& collider_system = entity_manager.create_system<ColliderSystem>(System::draw, _quad_tree);
 
 	// events
 	//input_system.interaction_event.bind([&](EntityManager& em, InteractionEventArgs args) { interaciton_system.on_interact(em, args); });
