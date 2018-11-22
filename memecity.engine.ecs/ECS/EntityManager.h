@@ -11,14 +11,14 @@
 #include "System.h"
 #include "Query/Query.h"
 
-namespace memecity::engine::ecs {	
+namespace memecity::engine::ecs {
 	using namespace query;
 	class EntityManager {
 	private:
 		int last_id = 0;
-		std::vector<Entity> entities;
-		std::map<TypeToken, std::vector<std::unique_ptr<Component>>> components;
-		std::map<System::Scope, std::map<TypeToken, std::unique_ptr<System>>> systems;
+		std::vector<std::unique_ptr<Entity>> entities;
+		std::unordered_map<TypeToken, std::vector<std::unique_ptr<Component>>> components;
+		std::unordered_map<System::Scope, std::unordered_map<TypeToken, std::unique_ptr<System>>> systems;
 
 		template<class T>
 		std::vector<std::reference_wrapper<T>> get_components() {
@@ -33,8 +33,8 @@ namespace memecity::engine::ecs {
 		///<summary>Creates a new entity with an unused ID.</summary>
 		Entity& create_entity()
 		{
-			entities.emplace_back(++last_id);
-			return entities.back();
+			entities.push_back(std::make_unique<Entity>(++last_id));
+			return *entities.back();
 		}
 
 		///<summary>Register a component to the EntityManager.</summary>
@@ -60,7 +60,11 @@ namespace memecity::engine::ecs {
 		///<summary>Get all entities</summary>
 		std::vector<std::reference_wrapper<const Entity>> get_entities() const
 		{
-			return std::vector<std::reference_wrapper<const Entity>>(entities.begin(), entities.end());
+			std::vector<std::reference_wrapper<const Entity>> result;
+			for (auto& e : entities) {
+				result.push_back(std::ref(*e));
+			}
+			return result;
 		}
 
 		///<summary>Get all entities with a certain component.</summary>
@@ -69,8 +73,8 @@ namespace memecity::engine::ecs {
 		{
 			std::vector<std::reference_wrapper<const Entity>> result;
 			for (auto& e : entities) {
-				if (e.has<C>()) {
-					result.push_back(std::ref(e));
+				if (e->has<C>()) {
+					result.push_back(std::ref(*e));
 				}
 			}
 			return result;
@@ -87,7 +91,7 @@ namespace memecity::engine::ecs {
 
 		///<summary>Get a query object.</summary>
 		template<class C>
-		ComponentQuery<C> query() 
+		ComponentQuery<C> query()
 		{
 			static_assert(std::is_convertible<C*, Component*>::value, "This function can only retrieve concrete subclasses of Component");
 			return ComponentQuery<C>(get_components<C>());

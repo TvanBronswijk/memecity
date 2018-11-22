@@ -4,14 +4,14 @@
 namespace memecity::engine::ecs {
 	struct Component {
 	private:
-		Entity& _entity;
+		Entity* _entity;
 	public:
-		Component(Entity& e) : _entity(e) {}
+		Component(Entity& e) : _entity(&e) {}
 		Component(const Component &) = delete;
 		Component(Component &&) = delete;
 		Component& operator=(const Component&) = delete;
 		Component& operator=(Component&&) = delete;
-		const Entity& entity() const { return _entity; }
+		const Entity& entity() const { return *_entity; }
 		virtual ~Component() = default;
 	};
 };

@@ -13,7 +13,7 @@ void GameState::init()
 
 	multimedia_manager.play_background_music("bgm-game.mp3", 100);
 
-	city_generator.generate(128, 128, entity_manager, multimedia_manager);
+	city_generator.generate(16, 16, entity_manager, multimedia_manager);
 
 	auto texture = multimedia_manager.get_animated_texture(timer, "SpriteSheet.png", 0, 0, 48, 48, 4, 0.25f, texture::AnimatedTexture::AnimationDirection::vertical);
 	texture->set_position({ static_cast<float>(multimedia_manager.get_screen_width()) / 2, static_cast<float>(multimedia_manager.get_screen_height()) / 2 });

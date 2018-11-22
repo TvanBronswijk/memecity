@@ -15,8 +15,10 @@ void MoveSystem::run(EntityManager& em) const
 		auto& player_component = em.get_components_of_type<PlayerComponent>()[0].get();
 
 		if (entity.get().id == player_component.entity().id) {
+#ifdef DEBUG
 			std::cout << "x: " <<current_position->x << " y: " << current_position->y << "\n";
 			std::cout << "diffx: " << current_position->diffx << " diffy: " << current_position->diffy << "\n";
+#endif
 		}
 
 		if (current_velocity_component->x != 0)

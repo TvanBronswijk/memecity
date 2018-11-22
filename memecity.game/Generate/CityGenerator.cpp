@@ -17,7 +17,9 @@ void generate::CityGenerator::generate(int w, int h, EntityManager& em, Multimed
 	for (int y = c.begin.y; y < c.end.y; y++) {
 		for (int x = c.begin.x; x < c.end.x; x++) {
 			auto& character = c(x, y);
+#ifdef DEBUG
 			std::cout << character;
+#endif
 			std::string filename;
 			switch (character)
 			{
@@ -50,6 +52,8 @@ void generate::CityGenerator::generate(int w, int h, EntityManager& em, Multimed
 					.with_component<PositionComponent>(x * 64.0f, y * 64.0f);
 			}
 		}
-		std::cout << std::endl;
+#ifdef DEBUG
+		std::cout << '\n';
+#endif
 	}
 }
