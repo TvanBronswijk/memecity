@@ -1,5 +1,6 @@
 ﻿#include "DrawSystem.h"
 #include <Engine\Textures.h>
+#include "../Components/VelocityComponent.h"
 
 using namespace memecity::engine::ecs;
 
@@ -9,9 +10,9 @@ void DrawSystem::run(EntityManager& em) const
 	auto player_position_component = player_component.get<PositionComponent>();
 
 	auto drawable_components = em.get_components_of_type<DrawableComponent>();
-
+	
 	for (DrawableComponent& drawable_component : drawable_components)
-	{
+	{	
 		auto& tex = drawable_component.get_texture();
 		if (player_position_component->entity() != drawable_component.entity())
 		{
@@ -29,6 +30,3 @@ void DrawSystem::run(EntityManager& em) const
 		}
 	}
 }
-
-
-

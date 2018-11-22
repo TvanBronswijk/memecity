@@ -7,7 +7,13 @@ using namespace memecity::engine::ecs;
 
 void GameState::init()
 {
-	city_generator.generate(64, 64, entity_manager, multimedia_manager);
+	auto& multimedia_manager = _context.multimedia_manager;
+	auto& input_manager = _context.input_manager;
+	auto& timer = _context.timer;
+
+	multimedia_manager.play_background_music("bgm-game.mp3", 100);
+
+	city_generator.generate(24, 24, entity_manager, multimedia_manager);
 
 	auto texture = multimedia_manager.get_animated_texture(timer, "SpriteSheet.png", 0, 0, 48, 48, 4, 0.25f, texture::AnimatedTexture::AnimationDirection::vertical);
 	texture->set_position({ static_cast<float>(multimedia_manager.get_screen_width()) / 2, static_cast<float>(multimedia_manager.get_screen_height()) / 2 });
@@ -31,34 +37,18 @@ void GameState::init()
 
 
 	//test to show an example  for a NPC
-	auto& fighting_system = entity_manager.create_system<FightingSystem>();
-	auto& ai_system = entity_manager.create_system<AISystem>();
-	auto& interaciton_system = entity_manager.create_system<InteractionSystem>();
-
 	for (size_t i = 0; i < 1; i++) {
-		float x = 10 * i;
-		float y = 10 * i;
-
-		auto texture = multimedia_manager.get_animated_texture(timer, "SpriteSheet.png", 0, 0, 48, 48, 4, 0.5f, texture::AnimatedTexture::AnimationDirection::vertical);
-		texture->set_position({ x , y + (multimedia_manager.get_screen_height() - (y * 2)) });
-
-		builder::EntityBuilder(entity_manager)
-			.create_entity()
-			.with_component<AIComponent>()
-			.with_component<VelocityComponent>()
-			.with_component<LevelComponent>()
-			.with_component<HealthComponent>(100)
-			.with_component<StatsComponent>()
-			.with_component<InteractionComponent>()
-			.with_component<DrawableComponent>(std::move(texture))
-			.with_component<PositionComponent>(x, y);
-
+		float x = player.get<PositionComponent>()->x;//TODO: change when position can be placed correctly
+		float y = player.get<PositionComponent>()->y;//TODO: change when position can be placed correctly
+		npc_factory.getRandomNPC(100, player.get<PositionComponent>()->x, player.get<PositionComponent>()->y);
 	}
-	// end test	
-
+	auto& fighting_system = entity_manager.create_system<FightingSystem>(System::draw, multimedia_manager);
+	entity_manager.create_system<AISystem>();
+	auto& interaciton_system = entity_manager.create_system<InteractionSystem>(System::draw, multimedia_manager);
+	entity_manager.create_system<OverlaySystem>(System::draw, multimedia_manager);
 	entity_manager.create_system<AnimationSystem>(System::draw);
 	entity_manager.create_system<DrawSystem>(System::draw, multimedia_manager);
-	auto& input_system = entity_manager.create_system<InputSystem>(System::update, input_manager);
+	auto& input_system = entity_manager.create_system<InputSystem>(System::update, input_manager, _state_machine);
 	auto& move_system = entity_manager.create_system<MoveSystem>();
 	//auto& collider_system = entity_manager.create_system<ColliderSystem>();
 

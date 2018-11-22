@@ -27,6 +27,7 @@ namespace memecity::engine {
 	void MultimediaManager::play_background_music(std::string const name, int const volume) const
 	{
 		auto& music = asset_manager->get_music(name);
+		audio_facade->stop_background_music();
 		audio_facade->play_background_music(music, volume);
 	}
 
@@ -104,5 +105,10 @@ namespace memecity::engine {
 	int MultimediaManager::get_screen_height() const
 	{
 		return graphics_facade->screen_height;
+	}
+
+	void MultimediaManager::set_fullscreen(bool fullscreen_enabled)
+	{
+		graphics_facade->set_fullscreen(fullscreen_enabled);
 	}
 }

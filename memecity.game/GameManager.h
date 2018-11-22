@@ -5,8 +5,10 @@
 class GameManager : public memecity::engine::MemeEngine
 {
 private:
-	memecity::engine::state::StateMachine _states;
-protected:
+	memecity::engine::state::StateContext _context{ *this };
+	memecity::engine::state::StateMachine _states{};
+
+	protected:
 	void init() override;
 	void update(float dt) override;
 	void draw() override;

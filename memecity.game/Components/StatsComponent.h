@@ -2,6 +2,7 @@
 #define _STATS_COMPONENT_H
 #include <ECS.h>
 #include <string>
+#include "LevelComponent.h"
 
 struct StatsComponent: public memecity::engine::ecs::Component
 {

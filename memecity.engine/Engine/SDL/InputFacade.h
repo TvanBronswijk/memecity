@@ -21,6 +21,10 @@ namespace memecity::engine::sdl {
 
 		///<summary>Returns whether quit is pressed.</summary>
 		bool is_quit_pressed() const;
+		void quit()
+		{
+			quit_pressed = true;
+		}
 	};
 }
 
