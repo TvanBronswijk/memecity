@@ -47,8 +47,8 @@ bool AISystem::check_player_position_X(Point location , Point end) const{
 }
 
 
-void AISystem::best_first_search(EntityManager& em, PositionComponent& npc_xy) const{
-	auto velocity = npc_xy.entity.get<VelocityComponent>();
+void AISystem::best_first_search(EntityManager& em, const PositionComponent& npc_xy) const{
+	auto velocity = npc_xy.entity().get<VelocityComponent>();
 	auto& player_component = em.get_components_of_type<PlayerComponent>()[0].get();
 
 	auto player_position = player_component.entity().get<PositionComponent>();
@@ -109,9 +109,9 @@ void AISystem::move_random(const Entity& entity) const{
 }
 
 void AISystem::fleeing(EntityManager& em, const PositionComponent& npc_xy) const { 
-	auto velocity = npc_xy.entity.get<VelocityComponent>();
+	auto velocity = npc_xy.entity().get<VelocityComponent>();
 	auto& player_component = em.get_components_of_type<PlayerComponent>()[0].get();
-	auto player_position = player_component.entity.get<PositionComponent>();
+	auto player_position = player_component.entity().get<PositionComponent>();
 
 	if (npc_xy.x < player_position->x) { velocity->x -= 4; }
 	else if (npc_xy.x > player_position->x) { velocity->x += 4; }
@@ -136,7 +136,7 @@ void AISystem::run(EntityManager& em) const {
 				fleeing(em, *xy);
 				break;
 			case AIComponent::State::Roaming:
-				move_random(element.get().entity);
+				move_random(element.get().entity());
 				break;
 			case AIComponent::State::Idle:
 				break;

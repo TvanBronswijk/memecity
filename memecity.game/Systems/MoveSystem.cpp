@@ -8,13 +8,13 @@ void MoveSystem::run(EntityManager& em) const
 {
 	auto entities = em.get_entities_with_component<VelocityComponent>();
 
-	for (auto entity : entities)
+	for (auto& entity : entities)
 	{
 		auto current_position = entity.get().get<PositionComponent>();
 		auto current_velocity_component = entity.get().get<VelocityComponent>();
 		auto& player_component = em.get_components_of_type<PlayerComponent>()[0].get();
 
-		if (entity.get().id == player_component.entity.id) {
+		if (entity.get().id == player_component.entity().id) {
 			std::cout << "x: " <<current_position->x << " y: " << current_position->y << "\n";
 			std::cout << "diffx: " << current_position->diffx << " diffy: " << current_position->diffy << "\n";
 		}
