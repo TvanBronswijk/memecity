@@ -162,6 +162,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine.h" />
+    <ClInclude Include="Engine\Exceptions.h" />
+    <ClInclude Include="Engine\Exceptions\MemeException.h" />
+    <ClInclude Include="Engine\Exceptions\SDLException.h" />
     <ClInclude Include="Engine\SDL.h" />
     <ClInclude Include="Engine\Serialize.h" />
     <ClInclude Include="Engine\State.h" />

@@ -1,9 +1,11 @@
 #include "GraphicsFacade.h"
 #include <SDL_image.h>
+#include "..\Exceptions.h"
 #include "Wrappers\RawTextureWrapper.h"
 #include "Wrappers\RawFontWrapper.h"
 
 namespace memecity::engine::sdl {
+	using namespace exceptions;
 	GraphicsFacade::GraphicsFacade(bool is_fullscreen) : is_initialized(false)
 	{
 		this->is_fullscreen = is_fullscreen;
@@ -15,23 +17,20 @@ namespace memecity::engine::sdl {
 	{
 		if (SDL_Init(SDL_INIT_VIDEO) < 0)
 		{
-			printf("SDL initialization error: %s\n", SDL_GetError());
-			return false;
+			throw SDLException(Level::error, SDL_GetError());
 		}
 
 		sdl_window = std::make_unique<RawWindowWrapper>(SDL_CreateWindow("MemeCity", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, screen_width, screen_height, SDL_WINDOW_SHOWN));
 		if (sdl_window == nullptr)
 		{
-			printf("Window creation error: %s\n", SDL_GetError());
-			return false;
+			throw SDLException(Level::error, SDL_GetError());
 		}
 
 		if (is_fullscreen)
 		{
 			if (SDL_SetWindowFullscreen(sdl_window->get(), SDL_WINDOW_FULLSCREEN_DESKTOP) != 0)
 			{
-				printf("Window FullScreen error: %s\n", SDL_GetError());
-				return false;
+				throw SDLException(Level::error, SDL_GetError());
 			}
 		}
 
@@ -40,14 +39,12 @@ namespace memecity::engine::sdl {
 		sdl_renderer = std::make_unique<RawRendererWrapper>(SDL_CreateRenderer(sdl_window->get(), -1, SDL_RENDERER_ACCELERATED));
 		if (sdl_renderer == nullptr)
 		{
-			printf("Renderer creation error: %s\n", SDL_GetError());
-			return false;
+			throw SDLException(Level::error, SDL_GetError());
 		}
 
 		if (TTF_Init() == -1)
 		{
-			printf("TTF initialization error: %s\n", TTF_GetError());
-			return false;
+			throw SDLException(Level::error, SDL_GetError());
 		}
 
 		window_surface = std::make_unique<RawSurfaceWrapper>(SDL_GetWindowSurface(sdl_window->get()));
@@ -60,15 +57,13 @@ namespace memecity::engine::sdl {
 		std::unique_ptr<RawSurfaceWrapper> surface = std::make_unique<RawSurfaceWrapper>(IMG_Load(path.c_str()));
 		if (surface->get() == nullptr)
 		{
-			printf("Image load error: Path(%s) - Error(%s)\n", path.c_str(), IMG_GetError());
-			return texture;
+			throw SDLException(Level::error, IMG_GetError());
 		}
 
 		texture = std::make_unique<RawTextureWrapper>(SDL_CreateTextureFromSurface(sdl_renderer->get(), surface->get()));
 		if (texture->get() == nullptr)
 		{
-			printf("Create texture error: %s\n", IMG_GetError());
-			return texture;
+			throw SDLException(Level::error, IMG_GetError());
 		}
 
 		return texture;
@@ -80,14 +75,12 @@ namespace memecity::engine::sdl {
 
 		if (surface->get() == nullptr)
 		{
-			printf("Text render error: %s\n", TTF_GetError());
-			return nullptr;
+			throw SDLException(Level::error, IMG_GetError());
 		}
 		std::unique_ptr<RawTextureWrapper> texture = std::make_unique<RawTextureWrapper>(SDL_CreateTextureFromSurface(sdl_renderer->get(), surface->get()));
 		if (texture->get() == nullptr)
 		{
-			printf("Text texture creation error: %s\n", SDL_GetError());
-			return nullptr;
+			throw SDLException(Level::error, IMG_GetError());
 		}
 
 		return texture;
@@ -130,14 +123,14 @@ namespace memecity::engine::sdl {
 		{
 			if (SDL_SetWindowFullscreen(sdl_window->get(), SDL_WINDOW_FULLSCREEN_DESKTOP) != 0)
 			{
-				printf("Window FullScreen error: %s\n", SDL_GetError());
+				throw SDLException(Level::error, SDL_GetError());
 			}
 		}
 		else
 		{
 			if (SDL_SetWindowFullscreen(sdl_window->get(), 0) != 0)
 			{
-				printf("Window FullScreen Disable error: %s\n", SDL_GetError());
+				throw SDLException(Level::error, SDL_GetError());
 			}
 		}
 		SDL_GetWindowSize(sdl_window->get(), &screen_width, &screen_height);
