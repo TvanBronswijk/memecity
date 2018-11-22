@@ -191,7 +191,7 @@
     <ClInclude Include="Engine\State.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="StateContext.h">
+    <ClInclude Include="Engine\State\StateContext.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

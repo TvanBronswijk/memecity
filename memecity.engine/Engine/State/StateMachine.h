@@ -2,7 +2,6 @@
 #define _STATE_MACHINE_H
 #include <memory>
 #include <stack>
-#include "../../StateContext.h"
 
 namespace memecity::engine::state {
 	class State;

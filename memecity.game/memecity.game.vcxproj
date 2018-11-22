@@ -27,7 +27,7 @@
     <ClInclude Include="Generate\Strategy\BSP\Fills\Fill.h" />
     <ClInclude Include="Generate\Strategy\BSP\Fills\Park.h" />
     <ClInclude Include="Generate\Strategy\BSP\Fills\Prefab.h" />
-    <ClInclude Include="NPCFactory.h" />
+    <ClInclude Include="Factory\NPCFactory.h" />
     <ClInclude Include="States\GameState.h" />
     <ClInclude Include="States.h" />
     <ClInclude Include="States\MenuState.h" />
@@ -64,7 +64,7 @@
     <ClInclude Include="Systems\OverlaySystem.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="NPCFactory.cpp" />
+    <ClCompile Include="Factory\NPCFactory.cpp" />
     <ClCompile Include="States\GameState.cpp" />
     <ClCompile Include="States\MenuState.cpp" />
     <ClCompile Include="States\PauseMenuState.cpp" />

@@ -3,7 +3,7 @@
 #include <Engine.h>
 #include <ECS.h>
 #include "..\Generate.h"
-#include "..\NPCFactory.h"
+#include "..\Factory\NPCFactory.h"
 
 struct GameState : public memecity::engine::state::State {
 private:
