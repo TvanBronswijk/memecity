@@ -21,9 +21,11 @@ private:
 public:
 	MenuState(memecity::engine::state::StateMachine& sm, memecity::engine::state::StateContext& sc)
 		: State(sm, sc), debounce_counter(reset_debounce_counter()), left_state(true) {}
-	void init() override;
+	void on_load() override;
 	void update(float dt) override;
 	void draw() override;
+	void on_enter() override;
+	void on_exit() override;
 	~MenuState() = default;
 
 };

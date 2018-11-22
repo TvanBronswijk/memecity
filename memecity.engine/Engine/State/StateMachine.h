@@ -18,16 +18,8 @@ namespace memecity::engine::state {
 			_stack.push(std::make_unique<T>(*this, std::forward<Args>(args)...));
 			init();
 		}
-		void pop(int items = 1) {
-			for (int i = 0; i < items; i++) 
-			{
-				_stack.pop();
-			}
-		}
-		State& current_state() const {
-			return *(_stack.top());
-		}
-
+		void pop(int items = 1);
+		State& current_state() const;
 		void update(float dt) const;
 		void draw() const;
 	};

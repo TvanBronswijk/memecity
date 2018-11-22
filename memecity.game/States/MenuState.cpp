@@ -4,10 +4,10 @@
 
 using namespace memecity::engine::ui::menu;
 
-void MenuState::init()
+void MenuState::on_load()
 {
-	auto& multimedia_manager = _context.multimedia_manager;
-	auto& input_manager = _context.input_manager;
+	auto& multimedia_manager = _context->multimedia_manager;
+	auto& input_manager = _context->input_manager;
 
 	auto enable_fullscreen = [&](MenuItem& menu_item) { multimedia_manager.set_fullscreen(true); };
 	auto disable_fullscreen = [&](MenuItem& menu_item) { multimedia_manager.set_fullscreen(false); };
@@ -25,7 +25,7 @@ void MenuState::init()
 		.with_back_menu_item()
 		.get_menu();
 
-	auto start_game = [&](MenuItem& menu_item) { left_state = true; _state_machine.create_state<GameState>(_context); };
+	auto start_game = [&](MenuItem& menu_item) { left_state = true; next<GameState>(*_context); };
 	auto exit = [&](MenuItem& menu_item) {input_manager.quit(); };
 
 	menu = MenuBuilder(multimedia_manager)
@@ -38,18 +38,8 @@ void MenuState::init()
 
 void MenuState::update(float dt)
 {
-	if (left_state)
-	{
-		left_state = false;
-		_context.multimedia_manager.play_background_music("bgm-menu.mp3", 100);
-	}
-}
 
-void MenuState::draw()
-{
-	menu->render();
-
-	auto& input_manager = _context.input_manager;
+	auto& input_manager = _context->input_manager;
 	input_manager.update();
 	if (input_manager.is_pressed(memecity::engine::sdl::InputKeys::Up) && debounce_counter == 0)
 	{
@@ -79,4 +69,19 @@ void MenuState::draw()
 			debounce_counter = 0;
 		}
 	}
+}
+
+void MenuState::draw()
+{
+	menu->render();
+}
+
+void MenuState::on_enter()
+{
+	_context->multimedia_manager.play_background_music("bgm-menu.mp3", 100);
+}
+
+void MenuState::on_exit()
+{
+	
 }

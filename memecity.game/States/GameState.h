@@ -13,9 +13,11 @@ private:
 public:
 	GameState(memecity::engine::state::StateMachine& sm, memecity::engine::state::StateContext& sc)
 		: State(sm, sc){}
-	void init() override;
+	void on_load() override;
 	void update(float dt) override;
 	void draw() override;
+	void on_enter() override;
+	void on_exit() override;
 	~GameState() = default;
 };
 

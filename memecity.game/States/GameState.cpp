@@ -5,13 +5,11 @@
 using namespace memecity::engine;
 using namespace memecity::engine::ecs;
 
-void GameState::init()
+void GameState::on_load()
 {
-	auto& multimedia_manager = _context.multimedia_manager;
-	auto& input_manager = _context.input_manager;
-	auto& timer = _context.timer;
-
-	multimedia_manager.play_background_music("bgm-game.mp3", 100);
+	auto& multimedia_manager = _context->multimedia_manager;
+	auto& input_manager = _context->input_manager;
+	auto& timer = _context->timer;
 
 	city_generator.generate(16, 16, entity_manager, multimedia_manager);
 
@@ -48,7 +46,7 @@ void GameState::init()
 	entity_manager.create_system<OverlaySystem>(System::draw, multimedia_manager);
 	entity_manager.create_system<AnimationSystem>(System::draw);
 	entity_manager.create_system<DrawSystem>(System::draw, multimedia_manager);
-	auto& input_system = entity_manager.create_system<InputSystem>(System::update, input_manager, _state_machine);
+	auto& input_system = entity_manager.create_system<InputSystem>(System::update, input_manager, *_state_machine);
 	auto& move_system = entity_manager.create_system<MoveSystem>();
 	//auto& collider_system = entity_manager.create_system<ColliderSystem>();
 
@@ -66,4 +64,14 @@ void GameState::update(float dt)
 void GameState::draw()
 {
 	entity_manager.update(System::draw);
+}
+
+void GameState::on_enter()
+{
+	_context->multimedia_manager.play_background_music("bgm-game.mp3", 100);
+}
+
+void GameState::on_exit()
+{
+	
 }

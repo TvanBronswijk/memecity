@@ -7,7 +7,6 @@
 
 
 namespace memecity::engine::state {
-
 	struct StateContext
 	{
 		MultimediaManager& multimedia_manager;
