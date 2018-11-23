@@ -14,9 +14,10 @@ namespace memecity::engine {
 			{
 				timer.update();
 				update(timer.get_delta_time());
+				input_manager.update();
+				
 				if (timer.get_delta_time() >= 1.0f / 60)
-				{
-					input_manager.update();
+				{	
 					multimedia_manager.clear_graphics();
 					draw();
 					multimedia_manager.render_graphics();

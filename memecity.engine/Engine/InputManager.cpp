@@ -11,9 +11,30 @@ namespace memecity::engine {
 		input_facade->update();
 	}
 
-	bool InputManager::is_pressed(sdl::InputKeys key) const
+	bool InputManager::is_pressed(sdl::InputKeys key)
 	{
-		return input_facade->is_pressed(key);
+		if (_is_pressed.find(key) == _is_pressed.end()) {
+			_is_pressed[key] = input_facade->is_down(key);
+		}
+		else {
+			if (input_facade->is_down(key)) {
+				if (_is_pressed.at(key)) {
+					return false;
+				}
+				else {
+					_is_pressed[key] = input_facade->is_down(key);
+				}
+			}
+			else {
+				_is_pressed[key] = input_facade->is_down(key);
+			}
+		}
+		return _is_pressed.at(key);
+	}
+
+	bool InputManager::is_down(sdl::InputKeys key) const
+	{
+		return input_facade->is_down(key);
 	}
 
 	bool InputManager::is_quit_pressed() const

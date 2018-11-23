@@ -28,31 +28,31 @@ void InputSystem::run(EntityManager& em) const
 			
 		auto animation_component = entity.get().get<AnimationComponent>();
 
-		if (this->input_manager.is_pressed(sdl::Attack))
+		if (this->input_manager.is_down(sdl::Attack))
 		{
 			animation_component->is_fighting = true;
 		}
-		if (this->input_manager.is_pressed(sdl::Up))
+		if (this->input_manager.is_down(sdl::Up))
 		{
 #ifdef DEBUG
 			std::cout << "walking /n";
 #endif
 			velocity_component->y += 5;
 		}
-		if (this->input_manager.is_pressed(sdl::Down))
+		if (this->input_manager.is_down(sdl::Down))
 		{
 			velocity_component->y -= 5;
 		}
-		if (this->input_manager.is_pressed(sdl::Left))
+		if (this->input_manager.is_down(sdl::Left))
 		{
 			velocity_component->x -= 5;
 		}
-		if (this->input_manager.is_pressed(sdl::Right))
+		if (this->input_manager.is_down(sdl::Right))
 		{
 			velocity_component->x += 5;
 		}
 		//test for interaction with NPC
-		if (this->input_manager.is_pressed(sdl::Interaction))
+		if (this->input_manager.is_down(sdl::Interaction))
 		{
 			auto vector = em.get_components_of_type<AIComponent>();
 			for (auto& element : vector) {
@@ -61,7 +61,7 @@ void InputSystem::run(EntityManager& em) const
 				}
 			}
 		}
-		if (this->input_manager.is_pressed(sdl::Attack)) {
+		if (this->input_manager.is_down(sdl::Attack)) {
 			auto player = em.get_components_of_type<PlayerComponent>()[0];
 			auto vector = em.get_components_of_type<AIComponent>();
 			for (auto & element : vector) {
