@@ -1,5 +1,6 @@
 ﻿#ifndef _MENU_H
 #define  _MENU_H
+#include <atomic>
 #include <vector>
 #include <memory>
 #include <Engine.h>
@@ -12,7 +13,7 @@ namespace memecity::engine::ui::menu {
 		std::vector<std::unique_ptr<MenuItem>> menu_items;
 		size_t selected_menu_items_index;
 		MultimediaManager& multimedia_manager;
-		bool is_locked;
+		std::atomic<bool> is_locked;
 		MenuItem* parent;
 		std::string title;
 		std::unique_ptr<texture::TextTexture> title_texture;

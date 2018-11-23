@@ -9,7 +9,6 @@ namespace memecity::engine::ui::menu {
 			menu_items.at(selected_menu_items_index)->render();
 			return;
 		}
-		multimedia_manager.clear_graphics();
 
 		Vector2 position{ multimedia_manager.get_screen_width() / 2.0f, 200 };
 		title_texture->set_position(position);
@@ -20,14 +19,12 @@ namespace memecity::engine::ui::menu {
 		for (auto& menu_item : menu_items)
 		{
 			menu_item->set_selected(index == selected_menu_items_index);
-			auto texture = menu_item->get_texture();
+			auto& texture = menu_item->get_texture();
 			texture.translate(position);
 			position.y += 30;
 			multimedia_manager.render_text_texture(texture);
 			index++;
 		}
-
-		multimedia_manager.render_graphics();
 	}
 
 	void Menu::set_parent(MenuItem* parent)
