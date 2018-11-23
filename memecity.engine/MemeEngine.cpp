@@ -69,8 +69,10 @@ namespace memecity::engine {
 			switch (flag) {
 			case Threading::multithreaded:
 				set_runnable([this]() { return run_multi(); });
+				break;
 			case Threading::singlethreaded:
 				set_runnable([this]() { return run_single(); });
+				break;
 			}
 			return _runnable();
 		}
