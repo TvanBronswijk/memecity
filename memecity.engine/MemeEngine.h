@@ -11,8 +11,18 @@ namespace memecity::engine {
 		class TimerFacade;
 	};
 
+
+	enum class Threading {
+		///<summary>[EXPERIMENTAL]</summary>
+		multithreaded, 
+		singlethreaded
+	};
+
 	class MemeEngine
 	{
+	private:
+		int run_multi();
+		int run_single();
 	protected:
 		StorageManager storage_manager;
 		MultimediaManager multimedia_manager{ false };
@@ -24,7 +34,7 @@ namespace memecity::engine {
 		virtual void draw() = 0;
 
 	public:
-		int run();
+		int run(Threading flag = Threading::singlethreaded);
 		MemeEngine();
 		 MultimediaManager& get_multimedia_manager()
 		{
