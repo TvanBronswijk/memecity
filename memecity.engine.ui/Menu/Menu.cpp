@@ -1,4 +1,5 @@
 ﻿#include "Menu.h"
+#include <iostream>
 
 namespace memecity::engine::ui::menu {
 
@@ -20,7 +21,7 @@ namespace memecity::engine::ui::menu {
 		{
 			menu_item->set_selected(index == selected_menu_items_index);
 			auto& texture = menu_item->get_texture();
-			texture.translate(position);
+			texture.set_position(position);
 			position.y += 30;
 			multimedia_manager.render_text_texture(texture);
 			index++;

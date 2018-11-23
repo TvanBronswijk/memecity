@@ -46,13 +46,12 @@ namespace memecity::engine {
 
 	int MemeEngine::run_single()
 	{
-
 		while (!input_manager.is_quit_pressed())
 		{
 			timer.update();
 			input_manager.update();
 			update(timer.get_delta_time());
-			if (timer.get_delta_time() >= 1.0f / 60)
+			if (timer.get_delta_time() >= 1.0f / 60.0f)
 			{
 				multimedia_manager.clear_graphics();
 				draw();
@@ -69,9 +68,9 @@ namespace memecity::engine {
 			init();
 			switch (flag) {
 			case Threading::multithreaded:
-				set_runnable([&]() { return run_multi(); });
+				set_runnable([this]() { return run_multi(); });
 			case Threading::singlethreaded:
-				set_runnable([&]() { return run_single(); });
+				set_runnable([this]() { return run_single(); });
 			}
 			return _runnable();
 		}
