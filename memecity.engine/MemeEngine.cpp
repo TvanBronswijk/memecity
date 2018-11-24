@@ -18,28 +18,17 @@ int multithreaded(memecity::engine::MemeEngine& engine)
 			engine.update(engine.get_timer().get_delta_time());
 		}
 	});
-
-	std::thread ui([&]() {
-#ifdef DEBUG
-		std::cout << "	ui thread: " << std::this_thread::get_id() << '\n';
-#endif
-		while (!engine.get_input_manager().is_quit_pressed()) {
-			if (engine.get_timer().get_delta_time() >= 1.0f / 60.0f) {
-				engine.get_multimedia_manager().clear_graphics();
-				engine.draw();
-				engine.get_multimedia_manager().render_graphics();
-				engine.get_timer().reset();
-			}
-		}
-	});
 	while (!engine.get_input_manager().is_quit_pressed()) {
 		engine.get_timer().update();
 		engine.get_input_manager().update();
+		if (engine.get_timer().get_delta_time() >= 1.0f / 60.0f) {
+			engine.get_multimedia_manager().clear_graphics();
+			engine.draw();
+			engine.get_multimedia_manager().render_graphics();
+			engine.get_timer().reset();
+		}
 	};
-
-
 	logic.join();
-	ui.join();
 	return 0;
 }
 
