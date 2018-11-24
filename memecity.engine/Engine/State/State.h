@@ -1,15 +1,15 @@
 ﻿#ifndef _STATE_MACHINE_STATE_H
 #define _STATE_MACHINE_STATE_H
-#include "StateMachine.h"
+#include "StateManager.h"
 #include "StateContext.h"
 
 namespace memecity::engine::state {
 	class State {
 	protected:
-		StateMachine* _state_machine;
+		StateManager* _state_machine;
 		StateContext* _context;
 	public:
-		State(StateMachine& sm, StateContext& sc) 
+		State(StateManager& sm, StateContext& sc) 
 		: _state_machine(&sm), _context(&sc) {}
 
 		State(const State &) = delete;

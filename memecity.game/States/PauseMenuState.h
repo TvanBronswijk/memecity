@@ -8,7 +8,7 @@ class PauseMenuState : public memecity::engine::state::State
 private:
 	std::unique_ptr<memecity::engine::ui::menu::Menu> menu;
 public:
-	PauseMenuState(memecity::engine::state::StateMachine& sm, memecity::engine::state::StateContext& sc)
+	PauseMenuState(memecity::engine::state::StateManager& sm, memecity::engine::state::StateContext& sc)
 		: State(sm, sc) 
 	{
 		menu = memecity::engine::ui::menu::MenuBuilder(_context->multimedia_manager)

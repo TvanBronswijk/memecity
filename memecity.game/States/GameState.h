@@ -11,7 +11,7 @@ private:
 	memecity::engine::ecs::EntityManager entity_manager;
 	generate::CityGenerator city_generator;
 public:
-	GameState(memecity::engine::state::StateMachine& sm, memecity::engine::state::StateContext& sc)
+	GameState(memecity::engine::state::StateManager& sm, memecity::engine::state::StateContext& sc)
 		: State(sm, sc){}
 	void on_load() override;
 	void update(float dt) override;

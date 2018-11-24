@@ -12,7 +12,7 @@ private:
 	std::unique_ptr<memecity::engine::ui::menu::Menu> menu;
 
 public:
-	MenuState(memecity::engine::state::StateMachine& sm, memecity::engine::state::StateContext& sc)
+	MenuState(memecity::engine::state::StateManager& sm, memecity::engine::state::StateContext& sc)
 		: State(sm, sc) 
 	{
 		advanced_graphics_menu = memecity::engine::ui::menu::MenuBuilder(sc.multimedia_manager)

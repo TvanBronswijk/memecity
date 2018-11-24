@@ -1,31 +1,31 @@
-#include "StateMachine.h"
+#include "StateManager.h"
 #include "..\Exceptions.h"
 #include "State.h"
 
 namespace memecity::engine::state {
 
-	void StateMachine::exit() const
+	void StateManager::exit() const
 	{
 		if (_stack.size() > 0) {
 			current_state()->on_exit();
 		}		
 	}
 
-	void StateMachine::enter() const
+	void StateManager::enter() const
 	{
 		if (_stack.size() > 0) {
 			current_state()->on_enter();
 		}
 	}
 
-	void StateMachine::load() const
+	void StateManager::load() const
 	{
 		if (_stack.size() > 0) {
 			current_state()->on_load();
 		}
 	}
 
-	void StateMachine::pop(int items)
+	void StateManager::pop(int items)
 	{
 		for (int i = 0; i < items; i++)
 		{
@@ -39,18 +39,18 @@ namespace memecity::engine::state {
 		enter();
 	}
 
-	State* StateMachine::current_state() const
+	State* StateManager::current_state() const
 	{
 		if (_stack.size() > 0)
 			return _stack.top().get();
 		return nullptr;
 	}
 
-	void StateMachine::update(float dt) const {
+	void StateManager::update(float dt) const {
 		current_state()->update(dt);
 	}
 
-	void StateMachine::draw() const {
+	void StateManager::draw() const {
 		current_state()->draw();
 	}
 }

@@ -144,7 +144,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Engine\State\StateMachine.cpp" />
+    <ClCompile Include="Engine\State\StateManager.cpp" />
     <ClCompile Include="Engine\Textures\AnimatedTexture.cpp" />
     <ClCompile Include="Engine\AssetManager.cpp" />
     <ClCompile Include="Engine\SDL\AudioFacade.cpp" />
@@ -196,7 +196,7 @@
     <ClInclude Include="Engine\Textures\Texture.h" />
     <ClInclude Include="Engine\SDL\TimerFacade.h" />
     <ClInclude Include="Engine\State\State.h" />
-    <ClInclude Include="Engine\State\StateMachine.h" />
+    <ClInclude Include="Engine\State\StateManager.h" />
     <ClInclude Include="Engine\State\StateContext.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
