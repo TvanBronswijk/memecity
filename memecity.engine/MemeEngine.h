@@ -11,8 +11,6 @@ namespace memecity::engine {
 		class TimerFacade;
 	};
 
-	template<class T>
-	using Runnable = std::function<T()>;
 	enum class Threading {
 		///<summary>[EXPERIMENTAL]</summary>
 		multithreaded, 
@@ -21,29 +19,25 @@ namespace memecity::engine {
 
 	class MemeEngine
 	{
+		template<class T>
+		using Runnable = std::function<T(MemeEngine&)>;
 	private:
-		int run_multi();
-		int run_single();
-
 		Runnable<int> _runnable;
 	protected:
 		StorageManager storage_manager;
 		MultimediaManager multimedia_manager{ false };
 		InputManager input_manager{};
 		sdl::TimerFacade timer;
-
 		virtual void init() = 0;
+	public:
+		MemeEngine() = default;
+		~MemeEngine() = default;
 		virtual void update(float dt) = 0;
 		virtual void draw() = 0;
-
-		virtual void set_runnable(Runnable<int> runnable)
-		{
-			_runnable = runnable;
-		}
-
-	public:
 		int run(Threading flag = Threading::singlethreaded);
-		MemeEngine();
+		int run(Runnable<int> runnable);
+		virtual void set_runnable(Threading flag);
+		virtual void set_runnable(Runnable<int> runnable);
 		 MultimediaManager& get_multimedia_manager()
 		{
 			return multimedia_manager;
