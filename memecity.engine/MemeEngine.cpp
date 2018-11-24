@@ -71,7 +71,7 @@ namespace memecity::engine {
 			set_runnable(flag);
 			return _runnable(*this);
 		}
-		return 0;
+		return 1;
 	}
 	int MemeEngine::run(Runnable<int> runnable)
 	{
@@ -80,7 +80,7 @@ namespace memecity::engine {
 			set_runnable(runnable);
 			return _runnable(*this);
 		}
-		return 0;
+		return 1;
 	}
 	void MemeEngine::set_runnable(Threading flag)
 	{
