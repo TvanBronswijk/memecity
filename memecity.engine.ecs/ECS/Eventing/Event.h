@@ -29,9 +29,18 @@ namespace memecity::engine::ecs::eventing {
 
 				}
 			}
-
 			virtual ~Event() {};
 		};
+
+		template<class TEventArgs>
+		void bind(Event<TEventArgs> &event, void(*func)(EntityManager&, TEventArgs)) {
+			event += std::bind(func, std::placeholders::_0, std::placeholders::_1);
+		}
+
+		template<class TEventArgs, class System>
+		void bind(Event<TEventArgs> &event, System *sys, void(System::*func)(EntityManager&, TEventArgs)) {
+			event += std::bind(func, sys, std::placeholders::_1, std::placeholders::_2);
+		}
 };
 
 #endif

@@ -51,9 +51,9 @@ void GameState::on_load()
 	auto& collider_system = entity_manager.create_system<ColliderSystem>();
 
 	// events
-	input_system.interaction_event += [&](EntityManager& em, InteractionEventArgs args) { interaciton_system.on_interact(em, args); };
-	input_system.attack_event += [&](EntityManager& em, AttackEventArgs args) { fighting_system.on_attack(em, args); };
-	collider_system.collider_event += [&](ecs::EntityManager& em, ColliderEventArgs args) { move_system.on_collision(em, args); };
+	ecs::eventing::bind(input_system.interaction_event,		&interaciton_system,	&InteractionSystem::on_interact);
+	ecs::eventing::bind(input_system.attack_event,			&fighting_system,		&FightingSystem::on_attack);
+	ecs::eventing::bind(collider_system.collider_event,		&move_system,			&MoveSystem::on_collision);
 }
 
 void GameState::update(float dt)
