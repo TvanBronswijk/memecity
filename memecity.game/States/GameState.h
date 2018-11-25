@@ -3,7 +3,7 @@
 #include <Engine.h>
 #include <ECS.h>
 #include "..\Generate.h"
-#include "..\NPCFactory.h"
+#include "..\Factory\NPCFactory.h"
 
 struct GameState : public memecity::engine::state::State {
 private:
@@ -11,11 +11,13 @@ private:
 	memecity::engine::ecs::EntityManager entity_manager;
 	generate::CityGenerator city_generator;
 public:
-	GameState(memecity::engine::state::StateMachine& sm, memecity::engine::state::StateContext& sc)
+	GameState(memecity::engine::state::StateManager& sm, memecity::engine::state::StateContext& sc)
 		: State(sm, sc){}
-	void init() override;
+	void on_load() override;
 	void update(float dt) override;
 	void draw() override;
+	void on_enter() override;
+	void on_exit() override;
 	~GameState() = default;
 };
 

@@ -1,13 +1,12 @@
 #ifndef _STATE_CONTEXT_H
 #define _STATE_CONTEXT_H
-#include "Engine/SDL/TimerFacade.h"
-#include "Engine/InputManager.h"
-#include "Engine/MultimediaManager.h"
-#include "MemeEngine.h"
+#include "..\SDL\TimerFacade.h"
+#include "..\InputManager.h"
+#include "..\MultimediaManager.h"
+#include "..\..\MemeEngine.h"
 
 
 namespace memecity::engine::state {
-
 	struct StateContext
 	{
 		MultimediaManager& multimedia_manager;

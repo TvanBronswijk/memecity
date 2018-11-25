@@ -14,19 +14,11 @@ void DrawSystem::run(EntityManager& em) const
 	for (DrawableComponent& drawable_component : drawable_components)
 	{	
 		auto& tex = drawable_component.get_texture();
-		if (drawable_component.entity != player_component)
+		if (player_position_component->entity() != drawable_component.entity())
 		{
 			tex.translate({ (player_position_component->diffx*-1) , player_position_component->diffy });
 		}
-
 		auto text_texture = dynamic_cast<memecity::engine::texture::TextTexture*>(&tex);
-		if (text_texture)
-		{
-			multimedia_manager.render_text_texture(*text_texture);
-		}
-		else
-		{
-			multimedia_manager.render_texture(tex);
-		}
+		text_texture ? multimedia_manager.render_texture(*text_texture) : multimedia_manager.render_texture(tex);
 	}
 }

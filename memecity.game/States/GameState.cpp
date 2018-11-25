@@ -5,15 +5,13 @@
 using namespace memecity::engine;
 using namespace memecity::engine::ecs;
 
-void GameState::init()
+void GameState::on_load()
 {
-	auto& multimedia_manager = _context.multimedia_manager;
-	auto& input_manager = _context.input_manager;
-	auto& timer = _context.timer;
+	auto& multimedia_manager = _context->multimedia_manager;
+	auto& input_manager = _context->input_manager;
+	auto& timer = _context->timer;
 
-	multimedia_manager.play_background_music("bgm-game.mp3", 100);
-
-	city_generator.generate(24, 24, entity_manager, multimedia_manager);
+	city_generator.generate(16, 16, entity_manager, multimedia_manager);
 
 	auto texture = multimedia_manager.get_animated_texture(timer, "SpriteSheet.png", 0, 0, 48, 48, 4, 0.25f, texture::AnimatedTexture::AnimationDirection::vertical);
 	texture->set_position({ static_cast<float>(multimedia_manager.get_screen_width()) / 2, static_cast<float>(multimedia_manager.get_screen_height()) / 2 });
@@ -21,7 +19,7 @@ void GameState::init()
 		.create_entity()
 		.with_component<PlayerComponent>()
 		.with_component<AnimationComponent>()
-		//.with_component<ColliderComponent>(64.0f, 64.0f)
+		.with_component<ColliderComponent>(64.0f, 64.0f)
 		.with_component<PositionComponent>(multimedia_manager.get_screen_width() / 2, multimedia_manager.get_screen_height() / 2)
 		.with_component<VelocityComponent>()
 		.with_component<DrawableComponent>(std::move(texture))
@@ -48,14 +46,14 @@ void GameState::init()
 	entity_manager.create_system<OverlaySystem>(System::draw, multimedia_manager);
 	entity_manager.create_system<AnimationSystem>(System::draw);
 	entity_manager.create_system<DrawSystem>(System::draw, multimedia_manager);
-	auto& input_system = entity_manager.create_system<InputSystem>(System::update, input_manager, _state_machine);
+	auto& input_system = entity_manager.create_system<InputSystem>(System::update, input_manager, *_state_machine);
 	auto& move_system = entity_manager.create_system<MoveSystem>();
-	//auto& collider_system = entity_manager.create_system<ColliderSystem>();
+	auto& collider_system = entity_manager.create_system<ColliderSystem>();
 
 	// events
-	input_system.interaction_event.bind([&](EntityManager& em, InteractionEventArgs args) { interaciton_system.on_interact(em, args); });
-	input_system.attack_event.bind([&](EntityManager& em, AttackEventArgs args) { fighting_system.on_attack(em, args); });
-	//collider_system.collider_event.bind([&](ecs::EntityManager& em, ColliderEventArgs args) { move_system.on_collision(em, args); });
+	input_system.interaction_event += [&](EntityManager& em, InteractionEventArgs args) { interaciton_system.on_interact(em, args); };
+	input_system.attack_event += [&](EntityManager& em, AttackEventArgs args) { fighting_system.on_attack(em, args); };
+	collider_system.collider_event += [&](ecs::EntityManager& em, ColliderEventArgs args) { move_system.on_collision(em, args); };
 }
 
 void GameState::update(float dt)
@@ -66,4 +64,14 @@ void GameState::update(float dt)
 void GameState::draw()
 {
 	entity_manager.update(System::draw);
+}
+
+void GameState::on_enter()
+{
+	_context->multimedia_manager.play_background_music("bgm-game.mp3", 100);
+}
+
+void GameState::on_exit()
+{
+	
 }

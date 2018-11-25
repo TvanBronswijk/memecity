@@ -9,8 +9,8 @@ void AnimationSystem::run(EntityManager& em) const
 	auto animation_components = em.get_components_of_type<AnimationComponent>();
 	for (auto& animation_component : animation_components)
 	{	
-		const auto& current_position = animation_component.get().entity.get<PositionComponent>();
-		auto& texture = animation_component.get().entity.get<DrawableComponent>()->get_texture();
+		const auto& current_position = animation_component.get().entity().get<PositionComponent>();
+		auto& texture = animation_component.get().entity().get<DrawableComponent>()->get_texture();
 
 		// Cast from base class (Texture) to derived class (AnimatedTexture)
 		auto animated_texture = dynamic_cast<AnimatedTexture*>(&texture);

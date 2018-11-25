@@ -1,15 +1,17 @@
 ﻿#include "AudioFacade.h"
 #include "Wrappers\RawMusicWrapper.h"
+#include "..\Exceptions.h"
 #include <iostream>
 #include <SDL.h>
 #include "Wrappers\RawSfxWrapper.h"
 
 namespace memecity::engine::sdl {
+	using namespace exceptions;
+
 	bool AudioFacade::init() const
 	{
 		if (SDL_Init(SDL_INIT_AUDIO) < 0) {
-			std::cout << "Audio Initialization error: " << SDL_GetError() << std::endl;
-			return false;
+			throw SDLException(Level::error, Mix_GetError());
 		}
 
 		return true;
@@ -19,7 +21,7 @@ namespace memecity::engine::sdl {
 	{
 		if (Mix_OpenAudio(frequency, MIX_DEFAULT_FORMAT, channels, chunksize) < 0)
 		{
-			std::cout << "Audio error: " << Mix_GetError() << std::endl;
+			throw SDLException(Level::error, Mix_GetError());
 		}
 	}
 

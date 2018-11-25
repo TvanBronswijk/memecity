@@ -27,7 +27,7 @@
     <ClInclude Include="Generate\Strategy\BSP\Fills\Fill.h" />
     <ClInclude Include="Generate\Strategy\BSP\Fills\Park.h" />
     <ClInclude Include="Generate\Strategy\BSP\Fills\Prefab.h" />
-    <ClInclude Include="NPCFactory.h" />
+    <ClInclude Include="Factory\NPCFactory.h" />
     <ClInclude Include="States\GameState.h" />
     <ClInclude Include="States.h" />
     <ClInclude Include="States\MenuState.h" />
@@ -64,7 +64,7 @@
     <ClInclude Include="Systems\OverlaySystem.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="NPCFactory.cpp" />
+    <ClCompile Include="Factory\NPCFactory.cpp" />
     <ClCompile Include="States\GameState.cpp" />
     <ClCompile Include="States\MenuState.cpp" />
     <ClCompile Include="States\PauseMenuState.cpp" />
@@ -147,6 +147,7 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions);DEBUG</PreprocessorDefinitions>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -156,6 +157,7 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions);DEBUG</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(SolutionDir)dependencies\SDL2_mixer-2.0.2\lib\x64;$(SolutionDir)dependencies\SDL2_ttf-2.0.14\lib\x64;$(SolutionDir)dependencies\SDL2_image-2.0.3\lib\x64;$(SolutionDir)x64\Debug;$(SolutionDir)dependencies\SDL2\lib\x64</AdditionalLibraryDirectories>
@@ -181,13 +183,13 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <Optimization>Disabled</Optimization>
+      <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>false</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>

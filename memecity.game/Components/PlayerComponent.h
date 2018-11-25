@@ -4,7 +4,7 @@
 
 struct PlayerComponent : public memecity::engine::ecs::Component
 {
-	PlayerComponent(const memecity::engine::ecs::Entity& entity) : memecity::engine::ecs::Component(entity) {};
+	PlayerComponent(memecity::engine::ecs::Entity& entity) : memecity::engine::ecs::Component(entity) {};
 };
 
 #endif;
