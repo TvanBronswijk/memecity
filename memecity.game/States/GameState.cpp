@@ -19,7 +19,7 @@ void GameState::on_load()
 		.create_entity()
 		.with_component<PlayerComponent>()
 		.with_component<AnimationComponent>()
-		//.with_component<ColliderComponent>(64.0f, 64.0f)
+		.with_component<ColliderComponent>(64.0f, 64.0f)
 		.with_component<PositionComponent>(multimedia_manager.get_screen_width() / 2, multimedia_manager.get_screen_height() / 2)
 		.with_component<VelocityComponent>()
 		.with_component<DrawableComponent>(std::move(texture))
@@ -48,12 +48,12 @@ void GameState::on_load()
 	entity_manager.create_system<DrawSystem>(System::draw, multimedia_manager);
 	auto& input_system = entity_manager.create_system<InputSystem>(System::update, input_manager, *_state_machine);
 	auto& move_system = entity_manager.create_system<MoveSystem>();
-	//auto& collider_system = entity_manager.create_system<ColliderSystem>();
+	auto& collider_system = entity_manager.create_system<ColliderSystem>();
 
 	// events
-	input_system.interaction_event.bind([&](EntityManager& em, InteractionEventArgs args) { interaciton_system.on_interact(em, args); });
-	input_system.attack_event.bind([&](EntityManager& em, AttackEventArgs args) { fighting_system.on_attack(em, args); });
-	//collider_system.collider_event.bind([&](ecs::EntityManager& em, ColliderEventArgs args) { move_system.on_collision(em, args); });
+	input_system.interaction_event += [&](EntityManager& em, InteractionEventArgs args) { interaciton_system.on_interact(em, args); };
+	input_system.attack_event += [&](EntityManager& em, AttackEventArgs args) { fighting_system.on_attack(em, args); };
+	collider_system.collider_event += [&](ecs::EntityManager& em, ColliderEventArgs args) { move_system.on_collision(em, args); };
 }
 
 void GameState::update(float dt)
