@@ -3,7 +3,6 @@
 
 void MenuState::on_load()
 {
-
 }
 
 void MenuState::update(float dt)

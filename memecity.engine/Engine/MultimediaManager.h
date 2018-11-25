@@ -35,7 +35,7 @@ namespace memecity::engine {
 
 		void clear_graphics() const;
 		void render_texture(texture::Texture &texture) const;
-		void render_text_texture(texture::TextTexture &texture) const;
+		void render_texture(texture::TextTexture &texture) const;
 		void render_graphics() const;
 
 		std::unique_ptr<texture::Texture> get_texture(std::string filename) const;

@@ -53,7 +53,7 @@ namespace memecity::engine {
 		graphics_facade->draw_texture(asset_manager->get_texture(texture.get_filename()), texture.get_render_rect(), (texture.get_is_clipped()) ? &texture.get_clipped_rect() : nullptr);
 	}
 
-	void MultimediaManager::render_text_texture(texture::TextTexture& texture) const
+	void MultimediaManager::render_texture(texture::TextTexture& texture) const
 	{
 		texture.update_render_rect();
 		graphics_facade->draw_texture(asset_manager->get_text(texture.get_text(), texture.get_filename(), texture.get_font_size(), texture.get_color().get_sdl_color()), texture.get_render_rect(), nullptr);

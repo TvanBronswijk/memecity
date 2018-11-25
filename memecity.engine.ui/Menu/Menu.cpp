@@ -13,7 +13,7 @@ namespace memecity::engine::ui::menu {
 
 		Vector2 position{ multimedia_manager.get_screen_width() / 2.0f, 200 };
 		title_texture->set_position(position);
-		multimedia_manager.render_text_texture(*title_texture);
+		multimedia_manager.render_texture(*title_texture);
 		position.y += 50;
 
 		int index = 0;
@@ -23,7 +23,7 @@ namespace memecity::engine::ui::menu {
 			auto& texture = menu_item->get_texture();
 			texture.set_position(position);
 			position.y += 30;
-			multimedia_manager.render_text_texture(texture);
+			multimedia_manager.render_texture(texture);
 			index++;
 		}
 	}

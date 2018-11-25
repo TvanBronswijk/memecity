@@ -28,7 +28,7 @@ void OverlaySystem::run(EntityManager& em) const
 		auto text_texture = dynamic_cast<memecity::engine::texture::TextTexture*>(texture);
 		if (text_texture)
 		{
-			multimedia_manager.render_text_texture(*text_texture);
+			multimedia_manager.render_texture(*text_texture);
 		}
 		else
 		{

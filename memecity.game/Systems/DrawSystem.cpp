@@ -18,15 +18,7 @@ void DrawSystem::run(EntityManager& em) const
 		{
 			tex.translate({ (player_position_component->diffx*-1) , player_position_component->diffy });
 		}
-
 		auto text_texture = dynamic_cast<memecity::engine::texture::TextTexture*>(&tex);
-		if (text_texture)
-		{
-			multimedia_manager.render_text_texture(*text_texture);
-		}
-		else
-		{
-			multimedia_manager.render_texture(tex);
-		}
+		text_texture ? multimedia_manager.render_texture(*text_texture) : multimedia_manager.render_texture(tex);
 	}
 }
