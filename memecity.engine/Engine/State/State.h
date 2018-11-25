@@ -23,7 +23,9 @@ namespace memecity::engine::state {
 		
 		template<class T, class ...Args>
 		void next(Args&&... args) const { _state_machine->create_state<T>(std::forward<Args>(args)...); }
-		void back(int i = 1) const { _state_machine->pop(i); }
+		template<class T, class ...Args>
+		void replace(Args&&... args) const { _state_machine->swap<T>(std::forward<Args>(args)...); }
+		void back(int count = 1) const { _state_machine->pop(count); }
 		virtual ~State() = default;
 	};
 }

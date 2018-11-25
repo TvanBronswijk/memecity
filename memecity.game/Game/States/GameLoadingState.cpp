@@ -3,7 +3,7 @@
 
 void GameLoadingState::on_load()
 {
-	next<GameState>(get_context(), game_loader.build());
+	replace<GameState>(get_context(), game_loader.build());
 }
 
 void GameLoadingState::update(float dt)

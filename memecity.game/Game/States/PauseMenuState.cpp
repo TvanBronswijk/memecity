@@ -6,7 +6,7 @@ PauseMenuState::PauseMenuState(memecity::engine::state::StateManager & sm, GameM
 	menu = memecity::engine::ui::menu::MenuBuilder(gc.get_multimedia_manager())
 		.create_menu("Paused")
 		.with_menu_item("Resume Game", nullptr, [&](auto& menu_item) { back(); })
-		.with_menu_item("Main menu", nullptr, [&](auto& menu_item) { back(3);  })
+		.with_menu_item("Main menu", nullptr, [&](auto& menu_item) { back(2);  })
 		.get_menu();
 }
 
