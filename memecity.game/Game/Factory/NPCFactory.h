@@ -3,7 +3,6 @@
 #include <ECS.h>
 #include <vector>
 #include <Engine\MultimediaManager.h>
-#include "..\Components.h"
 
 class NPCFactory{
 

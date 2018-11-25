@@ -1,9 +1,9 @@
 #include "GameManager.h"
-#include "States.h"
+#include "Game\States.h"
 
 void GameManager::init()
 {
-	_states.create_state<MenuState>(_context);
+	_states.create_state<MenuState>(get_context());
 }
 
 void GameManager::update(float dt)
