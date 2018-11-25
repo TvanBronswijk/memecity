@@ -23,12 +23,12 @@
     <ClInclude Include="Game\Components\AIComponent.h" />
     <ClInclude Include="Game\GameLoader.h" />
     <ClInclude Include="Game\Generate.h" />
-    <ClInclude Include="Game\Generate\Strategy\BSP\Fills\Building.h" />
-    <ClInclude Include="Game\Generate\Strategy\BSP\Fills\Empty.h" />
-    <ClInclude Include="Game\Generate\Strategy\BSP\Fills\Fill.h" />
-    <ClInclude Include="Game\Generate\Strategy\BSP\Fills\Park.h" />
-    <ClInclude Include="Game\Generate\Strategy\BSP\Fills\Prefab.h" />
-    <ClInclude Include="Game\Factory\NPCFactory.h" />
+    <ClInclude Include="Game\Generate\City\Strategy\BSP\Fills\Building.h" />
+    <ClInclude Include="Game\Generate\City\Strategy\BSP\Fills\Empty.h" />
+    <ClInclude Include="Game\Generate\City\Strategy\BSP\Fills\Fill.h" />
+    <ClInclude Include="Game\Generate\City\Strategy\BSP\Fills\Park.h" />
+    <ClInclude Include="Game\Generate\City\Strategy\BSP\Fills\Prefab.h" />
+    <ClInclude Include="Game\Generate\NPC\NPCGenerator.h" />
     <ClInclude Include="Game\States\GameLoadingState.h" />
     <ClInclude Include="Game\States\GameState.h" />
     <ClInclude Include="Game\States.h" />
@@ -45,9 +45,9 @@
     <ClInclude Include="Game\Components\ExpComponent.h" />
     <ClInclude Include="Game\Systems\ExpSystem.h" />
     <ClInclude Include="Game\Systems\FightingSystem.h" />
-    <ClInclude Include="Game\Generate\Models\Models.h" />
-    <ClInclude Include="Game\Generate\Strategy\BSP\BSP.h" />
-    <ClInclude Include="Game\Generate\CityGenerator.h" />
+    <ClInclude Include="Game\Generate\City\Models\Models.h" />
+    <ClInclude Include="Game\Generate\City\Strategy\BSP\BSP.h" />
+    <ClInclude Include="Game\Generate\City\CityGenerator.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="Game\Components\DrawableComponent.h" />
     <ClInclude Include="Game\Systems\DrawSystem.h" />
@@ -56,7 +56,7 @@
     <ClInclude Include="Game\Event\InteractionEventArgs.h" />
     <ClInclude Include="Game\Systems\InteractionSystem.h" />
     <ClInclude Include="Game\Components\LevelComponent.h" />
-    <ClInclude Include="Game\Generate\Strategy\Strategy.h" />
+    <ClInclude Include="Game\Generate\City\Strategy\Strategy.h" />
     <ClInclude Include="Game\Components\PlayerComponent.h" />
     <ClInclude Include="Game\Systems\InputSystem.h" />
     <ClInclude Include="Game\Systems\MoveSystem.h" />
@@ -66,7 +66,7 @@
     <ClInclude Include="Game\Systems\OverlaySystem.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Game\Factory\NPCFactory.cpp" />
+    <ClCompile Include="Game\Generate\NPC\NPCGenerator.cpp" />
     <ClCompile Include="Game\GameLoader.cpp" />
     <ClCompile Include="Game\States\GameLoadingState.cpp" />
     <ClCompile Include="Game\States\GameState.cpp" />
@@ -75,8 +75,8 @@
     <ClCompile Include="Game\Systems\AnimationSystem.cpp" />
     <ClCompile Include="Game\Systems\ColliderSystem.cpp" />
     <ClCompile Include="Game\Systems\AISystem.cpp" />
-    <ClCompile Include="Game\Generate\Strategy\BSP\BSP.cpp" />
-    <ClCompile Include="Game\Generate\CityGenerator.cpp" />
+    <ClCompile Include="Game\Generate\City\Strategy\BSP\BSP.cpp" />
+    <ClCompile Include="Game\Generate\City\CityGenerator.cpp" />
     <ClCompile Include="Game\Systems\ExpSystem.cpp" />
     <ClCompile Include="Game\Systems\FightingSystem.cpp" />
     <ClCompile Include="GameManager.cpp" />

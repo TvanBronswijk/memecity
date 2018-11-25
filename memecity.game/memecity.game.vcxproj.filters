@@ -99,36 +99,6 @@
     <ClInclude Include="Game\Event\InteractionEventArgs.h">
       <Filter>Header Files\EventArgs</Filter>
     </ClInclude>
-    <ClInclude Include="Game\Factory\NPCFactory.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Generate\Models\Models.h">
-      <Filter>Header Files\City\Models</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Generate\Strategy\BSP\Fills\Building.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Generate\Strategy\BSP\Fills\Empty.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Generate\Strategy\BSP\Fills\Fill.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Generate\Strategy\BSP\Fills\Park.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Generate\Strategy\BSP\Fills\Prefab.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Generate\Strategy\BSP\BSP.h">
-      <Filter>Header Files\City\Strategy</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Generate\Strategy\Strategy.h">
-      <Filter>Header Files\City\Strategy</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Generate\CityGenerator.h">
-      <Filter>Header Files\City</Filter>
-    </ClInclude>
     <ClInclude Include="Game\States\GameState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -186,6 +156,36 @@
     <ClInclude Include="Game\States\GameLoadingState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Game\Generate\City\CityGenerator.h">
+      <Filter>Header Files\City</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Generate\City\Models\Models.h">
+      <Filter>Header Files\City\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Generate\City\Strategy\BSP\Fills\Building.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Generate\City\Strategy\BSP\Fills\Empty.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Generate\City\Strategy\BSP\Fills\Fill.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Generate\City\Strategy\BSP\Fills\Park.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Generate\City\Strategy\BSP\Fills\Prefab.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Generate\City\Strategy\BSP\BSP.h">
+      <Filter>Header Files\City\Strategy</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Generate\City\Strategy\Strategy.h">
+      <Filter>Header Files\City\Strategy</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Generate\NPC\NPCGenerator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -193,15 +193,6 @@
     </ClCompile>
     <ClCompile Include="GameManager.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\Factory\NPCFactory.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\Generate\Strategy\BSP\BSP.cpp">
-      <Filter>Source Files\City\Strategy</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\Generate\CityGenerator.cpp">
-      <Filter>Source Files\City</Filter>
     </ClCompile>
     <ClCompile Include="Game\States\GameState.cpp">
       <Filter>Source Files</Filter>
@@ -246,6 +237,15 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Game\States\GameLoadingState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Generate\City\CityGenerator.cpp">
+      <Filter>Source Files\City</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Generate\City\Strategy\BSP\BSP.cpp">
+      <Filter>Source Files\City\Strategy</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Generate\NPC\NPCGenerator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

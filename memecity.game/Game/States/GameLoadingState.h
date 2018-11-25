@@ -10,7 +10,7 @@ private:
 	GameLoader game_loader;
 public:
 	GameLoadingState(memecity::engine::state::StateManager& sm, GameManager::GameContext& gc)
-		: State(sm), game_loader(gc, 64, 64), _context(&gc)  {}
+		: State(sm), game_loader(gc, 24, 24), _context(&gc)  {}
 	~GameLoadingState() = default;
 	void on_load() override;
 	void update(float dt) override;

@@ -66,7 +66,10 @@ void GameLoader::create_map(EntityManager& em)
 
 void GameLoader::create_npcs(EntityManager& em)
 {
-
+	auto& multimedia_manager = _context->get_multimedia_manager();
+	auto& timer = _context->get_timer();
+	
+	generate::NPCGenerator(multimedia_manager, timer, em).generate(1, 10, 10);
 }
 
 void GameLoader::create_player(EntityManager& em)
