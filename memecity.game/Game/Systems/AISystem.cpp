@@ -1,4 +1,6 @@
 #include "AISystem.h"
+#include <stdlib.h>     /* srand, rand */
+#include <time.h>       /* time */
 
 using namespace memecity::engine::ecs;
 
@@ -9,14 +11,9 @@ bool AISystem::check_health(EntityManager& em, const Entity& entity) const{
 	if(health->health <= 0) {
 		return false;
 	}
-	else if (health->health < (health->maxhealth/10)) {
-		AI->state = AIComponent::State::Fleeing;
-	}
 	return true;
 }
 
-int AISystem::random_x() const {return (rand() % (2 - -1)) + -1;}
-int AISystem::random_y() const {return (rand() % (2 - -1)) + -1;}
 
 std::list <Point> AISystem::calculate_next_positions(Point start , Point end, std::list <Point> queue) const{
 	if (start.x < end.x - range) { start.x += 10; }
@@ -52,8 +49,6 @@ void AISystem::best_first_search(EntityManager& em, const PositionComponent& npc
 	auto& player_component = em.get_components_of_type<PlayerComponent>()[0].get();
 
 	auto player_position = player_component.entity().get<PositionComponent>();
-	auto player_drawable = player_component.entity().get<DrawableComponent>();//testing
-	auto drawable = npc_xy.entity().get<DrawableComponent>();//testing
 
 	Point end(player_position->x, player_position->y); // end location
 	Point start(npc_xy.x, npc_xy.y); // start location
@@ -81,10 +76,6 @@ void AISystem::best_first_search(EntityManager& em, const PositionComponent& npc
 			queue = calculate_next_positions(location, end, queue); 
 		}
 	}
-#ifdef DEBUG
-	std::cout << "player: X: " << end.x << " Y: " << end.y << " Drawable X: " << player_drawable->get_texture().get_position().x << " Y: " << player_drawable->get_texture().get_position().y << std::endl;
-	std::cout << "npc: X: " << start.x << " Y: " << start.y << " Drawable X: " << drawable->get_texture().get_position().x << " Y: " << drawable->get_texture().get_position().y << std::endl;
-#endif	
 	auto direction = path.front();
 
 	if (npc_xy.x < direction.x) { 
@@ -102,23 +93,75 @@ void AISystem::best_first_search(EntityManager& em, const PositionComponent& npc
 }
 
 void AISystem::move_random(const Entity& entity) const{
-
 	auto velocity = entity.get<VelocityComponent>();
+	auto ai = entity.get<AIComponent>();
 
-	velocity->x += random_x();
-	velocity->y += random_y();
+	auto random = (rand() % 5000);
+
+	if (random < 1) {
+		auto direction = (rand() % 4);
+		switch (direction)
+		{
+		case 0:
+			ai->direction = AIComponent::Direction::Down;
+			break;
+		case 1:
+			ai->direction = AIComponent::Direction::Up;
+			break;
+		case 2:
+			ai->direction = AIComponent::Direction::Left;
+			break;
+		case 3:
+			ai->direction = AIComponent::Direction::Right;
+			break;
+		case 4:
+			ai->direction = AIComponent::Direction::Idle;
+			break;
+
+		}
+	}
+
+
+	std::cout << "roaming" << "\n";
+	std::cout << (int)(ai->direction) << "\n";
+
+	switch (ai->direction) {
+	case AIComponent::Direction::Down:
+		velocity->y -= 5;
+		break;
+	case AIComponent::Direction::Up:
+		velocity->y += 5;
+		break;
+	case AIComponent::Direction::Left:
+		velocity->x -= 5;
+		break;
+	case AIComponent::Direction::Right:
+		velocity->x += 5;
+		break;
+	case AIComponent::Direction::Idle:
+		break;
+	}
 
 }
 
-void AISystem::fleeing(EntityManager& em, const PositionComponent& npc_xy) const { 
-	auto velocity = npc_xy.entity().get<VelocityComponent>();
+void AISystem::fleeing(EntityManager& em, const PositionComponent& npc_position) const { 
+	auto velocity = npc_position.entity().get<VelocityComponent>();
+	auto ai = npc_position.entity().get<AIComponent>();
 	auto& player_component = em.get_components_of_type<PlayerComponent>()[0].get();
 	auto player_position = player_component.entity().get<PositionComponent>();
 
-	if (npc_xy.x < player_position->x) { velocity->x -= 4; }
-	else if (npc_xy.x > player_position->x) { velocity->x += 4; }
-	if (npc_xy.y < player_position->y) { velocity->y -= 4; }
-	else if (npc_xy.y > player_position->y) { velocity->y += 4; }
+	if (npc_position.x < player_position->x) { velocity->x -= 4; }
+	else if (npc_position.x > player_position->x) { velocity->x += 4; }
+	if (npc_position.y < player_position->y) { velocity->y -= 4; }
+	else if (npc_position.y > player_position->y) { velocity->y += 4; }
+
+	int distance_x = std::abs((player_position->x - npc_position.x));
+	int distance_y = std::abs((player_position->y - npc_position.y));
+	
+	int absolute_distance = std::sqrt((distance_x * distance_x) + (distance_y * distance_y));
+	if (absolute_distance > 1000) {
+		ai->state = AIComponent::State::Roaming;
+	}
 }
 
 void AISystem::run(EntityManager& em) const {

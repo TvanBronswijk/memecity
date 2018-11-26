@@ -21,7 +21,7 @@ void InteractionSystem::run(EntityManager &em) const {
 	}
 }
 
-void InteractionSystem::on_interact(EntityManager &em, InteractionEventArgs args) const {
+void InteractionSystem::on_interact(EntityManager &em, InteractionEventArgs args) {
 	auto health = args.source.get<HealthComponent>();
 	if (health->health > 0) {
 		srand(time(NULL));
@@ -30,7 +30,11 @@ void InteractionSystem::on_interact(EntityManager &em, InteractionEventArgs args
 
 		if (interaction != nullptr) {
 			auto text_texture = dynamic_cast<memecity::engine::texture::TextTexture*>(&interaction->get_texture());
-			auto npc_interaciton_texture = multimedia_manager.get_text_texture(interaction->smallTalk[(rand() % (interaction->smallTalk.size()-1))], "Minecraftia-Regular.ttf", 14, { 255,255,255 });
+
+			auto text = interaction->smallTalk[(rand() % (interaction->smallTalk.size()))];
+			std::cout << text << "\n";
+
+			auto npc_interaciton_texture = multimedia_manager.get_text_texture(text, "Minecraftia-Regular.ttf", 14, { 255,255,255 });
 			npc_interaciton_texture->set_position({ 0, -35 });
 			npc_interaciton_texture->set_parent(text_texture->get_parent());
 			interaction->texture = std::move(npc_interaciton_texture);

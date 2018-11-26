@@ -64,7 +64,7 @@ void InputSystem::run(EntityManager& em) const
 				}
 			}
 		}
-		if (input_manager.is_down(sdl::Attack)) {
+		if (input_manager.is_pressed(sdl::Attack)) {
 			auto& player = em.get_components_of_type<PlayerComponent>()[0].get();
 			auto vector = em.get_components_of_type<AIComponent>();
 			for (AIComponent& element : vector) {

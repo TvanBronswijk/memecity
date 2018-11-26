@@ -12,7 +12,7 @@ public:
 		: multimedia_manager(multimedia_manager) {}
 
 	void run(memecity::engine::ecs::EntityManager& em) const override;
-	void on_damage(memecity::engine::ecs::EntityManager& em, std::reference_wrapper<const memecity::engine::ecs::Entity> entity) const;
+	void on_damage(memecity::engine::ecs::EntityManager& em, std::reference_wrapper<const memecity::engine::ecs::Entity> entity);
 };
 
 #endif

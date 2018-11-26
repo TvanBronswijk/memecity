@@ -19,7 +19,13 @@ namespace generate {
 			: multimedia_manager(multimedia_manager), timer(timer), entity_manager(entity_manager) {};
 
 		int random_int(int max);
-		const memecity::engine::ecs::Entity& generate(int level, float x, float y);
+		const memecity::engine::ecs::Entity& generate_random_npc(int level, float x, float y);
+		const memecity::engine::ecs::Entity& generate_npc(
+			int level, float x, float y, int strenght, int perception, int endurance, int charisma, 
+			int intelligence, int agility, int luck, int health, 
+			std::unique_ptr<memecity::engine::texture::Texture> animation_texture, 
+			std::unique_ptr<memecity::engine::texture::Texture> health_texture, 
+			std::unique_ptr<memecity::engine::texture::Texture> interaction_texture);
 	};
 }
 #endif

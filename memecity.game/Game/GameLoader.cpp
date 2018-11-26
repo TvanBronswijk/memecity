@@ -85,7 +85,7 @@ void GameLoader::create_npcs(EntityManager& em, loading::LoadingBar::Listener& l
 {
 	auto& multimedia_manager = _context->get_multimedia_manager();
 	auto& timer = _context->get_timer();
-	generate::NPCGenerator(multimedia_manager, timer, em).generate(1, 10, 10);
+	generate::NPCGenerator(multimedia_manager, timer, em).generate_random_npc(1, 10, 10);
 	listener.increase_current_value(10.0f);
 }
 

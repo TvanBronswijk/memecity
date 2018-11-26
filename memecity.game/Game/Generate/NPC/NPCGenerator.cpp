@@ -15,7 +15,7 @@ namespace generate {
 		return (5 + (rand() % (max)));
 	}
 
-	const memecity::engine::ecs::Entity& NPCGenerator::generate(int maxlevel, float x, float y) {
+	const memecity::engine::ecs::Entity& NPCGenerator::generate_random_npc(int maxlevel, float x, float y) {
 		this->level = rand() % maxlevel + 1;
 		this->x = x;
 		this->y = y;
@@ -75,4 +75,31 @@ namespace generate {
 
 		return npc;
 	}
+
+
+	const memecity::engine::ecs::Entity& NPCGenerator::generate_npc(
+		int level, float x, float y, int strenght, int perception, 
+		int endurance, int charisma, int intelligence, int agility, 
+		int luck, int health, 
+		std::unique_ptr<memecity::engine::texture::Texture> animation_texture, 
+		std::unique_ptr<memecity::engine::texture::Texture> health_texture, 
+		std::unique_ptr<memecity::engine::texture::Texture> interaction_texture) {
+
+		auto& npc = builder::EntityBuilder(entity_manager)
+			.create_entity()
+			.with_component<AIComponent>()
+			.with_component<VelocityComponent>()
+			.with_component<PositionComponent>(x, y)
+			.with_component<LevelComponent>(level)
+			.with_component<StatsComponent>(strength, perception, endurance, charisma, intelligence, agility, luck)
+			.with_component<DrawableComponent>(std::move(animation_texture))//body of npc
+			.with_component<HealthComponent>(health, std::move(health_texture))
+			.with_component<InteractionComponent>(std::move(interaction_texture))
+			.with_component<AnimationComponent>()
+			.get();
+
+		return npc;
+
+	}
+
 }
