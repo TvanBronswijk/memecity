@@ -6,24 +6,24 @@
 using namespace memecity::engine::ecs;
 using namespace memecity::engine::ui;
 
-std::unique_ptr<EntityManager> GameLoader::build(loading::LoadingBar::Listener& listener)
+EntityManager GameLoader::build(loading::LoadingBar::Listener& listener)
 {
-	auto em = std::make_unique<memecity::engine::ecs::EntityManager>();
+	EntityManager em;
 	listener.set_max_value(100.0f);
 
 	listener
 		.set_current_value(0.0f)
 		.set_text("Loading Map");
-	create_map(*em, listener);
+	create_map(em, listener);
 	listener
 		.set_text("Loading NPCs");
-	create_npcs(*em, listener);	
+	create_npcs(em, listener);	
 	listener
 		.set_text("Loading Player");
-	create_player(*em, listener);
+	create_player(em, listener);
 	listener
 		.set_text("Loading Systems");
-	create_systems(*em, listener);	
+	create_systems(em, listener);	
 	listener
 		.set_text("Loading Complete!");
 

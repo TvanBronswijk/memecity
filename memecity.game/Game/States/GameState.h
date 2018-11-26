@@ -7,9 +7,9 @@
 struct GameState : public memecity::engine::state::State {
 private:
 	GameManager::GameContext* _context;
-	std::unique_ptr<memecity::engine::ecs::EntityManager> entity_manager;
+	memecity::engine::ecs::EntityManager entity_manager;
 public:
-	GameState(memecity::engine::state::StateManager& sm, GameManager::GameContext& gc, std::unique_ptr<memecity::engine::ecs::EntityManager> em)
+	GameState(memecity::engine::state::StateManager& sm, GameManager::GameContext& gc, memecity::engine::ecs::EntityManager em)
 		: State(sm), _context(&gc), entity_manager(std::move(em)){}
 	~GameState() = default;
 	void on_load() override;
