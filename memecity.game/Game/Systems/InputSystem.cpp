@@ -30,7 +30,7 @@ void InputSystem::run(EntityManager& em) const
 		if (input_manager.is_down(sdl::One))
 		{
 			const auto animation_component = entity.get<AnimationComponent>();
-			if (animation_component)
+			if (animation_component) 
 			{
 				animation_component->current_state = AnimationComponent::AnimationState::dying;
 			}

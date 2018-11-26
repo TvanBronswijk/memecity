@@ -24,9 +24,8 @@ void AnimationSystem::run(EntityManager& em) const
 			if (animation_component.current_state == AnimationComponent::AnimationState::dying)
 			{
 				animated_texture->set_state(AnimatedTexture::AnimationState::dying);
-			}
-
-			if (animation_component.current_state == AnimationComponent::AnimationState::fighting)
+			}  
+			else if (animation_component.current_state == AnimationComponent::AnimationState::fighting)
 			{
 				animated_texture->set_animation_direction(AnimatedTexture::AnimationDirection::horizontal);
 				animation_component.current_state = AnimationComponent::AnimationState::idle;

@@ -1,5 +1,4 @@
 #include "AnimatedTexture.h"
-#include <iostream>
 
 namespace memecity::engine::texture {
 
@@ -32,16 +31,13 @@ namespace memecity::engine::texture {
 		{
 			_animation_timer -= _animation_speed;
 		}
+
 		if (_current_state == AnimationState::dying)
 		{
 			if (clipped_rect.x != 3 * texture_width)
 			{
-				std::cout << "Dying" << "\n"; 
 				clipped_rect.y = 5 * texture_width;
 				clipped_rect.x = int(_animation_timer / _time_per_frame) * texture_width;
-
-				std::cout << clipped_rect.x << "\n";
-				std::cout << "Calculate: " << 3 * texture_width << "\n";
 			}
 		}
 		else if (_current_state != AnimationState::idle && _animation_direction == AnimationDirection::vertical)
@@ -56,7 +52,7 @@ namespace memecity::engine::texture {
 		}
 		else
 		{
-			clipped_rect.y = 0;
+			clipped_rect.y = _start_y;
 		}
 	}
 }
