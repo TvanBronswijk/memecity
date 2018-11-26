@@ -8,6 +8,7 @@ void HealthSystem::run(EntityManager& em) const {}
 void HealthSystem::on_damage(EntityManager& em, std::reference_wrapper<const Entity> entity) {
 	auto health_target = entity.get().get<HealthComponent>();
 	auto AI = entity.get().get<AIComponent>();
+	auto stats_target = entity.get().get<StatsComponent>();
 
 	std::string hp = "HP: ";
 	if (health_target->health <= 0) {
@@ -45,6 +46,7 @@ void HealthSystem::on_damage(EntityManager& em, std::reference_wrapper<const Ent
 
 
 	if (health_target->health < (health_target->maxhealth / 10)) {
-	AI->state = AIComponent::State::Fleeing;
+		if ((rand() % stats_target->strength) < 5)
+			AI->state = AIComponent::State::Fleeing;
 	}
 }
