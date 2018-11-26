@@ -1,5 +1,7 @@
 ﻿#include "MenuState.h"
-#include "GameLoadingState.h"
+#include "LoadingState.h"
+#include "GameState.h"
+#include "..\GameLoader.h"
 
 MenuState::MenuState(memecity::engine::state::StateManager & sm, GameManager::GameContext & gc)
 	: State(sm), _context(&gc)
@@ -19,7 +21,7 @@ MenuState::MenuState(memecity::engine::state::StateManager & sm, GameManager::Ga
 
 	menu = memecity::engine::ui::menu::MenuBuilder(gc.get_multimedia_manager())
 		.create_menu("MemeCity")
-		.with_menu_item("Start Game", nullptr, [&](auto& menu_item) { next<GameLoadingState>(gc); })
+		.with_menu_item("Start Game", nullptr, [&](auto& menu_item) { next<LoadingState>(gc, [&](auto& ctx) { replace<GameState>(ctx, GameLoader(ctx, 16, 16).build()); }); })
 		.with_menu_item("Settings", settings_menu.get())
 		.with_menu_item("Exit", nullptr, [&](auto& menu_item) { gc.get_input_manager().quit(); })
 		.get_menu();

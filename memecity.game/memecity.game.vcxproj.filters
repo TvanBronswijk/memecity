@@ -153,9 +153,6 @@
     <ClInclude Include="Game\Systems.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Game\States\GameLoadingState.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Game\Generate\City\CityGenerator.h">
       <Filter>Header Files\City</Filter>
     </ClInclude>
@@ -184,6 +181,9 @@
       <Filter>Header Files\City\Strategy</Filter>
     </ClInclude>
     <ClInclude Include="Game\Generate\NPC\NPCGenerator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\States\LoadingState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -236,9 +236,6 @@
     <ClCompile Include="Game\GameLoader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Game\States\GameLoadingState.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Game\Generate\City\CityGenerator.cpp">
       <Filter>Source Files\City</Filter>
     </ClCompile>
@@ -246,6 +243,9 @@
       <Filter>Source Files\City\Strategy</Filter>
     </ClCompile>
     <ClCompile Include="Game\Generate\NPC\NPCGenerator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\States\LoadingState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

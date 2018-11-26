@@ -29,7 +29,7 @@
     <ClInclude Include="Game\Generate\City\Strategy\BSP\Fills\Park.h" />
     <ClInclude Include="Game\Generate\City\Strategy\BSP\Fills\Prefab.h" />
     <ClInclude Include="Game\Generate\NPC\NPCGenerator.h" />
-    <ClInclude Include="Game\States\GameLoadingState.h" />
+    <ClInclude Include="Game\States\LoadingState.h" />
     <ClInclude Include="Game\States\GameState.h" />
     <ClInclude Include="Game\States.h" />
     <ClInclude Include="Game\States\MenuState.h" />
@@ -68,7 +68,7 @@
   <ItemGroup>
     <ClCompile Include="Game\Generate\NPC\NPCGenerator.cpp" />
     <ClCompile Include="Game\GameLoader.cpp" />
-    <ClCompile Include="Game\States\GameLoadingState.cpp" />
+    <ClCompile Include="Game\States\LoadingState.cpp" />
     <ClCompile Include="Game\States\GameState.cpp" />
     <ClCompile Include="Game\States\MenuState.cpp" />
     <ClCompile Include="Game\States\PauseMenuState.cpp" />
