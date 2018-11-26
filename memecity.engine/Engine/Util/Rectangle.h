@@ -2,8 +2,8 @@
 #define _RECTANGLE_H
 struct Rectangle
 {
-	int x, y, w, h;
-	Rectangle(int x, int y, int w, int h)
+	float x, y, w, h;
+	Rectangle(float x, float y, float w, float h)
 	: x(x), y(y), w(w), h(h) {};
 	Rectangle() = default;
 	virtual ~Rectangle() = default;

@@ -65,12 +65,13 @@ void GameLoader::create_map(EntityManager& em, loading::LoadingBar::Listener& li
 
 			auto& builder = builder::EntityBuilder(em)
 				.create_entity()
-				.with_component<DrawableComponent>(std::move(texture));
+				.with_component<DrawableComponent>(std::move(texture))
+				.with_component<PositionComponent>(x * 64.0f, y * 64.0f);
+
 			if (character == 'W' || character == 'w')
 			{
 				builder
-					.with_component<ColliderComponent>(64.0f, 64.0f)
-					.with_component<PositionComponent>(x * 64.0f, y * 64.0f);
+					.with_component<ColliderComponent>(64.0f, 64.0f);
 			}
 			listener.increase_current_value(75.0f / (_map_width * _map_height));
 		}
@@ -101,8 +102,8 @@ void GameLoader::create_player(EntityManager& em, loading::LoadingBar::Listener&
 		.create_entity()
 		.with_component<PlayerComponent>()
 		.with_component<AnimationComponent>()
-		.with_component<ColliderComponent>(64.0f, 64.0f)
-		.with_component<PositionComponent>(multimedia_manager.get_screen_width() / 2.0f, multimedia_manager.get_screen_height() / 2.0f)
+		.with_component<ColliderComponent>(48.0f, 48.0f)
+		.with_component<PositionComponent>(0,0)
 		.with_component<VelocityComponent>()
 		.with_component<DrawableComponent>(std::move(texture))
 		.get();
@@ -117,15 +118,16 @@ void GameLoader::create_systems(EntityManager& em, loading::LoadingBar::Listener
 	auto& animation_system =	em.create_system<AnimationSystem>(System::draw);
 	auto& input_system =		em.create_system<InputSystem>(System::update, *_context);
 	auto& move_system =			em.create_system<MoveSystem>();
-	//auto& collider_system =		em.create_system<ColliderSystem>();
+	auto& collider_system =		em.create_system<ColliderSystem>();
 	auto& ai_system =			em.create_system<AISystem>();
 	auto& fighting_system =		em.create_system<FightingSystem>(System::draw, multimedia_manager);
 	auto& interaction_system =	em.create_system<InteractionSystem>(System::draw, multimedia_manager);
 	auto& overlay_system =		em.create_system<OverlaySystem>(System::draw, multimedia_manager);
-
+	
+	eventing::bind(move_system.move_event, &animation_system, &AnimationSystem::on_move);
 	eventing::bind(input_system.interaction_event, &interaction_system, &InteractionSystem::on_interact);
 	eventing::bind(input_system.attack_event, &fighting_system, &FightingSystem::on_attack);
-	//eventing::bind(collider_system.collider_event, &move_system, &MoveSystem::on_collision);
+	eventing::bind(collider_system.collider_event, &move_system, &MoveSystem::on_collision);
 	listener.increase_current_value(5.0f);
 }
 
