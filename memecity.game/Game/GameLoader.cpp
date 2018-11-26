@@ -6,7 +6,7 @@
 using namespace memecity::engine::ecs;
 using namespace memecity::engine::ui;
 
-std::unique_ptr<memecity::engine::ecs::EntityManager> GameLoader::build(loading::LoadingBar::Listener& listener)
+std::unique_ptr<EntityManager> GameLoader::build(loading::LoadingBar::Listener& listener)
 {
 	auto em = std::make_unique<memecity::engine::ecs::EntityManager>();
 	listener.set_max_value(100.0f);
