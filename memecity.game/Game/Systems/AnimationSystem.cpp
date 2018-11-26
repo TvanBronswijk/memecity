@@ -7,10 +7,10 @@ using namespace memecity::engine::ecs;
 void AnimationSystem::run(EntityManager& em) const
 {
 	auto animation_components = em.get_components_of_type<AnimationComponent>();
-	for (auto& animation_component : animation_components)
+	for (AnimationComponent& animation_component : animation_components)
 	{	
-		const auto& current_position = animation_component.get().entity().get<PositionComponent>();
-		auto& texture = animation_component.get().entity().get<DrawableComponent>()->get_texture();
+		const auto& current_position = animation_component.entity().get<PositionComponent>();
+		auto& texture = animation_component.entity().get<DrawableComponent>()->get_texture();
 
 		// Cast from base class (Texture) to derived class (AnimatedTexture)
 		auto animated_texture = dynamic_cast<AnimatedTexture*>(&texture);
@@ -20,10 +20,10 @@ void AnimationSystem::run(EntityManager& em) const
 			animated_texture->update();
 			animated_texture->set_direction(AnimatedTexture::Direction::idle);
 
-			if (animation_component.get().current_state == AnimationComponent::AnimationState::fighting)
+			if (animation_component.current_state == AnimationComponent::AnimationState::fighting)
 			{
 				animated_texture->set_animation_direction(AnimatedTexture::AnimationDirection::horizontal);
-				animation_component.get().current_state = AnimationComponent::AnimationState::idle;
+				animation_component.current_state = AnimationComponent::AnimationState::idle;
 			}
 			else
 			{

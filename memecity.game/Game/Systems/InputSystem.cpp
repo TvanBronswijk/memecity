@@ -23,13 +23,13 @@ void InputSystem::run(EntityManager& em) const
 	auto& state_manager = _context->get_state_manager();
 
 	auto entities = em.get_entities_with_component<PlayerComponent>();
-	for (auto& entity : entities)
+	for (const Entity& entity : entities)
 	{
-		auto velocity_component = entity.get().get<VelocityComponent>();
+		auto velocity_component = entity.get<VelocityComponent>();
 
 		if (input_manager.is_down(sdl::Attack))
 		{
-			const auto &animation_component = entity.get().get<AnimationComponent>();
+			const auto animation_component = entity.get<AnimationComponent>();
 			if (animation_component)
 			{
 				animation_component->current_state = AnimationComponent::AnimationState::fighting;
@@ -65,11 +65,11 @@ void InputSystem::run(EntityManager& em) const
 			}
 		}
 		if (input_manager.is_down(sdl::Attack)) {
-			auto player = em.get_components_of_type<PlayerComponent>()[0];
+			auto& player = em.get_components_of_type<PlayerComponent>()[0].get();
 			auto vector = em.get_components_of_type<AIComponent>();
 			for (auto & element : vector) {
 				if (check_collision(em, element, 30)) {
-					attack_event.fire(em, {player.get().entity(), element.get().entity() });
+					attack_event.fire(em, {player.entity(), element.get().entity() });
 
 				}
 			}
