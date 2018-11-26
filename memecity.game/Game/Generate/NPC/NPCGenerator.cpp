@@ -9,10 +9,10 @@ using namespace memecity::engine::ecs;
 namespace generate {
 	int NPCGenerator::random_int(int max) {
 		srand(time(NULL));
-		if (max <= 0) {
-			return 0;
+		if (max <= 0 || 5 > max) {
+			return 5;
 		}
-		return (rand() % max);
+		return (5 + (rand() % (max)));
 	}
 
 	const memecity::engine::ecs::Entity& NPCGenerator::generate(int maxlevel, float x, float y) {
@@ -21,22 +21,22 @@ namespace generate {
 		this->y = y;
 
 		int points = level * 5;
-		int strength_points = random_int(points) + 5;
+		int strength_points = random_int(points);
 		strength += strength_points;
 		points -= strength_points;
-		int perception_points = random_int(points) + 5;
+		int perception_points = random_int(points);
 		perception += perception_points;
 		points -= perception_points;
-		int endurance_points = random_int(points) + 5;
+		int endurance_points = random_int(points);
 		endurance += endurance_points;
 		points -= endurance_points;
-		int charisma_points = random_int(points) + 5;
+		int charisma_points = random_int(points);
 		charisma += charisma_points;
 		points -= charisma_points;
-		int intelligence_points = random_int(points) + 5;
+		int intelligence_points = random_int(points);
 		intelligence += intelligence_points;
 		points -= intelligence_points;
-		int agility_points = random_int(points) + 5;
+		int agility_points = random_int(points);
 		agility += agility_points;
 		points -= agility_points;
 		luck += points + 5;
@@ -51,7 +51,8 @@ namespace generate {
 		auto animation_texture = multimedia_manager.get_animated_texture(timer, "SpriteSheet.png", 0, 0, 48, 48, 4, 0.25f, texture::AnimatedTexture::AnimationDirection::vertical);
 		animation_texture->set_position({ static_cast<float>(multimedia_manager.get_screen_width()) / 2, static_cast<float>(multimedia_manager.get_screen_height()) / 2 });
 
-		auto health_texture = multimedia_manager.get_text_texture(hp, "Minecraftia-Regular.ttf", 10, { 34,139,34 });
+		auto health_texture = multimedia_manager.get_text_texture
+			(hp, "Minecraftia-Regular.ttf", 10, { 34,139,34 });
 		health_texture->set_position({ 0, -20 });
 		health_texture->set_parent(animation_texture.get());
 

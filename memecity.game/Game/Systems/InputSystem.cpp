@@ -59,7 +59,7 @@ void InputSystem::run(EntityManager& em) const
 		{
 			auto vector = em.get_components_of_type<AIComponent>();
 			for (AIComponent& element : vector) {
-				if(check_collision(em, element, 30)){
+				if(check_collision(em, element, 9999999990)){
 					interaction_event.fire(em, { element.entity() });
 				}
 			}
@@ -68,7 +68,7 @@ void InputSystem::run(EntityManager& em) const
 			auto& player = em.get_components_of_type<PlayerComponent>()[0].get();
 			auto vector = em.get_components_of_type<AIComponent>();
 			for (AIComponent& element : vector) {
-				if (check_collision(em, element, 30)) {
+				if (check_collision(em, element, 9999999990)) {
 					attack_event.fire(em, {player.entity(), element.entity() });
 				}
 			}

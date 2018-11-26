@@ -186,6 +186,9 @@
     <ClInclude Include="Game\States\LoadingState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Game\Systems\HealthSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -246,6 +249,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Game\States\LoadingState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Systems\HealthSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

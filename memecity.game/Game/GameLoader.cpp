@@ -119,12 +119,15 @@ void GameLoader::create_systems(EntityManager& em, loading::LoadingBar::Listener
 	auto& move_system =			em.create_system<MoveSystem>();
 	//auto& collider_system =		em.create_system<ColliderSystem>();
 	auto& ai_system =			em.create_system<AISystem>();
-	auto& fighting_system =		em.create_system<FightingSystem>(System::draw, multimedia_manager);
-	auto& interaction_system =	em.create_system<InteractionSystem>(System::draw, multimedia_manager);
+	auto& fighting_system =		em.create_system<FightingSystem>(System::update, multimedia_manager);
+	auto& interaction_system =	em.create_system<InteractionSystem>(System::update, multimedia_manager);
 	auto& overlay_system =		em.create_system<OverlaySystem>(System::draw, multimedia_manager);
+	auto& health_system =		em.create_system<HealthSystem>(System::update, multimedia_manager);
+
 
 	eventing::bind(input_system.interaction_event, &interaction_system, &InteractionSystem::on_interact);
 	eventing::bind(input_system.attack_event, &fighting_system, &FightingSystem::on_attack);
+	eventing::bind(fighting_system.damage_event, &health_system, &HealthSystem::on_damage);
 	//eventing::bind(collider_system.collider_event, &move_system, &MoveSystem::on_collision);
 	listener.increase_current_value(5.0f);
 }

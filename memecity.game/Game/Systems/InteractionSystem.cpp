@@ -1,4 +1,6 @@
 #include "InteractionSystem.h"
+#include <stdlib.h>     /* srand, rand */
+#include <time.h>       /* time */
 
 using namespace memecity::engine::ecs;
 
@@ -19,15 +21,16 @@ void InteractionSystem::run(EntityManager &em) const {
 	}
 }
 
-void InteractionSystem::on_interact(EntityManager &em, InteractionEventArgs args) {
+void InteractionSystem::on_interact(EntityManager &em, InteractionEventArgs args) const {
 	auto health = args.source.get<HealthComponent>();
 	if (health->health > 0) {
+		srand(time(NULL));
 		auto xy = args.source.get<PositionComponent>();
 		auto interaction = args.source.get<InteractionComponent>();
 
 		if (interaction != nullptr) {
 			auto text_texture = dynamic_cast<memecity::engine::texture::TextTexture*>(&interaction->get_texture());
-			auto npc_interaciton_texture = multimedia_manager.get_text_texture(interaction->smallTalk[1], "Minecraftia-Regular.ttf", 14, { 255,255,255 });
+			auto npc_interaciton_texture = multimedia_manager.get_text_texture(interaction->smallTalk[(rand() % (interaction->smallTalk.size()-1))], "Minecraftia-Regular.ttf", 14, { 255,255,255 });
 			npc_interaciton_texture->set_position({ 0, -35 });
 			npc_interaciton_texture->set_parent(text_texture->get_parent());
 			interaction->texture = std::move(npc_interaciton_texture);

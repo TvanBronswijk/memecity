@@ -11,5 +11,6 @@
 #include "Systems\InteractionSystem.h"
 #include "Systems\MoveSystem.h"
 #include "Systems\OverlaySystem.h"
+#include "Systems\HealthSystem.h"
 
 #endif
