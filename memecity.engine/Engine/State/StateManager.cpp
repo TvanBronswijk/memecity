@@ -1,5 +1,4 @@
 #include "StateManager.h"
-#include "..\Exceptions.h"
 #include "State.h"
 
 namespace memecity::engine::state {

@@ -1,7 +1,7 @@
 #ifndef _COMPONENT_H
 #define  _COMPONENT_H
-#include "Entity.h"
 namespace memecity::engine::ecs {
+	struct Entity;
 	struct Component {
 	private:
 		Entity* _entity;

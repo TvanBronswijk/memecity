@@ -3,14 +3,16 @@
 #include <vector>
 #include <Engine\MultimediaManager.h>
 #include <ECS.h>
+#include "Models\Models.h"
 #include "strategy\Strategy.h"
 
 namespace generate {
 	class CityGenerator {
 	private:
+		int _w, _h;
 		std::unique_ptr<strategy::Strategy> _strategy;
 	public:
-		CityGenerator();
+		CityGenerator(int width, int _height);
 
 		template<class T, class... Args>
 		void set_strategy(Args&&... args)
@@ -19,8 +21,7 @@ namespace generate {
 			static_assert(std::is_constructible<T, Args...>::value, "The requested type cannot be constructed from the arguments provided.");
 			_strategy = std::make_unique<T>(std::forward<Args>(args)...);
 		}
-
-		void generate(int w, int h, memecity::engine::ecs::EntityManager& em, memecity::engine::MultimediaManager& multimedia_manager) const;
+		models::City generate() const;
 		~CityGenerator() = default;
 	};
 }

@@ -1,6 +1,6 @@
 ﻿#include "InputSystem.h"
-#include "Engine/State/State.h"
-#include "../States.h"
+#include "..\Components.h"
+#include "..\States.h"
 
 using namespace memecity::engine;
 using namespace memecity::engine::ecs;
@@ -19,8 +19,10 @@ bool InputSystem::check_collision(EntityManager& em, Component& element , int ra
 
 void InputSystem::run(EntityManager& em) const
 {
-	auto entities = em.get_entities_with_component<PlayerComponent>();
+	auto& input_manager = _context->get_input_manager();
+	auto& state_manager = _context->get_state_manager();
 
+	auto entities = em.get_entities_with_component<PlayerComponent>();
 	for (auto& entity : entities)
 	{
 
@@ -28,31 +30,31 @@ void InputSystem::run(EntityManager& em) const
 			
 		auto animation_component = entity.get().get<AnimationComponent>();
 
-		if (this->input_manager.is_down(sdl::Attack))
+		if (input_manager.is_down(sdl::Attack))
 		{
 			animation_component->is_fighting = true;
 		}
-		if (this->input_manager.is_down(sdl::Up))
+		if (input_manager.is_down(sdl::Up))
 		{
 #ifdef DEBUG
 			std::cout << "walking /n";
 #endif
 			velocity_component->y += 5;
 		}
-		if (this->input_manager.is_down(sdl::Down))
+		if (input_manager.is_down(sdl::Down))
 		{
 			velocity_component->y -= 5;
 		}
-		if (this->input_manager.is_down(sdl::Left))
+		if (input_manager.is_down(sdl::Left))
 		{
 			velocity_component->x -= 5;
 		}
-		if (this->input_manager.is_down(sdl::Right))
+		if (input_manager.is_down(sdl::Right))
 		{
 			velocity_component->x += 5;
 		}
 		//test for interaction with NPC
-		if (this->input_manager.is_down(sdl::Interaction))
+		if (input_manager.is_down(sdl::Interaction))
 		{
 			auto vector = em.get_components_of_type<AIComponent>();
 			for (auto& element : vector) {
@@ -61,7 +63,7 @@ void InputSystem::run(EntityManager& em) const
 				}
 			}
 		}
-		if (this->input_manager.is_down(sdl::Attack)) {
+		if (input_manager.is_down(sdl::Attack)) {
 			auto player = em.get_components_of_type<PlayerComponent>()[0];
 			auto vector = em.get_components_of_type<AIComponent>();
 			for (auto & element : vector) {
@@ -71,8 +73,8 @@ void InputSystem::run(EntityManager& em) const
 				}
 			}
 		}
-		if (this->input_manager.is_pressed(sdl::Escape)) {
-			state_machine.create_state<PauseMenuState>(state_machine.current_state()->get_context());
+		if (input_manager.is_pressed(sdl::Escape)) {
+			state_manager.create_state<PauseMenuState>(*_context);
 		}
 	}
 }
