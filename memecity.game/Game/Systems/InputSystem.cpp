@@ -25,14 +25,12 @@ void InputSystem::run(EntityManager& em) const
 	auto entities = em.get_entities_with_component<PlayerComponent>();
 	for (auto& entity : entities)
 	{
-
 		auto velocity_component = entity.get().get<VelocityComponent>();
-			
-		auto animation_component = entity.get().get<AnimationComponent>();
 
 		if (input_manager.is_down(sdl::Attack))
 		{
-			animation_component->is_fighting = true;
+			const auto &fighting_component = entity.get().get<FightingComponent>();
+			fighting_component->is_fighting = true;
 		}
 		if (input_manager.is_down(sdl::Up))
 		{

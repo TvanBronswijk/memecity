@@ -69,6 +69,7 @@ namespace generate {
 			.with_component<DrawableComponent>(std::move(animation_texture))//body of npc
 			.with_component<HealthComponent>(health, std::move(health_texture))
 			.with_component<InteractionComponent>(std::move(interaction_texture))
+			.with_component<FightingComponent>()
 			.with_component<AnimationComponent>()
 			.get();
 
