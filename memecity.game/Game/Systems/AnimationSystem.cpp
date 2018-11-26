@@ -10,8 +10,6 @@ void AnimationSystem::run(EntityManager& em) const
 	for (auto& animation_component : animation_components)
 	{	
 		const auto& current_position = animation_component.get().entity().get<PositionComponent>();
-		const auto& fighting_component = animation_component.get().entity().get<FightingComponent>();
-
 		auto& texture = animation_component.get().entity().get<DrawableComponent>()->get_texture();
 
 		// Cast from base class (Texture) to derived class (AnimatedTexture)
@@ -22,10 +20,10 @@ void AnimationSystem::run(EntityManager& em) const
 			animated_texture->update();
 			animated_texture->set_direction(AnimatedTexture::Direction::idle);
 
-			if (fighting_component && fighting_component->is_fighting)
+			if (animation_component.get().current_state == AnimationComponent::AnimationState::fighting)
 			{
 				animated_texture->set_animation_direction(AnimatedTexture::AnimationDirection::horizontal);
-				fighting_component->is_fighting = false;
+				animation_component.get().current_state = AnimationComponent::AnimationState::idle;
 			}
 			else
 			{

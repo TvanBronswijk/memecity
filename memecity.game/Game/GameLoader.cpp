@@ -87,7 +87,6 @@ void GameLoader::create_player(EntityManager& em)
 		.with_component<ColliderComponent>(64.0f, 64.0f)
 		.with_component<PositionComponent>(multimedia_manager.get_screen_width() / 2.0f, multimedia_manager.get_screen_height() / 2.0f)
 		.with_component<VelocityComponent>()
-		.with_component<FightingComponent>()
 		.with_component<DrawableComponent>(std::move(texture))
 		.get();
 }

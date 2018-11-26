@@ -186,9 +186,6 @@
     <ClInclude Include="Game\States\LoadingState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Game\Components\FightingComponent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">

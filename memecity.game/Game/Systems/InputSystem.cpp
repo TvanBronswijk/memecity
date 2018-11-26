@@ -29,8 +29,11 @@ void InputSystem::run(EntityManager& em) const
 
 		if (input_manager.is_down(sdl::Attack))
 		{
-			const auto &fighting_component = entity.get().get<FightingComponent>();
-			fighting_component->is_fighting = true;
+			const auto &animation_component = entity.get().get<AnimationComponent>();
+			if (animation_component)
+			{
+				animation_component->current_state = AnimationComponent::AnimationState::fighting;
+			}
 		}
 		if (input_manager.is_down(sdl::Up))
 		{
