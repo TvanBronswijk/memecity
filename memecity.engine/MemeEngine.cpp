@@ -14,18 +14,18 @@ int multithreaded(memecity::engine::MemeEngine& engine)
 #ifdef DEBUG
 		std::cout << "	logic thread: " << std::this_thread::get_id() << '\n';
 #endif
-		while (!engine.get_input_manager().is_quit_pressed()) {
-			engine.update(engine.get_timer().get_delta_time());
+		while (!engine.get_context().get_input_manager().is_quit_pressed()) {
+			engine.update(engine.get_context().get_timer().get_delta_time());
 		}
 	});
-	while (!engine.get_input_manager().is_quit_pressed()) {
-		engine.get_timer().update();
-		engine.get_input_manager().update();
-		if (engine.get_timer().get_delta_time() >= 1.0f / 60.0f) {
-			engine.get_multimedia_manager().clear_graphics();
+	while (!engine.get_context().get_input_manager().is_quit_pressed()) {
+		engine.get_context().get_timer().update();
+		engine.get_context().get_input_manager().update();
+		if (engine.get_context().get_timer().get_delta_time() >= 1.0f / 60.0f) {
+			engine.get_context().get_multimedia_manager().clear_graphics();
 			engine.draw();
-			engine.get_multimedia_manager().render_graphics();
-			engine.get_timer().reset();
+			engine.get_context().get_multimedia_manager().render_graphics();
+			engine.get_context().get_timer().reset();
 		}
 	};
 	logic.join();
@@ -38,15 +38,15 @@ int singlethreaded(memecity::engine::MemeEngine& engine)
 #ifdef DEBUG
 	std::cout << "singlethreaded\n";
 #endif
-	while (!engine.get_input_manager().is_quit_pressed()) {
-		engine.get_timer().update();
-		engine.get_input_manager().update();
-		engine.update(engine.get_timer().get_delta_time());
-		if (engine.get_timer().get_delta_time() >= 1.0f / 60.0f) {
-			engine.get_multimedia_manager().clear_graphics();
+	while (!engine.get_context().get_input_manager().is_quit_pressed()) {
+		engine.get_context().get_timer().update();
+		engine.get_context().get_input_manager().update();
+		engine.update(engine.get_context().get_timer().get_delta_time());
+		if (engine.get_context().get_timer().get_delta_time() >= 1.0f / 60.0f) {
+			engine.get_context().get_multimedia_manager().clear_graphics();
 			engine.draw();
-			engine.get_multimedia_manager().render_graphics();
-			engine.get_timer().reset();
+			engine.get_context().get_multimedia_manager().render_graphics();
+			engine.get_context().get_timer().reset();
 		}
 	}
 	return 0;

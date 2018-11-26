@@ -197,7 +197,6 @@
     <ClInclude Include="Engine\SDL\TimerFacade.h" />
     <ClInclude Include="Engine\State\State.h" />
     <ClInclude Include="Engine\State\StateManager.h" />
-    <ClInclude Include="Engine\State\StateContext.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

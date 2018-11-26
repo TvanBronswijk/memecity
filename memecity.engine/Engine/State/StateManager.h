@@ -2,11 +2,15 @@
 #define _STATE_MACHINE_H
 #include <memory>
 #include <stack>
+#include <mutex>
+#include "..\Exceptions.h"
 
 namespace memecity::engine::state {
 	class State;
 	class StateManager {
 	private:
+		std::mutex _mutex;
+
 		std::stack<std::unique_ptr<State>> _stack;
 		void exit() const;
 		void load() const;
@@ -23,10 +27,19 @@ namespace memecity::engine::state {
 			load();
 			enter();
 		}
-		void pop(int items = 1);
+		void pop(int count = 1);
+		template<class T, class ... Args>
+		void swap(Args&& ... args) {
+			if (_stack.size() <= 0) {
+				throw exceptions::MemeException(exceptions::Level::error, "Statemachine stack is empty while trying to swap.");
+			}
+			pop();
+			create_state<T>(std::forward<Args>(args)...);
+		}
 		State* current_state() const;
-		void update(float dt) const;
-		void draw() const;
+		
+		void update(float dt);
+		void draw();
 	};
 }
 #endif

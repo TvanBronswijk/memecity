@@ -188,9 +188,6 @@
     <ClInclude Include="Engine\State.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\State\StateContext.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Engine\Exceptions\SDLException.h">
       <Filter>Header Files</Filter>
     </ClInclude>

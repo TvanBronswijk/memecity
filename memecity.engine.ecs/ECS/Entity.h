@@ -1,9 +1,9 @@
 #ifndef _ENTITY_H
 #define  _ENTITY_H
-#include <map>
+#include "Component.h"
 #include "Type.h"
+#include <map>
 namespace memecity::engine::ecs {
-	struct Component;
 	struct Entity {
 	protected:
 		std::map<TypeToken, Component*> _components;
