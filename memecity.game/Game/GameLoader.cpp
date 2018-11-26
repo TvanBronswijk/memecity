@@ -4,18 +4,33 @@
 #include "Systems.h"
 
 using namespace memecity::engine::ecs;
+using namespace memecity::engine::ui;
 
-std::unique_ptr<EntityManager> GameLoader::build()
+std::unique_ptr<EntityManager> GameLoader::build(loading::LoadingBar::Listener& listener)
 {
-	std::unique_ptr<EntityManager> em = std::make_unique<EntityManager>();
-	create_map(*em);
-	create_npcs(*em);
-	create_player(*em);
-	create_systems(*em);
+	auto em = std::make_unique<memecity::engine::ecs::EntityManager>();
+	listener.set_max_value(100.0f);
+
+	listener
+		.set_current_value(0.0f)
+		.set_text("Loading Map");
+	create_map(*em, listener);
+	listener
+		.set_text("Loading NPCs");
+	create_npcs(*em, listener);	
+	listener
+		.set_text("Loading Player");
+	create_player(*em, listener);
+	listener
+		.set_text("Loading Systems");
+	create_systems(*em, listener);	
+	listener
+		.set_text("Loading Complete!");
+
 	return std::move(em);
 }
 
-void GameLoader::create_map(EntityManager& em)
+void GameLoader::create_map(EntityManager& em, loading::LoadingBar::Listener& listener)
 {
 	auto& multimedia_manager = _context->get_multimedia_manager();
 
@@ -57,22 +72,24 @@ void GameLoader::create_map(EntityManager& em)
 					.with_component<ColliderComponent>(64.0f, 64.0f)
 					.with_component<PositionComponent>(x * 64.0f, y * 64.0f);
 			}
+			listener.increase_current_value(75.0f / (_map_width * _map_height));
 		}
 #ifdef DEBUG
 		std::cout << '\n';
 #endif
 	}
+	listener.set_current_value(75.0f);
 }
 
-void GameLoader::create_npcs(EntityManager& em)
+void GameLoader::create_npcs(EntityManager& em, loading::LoadingBar::Listener& listener)
 {
 	auto& multimedia_manager = _context->get_multimedia_manager();
 	auto& timer = _context->get_timer();
-	
 	generate::NPCGenerator(multimedia_manager, timer, em).generate(1, 10, 10);
+	listener.increase_current_value(10.0f);
 }
 
-void GameLoader::create_player(EntityManager& em)
+void GameLoader::create_player(EntityManager& em, loading::LoadingBar::Listener& listener)
 {
 	auto& multimedia_manager = _context->get_multimedia_manager();
 	auto& timer = _context->get_timer();
@@ -89,9 +106,10 @@ void GameLoader::create_player(EntityManager& em)
 		.with_component<VelocityComponent>()
 		.with_component<DrawableComponent>(std::move(texture))
 		.get();
+	listener.increase_current_value(10.0f);
 }
 
-void GameLoader::create_systems(EntityManager& em)
+void GameLoader::create_systems(EntityManager& em, loading::LoadingBar::Listener& listener)
 {
 	auto& multimedia_manager = _context->get_multimedia_manager();
 
@@ -108,4 +126,7 @@ void GameLoader::create_systems(EntityManager& em)
 	eventing::bind(input_system.interaction_event, &interaction_system, &InteractionSystem::on_interact);
 	eventing::bind(input_system.attack_event, &fighting_system, &FightingSystem::on_attack);
 	//eventing::bind(collider_system.collider_event, &move_system, &MoveSystem::on_collision);
+	listener.increase_current_value(5.0f);
 }
+
+

@@ -130,15 +130,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Menu\Menu.cpp" />
-    <ClCompile Include="Menu\MenuBuilder.cpp" />
-    <ClCompile Include="Menu\MenuItem.cpp" />
+    <ClCompile Include="UI\Menu\Menu.cpp" />
+    <ClCompile Include="UI\Menu\MenuBuilder.cpp" />
+    <ClCompile Include="UI\Menu\MenuItem.cpp" />
     <ClCompile Include="UI.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Menu\Menu.h" />
-    <ClInclude Include="Menu\MenuBuilder.h" />
-    <ClInclude Include="Menu\MenuItem.h" />
+    <ClInclude Include="UI\Loading.h" />
+    <ClInclude Include="UI\Loading\LoadingBar.h" />
+    <ClInclude Include="UI\Menu.h" />
+    <ClInclude Include="UI\Menu\Menu.h" />
+    <ClInclude Include="UI\Menu\MenuBuilder.h" />
+    <ClInclude Include="UI\Menu\MenuItem.h" />
     <ClInclude Include="UI.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

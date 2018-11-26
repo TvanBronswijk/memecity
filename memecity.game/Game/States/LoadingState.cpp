@@ -3,7 +3,8 @@
 
 void LoadingState::on_load()
 {
-	_loader(*_context);
+	auto listener = _loading_bar.get_listener();
+	_loader(*_context, listener);
 }
 
 void LoadingState::update(float dt)
@@ -13,7 +14,7 @@ void LoadingState::update(float dt)
 
 void LoadingState::draw()
 {
-
+	_loading_bar.render();
 }
 
 void LoadingState::on_enter()
