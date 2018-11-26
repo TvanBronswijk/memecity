@@ -5,7 +5,7 @@
 
 struct AnimationComponent : public memecity::engine::ecs::Component
 {
-	enum class AnimationState { idle, fighting };
+	enum class AnimationState { idle, fighting, dying };
 
 	AnimationState current_state;
 	AnimationComponent(memecity::engine::ecs::Entity& entity) : memecity::engine::ecs::Component(entity), current_state(AnimationState::idle) {}

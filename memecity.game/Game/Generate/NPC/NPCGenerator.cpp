@@ -48,7 +48,7 @@ namespace generate {
 		hp += "/";
 		hp += std::to_string(health);
 
-		auto animation_texture = multimedia_manager.get_animated_texture(timer, "SpriteSheet.png", 0, 0, 48, 48, 4, 0.25f, texture::AnimatedTexture::AnimationDirection::vertical);
+		auto animation_texture = multimedia_manager.get_animated_texture(timer, "DeadSheet.png", 0, 0, 48, 48, 4, 0.25f, texture::AnimatedTexture::AnimationDirection::vertical);
 		animation_texture->set_position({ static_cast<float>(multimedia_manager.get_screen_width()) / 2, static_cast<float>(multimedia_manager.get_screen_height()) / 2 });
 
 		auto health_texture = multimedia_manager.get_text_texture(hp, "Minecraftia-Regular.ttf", 10, { 34,139,34 });

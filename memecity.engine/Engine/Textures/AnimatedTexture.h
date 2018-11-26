@@ -11,34 +11,32 @@ namespace memecity::engine::texture
 	{
 	public:
 		enum class AnimationDirection { horizontal, vertical };
-		enum class Direction { down, left, up, right, idle };
+		enum class AnimationState { walk_down, walk_left, walk_up, walk_right, idle, dying };
 
 	private:
-		AnimationDirection animation_direction;
-		Direction direction;
+		AnimationDirection _animation_direction;
+		AnimationState _current_state;
 
-		sdl::TimerFacade &timer_facade;
+		sdl::TimerFacade& _timer_facade;
 
-		int start_x;
-		int start_y;
+		int _start_x;
+		int _start_y;
+		int _frame_count;
 
-		int frame_count;
-
-		float animation_timer;
-		float animation_speed;
-
-		float time_per_frame;
+		float _animation_timer;
+		float _animation_speed;
+		float _time_per_frame;
 
 	public:
 		AnimatedTexture(sdl::TimerFacade &timer_facade, std::string filename, int x, int y, const int w, const int h, const int frame_count, const float animation_speed, const AnimationDirection direction)
-			: Texture(filename, x, y, w, h), timer_facade(timer_facade), animation_direction(direction), direction(Direction::down), start_x(x), start_y(y), frame_count(frame_count), animation_timer(0.0f), animation_speed(animation_speed), time_per_frame(animation_speed / frame_count)
+			: Texture(filename, x, y, w, h), _animation_direction(direction), _current_state(AnimationState::idle), _timer_facade(timer_facade), _start_x(x), _start_y(y), _frame_count(frame_count), _animation_timer(0.0f), _animation_speed(animation_speed), _time_per_frame(animation_speed / frame_count)
 		{};
 		~AnimatedTexture() = default;
 
-		void set_direction(const Direction direction);
-		void set_animation_direction(const AnimationDirection direction);
+		void set_state(AnimationState state);
+		void set_animation_direction(AnimationDirection direction);
 		const AnimationDirection& get_animation_direction() const;
-		const Direction& get_direction() const;
+		const AnimationState& get_state() const;
 
 		void update();
 	};

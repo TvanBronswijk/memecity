@@ -27,6 +27,14 @@ void InputSystem::run(EntityManager& em) const
 	{
 		auto velocity_component = entity.get<VelocityComponent>();
 
+		if (input_manager.is_down(sdl::One))
+		{
+			const auto animation_component = entity.get<AnimationComponent>();
+			if (animation_component)
+			{
+				animation_component->current_state = AnimationComponent::AnimationState::dying;
+			}
+		}
 		if (input_manager.is_down(sdl::Attack))
 		{
 			const auto animation_component = entity.get<AnimationComponent>();
@@ -54,6 +62,7 @@ void InputSystem::run(EntityManager& em) const
 		{
 			velocity_component->x += 5;
 		}
+
 		//test for interaction with NPC
 		if (input_manager.is_down(sdl::Interaction))
 		{

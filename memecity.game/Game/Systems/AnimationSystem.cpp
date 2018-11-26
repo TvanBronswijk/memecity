@@ -18,7 +18,13 @@ void AnimationSystem::run(EntityManager& em) const
 		if (animated_texture != nullptr && current_position != nullptr)
 		{
 			animated_texture->update();
-			animated_texture->set_direction(AnimatedTexture::Direction::idle);
+			animated_texture->set_state(AnimatedTexture::AnimationState::idle);
+
+			// TEST FOR DYING
+			if (animation_component.current_state == AnimationComponent::AnimationState::dying)
+			{
+				animated_texture->set_state(AnimatedTexture::AnimationState::dying);
+			}
 
 			if (animation_component.current_state == AnimationComponent::AnimationState::fighting)
 			{
@@ -31,19 +37,19 @@ void AnimationSystem::run(EntityManager& em) const
 
 				if (current_position->diffx > 0)
 				{
-					animated_texture->set_direction(AnimatedTexture::Direction::right);
+					animated_texture->set_state(AnimatedTexture::AnimationState::walk_right);
 				}
 				else if (current_position->diffx < 0)
 				{
-					animated_texture->set_direction(AnimatedTexture::Direction::left);
+					animated_texture->set_state(AnimatedTexture::AnimationState::walk_left);
 				}
 				else if (current_position->diffy > 0)
 				{
-					animated_texture->set_direction(AnimatedTexture::Direction::up);
+					animated_texture->set_state(AnimatedTexture::AnimationState::walk_up);
 				}
 				else if (current_position->diffy < 0)
 				{
-					animated_texture->set_direction(AnimatedTexture::Direction::down);
+					animated_texture->set_state(AnimatedTexture::AnimationState::walk_down);
 				}
 			}
 		}
