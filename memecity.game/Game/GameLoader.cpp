@@ -86,7 +86,7 @@ void GameLoader::create_npcs(EntityManager& em, loading::LoadingBar::Listener& l
 {
 	auto& multimedia_manager = _context->get_multimedia_manager();
 	auto& timer = _context->get_timer();
-	generate::NPCGenerator(multimedia_manager, timer, em).generate_random_npc(1, 10, 10);
+	generate::NPCGenerator(multimedia_manager, timer, em).generate_random_npc(1, 220, 220);
 	listener.increase_current_value(10.0f);
 }
 
@@ -103,7 +103,7 @@ void GameLoader::create_player(EntityManager& em, loading::LoadingBar::Listener&
 		.with_component<PlayerComponent>()
 		.with_component<AnimationComponent>()
 		.with_component<ColliderComponent>(48.0f, 48.0f)
-		.with_component<PositionComponent>(0,0)
+		.with_component<PositionComponent>(200,200)
 		.with_component<VelocityComponent>()
 		.with_component<DrawableComponent>(std::move(texture))
 		.get();

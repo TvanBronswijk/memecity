@@ -71,6 +71,7 @@ namespace generate {
 			.with_component<HealthComponent>(health, std::move(health_texture))
 			.with_component<InteractionComponent>(std::move(interaction_texture))
 			.with_component<AnimationComponent>()
+			.with_component<ColliderComponent>(48.0f, 48.0f)
 			.get();
 
 		return npc;
@@ -78,12 +79,12 @@ namespace generate {
 
 
 	const memecity::engine::ecs::Entity& NPCGenerator::generate_npc(
-		int level, float x, float y, int strenght, int perception, 
+		int level, float x, float y, int strength, int perception,
 		int endurance, int charisma, int intelligence, int agility, 
 		int luck, int health, 
 		std::unique_ptr<memecity::engine::texture::Texture> animation_texture, 
-		std::unique_ptr<memecity::engine::texture::Texture> health_texture, 
-		std::unique_ptr<memecity::engine::texture::Texture> interaction_texture) {
+		std::unique_ptr<memecity::engine::texture::TextTexture> health_texture,
+		std::unique_ptr<memecity::engine::texture::TextTexture> interaction_texture) {
 
 		auto& npc = builder::EntityBuilder(entity_manager)
 			.create_entity()
@@ -96,6 +97,7 @@ namespace generate {
 			.with_component<HealthComponent>(health, std::move(health_texture))
 			.with_component<InteractionComponent>(std::move(interaction_texture))
 			.with_component<AnimationComponent>()
+			.with_component<ColliderComponent>(48.0f, 48.0f)
 			.get();
 
 		return npc;

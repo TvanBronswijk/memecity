@@ -79,16 +79,16 @@ void AISystem::best_first_search(EntityManager& em, const PositionComponent& npc
 	auto direction = path.front();
 
 	if (npc_xy.x < direction.x) { 
-		if (!check_player_position_X(direction, end)) velocity->x += 3;
+		if (!check_player_position_X(direction, end)) velocity->x += movement;
 	}
 	else if(npc_xy.x > direction.x){
-		if(!check_player_position_X(direction, end)) velocity->x -= 3; 
+		if(!check_player_position_X(direction, end)) velocity->x -= movement;
 	}
 	if (npc_xy.y > direction.y) {
-		if (!check_player_position_Y(direction, end)) velocity->y -= 3; 
+		if (!check_player_position_Y(direction, end)) velocity->y -= movement;
 	}
 	else if(npc_xy.y < direction.y) {
-		if (!check_player_position_Y(direction, end)) velocity->y += 3; 
+		if (!check_player_position_Y(direction, end)) velocity->y += movement;
 	}
 }
 
@@ -127,16 +127,16 @@ void AISystem::move_random(const Entity& entity) const{
 
 	switch (ai->direction) {
 	case AIComponent::Direction::Down:
-		velocity->y -= 5;
+		velocity->y -= movement;
 		break;
 	case AIComponent::Direction::Up:
-		velocity->y += 5;
+		velocity->y += movement;
 		break;
 	case AIComponent::Direction::Left:
-		velocity->x -= 5;
+		velocity->x -= movement;
 		break;
 	case AIComponent::Direction::Right:
-		velocity->x += 5;
+		velocity->x += movement;
 		break;
 	case AIComponent::Direction::Idle:
 		break;
@@ -150,10 +150,10 @@ void AISystem::fleeing(EntityManager& em, const PositionComponent& npc_position)
 	auto& player_component = em.get_components_of_type<PlayerComponent>()[0].get();
 	auto player_position = player_component.entity().get<PositionComponent>();
 
-	if (npc_position.x < player_position->x) { velocity->x -= 4; }
-	else if (npc_position.x > player_position->x) { velocity->x += 4; }
-	if (npc_position.y < player_position->y) { velocity->y -= 4; }
-	else if (npc_position.y > player_position->y) { velocity->y += 4; }
+	if (npc_position.x < player_position->x) { velocity->x -= movement; }
+	else if (npc_position.x > player_position->x) { velocity->x += movement; }
+	if (npc_position.y < player_position->y) { velocity->y -= movement; }
+	else if (npc_position.y > player_position->y) { velocity->y += movement; }
 
 	int distance_x = std::abs((player_position->x - npc_position.x));
 	int distance_y = std::abs((player_position->y - npc_position.y));
