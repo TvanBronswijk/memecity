@@ -11,15 +11,15 @@ namespace memecity::engine::texture {
 		std::string filename;
 		bool is_clipped;
 
-		int texture_width;
-		int texture_height;
+		float texture_width;
+		float texture_height;
 
 		Rectangle render_rect;
 		Rectangle clipped_rect;
 
 	public:
-		Texture(std::string filename, int width, int height);
-		Texture(std::string filename, int x, int y, int width, int height);
+		Texture(std::string filename, float width, float height);
+		Texture(std::string filename, float x, float y, float width, float height);
 		void update_render_rect();
 		bool get_is_clipped() const;
 		Rectangle get_render_rect() const;

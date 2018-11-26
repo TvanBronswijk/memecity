@@ -37,22 +37,19 @@ void InputSystem::run(EntityManager& em) const
 		}
 		if (input_manager.is_down(sdl::Up))
 		{
-#ifdef DEBUG
-			std::cout << "walking /n";
-#endif
-			velocity_component->y += 5;
+			velocity_component->y -= 0.1f;
 		}
 		if (input_manager.is_down(sdl::Down))
 		{
-			velocity_component->y -= 5;
+			velocity_component->y += 0.1f;
 		}
 		if (input_manager.is_down(sdl::Left))
 		{
-			velocity_component->x -= 5;
+			velocity_component->x -= 0.1f;
 		}
 		if (input_manager.is_down(sdl::Right))
 		{
-			velocity_component->x += 5;
+			velocity_component->x += 0.1f;
 		}
 		//test for interaction with NPC
 		if (input_manager.is_down(sdl::Interaction))

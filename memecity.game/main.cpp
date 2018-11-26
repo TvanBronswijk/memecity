@@ -9,5 +9,5 @@ int main(int argc, char* argv[])
 #endif
 
 	GameManager game_manager;
-	return game_manager.run(memecity::engine::Threading::singlethreaded);
+	return game_manager.run(memecity::engine::Threading::multithreaded);
 }

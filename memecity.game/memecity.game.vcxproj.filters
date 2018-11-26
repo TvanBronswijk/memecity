@@ -189,6 +189,9 @@
     <ClInclude Include="Game\Systems\HealthSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Event\MoveEventArgs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">

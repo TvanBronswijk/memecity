@@ -2,12 +2,15 @@
 #define _STATE_MACHINE_H
 #include <memory>
 #include <stack>
+#include <mutex>
 #include "..\Exceptions.h"
 
 namespace memecity::engine::state {
 	class State;
 	class StateManager {
 	private:
+		std::mutex _mutex;
+
 		std::stack<std::unique_ptr<State>> _stack;
 		void exit() const;
 		void load() const;
@@ -34,8 +37,9 @@ namespace memecity::engine::state {
 			create_state<T>(std::forward<Args>(args)...);
 		}
 		State* current_state() const;
-		void update(float dt) const;
-		void draw() const;
+		
+		void update(float dt);
+		void draw();
 	};
 }
 #endif
