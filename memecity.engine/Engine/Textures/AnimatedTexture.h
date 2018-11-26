@@ -19,8 +19,8 @@ namespace memecity::engine::texture
 
 		sdl::TimerFacade &timer_facade;
 
-		int start_x;
-		int start_y;
+		float start_x;
+		float start_y;
 
 		int frame_count;
 
@@ -30,7 +30,7 @@ namespace memecity::engine::texture
 		float time_per_frame;
 
 	public:
-		AnimatedTexture(sdl::TimerFacade &timer_facade, std::string filename, int x, int y, const int w, const int h, const int frame_count, const float animation_speed, const AnimationDirection direction)
+		AnimatedTexture(sdl::TimerFacade &timer_facade, std::string filename, float x, float y, const float w, const float h, const int frame_count, const float animation_speed, const AnimationDirection direction)
 			: Texture(filename, x, y, w, h), timer_facade(timer_facade), animation_direction(direction), direction(Direction::down), start_x(x), start_y(y), frame_count(frame_count), animation_timer(0.0f), animation_speed(animation_speed), time_per_frame(animation_speed / frame_count)
 		{};
 		~AnimatedTexture() = default;

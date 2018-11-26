@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClInclude Include="Components.h" />
     <ClInclude Include="Components\AIComponent.h" />
+    <ClInclude Include="Event\MoveEventArgs.h" />
     <ClInclude Include="Generate.h" />
     <ClInclude Include="Generate\Strategy\BSP\Fills\Building.h" />
     <ClInclude Include="Generate\Strategy\BSP\Fills\Empty.h" />

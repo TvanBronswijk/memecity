@@ -13,7 +13,6 @@ generate::CityGenerator::CityGenerator()
 void generate::CityGenerator::generate(int w, int h, EntityManager& em, MultimediaManager &multimedia_manager) const
 {
 	const auto& c = this->_strategy->generate(w, h);
-
 	for (int y = c.begin.y; y < c.end.y; y++) {
 		for (int x = c.begin.x; x < c.end.x; x++) {
 			auto& character = c(x, y);
@@ -44,12 +43,13 @@ void generate::CityGenerator::generate(int w, int h, EntityManager& em, Multimed
 
 			auto& builder = builder::EntityBuilder(em)
 				.create_entity()
-				.with_component<DrawableComponent>(std::move(texture));
+				.with_component<DrawableComponent>(std::move(texture))
+				.with_component<PositionComponent>(x * 64.0f, y * 64.0f);
+
 			if (character == 'W' || character == 'w')
 			{
 				builder
-					.with_component<ColliderComponent>(64.0f, 64.0f)
-					.with_component<PositionComponent>(x * 64.0f, y * 64.0f);
+					.with_component<ColliderComponent>(64.0f, 64.0f);
 			}
 		}
 #ifdef DEBUG

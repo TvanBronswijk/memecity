@@ -1,7 +1,7 @@
 #include "Texture.h"
 
 namespace memecity::engine::texture {
-	Texture::Texture(std::string filename, int width, int height)
+	Texture::Texture(std::string filename, float width, float height)
 	{
 		this->filename = filename;
 		is_clipped = false;
@@ -13,7 +13,7 @@ namespace memecity::engine::texture {
 		render_rect.h = texture_height;
 	}
 
-	Texture::Texture(std::string filename, int x, int y, int width, int height)
+	Texture::Texture(std::string filename, float x, float y, float width, float height)
 	{
 		this->filename = filename;
 		is_clipped = true;
@@ -33,8 +33,8 @@ namespace memecity::engine::texture {
 	void Texture::update_render_rect()
 	{
 		const auto pos = get_position(world);
-		render_rect.x = int(pos.x - texture_width * 0.5f);
-		render_rect.y = int(pos.y - texture_height * 0.5f);
+		render_rect.x = pos.x - texture_width * 0.5f;
+		render_rect.y = pos.y - texture_height * 0.5f;
 	}
 
 	bool Texture::get_is_clipped() const

@@ -23,8 +23,6 @@ void OverlaySystem::run(EntityManager& em) const
 	for (auto texture : textures)
 	{
 		
-		texture->translate({ (player_position_component->diffx*-1) , player_position_component->diffy });
-		
 		auto text_texture = dynamic_cast<memecity::engine::texture::TextTexture*>(texture);
 		if (text_texture)
 		{

@@ -19,8 +19,8 @@ void GameState::on_load()
 		.create_entity()
 		.with_component<PlayerComponent>()
 		.with_component<AnimationComponent>()
-		.with_component<ColliderComponent>(64.0f, 64.0f)
-		.with_component<PositionComponent>(multimedia_manager.get_screen_width() / 2, multimedia_manager.get_screen_height() / 2)
+		.with_component<ColliderComponent>(48.0f, 48.0f)
+		.with_component<PositionComponent>(0,0)
 		.with_component<VelocityComponent>()
 		.with_component<DrawableComponent>(std::move(texture))
 		.get();
@@ -43,15 +43,16 @@ void GameState::on_load()
 	auto& fighting_system = entity_manager.create_system<FightingSystem>(System::draw, multimedia_manager);
 	entity_manager.create_system<AISystem>();
 	auto& interaciton_system = entity_manager.create_system<InteractionSystem>(System::draw, multimedia_manager);
-	entity_manager.create_system<OverlaySystem>(System::draw, multimedia_manager);
-	entity_manager.create_system<AnimationSystem>(System::draw);
+	auto& animation_system = entity_manager.create_system<AnimationSystem>(System::update);
 	entity_manager.create_system<DrawSystem>(System::draw, multimedia_manager);
 	auto& input_system = entity_manager.create_system<InputSystem>(System::update, input_manager, *_state_machine);
 	auto& move_system = entity_manager.create_system<MoveSystem>();
 	auto& collider_system = entity_manager.create_system<ColliderSystem>();
+	entity_manager.create_system<OverlaySystem>(System::draw, multimedia_manager);
 
 	// events
 	ecs::eventing::bind(input_system.interaction_event,		&interaciton_system,	&InteractionSystem::on_interact);
+	ecs::eventing::bind(move_system.move_event,				&animation_system,		&AnimationSystem::on_move);
 	ecs::eventing::bind(input_system.attack_event,			&fighting_system,		&FightingSystem::on_attack);
 	ecs::eventing::bind(collider_system.collider_event,		&move_system,			&MoveSystem::on_collision);
 }
