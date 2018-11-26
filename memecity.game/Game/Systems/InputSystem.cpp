@@ -58,19 +58,18 @@ void InputSystem::run(EntityManager& em) const
 		if (input_manager.is_down(sdl::Interaction))
 		{
 			auto vector = em.get_components_of_type<AIComponent>();
-			for (auto& element : vector) {
+			for (AIComponent& element : vector) {
 				if(check_collision(em, element, 30)){
-					interaction_event.fire(em, { element.get().entity() });
+					interaction_event.fire(em, { element.entity() });
 				}
 			}
 		}
 		if (input_manager.is_down(sdl::Attack)) {
 			auto& player = em.get_components_of_type<PlayerComponent>()[0].get();
 			auto vector = em.get_components_of_type<AIComponent>();
-			for (auto & element : vector) {
+			for (AIComponent& element : vector) {
 				if (check_collision(em, element, 30)) {
-					attack_event.fire(em, {player.entity(), element.get().entity() });
-
+					attack_event.fire(em, {player.entity(), element.entity() });
 				}
 			}
 		}
