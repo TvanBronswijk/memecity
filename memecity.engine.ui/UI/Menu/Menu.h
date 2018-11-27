@@ -21,7 +21,7 @@ namespace memecity::engine::ui::menu {
 		Menu(MultimediaManager& multimedia_manager, std::string title, MenuItem* parent = nullptr) 
 		: selected_menu_items_index(0), multimedia_manager(multimedia_manager), is_locked(false), parent(parent), title(title)
 		{
-			title_texture = multimedia_manager.get_text_texture(title, "Minecraftia-Regular.ttf", 36, { 255,255,255 });
+			title_texture = multimedia_manager.get_text_texture(title, "Fonts/Minecraftia-Regular.ttf", 36, { 255,255,255 });
 		}
 
 		void set_parent(MenuItem* parent);

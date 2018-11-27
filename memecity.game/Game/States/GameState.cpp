@@ -17,7 +17,7 @@ void GameState::draw()
 
 void GameState::on_enter()
 {
-	_context->get_multimedia_manager().play_background_music("bgm-game.mp3", 100);
+	_context->get_multimedia_manager().play_background_music("Music/bgm-game.mp3", 100);
 }
 
 void GameState::on_exit()

@@ -45,16 +45,16 @@ void GameLoader::create_map(EntityManager& em, loading::LoadingBar::Listener& li
 			switch (character)
 			{
 			case '-':
-				filename = "gray.bmp";
+				filename = "Sprites/Tiles/gray.bmp";
 				break;
 			case  'W':
-				filename = "brown.bmp";
+				filename = "Sprites/Tiles/brown.bmp";
 				break;
 			case  'w':
-				filename = "blue.bmp";
+				filename = "Sprites/Tiles/blue.bmp";
 				break;
 			case 'g':
-				filename = "green.bmp";
+				filename = "Sprites/Tiles/green.bmp";
 				break;
 			default:
 				std::cout << "ERROR!" << std::endl;
@@ -95,7 +95,7 @@ void GameLoader::create_player(EntityManager& em, loading::LoadingBar::Listener&
 	auto& multimedia_manager = _context->get_multimedia_manager();
 	auto& timer = _context->get_timer();
 
-	auto texture = multimedia_manager.get_animated_texture(timer, "SpriteSheet.png", 0, 0, 48, 48, 4, 0.25f, memecity::engine::texture::AnimatedTexture::AnimationDirection::vertical);
+	auto texture = multimedia_manager.get_animated_texture(timer, "Spritesheets/SpriteSheet.png", 0, 0, 48, 48, 4, 0.25f, memecity::engine::texture::AnimatedTexture::AnimationDirection::vertical);
 	texture->set_position({ static_cast<float>(multimedia_manager.get_screen_width()) / 2, static_cast<float>(multimedia_manager.get_screen_height()) / 2 });
 	
 	builder::EntityBuilder(em)
