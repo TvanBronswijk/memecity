@@ -64,6 +64,7 @@
     <ClInclude Include="Game\Components\VelocityComponent.h" />
     <ClInclude Include="Game\Components\StatsComponent.h" />
     <ClInclude Include="Game\Systems\OverlaySystem.h" />
+    <ClInclude Include="Game\Components\ScoreComponent.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game\Generate\NPC\NPCGenerator.cpp" />

@@ -13,6 +13,24 @@ void OverlaySystem::run(EntityManager& em) const
 
 	std::vector<memecity::engine::texture::Texture*> textures;
 
+	//hud WIP
+
+	//black box
+	auto black_box_texture = multimedia_manager.get_texture("big_black.bmp", 0, 0, multimedia_manager.get_screen_width(), 90);
+	textures.push_back(black_box_texture.get());
+
+	//health
+	/*std::string hp = "HP: ";
+	auto player_healt_component = player_component.get<HealthComponent>();
+	hp += std::to_string(player_healt_component->health);
+	auto target_health_texture = multimedia_manager.get_text_texture(hp, "Minecraftia-Regular.ttf", 10, { 34,139,34 });
+	target_health_texture->set_position({ 0, -20 });*/
+
+	//end hud
+
+
+
+
 	for (std::vector<std::reference_wrapper<HealthComponent>>::iterator it =Health_overlay_components.begin(); it != Health_overlay_components.end(); ++it) {
 		textures.push_back(&it->get().get_texture());
 	}

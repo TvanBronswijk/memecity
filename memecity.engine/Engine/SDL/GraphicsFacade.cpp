@@ -104,10 +104,10 @@ namespace memecity::engine::sdl {
 		sdl_render_rect->h = render_rect.h;
 
 
-		if (render_rect.x > -viewport_offset && render_rect.x < screen_width + viewport_offset &&
-			render_rect.y > -viewport_offset && render_rect.y < screen_height + viewport_offset) {
+		//if (render_rect.x > -viewport_offset && render_rect.x < screen_width + viewport_offset &&
+		//	render_rect.y > -viewport_offset && render_rect.y < screen_height + viewport_offset) {
 			SDL_RenderCopy(sdl_renderer->get(), *texture, sdl_clipped_rect.get(), sdl_render_rect.get());
-		}
+		//}
 	}
 
 	void GraphicsFacade::clear() const

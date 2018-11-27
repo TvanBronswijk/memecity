@@ -78,7 +78,7 @@ void GameLoader::create_player(EntityManager& em)
 	auto& timer = _context->get_timer();
 
 	auto texture = multimedia_manager.get_animated_texture(timer, "SpriteSheet.png", 0, 0, 48, 48, 4, 0.25f, memecity::engine::texture::AnimatedTexture::AnimationDirection::vertical);
-	texture->set_position({ static_cast<float>(multimedia_manager.get_screen_width()) / 2, static_cast<float>(multimedia_manager.get_screen_height()) / 2 });
+	texture->set_position({ static_cast<float>(multimedia_manager.get_screen_width()) / 2, static_cast<float>(multimedia_manager.get_screen_height() + 100) / 2 });
 	
 	builder::EntityBuilder(em)
 		.create_entity()
@@ -87,9 +87,9 @@ void GameLoader::create_player(EntityManager& em)
 		.with_component<ColliderComponent>(64.0f, 64.0f)
 		.with_component<PositionComponent>(multimedia_manager.get_screen_width() / 2.0f, multimedia_manager.get_screen_height() / 2.0f)
 		.with_component<VelocityComponent>()
-		.with_component<DrawableComponent>(std::move(texture))
-		.get();
+		.with_component<DrawableComponent>(std::move(texture));
 }
+
 
 void GameLoader::create_systems(EntityManager& em)
 {

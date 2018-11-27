@@ -19,10 +19,10 @@ namespace memecity::engine::sdl {
 
 	void AudioFacade::open_audio(int frequency, int channels, int chunksize) const
 	{
-		if (Mix_OpenAudio(frequency, MIX_DEFAULT_FORMAT, channels, chunksize) < 0)
+		/*if (Mix_OpenAudio(frequency, MIX_DEFAULT_FORMAT, channels, chunksize) < 0)
 		{
 			throw SDLException(Level::error, Mix_GetError());
-		}
+		}*/
 	}
 
 	void AudioFacade::play_sound_effect(const RawSfxWrapper& sound, int repeats, int volume, int channel) const
