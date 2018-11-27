@@ -89,7 +89,7 @@
     <ClCompile Include="Game\Systems\OverlaySystem.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <CopyFileToFolders Include="Assets\bgm.mp3">
+    <CopyFileToFolders Include="Assets\Music\bgm.mp3">
       <DeploymentContent>true</DeploymentContent>
       <FileType>Document</FileType>
       <RootFolder Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -101,7 +101,7 @@
       <RootFolder Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
       </RootFolder>
     </CopyFileToFolders>
-    <CopyFileToFolders Include="Assets\bgm.wav">
+    <CopyFileToFolders Include="Assets\Music\bgm.wav">
       <DeploymentContent>true</DeploymentContent>
       <FileType>Document</FileType>
       <RootFolder Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -113,7 +113,7 @@
       <RootFolder Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
       </RootFolder>
     </CopyFileToFolders>
-    <CopyFileToFolders Include="Assets\biem.mp3">
+    <CopyFileToFolders Include="Assets\SFX\biem.mp3">
       <DeploymentContent>true</DeploymentContent>
       <FileType>Document</FileType>
       <RootFolder Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -125,7 +125,7 @@
       <RootFolder Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
       </RootFolder>
     </CopyFileToFolders>
-    <CopyFileToFolders Include="Assets\biem.wav">
+    <CopyFileToFolders Include="Assets\SFX\biem.wav">
       <DeploymentContent>true</DeploymentContent>
       <FileType>Document</FileType>
       <RootFolder Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -137,7 +137,7 @@
       <RootFolder Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
       </RootFolder>
     </CopyFileToFolders>
-    <CopyFileToFolders Include="Assets\hahabier.mp3">
+    <CopyFileToFolders Include="Assets\SFX\hahabier.mp3">
       <DeploymentContent>true</DeploymentContent>
       <FileType>Document</FileType>
       <RootFolder Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -151,7 +151,7 @@
     </CopyFileToFolders>
   </ItemGroup>
   <ItemGroup>
-    <CopyFileToFolders Include="Assets\black.bmp">
+    <CopyFileToFolders Include="Assets\Sprites\Tiles\black.bmp">
       <DeploymentContent>true</DeploymentContent>
       <RootFolder Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
       </RootFolder>
@@ -162,7 +162,7 @@
       <RootFolder Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
       </RootFolder>
     </CopyFileToFolders>
-    <CopyFileToFolders Include="Assets\BlikBier.bmp">
+    <CopyFileToFolders Include="Assets\Sprites\BlikBier.bmp">
       <DeploymentContent>true</DeploymentContent>
       <RootFolder Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
       </RootFolder>
@@ -173,7 +173,7 @@
       <RootFolder Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
       </RootFolder>
     </CopyFileToFolders>
-    <CopyFileToFolders Include="Assets\blue.bmp">
+    <CopyFileToFolders Include="Assets\Sprites\Tiles\blue.bmp">
       <DeploymentContent>true</DeploymentContent>
       <RootFolder Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
       </RootFolder>
@@ -184,7 +184,7 @@
       <RootFolder Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
       </RootFolder>
     </CopyFileToFolders>
-    <CopyFileToFolders Include="Assets\brown.bmp">
+    <CopyFileToFolders Include="Assets\Sprites\Tiles\brown.bmp">
       <DeploymentContent>true</DeploymentContent>
       <RootFolder Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
       </RootFolder>
@@ -195,7 +195,7 @@
       <RootFolder Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
       </RootFolder>
     </CopyFileToFolders>
-    <CopyFileToFolders Include="Assets\gray.bmp">
+    <CopyFileToFolders Include="Assets\Sprites\Tiles\gray.bmp">
       <DeploymentContent>true</DeploymentContent>
       <RootFolder Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
       </RootFolder>
@@ -206,7 +206,7 @@
       <RootFolder Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
       </RootFolder>
     </CopyFileToFolders>
-    <CopyFileToFolders Include="Assets\green.bmp">
+    <CopyFileToFolders Include="Assets\Sprites\Tiles\green.bmp">
       <DeploymentContent>true</DeploymentContent>
       <RootFolder Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
       </RootFolder>
@@ -217,7 +217,7 @@
       <RootFolder Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
       </RootFolder>
     </CopyFileToFolders>
-    <CopyFileToFolders Include="Assets\orange.bmp">
+    <CopyFileToFolders Include="Assets\Sprites\Tiles\orange.bmp">
       <DeploymentContent>true</DeploymentContent>
       <RootFolder Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
       </RootFolder>
@@ -228,7 +228,7 @@
       <RootFolder Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
       </RootFolder>
     </CopyFileToFolders>
-    <CopyFileToFolders Include="Assets\purple.bmp">
+    <CopyFileToFolders Include="Assets\Sprites\Tiles\purple.bmp">
       <DeploymentContent>true</DeploymentContent>
       <RootFolder Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
       </RootFolder>
@@ -239,7 +239,7 @@
       <RootFolder Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
       </RootFolder>
     </CopyFileToFolders>
-    <CopyFileToFolders Include="Assets\red.bmp">
+    <CopyFileToFolders Include="Assets\Sprites\Tiles\red.bmp">
       <DeploymentContent>true</DeploymentContent>
       <RootFolder Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
       </RootFolder>
@@ -250,7 +250,7 @@
       <RootFolder Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
       </RootFolder>
     </CopyFileToFolders>
-    <CopyFileToFolders Include="Assets\SpriteSheet.png">
+    <CopyFileToFolders Include="Assets\Spritesheets\SpriteSheet.png">
       <DeploymentContent>true</DeploymentContent>
       <RootFolder Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
       </RootFolder>
@@ -261,7 +261,7 @@
       <RootFolder Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
       </RootFolder>
     </CopyFileToFolders>
-    <CopyFileToFolders Include="Assets\white.bmp">
+    <CopyFileToFolders Include="Assets\Sprites\Tiles\white.bmp">
       <DeploymentContent>true</DeploymentContent>
       <RootFolder Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
       </RootFolder>
@@ -272,7 +272,7 @@
       <RootFolder Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
       </RootFolder>
     </CopyFileToFolders>
-    <CopyFileToFolders Include="Assets\yellow.bmp">
+    <CopyFileToFolders Include="Assets\Sprites\Tiles\yellow.bmp">
       <DeploymentContent>true</DeploymentContent>
       <RootFolder Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
       </RootFolder>
@@ -285,7 +285,7 @@
     </CopyFileToFolders>
   </ItemGroup>
   <ItemGroup>
-    <CopyFileToFolders Include="Assets\Blazed.ttf">
+    <CopyFileToFolders Include="Assets\Fonts\Blazed.ttf">
       <DeploymentContent>true</DeploymentContent>
       <FileType>Document</FileType>
       <RootFolder Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -297,7 +297,7 @@
       <RootFolder Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
       </RootFolder>
     </CopyFileToFolders>
-    <CopyFileToFolders Include="Assets\FreePixel.ttf">
+    <CopyFileToFolders Include="Assets\Fonts\FreePixel.ttf">
       <DeploymentContent>true</DeploymentContent>
       <FileType>Document</FileType>
       <RootFolder Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -309,7 +309,7 @@
       <RootFolder Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
       </RootFolder>
     </CopyFileToFolders>
-    <CopyFileToFolders Include="Assets\Minecraftia-Regular.ttf">
+    <CopyFileToFolders Include="Assets\Fonts\Minecraftia-Regular.ttf">
       <DeploymentContent>true</DeploymentContent>
       <FileType>Document</FileType>
       <RootFolder Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -398,8 +398,8 @@
     </ClCompile>
     <CopyFileToFolders>
       <RootFolder>Assets</RootFolder>
-      <DestinationFolders>$(OutDir)/Assets</DestinationFolders>
-      <DestinationFileName>%(RelativePath)%(Filename)%(Extension)</DestinationFileName>
+      <DestinationFolders>$(OutDir)</DestinationFolders>
+      <DestinationFileName>%(RelativeDir)%(Filename)%(Extension)</DestinationFileName>
     </CopyFileToFolders>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -418,8 +418,8 @@
     </Link>
     <CopyFileToFolders>
       <RootFolder>Assets</RootFolder>
-      <DestinationFolders>$(OutDir)/Assets</DestinationFolders>
-      <DestinationFileName>%(RelativePath)%(Filename)%(Extension)</DestinationFileName>
+      <DestinationFolders>$(OutDir)</DestinationFolders>
+      <DestinationFileName>%(RelativeDir)%(Filename)%(Extension)</DestinationFileName>
     </CopyFileToFolders>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -438,8 +438,8 @@
     </Link>
     <CopyFileToFolders>
       <RootFolder>Assets</RootFolder>
-      <DestinationFolders>$(OutDir)/Assets</DestinationFolders>
-      <DestinationFileName>%(RelativePath)%(Filename)%(Extension)</DestinationFileName>
+      <DestinationFolders>$(OutDir)</DestinationFolders>
+      <DestinationFileName>%(RelativeDir)%(Filename)%(Extension)</DestinationFileName>
     </CopyFileToFolders>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -462,8 +462,8 @@
     </Link>
     <CopyFileToFolders>
       <RootFolder>Assets</RootFolder>
-      <DestinationFolders>$(OutDir)/Assets</DestinationFolders>
-      <DestinationFileName>%(RelativePath)%(Filename)%(Extension)</DestinationFileName>
+      <DestinationFolders>$(OutDir)</DestinationFolders>
+      <DestinationFileName>%(RelativeDir)%(Filename)%(Extension)</DestinationFileName>
     </CopyFileToFolders>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
