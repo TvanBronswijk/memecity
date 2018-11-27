@@ -133,8 +133,8 @@
     <ClCompile Include="UI\Menu\Menu.cpp" />
     <ClCompile Include="UI\Menu\MenuBuilder.cpp" />
     <ClCompile Include="UI\Menu\MenuItem.cpp" />
-    <ClCompile Include="Overlay\Overlay.cpp" />
-    <ClCompile Include="Overlay\OverlayItem.cpp" />
+    <ClCompile Include="UI\Overlay\Overlay.cpp" />
+    <ClCompile Include="UI\Overlay\OverlayItem.cpp" />
     <ClCompile Include="UI.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -144,8 +144,8 @@
     <ClInclude Include="UI\Menu\Menu.h" />
     <ClInclude Include="UI\Menu\MenuBuilder.h" />
     <ClInclude Include="UI\Menu\MenuItem.h" />
-    <ClInclude Include="Overlay\Overlay.h" />
-    <ClInclude Include="Overlay\OverlayItem.h" />
+    <ClInclude Include="UI\Overlay\Overlay.h" />
+    <ClInclude Include="UI\Overlay\OverlayItem.h" />
     <ClInclude Include="UI.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
