@@ -22,7 +22,7 @@
     <ClInclude Include="Game\Components.h" />
     <ClInclude Include="Game\Components\AIComponent.h" />
     <ClInclude Include="Game\GameLoader.h" />
-	<ClInclude Include="Game\Event\MoveEventArgs.h" />
+    <ClInclude Include="Game\Event\MoveEventArgs.h" />
     <ClInclude Include="Game\Generate.h" />
     <ClInclude Include="Game\Generate\City\Strategy\BSP\Fills\Building.h" />
     <ClInclude Include="Game\Generate\City\Strategy\BSP\Fills\Empty.h" />
@@ -89,70 +89,238 @@
     <ClCompile Include="Game\Systems\OverlaySystem.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Media Include="Assets\bgm.mp3">
+    <CopyFileToFolders Include="Assets\bgm.mp3">
       <DeploymentContent>true</DeploymentContent>
-    </Media>
-    <Media Include="Assets\bgm.wav">
+      <FileType>Document</FileType>
+      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </RootFolder>
+      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </RootFolder>
+      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      </RootFolder>
+      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+      </RootFolder>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="Assets\bgm.wav">
       <DeploymentContent>true</DeploymentContent>
-    </Media>
-    <Media Include="Assets\biem.mp3">
+      <FileType>Document</FileType>
+      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </RootFolder>
+      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </RootFolder>
+      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      </RootFolder>
+      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+      </RootFolder>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="Assets\biem.mp3">
       <DeploymentContent>true</DeploymentContent>
-    </Media>
-    <Media Include="Assets\biem.wav">
+      <FileType>Document</FileType>
+      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </RootFolder>
+      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </RootFolder>
+      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      </RootFolder>
+      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+      </RootFolder>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="Assets\biem.wav">
       <DeploymentContent>true</DeploymentContent>
-    </Media>
-    <Media Include="Assets\hahabier.mp3">
+      <FileType>Document</FileType>
+      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </RootFolder>
+      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </RootFolder>
+      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      </RootFolder>
+      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+      </RootFolder>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="Assets\hahabier.mp3">
       <DeploymentContent>true</DeploymentContent>
-    </Media>
+      <FileType>Document</FileType>
+      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </RootFolder>
+      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </RootFolder>
+      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      </RootFolder>
+      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+      </RootFolder>
+    </CopyFileToFolders>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="Assets\black.bmp">
+    <CopyFileToFolders Include="Assets\black.bmp">
       <DeploymentContent>true</DeploymentContent>
-    </Image>
-    <Image Include="Assets\BlikBier.bmp">
+      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </RootFolder>
+      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </RootFolder>
+      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      </RootFolder>
+      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+      </RootFolder>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="Assets\BlikBier.bmp">
       <DeploymentContent>true</DeploymentContent>
-    </Image>
-    <Image Include="Assets\blue.bmp">
+      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </RootFolder>
+      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </RootFolder>
+      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      </RootFolder>
+      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+      </RootFolder>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="Assets\blue.bmp">
       <DeploymentContent>true</DeploymentContent>
-    </Image>
-    <Image Include="Assets\brown.bmp">
+      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </RootFolder>
+      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </RootFolder>
+      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      </RootFolder>
+      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+      </RootFolder>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="Assets\brown.bmp">
       <DeploymentContent>true</DeploymentContent>
-    </Image>
-    <Image Include="Assets\gray.bmp">
+      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </RootFolder>
+      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </RootFolder>
+      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      </RootFolder>
+      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+      </RootFolder>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="Assets\gray.bmp">
       <DeploymentContent>true</DeploymentContent>
-    </Image>
-    <Image Include="Assets\green.bmp">
+      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </RootFolder>
+      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </RootFolder>
+      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      </RootFolder>
+      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+      </RootFolder>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="Assets\green.bmp">
       <DeploymentContent>true</DeploymentContent>
-    </Image>
-    <Image Include="Assets\orange.bmp">
+      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </RootFolder>
+      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </RootFolder>
+      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      </RootFolder>
+      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+      </RootFolder>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="Assets\orange.bmp">
       <DeploymentContent>true</DeploymentContent>
-    </Image>
-    <Image Include="Assets\purple.bmp">
+      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </RootFolder>
+      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </RootFolder>
+      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      </RootFolder>
+      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+      </RootFolder>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="Assets\purple.bmp">
       <DeploymentContent>true</DeploymentContent>
-    </Image>
-    <Image Include="Assets\red.bmp">
+      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </RootFolder>
+      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </RootFolder>
+      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      </RootFolder>
+      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+      </RootFolder>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="Assets\red.bmp">
       <DeploymentContent>true</DeploymentContent>
-    </Image>
-    <Image Include="Assets\SpriteSheet.png">
+      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </RootFolder>
+      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </RootFolder>
+      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      </RootFolder>
+      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+      </RootFolder>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="Assets\SpriteSheet.png">
       <DeploymentContent>true</DeploymentContent>
-    </Image>
-    <Image Include="Assets\white.bmp">
+      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </RootFolder>
+      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </RootFolder>
+      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      </RootFolder>
+      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+      </RootFolder>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="Assets\white.bmp">
       <DeploymentContent>true</DeploymentContent>
-    </Image>
-    <Image Include="Assets\yellow.bmp">
+      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </RootFolder>
+      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </RootFolder>
+      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      </RootFolder>
+      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+      </RootFolder>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="Assets\yellow.bmp">
       <DeploymentContent>true</DeploymentContent>
-    </Image>
+      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </RootFolder>
+      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </RootFolder>
+      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      </RootFolder>
+      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+      </RootFolder>
+    </CopyFileToFolders>
   </ItemGroup>
   <ItemGroup>
-    <Font Include="Assets\Blazed.ttf">
+    <CopyFileToFolders Include="Assets\Blazed.ttf">
       <DeploymentContent>true</DeploymentContent>
-    </Font>
-    <Font Include="Assets\FreePixel.ttf">
+      <FileType>Document</FileType>
+      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </RootFolder>
+      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </RootFolder>
+      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      </RootFolder>
+      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+      </RootFolder>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="Assets\FreePixel.ttf">
       <DeploymentContent>true</DeploymentContent>
-    </Font>
-    <Font Include="Assets\Minecraftia-Regular.ttf">
+      <FileType>Document</FileType>
+      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </RootFolder>
+      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </RootFolder>
+      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      </RootFolder>
+      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+      </RootFolder>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="Assets\Minecraftia-Regular.ttf">
       <DeploymentContent>true</DeploymentContent>
-    </Font>
+      <FileType>Document</FileType>
+      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </RootFolder>
+      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </RootFolder>
+      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      </RootFolder>
+      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+      </RootFolder>
+    </CopyFileToFolders>
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
@@ -207,9 +375,17 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <IncludePath>$(SolutionDir)memecity.engine.ui;$(SolutionDir)memecity.engine;$(SolutionDir)dependencies\SDL2_mixer-2.0.2\include;$(SolutionDir)dependencies\SDL2_ttf-2.0.14\include;$(SolutionDir)dependencies\SDL2\include;$(SolutionDir)dependencies\SDL2_image-2.0.3\include;$(VC_IncludePath);$(WindowsSDK_IncludePath);$(SolutionDir)memecity.engine.ecs</IncludePath>
+    <CodeAnalysisRuleSet>NativeRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <IncludePath>$(SolutionDir)memecity.engine.ui;$(SolutionDir)memecity.engine;$(SolutionDir)dependencies\SDL2_mixer-2.0.2\include;$(SolutionDir)dependencies\SDL2_ttf-2.0.14\include;$(SolutionDir)dependencies\SDL2\include;$(SolutionDir)dependencies\SDL2_image-2.0.3\include;$(VC_IncludePath);$(WindowsSDK_IncludePath);$(SolutionDir)memecity.engine.ecs</IncludePath>
+    <CodeAnalysisRuleSet>NativeRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <CodeAnalysisRuleSet>NativeRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <CodeAnalysisRuleSet>NativeRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -223,6 +399,7 @@
     <CopyFileToFolders>
       <RootFolder>Assets</RootFolder>
       <DestinationFolders>$(OutDir)/Assets</DestinationFolders>
+      <DestinationFileName>%(RelativePath)%(Filename)%(Extension)</DestinationFileName>
     </CopyFileToFolders>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -242,6 +419,7 @@
     <CopyFileToFolders>
       <RootFolder>Assets</RootFolder>
       <DestinationFolders>$(OutDir)/Assets</DestinationFolders>
+      <DestinationFileName>%(RelativePath)%(Filename)%(Extension)</DestinationFileName>
     </CopyFileToFolders>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -261,6 +439,7 @@
     <CopyFileToFolders>
       <RootFolder>Assets</RootFolder>
       <DestinationFolders>$(OutDir)/Assets</DestinationFolders>
+      <DestinationFileName>%(RelativePath)%(Filename)%(Extension)</DestinationFileName>
     </CopyFileToFolders>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -284,6 +463,7 @@
     <CopyFileToFolders>
       <RootFolder>Assets</RootFolder>
       <DestinationFolders>$(OutDir)/Assets</DestinationFolders>
+      <DestinationFileName>%(RelativePath)%(Filename)%(Extension)</DestinationFileName>
     </CopyFileToFolders>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
