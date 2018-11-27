@@ -132,7 +132,6 @@
   <ItemGroup>
     <ClCompile Include="Menu\Menu.cpp" />
     <ClCompile Include="Menu\MenuBuilder.cpp" />
-    <ClCompile Include="Menu\MenuItem.cpp" />
     <ClCompile Include="Overlay\Overlay.cpp" />
     <ClCompile Include="Overlay\OverlayItem.cpp" />
     <ClCompile Include="UI.cpp" />
