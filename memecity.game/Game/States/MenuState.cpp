@@ -21,7 +21,7 @@ MenuState::MenuState(memecity::engine::state::StateManager & sm, GameManager::Ga
 
 	menu = memecity::engine::ui::menu::MenuBuilder(gc.get_multimedia_manager())
 		.create_menu("MemeCity")
-		.with_menu_item("Start Game", nullptr, [&](auto& menu_item) { next<LoadingState>(gc, [&](auto& ctx) { replace<GameState>(ctx, GameLoader(ctx, 16, 16).build()); }); })
+		.with_menu_item("Start Game", nullptr, [&](auto& menu_item) { next<LoadingState>(gc, [&](auto& ctx, auto& listener) { replace<GameState>(ctx, GameLoader(ctx, 16, 16).build(listener)); }); })
 		.with_menu_item("Settings", settings_menu.get())
 		.with_menu_item("Exit", nullptr, [&](auto& menu_item) { gc.get_input_manager().quit(); })
 		.get_menu();
@@ -59,7 +59,7 @@ void MenuState::draw()
 
 void MenuState::on_enter()
 {
-	_context->get_multimedia_manager().play_background_music("bgm-menu.mp3", 100);
+	_context->get_multimedia_manager().play_background_music("Music/bgm-menu.mp3", 100);
 }
 
 void MenuState::on_exit()

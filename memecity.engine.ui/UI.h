@@ -1,9 +1,8 @@
 #ifndef _UI_H
 #define _UI_H
 
-#include "Menu/Menu.h"
-#include "Menu/MenuItem.h"
-#include "Menu/MenuBuilder.h"
+#include "UI\Menu.h"
+#include "UI\Loading.h"
 
 #endif
 

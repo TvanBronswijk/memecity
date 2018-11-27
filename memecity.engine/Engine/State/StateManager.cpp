@@ -24,9 +24,10 @@ namespace memecity::engine::state {
 		}
 	}
 
-	void StateManager::pop(int items)
+	void StateManager::pop(int count)
 	{
-		for (int i = 0; i < items; i++)
+		_mutex.lock();
+		for (int i = 0; i < count; i++)
 		{
 			if (_stack.size() <= 0) {
 				throw exceptions::MemeException(exceptions::Level::error, "Statemachine Stack is empty while pop queue is not.");
@@ -36,6 +37,7 @@ namespace memecity::engine::state {
 			_stack.pop();
 		}
 		enter();
+		_mutex.unlock();
 	}
 
 	State* StateManager::current_state() const
@@ -45,11 +47,14 @@ namespace memecity::engine::state {
 		return nullptr;
 	}
 
-	void StateManager::update(float dt) const {
+	void StateManager::update(float dt) {
 		current_state()->update(dt);
 	}
 
-	void StateManager::draw() const {
-		current_state()->draw();
+	void StateManager::draw() {
+		if (_mutex.try_lock()) {
+			current_state()->draw();
+			_mutex.unlock();
+		}
 	}
 }

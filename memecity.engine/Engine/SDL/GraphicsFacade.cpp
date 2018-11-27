@@ -92,16 +92,16 @@ namespace memecity::engine::sdl {
 		std::unique_ptr<SDL_Rect> sdl_clipped_rect;
 		if (clipped_rect != nullptr) {
 			sdl_clipped_rect = std::make_unique<SDL_Rect>();
-			sdl_clipped_rect->x = clipped_rect->x;
-			sdl_clipped_rect->y = clipped_rect->y;
-			sdl_clipped_rect->w = clipped_rect->w;
-			sdl_clipped_rect->h = clipped_rect->h;
+			sdl_clipped_rect->x = std::round(clipped_rect->x);
+			sdl_clipped_rect->y = std::round(clipped_rect->y);
+			sdl_clipped_rect->w = std::round(clipped_rect->w);
+			sdl_clipped_rect->h = std::round(clipped_rect->h);
 		}
 		std::unique_ptr<SDL_Rect> sdl_render_rect = std::make_unique<SDL_Rect>();
-		sdl_render_rect->x = render_rect.x;
-		sdl_render_rect->y = render_rect.y;
-		sdl_render_rect->w = render_rect.w;
-		sdl_render_rect->h = render_rect.h;
+		sdl_render_rect->x = std::round(render_rect.x);
+		sdl_render_rect->y = std::round(render_rect.y);
+		sdl_render_rect->w = std::round(render_rect.w);
+		sdl_render_rect->h = std::round(render_rect.h);
 
 
 		//if (render_rect.x > -viewport_offset && render_rect.x < screen_width + viewport_offset &&
