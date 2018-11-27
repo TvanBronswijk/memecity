@@ -401,6 +401,15 @@
       <DestinationFolders>$(OutDir)</DestinationFolders>
       <DestinationFileName>%(RelativeDir)%(Filename)%(Extension)</DestinationFileName>
     </CopyFileToFolders>
+    <PostBuildEvent>
+      <Command>copy "$(SolutionDir)\dependencies\SDL2\lib\$(Platform)\*.dll" "$(OutDir)"
+copy "$(SolutionDir)\dependencies\SDL2_image-2.0.3\lib\$(Platform)\*.dll" "$(OutDir)"
+copy "$(SolutionDir)\dependencies\SDL2_mixer-2.0.2\lib\$(Platform)\*.dll" "$(OutDir)"
+copy "$(SolutionDir)\dependencies\SDL2_ttf-2.0.14\lib\$(Platform)\*.dll" "$(OutDir)"</Command>
+    </PostBuildEvent>
+    <PostBuildEvent>
+      <Message>Copy SDL DLLs</Message>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -421,6 +430,15 @@
       <DestinationFolders>$(OutDir)</DestinationFolders>
       <DestinationFileName>%(RelativeDir)%(Filename)%(Extension)</DestinationFileName>
     </CopyFileToFolders>
+    <PostBuildEvent>
+      <Command>copy "$(SolutionDir)\dependencies\SDL2_ttf-2.0.14\lib\$(Platform)\*.dll" "$(OutDir)"
+copy "$(SolutionDir)\dependencies\SDL2_mixer-2.0.2\lib\$(Platform)\*.dll" "$(OutDir)"
+copy "$(SolutionDir)\dependencies\SDL2_image-2.0.3\lib\$(Platform)\*.dll" "$(OutDir)"
+copy "$(SolutionDir)\dependencies\SDL2\lib\$(Platform)\*.dll" "$(OutDir)"</Command>
+    </PostBuildEvent>
+    <PostBuildEvent>
+      <Message>Copy SDL DLLs</Message>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -441,6 +459,15 @@
       <DestinationFolders>$(OutDir)</DestinationFolders>
       <DestinationFileName>%(RelativeDir)%(Filename)%(Extension)</DestinationFileName>
     </CopyFileToFolders>
+    <PostBuildEvent>
+      <Command>copy "$(SolutionDir)\dependencies\SDL2\lib\$(Platform)\*.dll" "$(OutDir)"
+copy "$(SolutionDir)\dependencies\SDL2_image-2.0.3\lib\$(Platform)\*.dll" "$(OutDir)"
+copy "$(SolutionDir)\dependencies\SDL2_mixer-2.0.2\lib\$(Platform)\*.dll" "$(OutDir)"
+copy "$(SolutionDir)\dependencies\SDL2_ttf-2.0.14\lib\$(Platform)\*.dll" "$(OutDir)"</Command>
+    </PostBuildEvent>
+    <PostBuildEvent>
+      <Message>Copy SDL DLLs</Message>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -465,6 +492,15 @@
       <DestinationFolders>$(OutDir)</DestinationFolders>
       <DestinationFileName>%(RelativeDir)%(Filename)%(Extension)</DestinationFileName>
     </CopyFileToFolders>
+    <PostBuildEvent>
+      <Command>copy "$(SolutionDir)\dependencies\SDL2_ttf-2.0.14\lib\$(Platform)\*.dll" "$(OutDir)"
+copy "$(SolutionDir)\dependencies\SDL2_mixer-2.0.2\lib\$(Platform)\*.dll" "$(OutDir)"
+copy "$(SolutionDir)\dependencies\SDL2_image-2.0.3\lib\$(Platform)\*.dll" "$(OutDir)"
+copy "$(SolutionDir)\dependencies\SDL2\lib\$(Platform)\*.dll" "$(OutDir)"</Command>
+    </PostBuildEvent>
+    <PostBuildEvent>
+      <Message>Copy SDL DLLs</Message>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
