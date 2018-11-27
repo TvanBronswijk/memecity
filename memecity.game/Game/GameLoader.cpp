@@ -2,6 +2,7 @@
 #include "Generate.h"
 #include "Components.h"
 #include "Systems.h"
+#include "..\Assets.h"
 
 using namespace memecity::engine::ecs;
 using namespace memecity::engine::ui;
@@ -45,16 +46,16 @@ void GameLoader::create_map(EntityManager& em, loading::LoadingBar::Listener& li
 			switch (character)
 			{
 			case '-':
-				filename = "Sprites/Tiles/gray.bmp";
+				filename = assets::sprites::tiles::ROAD;
 				break;
 			case  'W':
-				filename = "Sprites/Tiles/brown.bmp";
+				filename = assets::sprites::tiles::WALL;
 				break;
 			case  'w':
-				filename = "Sprites/Tiles/blue.bmp";
+				filename = assets::sprites::tiles::WATER;
 				break;
 			case 'g':
-				filename = "Sprites/Tiles/green.bmp";
+				filename = assets::sprites::tiles::GRASS;
 				break;
 			default:
 				std::cout << "ERROR!" << std::endl;
@@ -95,7 +96,7 @@ void GameLoader::create_player(EntityManager& em, loading::LoadingBar::Listener&
 	auto& multimedia_manager = _context->get_multimedia_manager();
 	auto& timer = _context->get_timer();
 
-	auto texture = multimedia_manager.get_animated_texture(timer, "Spritesheets/SpriteSheet.png", 0, 0, 48, 48, 4, 0.25f, memecity::engine::texture::AnimatedTexture::AnimationDirection::vertical);
+	auto texture = multimedia_manager.get_animated_texture(timer, assets::spritesheets::HUMAN_MALE_1, 0, 0, 48, 48, 4, 0.25f, memecity::engine::texture::AnimatedTexture::AnimationDirection::vertical);
 	texture->set_position({ static_cast<float>(multimedia_manager.get_screen_width()) / 2, static_cast<float>(multimedia_manager.get_screen_height()) / 2 });
 	
 	builder::EntityBuilder(em)

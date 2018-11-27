@@ -2,6 +2,7 @@
 #include "LoadingState.h"
 #include "GameState.h"
 #include "..\GameLoader.h"
+#include "..\..\Assets.h"
 
 MenuState::MenuState(memecity::engine::state::StateManager & sm, GameManager::GameContext & gc)
 	: State(sm), _context(&gc)
@@ -59,7 +60,7 @@ void MenuState::draw()
 
 void MenuState::on_enter()
 {
-	_context->get_multimedia_manager().play_background_music("Music/bgm-menu.mp3", 100);
+	_context->get_multimedia_manager().play_background_music(assets::music::DEFAULT_BGM, 100);
 }
 
 void MenuState::on_exit()

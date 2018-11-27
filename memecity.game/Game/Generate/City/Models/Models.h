@@ -67,13 +67,6 @@ namespace generate::models {
 			: name(name), base64_character(base64_character), filename(filename) {};
 		~TileInfo() = default;
 	};
-
-	namespace Tiles {
-		static const TileInfo ROAD = { "Road", '-', "gray.bmp" };
-		static const TileInfo WALL = { "Wall", 'W', "brown.bmp" };
-		static const TileInfo WATER = { "Water", 'w', "blue.bmp" };
-		static const TileInfo GRASS = { "Grass", 'g', "green.bmp" };
-	}
 }
 
 
