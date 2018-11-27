@@ -249,4 +249,58 @@
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
+  <ItemGroup>
+    <Media Include="Assets\bgm.mp3" />
+    <Media Include="Assets\bgm.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="Assets\biem.mp3" />
+    <Media Include="Assets\biem.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="Assets\hahabier.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Assets\black.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Assets\BlikBier.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Assets\blue.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Assets\brown.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Assets\gray.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Assets\green.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Assets\orange.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Assets\purple.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Assets\red.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Assets\SpriteSheet.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Assets\white.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Assets\yellow.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="Assets\Blazed.ttf" />
+    <Font Include="Assets\FreePixel.ttf" />
+    <Font Include="Assets\Minecraftia-Regular.ttf" />
+  </ItemGroup>
 </Project>
