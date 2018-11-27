@@ -36,12 +36,12 @@ namespace memecity::engine::texture {
 		this->rotation = rotation;
 		if (rotation > 360.0f)
 		{
-			const int mul = rotation / 360;
+			const float mul = rotation / 360;
 			this->rotation -= 360.0f * mul;
 		}
 		else if (rotation < 0.0f)
 		{
-			const int mul = (rotation / 360) - 1;
+			const float mul = (rotation / 360) - 1;
 			this->rotation -= 360.0f * mul;
 		}
 	}

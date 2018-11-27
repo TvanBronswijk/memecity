@@ -1,7 +1,7 @@
 ﻿#include "TextTexture.h"
 
 namespace memecity::engine::texture {
-	TextTexture::TextTexture(std::string text, std::string font_path, int size, const sdl::Color &color, int width, int height) : Texture(font_path, width, height)
+	TextTexture::TextTexture(std::string text, std::string font_path, int size, const sdl::Color &color, float width, float height) : Texture(font_path, width, height)
 	{
 		this->text = text;
 		this->font_size = size;

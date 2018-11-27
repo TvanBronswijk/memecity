@@ -22,6 +22,7 @@
     <ClInclude Include="Game\Components.h" />
     <ClInclude Include="Game\Components\AIComponent.h" />
     <ClInclude Include="Game\GameLoader.h" />
+	<ClInclude Include="Game\Event\MoveEventArgs.h" />
     <ClInclude Include="Game\Generate.h" />
     <ClInclude Include="Game\Generate\City\Strategy\BSP\Fills\Building.h" />
     <ClInclude Include="Game\Generate\City\Strategy\BSP\Fills\Empty.h" />
