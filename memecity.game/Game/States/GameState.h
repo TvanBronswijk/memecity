@@ -12,7 +12,10 @@ private:
 	memecity::engine::ui::overlay::Overlay _hud;
 public:
 	GameState(memecity::engine::state::StateManager& sm, GameManager::GameContext& gc, memecity::engine::ecs::EntityManager em)
-		: State(sm), _context(&gc), entity_manager(std::move(em)){}
+		: State(sm), _context(&gc), entity_manager(std::move(em)), _hud(_context->get_multimedia_manager(), _context->get_multimedia_manager().get_texture("big_black.bmp", 0, 0, _context->get_multimedia_manager().get_screen_width(), 100), 0, 0)
+	{
+		_hud.create_overlay_item("Health:100", 20, 100, 20);
+	}
 	~GameState() = default;
 	void on_load() override;
 	void update(float dt) override;

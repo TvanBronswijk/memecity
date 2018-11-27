@@ -1,12 +1,6 @@
 #include "GameState.h"
 
-GameState::GameState(memecity::engine::state::StateManager& sm, GameManager::GameContext& gc,
-	std::unique_ptr<memecity::engine::ecs::EntityManager> em)
-	: State(sm), _context(&gc), entity_manager(std::move(em)), _hud(_context->get_multimedia_manager(), _context->get_multimedia_manager().get_texture("big_black.bmp",0,0, _context->get_multimedia_manager().get_screen_width(),100),0,0)
-{
-	//_hud.create_overlay_item(memecity::engine::ui::overlay::OverlayItem(_context->get_multimedia_manager(), _hud, std::string("Health:100"), 0, 0));
-	_hud.create_overlay_item("Health:100", 20, 100, 20);
-}
+
 
 void GameState::on_load()
 {
