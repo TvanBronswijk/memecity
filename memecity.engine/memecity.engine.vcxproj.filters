@@ -155,9 +155,6 @@
     <ClInclude Include="Engine\SDL\InputFacade.h">
       <Filter>Header Files\Facades</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\SDL\InputKeys.h">
-      <Filter>Header Files\Enum</Filter>
-    </ClInclude>
     <ClInclude Include="Engine\Util\MathHelper.h">
       <Filter>Header Files\Utilities</Filter>
     </ClInclude>

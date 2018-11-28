@@ -176,7 +176,6 @@
     <ClInclude Include="Engine\Textures\GameObject.h" />
     <ClInclude Include="Engine\SDL\GraphicsFacade.h" />
     <ClInclude Include="Engine\SDL\InputFacade.h" />
-    <ClInclude Include="Engine\SDL\InputKeys.h" />
     <ClInclude Include="Engine\InputManager.h" />
     <ClInclude Include="Engine\Util.h" />
     <ClInclude Include="Engine\Util\MathHelper.h" />

@@ -3,6 +3,7 @@
 #include "GameState.h"
 #include "..\GameLoader.h"
 #include "..\..\Assets.h"
+#include "..\Input.h"
 
 MenuState::MenuState(memecity::engine::state::StateManager & sm, GameManager::GameContext & gc)
 	: State(sm), _context(&gc)
@@ -35,19 +36,19 @@ void MenuState::on_load()
 void MenuState::update(float dt)
 {
 	auto& input_manager = _context->get_input_manager();
-	if (input_manager.is_pressed(memecity::engine::sdl::InputKeys::Up))
+	if (input_manager.is_pressed(input::UP))
 	{
 		menu->next();
 	}
-	else if (input_manager.is_pressed(memecity::engine::sdl::InputKeys::Down))
+	else if (input_manager.is_pressed(input::DOWN))
 	{
 		menu->previous();
 	}
-	else if (input_manager.is_pressed(memecity::engine::sdl::InputKeys::Enter))
+	else if (input_manager.is_pressed(input::ENTER))
 	{
 		menu->select();
 	}
-	else if (input_manager.is_pressed(memecity::engine::sdl::InputKeys::Escape))
+	else if (input_manager.is_pressed(input::ESCAPE))
 	{
 		menu->back();
 	}
