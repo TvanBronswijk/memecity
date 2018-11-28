@@ -9,6 +9,8 @@ class PauseMenuState : public memecity::engine::state::State
 private:
 	GameManager::GameContext* _context;
 	std::unique_ptr<memecity::engine::ui::menu::Menu> menu;
+	std::unique_ptr<memecity::engine::ui::menu::Menu> help_menu;
+
 public:
 	PauseMenuState(memecity::engine::state::StateManager& sm, GameManager::GameContext& gc);
 	~PauseMenuState() = default;
