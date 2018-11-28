@@ -77,7 +77,16 @@ namespace memecity::engine::sdl {
 		return texture;
 	}
 
-	std::unique_ptr<RawTextureWrapper> GraphicsFacade::load_text_texture(RawFontWrapper& font, std::string text, const SDL_Color color) const
+	std::unique_ptr<RawFontWrapper> GraphicsFacade::load_font(std::string path, int size) const
+	{
+		std::unique_ptr<RawFontWrapper> font = std::make_unique<sdl::RawFontWrapper>(TTF_OpenFont(path.c_str(), size));
+		if (font == nullptr) {
+			throw SDLException(Level::error, SDL_GetError());
+		}
+		return font;
+	}
+
+	std::unique_ptr<RawTextureWrapper> GraphicsFacade::load_text_texture(const RawFontWrapper& font, std::string text, const SDL_Color color) const
 	{
 		std::unique_ptr<RawSurfaceWrapper> surface = std::make_unique<RawSurfaceWrapper>(TTF_RenderText_Solid(*font, text.c_str(), color));
 

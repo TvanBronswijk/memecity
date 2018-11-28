@@ -14,84 +14,65 @@ namespace memecity::engine {
 	///<summary>Returns a texture based on given filename.</summary>
 	const sdl::RawTextureWrapper& AssetManager::get_texture(std::string filename)
 	{
-		std::string fullPath = base_path;
-		fullPath.append("Assets/" + filename);
+		std::string full_path = base_path;
+		full_path.append("Assets/" + filename);
 
-		if (textures.find(fullPath) == textures.end())
+		if (textures.find(full_path) == textures.end())
 		{
-			textures[fullPath] = graphics_facade->load_texture(fullPath);
+			textures[full_path] = graphics_facade->load_texture(full_path);
 		}
 
-		return *textures[fullPath];
+		return *textures[full_path];
 	}
 
 	///<summary>Returns a text texture based on a given text and filename.</summary>
-	const sdl::RawTextureWrapper&  AssetManager::get_text(std::string text, std::string filename, int size, SDL_Color color)
+	const sdl::RawTextureWrapper&  AssetManager::get_text(std::string text, std::string font, int size, SDL_Color color)
 	{
-		auto& font = get_font(filename, size);
-		std::string key = text + filename + char(size) + char(color.r) + char(color.g) + char(color.b);
-
+		auto& raw_font = get_font(font, size);
+		std::string key = text + font + char(size) + char(color.r) + char(color.g) + char(color.b);
 		if (texts.find(key) == texts.end())
 		{
-			texts[key] = graphics_facade->load_text_texture(font, text, color);
+			texts[key] = graphics_facade->load_text_texture(raw_font, text, color);
 		}
-
 		return *texts[key];
 	}
 
 	///<summary>Returns a font based on a given filename.</summary>
-	sdl::RawFontWrapper& AssetManager::get_font(std::string filename, int size)
+	const sdl::RawFontWrapper& AssetManager::get_font(std::string filename, int size)
 	{
-		std::string fullPath = base_path;
-		fullPath.append("Assets/" + filename);
-		const std::string key = fullPath + char(size);
-
-		if (fonts[key] == nullptr)
+		std::string full_path = base_path;
+		full_path.append("Assets/" + filename);
+		const std::string key = full_path + char(size);
+		if (fonts.find(key) == fonts.end())
 		{
-			fonts[key] = std::make_unique<sdl::RawFontWrapper>(TTF_OpenFont(fullPath.c_str(), size));
-
-			if (fonts[key] == nullptr)
-			{
-				printf("Font loading error: Font-%s Error-%s\n", filename.c_str(), TTF_GetError());
-			}
+			fonts[key] = graphics_facade->load_font(full_path, size);
 		}
-
 		return *fonts[key];
 	}
 	///<summary>Returns music based on a given filename.</summary>
 	const sdl::RawMusicWrapper& AssetManager::get_music(std::string filename)
 	{
-		std::string fullPath = base_path;
-		fullPath.append("Assets/" + filename);
+		std::string full_path = base_path;
+		full_path.append("Assets/" + filename);
 
-		if (music[fullPath] == nullptr)
+		if (music.find(full_path) == music.end())
 		{
-			music[fullPath] = std::make_unique<sdl::RawMusicWrapper>(Mix_LoadMUS(fullPath.c_str()));
-
-			if (music[fullPath] == nullptr)
-			{
-				printf("Music loading error: file- %s Error- %s", filename.c_str(), Mix_GetError());
-			}
+			music[full_path] = audio_facade->load_music(full_path);
 		}
 
-		return *music[fullPath];
+		return *music[full_path];
 	}
 
 	///<summary>Returns a sound effect based on a given filename.</summary>
 	const sdl::RawSfxWrapper& AssetManager::get_sfx(std::string filename)
 	{
-		std::string fullPath = base_path;
-		fullPath.append("Assets/" + filename);
+		std::string full_path = base_path;
+		full_path.append("Assets/" + filename);
 
-		if (sfx[fullPath] == nullptr)
+		if (sfx.find(full_path) == sfx.end())
 		{
-			sfx[fullPath] = std::make_unique<sdl::RawSfxWrapper>(Mix_LoadWAV(fullPath.c_str()));
-			if (sfx[fullPath] == nullptr)
-			{
-				printf("SFX loading error: file-%s Error-%s", filename.c_str(), Mix_GetError());
-			}
+			sfx[full_path] = audio_facade->load_sfx(full_path);
 		}
-
-		return *sfx[fullPath];
+		return *sfx[full_path];
 	}
 }

@@ -17,9 +17,6 @@ namespace memecity::engine {
 		std::map<std::string, std::unique_ptr<sdl::RawFontWrapper>> fonts;
 		std::map<std::string, std::unique_ptr<sdl::RawMusicWrapper>> music;
 		std::map<std::string, std::unique_ptr<sdl::RawSfxWrapper>> sfx;
-
-		sdl::RawFontWrapper& get_font(std::string filename, int size);
-
 	public:
 		AssetManager(sdl::AudioFacade& audio_facade, sdl::GraphicsFacade& graphics_facade)
 			: audio_facade(&audio_facade), graphics_facade(&graphics_facade) {}
@@ -29,6 +26,7 @@ namespace memecity::engine {
 
 		const sdl::RawTextureWrapper& get_texture(std::string filename);
 		const sdl::RawTextureWrapper&  get_text(std::string text, std::string filename, int size, SDL_Color color);
+		const sdl::RawFontWrapper& get_font(std::string filename, int size);
 		const sdl::RawMusicWrapper& get_music(std::string filename);
 		const sdl::RawSfxWrapper& get_sfx(std::string filename);
 	};
