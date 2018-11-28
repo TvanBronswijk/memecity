@@ -1,5 +1,4 @@
 ﻿#include "Menu.h"
-#include <iostream>
 
 namespace memecity::engine::ui::menu {
 
@@ -11,18 +10,41 @@ namespace memecity::engine::ui::menu {
 			return;
 		}
 
-		Vector2 position{ multimedia_manager.get_screen_width() / 2.0f, 200 };
+		float render_offset = multimedia_manager.get_screen_height() - 2 * title_height;
+		float all_menu_items_height = read_only_menu_items.size() * menu_item_height +
+			menu_items.size() * menu_item_height;
+		render_offset -= all_menu_items_height;
+		if (render_offset > 200)
+		{
+			render_offset = 200;
+		}
+		if (render_offset < 50)
+		{
+			render_offset = 50;
+		}
+
+		Vector2 position{ multimedia_manager.get_screen_width() / 2.0f, render_offset };
 		title_texture->set_position(position);
 		multimedia_manager.render_texture(*title_texture);
-		position.y += 50;
+		position.y += title_height;
 
 		int index = 0;
+		for (auto& menu_item : read_only_menu_items)
+		{
+			auto& texture = menu_item->get_texture();
+			texture.set_position(position);
+			position.y += menu_item_height;
+			multimedia_manager.render_texture(texture);
+			index++;
+		}
+		
+		index = 0;
 		for (auto& menu_item : menu_items)
 		{
 			menu_item->set_selected(index == selected_menu_items_index);
 			auto& texture = menu_item->get_texture();
 			texture.set_position(position);
-			position.y += 30;
+			position.y += menu_item_height;
 			multimedia_manager.render_texture(texture);
 			index++;
 		}

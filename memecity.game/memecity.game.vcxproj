@@ -323,6 +323,16 @@
       </RootFolder>
     </CopyFileToFolders>
   </ItemGroup>
+  <ItemGroup>
+    <CopyFileToFolders Include="Assets\Music\bgm-game.mp3">
+      <DeploymentContent>true</DeploymentContent>
+      <FileType>Document</FileType>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="Assets\Music\bgm-menu.mp3">
+      <DeploymentContent>true</DeploymentContent>
+      <FileType>Document</FileType>
+    </CopyFileToFolders>
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{7554130C-4955-4D87-B069-5B9404014044}</ProjectGuid>

@@ -316,5 +316,11 @@
     <CopyFileToFolders Include="Assets\Spritesheets\SpriteSheet.png">
       <Filter>Resource Files</Filter>
     </CopyFileToFolders>
+    <CopyFileToFolders Include="Assets\Music\bgm-game.mp3">
+      <Filter>Resource Files</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="Assets\Music\bgm-menu.mp3">
+      <Filter>Resource Files</Filter>
+    </CopyFileToFolders>
   </ItemGroup>
 </Project>

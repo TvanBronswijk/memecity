@@ -3,10 +3,31 @@
 PauseMenuState::PauseMenuState(memecity::engine::state::StateManager & sm, GameManager::GameContext & gc)
 	: State(sm), _context(&gc)
 {
+	help_menu = memecity::engine::ui::menu::MenuBuilder(gc.get_multimedia_manager())
+		.create_menu("Help")
+		.with_read_only_menu_item("Controls:")
+		.with_read_only_menu_item("W: Up")
+		.with_read_only_menu_item("S: Down")
+		.with_read_only_menu_item("A: Left")
+		.with_read_only_menu_item("D: Right")
+		.with_read_only_menu_item("E: Interact")
+		.with_read_only_menu_item("Space: Attack")
+		.with_read_only_menu_item(" ")
+		.with_read_only_menu_item("Goal:")
+		.with_read_only_menu_item("Kill NPCs to gain XP.")
+		.with_read_only_menu_item("Interact with NPCs to start quests.")
+		.with_read_only_menu_item("Complete quests to gain more XP.")
+		.with_read_only_menu_item(" ")
+		.with_read_only_menu_item("Die or click Retire to finish the game.")
+		.with_read_only_menu_item(" ")
+		.with_back_menu_item()
+		.get_menu();
+
 	menu = memecity::engine::ui::menu::MenuBuilder(gc.get_multimedia_manager())
 		.create_menu("Paused")
 		.with_menu_item("Resume Game", nullptr, [&](auto& menu_item) { back(); })
-		.with_menu_item("Main menu", nullptr, [&](auto& menu_item) { back(2);  })
+		.with_menu_item("Help", help_menu.get())
+		.with_menu_item("Main Menu", nullptr, [&](auto& menu_item) { back(2);  })
 		.get_menu();
 }
 

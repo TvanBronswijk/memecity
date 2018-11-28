@@ -8,6 +8,7 @@ namespace assets {
 	}
 	namespace music {
 		static constexpr Asset DEFAULT_BGM = "Music/bgm-game.mp3";
+		static constexpr Asset MAIN_MENU_BGM = "Music/bgm-menu.mp3";
 	}
 	namespace sprites {
 		namespace tiles {
