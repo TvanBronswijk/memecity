@@ -60,9 +60,21 @@ namespace memecity::engine {
 		render_texture(x, y, *texture);
 	}
 
+	void MultimediaManager::render_texture(float x, float y, std::string filename, int clipped_x, int clipped_y, int clipped_w, int clipped_h)
+	{
+		auto texture = get_texture(filename, clipped_x, clipped_y, clipped_w, clipped_h);
+		render_texture(x, y, *texture);
+	}
+
 	void MultimediaManager::render_texture(float x, float y, std::string filename, uRectangle<int> clipped_rect)
 	{
 		auto texture = get_texture(filename, clipped_rect);
+		render_texture(x, y, *texture);
+	}
+
+	void MultimediaManager::render_texture(float x, float y, std::string filename, int clipped_x, int clipped_y, int clipped_w, int clipped_h, int frame_count, float animation_speed, texture::AnimatedTexture::AnimationDirection direction)
+	{
+		auto texture = get_texture(filename, clipped_x, clipped_y, clipped_w, clipped_h, frame_count, animation_speed, direction);
 		render_texture(x, y, *texture);
 	}
 
@@ -70,6 +82,16 @@ namespace memecity::engine {
 	{
 		auto texture = get_texture(filename, clipped_rect, frame_count, animation_speed, direction);
 		render_texture(x, y, *texture);
+	}
+
+	void MultimediaManager::render_rect(float x, float y, float w, float h, bool fill, sdl::Color color)
+	{
+		render_rect({x, y, w, h}, fill, color);
+	}
+
+	void MultimediaManager::render_rect(Rectangle rect, bool fill, sdl::Color color)
+	{
+		graphics_facade.draw_rectangle(rect, fill, color.get_sdl_color());
 	}
 
 	void MultimediaManager::render_text(texture::TextTexture& texture)

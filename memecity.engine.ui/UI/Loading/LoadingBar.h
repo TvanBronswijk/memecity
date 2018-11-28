@@ -22,6 +22,8 @@ namespace memecity::engine::ui::loading {
 			auto perc_texture = multimedia_manager->get_text(std::to_string((int)(_curr / _max * 100)) + '%', 24);
 			perc_texture->set_position({ multimedia_manager->get_screen_width() / 2.0f, 300.0f });
 			multimedia_manager->render_text(*perc_texture);
+
+			multimedia_manager->render_rect({ multimedia_manager->get_screen_width() / 4.0f, 350.0f, (_curr / _max)*(multimedia_manager->get_screen_width() / 2.0f), 50.0f}, true, {255, 100, 100});
 		}
 
 		class Listener {

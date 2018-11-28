@@ -117,6 +117,19 @@ namespace memecity::engine::sdl {
 		}
 	}
 
+	void GraphicsFacade::draw_rectangle(const Rectangle& rect, bool fill, SDL_Color color)
+	{
+		SDL_SetRenderDrawColor(sdl_renderer->get(), color.r, color.g, color.b, color.a);
+		SDL_Rect sdl_rect = to_sdl_rect(rect);
+		if (fill) {
+			SDL_RenderFillRect(sdl_renderer->get(), &sdl_rect);
+		}
+		else {
+			SDL_RenderDrawRect(sdl_renderer->get(), &sdl_rect);
+		}
+		SDL_SetRenderDrawColor(sdl_renderer->get(), 0, 0, 0, 255);
+	}
+
 	void GraphicsFacade::get_dimensions(const RawTextureWrapper & texture, int & width, int & height)
 	{
 		SDL_QueryTexture(*texture, nullptr, nullptr, &width, &height);

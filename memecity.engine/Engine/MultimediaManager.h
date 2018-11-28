@@ -44,8 +44,13 @@ namespace memecity::engine {
 		void render_texture(texture::Texture &texture);
 		void render_texture(float x, float y, texture::Texture &texture);
 		void render_texture(float x, float y, std::string filename);
+		void render_texture(float x, float y, std::string filename, int clipped_x, int clipped_y, int clipped_w, int clipped_h);
 		void render_texture(float x, float y, std::string filename, uRectangle<int> clipped_rect);
+		void render_texture(float x, float y, std::string filename, int clipped_x, int clipped_y, int clipped_w, int clipped_h, int frame_count, float animation_speed, texture::AnimatedTexture::AnimationDirection direction);
 		void render_texture(float x, float y, std::string filename, uRectangle<int> clipped_rect, int frame_count, float animation_speed, texture::AnimatedTexture::AnimationDirection direction);
+
+		void render_rect(float x, float y, float w, float h, bool fill, sdl::Color color = { 255, 255, 255 });
+		void render_rect(Rectangle rect, bool fill, sdl::Color color = { 255, 255, 255 });
 
 		void render_text(texture::TextTexture &texture);
 		void render_text(float x, float y, texture::TextTexture &texture);

@@ -42,6 +42,9 @@ namespace memecity::engine::sdl {
 		///<summary>Loads a surface into the buffer of the SDL_Renderer object.</summary>
 		void draw_texture(const RawTextureWrapper& texture, const Rectangle& render_rect, const Rectangle* clipped_rect) const;
 
+		///<summary>Render a rectangle.</summary>
+		void draw_rectangle(const Rectangle& rect, bool fill, SDL_Color color);
+
 		///<summary>Get the dimensions of a texture</summary>
 		void get_dimensions(const RawTextureWrapper& texture, int& width, int& height);
 
