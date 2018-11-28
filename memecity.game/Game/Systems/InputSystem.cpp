@@ -44,7 +44,7 @@ void InputSystem::run(EntityManager& em) const
 			velocity_component->x += 0.1f;
 		}
 		//test for interaction with NPC
-		if (input_manager.is_down(input::INTERACTION))
+		if (input_manager.is_pressed(input::INTERACTION))
 		{
 			auto vector = em.get_components_of_type<AIComponent>();
 			for (AIComponent& element : vector) {
@@ -53,7 +53,7 @@ void InputSystem::run(EntityManager& em) const
 				}
 			}
 		}
-		if (input_manager.is_down(input::ATTACK)) {
+		if (input_manager.is_pressed(input::ATTACK)) {
 			const auto animation_component = entity.get<AnimationComponent>();
 			if (animation_component)
 			{
