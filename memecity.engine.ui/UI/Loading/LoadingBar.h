@@ -17,11 +17,11 @@ namespace memecity::engine::ui::loading {
 		void render() {
 			auto text_texture = multimedia_manager->get_text(_text, 36);
 			text_texture->set_position({ multimedia_manager->get_screen_width() / 2.0f, 200.0f });
-			multimedia_manager->render_texture(*text_texture);
+			multimedia_manager->render_text(*text_texture);
 
 			auto perc_texture = multimedia_manager->get_text(std::to_string((int)(_curr / _max * 100)) + '%', 24);
 			perc_texture->set_position({ multimedia_manager->get_screen_width() / 2.0f, 300.0f });
-			multimedia_manager->render_texture(*perc_texture);
+			multimedia_manager->render_text(*perc_texture);
 		}
 
 		class Listener {

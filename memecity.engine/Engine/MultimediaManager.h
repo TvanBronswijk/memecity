@@ -42,11 +42,21 @@ namespace memecity::engine {
 		void clear_graphics() const;
 
 		void render_texture(texture::Texture &texture);
-		void render_texture(texture::TextTexture &texture);
+		void render_texture(float x, float y, texture::Texture &texture);
+		void render_texture(float x, float y, std::string filename);
+		void render_texture(float x, float y, std::string filename, uRectangle<int> clipped_rect);
+		void render_texture(float x, float y, std::string filename, uRectangle<int> clipped_rect, int frame_count, float animation_speed, texture::AnimatedTexture::AnimationDirection direction);
+
+		void render_text(texture::TextTexture &texture);
+		void render_text(float x, float y, texture::TextTexture &texture);
+		void render_text(float x, float y, std::string text, int size, sdl::Color color = { 255, 255, 255 });
+		void render_text(float x, float y, std::string font_path, std::string text, int size, sdl::Color color = { 255, 255, 255 });
 
 		std::unique_ptr<texture::Texture> get_texture(std::string filename);
-		std::unique_ptr<texture::Texture> get_texture(std::string filename, int x, int y, int w, int h);
-		std::unique_ptr<texture::AnimatedTexture> get_texture(std::string filename, int x, int y, int w, int h, int frame_count, float animation_speed, texture::AnimatedTexture::AnimationDirection direction);
+		std::unique_ptr<texture::Texture> get_texture(std::string filename, int clipped_x, int clipped_y, int clipped_w, int clipped_h);
+		std::unique_ptr<texture::Texture> get_texture(std::string filename, uRectangle<int> clipped_rect);
+		std::unique_ptr<texture::AnimatedTexture> get_texture(std::string filename, int clipped_x, int clipped_y, int clipped_w, int clipped_h, int frame_count, float animation_speed, texture::AnimatedTexture::AnimationDirection direction);
+		std::unique_ptr<texture::AnimatedTexture> get_texture(std::string filename, uRectangle<int> clipped_rect, int frame_count, float animation_speed, texture::AnimatedTexture::AnimationDirection direction);
 
 		void set_default_font(std::string font, int size = 32);
 		std::string get_default_font() const;
