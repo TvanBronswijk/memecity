@@ -1,10 +1,11 @@
 ﻿#include "PauseMenuState.h"
+#include "..\..\Assets.h"
 
 PauseMenuState::PauseMenuState(memecity::engine::state::StateManager & sm, GameManager::GameContext & gc)
 	: State(sm), _context(&gc)
 {
 	help_menu = memecity::engine::ui::menu::MenuBuilder(gc.get_multimedia_manager())
-		.create_menu("Help")
+		.create_menu("Help", assets::fonts::DEFAULT_FONT)
 		.with_read_only_menu_item("Controls:")
 		.with_read_only_menu_item("W: Up")
 		.with_read_only_menu_item("S: Down")
@@ -24,7 +25,7 @@ PauseMenuState::PauseMenuState(memecity::engine::state::StateManager & sm, GameM
 		.get_menu();
 
 	menu = memecity::engine::ui::menu::MenuBuilder(gc.get_multimedia_manager())
-		.create_menu("Paused")
+		.create_menu("Paused", assets::fonts::DEFAULT_FONT)
 		.with_menu_item("Resume Game", nullptr, [&](auto& menu_item) { back(); })
 		.with_menu_item("Help", help_menu.get())
 		.with_menu_item("Main Menu", nullptr, [&](auto& menu_item) { back(2);  })

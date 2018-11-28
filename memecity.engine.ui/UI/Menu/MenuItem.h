@@ -18,8 +18,8 @@ namespace memecity::engine::ui::menu {
 		std::unique_ptr<texture::TextTexture> selected_texture;
 
 	public:
-		MenuItem(MultimediaManager& multimedia_manager, Menu& parent, std::string text, Menu* sub_menu = nullptr, std::function<void(MenuItem& menu_item)> callback = nullptr, bool read_only = false);
-		MenuItem(MultimediaManager& multimedia_manager, Menu& parent, std::string text, bool read_only) : MenuItem(multimedia_manager, parent, text, nullptr, nullptr, read_only) {}
+		MenuItem(MultimediaManager& multimedia_manager, Menu& parent, std::string font_path, std::string text, Menu* sub_menu = nullptr, std::function<void(MenuItem& menu_item)> callback = nullptr, bool read_only = false);
+		MenuItem(MultimediaManager& multimedia_manager, Menu& parent, std::string font_path, std::string text, bool read_only) : MenuItem(multimedia_manager, parent, font_path, text, nullptr, nullptr, read_only) {}
 
 		void set_selected(bool selected);
 		texture::TextTexture& get_texture() const;

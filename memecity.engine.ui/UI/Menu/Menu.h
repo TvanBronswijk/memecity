@@ -18,15 +18,14 @@ namespace memecity::engine::ui::menu {
 		bool is_locked;
 		MenuItem* parent;
 		std::string title;
+		std::string font_path;
 		std::unique_ptr<texture::TextTexture> title_texture;
 
 	public:
-		static constexpr const char* default_font = "Fonts/Minecraftia-Regular.ttf";
-
-		Menu(MultimediaManager& multimedia_manager, std::string title, MenuItem* parent = nullptr) 
-		: selected_menu_items_index(0), multimedia_manager(multimedia_manager), is_locked(false), parent(parent), title(title)
+		Menu(MultimediaManager& multimedia_manager, std::string title, std::string font_path, MenuItem* parent = nullptr)
+		: selected_menu_items_index(0), multimedia_manager(multimedia_manager), is_locked(false), parent(parent), title(title), font_path(font_path)
 		{
-			title_texture = multimedia_manager.get_text_texture(title, default_font, 36, { 255,255,255 });
+			title_texture = multimedia_manager.get_text_texture(title, font_path, 36, { 255,255,255 });
 		}
 
 		void set_parent(MenuItem* parent);
@@ -34,15 +33,15 @@ namespace memecity::engine::ui::menu {
 		template<class... Args>
 		MenuItem& create_menu_item(Args&&... args)
 		{
-			static_assert(std::is_constructible<MenuItem, MultimediaManager&, Menu&, Args...>::value, "The requested type cannot be constructed from the arguments provided.");
-			return *menu_items.emplace_back(std::make_unique<MenuItem>(multimedia_manager, *this, std::forward<Args>(args)...));
+			static_assert(std::is_constructible<MenuItem, MultimediaManager&, Menu&, std::string, Args...>::value, "The requested type cannot be constructed from the arguments provided.");
+			return *menu_items.emplace_back(std::make_unique<MenuItem>(multimedia_manager, *this, font_path, std::forward<Args>(args)...));
 		}
 
 		template<class... Args>
 		MenuItem& create_read_only_menu_item(Args&&... args)
 		{
-			static_assert(std::is_constructible<MenuItem, MultimediaManager&, Menu&, Args..., bool>::value, "The requested type cannot be constructed from the arguments provided.");
-			return *menu_items.emplace_back(std::make_unique<MenuItem>(multimedia_manager, *this, std::forward<Args>(args)..., true));
+			static_assert(std::is_constructible<MenuItem, MultimediaManager&, Menu&, std::string, Args..., bool>::value, "The requested type cannot be constructed from the arguments provided.");
+			return *menu_items.emplace_back(std::make_unique<MenuItem>(multimedia_manager, *this, font_path, std::forward<Args>(args)..., true));
 		}
 
 		void render();

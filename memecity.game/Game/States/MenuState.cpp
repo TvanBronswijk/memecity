@@ -8,12 +8,12 @@ MenuState::MenuState(memecity::engine::state::StateManager & sm, GameManager::Ga
 	: State(sm), _context(&gc)
 {
 	advanced_graphics_menu = memecity::engine::ui::menu::MenuBuilder(gc.get_multimedia_manager())
-		.create_menu("Advanced Graphics")
+		.create_menu("Advanced Graphics", assets::fonts::DEFAULT_FONT)
 		.with_back_menu_item()
 		.get_menu();
 
 	settings_menu = memecity::engine::ui::menu::MenuBuilder(gc.get_multimedia_manager())
-		.create_menu("Settings")
+		.create_menu("Settings", assets::fonts::DEFAULT_FONT)
 		.with_menu_item("Enable Fullscreen", nullptr, [&](auto& menu_item) { gc.get_multimedia_manager().set_fullscreen(true); })
 		.with_menu_item("Disable Fullscreen", nullptr, [&](auto& menu_item) { gc.get_multimedia_manager().set_fullscreen(false); })
 		.with_menu_item("Advanced Graphics", advanced_graphics_menu.get())
@@ -21,7 +21,7 @@ MenuState::MenuState(memecity::engine::state::StateManager & sm, GameManager::Ga
 		.get_menu();
 
 	credits_menu = memecity::engine::ui::menu::MenuBuilder(gc.get_multimedia_manager())
-		.create_menu("Credits")
+		.create_menu("Credits", assets::fonts::DEFAULT_FONT)
 		.with_read_only_menu_item("Built by:")
 		.with_read_only_menu_item(" ")
 		.with_read_only_menu_item("Tobi van Bronswijk")
@@ -38,7 +38,7 @@ MenuState::MenuState(memecity::engine::state::StateManager & sm, GameManager::Ga
 		.get_menu();
 
 	menu = memecity::engine::ui::menu::MenuBuilder(gc.get_multimedia_manager())
-		.create_menu("MemeCity")
+		.create_menu("MemeCity", assets::fonts::DEFAULT_FONT)
 		.with_menu_item("Start Game", nullptr, [&](auto& menu_item) { next<LoadingState>(gc, [&](auto& ctx, auto& listener) { replace<GameState>(ctx, GameLoader(ctx, 16, 16).build(listener)); }); })
 		.with_menu_item("Settings", settings_menu.get())
 		.with_menu_item("Credits", credits_menu.get())
