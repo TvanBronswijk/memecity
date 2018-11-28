@@ -4,11 +4,11 @@
 using namespace memecity::engine;
 namespace memecity::engine::ui::menu {
 
-	MenuItem::MenuItem(MultimediaManager& multimedia_manager, Menu& parent, std::string text, Menu* sub_menu, std::function<void(MenuItem& menu_item)> callback)
-		:  text(text), is_selected(false), parent(parent), sub_menu(sub_menu), callback(callback)
+	MenuItem::MenuItem(MultimediaManager& multimedia_manager, Menu& parent, std::string text, Menu* sub_menu, std::function<void(MenuItem& menu_item)> callback, bool read_only)
+		:  text(text), is_selected(false), is_read_only(read_only), parent(parent), sub_menu(sub_menu), callback(callback)
 	{
-		standard_texture = multimedia_manager.get_text_texture(text, "Fonts/Minecraftia-Regular.ttf", 24, { 255, 255, 255});
-		selected_texture = multimedia_manager.get_text_texture(text, "Fonts/Minecraftia-Regular.ttf", 24, { 237, 210, 4 });
+		standard_texture = multimedia_manager.get_text_texture(text, Menu::default_font, 24, { 255, 255, 255});
+		selected_texture = multimedia_manager.get_text_texture(text, Menu::default_font, 24, { 237, 210, 4 });
 		if (sub_menu != nullptr)
 		{
 			sub_menu->set_parent(this);
@@ -23,6 +23,11 @@ namespace memecity::engine::ui::menu {
 	texture::TextTexture& MenuItem::get_texture() const
 	{
 		return  is_selected ? *selected_texture : *standard_texture;
+	}
+
+	bool MenuItem::get_read_only() const
+	{
+		return  is_read_only;
 	}
 
 	void MenuItem::render() const

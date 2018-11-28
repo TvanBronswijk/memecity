@@ -10,10 +10,12 @@ namespace memecity::engine::ui::menu {
 			return;
 		}
 
-		float render_offset = multimedia_manager.get_screen_height() - 2 * title_height;
-		float all_menu_items_height = read_only_menu_items.size() * menu_item_height +
-			menu_items.size() * menu_item_height;
-		render_offset -= all_menu_items_height;
+		if (menu_items.at(selected_menu_items_index)->get_read_only())
+		{
+			previous();
+		}
+
+		float render_offset = multimedia_manager.get_screen_height() - 2 * title_height - menu_items.size() * menu_item_height;
 		if (render_offset > 200)
 		{
 			render_offset = 200;
@@ -29,16 +31,6 @@ namespace memecity::engine::ui::menu {
 		position.y += title_height;
 
 		int index = 0;
-		for (auto& menu_item : read_only_menu_items)
-		{
-			auto& texture = menu_item->get_texture();
-			texture.set_position(position);
-			position.y += menu_item_height;
-			multimedia_manager.render_texture(texture);
-			index++;
-		}
-		
-		index = 0;
 		for (auto& menu_item : menu_items)
 		{
 			menu_item->set_selected(index == selected_menu_items_index);
@@ -85,6 +77,10 @@ namespace memecity::engine::ui::menu {
 		{
 			selected_menu_items_index--;
 		}
+		if (menu_items.at(selected_menu_items_index)->get_read_only())
+		{
+			next();
+		}
 	}
 
 	void Menu::previous()
@@ -99,6 +95,10 @@ namespace memecity::engine::ui::menu {
 		if (selected_menu_items_index >= menu_items.size())
 		{
 			selected_menu_items_index = 0;
+		}
+		if (menu_items.at(selected_menu_items_index)->get_read_only())
+		{
+			previous();
 		}
 	}
 
