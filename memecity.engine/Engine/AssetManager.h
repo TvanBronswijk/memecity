@@ -1,17 +1,15 @@
 ﻿#ifndef _ASSET_MANAGER_H
 #define _ASSET_MANAGER_H
 #include <map>
-#include "SDL\GraphicsFacade.h"
-#include "SDL\Wrappers\RawTextureWrapper.h"
-#include "SDL\Wrappers\RawMusicWrapper.h"
-#include "SDL\Wrappers\RawSfxWrapper.h"
-#include "SDL\Wrappers\RawFontWrapper.h"
+#include <memory>
+#include "SDL.h"
 
 namespace memecity::engine {
 	class AssetManager
 	{
 	private:
-		sdl::GraphicsFacade& graphics_facade;
+		sdl::AudioFacade* audio_facade;
+		sdl::GraphicsFacade* graphics_facade;
 
 		const std::string base_path = SDL_GetBasePath();
 		std::map<std::string, std::unique_ptr<sdl::RawTextureWrapper>> textures;
@@ -23,7 +21,10 @@ namespace memecity::engine {
 		sdl::RawFontWrapper& get_font(std::string filename, int size);
 
 	public:
-		AssetManager(sdl::GraphicsFacade& graphics_facade);
+		AssetManager(sdl::AudioFacade& audio_facade, sdl::GraphicsFacade& graphics_facade)
+			: audio_facade(&audio_facade), graphics_facade(&graphics_facade) {}
+		AssetManager(AssetManager&& am) = default;
+		AssetManager& operator=(AssetManager&& am) = default;
 		~AssetManager();
 
 		const sdl::RawTextureWrapper& get_texture(std::string filename);

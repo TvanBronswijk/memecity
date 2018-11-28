@@ -1,13 +1,26 @@
 ﻿#ifndef _RECTANGLE_H
 #define _RECTANGLE_H
-struct Rectangle
-{
-	float x, y, w, h;
-	Rectangle(float x, float y, float w, float h)
-	: x(x), y(y), w(w), h(h) {};
-	Rectangle() = default;
-	virtual ~Rectangle() = default;
+template<class T>
+struct uPoint {
+	T x, y;
+	uPoint() 
+		: uPoint(0, 0) {}
+	uPoint(T x, T y)
+		: x(x), y(y) {}
+	virtual ~uPoint() = default;
 };
+using Point = uPoint<float>;
 
+template<class T>
+struct uRectangle {
+	T x, y, w, h;
+	const uPoint<T> begin, end, center;
+	uRectangle()
+		: uRectangle(0, 0, 0, 0) {}
+	uRectangle(T x, T y, T w, T h)
+		: x(x), y(y), w(w), h(h), begin(x, y), end((x + w - 1), (y + h - 1)), center({ x + (w / 2), y + (h / 2) }) {}
+	virtual ~uRectangle() = default;
+};
+using Rectangle = uRectangle<float>;
 #endif
 

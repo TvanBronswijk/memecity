@@ -1,11 +1,6 @@
 ﻿#include "AssetManager.h"
 
 namespace memecity::engine {
-	///<summary>Constructor which assigns a given graphics_facade to it's member variable.</summary>
-	AssetManager::AssetManager(sdl::GraphicsFacade& graphics_facade) : graphics_facade(graphics_facade)
-	{
-	}
-
 	///<summary>Cleanup.</summary>
 	AssetManager::~AssetManager()
 	{
@@ -24,7 +19,7 @@ namespace memecity::engine {
 
 		if (textures.find(fullPath) == textures.end())
 		{
-			textures[fullPath] = graphics_facade.load_texture(fullPath);
+			textures[fullPath] = graphics_facade->load_texture(fullPath);
 		}
 
 		return *textures[fullPath];
@@ -38,7 +33,7 @@ namespace memecity::engine {
 
 		if (texts.find(key) == texts.end())
 		{
-			texts[key] = graphics_facade.load_text_texture(font, text, color);
+			texts[key] = graphics_facade->load_text_texture(font, text, color);
 		}
 
 		return *texts[key];

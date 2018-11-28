@@ -19,29 +19,30 @@ namespace memecity::engine {
 	class MultimediaManager
 	{
 	private:
-		std::unique_ptr<AssetManager> asset_manager;
-		std::unique_ptr<sdl::AudioFacade> audio_facade;
-		std::unique_ptr<sdl::GraphicsFacade> graphics_facade;
+		sdl::AudioFacade audio_facade;
+		sdl::GraphicsFacade graphics_facade;
+		AssetManager asset_manager;
 
 	public:
-		MultimediaManager(bool is_fullscreen);
-		MultimediaManager(std::unique_ptr<AssetManager> asset_manager, std::unique_ptr<sdl::AudioFacade> audio_facade, std::unique_ptr<sdl::GraphicsFacade> graphics_facade)
+		MultimediaManager(bool is_fullscreen)
+			: audio_facade(), graphics_facade(is_fullscreen), asset_manager(audio_facade, graphics_facade) {}
+		MultimediaManager(AssetManager asset_manager, sdl::AudioFacade audio_facade, sdl::GraphicsFacade graphics_facade)
 			: asset_manager(std::move(asset_manager)), audio_facade(std::move(audio_facade)), graphics_facade(std::move(graphics_facade)) {}
-		bool init() const;
+		bool init();
 
-		void play_background_music(std::string name, int volume) const;
-		void play_sound_effect(std::string name, int repeats, int volume, int channel) const;
+		void play_background_music(std::string name, int volume);
+		void play_sound_effect(std::string name, int repeats, int volume, int channel);
 		void pause_background_music() const;
 
-		void clear_graphics() const;
-		void render_texture(texture::Texture &texture) const;
-		void render_texture(texture::TextTexture &texture) const;
 		void render_graphics() const;
+		void clear_graphics() const;
+		void render_texture(texture::Texture &texture);
+		void render_texture(texture::TextTexture &texture);
 
-		std::unique_ptr<texture::Texture> get_texture(std::string filename) const;
-		std::unique_ptr<texture::Texture> get_texture(std::string filename, int x, int y, int width, int height) const;
-		std::unique_ptr<texture::AnimatedTexture> get_animated_texture(sdl::TimerFacade &timer, std::string filename, int x, int y, int width, int height, int frame_count, float animation_speed, texture::AnimatedTexture::AnimationDirection direction) const;
-		std::unique_ptr<texture::TextTexture> get_text_texture(std::string text, std::string font_path, int size, sdl::Color color) const;
+		std::unique_ptr<texture::Texture> get_texture(std::string filename);
+		std::unique_ptr<texture::Texture> get_texture(std::string filename, int x, int y, int width, int height);
+		std::unique_ptr<texture::AnimatedTexture> get_animated_texture(sdl::TimerFacade &timer, std::string filename, int x, int y, int width, int height, int frame_count, float animation_speed, texture::AnimatedTexture::AnimationDirection direction);
+		std::unique_ptr<texture::TextTexture> get_text_texture(std::string text, std::string font_path, int size, sdl::Color color);
 
 		int get_screen_width() const;
 		int get_screen_height() const;

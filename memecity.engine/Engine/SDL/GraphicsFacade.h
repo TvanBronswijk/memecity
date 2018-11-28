@@ -34,10 +34,13 @@ namespace memecity::engine::sdl {
 		std::unique_ptr<RawTextureWrapper> load_texture(std::string file) const;
 
 		///<summary>Loads a text texture from path into memory.</summary>
-		std::unique_ptr<RawTextureWrapper> load_text_texture(RawFontWrapper& font, std::string text, const SDL_Color &color) const;
+		std::unique_ptr<RawTextureWrapper> load_text_texture(RawFontWrapper& font, std::string text, const SDL_Color color) const;
 
 		///<summary>Loads a surface into the buffer of the SDL_Renderer object.</summary>
 		void draw_texture(const RawTextureWrapper& texture, const Rectangle& render_rect, const Rectangle* clipped_rect) const;
+
+		///<summary>Get the dimensions of a texture</summary>
+		void get_dimensions(const RawTextureWrapper& texture, int& width, int& height);
 
 		///<summary>Renders the SDL_Renderer buffer.</summary>
 		void render() const;
