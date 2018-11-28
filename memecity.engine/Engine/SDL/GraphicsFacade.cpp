@@ -148,6 +148,11 @@ namespace memecity::engine::sdl {
 		SDL_GetWindowSize(sdl_window->get(), &screen_width, &screen_height);
 	}
 
+	bool GraphicsFacade::get_fullscreen() const
+	{
+		return is_fullscreen;
+	}
+
 	void GraphicsFacade::render() const
 	{
 		SDL_RenderPresent(sdl_renderer->get());

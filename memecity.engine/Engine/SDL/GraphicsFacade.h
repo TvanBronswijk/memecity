@@ -52,6 +52,7 @@ namespace memecity::engine::sdl {
 		void clear() const;
 
 		void set_fullscreen(bool fullscreen_enabled);
+		bool get_fullscreen() const;
 	};
 }
 

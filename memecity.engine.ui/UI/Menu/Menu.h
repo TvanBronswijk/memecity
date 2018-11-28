@@ -25,7 +25,7 @@ namespace memecity::engine::ui::menu {
 		Menu(MultimediaManager& multimedia_manager, std::string title, std::string font_path, MenuItem* parent = nullptr)
 		: selected_menu_items_index(0), multimedia_manager(multimedia_manager), is_locked(false), parent(parent), title(title), font_path(font_path)
 		{
-			title_texture = multimedia_manager.get_text_texture(title, font_path, 36, { 255,255,255 });
+			title_texture = multimedia_manager.get_text(font_path, title, 36);
 		}
 
 		void set_parent(MenuItem* parent);

@@ -11,26 +11,30 @@ namespace memecity::engine {
 			audio_facade.open_audio(44100, 2, 4096);
 			return true;
 		}
-
 		return false;
 	}
 
-	void MultimediaManager::play_background_music(std::string const name, int const volume)
+	void MultimediaManager::play_background_music(std::string name, int volume)
 	{
 		auto& music = asset_manager.get_music(name);
 		audio_facade.stop_background_music();
 		audio_facade.play_background_music(music, volume);
 	}
 
-	void MultimediaManager::play_sound_effect(std::string const name, int const repeats, int const volume, int const channel)
+	void MultimediaManager::pause_background_music() const
+	{
+		audio_facade.pause_background_music();
+	}
+
+	void MultimediaManager::play_sound_effect(std::string name, int repeats, int channel, int volume)
 	{
 		auto& sound = asset_manager.get_sfx(name);
 		audio_facade.play_sound_effect(sound, repeats, volume, channel);
 	}
 
-	void MultimediaManager::pause_background_music() const
+	void MultimediaManager::render_graphics() const
 	{
-		audio_facade.pause_background_music();
+		graphics_facade.render();
 	}
 
 	void MultimediaManager::clear_graphics() const
@@ -50,11 +54,6 @@ namespace memecity::engine {
 		graphics_facade.draw_texture(asset_manager.get_text(texture.get_text(), texture.get_filename(), texture.get_font_size(), texture.get_color().get_sdl_color()), texture.get_render_rect(), nullptr);
 	}
 
-	void MultimediaManager::render_graphics() const
-	{
-		graphics_facade.render();
-	}
-
 	std::unique_ptr<texture::Texture> MultimediaManager::get_texture(std::string filename)
 	{
 		int width, height;
@@ -69,13 +68,29 @@ namespace memecity::engine {
 		return std::make_unique<texture::Texture>(filename, x, y, width, height);
 	}
 
-	std::unique_ptr<texture::AnimatedTexture> MultimediaManager::get_animated_texture(sdl::TimerFacade &timer, std::string filename, int x, int y, int width, int height, int frame_count, float animation_speed, texture::AnimatedTexture::AnimationDirection direction)
+	std::unique_ptr<texture::AnimatedTexture> MultimediaManager::get_texture(std::string filename, int x, int y, int width, int height, int frame_count, float animation_speed, texture::AnimatedTexture::AnimationDirection direction)
 	{
 		asset_manager.get_texture(filename);
-		return std::make_unique<texture::AnimatedTexture>(timer, filename, x, y, width, height, frame_count, animation_speed, direction);
+		return std::make_unique<texture::AnimatedTexture>(filename, x, y, width, height, frame_count, animation_speed, direction);
 	}
 
-	std::unique_ptr<texture::TextTexture> MultimediaManager::get_text_texture(std::string text, std::string font_path, int size, sdl::Color color)
+	void MultimediaManager::set_default_font(std::string font, int size)
+	{
+		asset_manager.get_font(font, size);
+		default_font = font;
+	}
+
+	std::string MultimediaManager::get_default_font() const
+	{
+		return default_font;
+	}
+
+	std::unique_ptr<texture::TextTexture> MultimediaManager::get_text(std::string text, int size, sdl::Color color)
+	{
+		return get_text(default_font, text, size, color);
+	}
+
+	std::unique_ptr<texture::TextTexture> MultimediaManager::get_text(std::string font_path, std::string text, int size, sdl::Color color)
 	{
 		int width, height;
 		auto& sdl_texture = asset_manager.get_text(text, font_path, size, color.get_sdl_color());
@@ -96,5 +111,9 @@ namespace memecity::engine {
 	void MultimediaManager::set_fullscreen(bool fullscreen_enabled)
 	{
 		graphics_facade.set_fullscreen(fullscreen_enabled);
+	}
+	bool MultimediaManager::is_fullscreen() const
+	{
+		return graphics_facade.get_fullscreen();
 	}
 }
