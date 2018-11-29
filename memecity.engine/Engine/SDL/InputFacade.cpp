@@ -6,13 +6,12 @@ namespace memecity::engine::sdl {
 		while (SDL_PollEvent(&event) != 0)
 		{
 			if (event.type == SDL_QUIT) { quit_pressed = true; }
-			state = SDL_GetKeyboardState(nullptr);
 		}
 	}
 
-	bool InputFacade::is_pressed(InputKeys key) const
+	bool InputFacade::is_down(std::string key) const
 	{
-		return state[key] != 0;
+		return state[SDL_GetScancodeFromName(key.c_str())] != 0;
 	}
 
 	bool InputFacade::is_quit_pressed() const

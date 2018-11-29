@@ -1,9 +1,11 @@
 #include "GameManager.h"
-#include "States.h"
+#include "Game\States.h"
+#include "Assets.h"
 
 void GameManager::init()
 {
-	_states.create_state<MenuState>(_context);
+	multimedia_manager.set_default_font(assets::fonts::DEFAULT_FONT);
+	_states.create_state<MenuState>(get_context());
 }
 
 void GameManager::update(float dt)

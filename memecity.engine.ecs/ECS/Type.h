@@ -4,6 +4,6 @@
 namespace memecity::engine::ecs {
 	using TypeToken = std::type_index;
 	template<class T>
-	TypeToken token() { return typeid(T); };
+	TypeToken token() { return typeid(T); }; 
 };
 #endif

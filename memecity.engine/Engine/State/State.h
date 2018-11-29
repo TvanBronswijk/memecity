@@ -1,32 +1,32 @@
 ﻿#ifndef _STATE_MACHINE_STATE_H
 #define _STATE_MACHINE_STATE_H
-#include "StateMachine.h"
+#include "StateManager.h"
+#include "..\..\MemeEngine.h"
 
 namespace memecity::engine::state {
 	class State {
 	protected:
-		StateMachine& _state_machine;
-		StateContext& _context;
-
-
+		StateManager* _state_machine;
 	public:
-		State(StateMachine& sm, StateContext& sc) 
-		: _state_machine(sm), _context(sc) {}
+		State(StateManager& sm)
+		: _state_machine(&sm) {}
 
 		State(const State &) = delete;
 		State(State &&) = delete;
 		State& operator=(const State&) = delete;
 		State& operator=(State&&) = delete;
-		virtual void init() = 0;
-		virtual void update(float dt) = 0;
-		virtual void draw() = 0;
-		virtual void back() const { _state_machine.pop(); }
+		virtual void on_load() {};
+		virtual void update(float dt) {};
+		virtual void draw() {};
+		virtual void on_enter() {};
+		virtual void on_exit() {};
+		
+		template<class T, class ...Args>
+		void next(Args&&... args) const { _state_machine->create_state<T>(std::forward<Args>(args)...); }
+		template<class T, class ...Args>
+		void replace(Args&&... args) const { _state_machine->swap<T>(std::forward<Args>(args)...); }
+		void back(int count = 1) const { _state_machine->pop(count); }
 		virtual ~State() = default;
-
-		StateContext& get_context() 
-		{
-			return _context;
-		}
 	};
 }
 

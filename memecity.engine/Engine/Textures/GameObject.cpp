@@ -28,7 +28,6 @@ namespace memecity::engine::texture {
 		{
 			return position;
 		}
-
 		return parent->get_position(world) + RotateVector(position, parent->get_rotation(local));
 	}
 
@@ -37,12 +36,12 @@ namespace memecity::engine::texture {
 		this->rotation = rotation;
 		if (rotation > 360.0f)
 		{
-			const int mul = rotation / 360;
+			const float mul = rotation / 360;
 			this->rotation -= 360.0f * mul;
 		}
 		else if (rotation < 0.0f)
 		{
-			const int mul = (rotation / 360) - 1;
+			const float mul = (rotation / 360) - 1;
 			this->rotation -= 360.0f * mul;
 		}
 	}
@@ -69,7 +68,6 @@ namespace memecity::engine::texture {
 
 	void GameObject::set_parent(GameObject* parent)
 	{
-		position = get_position(world) - parent->get_position(world);
 		this->parent = parent;
 	}
 

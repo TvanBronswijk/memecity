@@ -12,7 +12,6 @@
 #include "SDL\AudioFacade.h"
 #include "SDL\GraphicsFacade.h"
 #include "SDL\InputFacade.h"
-#include "SDL\InputKeys.h"
 #include "SDL\TimerFacade.h"
 
 #endif

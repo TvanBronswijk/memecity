@@ -98,6 +98,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
+      <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions);DEBUG</PreprocessorDefinitions>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -107,6 +108,7 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions);DEBUG</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <AdditionalDependencies>memecity.engine.lib;memecity.engine.ecs.lib;SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;SDL2_mixer.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -128,15 +130,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Menu\Menu.cpp" />
-    <ClCompile Include="Menu\MenuBuilder.cpp" />
-    <ClCompile Include="Menu\MenuItem.cpp" />
+    <ClCompile Include="UI\Menu\Menu.cpp" />
+    <ClCompile Include="UI\Menu\MenuBuilder.cpp" />
+    <ClCompile Include="UI\Menu\MenuItem.cpp" />
     <ClCompile Include="UI.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Menu\Menu.h" />
-    <ClInclude Include="Menu\MenuBuilder.h" />
-    <ClInclude Include="Menu\MenuItem.h" />
+    <ClInclude Include="UI\Loading.h" />
+    <ClInclude Include="UI\Loading\LoadingBar.h" />
+    <ClInclude Include="UI\Menu.h" />
+    <ClInclude Include="UI\Menu\Menu.h" />
+    <ClInclude Include="UI\Menu\MenuBuilder.h" />
+    <ClInclude Include="UI\Menu\MenuItem.h" />
     <ClInclude Include="UI.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -1,15 +1,17 @@
 ﻿#include "AudioFacade.h"
 #include "Wrappers\RawMusicWrapper.h"
+#include "Wrappers\RawSfxWrapper.h"
+#include "..\Exceptions.h"
 #include <iostream>
 #include <SDL.h>
-#include "Wrappers\RawSfxWrapper.h"
 
 namespace memecity::engine::sdl {
+	using namespace exceptions;
+
 	bool AudioFacade::init() const
 	{
 		if (SDL_Init(SDL_INIT_AUDIO) < 0) {
-			std::cout << "Audio Initialization error: " << SDL_GetError() << std::endl;
-			return false;
+			throw SDLException(Level::error, Mix_GetError());
 		}
 
 		return true;
@@ -19,7 +21,7 @@ namespace memecity::engine::sdl {
 	{
 		if (Mix_OpenAudio(frequency, MIX_DEFAULT_FORMAT, channels, chunksize) < 0)
 		{
-			std::cout << "Audio error: " << Mix_GetError() << std::endl;
+			throw SDLException(Level::error, Mix_GetError());
 		}
 	}
 
@@ -39,9 +41,7 @@ namespace memecity::engine::sdl {
 
 	void AudioFacade::play_background_music(const RawMusicWrapper& music, int volume) const
 	{
-
 		Mix_VolumeMusic(volume);
-
 		if (!Mix_PlayingMusic()) {
 			Mix_PlayMusic(*music, -1);
 		}
@@ -66,6 +66,24 @@ namespace memecity::engine::sdl {
 		{
 			Mix_HaltMusic();
 		}
+	}
+
+	std::unique_ptr<RawMusicWrapper> AudioFacade::load_music(std::string path) const
+	{
+		std::unique_ptr<RawMusicWrapper> music = std::make_unique<sdl::RawMusicWrapper>(Mix_LoadMUS(path.c_str()));
+		if (music == nullptr) {
+			throw SDLException(Level::error, Mix_GetError());
+		}
+		return music;
+	}
+
+	std::unique_ptr<RawSfxWrapper> AudioFacade::load_sfx(std::string path) const
+	{
+		std::unique_ptr<RawSfxWrapper> sfx = std::make_unique<sdl::RawSfxWrapper>(Mix_LoadWAV(path.c_str()));
+		if (sfx == nullptr) {
+			throw SDLException(Level::error, Mix_GetError());
+		}
+		return sfx;
 	}
 
 	void AudioFacade::close_audio() const

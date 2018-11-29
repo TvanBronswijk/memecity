@@ -23,9 +23,9 @@ namespace memecity::engine::texture {
 		return this->direction;
 	}
 
-	void AnimatedTexture::update()
+	void AnimatedTexture::update(float dt)
 	{
-		animation_timer += timer_facade.get_delta_time();
+		animation_timer += dt;
 		if (animation_timer >= animation_speed)
 		{
 			animation_timer -= animation_speed;

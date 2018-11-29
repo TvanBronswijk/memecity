@@ -1,14 +1,12 @@
-
 #ifndef _ENTITY_H
 #define  _ENTITY_H
-#include <algorithm>
-#include <vector>
+#include "Component.h"
 #include "Type.h"
+#include <map>
 namespace memecity::engine::ecs {
-	struct Component;
 	struct Entity {
 	protected:
-		std::vector<std::reference_wrapper<Component>> _components;
+		std::map<TypeToken, Component*> _components;
 	public:
 		int id;
 		Entity(int id) 
@@ -18,32 +16,30 @@ namespace memecity::engine::ecs {
 		bool add(T& component)
 		{
 			static_assert(std::is_convertible<T*, Component*>::value, "This function can only add concrete subclasses of Component");
-			if (has<T>()) {
-				return false;
+			if (!has<T>()) {
+				_components[token<T>()] = &component;
+				return true;
 			}
-			_components.push_back(component);
-			return true;
+			return false;
 		}
 
 		template<class T>
 		bool has() const
 		{
-			return std::any_of(_components.begin(), _components.end(), [](Component& c) { return token<T>() == typeid(c); });
+			return _components.find(token<T>()) != _components.end();
 		}
 
 		template<class T>
 		T* get() const
 		{
-			for (auto& component : _components) {
-				if (token<T>() == typeid(component.get())) {
-					return static_cast<T*>(&(component.get()));
-				}
+			if (has<T>()) {
+				return static_cast<T*>(_components.at(token<T>()));
 			}
 			return nullptr;
 		}
 
-		bool operator==(const Entity& e) const { return this->id == e.id; }
-		bool operator!=(const Entity& e) const { return this->id != e.id; }
+		bool operator==(const Entity& e) const { return id == e.id; }
+		bool operator!=(const Entity& e) const { return id != e.id; }
 	};
 };
 #endif

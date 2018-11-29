@@ -15,31 +15,17 @@ namespace memecity::engine::ecs::query {
 
 			ComponentQuery(std::vector<std::reference_wrapper<T>> collection) : _collection(collection) {}
 
-			template<class C>
-			ComponentQuery(std::vector<std::unique_ptr<C>>& collection)
-			{
-				for (auto& element : collection) {
-					_collection.emplace_back(std::ref(static_cast<T&>(*element)));
-				}
-			};
-
 			ComponentQuery<T> where(Predicate<T> predicate) const
 			{
 				std::vector<std::reference_wrapper<T>> result;
-				for (auto& c : _collection) {
-					if (predicate(c)) {
-						result.emplace_back(c);
-					}
-				}
+				std::copy_if(_collection.begin(), _collection.end(), std::back_inserter(result), predicate);
 				return ComponentQuery<T>(result);
 			}
 			T* first(Predicate<T> predicate) const
 			{
-				for (auto& c : _collection) {
-					if (predicate(c)) {
-						return &c.get();
-					}
-				}
+				auto it = std::find_if(_collection.begin(), _collection.end(), predicate);
+				if (it != _collection.end())
+					return *it;
 				return nullptr;
 			}
 

@@ -87,7 +87,7 @@
     <ClCompile Include="Engine\SDL\Wrappers\Color.cpp">
       <Filter>Source Files\Graphics</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\State\StateMachine.cpp">
+    <ClCompile Include="Engine\State\StateManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="QuadTree.cpp">
@@ -158,9 +158,6 @@
     <ClInclude Include="Engine\SDL\InputFacade.h">
       <Filter>Header Files\Facades</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\SDL\InputKeys.h">
-      <Filter>Header Files\Enum</Filter>
-    </ClInclude>
     <ClInclude Include="Engine\Util\MathHelper.h">
       <Filter>Header Files\Utilities</Filter>
     </ClInclude>
@@ -188,13 +185,22 @@
     <ClInclude Include="Engine\State\State.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\State\StateMachine.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Engine\State.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="StateContext.h">
+    <ClInclude Include="Engine\Exceptions\SDLException.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Exceptions\MemeException.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Exceptions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\State\StateManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Util.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="QuadTree.h">
