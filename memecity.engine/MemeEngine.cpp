@@ -34,7 +34,6 @@ namespace memecity::engine {
 
 	int singlethreaded(MemeEngine& engine)
 	{
-
 #ifdef DEBUG
 		std::cout << "singlethreaded\n";
 #endif
@@ -50,8 +49,6 @@ namespace memecity::engine {
 			}
 		}
 		return 0;
-	}
-		_quad_tree = QuadTree(4, { 0, 0, 1356, 1356 });
 	}
 
 	int MemeEngine::run(Threading flag)

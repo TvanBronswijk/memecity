@@ -8,7 +8,7 @@ struct ColliderComponent : public memecity::engine::ecs::Component
 {
 	BoundaryRectangle boundary_rectangle;
 
-	ColliderComponent(const memecity::engine::ecs::Entity& e, BoundaryRectangle boundary_rectangle)
+	ColliderComponent(memecity::engine::ecs::Entity& e, BoundaryRectangle boundary_rectangle)
 		: memecity::engine::ecs::Component(e), boundary_rectangle(boundary_rectangle) {}
 	~ColliderComponent() = default;
 };
