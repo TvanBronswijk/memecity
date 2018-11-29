@@ -25,21 +25,21 @@ void FightingSystem::on_attack(EntityManager &em, AttackEventArgs args) {
 
 	if (drawable_health_target->health > (drawable_health_target->maxhealth / 2)) {
 		auto text_health_texture = dynamic_cast<memecity::engine::texture::TextTexture*>(&drawable_health_target->get_texture());
-		auto target_health_texture = multimedia_manager.get_text_texture(hp, assets::fonts::DEFAULT_FONT, 10, { 34,139,34 });
+		auto target_health_texture = multimedia_manager.get_text(hp, 10, { 34,139,34 });
 		target_health_texture->set_position({ 0, -20 });
 		target_health_texture->set_parent(text_health_texture->get_parent());
 		drawable_health_target->texture = std::move(target_health_texture);
 	}
 	else if (drawable_health_target->health < (drawable_health_target->maxhealth / 2) && drawable_health_target->health > 0) {
 		auto text_health_texture = dynamic_cast<memecity::engine::texture::TextTexture*>(&drawable_health_target->get_texture());
-		auto target_health_texture = multimedia_manager.get_text_texture(hp, assets::fonts::DEFAULT_FONT, 10, { 255,140,0 });
+		auto target_health_texture = multimedia_manager.get_text(hp, 10, { 255,140,0 });
 		target_health_texture->set_position({ 0, -20 });
 		target_health_texture->set_parent(text_health_texture->get_parent());
 		drawable_health_target->texture = std::move(target_health_texture);
 	}
 	else {
 		auto text_health_texture = dynamic_cast<memecity::engine::texture::TextTexture*>(&drawable_health_target->get_texture());
-		auto target_health_texture = multimedia_manager.get_text_texture(hp, assets::fonts::DEFAULT_FONT, 10, { 220,20,60 });
+		auto target_health_texture = multimedia_manager.get_text(hp, 10, { 220,20,60 });
 		target_health_texture->set_position({ 0, -20 });
 		target_health_texture->set_parent(text_health_texture->get_parent());
 		drawable_health_target->texture = std::move(target_health_texture);

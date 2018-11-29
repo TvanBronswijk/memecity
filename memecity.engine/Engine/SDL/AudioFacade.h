@@ -1,5 +1,7 @@
 ﻿#ifndef _AUDIOFACADE_H
 #define _AUDIOFACADE_H
+#include <memory>
+#include <string>
 
 namespace memecity::engine::sdl {
 	class RawSfxWrapper;
@@ -28,6 +30,12 @@ namespace memecity::engine::sdl {
 
 		///<summary>If background music is playing, stop it.</summary>
 		void stop_background_music() const;
+
+		///<summary>Loads texture from path into memory.</summary>
+		std::unique_ptr<RawMusicWrapper> load_music(std::string path) const;
+
+		///<summary>Loads a text texture from path into memory.</summary>
+		std::unique_ptr<RawSfxWrapper> load_sfx(std::string path) const;
 
 		///<summary>Cleanup audio</summary>
 		void close_audio() const;

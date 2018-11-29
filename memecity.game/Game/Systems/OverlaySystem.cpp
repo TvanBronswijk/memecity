@@ -10,10 +10,10 @@ void OverlaySystem::run(EntityManager& em) const
 
 	for (HealthComponent& item : health_overlay_components)
 	{
-		multimedia_manager.render_texture(item.get_texture());
+		multimedia_manager.render_text(item.get_texture());
 	}
 	for (InteractionComponent& item : interaction_overlay_components)
 	{
-		multimedia_manager.render_texture(item.get_texture());
+		multimedia_manager.render_text(item.get_texture());
 	}
 }

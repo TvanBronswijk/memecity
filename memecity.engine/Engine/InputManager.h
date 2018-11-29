@@ -10,12 +10,12 @@ namespace memecity::engine {
 	{
 	private:
 		std::unique_ptr<sdl::InputFacade> input_facade;
-		std::map<sdl::InputKeys, bool> _is_pressed{};
+		std::map<std::string, bool> _is_pressed{};
 	public:
 		InputManager();
 		void update();
-		bool is_pressed(sdl::InputKeys key);
-		bool is_down(sdl::InputKeys key) const;
+		bool is_pressed(std::string key);
+		bool is_down(std::string key) const;
 		bool is_quit_pressed() const;
 		void quit();
 	};

@@ -1,6 +1,7 @@
 ﻿#include "InputSystem.h"
 #include "..\Components.h"
 #include "..\States.h"
+#include "..\Input.h"
 
 using namespace memecity::engine;
 using namespace memecity::engine::ecs;
@@ -26,33 +27,24 @@ void InputSystem::run(EntityManager& em) const
 	for (const Entity& entity : entities)
 	{
 		auto velocity_component = entity.get<VelocityComponent>();
-
-		if (input_manager.is_down(sdl::Attack))
-		{
-			const auto animation_component = entity.get<AnimationComponent>();
-			if (animation_component)
-			{
-				animation_component->current_state = AnimationComponent::AnimationState::fighting;
-			}
-		}
-		if (input_manager.is_down(sdl::Up))
+		if (input_manager.is_down(input::UP))
 		{
 			velocity_component->y -= 0.1f;
 		}
-		if (input_manager.is_down(sdl::Down))
+		if (input_manager.is_down(input::DOWN))
 		{
 			velocity_component->y += 0.1f;
 		}
-		if (input_manager.is_down(sdl::Left))
+		if (input_manager.is_down(input::LEFT))
 		{
 			velocity_component->x -= 0.1f;
 		}
-		if (input_manager.is_down(sdl::Right))
+		if (input_manager.is_down(input::RIGHT))
 		{
 			velocity_component->x += 0.1f;
 		}
 		//test for interaction with NPC
-		if (input_manager.is_down(sdl::Interaction))
+		if (input_manager.is_pressed(input::INTERACTION))
 		{
 			auto vector = em.get_components_of_type<AIComponent>();
 			for (AIComponent& element : vector) {
@@ -61,7 +53,13 @@ void InputSystem::run(EntityManager& em) const
 				}
 			}
 		}
-		if (input_manager.is_down(sdl::Attack)) {
+		if (input_manager.is_pressed(input::ATTACK)) {
+			const auto animation_component = entity.get<AnimationComponent>();
+			if (animation_component)
+			{
+				animation_component->current_state = AnimationComponent::AnimationState::fighting;
+			}
+
 			auto& player = em.get_components_of_type<PlayerComponent>()[0].get();
 			auto vector = em.get_components_of_type<AIComponent>();
 			for (AIComponent& element : vector) {
@@ -70,7 +68,7 @@ void InputSystem::run(EntityManager& em) const
 				}
 			}
 		}
-		if (input_manager.is_pressed(sdl::Escape)) {
+		if (input_manager.is_pressed(input::ESCAPE)) {
 			state_manager.create_state<PauseMenuState>(*_context);
 		}
 	}

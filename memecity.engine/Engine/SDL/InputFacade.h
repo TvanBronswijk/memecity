@@ -1,8 +1,8 @@
 ﻿#ifndef _INPUTFACADE_H
 #define _INPUTFACADE_H
 #include <cstdint>
+#include <string>
 #include <SDL.h>
-#include "InputKeys.h"
 
 namespace memecity::engine::sdl {
 	class InputFacade
@@ -18,7 +18,7 @@ namespace memecity::engine::sdl {
 		void update();
 
 		///<summary>Returns if a given key is pressed.</summary>
-		bool is_down(InputKeys key) const;
+		bool is_down(std::string key) const;
 
 		///<summary>Returns whether quit is pressed.</summary>
 		bool is_quit_pressed() const;

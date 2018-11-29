@@ -26,7 +26,7 @@ namespace memecity::engine::state {
 
 	void StateManager::pop(int count)
 	{
-		_mutex.lock();
+		std::lock_guard<std::mutex> lock(_mutex);
 		for (int i = 0; i < count; i++)
 		{
 			if (_stack.size() <= 0) {
@@ -37,7 +37,6 @@ namespace memecity::engine::state {
 			_stack.pop();
 		}
 		enter();
-		_mutex.unlock();
 	}
 
 	State* StateManager::current_state() const
@@ -52,9 +51,10 @@ namespace memecity::engine::state {
 	}
 
 	void StateManager::draw() {
-		if (_mutex.try_lock()) {
+		std::unique_lock<std::mutex> lock(_mutex, std::defer_lock);
+		if (lock.try_lock()) {
 			current_state()->draw();
-			_mutex.unlock();
+			lock.unlock();
 		}
 	}
 }
