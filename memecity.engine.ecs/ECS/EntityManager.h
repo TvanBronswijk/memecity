@@ -109,6 +109,23 @@ namespace memecity::engine::ecs {
 			}
 		}
 
+		template<class S>
+		System* get_system_of_type()
+		{
+			static_assert(std::is_convertible<S*, System*>::value, "This function can only retrieve concrete subclasses of System");
+			for (auto& scope : systems)
+			{
+				for (auto& system : scope.second)
+				{
+					if (system.first == token<S>())
+					{
+						return system.second.get();
+					}
+				}
+			}
+			return nullptr;
+		}
+
 		~EntityManager()
 		{
 			entities.clear();

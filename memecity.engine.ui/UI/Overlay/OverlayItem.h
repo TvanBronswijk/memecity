@@ -20,6 +20,11 @@ namespace memecity::engine::ui::overlay {
 		OverlayItem(MultimediaManager& multimedia_manager, Overlay& parent, std::string text, int size, float x, float y)
 		:x(x), y(y),size(size), text(text), parent(parent), multimedia_manager(multimedia_manager){}
 
+		void update(std::string newtext)
+		{
+			this->text = newtext;
+		}
+
 		//texture::TextTexture& get_texture() const;
 		void render() const;
 

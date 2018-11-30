@@ -11,6 +11,10 @@ void FightingSystem::on_attack(EntityManager &em, AttackEventArgs args) {
 	auto health_target = args.target.get<HealthComponent>();
 	auto AI = args.target.get<AIComponent>();
 
+	
+	drawable_health_target->health -= 10;
+	health_event.fire(em, { drawable_health_target->health });
+
 	std::string hp = "HP: ";
 	if (drawable_health_target->health > 10) {
 		health_target->health -= 10;

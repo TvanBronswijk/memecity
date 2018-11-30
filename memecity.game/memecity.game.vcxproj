@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClInclude Include="Game\Components.h" />
     <ClInclude Include="Game\Components\AIComponent.h" />
+    <ClInclude Include="Game\Event\HealthChangedArgs.h" />
     <ClInclude Include="Game\GameLoader.h" />
     <ClInclude Include="Game\Event\MoveEventArgs.h" />
     <ClInclude Include="Game\Generate.h" />
@@ -55,6 +56,7 @@
     <ClInclude Include="Game\Components\HealthComponent.h" />
     <ClInclude Include="Game\Components\InteractionComponent.h" />
     <ClInclude Include="Game\Event\InteractionEventArgs.h" />
+    <ClInclude Include="Game\Systems\HudSystem.h" />
     <ClInclude Include="Game\Systems\InteractionSystem.h" />
     <ClInclude Include="Game\Components\LevelComponent.h" />
     <ClInclude Include="Game\Generate\City\Strategy\Strategy.h" />
@@ -83,6 +85,7 @@
     <ClCompile Include="Game\Systems\FightingSystem.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="Game\Systems\DrawSystem.cpp" />
+    <ClCompile Include="Game\Systems\HudSystem.cpp" />
     <ClCompile Include="Game\Systems\InteractionSystem.cpp" />
     <ClCompile Include="Game\Systems\InputSystem.cpp" />
     <ClCompile Include="main.cpp" />

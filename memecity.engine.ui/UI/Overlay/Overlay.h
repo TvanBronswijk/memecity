@@ -9,7 +9,7 @@ namespace memecity::engine::ui::overlay {
 	class Overlay
 	{
 	private:
-		std::vector<std::unique_ptr<OverlayItem>> overlay_items;
+		std::map<std::string, std::unique_ptr<OverlayItem>> overlay_items;
 		MultimediaManager& multimedia_manager;
 		std::unique_ptr<texture::Texture> background_texture;
 		float x;
@@ -20,11 +20,19 @@ namespace memecity::engine::ui::overlay {
 		{
 		}
 
+		void update(std::string name, std::string text)
+		{
+			if (overlay_items.find(name) != overlay_items.end()) {
+				overlay_items[name]->update(text);
+			}
+		}
+
 		template<class... Args>
-		OverlayItem& create_overlay_item(Args&&... args)
+		OverlayItem& create_overlay_item(std::string name,Args&&... args)
 		{
 			static_assert(std::is_constructible<OverlayItem, MultimediaManager&, Overlay&, Args...>::value, "The requested type cannot be constructed from the arguments provided.");
-			return *overlay_items.emplace_back(std::make_unique<OverlayItem>(multimedia_manager, *this, std::forward<Args>(args)...));
+			overlay_items.insert_or_assign(name, (std::make_unique<OverlayItem>(multimedia_manager, *this, std::forward<Args>(args)...)));
+			return *overlay_items[name];
 
 		}
 
