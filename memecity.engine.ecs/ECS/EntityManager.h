@@ -115,6 +115,9 @@ namespace memecity::engine::ecs {
 			static_assert(std::is_convertible<S*, System*>::value, "This function can only retrieve concrete subclasses of System");
 			for (auto& scope : systems)
 			{
+
+
+
 				for (auto& system : scope.second)
 				{
 					if (system.first == token<S>())

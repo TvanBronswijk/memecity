@@ -115,7 +115,6 @@ void GameLoader::create_systems(EntityManager& em, loading::LoadingBar::Listener
 {
 	auto& multimedia_manager = _context->get_multimedia_manager();
 
-	auto& hud_system = em.create_system<HudSystem>();
 	auto& draw_system =			em.create_system<DrawSystem>(System::draw, multimedia_manager);
 	auto& animation_system =	em.create_system<AnimationSystem>(System::draw);
 	auto& input_system =		em.create_system<InputSystem>(System::update, *_context);
@@ -134,7 +133,7 @@ void GameLoader::create_systems(EntityManager& em, loading::LoadingBar::Listener
 	eventing::bind(input_system.attack_event, &fighting_system, &FightingSystem::on_attack);
 	eventing::bind(collider_system.collider_event, &move_system, &MoveSystem::on_collision);
 
-	eventing::bind(fighting_system.health_event, &hud_system, &HudSystem::on_health_changed);
+	
 
 	listener.increase_current_value(5.0f);
 }

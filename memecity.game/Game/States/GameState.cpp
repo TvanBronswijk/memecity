@@ -1,19 +1,23 @@
 #include "GameState.h"
 #include "../Systems/HudSystem.h"
+#include "../Systems/FightingSystem.h"
 
 
 GameState::GameState(memecity::engine::state::StateManager& sm, GameManager::GameContext& gc,
 	memecity::engine::ecs::EntityManager em) : State(sm), _context(&gc), entity_manager(std::move(em)), _hud(_context->get_multimedia_manager(), _context->get_multimedia_manager().get_texture("big_black.bmp", 0, 0, _context->get_multimedia_manager().get_screen_width(), 100), 0, 0)
 {
-	memecity::engine::ecs::System* system = em.get_system_of_type<HudSystem>();
-	//system->set_hud(_hud);
-
-	_hud.create_overlay_item("HEALTH","Health:100", 20, 100, 20);
+	
 }
 
 void GameState::on_load()
 {
 
+	auto& hud_system = entity_manager.create_system<HudSystem>(memecity::engine::ecs::System::draw, _hud);
+	FightingSystem* system = dynamic_cast<FightingSystem*>(entity_manager.get_system_of_type<FightingSystem>());
+
+	memecity::engine::ecs::eventing::bind(system->health_event, &hud_system, &HudSystem::on_health_changed);
+
+	_hud.create_overlay_item("HEALTH", "Health:100", 20, 100, 20);
 }
 
 void GameState::update(float dt)
