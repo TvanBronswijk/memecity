@@ -1,5 +1,7 @@
 #include "GameState.h"
 #include "..\..\Assets.h"
+#include "../Systems/HudSystem.h"
+#include "../Systems/FightingSystem.h"
 
 void GameState::on_load()
 {
