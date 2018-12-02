@@ -11,7 +11,7 @@ namespace memecity::engine {
 		input_facade->update();
 	}
 
-	bool InputManager::is_pressed(sdl::InputKeys key)
+	bool InputManager::is_pressed(std::string key)
 	{
 		if (_is_pressed.find(key) == _is_pressed.end()) {
 			_is_pressed[key] = input_facade->is_down(key);
@@ -32,7 +32,7 @@ namespace memecity::engine {
 		return _is_pressed.at(key);
 	}
 
-	bool InputManager::is_down(sdl::InputKeys key) const
+	bool InputManager::is_down(std::string key) const
 	{
 		return input_facade->is_down(key);
 	}

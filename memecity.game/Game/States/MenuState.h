@@ -10,6 +10,7 @@ private:
 	GameManager::GameContext* _context;
 	std::unique_ptr<memecity::engine::ui::menu::Menu> advanced_graphics_menu;
 	std::unique_ptr<memecity::engine::ui::menu::Menu> settings_menu;
+	std::unique_ptr<memecity::engine::ui::menu::Menu> credits_menu;
 	std::unique_ptr<memecity::engine::ui::menu::Menu> menu;
 
 public:

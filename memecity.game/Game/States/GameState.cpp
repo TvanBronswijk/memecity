@@ -1,13 +1,5 @@
 #include "GameState.h"
-#include "../Systems/HudSystem.h"
-#include "../Systems/FightingSystem.h"
-
-
-GameState::GameState(memecity::engine::state::StateManager& sm, GameManager::GameContext& gc,
-	memecity::engine::ecs::EntityManager em) : State(sm), _context(&gc), entity_manager(std::move(em)), _hud(_context->get_multimedia_manager(), _context->get_multimedia_manager().get_texture("big_black.bmp", 0, 0, _context->get_multimedia_manager().get_screen_width(), 100), 0, 0)
-{
-	
-}
+#include "..\..\Assets.h"
 
 void GameState::on_load()
 {
@@ -35,7 +27,7 @@ void GameState::draw()
 
 void GameState::on_enter()
 {
-	_context->get_multimedia_manager().play_background_music("Music/bgm-game.mp3", 100);
+	_context->get_multimedia_manager().play_background_music(assets::music::DEFAULT_BGM);
 }
 
 void GameState::on_exit()

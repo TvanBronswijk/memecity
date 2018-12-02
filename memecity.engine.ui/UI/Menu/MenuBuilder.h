@@ -15,7 +15,7 @@ namespace memecity::engine::ui::menu {
 	public:
 		MenuBuilder(MultimediaManager& multimedia_manager) 
 		: multimedia_manager(multimedia_manager) {}
-		MenuBuilder& create_menu(std::string title);
+		MenuBuilder& create_menu(std::string title, std::string font_path);
 
 		template<class... Args>
 		MenuBuilder& with_menu_item(Args&&... args)
@@ -24,6 +24,12 @@ namespace memecity::engine::ui::menu {
 			return *this;
 		}
 
+		template<class... Args>
+		MenuBuilder& with_read_only_menu_item(Args&&... args)
+		{
+			menu->create_read_only_menu_item(std::forward<Args>(args)...);
+			return *this;
+		}
 		MenuBuilder& with_back_menu_item();
 		std::unique_ptr<Menu> get_menu();
 	};

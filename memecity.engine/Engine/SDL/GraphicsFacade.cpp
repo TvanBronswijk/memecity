@@ -6,10 +6,20 @@
 
 namespace memecity::engine::sdl {
 	using namespace exceptions;
+
+	SDL_Rect to_sdl_rect(const Rectangle& rect) {
+		SDL_Rect result_rect;
+		result_rect.x = std::round(rect.x);
+		result_rect.y = std::round(rect.y);
+		result_rect.w = std::round(rect.w);
+		result_rect.h = std::round(rect.h);
+		return result_rect;
+	}
+
 	GraphicsFacade::GraphicsFacade(bool is_fullscreen) : is_initialized(false)
 	{
 		this->is_fullscreen = is_fullscreen;
-		screen_height = 600;
+		screen_height = 640;
 		screen_width = 1280;
 	}
 
@@ -59,17 +69,24 @@ namespace memecity::engine::sdl {
 		{
 			throw SDLException(Level::error, IMG_GetError());
 		}
-
 		texture = std::make_unique<RawTextureWrapper>(SDL_CreateTextureFromSurface(sdl_renderer->get(), surface->get()));
 		if (texture->get() == nullptr)
 		{
 			throw SDLException(Level::error, IMG_GetError());
 		}
-
 		return texture;
 	}
 
-	std::unique_ptr<RawTextureWrapper> GraphicsFacade::load_text_texture(RawFontWrapper& font, std::string text, const SDL_Color &color) const
+	std::unique_ptr<RawFontWrapper> GraphicsFacade::load_font(std::string path, int size) const
+	{
+		std::unique_ptr<RawFontWrapper> font = std::make_unique<sdl::RawFontWrapper>(TTF_OpenFont(path.c_str(), size));
+		if (font == nullptr) {
+			throw SDLException(Level::error, SDL_GetError());
+		}
+		return font;
+	}
+
+	std::unique_ptr<RawTextureWrapper> GraphicsFacade::load_text_texture(const RawFontWrapper& font, std::string text, const SDL_Color color) const
 	{
 		std::unique_ptr<RawSurfaceWrapper> surface = std::make_unique<RawSurfaceWrapper>(TTF_RenderText_Solid(*font, text.c_str(), color));
 
@@ -89,25 +106,33 @@ namespace memecity::engine::sdl {
 	void GraphicsFacade::draw_texture(const RawTextureWrapper& texture, const Rectangle& render_rect, const Rectangle* clipped_rect) const
 	{
 
-		std::unique_ptr<SDL_Rect> sdl_clipped_rect;
-		if (clipped_rect != nullptr) {
-			sdl_clipped_rect = std::make_unique<SDL_Rect>();
-			sdl_clipped_rect->x = std::round(clipped_rect->x);
-			sdl_clipped_rect->y = std::round(clipped_rect->y);
-			sdl_clipped_rect->w = std::round(clipped_rect->w);
-			sdl_clipped_rect->h = std::round(clipped_rect->h);
+		if (render_rect.x > -viewport_offset && render_rect.x < screen_width + viewport_offset &&
+			render_rect.y > -viewport_offset && render_rect.y < screen_height + viewport_offset) {
+			SDL_Rect sdl_render_rect = to_sdl_rect(render_rect);
+			SDL_Rect sdl_clipped_rect;
+			if (clipped_rect != nullptr) {
+				sdl_clipped_rect = to_sdl_rect(*clipped_rect);
+			}
+			SDL_RenderCopy(sdl_renderer->get(), *texture, clipped_rect == nullptr ? nullptr : &sdl_clipped_rect, &sdl_render_rect);
 		}
-		std::unique_ptr<SDL_Rect> sdl_render_rect = std::make_unique<SDL_Rect>();
-		sdl_render_rect->x = std::round(render_rect.x);
-		sdl_render_rect->y = std::round(render_rect.y);
-		sdl_render_rect->w = std::round(render_rect.w);
-		sdl_render_rect->h = std::round(render_rect.h);
+	}
 
+	void GraphicsFacade::draw_rectangle(const Rectangle& rect, bool fill, SDL_Color color)
+	{
+		SDL_SetRenderDrawColor(sdl_renderer->get(), color.r, color.g, color.b, color.a);
+		SDL_Rect sdl_rect = to_sdl_rect(rect);
+		if (fill) {
+			SDL_RenderFillRect(sdl_renderer->get(), &sdl_rect);
+		}
+		else {
+			SDL_RenderDrawRect(sdl_renderer->get(), &sdl_rect);
+		}
+		SDL_SetRenderDrawColor(sdl_renderer->get(), 0, 0, 0, 255);
+	}
 
-		//if (render_rect.x > -viewport_offset && render_rect.x < screen_width + viewport_offset &&
-		//	render_rect.y > -viewport_offset && render_rect.y < screen_height + viewport_offset) {
-			SDL_RenderCopy(sdl_renderer->get(), *texture, sdl_clipped_rect.get(), sdl_render_rect.get());
-		//}
+	void GraphicsFacade::get_dimensions(const RawTextureWrapper & texture, int & width, int & height)
+	{
+		SDL_QueryTexture(*texture, nullptr, nullptr, &width, &height);
 	}
 
 	void GraphicsFacade::clear() const
@@ -134,6 +159,11 @@ namespace memecity::engine::sdl {
 			}
 		}
 		SDL_GetWindowSize(sdl_window->get(), &screen_width, &screen_height);
+	}
+
+	bool GraphicsFacade::get_fullscreen() const
+	{
+		return is_fullscreen;
 	}
 
 	void GraphicsFacade::render() const

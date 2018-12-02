@@ -3,56 +3,55 @@
 #include <thread>
 #include "Engine\SDL\TimerFacade.h"
 
-
-int multithreaded(memecity::engine::MemeEngine& engine)
-{
-#ifdef DEBUG
-	std::cout << "multithreaded\n"
-		<< "main thread: " << std::this_thread::get_id() << '\n';
-#endif
-	std::thread logic([&]() {
-#ifdef DEBUG
-		std::cout << "	logic thread: " << std::this_thread::get_id() << '\n';
-#endif
-		while (!engine.get_context().get_input_manager().is_quit_pressed()) {
-			engine.update(engine.get_context().get_timer().get_delta_time());
-		}
-	});
-	while (!engine.get_context().get_input_manager().is_quit_pressed()) {
-		engine.get_context().get_timer().update();
-		engine.get_context().get_input_manager().update();
-		if (engine.get_context().get_timer().get_delta_time() >= 1.0f / 60.0f) {
-			engine.get_context().get_multimedia_manager().clear_graphics();
-			engine.draw();
-			engine.get_context().get_multimedia_manager().render_graphics();
-			engine.get_context().get_timer().reset();
-		}
-	};
-	logic.join();
-	return 0;
-}
-
-int singlethreaded(memecity::engine::MemeEngine& engine)
-{
-
-#ifdef DEBUG
-	std::cout << "singlethreaded\n";
-#endif
-	while (!engine.get_context().get_input_manager().is_quit_pressed()) {
-		engine.get_context().get_timer().update();
-		engine.get_context().get_input_manager().update();
-		engine.update(engine.get_context().get_timer().get_delta_time());
-		if (engine.get_context().get_timer().get_delta_time() >= 1.0f / 60.0f) {
-			engine.get_context().get_multimedia_manager().clear_graphics();
-			engine.draw();
-			engine.get_context().get_multimedia_manager().render_graphics();
-			engine.get_context().get_timer().reset();
-		}
-	}
-	return 0;
-}
-
 namespace memecity::engine {
+	int multithreaded(MemeEngine& engine)
+	{
+#ifdef DEBUG
+		std::cout << "multithreaded\n"
+			<< "main thread: " << std::this_thread::get_id() << '\n';
+#endif
+		std::thread logic([&]() {
+#ifdef DEBUG
+			std::cout << "	logic thread: " << std::this_thread::get_id() << '\n';
+#endif
+			while (!engine.input_manager.is_quit_pressed()) {
+				engine.update(engine.timer.get_delta_time());
+			}
+		});
+		while (!engine.input_manager.is_quit_pressed()) {
+			engine.timer.update();
+			engine.input_manager.update();
+			if (engine.timer.get_delta_time() >= 1.0f / 60.0f) {
+				engine.multimedia_manager.clear_graphics();
+				engine.draw();
+				engine.multimedia_manager.render_graphics();
+				engine.timer.reset();
+			}
+		};
+		logic.join();
+		return 0;
+	}
+
+	int singlethreaded(MemeEngine& engine)
+	{
+
+#ifdef DEBUG
+		std::cout << "singlethreaded\n";
+#endif
+		while (!engine.input_manager.is_quit_pressed()) {
+			engine.timer.update();
+			engine.input_manager.update();
+			engine.update(engine.timer.get_delta_time());
+			if (engine.timer.get_delta_time() >= 1.0f / 60.0f) {
+				engine.multimedia_manager.clear_graphics();
+				engine.draw();
+				engine.multimedia_manager.render_graphics();
+				engine.timer.reset();
+			}
+		}
+		return 0;
+	}
+
 	int MemeEngine::run(Threading flag)
 	{
 		if (multimedia_manager.init()) {

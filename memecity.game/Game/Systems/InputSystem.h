@@ -8,7 +8,7 @@
 class InputSystem : public memecity::engine::ecs::System
 {
 private:
-	GameManager::GameContext* _context;
+	GameManager::GameContext *_context;
 	bool check_collision(memecity::engine::ecs::EntityManager& em, memecity::engine::ecs::Component& element, int range) const;
 public:
 	memecity::engine::ecs::eventing::Event<InteractionEventArgs> interaction_event;
