@@ -17,7 +17,9 @@ void GameState::on_load()
 
 	memecity::engine::ecs::eventing::bind(system->health_event, &hud_system, &HudSystem::on_health_changed);
 
-	_hud.create_overlay_item("HEALTH", "Health:100", 20, 100, 20);
+	_hud.create_overlay_item("HEALTH", "Health:100", 16, 100, 20);
+	_hud.create_overlay_item("SCORE", "Score:100", 16, 100, 40);
+	_hud.create_overlay_item("EXP", "Exp:100", 16, 100, 60);
 }
 
 void GameState::update(float dt)

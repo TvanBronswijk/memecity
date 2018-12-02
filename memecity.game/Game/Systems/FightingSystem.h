@@ -4,13 +4,13 @@
 #include <ECS.h>
 #include "..\Components.h"
 #include "..\Event\AttackEventArgs.h"
-#include "../Event/HealthChangedArgs.h"
+#include "../Event/HealthEventArgs.h"
 
 class FightingSystem : public memecity::engine::ecs::System {
 
 public:
 	memecity::engine::MultimediaManager& multimedia_manager;
-	memecity::engine::ecs::eventing::Event<HealthChangedEventArgs> health_event;
+	memecity::engine::ecs::eventing::Event<HealthEventArgs> health_event;
 
 	FightingSystem(memecity::engine::MultimediaManager& multimedia_manager)
 		: multimedia_manager(multimedia_manager) {}

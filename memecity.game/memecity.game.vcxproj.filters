@@ -195,7 +195,13 @@
     <ClInclude Include="Game\Systems\HudSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Game\Event\HealthChangedArgs.h">
+    <ClInclude Include="Game\Event\ExpEventArgs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Event\HealthEventArgs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Event\ScoreEventArgs.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
