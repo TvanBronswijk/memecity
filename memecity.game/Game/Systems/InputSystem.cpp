@@ -71,6 +71,66 @@ void InputSystem::run(EntityManager& em) const
 		if (input_manager.is_pressed(input::ESCAPE)) {
 			state_manager.create_state<PauseMenuState>(*_context);
 		}
+		//inventory
+		if (input_manager.is_pressed(input::DROP)) {
+			auto player_position = entity.get<PositionComponent>();
+			auto player_drawable = entity.get<DrawableComponent>();
+
+			auto inventory = entity.get<InventoryComponent>();
+			auto item = inventory->items.at(inventory->selected);
+			inventory->items.erase(inventory->items.begin() + inventory->selected);
+
+			//update position
+			auto item_position = item->get<PositionComponent>();
+			auto item_drawable = item->get<DrawableComponent>();
+
+			item_position = player_position;
+			item_drawable->get_texture().set_position(player_drawable->get_texture().get_position());
+
+			//drop item to items in itemcomponent
+		}
+		if (input_manager.is_pressed(input::TAKE)) {
+			auto inventory = entity.get<InventoryComponent>();
+			//when collid you you can get the item
+			inventory->items.emplace_back();
+
+			//update postion texture
+
+			//add item to items in itemcomponent
+		}
+		if (input_manager.is_pressed(input::ONE)) {
+			auto inventory = entity.get<InventoryComponent>();
+			inventory->selected = 1;
+			//item 1 is selected from items in itemcomponent
+		}
+		if (input_manager.is_pressed(input::TWO)) {
+			auto inventory = entity.get<InventoryComponent>();
+			inventory->selected = 2;
+			//item 2 is selected from items in itemcomponent
+		}
+		if (input_manager.is_pressed(input::THREE)) {
+			auto inventory = entity.get<InventoryComponent>();
+			inventory->selected = 3;
+			//item 3 is selected from items in itemcomponent
+		}
+		if (input_manager.is_pressed(input::ARROWDOWN)) {
+			auto inventory = entity.get<InventoryComponent>();
+			if (inventory->selected == 0)
+				inventory->selected = inventory->items.size();
+			else
+				inventory->selected--;
+			
+			//next item is selected from items in itemcomponent
+		}
+		if (input_manager.is_pressed(input::ARROWUP)) {
+			auto inventory = entity.get<InventoryComponent>();
+
+			if (inventory->selected == inventory->items.size())
+				inventory->selected = 0;
+			else
+				inventory->selected--;
+			//previous item is selected from items in itemcomponent
+		}
 	}
 }
 

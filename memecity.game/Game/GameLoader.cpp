@@ -20,6 +20,9 @@ EntityManager GameLoader::build(loading::LoadingBar::Listener& listener)
 		.set_text("Loading NPCs");
 	create_npcs(em, listener);	
 	listener
+		.set_text("Loading Items");
+	create_items(em, listener);	
+	listener
 		.set_text("Loading Player");
 	create_player(em, listener);
 	listener
@@ -35,7 +38,7 @@ void GameLoader::create_map(EntityManager& em, loading::LoadingBar::Listener& li
 {
 	auto& multimedia_manager = _context->get_multimedia_manager();
 
-	generate::models::City city = generate::CityGenerator(_map_width, _map_height).generate();
+	generate::models::City city = generate::CityGenerator(10, 10).generate();
 	for (int y = city.begin.y; y < city.end.y; y++) {
 		for (int x = city.begin.x; x < city.end.x; x++) {
 			auto& character = city(x, y);
@@ -91,6 +94,22 @@ void GameLoader::create_npcs(EntityManager& em, loading::LoadingBar::Listener& l
 	listener.increase_current_value(10.0f);
 }
 
+void GameLoader::create_items(EntityManager& em, loading::LoadingBar::Listener& listener)
+{
+	auto& multimedia_manager = _context->get_multimedia_manager();
+
+	auto texture = multimedia_manager.get_texture(assets::spritesheets::TIN_CAN, 0, 0, 48, 28);
+	texture->set_position({0,0});
+
+	builder::EntityBuilder(em)
+		.create_entity()
+		.with_component<ItemComponent>()
+		.with_component<ColliderComponent>(48.0f, 48.0f)
+		.with_component<PositionComponent>(50,0)
+		.with_component<DrawableComponent>(std::move(texture))
+		.get();
+}
+
 void GameLoader::create_player(EntityManager& em, loading::LoadingBar::Listener& listener)
 {
 	auto& multimedia_manager = _context->get_multimedia_manager();
@@ -118,7 +137,7 @@ void GameLoader::create_systems(EntityManager& em, loading::LoadingBar::Listener
 	auto& animation_system =	em.create_system<AnimationSystem>(System::draw, *_context);
 	auto& input_system =		em.create_system<InputSystem>(System::update, *_context);
 	auto& move_system =			em.create_system<MoveSystem>();
-	//auto& collider_system =		em.create_system<ColliderSystem>();
+	auto& collider_system =		em.create_system<ColliderSystem>();
 	auto& ai_system =			em.create_system<AISystem>();
 	auto& fighting_system =		em.create_system<FightingSystem>(System::draw, multimedia_manager);
 	auto& interaction_system =	em.create_system<InteractionSystem>(System::draw, multimedia_manager);
@@ -127,7 +146,7 @@ void GameLoader::create_systems(EntityManager& em, loading::LoadingBar::Listener
 	eventing::bind(move_system.move_event, &animation_system, &AnimationSystem::on_move);
 	eventing::bind(input_system.interaction_event, &interaction_system, &InteractionSystem::on_interact);
 	eventing::bind(input_system.attack_event, &fighting_system, &FightingSystem::on_attack);
-	//eventing::bind(collider_system.collider_event, &move_system, &MoveSystem::on_collision);
+	eventing::bind(collider_system.collider_event, &move_system, &MoveSystem::on_collision);
 	listener.increase_current_value(5.0f);
 }
 
