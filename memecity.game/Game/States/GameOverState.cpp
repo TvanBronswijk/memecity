@@ -32,10 +32,6 @@ void GameOverState::update(float dt)
 	{
 		menu->select();
 	}
-	else if (input_manager.is_pressed(input::ESCAPE))
-	{
-		menu->back();
-	}
 }
 
 void GameOverState::draw()
