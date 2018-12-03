@@ -29,6 +29,7 @@ public:
 		: _capacity(capacity), _boundary(boundary) {}
 	QuadTree(size_t capacity, Rectangle boundary, std::vector<std::reference_wrapper<const BoundaryRectangle>> boundary_rectangles)
 		: _capacity(capacity), _boundary(boundary), _objects(std::move(boundary_rectangles)) {}
+	~QuadTree() = default;
 
 	bool insert(const BoundaryRectangle& collider);
 	std::vector<std::reference_wrapper<const BoundaryRectangle>> query(const BoundaryRectangle& range);

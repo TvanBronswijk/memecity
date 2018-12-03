@@ -1,5 +1,6 @@
 #ifndef _MEME_ENGINE_H
 #define _MEME_ENGINE_H
+
 #include <functional>
 #include <iostream>
 #include <thread>
@@ -32,29 +33,26 @@ namespace memecity::engine {
 			MultimediaManager* multimedia_manager;
 			InputManager* input_manager;
 			sdl::TimerFacade* timer;
-			QuadTree* quad_tree;
 		public:
 			Context(MultimediaManager& mm, InputManager& im, sdl::TimerFacade& t, QuadTree& quad_tree)
-				: multimedia_manager(&mm), input_manager(&im), timer(&t), quad_tree(&quad_tree) {}
+				: multimedia_manager(&mm), input_manager(&im), timer(&t) {}
 			Context(MemeEngine& engine)
-				: multimedia_manager(&engine.multimedia_manager), input_manager(&engine.input_manager), timer(&engine.timer), quad_tree(&engine.quad_tree) {}
+				: multimedia_manager(&engine.multimedia_manager), input_manager(&engine.input_manager), timer(&engine.timer) {}
 			virtual ~Context() = default;
 
 			MultimediaManager& get_multimedia_manager() { return *multimedia_manager; }
 			InputManager& get_input_manager() { return *input_manager; }
 			sdl::TimerFacade& get_timer() { return *timer; }
-			QuadTree& get_quad_tree() { return *quad_tree; }
 		};
 
 		StorageManager storage_manager;
 		MultimediaManager multimedia_manager;
 		InputManager input_manager;
-		QuadTree quad_tree;
 		sdl::TimerFacade timer;
 
 		std::unique_ptr<Context> _context;
 	public:
-		MemeEngine() : storage_manager(), multimedia_manager(false), input_manager(), quad_tree(16, { 0, 0, 1356, 1356 }), timer() {
+		MemeEngine() : storage_manager(), multimedia_manager(false), input_manager(), timer() {
 			_context = std::make_unique<Context>(*this);
 		};
 

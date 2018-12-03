@@ -28,11 +28,16 @@ void QuadTree::subdivide()
 
 bool QuadTree::insert(const BoundaryRectangle& collider)
 {
-	if (!contains(_boundary, collider))
+	if (!intersects(_boundary, collider))
 	{
 		return false;
 	}
-
+	
+	this->_objects.emplace_back(collider);
+	if (this->_objects.size() >= this->_capacity && !this->_is_divided)
+	{
+		this->subdivide();
+	}
 	if (this->_is_divided)
 	{
 		if (this->_northeast->insert(collider))
@@ -47,21 +52,9 @@ bool QuadTree::insert(const BoundaryRectangle& collider)
 		else if (this->_southwest->insert(collider))
 		{
 		}
-		return true;
 	}
-	else
-	{
-		if (this->_objects.size() < this->_capacity)
-		{
-			this->_objects.push_back(std::ref(collider));
-			return true;
-		}
-		else
-		{
-			this->subdivide();
-			return this->insert(collider);
-		}
-	}
+
+	return true;
 }
 
 std::vector<std::reference_wrapper<const BoundaryRectangle>> QuadTree::query(const BoundaryRectangle& range)
