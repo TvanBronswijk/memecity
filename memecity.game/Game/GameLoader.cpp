@@ -97,14 +97,19 @@ void GameLoader::create_player(EntityManager& em, loading::LoadingBar::Listener&
 
 	auto texture = multimedia_manager.get_texture(assets::spritesheets::HUMAN_MALE_1, 0, 0, 48, 48, 4, 0.25f, memecity::engine::texture::AnimatedTexture::AnimationDirection::vertical);
 	texture->set_position({ static_cast<float>(multimedia_manager.get_screen_width()) / 2, static_cast<float>(multimedia_manager.get_screen_height()) / 2 });
+
+	auto health_texture = multimedia_manager.get_text(" ", 10, { 34,139,34 });
+	health_texture->set_position({ 0, -20 });
+	health_texture->set_parent(texture.get());
 	
 	builder::EntityBuilder(em)
 		.create_entity()
 		.with_component<PlayerComponent>()
 		.with_component<AnimationComponent>()
 		.with_component<ColliderComponent>(48.0f, 48.0f)
-		.with_component<PositionComponent>(0,0)
+		.with_component<PositionComponent>(0, 0)
 		.with_component<VelocityComponent>()
+		.with_component<HealthComponent>(100, std::move(health_texture))
 		.with_component<DrawableComponent>(std::move(texture))
 		.get();
 	listener.increase_current_value(10.0f);
@@ -117,6 +122,7 @@ void GameLoader::create_systems(EntityManager& em, loading::LoadingBar::Listener
 	auto& draw_system =			em.create_system<DrawSystem>(System::draw, multimedia_manager);
 	auto& animation_system =	em.create_system<AnimationSystem>(System::draw, *_context);
 	auto& input_system =		em.create_system<InputSystem>(System::update, *_context);
+	auto& health_system =		em.create_system<HealthSystem>(System::update, *_context);
 	auto& move_system =			em.create_system<MoveSystem>();
 	//auto& collider_system =		em.create_system<ColliderSystem>();
 	auto& ai_system =			em.create_system<AISystem>();
