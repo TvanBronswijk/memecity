@@ -87,7 +87,7 @@ void GameLoader::create_npcs(EntityManager& em, loading::LoadingBar::Listener& l
 {
 	auto& multimedia_manager = _context->get_multimedia_manager();
 	auto& timer = _context->get_timer();
-	generate::NPCGenerator(multimedia_manager, timer, em).generate_random_npc(1, 220, 220);
+	generate::NPCGenerator(multimedia_manager, em).generate_random_npc(1, 220, 220);
 	listener.increase_current_value(10.0f);
 }
 
@@ -131,7 +131,7 @@ void GameLoader::create_systems(EntityManager& em, loading::LoadingBar::Listener
 	eventing::bind(input_system.interaction_event, &interaction_system, &InteractionSystem::on_interact);
 	eventing::bind(input_system.attack_event, &fighting_system, &FightingSystem::on_attack);
 	eventing::bind(fighting_system.damage_event, &health_system, &HealthSystem::on_damage);
-	eventing::bind(collider_system.collider_event, &move_system, &MoveSystem::on_collision);
+	//eventing::bind(collider_system.collider_event, &move_system, &MoveSystem::on_collision);
 	listener.increase_current_value(5.0f);
 }
 

@@ -52,8 +52,8 @@ namespace generate {
 		auto animation_texture = multimedia_manager.get_texture(assets::spritesheets::HUMAN_MALE_1, 0, 0, 48, 48, 4, 0.25f, texture::AnimatedTexture::AnimationDirection::vertical);
 		animation_texture->set_position({ static_cast<float>(multimedia_manager.get_screen_width()) / 2, static_cast<float>(multimedia_manager.get_screen_height()) / 2 });
 
-		auto health_texture = multimedia_manager.get_text_texture
-			(hp, "Minecraftia-Regular.ttf", 10, { 34,139,34 });
+		std::string font = "Minecraftia-Regular.ttf";
+		auto health_texture = multimedia_manager.get_text(font,hp, 10, { 34,139,34 });
 		health_texture->set_position({ 0, -20 });
 		health_texture->set_parent(animation_texture.get());
 

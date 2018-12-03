@@ -33,7 +33,7 @@ void InteractionSystem::on_interact(EntityManager &em, InteractionEventArgs args
 			auto text = interaction->smallTalk[(rand() % (interaction->smallTalk.size()))];
 			std::cout << text << "\n";
 
-			auto npc_interaciton_texture = multimedia_manager.get_text_texture(text, "Minecraftia-Regular.ttf", 14, { 255,255,255 });
+			auto npc_interaciton_texture = multimedia_manager.get_text("Minecraftia-Regular.ttf", text, 14, { 255,255,255 });
 			npc_interaciton_texture->set_position({ 0, -35 });
 			npc_interaciton_texture->set_parent(text_texture->get_parent());
 			interaction->texture = std::move(npc_interaciton_texture);
