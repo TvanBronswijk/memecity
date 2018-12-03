@@ -2,7 +2,6 @@
 #include "Generate.h"
 #include "Components.h"
 #include "Systems.h"
-#include "Systems/HudSystem.h"
 #include "..\Assets.h"
 
 using namespace memecity::engine::ecs;

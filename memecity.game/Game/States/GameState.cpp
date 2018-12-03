@@ -1,16 +1,17 @@
 #include "GameState.h"
 #include "../../Assets.h"
-#include "../Systems/HudSystem.h"
 #include "../Systems/FightingSystem.h"
 
 GameState::GameState(memecity::engine::state::StateManager& sm, GameManager::GameContext& gc,
 	memecity::engine::ecs::EntityManager em) : _context(&gc), entity_manager(std::move(em)), State(sm), _hud(_context->get_multimedia_manager(), _context->get_multimedia_manager().get_texture("Sprites/big_black.bmp", 0, 0, _context->get_multimedia_manager().get_screen_width(), 100), 0, 0)
 {
-	auto& hud_system = entity_manager.create_system<HudSystem>(memecity::engine::ecs::System::draw, _hud);
 
 	FightingSystem* system = dynamic_cast<FightingSystem*>(entity_manager.get_system_of_type<FightingSystem>());
 
-	memecity::engine::ecs::eventing::bind(system->health_event, &hud_system, &HudSystem::on_health_changed);
+	system->health_event += [&](auto& em, auto args)
+	{
+		_hud.update("HEALTHVALUE", args.new_health);
+	};
 
 }
 
