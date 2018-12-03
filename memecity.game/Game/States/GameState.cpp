@@ -1,5 +1,5 @@
 #include "GameState.h"
-#include "..\..\Assets.h"
+#include "../../Assets.h"
 #include "../Systems/HudSystem.h"
 #include "../Systems/FightingSystem.h"
 
@@ -11,14 +11,26 @@ void GameState::on_load()
 
 	memecity::engine::ecs::eventing::bind(system->health_event, &hud_system, &HudSystem::on_health_changed);
 
-	_hud.create_overlay_item("HEALTH", "Health:100", 16, 100, 20);
-	_hud.create_overlay_item("SCORE", "Score:100", 16, 100, 40);
-	_hud.create_overlay_item("EXP", "Exp:100", 16, 100, 60);
+	_hud.create_overlay_text_item("HEALTH", "Health", 16, 100.0f, 20.0f);
+	_hud.create_overlay_bar_item("HEALTHVALUE", 100, 20, 150, 12);
+	_hud.create_overlay_text_item("SCORE", "Score:100", 16, 100, 40);
+	_hud.create_overlay_text_item("EXP", "Exp:100", 16, 100, 60);
+
+	_hud.create_overlay_text_item("S", "S: 1", 16, 400, 16);
+	_hud.create_overlay_text_item("P", "P: 1", 16, 400, 32);
+	_hud.create_overlay_text_item("E", "E: 1", 16, 400, 48);
+	_hud.create_overlay_text_item("C", "C: 1", 16, 400, 64);
+	_hud.create_overlay_text_item("I", "I: 1", 16, 500, 16);
+	_hud.create_overlay_text_item("A", "A: 1", 16, 500, 32);
+	_hud.create_overlay_text_item("L", "L: 1", 16, 500, 48);
+
+	_hud.create_overlay_text_item("BLIKCOIN", "BlikCoin: 9999", 16, 650, 16);
 }
 
 void GameState::update(float dt)
 {
 	entity_manager.update(memecity::engine::ecs::System::update);
+	
 }
 
 void GameState::draw()

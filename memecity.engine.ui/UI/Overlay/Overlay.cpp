@@ -9,8 +9,13 @@ namespace memecity::engine::ui::overlay {
 
 		
 
-		for (auto& overlay_item:overlay_items)
+		for (auto& overlay_item:overlay_text_items)
 		{			
+			overlay_item.second->render();
+		}
+
+		for (auto& overlay_item : overlay_bar_items)
+		{
 			overlay_item.second->render();
 		}
 	}

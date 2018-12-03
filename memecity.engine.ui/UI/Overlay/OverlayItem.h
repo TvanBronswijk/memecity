@@ -7,26 +7,25 @@
 
 namespace memecity::engine::ui::overlay {
 	class Overlay;
+	template <class  T>
 	class OverlayItem
 	{
-	private:
+	protected:
 		float x;
 		float y;
 		int size;
-		std::string text;
+		T value;
 		Overlay& parent;
 		MultimediaManager& multimedia_manager;
 	public:
-		OverlayItem(MultimediaManager& multimedia_manager, Overlay& parent, std::string text, int size, float x, float y)
-		:x(x), y(y),size(size), text(text), parent(parent), multimedia_manager(multimedia_manager){}
-
-		void update(std::string newtext)
+		OverlayItem(MultimediaManager& multimedia_manager, Overlay& parent, T value, int size, float x, float y)
+		:x(x), y(y),size(size), value(value), parent(parent), multimedia_manager(multimedia_manager)
 		{
-			this->text = newtext;
+			
 		}
 
-		//texture::TextTexture& get_texture() const;
-		void render() const;
+		virtual void update(T value)= 0;
+		virtual void render() = 0;
 
 	};
 }

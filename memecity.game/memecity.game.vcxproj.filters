@@ -210,6 +210,12 @@
     <ClInclude Include="Game\Input.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Game\Event\StatsEventArgs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Event\BlikCoinEventArg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">

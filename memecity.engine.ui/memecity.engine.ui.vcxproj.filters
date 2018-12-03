@@ -7,6 +7,8 @@
     <ClCompile Include="UI.cpp" />
     <ClCompile Include="UI\Overlay\Overlay.cpp" />
     <ClCompile Include="UI\Overlay\OverlayItem.cpp" />
+    <ClCompile Include="UI\Overlay\OverlayTextItem.cpp" />
+    <ClCompile Include="UI\Overlay\OverlayBarItem.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="UI\Loading.h" />
@@ -18,5 +20,7 @@
     <ClInclude Include="UI.h" />
     <ClInclude Include="UI\Overlay\Overlay.h" />
     <ClInclude Include="UI\Overlay\OverlayItem.h" />
+    <ClInclude Include="UI\Overlay\OverlayTextItem.h" />
+    <ClInclude Include="UI\Overlay\OverlayBarItem.h" />
   </ItemGroup>
 </Project>
