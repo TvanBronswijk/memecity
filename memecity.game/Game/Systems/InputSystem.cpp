@@ -29,19 +29,19 @@ void InputSystem::run(EntityManager& em) const
 		auto velocity_component = entity.get<VelocityComponent>();
 		if (input_manager.is_down(input::UP))
 		{
-			velocity_component->y -= 0.1f;
+			velocity_component->y = -2.0f;
 		}
 		if (input_manager.is_down(input::DOWN))
 		{
-			velocity_component->y += 0.1f;
+			velocity_component->y += 2.0f;
 		}
 		if (input_manager.is_down(input::LEFT))
 		{
-			velocity_component->x -= 0.1f;
+			velocity_component->x = -2.0f;
 		}
 		if (input_manager.is_down(input::RIGHT))
 		{
-			velocity_component->x += 0.1f;
+			velocity_component->x += 2.0f;
 		}
 		//test for interaction with NPC
 		if (input_manager.is_pressed(input::INTERACTION))
