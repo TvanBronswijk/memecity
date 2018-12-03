@@ -32,6 +32,7 @@ namespace memecity::engine {
 			MultimediaManager* multimedia_manager;
 			InputManager* input_manager;
 			sdl::TimerFacade* timer;
+
 		public:
 			Context(MultimediaManager& mm, InputManager& im, sdl::TimerFacade& t)
 				: multimedia_manager(&mm), input_manager(&im), timer(&t) {}
@@ -48,10 +49,10 @@ namespace memecity::engine {
 		MultimediaManager multimedia_manager;
 		InputManager input_manager;
 		sdl::TimerFacade timer;
-
+		int fps;
 		std::unique_ptr<Context> _context;
 	public:
-		MemeEngine() : storage_manager(), multimedia_manager(false), input_manager(), timer() {
+		MemeEngine() : storage_manager(), multimedia_manager(false), input_manager(), timer(), fps(0) {
 			_context = std::make_unique<Context>(*this);
 		};
 		~MemeEngine() = default;
