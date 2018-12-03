@@ -12,7 +12,7 @@ struct Point {
 class AISystem : public memecity::engine::ecs::System {
 
 private:
-	float movement = 0.2f;
+	float movement = 0.1f;
 
 	bool check_health(memecity::engine::ecs::EntityManager& em, const memecity::engine::ecs::Entity& entity) const;
 	//Roaming
