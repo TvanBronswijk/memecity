@@ -11,7 +11,7 @@ private:
 	std::unique_ptr<memecity::engine::ui::menu::Menu> menu;
 
 public:
-	GameOverState(memecity::engine::state::StateManager& sm, GameManager::GameContext& gc);
+	GameOverState(memecity::engine::state::StateManager& sm, GameManager::GameContext& gc, int exp);
 	~GameOverState() = default;
 	void on_load() override;
 	void update(float dt) override;
