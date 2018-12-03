@@ -23,7 +23,7 @@ private:
 	//Fleeing
 	void fleeing(memecity::engine::ecs::EntityManager& em, const PositionComponent& xy) const;
 public:
-	static const int range = 5;
+	static const int range = 10;
 	void run(memecity::engine::ecs::EntityManager& em) const override;
 };
 

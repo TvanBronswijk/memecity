@@ -17,15 +17,18 @@ bool AISystem::check_health(const Entity& entity) const{
 
 
 std::queue<Point> AISystem::calculate_next_positions(Point start , Point end, std::queue<Point> queue) const{
-	if (start.x < end.x - range) { start.x += 10; }
-	else if (start.x >  end.x + range) { start.x -= 10;}
-	if (start.y < end.y - range) { start.y += 10; }
-	else if(start.y > end.y + range) { start.y -= 10;}
+	float x = 0;
+	float y = 0;
 
-	queue.push(Point(start.x - (start.x * 2), start.y - (start.y * 2)));
-	queue.push(Point(start.x - (start.x * 2), start.y));
-	queue.push(Point(start.x, start.y - (start.x * 2)));
-	queue.push(Point(start.x, start.y));
+	if (start.x < (end.x - range)) { x = 10; }
+	else if (start.x >  (end.x + range)) {x = 10 * -1;}
+	if (start.y < (end.y - range)) { y = 10; }
+	else if(start.y > (end.y + range)) { y = 10 * -1;}
+
+	queue.push(Point(start.x + x, start.y + y));
+	queue.push(Point(start.x + x, start.y));
+	queue.push(Point(start.x, start.y + y));
+	queue.push(Point(start.x - x, start.y - y));
 
 	return queue;
 }
