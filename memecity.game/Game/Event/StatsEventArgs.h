@@ -7,24 +7,8 @@
 struct StatsEventArgs : public  memecity::engine::ecs::eventing::EventArgs
 {
 	StatsEventArgs(int s, int p, int e, int c, int i, int a, int l)
-		: S(s),
-		  P(p),
-		  E(e),
-		  C(c),
-		  I(i),
-		  A(a),
-		  L(l)
-	{
-	}
+	: s(s), p(p), e(e), c(c), i(i), a(a), l(l) { }
 
-	const int S;
-	const int P;
-	const int E;
-	const int C;
-	const int I;
-	const int A;
-	const int L;
-
-	//StatsEventArgs(const int new_score) : new_score(new_score) {}
+	const int s, p, e, c, i, a, l;
 };
 #endif // STATSEVENTARGS_H

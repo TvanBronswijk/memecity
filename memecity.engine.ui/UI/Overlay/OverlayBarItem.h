@@ -1,4 +1,5 @@
-﻿#pragma once
+﻿#ifndef OVERLAYBARITEM_H
+#define OVERLAYBARITEM_H
 #include "OverlayItem.h"
 
 class OverlayBarItem : public memecity::engine::ui::overlay::OverlayItem<int>
@@ -15,3 +16,4 @@ public:
 	void update(int value) override { this->value = value; };
 	void render() override;
 };
+#endif // OVERLAYBARITEM_H

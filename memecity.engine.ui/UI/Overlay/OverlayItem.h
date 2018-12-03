@@ -16,10 +16,10 @@ namespace memecity::engine::ui::overlay {
 		int size;
 		T value;
 		Overlay& parent;
-		MultimediaManager& multimedia_manager;
+		MultimediaManager* multimedia_manager;
 	public:
 		OverlayItem(MultimediaManager& multimedia_manager, Overlay& parent, T value, int size, float x, float y)
-		:x(x), y(y),size(size), value(value), parent(parent), multimedia_manager(multimedia_manager)
+		:x(x), y(y),size(size), value(value), parent(parent), multimedia_manager(&multimedia_manager)
 		{
 			
 		}

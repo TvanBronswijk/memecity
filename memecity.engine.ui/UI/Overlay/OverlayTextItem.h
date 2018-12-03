@@ -1,4 +1,6 @@
-﻿#pragma once
+﻿
+#ifndef OVERLAYTEXTITEM_H
+#define OVERLAYTEXTITEM_H
 #include "OverlayItem.h"
 
 class OverlayTextItem: public memecity::engine::ui::overlay::OverlayItem<std::string>
@@ -11,6 +13,8 @@ public:
 	{
 	}
 
+
 	void render() override;
 	void update(std::string new_value) override { value = new_value; };
 };
+#endif // OVERLAYTEXTITEM_H

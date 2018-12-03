@@ -24,13 +24,13 @@ void HudSystem::on_exp_changed(memecity::engine::ecs::EntityManager& em, ExpEven
 
 void HudSystem::on_stats_changed(memecity::engine::ecs::EntityManager& em, StatsEventArgs args)
 {
-	_hud->update("S", "S: " + std::to_string(args.S));
-	_hud->update("P", "P: " + std::to_string(args.P));
-	_hud->update("E", "E: " + std::to_string(args.E));
-	_hud->update("C", "C: " + std::to_string(args.C));
-	_hud->update("I", "I: " + std::to_string(args.I));
-	_hud->update("A", "A: " + std::to_string(args.A));
-	_hud->update("L", "L: " + std::to_string(args.L));
+	_hud->update("S", "S: " + std::to_string(args.s));
+	_hud->update("P", "P: " + std::to_string(args.p));
+	_hud->update("E", "E: " + std::to_string(args.e));
+	_hud->update("C", "C: " + std::to_string(args.c));
+	_hud->update("I", "I: " + std::to_string(args.i));
+	_hud->update("A", "A: " + std::to_string(args.a));
+	_hud->update("L", "L: " + std::to_string(args.l));
 }
 
 void HudSystem::on_blikcoin_changed(memecity::engine::ecs::EntityManager& em, BlikCoinEventArg args)
