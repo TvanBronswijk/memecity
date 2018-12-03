@@ -1,4 +1,5 @@
 #include "QuadTree.h"
+#include <algorithm>
 
 void QuadTree::subdivide()
 {
@@ -8,21 +9,21 @@ void QuadTree::subdivide()
 	const auto half_h = this->_boundary.h / 2;
 
 	auto nw = Rectangle(x, y, half_w, half_h);
-	auto nw_objects = query({ nw.x, nw.y, nw.w, nw.h });
-	this->_northwest = std::make_unique<QuadTree>(_capacity, nw, nw_objects);
+	this->_northwest = std::make_unique<QuadTree>(_capacity, nw);
+	query({ nw.x, nw.y, nw.w, nw.h }, _northwest->_objects);
 
 	auto ne = Rectangle(x + half_w, y, half_w, half_h);
-	auto ne_objects = query({ ne.x, ne.y, ne.w, ne.h });
-	this->_northeast = std::make_unique<QuadTree>(_capacity, ne, ne_objects);
+	this->_northeast = std::make_unique<QuadTree>(_capacity, ne);
+	query({ ne.x, ne.y, ne.w, ne.h }, _northeast->_objects);
 
 	auto sw = Rectangle(x, y + half_h, half_w, half_h);
-	auto sw_objects = query({ sw.x, sw.y, sw.w, sw.h });
-	this->_southwest = std::make_unique<QuadTree>(_capacity, sw, sw_objects);
+	this->_southwest = std::make_unique<QuadTree>(_capacity, sw);
+	query({ sw.x, sw.y, sw.w, sw.h }, _southwest->_objects);
 
 	auto se = Rectangle(x + half_w, y + half_h, half_w, half_h);
-	auto se_objects = query({ se.x, se.y, se.w, se.h });
-	this->_southeast = std::make_unique<QuadTree>(_capacity, se, se_objects);
-
+	this->_southeast = std::make_unique<QuadTree>(_capacity, se);
+	query({ se.x, se.y, se.w, se.h }, _southeast->_objects);
+	
 	this->_is_divided = true;
 }
 
@@ -32,12 +33,15 @@ bool QuadTree::insert(const BoundaryRectangle& collider)
 	{
 		return false;
 	}
-	
-	this->_objects.emplace_back(collider);
-	if (this->_objects.size() >= this->_capacity && !this->_is_divided)
+
+	if (this->_objects.size() < this->_capacity) {
+		this->_objects.push_back(&collider);
+	}
+	else if (!this->_is_divided)
 	{
 		this->subdivide();
 	}
+
 	if (this->_is_divided)
 	{
 		if (this->_northeast->insert(collider))
@@ -57,33 +61,22 @@ bool QuadTree::insert(const BoundaryRectangle& collider)
 	return true;
 }
 
-std::vector<std::reference_wrapper<const BoundaryRectangle>> QuadTree::query(const BoundaryRectangle& range)
+void QuadTree::query(const BoundaryRectangle& range, std::vector<const BoundaryRectangle*> &found_objects)
 {
-	std::vector<std::reference_wrapper<const BoundaryRectangle>> found_objects;
-
 	if (!intersects(_boundary, range))
 	{
-		return found_objects;
+		return;
 	}
 
 	if (this->_is_divided)
 	{
-		auto temp = this->_northeast->query(range);
-		found_objects.insert(found_objects.begin(), temp.begin(), temp.end());
-
-		temp = this->_northwest->query(range);
-		found_objects.insert(found_objects.begin(), temp.begin(), temp.end());
-
-		temp = this->_southeast->query(range);
-		found_objects.insert(found_objects.begin(), temp.begin(), temp.end());
-
-		temp = this->_southwest->query(range);
-		found_objects.insert(found_objects.begin(), temp.begin(), temp.end());
+		this->_northeast->query(range, found_objects);
+		this->_northwest->query(range, found_objects);
+		this->_southeast->query(range, found_objects);
+		this->_southwest->query(range, found_objects);
 	}
 	else
 	{
-		return _objects;
+		copy(_objects.begin(), _objects.end(), std::back_inserter(found_objects));
 	}
-
-	return found_objects;
 }
