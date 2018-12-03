@@ -13,6 +13,7 @@ public:
 	HealthSystem(GameManager::GameContext& context)
 		: _context(&context) {}
 	void run(memecity::engine::ecs::EntityManager& em) const override;
+
+	void on_death(memecity::engine::ecs::EntityManager& em);
 };
 #endif
-#pragma once

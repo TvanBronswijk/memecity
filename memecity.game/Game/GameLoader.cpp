@@ -109,7 +109,7 @@ void GameLoader::create_player(EntityManager& em, loading::LoadingBar::Listener&
 		.with_component<ColliderComponent>(48.0f, 48.0f)
 		.with_component<PositionComponent>(0, 0)
 		.with_component<VelocityComponent>()
-		.with_component<HealthComponent>(100, std::move(health_texture))
+		.with_component<HealthComponent>(0, std::move(health_texture))
 		.with_component<DrawableComponent>(std::move(texture))
 		.get();
 	listener.increase_current_value(10.0f);
@@ -131,6 +131,7 @@ void GameLoader::create_systems(EntityManager& em, loading::LoadingBar::Listener
 	auto& overlay_system =		em.create_system<OverlaySystem>(System::draw, multimedia_manager);
 	
 	eventing::bind(move_system.move_event, &animation_system, &AnimationSystem::on_move);
+	eventing::bind(fighting_system.death_event, &health_system, &HealthSystem::on_death);
 	eventing::bind(input_system.interaction_event, &interaction_system, &InteractionSystem::on_interact);
 	eventing::bind(input_system.attack_event, &fighting_system, &FightingSystem::on_attack);
 	//eventing::bind(collider_system.collider_event, &move_system, &MoveSystem::on_collision);
