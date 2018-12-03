@@ -1,5 +1,4 @@
 ﻿#include "Menu.h"
-#include <iostream>
 
 namespace memecity::engine::ui::menu {
 
@@ -11,10 +10,25 @@ namespace memecity::engine::ui::menu {
 			return;
 		}
 
-		Vector2 position{ multimedia_manager.get_screen_width() / 2.0f, 200 };
+		if (menu_items.at(selected_menu_items_index)->get_read_only())
+		{
+			previous();
+		}
+
+		float render_offset = multimedia_manager.get_screen_height() - 2 * title_height - menu_items.size() * menu_item_height;
+		if (render_offset > 200)
+		{
+			render_offset = 200;
+		}
+		if (render_offset < 50)
+		{
+			render_offset = 50;
+		}
+
+		Vector2 position{ multimedia_manager.get_screen_width() / 2.0f, render_offset };
 		title_texture->set_position(position);
-		multimedia_manager.render_texture(*title_texture);
-		position.y += 50;
+		multimedia_manager.render_text(*title_texture);
+		position.y += title_height;
 
 		int index = 0;
 		for (auto& menu_item : menu_items)
@@ -22,8 +36,8 @@ namespace memecity::engine::ui::menu {
 			menu_item->set_selected(index == selected_menu_items_index);
 			auto& texture = menu_item->get_texture();
 			texture.set_position(position);
-			position.y += 30;
-			multimedia_manager.render_texture(texture);
+			position.y += menu_item_height;
+			multimedia_manager.render_text(texture);
 			index++;
 		}
 	}
@@ -63,6 +77,10 @@ namespace memecity::engine::ui::menu {
 		{
 			selected_menu_items_index--;
 		}
+		if (menu_items.at(selected_menu_items_index)->get_read_only())
+		{
+			next();
+		}
 	}
 
 	void Menu::previous()
@@ -77,6 +95,10 @@ namespace memecity::engine::ui::menu {
 		if (selected_menu_items_index >= menu_items.size())
 		{
 			selected_menu_items_index = 0;
+		}
+		if (menu_items.at(selected_menu_items_index)->get_read_only())
+		{
+			previous();
 		}
 	}
 

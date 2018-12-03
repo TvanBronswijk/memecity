@@ -1,39 +1,27 @@
 # MemeCity
-MemeCity is a game inspired by mostly Dutch memes. It's a project from a couple of students of the Avans University of Applied Sciences in Den Bosch. 
+MemeCity is a game inspired by mostly Dutch memes. It's a project from a couple of students of the Avans University of Applied Sciences in Den Bosch.
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
-
 ### Prerequisites
 
-What things you need to install the software and how to install them
+This project was created with Visual Studio 2017. Before building this project, download the following dependencies and place them in the `dependencies\` folder:
 
 ```
-Give examples
+SDL2\
+SDL2_image-2.0.3\
+SDL2_mixer-2.0.2\
+SDL2_ttf-2.0.14\
+json.hpp
 ```
 
 ### Installing
 
-A step by step series of examples that tell you how to get a development env running
-
-Say what the step will be
-
-```
-Give the example
-```
-
-And repeat
-
-```
-until finished
-```
-
-End with an example of getting some data out of the system or using it for a little demo
+To run the program, simply build and run with Visual Studio.
 
 ## Built With
 
-* [C++](https://isocpp.org/) - Programming Language
+* [C++17](https://isocpp.org/) - Programming Language
 * [SDL2](https://www.libsdl.org/) - Simple DirectMedia Layer
 * [JSON for Modern C++](https://nlohmann.github.io/json/) - JSON Library
 

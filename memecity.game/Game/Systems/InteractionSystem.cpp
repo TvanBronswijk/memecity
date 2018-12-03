@@ -1,6 +1,7 @@
 #include "InteractionSystem.h"
 #include <stdlib.h>     /* srand, rand */
 #include <time.h>       /* time */
+#include "..\..\Assets.h"
 
 using namespace memecity::engine::ecs;
 
@@ -10,7 +11,7 @@ void InteractionSystem::run(EntityManager &em) const {
 		auto text_texture = &component.get().get_texture();
 		if (text_texture->get_text() != " ") {
 			if (component.get().timer++ > 100) {
-				auto npc_interaciton_texture = multimedia_manager.get_text_texture(" ", "Minecraftia-Regular.ttf", 14, { 255,255,255 });
+				auto npc_interaciton_texture = multimedia_manager.get_text(" ", 14);
 				npc_interaciton_texture->set_position({ 0, -35 });
 				npc_interaciton_texture->set_parent(text_texture->get_parent());
 				component.get().texture = std::move(npc_interaciton_texture);

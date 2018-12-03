@@ -1,4 +1,5 @@
 #include "GameState.h"
+#include "..\..\Assets.h"
 
 void GameState::on_load()
 {
@@ -17,7 +18,7 @@ void GameState::draw()
 
 void GameState::on_enter()
 {
-	_context->get_multimedia_manager().play_background_music("bgm-game.mp3", 100);
+	_context->get_multimedia_manager().play_background_music(assets::music::DEFAULT_BGM);
 }
 
 void GameState::on_exit()

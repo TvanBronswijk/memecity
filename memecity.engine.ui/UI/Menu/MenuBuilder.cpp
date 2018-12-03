@@ -2,9 +2,9 @@
 
 namespace memecity::engine::ui::menu {
 
-	MenuBuilder& MenuBuilder::create_menu(std::string title)
+	MenuBuilder& MenuBuilder::create_menu(std::string title, std::string font_path)
 	{
-		menu = std::make_unique<Menu>(multimedia_manager, title);
+		menu = std::make_unique<Menu>(multimedia_manager, title, font_path);
 		return *this;
 	}
 

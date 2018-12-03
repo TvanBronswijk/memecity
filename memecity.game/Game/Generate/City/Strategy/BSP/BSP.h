@@ -7,13 +7,13 @@
 #include "..\Strategy.h"
 
 namespace generate::strategy::bsp {
-	struct Node : public generate::models::Rectangle {
+	struct Node : public uRectangle<int> {
 	private:
 		std::unique_ptr<Node> _left, _right;
 		bool _horizontal;
 	public:
 		Node(int x, int y, int w, int h)
-			: Rectangle(x, y, w, h), _left(nullptr), _right(nullptr), _horizontal(false) {}
+			: uRectangle(x, y, w, h), _left(nullptr), _right(nullptr), _horizontal(false) {}
 		Node& left() const { return *_left;  }
 		Node& right() const { return *_right;  }
 		bool horizontal() const { return _horizontal; }

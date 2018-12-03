@@ -19,7 +19,7 @@ void AnimationSystem::on_move(memecity::engine::ecs::EntityManager& em, MoveEven
 
 	if (animated_texture != nullptr && current_velocity != nullptr)
 	{
-		animated_texture->update();
+		animated_texture->update(_context->get_timer().get_delta_time());
 		animated_texture->set_direction(AnimatedTexture::Direction::idle);
 
 		if (animation_component->current_state == AnimationComponent::AnimationState::fighting)

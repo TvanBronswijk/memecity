@@ -1,6 +1,7 @@
 #include "FightingSystem.h"
 #include <stdlib.h>     /* srand, rand */
 #include <time.h>       /* time */
+#include "..\..\Assets.h"
 
 using namespace memecity::engine::ecs;
 

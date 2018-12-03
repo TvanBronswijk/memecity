@@ -1,6 +1,8 @@
 #ifndef _MEME_ENGINE_H
 #define _MEME_ENGINE_H
 #include <functional>
+#include <iostream>
+#include <thread>
 #include "Engine\InputManager.h"
 #include "Engine\MultimediaManager.h"
 #include "Engine\StorageManager.h"
@@ -70,6 +72,9 @@ namespace memecity::engine {
 		virtual void draw() = 0;
 
 		virtual Context& get_context() { return *_context; }
+
+		friend int multithreaded(memecity::engine::MemeEngine& engine);
+		friend int singlethreaded(memecity::engine::MemeEngine& engine);
 	};
 }
 

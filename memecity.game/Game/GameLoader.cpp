@@ -2,6 +2,7 @@
 #include "Generate.h"
 #include "Components.h"
 #include "Systems.h"
+#include "..\Assets.h"
 
 using namespace memecity::engine::ecs;
 using namespace memecity::engine::ui;
@@ -45,16 +46,16 @@ void GameLoader::create_map(EntityManager& em, loading::LoadingBar::Listener& li
 			switch (character)
 			{
 			case '-':
-				filename = "gray.bmp";
+				filename = assets::sprites::tiles::ROAD;
 				break;
 			case  'W':
-				filename = "brown.bmp";
+				filename = assets::sprites::tiles::WALL;
 				break;
 			case  'w':
-				filename = "blue.bmp";
+				filename = assets::sprites::tiles::WATER;
 				break;
 			case 'g':
-				filename = "green.bmp";
+				filename = assets::sprites::tiles::GRASS;
 				break;
 			default:
 				std::cout << "ERROR!" << std::endl;
@@ -93,9 +94,8 @@ void GameLoader::create_npcs(EntityManager& em, loading::LoadingBar::Listener& l
 void GameLoader::create_player(EntityManager& em, loading::LoadingBar::Listener& listener)
 {
 	auto& multimedia_manager = _context->get_multimedia_manager();
-	auto& timer = _context->get_timer();
 
-	auto texture = multimedia_manager.get_animated_texture(timer, "SpriteSheet.png", 0, 0, 48, 48, 4, 0.25f, memecity::engine::texture::AnimatedTexture::AnimationDirection::vertical);
+	auto texture = multimedia_manager.get_texture(assets::spritesheets::HUMAN_MALE_1, 0, 0, 48, 48, 4, 0.25f, memecity::engine::texture::AnimatedTexture::AnimationDirection::vertical);
 	texture->set_position({ static_cast<float>(multimedia_manager.get_screen_width()) / 2, static_cast<float>(multimedia_manager.get_screen_height()) / 2 });
 	
 	builder::EntityBuilder(em)
@@ -115,10 +115,10 @@ void GameLoader::create_systems(EntityManager& em, loading::LoadingBar::Listener
 	auto& multimedia_manager = _context->get_multimedia_manager();
 
 	auto& draw_system =			em.create_system<DrawSystem>(System::draw, multimedia_manager);
-	auto& animation_system =	em.create_system<AnimationSystem>(System::draw);
+	auto& animation_system =	em.create_system<AnimationSystem>(System::draw, *_context);
 	auto& input_system =		em.create_system<InputSystem>(System::update, *_context);
 	auto& move_system =			em.create_system<MoveSystem>();
-	auto& collider_system =		em.create_system<ColliderSystem>();
+	//auto& collider_system =		em.create_system<ColliderSystem>();
 	auto& ai_system =			em.create_system<AISystem>();
 	auto& fighting_system =		em.create_system<FightingSystem>(System::update, multimedia_manager);
 	auto& interaction_system =	em.create_system<InteractionSystem>(System::update, multimedia_manager);
