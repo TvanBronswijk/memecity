@@ -5,7 +5,7 @@ using namespace memecity::engine::ecs;
 
 void HealthSystem::run(EntityManager& em) const {}
 
-void HealthSystem::on_death(EntityManager &em) {
+void HealthSystem::on_death(EntityManager &em, DeathEventArgs args) {
 	auto& state_manager = _context->get_state_manager();
 	state_manager.create_state<GameOverState>(*_context);
 }

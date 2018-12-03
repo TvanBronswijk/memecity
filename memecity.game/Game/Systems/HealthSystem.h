@@ -3,6 +3,7 @@
 #include <ECS.h>
 #include "..\..\GameManager.h"
 #include "..\Components.h"
+#include "..\Event\DeathEventArgs.h"
 
 class HealthSystem : public memecity::engine::ecs::System
 {
@@ -14,6 +15,6 @@ public:
 		: _context(&context) {}
 	void run(memecity::engine::ecs::EntityManager& em) const override;
 
-	void on_death(memecity::engine::ecs::EntityManager& em);
+	void on_death(memecity::engine::ecs::EntityManager& em, DeathEventArgs args);
 };
 #endif
