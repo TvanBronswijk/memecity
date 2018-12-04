@@ -2,7 +2,6 @@
 #include "..\..\Components.h"
 #include <stdlib.h>     /* srand, rand */
 #include <time.h>       /* time */
-#include "..\..\..\Assets.h"
 #include "../../Enum/AIStates.h"
 
 using namespace memecity::engine;
@@ -110,6 +109,39 @@ namespace generate {
 
 		return npc;
 
+	}
+
+	const memecity::engine::ecs::Entity& NPCGenerator::generate_quest_npc(std::string name, assets::Asset asset) {
+		if (quest_npcs.find(name) != quest_npcs.end()) {
+			return *quest_npcs.find(name)->second;
+		}
+		else {
+			auto animation_texture = multimedia_manager.get_texture(asset, 0, 0, 48, 48, 4, 0.25f, texture::AnimatedTexture::AnimationDirection::vertical);
+			animation_texture->set_position({ static_cast<float>(multimedia_manager.get_screen_width()) / 2, static_cast<float>(multimedia_manager.get_screen_height()) / 2 });
+
+			std::string font = "Minecraftia-Regular.ttf";
+			auto name_texture = multimedia_manager.get_text(font, name, 14, { 255,255,255 });
+			name_texture->set_position({ 0, -35 });
+			name_texture->set_parent(animation_texture.get());
+
+			auto interaction_texture = multimedia_manager.get_text(" ", 14);
+			interaction_texture->set_position({ 0, -800 });
+			interaction_texture->set_parent(animation_texture.get());
+
+
+			auto& quest_npc = builder::EntityBuilder(entity_manager)
+				.create_entity()
+				.with_component<QuestAIComponent>(name, std::move(name_texture))
+				.with_component<PositionComponent>(0, 0)
+				.with_component<DrawableComponent>(std::move(animation_texture))//body of npc
+				.with_component<InteractionComponent>(std::move(interaction_texture))
+				.with_component<ColliderComponent>(48.0f, 48.0f)
+				.get();
+
+			quest_npcs.insert(std::pair<std::string,const memecity::engine::ecs::Entity*>(name, &quest_npc));
+
+			return quest_npc;
+		}
 	}
 
 	std::vector<std::string> NPCGenerator::createInteractionStrings() {

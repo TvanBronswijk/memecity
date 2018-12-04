@@ -19,9 +19,13 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Game\Builder\QuestBuilder.h" />
     <ClInclude Include="Game\Components.h" />
     <ClInclude Include="Game\Components\AIComponent.h" />
     <ClInclude Include="Game\Components\QuestAIComponent.h" />
+    <ClInclude Include="Game\Components\QuestComponent.h" />
+    <ClInclude Include="Game\Components\StoryComponent.h" />
+    <ClInclude Include="Game\Components\TaskComponent.h" />
     <ClInclude Include="Game\Enum\AIStates.h" />
     <ClInclude Include="Game\GameLoader.h" />
     <ClInclude Include="Game\Event\MoveEventArgs.h" />
@@ -72,6 +76,7 @@
     <ClInclude Include="Assets.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Game\Builder\QuestBuilder.cpp" />
     <ClCompile Include="Game\Generate\NPC\NPCGenerator.cpp" />
     <ClCompile Include="Game\GameLoader.cpp" />
     <ClCompile Include="Game\States\LoadingState.cpp" />

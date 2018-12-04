@@ -14,5 +14,8 @@
 #include "Components\VelocityComponent.h"
 #include "Components\AIComponent.h"
 #include "Components\QuestAIComponent.h"
+#include "Components\QuestComponent.h"
+#include "Components\StoryComponent.h"
+#include "Components\TaskComponent.h"
 
 #endif

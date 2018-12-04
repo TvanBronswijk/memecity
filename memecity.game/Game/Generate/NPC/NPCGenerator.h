@@ -2,11 +2,15 @@
 #define  _NPCFACTORY_H
 #include <ECS.h>
 #include <vector>
+#include <map>
 #include <Engine\MultimediaManager.h>
+#include "..\..\..\Assets.h"
 
 namespace generate {
 	class NPCGenerator {
 	private:
+		std::map<std::string,const memecity::engine::ecs::Entity*> quest_npcs;
+
 		memecity::engine::MultimediaManager& multimedia_manager;
 		memecity::engine::ecs::EntityManager& entity_manager;
 
@@ -19,6 +23,7 @@ namespace generate {
 
 		int random_int(int max);
 		const memecity::engine::ecs::Entity& generate_random_npc(int level, float x, float y);
+		const memecity::engine::ecs::Entity& generate_quest_npc(std::string name, assets::Asset asset);
 		const memecity::engine::ecs::Entity& generate_npc(
 			int level, float x, float y, int strength, int perception, int endurance, int charisma, 
 			int intelligence, int agility, int luck, int health, std::string name,
