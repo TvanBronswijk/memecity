@@ -2,6 +2,7 @@
 #include <stdlib.h>     /* srand, rand */
 #include <time.h>       /* time */
 #include "..\..\Assets.h"
+#include "../Enum/AIStates.h"
 
 using namespace memecity::engine::ecs;
 
@@ -22,7 +23,7 @@ void FightingSystem::on_attack(EntityManager &em, AttackEventArgs args) {
 	}
 
 	if (AI != nullptr) {
-		AI->state = AIComponent::State::Fighting;
+		AI->state = State::Fighting;
 		this->damage_event.fire(em, args.target );
 	}
 }

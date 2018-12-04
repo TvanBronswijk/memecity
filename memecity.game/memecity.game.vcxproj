@@ -21,6 +21,8 @@
   <ItemGroup>
     <ClInclude Include="Game\Components.h" />
     <ClInclude Include="Game\Components\AIComponent.h" />
+    <ClInclude Include="Game\Components\QuestAIComponent.h" />
+    <ClInclude Include="Game\Enum\AIStates.h" />
     <ClInclude Include="Game\GameLoader.h" />
     <ClInclude Include="Game\Event\MoveEventArgs.h" />
     <ClInclude Include="Game\Generate.h" />

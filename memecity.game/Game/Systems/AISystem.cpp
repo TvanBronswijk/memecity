@@ -2,7 +2,7 @@
 #include <stdlib.h>     /* srand, rand */
 #include <time.h>       /* time */
 #include <vector>
-
+#include "../Enum/AIStates.h"
 using namespace memecity::engine::ecs;
 
 
@@ -156,7 +156,7 @@ void AISystem::fleeing(EntityManager& em, const PositionComponent& npc_position)
 	
 	int absolute_distance = std::sqrt((distance_x * distance_x) + (distance_y * distance_y));
 	if (absolute_distance > 1000) {
-		ai->state = AIComponent::State::Roaming;
+		ai->state = State::Roaming;
 	}
 }
 
@@ -170,16 +170,16 @@ void AISystem::run(EntityManager& em) const {
 			auto xy = element.get().entity().get<PositionComponent>();
 			switch (AI->state)
 			{
-			case AIComponent::State::Fighting:
+			case State::Fighting:
 				best_first_search(em, *xy);
 				break;
-			case AIComponent::State::Fleeing:
+			case State::Fleeing:
 				fleeing(em, *xy);
 				break;
-			case AIComponent::State::Roaming:
+			case State::Roaming:
 				move_random(element.get().entity());
 				break;
-			case AIComponent::State::Idle:
+			case State::Idle:
 				break;
 			default:
 				break;

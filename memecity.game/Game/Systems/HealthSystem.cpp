@@ -1,4 +1,5 @@
 #include "HealthSystem.h"
+#include "../Enum/AIStates.h"
 
 using namespace memecity::engine::ecs;
 
@@ -47,6 +48,6 @@ void HealthSystem::on_damage(EntityManager& em, std::reference_wrapper<const Ent
 
 	if (health_target->health < (health_target->maxhealth / 10)) {
 		if ((rand() % stats_target->strength) < 5)
-			AI->state = AIComponent::State::Fleeing;
+			AI->state = State::Fleeing;
 	}
 }
