@@ -15,6 +15,5 @@ public:
 
 
 	void render() override;
-	void update(std::string new_value) override { value = new_value; };
 };
 #endif // OVERLAYTEXTITEM_H

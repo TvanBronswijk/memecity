@@ -6,7 +6,6 @@
     <ClCompile Include="UI\Menu\MenuItem.cpp" />
     <ClCompile Include="UI.cpp" />
     <ClCompile Include="UI\Overlay\Overlay.cpp" />
-    <ClCompile Include="UI\Overlay\OverlayItem.cpp" />
     <ClCompile Include="UI\Overlay\OverlayTextItem.cpp" />
     <ClCompile Include="UI\Overlay\OverlayBarItem.cpp" />
   </ItemGroup>

@@ -4,8 +4,8 @@
 
 struct HealthEventArgs : public  memecity::engine::ecs::eventing::EventArgs
 {
-	const int new_health;
+	int new_health;
 
-	HealthEventArgs(const int new_health) : new_health(new_health) {}
+	explicit HealthEventArgs(const int new_health) : new_health(new_health) {}
 };
 #endif // HEALTHCHANGEDARGS_H

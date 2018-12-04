@@ -10,7 +10,7 @@ struct BlikCoinEventArg : public  memecity::engine::ecs::eventing::EventArgs
 	{
 	}
 
-	const int new_coin;
+	int new_coin;
 
 };
 #endif // BLIKCOINEVENTARG_H

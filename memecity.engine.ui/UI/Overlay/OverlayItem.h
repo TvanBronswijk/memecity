@@ -1,8 +1,6 @@
 ﻿#ifndef _OVERLAY_ITEM_H
 #define  _OVERLAY_ITEM_H
-#include <vector>
-#include "Engine/Textures/TextTexture.h"
-#include "Engine/MultimediaManager.h"
+#include <Engine/MultimediaManager.h>
 
 
 namespace memecity::engine::ui::overlay {
@@ -24,7 +22,7 @@ namespace memecity::engine::ui::overlay {
 			
 		}
 
-		virtual void update(T value)= 0;
+		virtual void update(T value) { this->value = value; };
 		virtual void render() = 0;
 
 	};

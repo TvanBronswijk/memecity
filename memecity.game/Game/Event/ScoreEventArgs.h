@@ -5,8 +5,8 @@
 
 struct ScoreEventArgs : public  memecity::engine::ecs::eventing::EventArgs
 {
-	const int new_score;
+	int new_score;
 
-	ScoreEventArgs(const int new_score) : new_score(new_score) {}
+	explicit ScoreEventArgs(const int new_score) : new_score(new_score) {}
 };
 #endif // SCOREEVENTARGS_H
