@@ -2,9 +2,9 @@
 #define _COLLIDERSYSTEM_H
 
 #include <ECS.h>
+#include <Engine\Collision.h>
 #include "..\Components.h"
 #include "..\Event\ColliderEventArgs.h"
-#include "QuadTree.h"
 
 class ColliderSystem : public memecity::engine::ecs::System
 {

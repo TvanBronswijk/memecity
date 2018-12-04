@@ -1,7 +1,7 @@
 ﻿#ifndef _COLLIDER_EVENT_ARGS_H
 #define _COLLIDER_EVENT_ARGS_H
 #include <ECS.h>
-#include <BoundaryRectangle.h>
+#include <Engine\Collision\BoundaryRectangle.h>
 
 struct ColliderEventArgs : public memecity::engine::ecs::eventing::EventArgs
 {

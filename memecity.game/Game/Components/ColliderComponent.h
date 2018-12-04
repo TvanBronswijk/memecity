@@ -2,7 +2,7 @@
 #define _COLLIDER_COMPONENT_H
 
 #include <ECS.h>
-#include <BoundaryRectangle.h>
+#include <Engine\Collision\BoundaryRectangle.h>
 
 struct ColliderComponent : public memecity::engine::ecs::Component
 {

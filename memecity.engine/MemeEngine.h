@@ -7,7 +7,6 @@
 #include "Engine\InputManager.h"
 #include "Engine\MultimediaManager.h"
 #include "Engine\StorageManager.h"
-#include "QuadTree.h"
 
 namespace memecity::engine {
 	namespace sdl {
@@ -34,7 +33,7 @@ namespace memecity::engine {
 			InputManager* input_manager;
 			sdl::TimerFacade* timer;
 		public:
-			Context(MultimediaManager& mm, InputManager& im, sdl::TimerFacade& t, QuadTree& quad_tree)
+			Context(MultimediaManager& mm, InputManager& im, sdl::TimerFacade& t)
 				: multimedia_manager(&mm), input_manager(&im), timer(&t) {}
 			Context(MemeEngine& engine)
 				: multimedia_manager(&engine.multimedia_manager), input_manager(&engine.input_manager), timer(&engine.timer) {}

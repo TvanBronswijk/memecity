@@ -5,7 +5,6 @@
 #include <ECS.h>
 #include "Models\Models.h"
 #include "strategy\Strategy.h"
-#include "QuadTree.h"
 
 namespace generate {
 	class CityGenerator {

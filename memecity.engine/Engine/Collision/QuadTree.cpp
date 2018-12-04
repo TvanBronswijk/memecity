@@ -8,21 +8,25 @@ void QuadTree::subdivide()
 	const auto half_w = this->_boundary.w / 2;
 	const auto half_h = this->_boundary.h / 2;
 
-	auto nw = Rectangle(x, y, half_w, half_h);
-	this->_northwest = std::make_unique<QuadTree>(_capacity, nw);
-	query({ nw.x, nw.y, nw.w, nw.h }, _northwest->_objects);
-
-	auto ne = Rectangle(x + half_w, y, half_w, half_h);
-	this->_northeast = std::make_unique<QuadTree>(_capacity, ne);
-	query({ ne.x, ne.y, ne.w, ne.h }, _northeast->_objects);
-
-	auto sw = Rectangle(x, y + half_h, half_w, half_h);
-	this->_southwest = std::make_unique<QuadTree>(_capacity, sw);
-	query({ sw.x, sw.y, sw.w, sw.h }, _southwest->_objects);
-
-	auto se = Rectangle(x + half_w, y + half_h, half_w, half_h);
-	this->_southeast = std::make_unique<QuadTree>(_capacity, se);
-	query({ se.x, se.y, se.w, se.h }, _southeast->_objects);
+	this->_northwest = std::make_unique<QuadTree>(_capacity, Rectangle(x, y, half_w, half_h));
+	this->_northeast = std::make_unique<QuadTree>(_capacity, Rectangle(x + half_w, y, half_w, half_h));
+	this->_southwest = std::make_unique<QuadTree>(_capacity, Rectangle(x, y + half_h, half_w, half_h));
+	this->_southeast = std::make_unique<QuadTree>(_capacity, Rectangle(x + half_w, y + half_h, half_w, half_h));
+	
+	for (auto& obj : _objects) {
+		if (intersects(*obj, _northwest->_boundary)) {
+			_northwest->_objects.push_back(obj);
+		}
+		if (intersects(*obj, _northeast->_boundary)) {
+			_northeast->_objects.push_back(obj);
+		}
+		if (intersects(*obj, _southwest->_boundary)) {
+			_southwest->_objects.push_back(obj);
+		}
+		if (intersects(*obj, _southeast->_boundary)) {
+			_southeast->_objects.push_back(obj);
+		}
+	}
 	
 	this->_is_divided = true;
 }

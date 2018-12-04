@@ -4,6 +4,7 @@
 #include <utility>
 #include <vector>
 #include <memory>
+#include "..\Util\Rectangle.h"
 #include "BoundaryRectangle.h"
 
 class QuadTree
