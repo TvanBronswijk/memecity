@@ -9,8 +9,9 @@ namespace memecity::engine::ecs {
 		std::map<TypeToken, Component*> _components;
 	public:
 		int id;
-		Entity(int id) 
-			: id(id) {}
+		EntityType type;
+		Entity(int id, EntityType type) 
+			: id(id), type(type) {}
 
 		template<class T>
 		bool add(T& component)

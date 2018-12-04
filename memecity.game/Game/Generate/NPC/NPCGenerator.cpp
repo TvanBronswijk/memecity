@@ -61,7 +61,7 @@ namespace generate {
 		interaction_texture->set_parent(animation_texture.get());
 
 		auto& npc = builder::EntityBuilder(entity_manager)
-			.create_entity()
+			.create_entity("npc")
 			.with_component<BaseComponent>(std::move(animation_texture), x, y, 48.0f, 48.0f)
 			.with_component<AIComponent>()
 			.with_component<VelocityComponent>()

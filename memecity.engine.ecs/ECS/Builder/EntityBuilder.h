@@ -6,9 +6,9 @@ namespace memecity::engine::ecs::builder {
 			EntityManager* em;
 			Entity* entity;
 			EntityBuilder(EntityManager& em) : em(&em), entity(nullptr) {};
-			const EntityBuilder& create_entity() 
+			const EntityBuilder& create_entity(EntityType type) 
 			{ 
-				entity = &em->create_entity();
+				entity = &em->create_entity(type);
 				return *this;
 			}
 			template<class T, class... Args>

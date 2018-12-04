@@ -17,6 +17,7 @@ namespace memecity::engine::ecs {
 	private:
 		int back_id = 0;
 		std::vector<std::unique_ptr<Entity>> entities;
+		std::unordered_map<EntityType, std::vector<Entity*>> entities_by_type;
 		std::unordered_map<TypeToken, std::vector<std::unique_ptr<Component>>> components;
 		std::unordered_map<System::Scope, std::unordered_map<TypeToken, std::unique_ptr<System>>> systems;
 
@@ -35,9 +36,10 @@ namespace memecity::engine::ecs {
 		EntityManager& operator=(EntityManager&& em) = default;
 
 		///<summary>Creates a new entity with an unused ID.</summary>
-		Entity& create_entity()
+		Entity& create_entity(EntityType type)
 		{
-			entities.push_back(std::make_unique<Entity>(back_id++));
+			entities.push_back(std::make_unique<Entity>(back_id++, type));
+			entities_by_type[type].push_back(entities.back().get());
 			return *entities.back();
 		}
 
@@ -68,6 +70,17 @@ namespace memecity::engine::ecs {
 		{
 			std::vector<std::reference_wrapper<const Entity>> result;
 			std::transform(entities.begin(), entities.end(), std::back_inserter(result), [](auto& e)->std::reference_wrapper<const Entity> {
+				return std::ref(*e);
+			});
+			return result;
+		}
+
+		///<summary>Get entities by type</summary>
+		std::vector<std::reference_wrapper<const Entity>> get_entities_by_type(EntityType type) const
+		{
+			std::vector<std::reference_wrapper<const Entity>> result;
+			auto& typed_entities = entities_by_type.at(type);
+			std::transform(typed_entities.begin(), typed_entities.end(), std::back_inserter(result), [](auto& e)->std::reference_wrapper<const Entity> {
 				return std::ref(*e);
 			});
 			return result;

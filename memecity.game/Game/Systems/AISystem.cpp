@@ -72,10 +72,6 @@ void AISystem::best_first_search(EntityManager& em, const BaseComponent& npc_xy)
 			queue = calculate_next_positions(location, end, queue); 
 		}
 	}
-#ifdef DEBUG
-	std::cout << "player: X: " << end.x << " Y: " << end.y << " Drawable X: " << player_drawable->get_texture().get_position().x << " Y: " << player_drawable->get_texture().get_position().y << std::endl;
-	std::cout << "npc: X: " << start.x << " Y: " << start.y << " Drawable X: " << drawable->get_texture().get_position().x << " Y: " << drawable->get_texture().get_position().y << std::endl;
-#endif	
 	auto direction = path.front();
 	if (npc_xy.location.x < direction.x) {
 		if (!check_player_position_X(direction, end)) velocity->x += 3;
@@ -112,29 +108,25 @@ void AISystem::fleeing(EntityManager& em, const BaseComponent& npc_xy) const {
 }
 
 void AISystem::run(EntityManager& em) const {
-	auto vector = em.get_components_of_type<AIComponent>();
-	auto player = em.get_entities_with_component<PlayerComponent>()[0];
 
-	for (auto& element : vector) {
-		if (check_health(element.get().entity())) {
-			auto AI = element.get().entity().get<AIComponent>();
-			auto xy = element.get().entity().get<BaseComponent>();
-			switch (AI->state)
-			{
-			case AIComponent::State::Fighting:
-				best_first_search(em, *xy);
-				break;
-			case AIComponent::State::Fleeing:
-				fleeing(em, *xy);
-				break;
-			case AIComponent::State::Roaming:
-				move_random(element.get().entity());
-				break;
-			case AIComponent::State::Idle:
-				break;
-			default:
-				break;
-			}
+	auto player = em.get_entities_with_component<PlayerComponent>().front();
+	auto npcs = em.get_entities_with_component<AIComponent>();
+	for (const Entity& npc : npcs) {
+		switch (npc.get<AIComponent>()->state)
+		{
+		case AIComponent::State::Fighting:
+			best_first_search(em, *xy);
+			break;
+		case AIComponent::State::Fleeing:
+			fleeing(em, *xy);
+			break;
+		case AIComponent::State::Roaming:
+			move_random(element.get().entity());
+			break;
+		case AIComponent::State::Idle:
+			break;
+		default:
+			break;
 		}
 	}
 }

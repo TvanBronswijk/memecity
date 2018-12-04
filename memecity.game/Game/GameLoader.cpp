@@ -38,7 +38,7 @@ void GameLoader::create_map(EntityManager& em, loading::LoadingBar::Listener& li
 			std::cout << character;
 #endif
 			builder::EntityBuilder(em)
-				.create_entity()
+				.create_entity("tile")
 				.with_component<BaseComponent>(multimedia_manager.get_texture(generate::models::char_to_asset(character)), x * 64.0f, y * 64.0f, 64.0f, 64.0f);
 			listener.increase_current_value(75.0f / (_map_width * _map_height));
 		}
@@ -62,7 +62,7 @@ void GameLoader::create_player(EntityManager& em, loading::LoadingBar::Listener&
 	texture->set_position({ static_cast<float>(multimedia_manager.get_screen_width()) / 2.0f, static_cast<float>(multimedia_manager.get_screen_height()) / 2.0f });
 	
 	builder::EntityBuilder(em)
-		.create_entity()
+		.create_entity("player")
 		.with_component<BaseComponent>(std::move(texture), 0.0f, 0.0f, 48.0f, 48.0f)
 		.with_component<PlayerComponent>()
 		.with_component<AnimationComponent>()
