@@ -43,19 +43,19 @@ void MoveSystem::on_collision(EntityManager& em, ColliderEventArgs ea)
 	{
 		if (ea.target_rectangle.x > position->x)
 		{
-			velocity->x = -0.1f;
+			velocity->x = -1.5f;
 		}
 		else if (ea.target_rectangle.x < position->x)
 		{
-			velocity->x = 0.1f;
+			velocity->x = 1.5f;
 		}
 		if (ea.target_rectangle.y > position->y)
 		{
-			velocity->y = -0.1f;
+			velocity->y = -1.5f;
 		}
 		else if (ea.target_rectangle.y < position->y)
 		{
-			velocity->y = 0.1f;
+			velocity->y = 1.5f;
 		}
 	}
 }

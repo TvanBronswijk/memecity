@@ -27,21 +27,10 @@ using Rectangle = uRectangle<float>;
 template<class Rect1, class Rect2>
 bool intersects(const Rect1& l, const Rect2& r)
 {
-	auto intersects = (l.x < r.x + r.w 
-		&& l.x + l.w > r.x 
-		&& l.y < r.y + r.h 
+	return (l.x < r.x + r.w
+		&& l.x + l.w > r.x
+		&& l.y < r.y + r.h
 		&& l.y + l.h > r.y);
-
-	return intersects;
-}
-
-template<class Rect1, class Rect2>
-bool contains(const Rect1& l, const Rect2& r)
-{
-	return (r.x >= l.x - l.w &&
-		r.x <= l.x + l.w &&
-		r.y >= l.y - l.h &&
-		r.y <= l.y + l.h);
 }
 #endif
 
