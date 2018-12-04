@@ -17,7 +17,7 @@ namespace memecity::engine::ecs::builder {
 				static_assert(std::is_convertible<T*, Component*>::value, "This function can only construct concrete subclasses of Component");
 				static_assert(std::is_constructible<T, Entity&, Args...>::value, "The requested type cannot be constructed from the arguments provided.");
 				if (entity == nullptr) throw - 1;
-				entity->add<T>(em->create_component<T>(*entity, std::forward<Args>(args)...));
+				em->create_component<T>(*entity, std::forward<Args>(args)...);
 				return *this;
 			}
 			const Entity& get() const { return *entity; }

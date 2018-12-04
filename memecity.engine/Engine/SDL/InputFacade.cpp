@@ -9,9 +9,12 @@ namespace memecity::engine::sdl {
 		}
 	}
 
-	bool InputFacade::is_down(std::string key) const
+	bool InputFacade::is_down(std::string key)
 	{
-		return state[SDL_GetScancodeFromName(key.c_str())] != 0;
+		if (scancodes.find(key) == scancodes.end()) {
+			scancodes[key] = SDL_GetScancodeFromName(key.c_str());
+		}
+		return state[scancodes[key]] != 0;
 	}
 
 	bool InputFacade::is_quit_pressed() const

@@ -15,17 +15,17 @@ namespace memecity::engine::ecs {
 	using namespace query;
 	class EntityManager {
 	private:
-		int last_id = 0;
+		int back_id = 0;
 		std::vector<std::unique_ptr<Entity>> entities;
 		std::unordered_map<TypeToken, std::vector<std::unique_ptr<Component>>> components;
 		std::unordered_map<System::Scope, std::unordered_map<TypeToken, std::unique_ptr<System>>> systems;
 
-		template<class T>
-		std::vector<std::reference_wrapper<T>> get_components() {
-			std::vector<std::reference_wrapper<T>> result;
-			auto& cs = components[token<T>()];
-			std::transform(cs.begin(), cs.end(), std::back_inserter(result),
-				[](std::unique_ptr<Component>& c) -> std::reference_wrapper<T> { return std::ref(*(static_cast<T*>(c.get()))); });
+		template<class C>
+		std::vector<std::reference_wrapper<C>> get_components() {
+			std::vector<std::reference_wrapper<C>> result;
+			auto& components_of_type = components[token<C>()];
+			std::transform(components_of_type.begin(), components_of_type.end(), std::back_inserter(result),
+				[](auto& c) -> std::reference_wrapper<C> { return std::ref(*(static_cast<C*>(c.get()))); });
 			return result;
 		}
 
@@ -37,18 +37,20 @@ namespace memecity::engine::ecs {
 		///<summary>Creates a new entity with an unused ID.</summary>
 		Entity& create_entity()
 		{
-			entities.push_back(std::make_unique<Entity>(++last_id));
+			entities.push_back(std::make_unique<Entity>(back_id++));
 			return *entities.back();
 		}
 
 		///<summary>Register a component to the EntityManager.</summary>
 		template<class C, class... Args>
-		C& create_component(Args&&... args)
+		C& create_component(Entity& e, Args&&... args)
 		{
 			static_assert(std::is_convertible<C*, Component*>::value, "This function can only construct concrete subclasses of Component");
-			static_assert(std::is_constructible<C, Args...>::value, "The requested type cannot be constructed from the arguments provided.");
-			components[token<C>()].push_back(std::make_unique<C>(std::forward<Args>(args)...));
-			return *(static_cast<C*>(components[token<C>()].back().get()));
+			static_assert(std::is_constructible<C, Entity&, Args...>::value, "The requested type cannot be constructed from the arguments provided.");
+			components[token<C>()].push_back(std::make_unique<C>(e, std::forward<Args>(args)...));
+			C& result = *(static_cast<C*>(components[token<C>()].back().get()));
+			e.add(result);
+			return result;
 		}
 
 		///<summary>Register a system to the EntityManager.</summary>
@@ -65,9 +67,9 @@ namespace memecity::engine::ecs {
 		std::vector<std::reference_wrapper<const Entity>> get_entities() const
 		{
 			std::vector<std::reference_wrapper<const Entity>> result;
-			for (auto& e : entities) {
-				result.push_back(std::ref(*e));
-			}
+			std::transform(entities.begin(), entities.end(), std::back_inserter(result), [](auto& e)->std::reference_wrapper<const Entity> {
+				return std::ref(*e);
+			});
 			return result;
 		}
 
@@ -76,11 +78,11 @@ namespace memecity::engine::ecs {
 		std::vector<std::reference_wrapper<const Entity>> get_entities_with_component() const
 		{
 			std::vector<std::reference_wrapper<const Entity>> result;
-			for (auto& e : entities) {
-				if (e->has<C>()) {
-					result.push_back(std::ref(*e));
-				}
-			}
+			auto& entity_components = (*components.find(token<C>())).second;
+			std::transform(entity_components.begin(), entity_components.end(), std::back_inserter(result), 
+				[](auto& c)->std::reference_wrapper<const Entity> {
+				return std::ref(c->entity());
+			});
 			return result;
 		}
 

@@ -62,12 +62,11 @@ namespace generate {
 
 		auto& npc = builder::EntityBuilder(entity_manager)
 			.create_entity()
+			.with_component<BaseComponent>(std::move(animation_texture), x, y, 48.0f, 48.0f)
 			.with_component<AIComponent>()
 			.with_component<VelocityComponent>()
-			.with_component<PositionComponent>(x, y)
 			.with_component<LevelComponent>(level)
 			.with_component<StatsComponent>(strength, perception, endurance, charisma, intelligence, agility, luck)
-			.with_component<DrawableComponent>(std::move(animation_texture))//body of npc
 			.with_component<HealthComponent>(health, std::move(health_texture))
 			.with_component<InteractionComponent>(std::move(interaction_texture))
 			.with_component<AnimationComponent>()

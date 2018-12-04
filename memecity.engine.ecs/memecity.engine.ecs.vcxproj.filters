@@ -57,6 +57,9 @@
     <ClInclude Include="ECS\Type.h">
       <Filter>Header Files\ECS</Filter>
     </ClInclude>
+    <ClInclude Include="ECS\Default\BaseComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ECS.cpp">

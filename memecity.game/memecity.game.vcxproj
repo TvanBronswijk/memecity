@@ -41,7 +41,6 @@
     <ClInclude Include="Game\Event\AttackEventArgs.h" />
     <ClInclude Include="Game\Components\AnimationComponent.h" />
     <ClInclude Include="Game\Systems\AnimationSystem.h" />
-    <ClInclude Include="Game\Components\ColliderComponent.h" />
     <ClInclude Include="Game\Event\ColliderEventArgs.h" />
     <ClInclude Include="Game\Systems\ColliderSystem.h" />
     <ClInclude Include="Game\Components\ExpComponent.h" />
@@ -51,7 +50,6 @@
     <ClInclude Include="Game\Generate\City\Strategy\BSP\BSP.h" />
     <ClInclude Include="Game\Generate\City\CityGenerator.h" />
     <ClInclude Include="GameManager.h" />
-    <ClInclude Include="Game\Components\DrawableComponent.h" />
     <ClInclude Include="Game\Systems\DrawSystem.h" />
     <ClInclude Include="Game\Components\HealthComponent.h" />
     <ClInclude Include="Game\Components\InteractionComponent.h" />
@@ -62,7 +60,6 @@
     <ClInclude Include="Game\Components\PlayerComponent.h" />
     <ClInclude Include="Game\Systems\InputSystem.h" />
     <ClInclude Include="Game\Systems\MoveSystem.h" />
-    <ClInclude Include="Game\Components\PositionComponent.h" />
     <ClInclude Include="Game\Components\VelocityComponent.h" />
     <ClInclude Include="Game\Components\StatsComponent.h" />
     <ClInclude Include="Game\Systems\OverlaySystem.h" />

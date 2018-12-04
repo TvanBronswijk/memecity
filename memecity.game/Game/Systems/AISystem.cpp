@@ -48,16 +48,13 @@ bool AISystem::check_player_position_X(Point location , Point end) const{
 }
 
 
-void AISystem::best_first_search(EntityManager& em, const PositionComponent& npc_xy) const{
+void AISystem::best_first_search(EntityManager& em, const BaseComponent& npc_xy) const{
 	auto velocity = npc_xy.entity().get<VelocityComponent>();
-	auto& player_component = em.get_components_of_type<PlayerComponent>()[0].get();
+	auto& player = em.get_entities_with_component<PlayerComponent>().front().get();
+	auto player_base = player.get<BaseComponent>();
 
-	auto player_position = player_component.entity().get<PositionComponent>();
-	auto player_drawable = player_component.entity().get<DrawableComponent>();//testing
-	auto drawable = npc_xy.entity().get<DrawableComponent>();//testing
-
-	Point end(player_position->x, player_position->y); // end location
-	Point start(npc_xy.x, npc_xy.y); // start location
+	Point end(player_base->location.x, player_base->location.y); // end location
+	Point start(npc_xy.location.x, npc_xy.location.y); // start location
 
 	std::vector<Point> path; // path to end location
 	std::queue<Point> queue; // need to visited these positions
@@ -80,16 +77,16 @@ void AISystem::best_first_search(EntityManager& em, const PositionComponent& npc
 	std::cout << "npc: X: " << start.x << " Y: " << start.y << " Drawable X: " << drawable->get_texture().get_position().x << " Y: " << drawable->get_texture().get_position().y << std::endl;
 #endif	
 	auto direction = path.front();
-	if (npc_xy.x < direction.x) { 
+	if (npc_xy.location.x < direction.x) {
 		if (!check_player_position_X(direction, end)) velocity->x += 3;
 	}
-	else if(npc_xy.x > direction.x){
+	else if(npc_xy.location.x > direction.x){
 		if(!check_player_position_X(direction, end)) velocity->x -= 3; 
 	}
-	if (npc_xy.y > direction.y) {
+	if (npc_xy.location.y > direction.y) {
 		if (!check_player_position_Y(direction, end)) velocity->y -= 3; 
 	}
-	else if(npc_xy.y < direction.y) {
+	else if(npc_xy.location.y < direction.y) {
 		if (!check_player_position_Y(direction, end)) velocity->y += 3; 
 	}
 }
@@ -103,15 +100,15 @@ void AISystem::move_random(const Entity& entity) const{
 
 }
 
-void AISystem::fleeing(EntityManager& em, const PositionComponent& npc_xy) const { 
-	auto velocity = npc_xy.entity().get<VelocityComponent>();
+void AISystem::fleeing(EntityManager& em, const BaseComponent& npc_xy) const { 
+	/*auto velocity = npc_xy.entity().get<VelocityComponent>();
 	auto& player_component = em.get_components_of_type<PlayerComponent>()[0].get();
-	auto player_position = player_component.entity().get<PositionComponent>();
+	auto player_position = player_component.entity().get<BaseComponent>();
 
 	if (npc_xy.x < player_position->x) { velocity->x -= 4; }
 	else if (npc_xy.x > player_position->x) { velocity->x += 4; }
 	if (npc_xy.y < player_position->y) { velocity->y -= 4; }
-	else if (npc_xy.y > player_position->y) { velocity->y += 4; }
+	else if (npc_xy.y > player_position->y) { velocity->y += 4; }*/
 }
 
 void AISystem::run(EntityManager& em) const {
@@ -121,7 +118,7 @@ void AISystem::run(EntityManager& em) const {
 	for (auto& element : vector) {
 		if (check_health(element.get().entity())) {
 			auto AI = element.get().entity().get<AIComponent>();
-			auto xy = element.get().entity().get<PositionComponent>();
+			auto xy = element.get().entity().get<BaseComponent>();
 			switch (AI->state)
 			{
 			case AIComponent::State::Fighting:

@@ -12,7 +12,7 @@ void AnimationSystem::on_move(memecity::engine::ecs::EntityManager& em, MoveEven
 {
 	auto animation_component = ea.source.get<AnimationComponent>();
 	const auto& current_velocity = ea.source.get<VelocityComponent>();
-	auto& texture = ea.source.get<DrawableComponent>()->get_texture();
+	auto& texture = ea.source.get<BaseComponent>()->get_texture();
 
 	// Cast from base class (Texture) to derived class (AnimatedTexture)
 	auto animated_texture = dynamic_cast<AnimatedTexture*>(&texture);

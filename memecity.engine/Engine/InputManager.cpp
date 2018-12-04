@@ -13,23 +13,24 @@ namespace memecity::engine {
 
 	bool InputManager::is_pressed(std::string key)
 	{
-		if (_is_pressed.find(key) == _is_pressed.end()) {
+		auto it = _is_pressed.find(key);
+		if (it == _is_pressed.end()) {
 			_is_pressed[key] = input_facade->is_down(key);
 		}
 		else {
 			if (input_facade->is_down(key)) {
-				if (_is_pressed.at(key)) {
+				if (it->second) {
 					return false;
 				}
 				else {
-					_is_pressed[key] = input_facade->is_down(key);
+					it->second = input_facade->is_down(key);
 				}
 			}
 			else {
-				_is_pressed[key] = input_facade->is_down(key);
+				it->second = input_facade->is_down(key);
 			}
 		}
-		return _is_pressed.at(key);
+		return _is_pressed[key];
 	}
 
 	bool InputManager::is_down(std::string key) const
