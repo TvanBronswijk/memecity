@@ -65,7 +65,7 @@ bool QuadTree::insert(const BoundaryRectangle& collider)
 	return true;
 }
 
-void QuadTree::query(const BoundaryRectangle& range, std::vector<const BoundaryRectangle*> &found_objects)
+void QuadTree::query(const BoundaryRectangle& range, std::vector<std::reference_wrapper<const BoundaryRectangle>> &found_objects)
 {
 	if (!intersects(_boundary, range))
 	{
@@ -81,6 +81,7 @@ void QuadTree::query(const BoundaryRectangle& range, std::vector<const BoundaryR
 	}
 	else
 	{
-		copy(_objects.begin(), _objects.end(), std::back_inserter(found_objects));
+		std::transform(_objects.begin(), _objects.end(), std::back_inserter(found_objects), 
+			[](auto& obj)->std::reference_wrapper<const BoundaryRectangle> {return std::ref(*obj); });
 	}
 }

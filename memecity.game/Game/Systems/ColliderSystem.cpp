@@ -13,15 +13,14 @@ void ColliderSystem::run(EntityManager& em) const
 
 	for (const Entity& entity : entities)
 	{
-		auto& boundary_rectangle = entity.get<ColliderComponent>()->boundary_rectangle;
-		
-		std::vector<const BoundaryRectangle*> query_result{};
+		const auto& boundary_rectangle = entity.get<ColliderComponent>()->boundary_rectangle;
+		std::vector<std::reference_wrapper<const BoundaryRectangle>> query_result{};
 		quad_tree.query(boundary_rectangle, query_result);
-		for (const BoundaryRectangle* element : query_result)
+		for (const BoundaryRectangle& collidable : query_result)
 		{
-			if (intersects(boundary_rectangle, *element))
+			if (&boundary_rectangle != &collidable && intersects(boundary_rectangle, collidable))
 			{
-				collider_event.fire(em, { entity, boundary_rectangle, *element });
+				collider_event.fire(em, { entity, boundary_rectangle, collidable });
 			}
 		}
 	}

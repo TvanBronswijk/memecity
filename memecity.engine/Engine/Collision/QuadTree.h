@@ -33,7 +33,7 @@ public:
 	~QuadTree() = default;
 
 	bool insert(const BoundaryRectangle& collider);
-	void query(const BoundaryRectangle& range, std::vector<const BoundaryRectangle*> &found_object);
+	void query(const BoundaryRectangle& range, std::vector<std::reference_wrapper<const BoundaryRectangle>> &found_object);
 };
 
 #endif
