@@ -161,6 +161,15 @@ namespace memecity::engine::ecs {
 		template<class C>
 		ComponentQuery<C> query(){ return ComponentQuery<C>(get_components_of_type<C>()); }
 
+		template<class S>
+		S* get_system(System::Scope scope = System::update) {
+			auto it = systems[scope].find(token<S>());
+			if (it == systems[scope].end()) {
+				return nullptr;
+			}
+			return *it;
+		}
+
 		///<summary>Run all systems.</summary>
 		void update(System::Scope scope = System::update)
 		{
