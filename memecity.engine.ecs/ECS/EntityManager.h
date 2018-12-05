@@ -1,18 +1,17 @@
 #ifndef _ENTITY_MANAGER_H
 #define  _ENTITY_MANAGER_H
-#include <typeindex>
+#include "Component.h"
+#include "Entity.h"
+#include "Query/Query.h"
+#include "System.h"
+#include "Type.h"
 #include <iostream>
 #include <iterator>
-#include <vector>
 #include <map>
-#include "Type.h"
-#include "Entity.h"
-#include "Component.h"
-#include "System.h"
-#include "Query/Query.h"
+#include <typeindex>
+#include <vector>
 
 namespace memecity::engine::ecs {
-	using namespace query;
 	class EntityManager {
 	private:
 		int back_id = 0;
@@ -104,16 +103,16 @@ namespace memecity::engine::ecs {
 		std::vector<std::reference_wrapper<C>> get_components_of_type()
 		{
 			static_assert(std::is_convertible<C*, Component*>::value, "This function can only retrieve concrete subclasses of Component");
-			return ComponentQuery<C>(get_components<C>())
+			return query::ComponentQuery<C>(get_components<C>())
 				.to_vector();
 		}
 
 		///<summary>Get a query object.</summary>
 		template<class C>
-		ComponentQuery<C> query()
+		query::ComponentQuery<C> query()
 		{
 			static_assert(std::is_convertible<C*, Component*>::value, "This function can only retrieve concrete subclasses of Component");
-			return ComponentQuery<C>(get_components<C>());
+			return query::ComponentQuery<C>(get_components<C>());
 		}
 
 		///<summary>Run all systems.</summary>

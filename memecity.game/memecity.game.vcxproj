@@ -488,6 +488,7 @@ copy "$(SolutionDir)\dependencies\SDL2_ttf-2.0.14\lib\$(Platform)\*.dll" "$(OutD
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <AdditionalOptions> </AdditionalOptions>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>

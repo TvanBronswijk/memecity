@@ -109,7 +109,7 @@ void AISystem::fleeing(EntityManager& em, const BaseComponent& npc_xy) const {
 
 void AISystem::run(EntityManager& em) const {
 
-	auto player = em.get_entities_with_component<PlayerComponent>().front();
+	/*auto player = em.get_entities_with_component<PlayerComponent>().front();
 	auto npcs = em.get_entities_with_component<AIComponent>();
 	for (const Entity& npc : npcs) {
 		switch (npc.get<AIComponent>()->state)
@@ -128,5 +128,5 @@ void AISystem::run(EntityManager& em) const {
 		default:
 			break;
 		}
-	}
+	}*/
 }

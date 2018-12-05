@@ -11,10 +11,12 @@ namespace memecity::engine::sdl {
 
 	bool InputFacade::is_down(std::string key)
 	{
-		if (scancodes.find(key) == scancodes.end()) {
+		auto it = scancodes.find(key);
+		if (it == scancodes.end()) {
 			scancodes[key] = SDL_GetScancodeFromName(key.c_str());
+			it = scancodes.find(key);
 		}
-		return state[scancodes[key]] != 0;
+		return state[it->second] != 0;
 	}
 
 	bool InputFacade::is_quit_pressed() const

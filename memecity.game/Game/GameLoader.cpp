@@ -84,7 +84,7 @@ void GameLoader::create_systems(EntityManager& em, loading::LoadingBar::Listener
 	auto& interaction_system =	em.create_system<InteractionSystem>(System::draw, multimedia_manager);
 	auto& overlay_system =		em.create_system<OverlaySystem>(System::draw, multimedia_manager);
 	
-	eventing::bind(move_system.move_event, &animation_system, &AnimationSystem::on_move);
+	eventing::bind(move_system.animated_move_event, &animation_system, &AnimationSystem::on_move);
 	eventing::bind(input_system.interaction_event, &interaction_system, &InteractionSystem::on_interact);
 	eventing::bind(input_system.attack_event, &fighting_system, &FightingSystem::on_attack);
 	eventing::bind(collider_system.collider_event, &move_system, &MoveSystem::on_collision);
