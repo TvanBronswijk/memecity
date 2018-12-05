@@ -21,15 +21,6 @@ namespace memecity::engine::ecs {
 		std::unordered_map<TypeToken, std::vector<std::unique_ptr<Component>>> components;
 		std::unordered_map<System::Scope, std::unordered_map<TypeToken, std::unique_ptr<System>>> systems;
 
-		template<class C>
-		std::vector<std::reference_wrapper<C>> get_components() {
-			std::vector<std::reference_wrapper<C>> result;
-			auto& components_of_type = components[token<C>()];
-			std::transform(components_of_type.begin(), components_of_type.end(), std::back_inserter(result),
-				[](auto& c) -> std::reference_wrapper<C> { return std::ref(*(static_cast<C*>(c.get()))); });
-			return result;
-		}
-
 	public:
 		EntityManager() = default;
 		EntityManager(EntityManager&& em) = default;
@@ -126,8 +117,20 @@ namespace memecity::engine::ecs {
 			return result;
 		}
 
+
+		///<summary>Get components of a specific type.</summary>
+		template<class C>
+		std::vector<std::reference_wrapper<C>> get_components_of_type() {
+			std::vector<std::reference_wrapper<C>> result;
+			auto& components_of_type = components[token<C>()];
+			std::transform(components_of_type.begin(), components_of_type.end(), std::back_inserter(result),
+				[](auto& c) -> std::reference_wrapper<C> { return std::ref(*(static_cast<C*>(c.get()))); });
+			return result;
+		}
+
 		template<class T>
 		class ComponentQuery {
+			static_assert(std::is_convertible<T*, Component*>::value, "This function can only construct concrete subclasses of Component");
 			using Predicate = std::function<bool(T&)>;
 		private:
 			std::vector<std::reference_wrapper<T>> _collection;
@@ -154,22 +157,9 @@ namespace memecity::engine::ecs {
 			std::vector<std::reference_wrapper<T>> to_vector() const { return _collection; }
 		};
 
-		///<summary>Get components of a specific type.</summary>
-		template<class C>
-		std::vector<std::reference_wrapper<C>> get_components_of_type()
-		{
-			static_assert(std::is_convertible<C*, Component*>::value, "This function can only retrieve concrete subclasses of Component");
-			return ComponentQuery<C>(get_components<C>())
-				.to_vector();
-		}
-
 		///<summary>Get a query object.</summary>
 		template<class C>
-		ComponentQuery<C> query()
-		{
-			static_assert(std::is_convertible<C*, Component*>::value, "This function can only retrieve concrete subclasses of Component");
-			return ComponentQuery<C>(get_components<C>());
-		}
+		ComponentQuery<C> query(){ return ComponentQuery<C>(get_components_of_type<C>()); }
 
 		///<summary>Run all systems.</summary>
 		void update(System::Scope scope = System::update)
