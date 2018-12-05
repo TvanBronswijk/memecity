@@ -48,12 +48,6 @@
     <ClInclude Include="ECS\System.h">
       <Filter>Header Files\ECS</Filter>
     </ClInclude>
-    <ClInclude Include="ECS\Builder\EntityBuilder.h">
-      <Filter>Header Files\ECS\Builder</Filter>
-    </ClInclude>
-    <ClInclude Include="ECS\Query\Query.h">
-      <Filter>Header Files\ECS\Query</Filter>
-    </ClInclude>
     <ClInclude Include="ECS\Type.h">
       <Filter>Header Files\ECS</Filter>
     </ClInclude>

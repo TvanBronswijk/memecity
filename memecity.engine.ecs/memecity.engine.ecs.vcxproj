@@ -134,8 +134,6 @@
     <ClInclude Include="ECS\Eventing\Event.h" />
     <ClInclude Include="ECS\Eventing\EventArgs.h" />
     <ClInclude Include="ECS\System.h" />
-    <ClInclude Include="ECS\Builder\EntityBuilder.h" />
-    <ClInclude Include="ECS\Query\Query.h" />
     <ClInclude Include="ECS\Type.h" />
   </ItemGroup>
   <ItemGroup>
