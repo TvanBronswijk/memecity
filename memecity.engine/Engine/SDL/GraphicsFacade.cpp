@@ -20,7 +20,7 @@ namespace memecity::engine::sdl {
 	{
 		this->is_fullscreen = is_fullscreen;
 		screen_height = 640;
-		screen_width = 1280;		
+		screen_width = 1280;
 	}
 
 	bool GraphicsFacade::init()
