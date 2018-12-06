@@ -27,7 +27,7 @@ MenuState::MenuState(memecity::engine::state::StateManager & sm, GameManager::Ga
 		.with_read_only_menu_item(" ")
 		.with_read_only_menu_item("Tobi van Bronswijk")
 		.with_read_only_menu_item("Martijn van der Pol")
-		.with_read_only_menu_item("Thom van der Pas")
+		.with_read_only_menu_item("Thom van de Pas")
 		.with_read_only_menu_item("Rick van Berlo")
 		.with_read_only_menu_item("Yoeri van Hoof")
 		.with_read_only_menu_item("Simon Heij")
@@ -40,7 +40,7 @@ MenuState::MenuState(memecity::engine::state::StateManager & sm, GameManager::Ga
 
 	menu = memecity::engine::ui::menu::MenuBuilder(gc.get_multimedia_manager())
 		.create_menu("MemeCity", assets::fonts::DEFAULT_FONT)
-		.with_menu_item("Start Game", nullptr, [&](auto& menu_item) { next<LoadingState>(gc, [&](auto& ctx, auto& listener) { replace<GameState>(ctx, GameLoader(ctx, 256, 256).build(listener)); }); })
+		.with_menu_item("Start Game", nullptr, [&](auto& menu_item) { next<LoadingState>(gc, [&](auto& ctx, auto& listener) { replace<GameState>(ctx, GameLoader(ctx, 256, 256).build(listener)); }, gc.get_multimedia_manager()); })
 		.with_menu_item("Settings", settings_menu.get())
 		.with_menu_item("Credits", credits_menu.get())
 		.with_menu_item("Exit", nullptr, [&](auto& menu_item) { gc.get_input_manager().quit(); })
