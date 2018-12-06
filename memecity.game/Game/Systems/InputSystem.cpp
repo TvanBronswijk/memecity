@@ -29,7 +29,7 @@ void InputSystem::run(EntityManager& em) const
 		auto velocity_component = entity.get<VelocityComponent>();
 		if (input_manager.is_down(input::UP))
 		{
-			velocity_component->y = -1.1f;
+			velocity_component->y -= 1.1f;
 		}
 		if (input_manager.is_down(input::DOWN))
 		{
@@ -37,7 +37,7 @@ void InputSystem::run(EntityManager& em) const
 		}
 		if (input_manager.is_down(input::LEFT))
 		{
-			velocity_component->x = -1.1f;
+			velocity_component->x -= 1.1f;
 		}
 		if (input_manager.is_down(input::RIGHT))
 		{
