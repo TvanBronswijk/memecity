@@ -59,7 +59,7 @@ namespace memecity::engine::sdl {
 
 		if (SDL_SetRenderDrawBlendMode(sdl_renderer->get(), SDL_BLENDMODE_BLEND) != 0)
 		{
-			
+			throw SDLException(Level::error, SDL_GetError());
 		}
 
 		window_surface = std::make_unique<RawSurfaceWrapper>(SDL_GetWindowSurface(sdl_window->get()));
