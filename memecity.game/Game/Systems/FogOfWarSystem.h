@@ -6,11 +6,11 @@
 class FogOfWarSystem : public memecity::engine::ecs::System
 {
 private:
-	memecity::engine::MultimediaManager& multimedia_manager;
+	memecity::engine::MultimediaManager* multimedia_manager;
 
 public:
 	FogOfWarSystem(memecity::engine::MultimediaManager& multimedia_manager)
-		: multimedia_manager(multimedia_manager) {}
+		: multimedia_manager(&multimedia_manager) {}
 
 	void run(memecity::engine::ecs::EntityManager& em) const override;
 };
