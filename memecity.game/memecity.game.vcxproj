@@ -27,6 +27,7 @@
     <ClInclude Include="Game\Components\StoryComponent.h" />
     <ClInclude Include="Game\Components\TaskComponent.h" />
     <ClInclude Include="Game\Enum\AIStates.h" />
+    <ClInclude Include="Game\Event\QuestEventArgs.h" />
     <ClInclude Include="Game\GameLoader.h" />
     <ClInclude Include="Game\Event\MoveEventArgs.h" />
     <ClInclude Include="Game\Generate.h" />
@@ -42,6 +43,7 @@
     <ClInclude Include="Game\States.h" />
     <ClInclude Include="Game\States\MenuState.h" />
     <ClInclude Include="Game\States\PauseMenuState.h" />
+    <ClInclude Include="Game\States\StoryState.h" />
     <ClInclude Include="Game\Systems.h" />
     <ClInclude Include="Game\Systems\AISystem.h" />
     <ClInclude Include="Game\Event\AttackEventArgs.h" />
@@ -74,6 +76,7 @@
     <ClInclude Include="Game\Components\StatsComponent.h" />
     <ClInclude Include="Game\Systems\OverlaySystem.h" />
     <ClInclude Include="Assets.h" />
+    <ClInclude Include="Game\Systems\QuestSystem.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game\Builder\QuestBuilder.cpp" />
@@ -83,6 +86,7 @@
     <ClCompile Include="Game\States\GameState.cpp" />
     <ClCompile Include="Game\States\MenuState.cpp" />
     <ClCompile Include="Game\States\PauseMenuState.cpp" />
+    <ClCompile Include="Game\States\StoryState.cpp" />
     <ClCompile Include="Game\Systems\AnimationSystem.cpp" />
     <ClCompile Include="Game\Systems\ColliderSystem.cpp" />
     <ClCompile Include="Game\Systems\AISystem.cpp" />
@@ -95,6 +99,7 @@
     <ClCompile Include="Game\Systems\HealthSystem.cpp" />
     <ClCompile Include="Game\Systems\InteractionSystem.cpp" />
     <ClCompile Include="Game\Systems\InputSystem.cpp" />
+    <ClCompile Include="Game\Systems\QuestSystem.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Game\Systems\MoveSystem.cpp" />
     <ClCompile Include="Game\Systems\OverlaySystem.cpp" />

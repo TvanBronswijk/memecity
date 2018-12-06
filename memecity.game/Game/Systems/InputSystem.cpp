@@ -52,6 +52,12 @@ void InputSystem::run(EntityManager& em) const
 					interaction_event.fire(em, { element.entity() });
 				}
 			}
+			auto vector2 = em.get_components_of_type<QuestAIComponent>();
+			for (QuestAIComponent& element : vector2) {
+				if(check_collision(em, element, 9999999990)){
+					interaction_event.fire(em, { element.entity() });
+				}
+			}
 		}
 		if (input_manager.is_pressed(input::ATTACK)) {
 			const auto animation_component = entity.get<AnimationComponent>();

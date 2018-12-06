@@ -99,17 +99,15 @@ void GameLoader::create_player(EntityManager& em, loading::LoadingBar::Listener&
 	auto texture = multimedia_manager.get_texture(assets::spritesheets::HUMAN_MALE_1, 0, 0, 48, 48, 4, 0.25f, memecity::engine::texture::AnimatedTexture::AnimationDirection::vertical);
 	texture->set_position({ static_cast<float>(multimedia_manager.get_screen_width()) / 2, static_cast<float>(multimedia_manager.get_screen_height()) / 2 });
 	
-	auto builder = builder::EntityBuilder(em)
+	auto& player = builder::EntityBuilder(em)
 		.create_entity()
-		//.with_component<PlayerComponent>(std::vector<StoryComponent*>{})
+		.with_component<PlayerComponent>(QuestBuilder(multimedia_manager, em).getAllStories())
 		.with_component<AnimationComponent>()
 		.with_component<ColliderComponent>(48.0f, 48.0f)
 		.with_component<PositionComponent>(200, 200)
 		.with_component<VelocityComponent>()
-		.with_component<DrawableComponent>(std::move(texture));
-
-	auto player = builder.get();
-	builder.with_component<PlayerComponent>(QuestBuilder(multimedia_manager, em, player).getAllStories());
+		.with_component<DrawableComponent>(std::move(texture))
+		.get();
 
 	listener.increase_current_value(10.0f);
 }
@@ -125,9 +123,10 @@ void GameLoader::create_systems(EntityManager& em, loading::LoadingBar::Listener
 	//auto& collider_system =		em.create_system<ColliderSystem>();
 	auto& ai_system =			em.create_system<AISystem>();
 	auto& fighting_system =		em.create_system<FightingSystem>(System::update, multimedia_manager);
-	auto& interaction_system =	em.create_system<InteractionSystem>(System::update, multimedia_manager);
+	auto& interaction_system =	em.create_system<InteractionSystem>(System::update, this->_context);
 	auto& overlay_system =		em.create_system<OverlaySystem>(System::draw, multimedia_manager);
 	auto& health_system =		em.create_system<HealthSystem>(System::update, multimedia_manager);
+	auto& quest_system =		em.create_system<QuestSystem>(System::update, multimedia_manager);
 
 
 	

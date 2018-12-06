@@ -1,7 +1,7 @@
 #ifndef _INTERACTIONSYSTEM_H
 #define  _INTERACTIONSYSTEM_H
 
-#include <Engine\MultimediaManager.h>
+#include "..\..\GameManager.h"
 #include <ECS.h>
 #include "..\Components.h"
 #include "..\Event\InteractionEventArgs.h"
@@ -9,10 +9,10 @@
 class InteractionSystem : public memecity::engine::ecs::System {
 
 public:
-	memecity::engine::MultimediaManager& multimedia_manager;
+	GameManager::GameContext* _context;
 
-	InteractionSystem(memecity::engine::MultimediaManager& multimedia_manager)
-		: multimedia_manager(multimedia_manager) {}
+	InteractionSystem(GameManager::GameContext* context)
+		: _context(context) {}
 
 	void run(memecity::engine::ecs::EntityManager& em) const override;
 	void on_interact(memecity::engine::ecs::EntityManager& em, InteractionEventArgs args);
