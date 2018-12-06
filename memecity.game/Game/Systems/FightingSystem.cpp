@@ -26,4 +26,6 @@ void FightingSystem::on_attack(EntityManager &em, AttackEventArgs args) {
 		AI->state = State::Fighting;
 		this->damage_event.fire(em, args.target );
 	}
+
+	this->quest_event.fire(em, { &args.target , nullptr });
 }

@@ -56,9 +56,6 @@ void InteractionSystem::on_interact(EntityManager &em, InteractionEventArgs args
 			if (interaction->current_text_int <= interaction->text.size()-1) {
 				text = interaction->text[interaction->current_text_int];
 			}
-			else {
-				interaction->current_text_int = 0;
-			}
 		}else
 		text = interaction->text[0];
 	}

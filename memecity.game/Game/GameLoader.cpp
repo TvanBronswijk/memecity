@@ -135,6 +135,7 @@ void GameLoader::create_systems(EntityManager& em, loading::LoadingBar::Listener
 	eventing::bind(input_system.attack_event, &fighting_system, &FightingSystem::on_attack);
 	eventing::bind(fighting_system.damage_event, &health_system, &HealthSystem::on_damage);
 	eventing::bind(interaction_system.quest_event, &quest_system, &QuestSystem::on_event);
+	eventing::bind(fighting_system.quest_event, &quest_system, &QuestSystem::on_event);
 	//eventing::bind(collider_system.collider_event, &move_system, &MoveSystem::on_collision);
 	listener.increase_current_value(5.0f);
 }
