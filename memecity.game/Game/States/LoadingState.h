@@ -1,5 +1,6 @@
 #ifndef _GAME_LOADING_STATE_H
 #define  _GAME_LOADING_STATE_H
+#include <ctime>
 #include <functional>
 #include <Engine\State.h>
 #include <UI\Loading.h>
@@ -20,8 +21,11 @@ public:
 		_loading_bar(gc.get_multimedia_manager()),
 		_loader(loader)
 	{
-		this->_advertisement = multimedia_manager.get_texture(assets::advertisements::ADVERTISEMENT_ONE, 200, 200, 200, 200);
-		this->_advertisement->set_position({ 200.0f, 200.0f });
+		srand(time(nullptr));
+
+		const auto index = rand() % assets::advertisements::ads.size();
+		this->_advertisement = multimedia_manager.get_texture(assets::advertisements::ads[index]);
+		this->_advertisement->set_position({ multimedia_manager.get_screen_width() / 2.0f, (multimedia_manager.get_screen_height() - (_advertisement->get_render_rect().h / 2.0f)) });
 	}
 
 	~LoadingState() = default;

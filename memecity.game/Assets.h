@@ -22,8 +22,11 @@ namespace assets {
 		static constexpr Asset HUMAN_MALE_1 = "Spritesheets/SpriteSheet.png";
 	}
 	namespace advertisements {
-		static constexpr Asset ADVERTISEMENT_ONE = "Advertisements/Kips.png";
-		static constexpr Asset ADVERTISEMENT_TWO = "Advertisements/Dumpert.png";
+		static constexpr Asset ADVERTISEMENT_ONE = "Advertisements/BurgerKing.png";
+		static constexpr Asset ADVERTISEMENT_TWO = "Advertisements/BananaWho.png";
+		static constexpr Asset ADVERTISEMENT_THREE = "Advertisements/CocaCola.png";
+
+		const static std::vector<std::string> ads{ ADVERTISEMENT_ONE, ADVERTISEMENT_TWO, ADVERTISEMENT_THREE };
 	}
 };
 
