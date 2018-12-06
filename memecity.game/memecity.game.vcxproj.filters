@@ -346,10 +346,8 @@
     <CopyFileToFolders Include="Assets\Music\bgm-menu.mp3">
       <Filter>Resource Files</Filter>
     </CopyFileToFolders>
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="Assets\Sprites\big_black.bmp">
+    <CopyFileToFolders Include="Assets\Sprites\big_black.bmp">
       <Filter>Resource Files</Filter>
-    </Image>
+    </CopyFileToFolders>
   </ItemGroup>
 </Project>

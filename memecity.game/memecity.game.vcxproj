@@ -23,7 +23,7 @@
     <ClInclude Include="Game\Components.h" />
     <ClInclude Include="Game\Components\AIComponent.h" />
     <ClInclude Include="Game\Components\DimensionComponent.h" />
-	<ClInclude Include="Game\Event\BlikCoinEventArg.h" />
+    <ClInclude Include="Game\Event\BlikCoinEventArg.h" />
     <ClInclude Include="Game\Event\ExpEventArgs.h" />
     <ClInclude Include="Game\Event\HealthChangedEventArgs.h" />
     <ClInclude Include="Game\Event\StatsEventArgs.h" />
@@ -342,7 +342,7 @@
     </CopyFileToFolders>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="Assets\Sprites\big_black.bmp" />
+    <CopyFileToFolders Include="Assets\Sprites\big_black.bmp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
