@@ -35,13 +35,8 @@ void FogOfWarSystem::run(memecity::engine::ecs::EntityManager& em) const
 		}
 
 		auto rectangle = component.get_texture().get_render_rect();
-		if (alpha == 255) {
-			rectangle.w = rectangle.h = 64.5f;
-		}
-		else
-		{
-			rectangle.w = rectangle.h = 64.0f;
-		}
+
+		rectangle.w = rectangle.h = alpha == 255 ? 64.5f : 64.0f;
 
 		multimedia_manager->render_rect(rectangle, true, { 0,0,0, static_cast<uint8_t>(alpha)});
 	}
