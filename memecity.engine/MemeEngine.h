@@ -51,11 +51,11 @@ namespace memecity::engine {
 		sdl::TimerFacade timer;
 		int fps;
 		std::unique_ptr<Context> _context;
-		bool get_fps_bool;
+		bool get_fps_trigger;
 	public:
 		void calculate_fps()
 		{
-			get_fps_bool = true;
+			get_fps_trigger = true;
 		}
 		MemeEngine() : storage_manager(), multimedia_manager(false), input_manager(), timer(), fps(0) {
 			_context = std::make_unique<Context>(*this);

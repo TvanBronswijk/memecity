@@ -14,7 +14,7 @@ void FightingSystem::on_attack(EntityManager &em, AttackEventArgs args) {
 
 
 	if (args.target.get<PlayerComponent>() != nullptr) {
-		health_event.fire(em, { drawable_health_target->health });
+		health_changed_event.fire(em, { drawable_health_target->health });
 	}
 	else {
 

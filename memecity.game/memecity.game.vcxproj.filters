@@ -108,9 +108,6 @@
     <ClInclude Include="Game\Event\ExpEventArgs.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Game\Event\HealthEventArgs.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Game\Event\InteractionEventArgs.h">
       <Filter>Header Files\EventArgs</Filter>
     </ClInclude>
@@ -208,6 +205,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Game\Systems.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Event\HealthChangedEventArgs.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

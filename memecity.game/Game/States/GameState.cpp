@@ -3,12 +3,12 @@
 #include "../Systems/FightingSystem.h"
 
 GameState::GameState(memecity::engine::state::StateManager& sm, GameManager::GameContext& gc,
-	memecity::engine::ecs::EntityManager em) : _context(&gc), entity_manager(std::move(em)), State(sm), _hud(_context->get_multimedia_manager(), _context->get_multimedia_manager().get_texture(assets::sprites::BIG_BLACK, 0, 0, _context->get_multimedia_manager().get_screen_width(), 100), 0, 0)
+	memecity::engine::ecs::EntityManager em) : _context(&gc), entity_manager(std::move(em)), State(sm), _hud(_context->get_multimedia_manager(), _context->get_multimedia_manager().get_texture(assets::sprites::DARK_BACKGROUND, 0, 0, _context->get_multimedia_manager().get_screen_width(), 100), 0, 0)
 {
 
 	FightingSystem* system = entity_manager.get_system_of_type<FightingSystem>();
 
-	system->health_event += [&](auto& em, auto args)
+	system->health_changed_event += [&](auto& em, auto args)
 	{
 		_hud.update("HEALTHVALUE", args.new_health);
 	};

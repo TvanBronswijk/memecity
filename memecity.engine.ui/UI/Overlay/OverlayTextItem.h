@@ -3,17 +3,19 @@
 #define OVERLAYTEXTITEM_H
 #include "OverlayItem.h"
 
-class OverlayTextItem: public memecity::engine::ui::overlay::OverlayItem<std::string>
-{
-public:
-
-
-	OverlayTextItem(memecity::engine::MultimediaManager& multimedia_manager,memecity::engine::ui::overlay::Overlay& parent, std::string text, int size, float x, float y)
-		: OverlayItem(multimedia_manager, parent, text, size, x, y)
+namespace memecity::engine::ui::overlay {
+	class OverlayTextItem : public OverlayItem<std::string>
 	{
-	}
+	public:
 
 
-	void render() override;
-};
+		OverlayTextItem(MultimediaManager& multimedia_manager, std::string text, int size, float x, float y)
+			: OverlayItem(multimedia_manager, text, size, x, y)
+		{
+		}
+
+
+		void render() override;
+	};
+}
 #endif // OVERLAYTEXTITEM_H

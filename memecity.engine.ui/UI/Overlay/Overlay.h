@@ -6,7 +6,7 @@
 #include "Engine/MultimediaManager.h"
 #include "OverlayTextItem.h"
 #include "OverlayBarItem.h"
-#include "unordered_map"
+#include <unordered_map>
 
 namespace memecity::engine::ui::overlay {
 	class Overlay
@@ -45,8 +45,8 @@ namespace memecity::engine::ui::overlay {
 		template<class... Args>
 		OverlayTextItem& create_overlay_text_item(std::string name,Args&&... args)
 		{
-			static_assert(std::is_constructible<OverlayTextItem, MultimediaManager&, Overlay&, Args...>::value, "The requested type cannot be constructed from the arguments provided.");
-			overlay_text_items.insert_or_assign(name, (std::make_unique<OverlayTextItem>(*multimedia_manager, *this, std::forward<Args>(args)...)));
+			static_assert(std::is_constructible<OverlayTextItem, MultimediaManager&, Args...>::value, "The requested type cannot be constructed from the arguments provided.");
+			overlay_text_items.insert_or_assign(name, (std::make_unique<OverlayTextItem>(*multimedia_manager, std::forward<Args>(args)...)));
 			return *overlay_text_items[name];
 
 		}
@@ -54,8 +54,8 @@ namespace memecity::engine::ui::overlay {
 		template<class... Args>
 		OverlayBarItem& create_overlay_bar_item(std::string name, Args&&... args)
 		{
-			static_assert(std::is_constructible<OverlayBarItem, MultimediaManager&, Overlay&, Args...>::value, "The requested type cannot be constructed from the arguments provided.");
-			overlay_bar_items.insert_or_assign(name, (std::make_unique<OverlayBarItem>(*multimedia_manager, *this, std::forward<Args>(args)...)));
+			static_assert(std::is_constructible<OverlayBarItem, MultimediaManager&, Args...>::value, "The requested type cannot be constructed from the arguments provided.");
+			overlay_bar_items.insert_or_assign(name, (std::make_unique<OverlayBarItem>(*multimedia_manager, std::forward<Args>(args)...)));
 			return *overlay_bar_items[name];
 
 		}
