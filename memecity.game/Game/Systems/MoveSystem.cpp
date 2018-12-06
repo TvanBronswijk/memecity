@@ -11,12 +11,13 @@ void MoveSystem::run(EntityManager& em) const
 	for (auto& entity : entities)
 	{
 		auto current_position = entity.get().get<PositionComponent>();
-		auto current_velocity_component = entity.get().get<VelocityComponent>();
-		auto direction = AnimatedTexture::Direction::idle;
+		auto direction = AnimatedTexture::AnimationState::idle;
 
+		const auto current_velocity_component = entity.get().get<VelocityComponent>();
+		
 		if (current_velocity_component->x != 0)
 		{
-			direction = current_velocity_component->x > 0 ? AnimatedTexture::Direction::right : AnimatedTexture::Direction::left;
+			direction = current_velocity_component->x > 0 ? AnimatedTexture::AnimationState::walk_right : AnimatedTexture::AnimationState::walk_left;
 
 			current_position->x += current_velocity_component->x;
 			current_velocity_component->x = 0;
@@ -24,7 +25,7 @@ void MoveSystem::run(EntityManager& em) const
 
 		if (current_velocity_component->y != 0)
 		{
-			direction = current_velocity_component->y > 0 ? AnimatedTexture::Direction::down : AnimatedTexture::Direction::up;
+			direction = current_velocity_component->y > 0 ? AnimatedTexture::AnimationState::walk_down : AnimatedTexture::AnimationState::walk_up;
 
 			current_position->y += current_velocity_component->y;
 			current_velocity_component->y = 0;
@@ -34,29 +35,29 @@ void MoveSystem::run(EntityManager& em) const
 	}
 }
 
-void MoveSystem::on_collision(EntityManager& em, ColliderEventArgs ea)
+void MoveSystem::on_collision(EntityManager& em, ColliderEventArgs ea) const
 {
-	auto position_target = ea.target.get<PositionComponent>();
-	auto position = ea.source.get<PositionComponent>();
-	auto velocity = ea.source.get<VelocityComponent>();
+	const auto position_target = ea.target.get<PositionComponent>();
+	const auto position = ea.source.get<PositionComponent>();
+	const auto velocity = ea.source.get<VelocityComponent>();
 
 	if (velocity != nullptr)
 	{
 		if (position_target->x > position->x)
 		{
-			velocity->x = -0.1f;
+			velocity->x = -1.0f;
 		}
 		else if (position_target->x < position->x)
 		{
-			velocity->x = 0.1f;
+			velocity->x = 1.0f;
 		}
 		if (position_target->y > position->y)
 		{
-			velocity->y = -0.1f;
+			velocity->y = -1.0f;
 		}
 		else if (position_target->y < position->y)
 		{
-			velocity->y = 0.1f;
+			velocity->y = 1.0f;
 		}
 	}
 }

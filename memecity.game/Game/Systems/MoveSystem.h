@@ -11,6 +11,6 @@ public:
 	memecity::engine::ecs::eventing::Event<MoveEventArgs> move_event;
 
 	void run(memecity::engine::ecs::EntityManager& em) const override;
-	void on_collision(memecity::engine::ecs::EntityManager & em, ColliderEventArgs ea);
+	void on_collision(memecity::engine::ecs::EntityManager & em, ColliderEventArgs ea) const;
 };
 #endif

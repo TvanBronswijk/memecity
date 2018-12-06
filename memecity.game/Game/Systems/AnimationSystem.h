@@ -10,6 +10,7 @@ class AnimationSystem : public memecity::engine::ecs::System
 {
 private:
 	GameManager::GameContext* _context;
+
 public:
 	AnimationSystem(GameManager::GameContext& context) : _context(&context) {}
 	void run(memecity::engine::ecs::EntityManager& em) const override;

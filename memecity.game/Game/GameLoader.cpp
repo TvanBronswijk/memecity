@@ -95,15 +95,15 @@ void GameLoader::create_player(EntityManager& em, loading::LoadingBar::Listener&
 {
 	auto& multimedia_manager = _context->get_multimedia_manager();
 
-	auto texture = multimedia_manager.get_animated_texture(timer, "DeadSheet.png", 0, 0, 48, 48, 4, 0.25f, memecity::engine::texture::AnimatedTexture::AnimationDirection::vertical);
+	auto texture = multimedia_manager.get_texture(assets::spritesheets::HUMAN_MALE_1, 0, 0, 48, 48, 4, 0.25f, memecity::engine::texture::AnimatedTexture::AnimationDirection::vertical);
 	texture->set_position({ static_cast<float>(multimedia_manager.get_screen_width()) / 2, static_cast<float>(multimedia_manager.get_screen_height()) / 2 });
-	
+
 	builder::EntityBuilder(em)
 		.create_entity()
 		.with_component<PlayerComponent>()
 		.with_component<AnimationComponent>()
 		.with_component<ColliderComponent>(48.0f, 48.0f)
-		.with_component<PositionComponent>(0,0)
+		.with_component<PositionComponent>(0, 0)
 		.with_component<VelocityComponent>()
 		.with_component<DrawableComponent>(std::move(texture))
 		.get();

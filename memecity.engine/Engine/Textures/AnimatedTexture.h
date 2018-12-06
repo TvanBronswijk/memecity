@@ -1,7 +1,6 @@
 #ifndef _ANIMATED_TEXTURE_H
 #define _ANIMATED_TEXTURE_H
 
-#include "..\SDL\TimerFacade.h"
 #include "Texture.h"
 #include <string>
 
@@ -17,8 +16,6 @@ namespace memecity::engine::texture
 		AnimationDirection _animation_direction;
 		AnimationState _current_state;
 
-		sdl::TimerFacade& _timer_facade;
-
 		int _start_x;
 		int _start_y;
 		int _frame_count;
@@ -28,8 +25,8 @@ namespace memecity::engine::texture
 		float _time_per_frame;
 
 	public:
-		AnimatedTexture(sdl::TimerFacade &timer_facade, std::string filename, int x, int y, const int w, const int h, const int frame_count, const float animation_speed, const AnimationDirection direction)
-			: Texture(filename, x, y, w, h), _animation_direction(direction), _current_state(AnimationState::idle), _timer_facade(timer_facade), _start_x(x), _start_y(y), _frame_count(frame_count), _animation_timer(0.0f), _animation_speed(animation_speed), _time_per_frame(animation_speed / frame_count)
+		AnimatedTexture(std::string filename, int x, int y, const int w, const int h, const int frame_count, const float animation_speed, const AnimationDirection direction)
+			: Texture(filename, x, y, w, h), _animation_direction(direction), _current_state(AnimationState::idle), _start_x(x), _start_y(y), _frame_count(frame_count), _animation_timer(0.0f), _animation_speed(animation_speed), _time_per_frame(animation_speed / frame_count)
 		{};
 		~AnimatedTexture() = default;
 
@@ -38,7 +35,7 @@ namespace memecity::engine::texture
 		const AnimationDirection& get_animation_direction() const;
 		const AnimationState& get_state() const;
 
-		void update();
+		void update(float dt);
 	};
 }
 

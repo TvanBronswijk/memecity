@@ -28,29 +28,30 @@ void InputSystem::run(EntityManager& em) const
 	{
 		auto velocity_component = entity.get<VelocityComponent>();
 
-		if (input_manager.is_down(sdl::One))
+		if (input_manager.is_down(input::UP))
 		{
-			const auto animation_component = entity.get<AnimationComponent>();
-			if (animation_component) 
-			{
-				animation_component->current_state = AnimationComponent::AnimationState::dying;
-			}
-		}
-		if (input_manager.is_down(sdl::Attack))
-		{
-			velocity_component->y -= 0.1f;
+			velocity_component->y -= 1.0f;
 		}
 		if (input_manager.is_down(input::DOWN))
 		{
-			velocity_component->y += 0.1f;
+			velocity_component->y += 1.0f;
 		}
 		if (input_manager.is_down(input::LEFT))
 		{
-			velocity_component->x -= 0.1f;
+			velocity_component->x -= 1.0f;
 		}
 		if (input_manager.is_down(input::RIGHT))
 		{
-			velocity_component->x += 0.1f;
+			velocity_component->x += 1.0f;
+		}
+
+		if (input_manager.is_down(input::ENTER))
+		{
+			const auto animation_component = entity.get<AnimationComponent>();
+			if (animation_component)
+			{
+				animation_component->current_state = AnimationComponent::AnimationState::dying;
+			}
 		}
 
 		//test for interaction with NPC
@@ -63,7 +64,7 @@ void InputSystem::run(EntityManager& em) const
 				}
 			}
 		}
-		if (input_manager.is_pressed(input::ATTACK)) {
+		if (input_manager.is_down(input::ATTACK)) {
 			const auto animation_component = entity.get<AnimationComponent>();
 			if (animation_component)
 			{
