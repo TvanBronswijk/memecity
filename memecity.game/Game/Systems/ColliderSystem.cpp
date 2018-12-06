@@ -24,8 +24,8 @@ void ColliderSystem::run(EntityManager& em) const
 
 				if (current_location_component != nullptr && other_location_component != nullptr)
 				{
-					int current_x1, current_y1, current_x2, current_y2;
-					int other_x1, other_y1, other_x2, other_y2;
+					float current_x1, current_y1, current_x2, current_y2;
+					float other_x1, other_y1, other_x2, other_y2;
 
 					current_x1 = current_location_component->x;
 					current_y1 = current_location_component->y;

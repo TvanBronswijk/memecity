@@ -23,7 +23,7 @@ namespace memecity::engine::texture {
 		return this->_current_state;
 	}
 
-	void AnimatedTexture::update()
+	void AnimatedTexture::update(float dt)
 	{
 		_animation_timer += _timer_facade.get_delta_time();
 		

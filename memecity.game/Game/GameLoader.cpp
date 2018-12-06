@@ -2,28 +2,29 @@
 #include "Generate.h"
 #include "Components.h"
 #include "Systems.h"
+#include "..\Assets.h"
 
 using namespace memecity::engine::ecs;
 using namespace memecity::engine::ui;
 
-std::unique_ptr<EntityManager> GameLoader::build(loading::LoadingBar::Listener& listener)
+EntityManager GameLoader::build(loading::LoadingBar::Listener& listener)
 {
-	auto em = std::make_unique<memecity::engine::ecs::EntityManager>();
+	EntityManager em;
 	listener.set_max_value(100.0f);
 
 	listener
 		.set_current_value(0.0f)
 		.set_text("Loading Map");
-	create_map(*em, listener);
+	create_map(em, listener);
 	listener
 		.set_text("Loading NPCs");
-	create_npcs(*em, listener);	
+	create_npcs(em, listener);	
 	listener
 		.set_text("Loading Player");
-	create_player(*em, listener);
+	create_player(em, listener);
 	listener
 		.set_text("Loading Systems");
-	create_systems(*em, listener);	
+	create_systems(em, listener);	
 	listener
 		.set_text("Loading Complete!");
 
@@ -45,16 +46,16 @@ void GameLoader::create_map(EntityManager& em, loading::LoadingBar::Listener& li
 			switch (character)
 			{
 			case '-':
-				filename = "gray.bmp";
+				filename = assets::sprites::tiles::ROAD;
 				break;
 			case  'W':
-				filename = "brown.bmp";
+				filename = assets::sprites::tiles::WALL;
 				break;
 			case  'w':
-				filename = "blue.bmp";
+				filename = assets::sprites::tiles::WATER;
 				break;
 			case 'g':
-				filename = "green.bmp";
+				filename = assets::sprites::tiles::GRASS;
 				break;
 			default:
 				std::cout << "ERROR!" << std::endl;
@@ -65,12 +66,13 @@ void GameLoader::create_map(EntityManager& em, loading::LoadingBar::Listener& li
 
 			auto& builder = builder::EntityBuilder(em)
 				.create_entity()
-				.with_component<DrawableComponent>(std::move(texture));
+				.with_component<DrawableComponent>(std::move(texture))
+				.with_component<PositionComponent>(x * 64.0f, y * 64.0f);
+
 			if (character == 'W' || character == 'w')
 			{
 				builder
-					.with_component<ColliderComponent>(64.0f, 64.0f)
-					.with_component<PositionComponent>(x * 64.0f, y * 64.0f);
+					.with_component<ColliderComponent>(64.0f, 64.0f);
 			}
 			listener.increase_current_value(75.0f / (_map_width * _map_height));
 		}
@@ -85,14 +87,13 @@ void GameLoader::create_npcs(EntityManager& em, loading::LoadingBar::Listener& l
 {
 	auto& multimedia_manager = _context->get_multimedia_manager();
 	auto& timer = _context->get_timer();
-	generate::NPCGenerator(multimedia_manager, timer, em).generate(1, 10, 10);
+	generate::NPCGenerator(multimedia_manager, em).generate(1, 10, 10);
 	listener.increase_current_value(10.0f);
 }
 
 void GameLoader::create_player(EntityManager& em, loading::LoadingBar::Listener& listener)
 {
 	auto& multimedia_manager = _context->get_multimedia_manager();
-	auto& timer = _context->get_timer();
 
 	auto texture = multimedia_manager.get_animated_texture(timer, "DeadSheet.png", 0, 0, 48, 48, 4, 0.25f, memecity::engine::texture::AnimatedTexture::AnimationDirection::vertical);
 	texture->set_position({ static_cast<float>(multimedia_manager.get_screen_width()) / 2, static_cast<float>(multimedia_manager.get_screen_height()) / 2 });
@@ -101,8 +102,8 @@ void GameLoader::create_player(EntityManager& em, loading::LoadingBar::Listener&
 		.create_entity()
 		.with_component<PlayerComponent>()
 		.with_component<AnimationComponent>()
-		.with_component<ColliderComponent>(64.0f, 64.0f)
-		.with_component<PositionComponent>(multimedia_manager.get_screen_width() / 2.0f, multimedia_manager.get_screen_height() / 2.0f)
+		.with_component<ColliderComponent>(48.0f, 48.0f)
+		.with_component<PositionComponent>(0,0)
 		.with_component<VelocityComponent>()
 		.with_component<DrawableComponent>(std::move(texture))
 		.get();
@@ -114,7 +115,7 @@ void GameLoader::create_systems(EntityManager& em, loading::LoadingBar::Listener
 	auto& multimedia_manager = _context->get_multimedia_manager();
 
 	auto& draw_system =			em.create_system<DrawSystem>(System::draw, multimedia_manager);
-	auto& animation_system =	em.create_system<AnimationSystem>(System::draw);
+	auto& animation_system =	em.create_system<AnimationSystem>(System::draw, *_context);
 	auto& input_system =		em.create_system<InputSystem>(System::update, *_context);
 	auto& move_system =			em.create_system<MoveSystem>();
 	//auto& collider_system =		em.create_system<ColliderSystem>();
@@ -122,7 +123,8 @@ void GameLoader::create_systems(EntityManager& em, loading::LoadingBar::Listener
 	auto& fighting_system =		em.create_system<FightingSystem>(System::draw, multimedia_manager);
 	auto& interaction_system =	em.create_system<InteractionSystem>(System::draw, multimedia_manager);
 	auto& overlay_system =		em.create_system<OverlaySystem>(System::draw, multimedia_manager);
-
+	
+	eventing::bind(move_system.move_event, &animation_system, &AnimationSystem::on_move);
 	eventing::bind(input_system.interaction_event, &interaction_system, &InteractionSystem::on_interact);
 	eventing::bind(input_system.attack_event, &fighting_system, &FightingSystem::on_attack);
 	//eventing::bind(collider_system.collider_event, &move_system, &MoveSystem::on_collision);

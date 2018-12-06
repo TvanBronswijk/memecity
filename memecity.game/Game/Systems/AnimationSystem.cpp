@@ -1,19 +1,21 @@
 ﻿#include "AnimationSystem.h"
 #include <Engine\Textures.h>
-
+#include "../Event/MoveEventArgs.h"
 using namespace memecity::engine::texture;
 using namespace memecity::engine::ecs;
 
 void AnimationSystem::run(EntityManager& em) const
 {
-	auto animation_components = em.get_components_of_type<AnimationComponent>();
-	for (AnimationComponent& animation_component : animation_components)
-	{	
-		const auto& current_position = animation_component.entity().get<PositionComponent>();
-		auto& texture = animation_component.entity().get<DrawableComponent>()->get_texture();
+}
 
-		// Cast from base class (Texture) to derived class (AnimatedTexture)
-		auto animated_texture = dynamic_cast<AnimatedTexture*>(&texture);
+void AnimationSystem::on_move(memecity::engine::ecs::EntityManager& em, MoveEventArgs ea)
+{
+	auto animation_component = ea.source.get<AnimationComponent>();
+	const auto& current_velocity = ea.source.get<VelocityComponent>();
+	auto& texture = ea.source.get<DrawableComponent>()->get_texture();
+
+	// Cast from base class (Texture) to derived class (AnimatedTexture)
+	auto animated_texture = dynamic_cast<AnimatedTexture*>(&texture);
 
 		if (animated_texture != nullptr && current_position != nullptr)
 		{
@@ -54,3 +56,4 @@ void AnimationSystem::run(EntityManager& em) const
 		}
 	}
 }
+

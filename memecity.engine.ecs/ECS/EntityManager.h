@@ -30,6 +30,10 @@ namespace memecity::engine::ecs {
 		}
 
 	public:
+		EntityManager() = default;
+		EntityManager(EntityManager&& em) = default;
+		EntityManager& operator=(EntityManager&& em) = default;
+
 		///<summary>Creates a new entity with an unused ID.</summary>
 		Entity& create_entity()
 		{

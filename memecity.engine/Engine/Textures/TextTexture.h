@@ -12,7 +12,7 @@ namespace memecity::engine::texture {
 		int font_size = 0;
 		sdl::Color color{ 0,0,0 };
 	public:
-		TextTexture(std::string text, std::string font_path, int size, const sdl::Color &color, int width, int height);
+		TextTexture(std::string text, std::string font_path, int size, const sdl::Color &color, float width, float height);
 		std::string get_text() const;
 		void set_text(std::string text);
 		int get_font_size() const;

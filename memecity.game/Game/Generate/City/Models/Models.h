@@ -1,30 +1,14 @@
 #ifndef _CITY_MODELS_H
 #define _CITY_MODELS_H
-#include <vector>
-#include <map>
+#include <Engine\Util.h>
 
 namespace generate::models {
-	struct Point {
-		int x, y;
-		Point(int x, int y) 
-			: x(x), y(y) {}
-		~Point() = default;
-	};
-
-	struct Rectangle {
-		int x, y, w, h;
-		const Point begin, end, center;
-		Rectangle(int x, int y, int w, int h)
-			: x(x), y(y), w(w), h(h), begin(x, y), end((x + w - 1), (y + h - 1)), center({x + (w/2), y + (h/2)}) {}
-		virtual ~Rectangle() = default;
-	};
-
-	struct Base64_Tilemap : Rectangle {
+	struct Base64_Tilemap : uRectangle<int> {
 	protected:
 		char* tiles;
 	public:
 		Base64_Tilemap(int w, int h)
-			: Rectangle(0, 0, w, h), tiles(new char[w*h]) { }
+			: uRectangle(0, 0, w, h), tiles(new char[w*h]) { }
 		Base64_Tilemap(const Base64_Tilemap& copy) : Base64_Tilemap(copy.w, copy.h) {
 			for (int i = 0; i < w*h; i++) {
 				tiles[i] = (copy.tiles[i]);
@@ -60,20 +44,6 @@ namespace generate::models {
 			}
 		}
 	};
-
-	struct TileInfo {
-		const char *name, base64_character, *filename;
-		TileInfo(const char* name, const char base64_character, const char* filename)
-			: name(name), base64_character(base64_character), filename(filename) {};
-		~TileInfo() = default;
-	};
-
-	namespace Tiles {
-		static const TileInfo ROAD = { "Road", '-', "gray.bmp" };
-		static const TileInfo WALL = { "Wall", 'W', "brown.bmp" };
-		static const TileInfo WATER = { "Water", 'w', "blue.bmp" };
-		static const TileInfo GRASS = { "Grass", 'g', "green.bmp" };
-	}
 }
 
 
