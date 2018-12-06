@@ -10,14 +10,14 @@ private:
 
 	memecity::engine::MultimediaManager& multimedia_manager;
 	memecity::engine::ecs::EntityManager& entity_manager;
-	const memecity::engine::ecs::Entity& player;
+	memecity::engine::ecs::Entity& player;
 	
 	StoryComponent* intro();
 public:
 	std::vector<StoryComponent*> getAllStories();
 
 	QuestBuilder(
-		memecity::engine::MultimediaManager& multimedia_manager,memecity::engine::ecs::EntityManager& entity_manager,const memecity::engine::ecs::Entity& player) :
+		memecity::engine::MultimediaManager& multimedia_manager,memecity::engine::ecs::EntityManager& entity_manager,memecity::engine::ecs::Entity& player) :
 		entity_manager(entity_manager), player(player), multimedia_manager(multimedia_manager) {}
 };
 

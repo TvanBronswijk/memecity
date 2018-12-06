@@ -36,7 +36,7 @@ void GameLoader::create_map(EntityManager& em, loading::LoadingBar::Listener& li
 {
 	auto& multimedia_manager = _context->get_multimedia_manager();
 
-	generate::models::City city = generate::CityGenerator(4, 4).generate();
+	generate::models::City city = generate::CityGenerator(64, 64).generate();
 	for (int y = city.begin.y; y < city.end.y; y++) {
 		for (int x = city.begin.x; x < city.end.x; x++) {
 			auto& character = city(x, y);
@@ -99,18 +99,17 @@ void GameLoader::create_player(EntityManager& em, loading::LoadingBar::Listener&
 	auto texture = multimedia_manager.get_texture(assets::spritesheets::HUMAN_MALE_1, 0, 0, 48, 48, 4, 0.25f, memecity::engine::texture::AnimatedTexture::AnimationDirection::vertical);
 	texture->set_position({ static_cast<float>(multimedia_manager.get_screen_width()) / 2, static_cast<float>(multimedia_manager.get_screen_height()) / 2 });
 	
-	auto& player = builder::EntityBuilder(em)
+	auto builder = builder::EntityBuilder(em)
 		.create_entity()
 		//.with_component<PlayerComponent>(std::vector<StoryComponent*>{})
 		.with_component<AnimationComponent>()
 		.with_component<ColliderComponent>(48.0f, 48.0f)
-		.with_component<PositionComponent>(200,200)
+		.with_component<PositionComponent>(200, 200)
 		.with_component<VelocityComponent>()
-		.with_component<DrawableComponent>(std::move(texture))
-		.get();
+		.with_component<DrawableComponent>(std::move(texture));
 
-	auto& player_component = em.create_component<PlayerComponent>(player, QuestBuilder(multimedia_manager, em, player).getAllStories());
-	player.add<PlayerComponent>(player_component);
+	auto player = builder.get();
+	builder.with_component<PlayerComponent>(QuestBuilder(multimedia_manager, em, player).getAllStories());
 
 	listener.increase_current_value(10.0f);
 }

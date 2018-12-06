@@ -8,7 +8,7 @@
 class AISystem : public memecity::engine::ecs::System {
 
 private:
-	float movement = 0.1f;
+	float movement = 0.01f;
 
 	bool check_health(const memecity::engine::ecs::Entity& entity) const;
 	//Roaming
