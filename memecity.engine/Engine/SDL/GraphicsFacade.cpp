@@ -20,7 +20,7 @@ namespace memecity::engine::sdl {
 	{
 		this->is_fullscreen = is_fullscreen;
 		screen_height = 640;
-		screen_width = 1280;
+		screen_width = 1280;		
 	}
 
 	bool GraphicsFacade::init()
@@ -55,6 +55,11 @@ namespace memecity::engine::sdl {
 		if (TTF_Init() == -1)
 		{
 			throw SDLException(Level::error, SDL_GetError());
+		}
+
+		if (SDL_SetRenderDrawBlendMode(sdl_renderer->get(), SDL_BLENDMODE_BLEND) != 0)
+		{
+			
 		}
 
 		window_surface = std::make_unique<RawSurfaceWrapper>(SDL_GetWindowSurface(sdl_window->get()));
