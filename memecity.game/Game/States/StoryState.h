@@ -2,6 +2,7 @@
 #define _STORY_STATE_H
 #include <Engine/State.h>
 #include <UI.h>
+#include <ECS.h>
 #include "..\..\GameManager.h"
 
 class StoryState : public memecity::engine::state::State
@@ -12,7 +13,7 @@ private:
 	std::unique_ptr<memecity::engine::ui::menu::Menu> help_menu;
 
 public:
-	StoryState(memecity::engine::state::StateManager& sm, GameManager::GameContext& gc);
+	StoryState(memecity::engine::state::StateManager& sm, GameManager::GameContext& gc, std::vector<const memecity::engine::ecs::Entity*> stories);
 	~StoryState() = default;
 	void on_load() override;
 	void update(float dt) override;

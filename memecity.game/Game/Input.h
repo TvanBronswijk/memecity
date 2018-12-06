@@ -12,6 +12,7 @@ namespace input {
 	static constexpr Key INTERACTION = "E";
 	static constexpr Key ESCAPE = "Escape";
 	static constexpr Key ENTER = "Return";
+	static constexpr Key N = "N";
 };
 
 #endif

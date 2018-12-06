@@ -1,17 +1,36 @@
 #include "StoryState.h"
 #include "..\..\Assets.h"
 #include "..\Input.h"
+#include "..\Components\StoryComponent.h"
+#include "..\Components\questComponent.h"
+#include "..\Components\taskComponent.h"
 
-StoryState::StoryState(memecity::engine::state::StateManager & sm, GameManager::GameContext & gc)
+StoryState::StoryState(memecity::engine::state::StateManager & sm, GameManager::GameContext & gc, std::vector<const memecity::engine::ecs::Entity*> stories)
 	: State(sm), _context(&gc)
 {
 
-	menu = memecity::engine::ui::menu::MenuBuilder(gc.get_multimedia_manager())
-		.create_menu("Stories", assets::fonts::DEFAULT_FONT)
-		.with_menu_item("Back", nullptr, [&](auto& menu_item) { back(); })
-		.with_menu_item("Help", help_menu.get())
-		.with_menu_item("Main Menu", nullptr, [&](auto& menu_item) { back(2);  })
-		.get_menu();
+	auto builder = memecity::engine::ui::menu::MenuBuilder(gc.get_multimedia_manager());
+	builder.create_menu("Stories", assets::fonts::DEFAULT_FONT);
+	for (std::vector<const memecity::engine::ecs::Entity*>::iterator it = stories.begin(); it != stories.end(); ++it) {
+		auto story = (*it)->get<StoryComponent>();
+		if (story->active) {
+			builder.with_read_only_menu_item("******************************");
+			if (story->completed) {
+				builder.with_read_only_menu_item("Completed");
+				builder.with_read_only_menu_item("Story: " + story->description);
+			}
+			else {
+				builder.with_read_only_menu_item("Story: " + story->description);
+				builder.with_read_only_menu_item("Quest: " + story->_quests.front()->description);
+				builder.with_read_only_menu_item("Task:	" + story->_quests.front()->_tasks.front()->description);
+			}
+			builder.with_read_only_menu_item("******************************");
+			builder.with_read_only_menu_item(" ");
+		}
+	}
+	builder.with_menu_item("Back", nullptr, [&](auto& menu_item) { back(); });
+
+	menu = builder.get_menu();
 }
 
 void StoryState::on_load()
@@ -33,10 +52,6 @@ void StoryState::update(float dt)
 	else if (input_manager.is_pressed(input::ENTER))
 	{
 		menu->select();
-	}
-	else if (input_manager.is_pressed(input::ESCAPE))
-	{
-		menu->back();
 	}
 }
 

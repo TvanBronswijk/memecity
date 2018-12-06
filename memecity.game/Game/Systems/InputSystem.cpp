@@ -77,6 +77,9 @@ void InputSystem::run(EntityManager& em) const
 		if (input_manager.is_pressed(input::ESCAPE)) {
 			state_manager.create_state<PauseMenuState>(*_context);
 		}
+		if (input_manager.is_pressed(input::N)) {
+			state_manager.create_state<StoryState>(*_context, entity.get<PlayerComponent>()->_stories);
+		}
 	}
 }
 

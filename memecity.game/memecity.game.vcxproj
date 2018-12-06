@@ -27,6 +27,7 @@
     <ClInclude Include="Game\Components\StoryComponent.h" />
     <ClInclude Include="Game\Components\TaskComponent.h" />
     <ClInclude Include="Game\Enum\AIStates.h" />
+    <ClInclude Include="Game\Enum\QuestStates.h" />
     <ClInclude Include="Game\Event\QuestEventArgs.h" />
     <ClInclude Include="Game\GameLoader.h" />
     <ClInclude Include="Game\Event\MoveEventArgs.h" />

@@ -5,11 +5,15 @@
 #include <ECS.h>
 #include "..\Components.h"
 #include "..\Event\InteractionEventArgs.h"
+#include "..\Event\QuestEventArgs.h"
 
 class InteractionSystem : public memecity::engine::ecs::System {
 
 public:
 	GameManager::GameContext* _context;
+
+	memecity::engine::ecs::eventing::Event<QuestEventArgs> quest_event;
+
 
 	InteractionSystem(GameManager::GameContext* context)
 		: _context(context) {}

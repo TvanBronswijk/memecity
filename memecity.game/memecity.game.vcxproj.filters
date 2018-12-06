@@ -225,6 +225,9 @@
     <ClInclude Include="Game\States\StoryState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Game\Enum\QuestStates.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
