@@ -110,7 +110,7 @@ namespace memecity::engine::ecs {
 		}
 
 		template<class S>
-		System* get_system_of_type()
+		S* get_system_of_type()
 		{
 			static_assert(std::is_convertible<S*, System*>::value, "This function can only retrieve concrete subclasses of System");
 			for (auto& scope : systems)
@@ -122,7 +122,7 @@ namespace memecity::engine::ecs {
 				{
 					if (system.first == token<S>())
 					{
-						return system.second.get();
+						return dynamic_cast<S*>(system.second.get());
 					}
 				}
 			}

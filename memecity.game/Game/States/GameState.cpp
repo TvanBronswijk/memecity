@@ -3,10 +3,10 @@
 #include "../Systems/FightingSystem.h"
 
 GameState::GameState(memecity::engine::state::StateManager& sm, GameManager::GameContext& gc,
-	memecity::engine::ecs::EntityManager em) : _context(&gc), entity_manager(std::move(em)), State(sm), _hud(_context->get_multimedia_manager(), _context->get_multimedia_manager().get_texture("Sprites/big_black.bmp", 0, 0, _context->get_multimedia_manager().get_screen_width(), 100), 0, 0)
+	memecity::engine::ecs::EntityManager em) : _context(&gc), entity_manager(std::move(em)), State(sm), _hud(_context->get_multimedia_manager(), _context->get_multimedia_manager().get_texture(assets::sprites::BIG_BLACK, 0, 0, _context->get_multimedia_manager().get_screen_width(), 100), 0, 0)
 {
 
-	FightingSystem* system = dynamic_cast<FightingSystem*>(entity_manager.get_system_of_type<FightingSystem>());
+	FightingSystem* system = entity_manager.get_system_of_type<FightingSystem>();
 
 	system->health_event += [&](auto& em, auto args)
 	{
@@ -19,7 +19,7 @@ void GameState::on_load()
 {
 	
 	_hud.create_overlay_text_item("HEALTH", "Health", 16, 100.0f, 20.0f);
-	_hud.create_overlay_bar_item("HEALTHVALUE", 100, 20, 150, 12);
+	_hud.create_overlay_bar_item("HEALTHVALUE", 100, 20, 150, 12, 100, 200, memecity::engine::sdl::Color(255,0,0), memecity::engine::sdl::Color(0,255,0));
 	_hud.create_overlay_text_item("SCORE", "Score:100", 16, 100, 40);
 	_hud.create_overlay_text_item("EXP", "Exp:100", 16, 100, 60);
 

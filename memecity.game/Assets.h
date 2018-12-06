@@ -17,6 +17,7 @@ namespace assets {
 			static constexpr Asset WALL = "Sprites/Tiles/brown.bmp";
 			static constexpr Asset WATER = "Sprites/Tiles/blue.bmp";
 		}
+		static constexpr Asset BIG_BLACK = "Sprites/big_black.bmp";
 	}
 	namespace spritesheets {
 		static constexpr Asset HUMAN_MALE_1 = "Spritesheets/SpriteSheet.png";
