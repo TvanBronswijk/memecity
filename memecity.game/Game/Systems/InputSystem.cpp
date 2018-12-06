@@ -19,22 +19,23 @@ void InputSystem::run(EntityManager& em) const
 	auto players = em.get_entities_with_component<PlayerComponent>();
 	for (const Entity& player : players)
 	{
+		float speed = 5.0f;
 		auto velocity_component = player.get<VelocityComponent>();
 		if (input_manager.is_down(input::UP))
 		{
-			velocity_component->y -= 0.001f;
+			velocity_component->y -= speed;
 		}
-		if (input_manager.is_down(input::DOWN))
+		else if (input_manager.is_down(input::DOWN))
 		{
-			velocity_component->y += 0.001f;
+			velocity_component->y += speed;
 		}
 		if (input_manager.is_down(input::LEFT))
 		{
-			velocity_component->x -= 0.001f;
+			velocity_component->x -= speed;
 		}
-		if (input_manager.is_down(input::RIGHT))
+		else if (input_manager.is_down(input::RIGHT))
 		{
-			velocity_component->x += 0.001f;
+			velocity_component->x += speed;
 		}
 
 		if (input_manager.is_pressed(input::INTERACTION))

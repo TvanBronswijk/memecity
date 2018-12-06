@@ -1,5 +1,6 @@
 ﻿#ifndef _RECTANGLE_H
 #define _RECTANGLE_H
+
 template<class T>
 struct uPoint {
 	T x, y;
@@ -22,5 +23,14 @@ struct uRectangle {
 	virtual ~uRectangle() = default;
 };
 using Rectangle = uRectangle<float>;
+
+template<class Rect1, class Rect2>
+bool intersects(const Rect1& l, const Rect2& r)
+{
+	return (l.x < r.x + r.w
+		&& l.x + l.w > r.x
+		&& l.y < r.y + r.h
+		&& l.y + l.h > r.y);
+}
 #endif
 

@@ -29,29 +29,16 @@ void MoveSystem::run(EntityManager& em) const
 	}
 }
 
-void MoveSystem::on_collision(EntityManager& em, ColliderEventArgs ea)
+void MoveSystem::on_collision(EntityManager& em, ColliderEventArgs args)
 {
-	auto position_target = ea.target.get<BaseComponent>();
-	auto position = ea.source.get<BaseComponent>();
-	auto velocity = ea.source.get<VelocityComponent>();
+	auto base = args.source.get<BaseComponent>();
+	auto velocity = args.source.get<VelocityComponent>();
 
 	if (velocity != nullptr)
 	{
-		if (position_target->location.x > position->location.x)
-		{
-			velocity->x = -0.1f;
-		}
-		else if (position_target->location.x < position->location.x)
-		{
-			velocity->x = 0.1f;
-		}
-		if (position_target->location.y > position->location.y)
-		{
-			velocity->y = -0.1f;
-		}
-		else if (position_target->location.y < position->location.y)
-		{
-			velocity->y = 0.1f;
-		}
+		base->location.x += args.source_rectangle.x < args.target_rectangle.x ? -(velocity->x) - 5.0f : (velocity->x) + 5.0f;
+		base->location.y += args.source_rectangle.y < args.target_rectangle.y ? -(velocity->y) - 5.0f : (velocity->y) + 5.0f;
+		velocity->x = 0;
+		velocity->y = 0;
 	}
 }
