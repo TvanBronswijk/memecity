@@ -8,12 +8,12 @@ void GameState::on_load()
 
 void GameState::update(float dt)
 {
-	entity_manager.update(memecity::engine::ecs::System::update);
+	system_pool.update(entity_manager, memecity::engine::ecs::System::update);
 }
 
 void GameState::draw()
 {
-	entity_manager.update(memecity::engine::ecs::System::draw);
+	system_pool.update(entity_manager, memecity::engine::ecs::System::draw);
 }
 
 void GameState::on_enter()

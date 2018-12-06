@@ -33,9 +33,6 @@
     <ClInclude Include="ECS\Component.h">
       <Filter>Header Files\ECS</Filter>
     </ClInclude>
-    <ClInclude Include="ECS\Entity.h">
-      <Filter>Header Files\ECS</Filter>
-    </ClInclude>
     <ClInclude Include="ECS\EntityManager.h">
       <Filter>Header Files\ECS</Filter>
     </ClInclude>
@@ -52,6 +49,15 @@
       <Filter>Header Files\ECS</Filter>
     </ClInclude>
     <ClInclude Include="ECS\Default\BaseComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ECS\SystemPool.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ECS\Entity.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ECS\Query\Query.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

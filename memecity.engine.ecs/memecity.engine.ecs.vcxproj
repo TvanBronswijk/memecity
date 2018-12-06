@@ -133,7 +133,9 @@
     <ClInclude Include="ECS\EntityManager.h" />
     <ClInclude Include="ECS\Eventing\Event.h" />
     <ClInclude Include="ECS\Eventing\EventArgs.h" />
+    <ClInclude Include="ECS\Query\Query.h" />
     <ClInclude Include="ECS\System.h" />
+    <ClInclude Include="ECS\SystemPool.h" />
     <ClInclude Include="ECS\Type.h" />
   </ItemGroup>
   <ItemGroup>

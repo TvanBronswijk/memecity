@@ -12,7 +12,7 @@ void DrawSystem::run(EntityManager& em) const
 
 	float half_w = multimedia_manager.get_screen_width() / 2.0f;
 	float half_h = multimedia_manager.get_screen_height() / 2.0f;
-	auto components = em.query<BaseComponent>()
+	auto components = em.query_components<BaseComponent>()
 		.where([&](BaseComponent& c) { 
 		return c.location.x > player_base->location.x - half_w - 255 
 			&& c.location.x < player_base->location.x + half_w + 255

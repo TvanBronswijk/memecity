@@ -19,9 +19,7 @@ EntityManager GameLoader::build(loading::LoadingBar::Listener& listener)
 	listener.set_text("Loading NPCs");
 	create_npcs(em, listener);	
 	listener.set_text("Loading Player");
-	create_player(em, listener);
-	listener.set_text("Loading Systems");
-	create_systems(em, listener);	
+	create_player(em, listener);	
 	listener.set_text("Loading Complete!");
 
 	return std::move(em);
@@ -66,27 +64,6 @@ void GameLoader::create_player(EntityManager& em, loading::LoadingBar::Listener&
 		.with_component<AnimationComponent>()
 		.with_component<VelocityComponent>();
 	listener.increase_current_value(10.0f);
-}
-
-void GameLoader::create_systems(EntityManager& em, loading::LoadingBar::Listener& listener)
-{
-	auto& multimedia_manager = _context->get_multimedia_manager();
-
-	auto& draw_system =			em.create_system<DrawSystem>(System::draw, multimedia_manager);
-	auto& animation_system =	em.create_system<AnimationSystem>(System::draw, *_context);
-	auto& input_system =		em.create_system<InputSystem>(System::update, *_context);
-	auto& move_system =			em.create_system<MoveSystem>();
-	auto& collider_system =		em.create_system<ColliderSystem>();
-	auto& ai_system =			em.create_system<AISystem>();
-	auto& fighting_system =		em.create_system<FightingSystem>(System::draw, multimedia_manager);
-	auto& interaction_system =	em.create_system<InteractionSystem>(System::draw, multimedia_manager);
-	auto& overlay_system =		em.create_system<OverlaySystem>(System::draw, multimedia_manager);
-	
-	eventing::bind(move_system.animated_move_event, &animation_system, &AnimationSystem::on_move);
-	eventing::bind(input_system.interaction_event, &interaction_system, &InteractionSystem::on_interact);
-	eventing::bind(input_system.attack_event, &fighting_system, &FightingSystem::on_attack);
-	eventing::bind(collider_system.collider_event, &move_system, &MoveSystem::on_collision);
-	listener.increase_current_value(5.0f);
 }
 
 
