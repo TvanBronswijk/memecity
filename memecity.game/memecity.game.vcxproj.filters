@@ -213,6 +213,12 @@
     <ClInclude Include="Game\Systems\FogOfWarSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Components\DimensionComponent.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Components\DimensionComponent.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -358,10 +364,8 @@
     <CopyFileToFolders Include="Assets\Music\bgm-menu.mp3">
       <Filter>Resource Files</Filter>
     </CopyFileToFolders>
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="Assets\Sprites\big_black.bmp">
+    <CopyFileToFolders Include="Assets\Sprites\big_black.bmp">
       <Filter>Resource Files</Filter>
-    </Image>
+    </CopyFileToFolders>
   </ItemGroup>
 </Project>
