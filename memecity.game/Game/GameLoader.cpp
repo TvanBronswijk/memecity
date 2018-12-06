@@ -129,16 +129,19 @@ void GameLoader::create_systems(EntityManager& em, loading::LoadingBar::Listener
 {
 	auto& multimedia_manager = _context->get_multimedia_manager();
 
-	auto& draw_system = em.create_system<DrawSystem>(System::draw, multimedia_manager);
-	auto& animation_system = em.create_system<AnimationSystem>(System::draw, *_context);
-	auto& input_system = em.create_system<InputSystem>(System::update, *_context);
-	auto& collider_system = em.create_system<ColliderSystem>(System::update, (_map_width * 64.0f), (_map_height * 64.0f));
-	auto& move_system = em.create_system<MoveSystem>();
-	auto& ai_system = em.create_system<AISystem>();
-	auto& fighting_system = em.create_system<FightingSystem>(System::draw, multimedia_manager);
-	auto& interaction_system = em.create_system<InteractionSystem>(System::draw, multimedia_manager);
-	auto& overlay_system = em.create_system<OverlaySystem>(System::draw, multimedia_manager);
+	auto& draw_system =			em.create_system<DrawSystem>(System::draw, multimedia_manager);
+	auto& animation_system =	em.create_system<AnimationSystem>(System::draw, *_context);
+	auto& input_system =		em.create_system<InputSystem>(System::update, *_context);
+	auto& move_system =			em.create_system<MoveSystem>();
+	auto& collider_system =		em.create_system<ColliderSystem>(System::update, (_map_width * 64.0f), (_map_height * 64.0f));
+	auto& ai_system =			em.create_system<AISystem>();
+	auto& fighting_system =		em.create_system<FightingSystem>(System::draw, multimedia_manager);
+	auto& interaction_system =	em.create_system<InteractionSystem>(System::draw, multimedia_manager);
+	auto& overlay_system =		em.create_system<OverlaySystem>(System::draw, multimedia_manager);
 
+
+	
+	
 	eventing::bind(move_system.move_event, &animation_system, &AnimationSystem::on_move);
 	eventing::bind(input_system.interaction_event, &interaction_system, &InteractionSystem::on_interact);
 	eventing::bind(input_system.attack_event, &fighting_system, &FightingSystem::on_attack);
