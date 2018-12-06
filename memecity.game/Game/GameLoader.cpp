@@ -132,7 +132,7 @@ void GameLoader::create_systems(EntityManager& em, loading::LoadingBar::Listener
 	auto& draw_system = em.create_system<DrawSystem>(System::draw, multimedia_manager);
 	auto& animation_system = em.create_system<AnimationSystem>(System::draw, *_context);
 	auto& input_system = em.create_system<InputSystem>(System::update, *_context);
-	auto& collider_system = em.create_system<ColliderSystem>(System::update, _map_width, _map_height);
+	auto& collider_system = em.create_system<ColliderSystem>(System::update, (_map_width * 64.0f), (_map_height * 64.0f));
 	auto& move_system = em.create_system<MoveSystem>();
 	auto& ai_system = em.create_system<AISystem>();
 	auto& fighting_system = em.create_system<FightingSystem>(System::draw, multimedia_manager);
