@@ -7,9 +7,8 @@
 using namespace memecity::engine::ecs;
 using namespace memecity::engine::ui;
 
-EntityManager GameLoader::build(loading::LoadingBar::Listener& listener)
+void GameLoader::build(memecity::engine::ecs::EntityManager& em, loading::LoadingBar::Listener& listener)
 {
-	EntityManager em;
 	listener
 		.set_max_value(100.0f)
 		.set_current_value(0.0f);
@@ -21,8 +20,6 @@ EntityManager GameLoader::build(loading::LoadingBar::Listener& listener)
 	listener.set_text("Loading Player");
 	create_player(em, listener);	
 	listener.set_text("Loading Complete!");
-
-	return std::move(em);
 }
 
 void GameLoader::create_map(EntityManager& em, loading::LoadingBar::Listener& listener)

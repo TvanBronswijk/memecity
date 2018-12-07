@@ -18,7 +18,7 @@ public:
 		: _context(&context), _map_width(map_width), _map_height(map_height) {};
 	~GameLoader() = default;
 
-	memecity::engine::ecs::EntityManager build(memecity::engine::ui::loading::LoadingBar::Listener& listener);
+	void build(memecity::engine::ecs::EntityManager& em, memecity::engine::ui::loading::LoadingBar::Listener& listener);
 };
 
 #endif

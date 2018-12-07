@@ -2,6 +2,8 @@
 #define  _ENTITY_MANAGER_H
 #include <algorithm>
 #include <functional>
+#include <thread>
+#include <mutex>
 #include <iostream>
 #include <iterator>
 #include <map>
@@ -18,6 +20,8 @@ namespace memecity::engine::ecs {
 	class EntityManager {
 	private:
 		int back_id = 0;
+		mutable std::mutex entity_mutex;
+		mutable std::mutex component_mutex;
 		std::unordered_map<EntityType, std::vector<std::unique_ptr<Entity>>> entities;
 		std::unordered_map<TypeToken, std::vector<std::unique_ptr<Component>>> components;
 		std::vector<std::unique_ptr<Entity>> deleted_entities;
@@ -57,6 +61,7 @@ namespace memecity::engine::ecs {
 		///<summary>Get all entities</summary>
 		std::vector<std::reference_wrapper<const Entity>> get_entities() const
 		{
+			std::lock_guard lock(entity_mutex);
 			std::vector<std::reference_wrapper<const Entity>> result;
 			std::for_each(entities.begin(), entities.end(),
 				[&](auto& pair) {
@@ -71,6 +76,7 @@ namespace memecity::engine::ecs {
 		///<summary>Get entities by type</summary>
 		std::vector<std::reference_wrapper<const Entity>> get_entities_by_type(EntityType type) const
 		{
+			std::lock_guard lock(entity_mutex);
 			std::vector<std::reference_wrapper<const Entity>> result;
 			auto& typed_entities = entities.at(type);
 			std::transform(typed_entities.begin(), typed_entities.end(), std::back_inserter(result), [](auto& e)->std::reference_wrapper<const Entity> {
@@ -83,18 +89,40 @@ namespace memecity::engine::ecs {
 		template<class C>
 		std::vector<std::reference_wrapper<const Entity>> get_entities_with_component() const
 		{
+			std::lock_guard lock(entity_mutex);
+			std::lock_guard lock2(component_mutex);
 			std::vector<std::reference_wrapper<const Entity>> result;
 			auto& entity_components = (*components.find(token<C>())).second;
-			std::transform(entity_components.begin(), entity_components.end(), std::back_inserter(result),
-				[](auto& c)->std::reference_wrapper<const Entity> {
+			std::transform(entity_components.begin(), entity_components.end(), 
+				std::back_inserter(result), [](auto& c)->std::reference_wrapper<const Entity> {
 				return std::ref(c->entity());
 			});
 			return result;
 		}
 
 		///<summary>Get a query object.</summary>
-		Query<const Entity> query_entities() {
+		Query<const Entity> query_all_entities() {
 			return Query<const Entity>(get_entities());
+		}
+
+		///<summary>Get a query object.</summary>
+		Query<const Entity> query_entities(EntityType type) {
+			return Query<const Entity>(get_entities_by_type(type));
+		}
+
+		void remove_entity(const Entity& entity) {
+			std::lock_guard lock(entity_mutex);
+			entity_destroyed.fire(*this, entity);
+			std::for_each(entity._components.begin(), entity._components.end(), [&](auto& pair) {
+				remove_component(*pair.second);
+			});
+
+			std::for_each(entities.begin(), entities.end(), [&](auto& pair) {
+				auto& entity_type = pair.second;
+				std::copy_if(std::make_move_iterator(entity_type.begin()), std::make_move_iterator(entity_type.end()), 
+					std::back_inserter(deleted_entities), [&](auto&& e) { return (*e) == entity; });
+				entity_type.erase(std::remove_if(entity_type.begin(), entity_type.end(), [](auto& e) { return e ? false : true; }), entity_type.end());
+			});
 		}
 
 		///<summary>Register a component to the EntityManager.</summary>
@@ -113,6 +141,7 @@ namespace memecity::engine::ecs {
 		///<summary>Get components of a specific type.</summary>
 		template<class C>
 		std::vector<std::reference_wrapper<C>> get_components_of_type() {
+			std::lock_guard lock(component_mutex);
 			std::vector<std::reference_wrapper<C>> result;
 			auto& components_of_type = components[token<C>()];
 			std::transform(components_of_type.begin(), components_of_type.end(), std::back_inserter(result),
@@ -126,10 +155,26 @@ namespace memecity::engine::ecs {
 			return Query<C>(get_components_of_type<C>());
 		}
 
-		eventing::Event<Entity&> entity_created;
-		eventing::Event<Entity&> entity_destroyed;
-		eventing::Event<Component&> component_created;
-		eventing::Event<Component&> component_destroyed;
+		void remove_component(const Component& component) {
+			std::lock_guard lock(component_mutex);
+			component_destroyed.fire(*this, component);
+			std::for_each(components.begin(), components.end(), [&](auto& pair) {
+				auto& component_type = pair.second;
+				std::copy_if(std::make_move_iterator(component_type.begin()), std::make_move_iterator(component_type.end()), 
+					std::back_inserter(deleted_components), [&](auto&& c) { return (c.get()) == &component; });
+				component_type.erase(std::remove_if(component_type.begin(), component_type.end(), [](auto& c) { return c ? false : true; }), component_type.end());
+			});
+		}
+
+		void cleanup() {
+			deleted_entities.clear();
+			deleted_components.clear();
+		}
+
+		eventing::Event<const Entity&> entity_created;
+		eventing::Event<const Entity&> entity_destroyed;
+		eventing::Event<const Component&> component_created;
+		eventing::Event<const Component&> component_destroyed;
 	};
 };
 #endif
