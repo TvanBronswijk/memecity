@@ -364,7 +364,13 @@
     <CopyFileToFolders Include="Assets\Music\bgm-menu.mp3">
       <Filter>Resource Files</Filter>
     </CopyFileToFolders>
-    <CopyFileToFolders Include="Assets\Sprites\big_black.bmp">
+    <CopyFileToFolders Include="Assets\Advertisements\BananaWho.png">
+      <Filter>Resource Files</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="Assets\Advertisements\BurgerKing.png">
+      <Filter>Resource Files</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="Assets\Advertisements\CocaCola.png">
       <Filter>Resource Files</Filter>
     </CopyFileToFolders>
   </ItemGroup>
