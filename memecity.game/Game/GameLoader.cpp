@@ -62,6 +62,7 @@ void GameLoader::create_player(EntityManager& em, loading::LoadingBar::Listener&
 	auto builder = em.create_entity("player")
 		.with_component<BaseComponent>(std::move(texture), 0.0f, 0.0f, 48.0f, 48.0f)
 		.with_component<PlayerComponent>()
+		.with_component<StatsComponent>(1,3,1,1,1,1,1)
 		.with_component<AnimationComponent>()
 		.with_component<VelocityComponent>();
 	auto base_component = builder.get().get<BaseComponent>();

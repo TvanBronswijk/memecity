@@ -27,7 +27,7 @@ MenuState::MenuState(memecity::engine::state::StateManager & sm, GameManager::Ga
 		.with_read_only_menu_item(" ")
 		.with_read_only_menu_item("Tobi van Bronswijk")
 		.with_read_only_menu_item("Martijn van der Pol")
-		.with_read_only_menu_item("Thom van der Pas")
+		.with_read_only_menu_item("Thom van de Pas")
 		.with_read_only_menu_item("Rick van Berlo")
 		.with_read_only_menu_item("Yoeri van Hoof")
 		.with_read_only_menu_item("Simon Heij")

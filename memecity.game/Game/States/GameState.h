@@ -24,6 +24,7 @@ public:
 		auto& fighting_system = system_pool.create_system<FightingSystem>(memecity::engine::ecs::System::draw, multimedia_manager);
 		auto& interaction_system = system_pool.create_system<InteractionSystem>(memecity::engine::ecs::System::draw, multimedia_manager);
 		auto& overlay_system = system_pool.create_system<OverlaySystem>(memecity::engine::ecs::System::draw, multimedia_manager);
+		auto& fow_system = system_pool.create_system<FogOfWarSystem>(memecity::engine::ecs::System::draw, multimedia_manager);
 
 		auto& input_system = system_pool.create_system<InputSystem>(memecity::engine::ecs::System::update, *_context);
 		auto& move_system = system_pool.create_system<MoveSystem>();
