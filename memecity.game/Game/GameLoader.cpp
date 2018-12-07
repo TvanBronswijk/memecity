@@ -3,6 +3,7 @@
 #include "Components.h"
 #include "Systems.h"
 #include "..\Assets.h"
+#include "Systems/FogOfWarSystem.h"
 
 using namespace memecity::engine::ecs;
 using namespace memecity::engine::ui;
@@ -108,6 +109,7 @@ void GameLoader::create_player(EntityManager& em, loading::LoadingBar::Listener&
 	auto builder = builder::EntityBuilder(em)
 		.create_entity()
 		.with_component<PlayerComponent>()
+		.with_component<StatsComponent>(1,3,1,1,1,1,1)
 		.with_component<AnimationComponent>()
 		.with_component<PositionComponent>(0, 0)
 		.with_component<DimensionComponent>(48.0f, 48.0f)
@@ -138,10 +140,8 @@ void GameLoader::create_systems(EntityManager& em, loading::LoadingBar::Listener
 	auto& fighting_system =		em.create_system<FightingSystem>(System::draw, multimedia_manager);
 	auto& interaction_system =	em.create_system<InteractionSystem>(System::draw, multimedia_manager);
 	auto& overlay_system =		em.create_system<OverlaySystem>(System::draw, multimedia_manager);
+	auto& fog_of_war_system = em.create_system<FogOfWarSystem>(System::draw, multimedia_manager);
 
-
-	
-	
 	eventing::bind(move_system.move_event, &animation_system, &AnimationSystem::on_move);
 	eventing::bind(input_system.interaction_event, &interaction_system, &InteractionSystem::on_interact);
 	eventing::bind(input_system.attack_event, &fighting_system, &FightingSystem::on_attack);
