@@ -210,6 +210,9 @@
     <ClInclude Include="Game\Event\HealthChangedEventArgs.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Game\Systems\FogOfWarSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="Components\DimensionComponent.h">
       <Filter>Header Files\Components</Filter>
     </ClInclude>
@@ -284,6 +287,21 @@
     <ClCompile Include="Game\GameLoader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Game\Generate\City\CityGenerator.cpp">
+      <Filter>Source Files\City</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Generate\City\Strategy\BSP\BSP.cpp">
+      <Filter>Source Files\City\Strategy</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Generate\NPC\NPCGenerator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\States\LoadingState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Systems\FogOfWarSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CopyFileToFolders Include="Assets\Music\bgm.mp3">
@@ -352,7 +370,13 @@
     <CopyFileToFolders Include="Assets\Music\bgm-menu.mp3">
       <Filter>Resource Files</Filter>
     </CopyFileToFolders>
-    <CopyFileToFolders Include="Assets\Sprites\big_black.bmp">
+    <CopyFileToFolders Include="Assets\Advertisements\BananaWho.png">
+      <Filter>Resource Files</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="Assets\Advertisements\BurgerKing.png">
+      <Filter>Resource Files</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="Assets\Advertisements\CocaCola.png">
       <Filter>Resource Files</Filter>
     </CopyFileToFolders>
   </ItemGroup>
