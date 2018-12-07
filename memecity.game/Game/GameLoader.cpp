@@ -36,7 +36,7 @@ void GameLoader::create_map(EntityManager& em, loading::LoadingBar::Listener& li
 {
 	auto& multimedia_manager = _context->get_multimedia_manager();
 
-	generate::models::City city = generate::CityGenerator(64, 64).generate();
+	generate::models::City city = generate::CityGenerator(10, 10).generate();
 	for (int y = city.begin.y; y < city.end.y; y++) {
 		for (int x = city.begin.x; x < city.end.x; x++) {
 			auto& character = city(x, y);

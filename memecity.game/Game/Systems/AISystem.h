@@ -8,7 +8,7 @@
 class AISystem : public memecity::engine::ecs::System {
 
 private:
-	float movement = 0.01f;
+	float movement = 0.07f;
 
 	bool check_health(const memecity::engine::ecs::Entity& entity) const;
 	//Roaming
@@ -16,10 +16,10 @@ private:
 	int random_y() const;
 	void move_random(const memecity::engine::ecs::Entity& entity) const;
 	//Fighting
-	void best_first_search(memecity::engine::ecs::EntityManager& em, const PositionComponent& xy) const;
-	std::queue<Point> calculate_next_positions(Point start, Point end, std::queue<Point> queue) const;
-	bool check_player_position_X(Point location, Point end) const;
-	bool check_player_position_Y(Point location, Point end) const;
+	void point_jump_search(memecity::engine::ecs::EntityManager& em, const PositionComponent& xy) const;
+	Point calculate_next_route(Point start, Point end, int speed) const;
+	Point findNewPoint(float x, float y, int angle, float distance) const;
+	bool check_player_position(Point location, Point end) const;
 	//Fleeing
 	void fleeing(memecity::engine::ecs::EntityManager& em, const PositionComponent& xy) const;
 public:
