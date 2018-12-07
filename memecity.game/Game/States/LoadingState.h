@@ -17,9 +17,7 @@ private:
 	LoadingState::Loader _loader;
 public:
 	LoadingState(memecity::engine::state::StateManager& sm, GameManager::GameContext& gc, LoadingState::Loader loader, memecity::engine::MultimediaManager& multimedia_manager)
-		: State(sm), multimedia_manager(&multimedia_manager), _context(&gc),
-		_loading_bar(gc.get_multimedia_manager()),
-		_loader(loader)
+		: State(sm), multimedia_manager(&multimedia_manager), _context(&gc), _loading_bar(gc.get_multimedia_manager()), _loader(loader)
 	{
 		srand(time(nullptr));
 
