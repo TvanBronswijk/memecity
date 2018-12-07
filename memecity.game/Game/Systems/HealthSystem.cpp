@@ -48,6 +48,7 @@ void HealthSystem::on_damage(EntityManager& em, std::reference_wrapper<const Ent
 
 	if (health_target->health < (health_target->maxhealth / 10)) {
 		if ((rand() % stats_target->strength) < 5)
+			if(AI->state != State::Fleeing)
 			AI->state = State::Fleeing;
 	}
 }
