@@ -18,7 +18,7 @@ EntityManager GameLoader::build(loading::LoadingBar::Listener& listener)
 	create_map(em, listener);
 	listener
 		.set_text("Loading NPCs");
-	create_npcs(em, listener);	
+	create_npcs(em, listener);
 	listener
 		.set_text("Loading Items");
 	create_items(em, listener);	
@@ -27,7 +27,7 @@ EntityManager GameLoader::build(loading::LoadingBar::Listener& listener)
 	create_player(em, listener);
 	listener
 		.set_text("Loading Systems");
-	create_systems(em, listener);	
+	create_systems(em, listener);
 	listener
 		.set_text("Loading Complete!");
 
@@ -74,8 +74,15 @@ void GameLoader::create_map(EntityManager& em, loading::LoadingBar::Listener& li
 
 			if (character == 'W' || character == 'w')
 			{
+				auto& entity = builder
+					.with_component<DimensionComponent>(64.0f, 64.0f).get();
+
+				auto dimension_component = entity.get<DimensionComponent>();
+				auto position_component = entity.get<PositionComponent>();
+
 				builder
-					.with_component<ColliderComponent>(64.0f, 64.0f);
+					.with_component<ColliderComponent>(BoundaryRectangle(position_component->x, position_component->y, dimension_component->w, dimension_component->h));
+
 			}
 			listener.increase_current_value(75.0f / (_map_width * _map_height));
 		}
@@ -116,16 +123,24 @@ void GameLoader::create_player(EntityManager& em, loading::LoadingBar::Listener&
 
 	auto texture = multimedia_manager.get_texture(assets::spritesheets::HUMAN_MALE_1, 0, 0, 48, 48, 4, 0.25f, memecity::engine::texture::AnimatedTexture::AnimationDirection::vertical);
 	texture->set_position({ static_cast<float>(multimedia_manager.get_screen_width()) / 2, static_cast<float>(multimedia_manager.get_screen_height()) / 2 });
-	
-	builder::EntityBuilder(em)
+
+	auto builder = builder::EntityBuilder(em)
 		.create_entity()
 		.with_component<PlayerComponent>()
 		.with_component<AnimationComponent>()
-		.with_component<ColliderComponent>(48.0f, 48.0f)
-		.with_component<PositionComponent>(0,0)
+		.with_component<PositionComponent>(0, 0)
+		.with_component<DimensionComponent>(48.0f, 48.0f)
 		.with_component<VelocityComponent>()
-		.with_component<DrawableComponent>(std::move(texture))
-		.get();
+		.with_component<DrawableComponent>(std::move(texture));
+
+	auto& player = builder.get();
+
+	auto position_component = player.get<PositionComponent>();
+	auto dimension_component = player.get<DimensionComponent>();
+	const auto player_collider
+		= BoundaryRectangle(position_component->x, position_component->y, dimension_component->w, dimension_component->h);
+
+	builder.with_component<ColliderComponent>(player_collider);
 	listener.increase_current_value(10.0f);
 }
 
@@ -137,11 +152,14 @@ void GameLoader::create_systems(EntityManager& em, loading::LoadingBar::Listener
 	auto& animation_system =	em.create_system<AnimationSystem>(System::draw, *_context);
 	auto& input_system =		em.create_system<InputSystem>(System::update, *_context);
 	auto& move_system =			em.create_system<MoveSystem>();
-	auto& collider_system =		em.create_system<ColliderSystem>();
+	auto& collider_system =		em.create_system<ColliderSystem>(System::update, (_map_width * 64.0f), (_map_height * 64.0f));
 	auto& ai_system =			em.create_system<AISystem>();
 	auto& fighting_system =		em.create_system<FightingSystem>(System::draw, multimedia_manager);
 	auto& interaction_system =	em.create_system<InteractionSystem>(System::draw, multimedia_manager);
 	auto& overlay_system =		em.create_system<OverlaySystem>(System::draw, multimedia_manager);
+
+
+	
 	
 	eventing::bind(move_system.move_event, &animation_system, &AnimationSystem::on_move);
 	eventing::bind(input_system.interaction_event, &interaction_system, &InteractionSystem::on_interact);

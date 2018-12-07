@@ -159,8 +159,11 @@
     <ClCompile Include="Engine\Textures\Texture.cpp" />
     <ClCompile Include="Engine\StorageManager.cpp" />
     <ClCompile Include="Engine\SDL\TimerFacade.cpp" />
+    <ClCompile Include="Engine\Collision\QuadTree.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Engine\Collision.h" />
+    <ClInclude Include="Engine\Collision\BoundaryRectangle.h" />
     <ClInclude Include="Engine.h" />
     <ClInclude Include="Engine\Exceptions.h" />
     <ClInclude Include="Engine\Exceptions\MemeException.h" />
@@ -197,6 +200,7 @@
     <ClInclude Include="Engine\SDL\TimerFacade.h" />
     <ClInclude Include="Engine\State\State.h" />
     <ClInclude Include="Engine\State\StateManager.h" />
+    <ClInclude Include="Engine\Collision\QuadTree.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
