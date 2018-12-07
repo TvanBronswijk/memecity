@@ -22,6 +22,10 @@ namespace memecity::engine {
 			engine.timer.update();
 			engine.input_manager.update();
 			if (engine.timer.get_delta_time() >= 1.0f / 60.0f) {
+				if (engine.get_fps_trigger) {
+					engine.fps = 1.0f / engine.timer.get_delta_time();
+					engine.get_fps_trigger = false;
+				}
 				engine.multimedia_manager.clear_graphics();
 				engine.draw();
 				engine.multimedia_manager.render_graphics();
@@ -34,7 +38,6 @@ namespace memecity::engine {
 
 	int singlethreaded(MemeEngine& engine)
 	{
-
 #ifdef DEBUG
 		std::cout << "singlethreaded\n";
 #endif

@@ -19,8 +19,14 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Components\DimensionComponent.h" />
     <ClInclude Include="Game\Components.h" />
     <ClInclude Include="Game\Components\AIComponent.h" />
+    <ClInclude Include="Game\Components\DimensionComponent.h" />
+    <ClInclude Include="Game\Event\BlikCoinEventArg.h" />
+    <ClInclude Include="Game\Event\ExpEventArgs.h" />
+    <ClInclude Include="Game\Event\HealthChangedEventArgs.h" />
+    <ClInclude Include="Game\Event\StatsEventArgs.h" />
     <ClInclude Include="Game\GameLoader.h" />
     <ClInclude Include="Game\Event\MoveEventArgs.h" />
     <ClInclude Include="Game\Generate.h" />
@@ -66,6 +72,7 @@
     <ClInclude Include="Game\Components\VelocityComponent.h" />
     <ClInclude Include="Game\Components\StatsComponent.h" />
     <ClInclude Include="Game\Systems\OverlaySystem.h" />
+    <ClInclude Include="Game\Components\ScoreComponent.h" />
     <ClInclude Include="Assets.h" />
   </ItemGroup>
   <ItemGroup>
@@ -338,7 +345,6 @@
     <CopyFileToFolders Include="Assets\Advertisements\BananaWho.png" />
     <CopyFileToFolders Include="Assets\Advertisements\BurgerKing.png" />
     <CopyFileToFolders Include="Assets\Advertisements\CocaCola.png" />
-    <Image Include="Assets\Advertisements\Dumpert.jpg" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

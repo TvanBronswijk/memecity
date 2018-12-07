@@ -1,12 +1,12 @@
 #ifndef _MEME_ENGINE_H
 #define _MEME_ENGINE_H
+
 #include <functional>
 #include <iostream>
 #include <thread>
 #include "Engine\InputManager.h"
 #include "Engine\MultimediaManager.h"
 #include "Engine\StorageManager.h"
-
 
 namespace memecity::engine {
 	namespace sdl {
@@ -15,7 +15,7 @@ namespace memecity::engine {
 
 	enum class Threading {
 		///<summary>[EXPERIMENTAL]</summary>
-		multithreaded, 
+		multithreaded,
 		singlethreaded
 	};
 
@@ -32,6 +32,7 @@ namespace memecity::engine {
 			MultimediaManager* multimedia_manager;
 			InputManager* input_manager;
 			sdl::TimerFacade* timer;
+
 		public:
 			Context(MultimediaManager& mm, InputManager& im, sdl::TimerFacade& t)
 				: multimedia_manager(&mm), input_manager(&im), timer(&t) {}
@@ -48,12 +49,18 @@ namespace memecity::engine {
 		MultimediaManager multimedia_manager;
 		InputManager input_manager;
 		sdl::TimerFacade timer;
-
+		int fps;
 		std::unique_ptr<Context> _context;
+		bool get_fps_trigger;
 	public:
-		MemeEngine() : storage_manager(), multimedia_manager(false), input_manager(), timer() {
+		void calculate_fps()
+		{
+			get_fps_trigger = true;
+		}
+		MemeEngine() : storage_manager(), multimedia_manager(false), input_manager(), timer(), fps(0) {
 			_context = std::make_unique<Context>(*this);
 		};
+
 		~MemeEngine() = default;
 		///<summary>Start the game. Optional Threading flag allows you to choose between multithreaded and singlethreaded runner. Defaults to singlethreaded.</summary>
 		int run(Threading flag = Threading::singlethreaded);
