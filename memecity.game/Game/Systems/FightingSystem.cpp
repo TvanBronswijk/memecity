@@ -12,7 +12,15 @@ void FightingSystem::on_attack(EntityManager &em, AttackEventArgs args) {
 	auto health_target = args.target.get<HealthComponent>();
 	auto AI = args.target.get<AIComponent>();
 
-	if (AI != nullptr) {
+
+	if (args.target.get<PlayerComponent>() != nullptr) {
+		health_changed_event.fire(em, { drawable_health_target->health });
+		if (health_target->health <= 0) {
+			death_event.fire(em, {});
+		}
+	}
+	else {
+
 		std::string hp = "HP: ";
 		if (drawable_health_target->health > 10) {
 			health_target->health -= 10;
@@ -46,11 +54,9 @@ void FightingSystem::on_attack(EntityManager &em, AttackEventArgs args) {
 			target_health_texture->set_parent(text_health_texture->get_parent());
 			drawable_health_target->texture = std::move(target_health_texture);
 		}
+
+		
 		AI->state = AIComponent::State::Fighting;
-	}
-	else {
-		if (health_target->health <= 0) {
-			death_event.fire(em, {});
-		}
+		
 	}
 }

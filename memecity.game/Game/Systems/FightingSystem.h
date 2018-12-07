@@ -5,11 +5,13 @@
 #include "..\Components.h"
 #include "..\Event\DeathEventArgs.h"
 #include "..\Event\AttackEventArgs.h"
+#include "../Event/HealthChangedEventArgs.h"
 
 class FightingSystem : public memecity::engine::ecs::System {
 
 public:
 	memecity::engine::MultimediaManager& multimedia_manager;
+	memecity::engine::ecs::eventing::Event<HealthChangedEventArgs> health_changed_event;
 
 	memecity::engine::ecs::eventing::Event<DeathEventArgs> death_event;
 

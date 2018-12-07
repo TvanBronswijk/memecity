@@ -19,8 +19,14 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Components\DimensionComponent.h" />
     <ClInclude Include="Game\Components.h" />
     <ClInclude Include="Game\Components\AIComponent.h" />
+    <ClInclude Include="Game\Components\DimensionComponent.h" />
+    <ClInclude Include="Game\Event\BlikCoinEventArg.h" />
+    <ClInclude Include="Game\Event\ExpEventArgs.h" />
+    <ClInclude Include="Game\Event\HealthChangedEventArgs.h" />
+    <ClInclude Include="Game\Event\StatsEventArgs.h" />
     <ClInclude Include="Game\Event\DeathEventArgs.h" />
     <ClInclude Include="Game\GameLoader.h" />
     <ClInclude Include="Game\Event\MoveEventArgs.h" />
@@ -59,6 +65,7 @@
     <ClInclude Include="Game\Components\InteractionComponent.h" />
     <ClInclude Include="Game\Event\InteractionEventArgs.h" />
     <ClInclude Include="Game\Systems\HealthSystem.h" />
+    <ClInclude Include="Game\Systems\FogOfWarSystem.h" />
     <ClInclude Include="Game\Systems\InteractionSystem.h" />
     <ClInclude Include="Game\Components\LevelComponent.h" />
     <ClInclude Include="Game\Generate\City\Strategy\Strategy.h" />
@@ -69,6 +76,7 @@
     <ClInclude Include="Game\Components\VelocityComponent.h" />
     <ClInclude Include="Game\Components\StatsComponent.h" />
     <ClInclude Include="Game\Systems\OverlaySystem.h" />
+    <ClInclude Include="Game\Components\ScoreComponent.h" />
     <ClInclude Include="Assets.h" />
   </ItemGroup>
   <ItemGroup>
@@ -89,6 +97,7 @@
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="Game\Systems\DrawSystem.cpp" />
     <ClCompile Include="Game\Systems\HealthSystem.cpp" />
+    <ClCompile Include="Game\Systems\FogOfWarSystem.cpp" />
     <ClCompile Include="Game\Systems\InteractionSystem.cpp" />
     <ClCompile Include="Game\Systems\InputSystem.cpp" />
     <ClCompile Include="main.cpp" />
@@ -338,6 +347,11 @@
       <DeploymentContent>true</DeploymentContent>
       <FileType>Document</FileType>
     </CopyFileToFolders>
+  </ItemGroup>
+  <ItemGroup>
+    <CopyFileToFolders Include="Assets\Advertisements\BananaWho.png" />
+    <CopyFileToFolders Include="Assets\Advertisements\BurgerKing.png" />
+    <CopyFileToFolders Include="Assets\Advertisements\CocaCola.png" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
