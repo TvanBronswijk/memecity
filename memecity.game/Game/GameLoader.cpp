@@ -38,7 +38,7 @@ void GameLoader::create_map(EntityManager& em, loading::LoadingBar::Listener& li
 {
 	auto& multimedia_manager = _context->get_multimedia_manager();
 
-	generate::models::City city = generate::CityGenerator(10, 10).generate();
+	generate::models::City city = generate::CityGenerator(64, 64).generate();
 	for (int y = city.begin.y; y < city.end.y; y++) {
 		for (int x = city.begin.x; x < city.end.x; x++) {
 			auto& character = city(x, y);
@@ -108,13 +108,22 @@ void GameLoader::create_items(EntityManager& em, loading::LoadingBar::Listener& 
 	auto texture = multimedia_manager.get_texture(assets::spritesheets::TIN_CAN, 0, 0, 48, 28);
 	texture->set_position({0,0});
 
-	builder::EntityBuilder(em)
+	auto builder = builder::EntityBuilder(em)
 		.create_entity()
 		.with_component<ItemComponent>()
-		.with_component<ColliderComponent>(48.0f, 48.0f)
-		.with_component<PositionComponent>(50,0)
-		.with_component<DrawableComponent>(std::move(texture))
-		.get();
+		.with_component<DimensionComponent>(20.0f, 20.0f)
+		.with_component<PositionComponent>(50, 0)
+		.with_component<DrawableComponent>(std::move(texture));
+
+
+	auto& item = builder.get();
+
+	auto position_component = item.get<PositionComponent>();
+	auto dimension_component = item.get<DimensionComponent>();
+	const auto item_collider
+		= BoundaryRectangle(position_component->x, position_component->y, dimension_component->w, dimension_component->h);
+	
+	builder.with_component<ColliderComponent>(item_collider);
 }
 
 void GameLoader::create_player(EntityManager& em, loading::LoadingBar::Listener& listener)
