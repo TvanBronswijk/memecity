@@ -15,7 +15,7 @@ void LoadingState::update(float dt)
 void LoadingState::draw()
 {
 	_loading_bar.render();
-	multimedia_manager->render_texture(*_advertisement);
+	_context->get_multimedia_manager().render_texture(*_advertisement);
 }
 
 void LoadingState::on_enter()
