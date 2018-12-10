@@ -6,7 +6,7 @@
 
 struct InventoryComponent : public memecity::engine::ecs::Component
 {
-	std::vector<memecity::engine::ecs::Entity*> items;
+	std::vector<const memecity::engine::ecs::Entity*> items;
 
 	int selected = 0;
 

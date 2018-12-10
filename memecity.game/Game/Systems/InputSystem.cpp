@@ -42,7 +42,7 @@ void InputSystem::run(EntityManager& em) const
 		{
 			auto npcs = em.get_entities_with_component<AIComponent>();
 			for (const Entity& npc : npcs) {
-				if(check_collision(*player.get<BaseComponent>(), *npc.get<BaseComponent>(), 30)){
+				if (check_collision(*player.get<BaseComponent>(), *npc.get<BaseComponent>(), 60)) {
 					interaction_event.fire(em, { npc });
 				}
 			}
@@ -57,8 +57,8 @@ void InputSystem::run(EntityManager& em) const
 
 			auto npcs = em.get_entities_with_component<AIComponent>();
 			for (const Entity& npc : npcs) {
-				if (check_collision(*player.get<BaseComponent>(), *npc.get<BaseComponent>(), 30)) {
-					attack_event.fire(em, {player, npc });
+				if (check_collision(*player.get<BaseComponent>(), *npc.get<BaseComponent>(), 60)) {
+					attack_event.fire(em, { player, npc });
 				}
 			}
 		}
@@ -67,57 +67,56 @@ void InputSystem::run(EntityManager& em) const
 		}
 		//inventory
 		if (input_manager.is_pressed(input::DROP)) {
-			auto player_position = entity.get<PositionComponent>();
-			auto player_drawable = entity.get<DrawableComponent>();
+			auto inventory = player.get<InventoryComponent>();
+			if (inventory->items.size() != 0) {
+				auto item = inventory->items.at(inventory->selected);
+				inventory->items.erase(inventory->items.begin() + inventory->selected);
 
-			auto inventory = entity.get<InventoryComponent>();
-			auto item = inventory->items.at(inventory->selected);
-			inventory->items.erase(inventory->items.begin() + inventory->selected);
+				//update position
+				auto item_base = item->get<BaseComponent>();
+				auto player_base = player.get<BaseComponent>();
 
-			//update position
-			auto item_position = item->get<PositionComponent>();
-			auto item_drawable = item->get<DrawableComponent>();
-
-			item_position = player_position;
-			item_drawable->get_texture().set_position(player_drawable->get_texture().get_position());
-
-			//drop item to items in itemcomponent
+				item_base->location = uPoint<float>(player_base->location.x + 50, player_base->location.y);
+			}
 		}
 		if (input_manager.is_pressed(input::TAKE)) {
-			auto inventory = entity.get<InventoryComponent>();
+			auto inventory = player.get<InventoryComponent>();
+			auto items = em.get_entities_with_component<ItemComponent>();
 			//when collid you you can get the item
-			inventory->items.emplace_back();
-
-			//update postion texture
-
-			//add item to items in itemcomponent
+			for (const Entity& item : items) {
+				if (check_collision(*player.get<BaseComponent>(), *item.get<BaseComponent>(), 60)) {
+					inventory->items.emplace_back(&item);
+					item.get<BaseComponent>()->location = uPoint<float>(99999, 99999);
+				}
+			}
 		}
+
 		if (input_manager.is_pressed(input::ONE)) {
-			auto inventory = entity.get<InventoryComponent>();
-			inventory->selected = 1;
+			auto inventory = player.get<InventoryComponent>();
+			inventory->selected = 0;
 			//item 1 is selected from items in itemcomponent
 		}
 		if (input_manager.is_pressed(input::TWO)) {
-			auto inventory = entity.get<InventoryComponent>();
-			inventory->selected = 2;
+			auto inventory = player.get<InventoryComponent>();
+			inventory->selected = 1;
 			//item 2 is selected from items in itemcomponent
 		}
 		if (input_manager.is_pressed(input::THREE)) {
-			auto inventory = entity.get<InventoryComponent>();
-			inventory->selected = 3;
+			auto inventory = player.get<InventoryComponent>();
+			inventory->selected = 2;
 			//item 3 is selected from items in itemcomponent
 		}
 		if (input_manager.is_pressed(input::ARROWDOWN)) {
-			auto inventory = entity.get<InventoryComponent>();
+			auto inventory = player.get<InventoryComponent>();
 			if (inventory->selected == 0)
 				inventory->selected = inventory->items.size();
 			else
 				inventory->selected--;
-			
+
 			//next item is selected from items in itemcomponent
 		}
 		if (input_manager.is_pressed(input::ARROWUP)) {
-			auto inventory = entity.get<InventoryComponent>();
+			auto inventory = player.get<InventoryComponent>();
 
 			if (inventory->selected == inventory->items.size())
 				inventory->selected = 0;
@@ -127,4 +126,5 @@ void InputSystem::run(EntityManager& em) const
 		}
 	}
 }
+
 
