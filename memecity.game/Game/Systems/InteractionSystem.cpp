@@ -22,9 +22,7 @@ void InteractionSystem::run(EntityManager &em) const {
 void InteractionSystem::on_interact(EntityManager &em, InteractionEventArgs args) {
 	auto health = args.source.get<HealthComponent>();
 	if (health->health > 0) {
-		auto xy = args.source.get<PositionComponent>();
 		auto interaction = args.source.get<InteractionComponent>();
-
 		if (interaction != nullptr) {
 			auto text_texture = &interaction->get_texture();
 			auto npc_interaciton_texture = multimedia_manager.get_text(interaction->smallTalk[1], 14);

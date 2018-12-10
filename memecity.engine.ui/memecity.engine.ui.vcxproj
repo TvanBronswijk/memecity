@@ -70,10 +70,10 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>$(SolutionDir)memecity.engine;$(SolutionDir)dependencies\SDL2_mixer-2.0.2\include;$(SolutionDir)dependencies\SDL2_ttf-2.0.14\include;$(SolutionDir)dependencies\SDL2\include;$(SolutionDir)dependencies\SDL2_image-2.0.3\include;$(VC_IncludePath);$(WindowsSDK_IncludePath);$(SolutionDir)memecity.engine.ecs</IncludePath>
+    <IncludePath>$(SolutionDir)memecity.engine;$(SolutionDir)dependencies\SDL2_mixer-2.0.2\include;$(SolutionDir)dependencies\SDL2_ttf-2.0.14\include;$(SolutionDir)dependencies\SDL2\include;$(SolutionDir)dependencies\SDL2_image-2.0.3\include;$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(SolutionDir)memecity.engine;$(SolutionDir)dependencies\SDL2_mixer-2.0.2\include;$(SolutionDir)dependencies\SDL2_ttf-2.0.14\include;$(SolutionDir)dependencies\SDL2\include;$(SolutionDir)dependencies\SDL2_image-2.0.3\include;$(VC_IncludePath);$(WindowsSDK_IncludePath);$(SolutionDir)memecity.engine.ecs</IncludePath>
+    <IncludePath>$(SolutionDir)memecity.engine;$(SolutionDir)dependencies\SDL2_mixer-2.0.2\include;$(SolutionDir)dependencies\SDL2_ttf-2.0.14\include;$(SolutionDir)dependencies\SDL2\include;$(SolutionDir)dependencies\SDL2_image-2.0.3\include;$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
