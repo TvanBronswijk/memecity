@@ -54,9 +54,6 @@ void AISystem::point_jump_search(EntityManager& em, const PositionComponent& npc
 
 	bool next = false;
 
-	Point end(player_position->x, player_position->y); // end location
-	Point start(npc_xy.x, npc_xy.y); // start location
-
 	std::vector<Point> path; // path to end location
 	std::stack<Point> stack; // need to visited these positions
 
@@ -175,8 +172,6 @@ void AISystem::fleeing(EntityManager& em, const PositionComponent& npc_position)
 }
 
 void AISystem::run(EntityManager& em) const {
-	auto vector = em.get_components_of_type<AIComponent>();
-	auto player = em.get_entities_with_component<PlayerComponent>()[0];
 
 	for (auto& element : vector) {
 		if (check_health(element.get().entity())) {

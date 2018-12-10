@@ -15,6 +15,13 @@ void FightingSystem::on_attack(EntityManager &em, AttackEventArgs args) {
 	auto stats_source = args.source.get<StatsComponent>();
 	auto AI = args.target.get<AIComponent>();
 
+
+	if (args.target.has<PlayerComponent>()) {
+		health_changed_event.fire(em, { drawable_health_target->health });
+	}
+	else {
+
+		
 	//calculate health
 	if (stats_source != nullptr){
 		health_target->health -= (rand() % stats_source->strength);

@@ -13,5 +13,6 @@
 #include "Systems\OverlaySystem.h"
 #include "Systems\HealthSystem.h"
 #include "Systems\QuestSystem.h"
+#include "Systems\FogOfWarSystem.h"
 
 #endif

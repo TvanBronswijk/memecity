@@ -3,6 +3,7 @@
 #include <stdlib.h>     /* srand, rand */
 #include <time.h>       /* time */
 #include "../../Enum/AIStates.h"
+#include "..\..\..\Assets.h"
 
 using namespace memecity::engine;
 using namespace memecity::engine::ecs;
@@ -17,7 +18,7 @@ namespace generate {
 	}
 
 	const memecity::engine::ecs::Entity& NPCGenerator::generate_random_npc(int maxlevel, float x, float y) {
-		this->name = "rick";
+		this->name = "rick";//TODO: change to random name
 		this->level = rand() % maxlevel + 1;
 		this->x = x;
 		this->y = y;
@@ -66,25 +67,23 @@ namespace generate {
 		interaction_texture->set_position({ 0, -800 });
 		interaction_texture->set_parent(animation_texture.get());
 
-		auto& npc = builder::EntityBuilder(entity_manager)
-			.create_entity()
-			.with_component<AIComponent>(State::Idle,this->name,std::move(name_texture))
+		auto& npc = entity_manager.create_entity("npc")
+			.with_component<BaseComponent>(std::move(animation_texture), x, y, 48.0f, 48.0f)
+			.with_component<AIComponent>()
 			.with_component<VelocityComponent>()
-			.with_component<PositionComponent>(x, y)
 			.with_component<LevelComponent>(level)
 			.with_component<StatsComponent>(strength, perception, endurance, charisma, intelligence, agility, luck)
-			.with_component<DrawableComponent>(std::move(animation_texture))//body of npc
 			.with_component<HealthComponent>(health, std::move(health_texture))
 			.with_component<InteractionComponent>(createInteractionStrings(), std::move(interaction_texture))
 			.with_component<AnimationComponent>()
-			.with_component<ColliderComponent>(48.0f, 48.0f)
+			.with_component<ColliderComponent>(48.0f, 48.0f) //TODO: moet anders gemaakt worden
 			.get();
 
 		return npc;
 	}
 
 
-	const memecity::engine::ecs::Entity& NPCGenerator::generate_npc(
+	const memecity::engine::ecs::Entity& NPCGenerator::generate_npc(//TODO: kijk goed naar de bovenste
 		int level, float x, float y, int strength, int perception,
 		int endurance, int charisma, int intelligence, int agility, 
 		int luck, int health, std::string name,
@@ -111,7 +110,7 @@ namespace generate {
 
 	}
 
-	const memecity::engine::ecs::Entity& NPCGenerator::generate_quest_npc(std::string name, assets::Asset asset) {
+	const memecity::engine::ecs::Entity& NPCGenerator::generate_quest_npc(std::string name, assets::Asset asset) {//TODO: kijk goed naar random npc
 		if (quest_npcs.find(name) != quest_npcs.end()) {
 			return *quest_npcs.find(name)->second;
 		}

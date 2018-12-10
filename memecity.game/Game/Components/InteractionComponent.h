@@ -4,7 +4,6 @@
 #include <vector>
 #include <ctime>
 #include <Engine\MultimediaManager.h>
-#include "DrawableComponent.h"
 
 struct InteractionComponent : public memecity::engine::ecs::Component{
 public:

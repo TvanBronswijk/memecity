@@ -21,7 +21,7 @@ private:
 	Point findNewPoint(float x, float y, int angle, float distance) const;
 	bool check_player_position(Point location, Point end) const;
 	//Fleeing
-	void fleeing(memecity::engine::ecs::EntityManager& em, const PositionComponent& xy) const;
+	void fleeing(memecity::engine::ecs::EntityManager& em, const BaseComponent& xy) const;
 public:
 	static const int range = 10;
 	void run(memecity::engine::ecs::EntityManager& em) const override;
