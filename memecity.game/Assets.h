@@ -22,6 +22,19 @@ namespace assets {
 	namespace spritesheets {
 		static constexpr Asset HUMAN_MALE_1 = "Spritesheets/SpriteSheet.png";
 	}
+	namespace advertisements {
+		static constexpr Asset ADVERTISEMENT_ONE = "Advertisements/BurgerKing.png";
+		static constexpr Asset ADVERTISEMENT_TWO = "Advertisements/BananaWho.png";
+		static constexpr Asset ADVERTISEMENT_THREE = "Advertisements/CocaCola.png";
+
+		const static std::vector<std::string> ADS{ ADVERTISEMENT_ONE, ADVERTISEMENT_TWO, ADVERTISEMENT_THREE };
+
+		inline std::string get_random_ad()
+		{
+			const auto index = rand() % assets::advertisements::ADS.size();
+			return ADS[index];
+		}
+	}
 };
 
 #endif

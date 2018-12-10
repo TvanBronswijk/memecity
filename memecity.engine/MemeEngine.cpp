@@ -39,7 +39,6 @@ namespace memecity::engine {
 
 	int singlethreaded(MemeEngine& engine)
 	{
-
 #ifdef DEBUG
 		std::cout << "singlethreaded\n";
 #endif

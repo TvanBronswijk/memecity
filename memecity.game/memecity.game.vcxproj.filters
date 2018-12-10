@@ -213,6 +213,15 @@
     <ClInclude Include="Game\States\DeveloperMenuState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Game\Systems\FogOfWarSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\DimensionComponent.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Components\DimensionComponent.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -276,6 +285,21 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Game\States\DeveloperMenuState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Generate\City\CityGenerator.cpp">
+      <Filter>Source Files\City</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Generate\City\Strategy\BSP\BSP.cpp">
+      <Filter>Source Files\City\Strategy</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Generate\NPC\NPCGenerator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\States\LoadingState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Systems\FogOfWarSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -346,10 +370,14 @@
     <CopyFileToFolders Include="Assets\Music\bgm-menu.mp3">
       <Filter>Resource Files</Filter>
     </CopyFileToFolders>
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="Assets\Sprites\big_black.bmp">
+    <CopyFileToFolders Include="Assets\Advertisements\BananaWho.png">
       <Filter>Resource Files</Filter>
-    </Image>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="Assets\Advertisements\BurgerKing.png">
+      <Filter>Resource Files</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="Assets\Advertisements\CocaCola.png">
+      <Filter>Resource Files</Filter>
+    </CopyFileToFolders>
   </ItemGroup>
 </Project>
