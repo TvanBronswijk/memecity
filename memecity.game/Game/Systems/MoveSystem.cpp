@@ -13,6 +13,8 @@ void MoveSystem::run(EntityManager& em) const
 		auto velocity = entity.get<VelocityComponent>();
 		
 		Vector2 diff{ velocity->x, velocity->y };
+		diff.x *= dt;
+		diff.y *= dt;
 		base->location.x += diff.x;
 		base->location.y += diff.y;
 		velocity->x = 0;

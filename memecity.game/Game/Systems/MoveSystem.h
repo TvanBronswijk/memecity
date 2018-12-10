@@ -11,5 +11,6 @@ public:
 	void on_collision(memecity::engine::ecs::EntityManager & em, ColliderEventArgs ea);
 
 	memecity::engine::ecs::eventing::Event<MoveEventArgs> animated_move_event;
+	float dt = 0.0f;
 };
 #endif
