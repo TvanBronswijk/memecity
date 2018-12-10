@@ -22,7 +22,7 @@
     <ClInclude Include="Components\DimensionComponent.h" />
     <ClInclude Include="Game\Components.h" />
     <ClInclude Include="Game\Components\AIComponent.h" />
-    <ClInclude Include="Game\Components\DimensionComponent.h" />
+    <ClInclude Include="Game\Components\ColliderComponent.h" />
     <ClInclude Include="Game\Event\BlikCoinEventArg.h" />
     <ClInclude Include="Game\Event\ExpEventArgs.h" />
     <ClInclude Include="Game\Event\HealthChangedEventArgs.h" />
@@ -49,7 +49,6 @@
     <ClInclude Include="Game\Event\AttackEventArgs.h" />
     <ClInclude Include="Game\Components\AnimationComponent.h" />
     <ClInclude Include="Game\Systems\AnimationSystem.h" />
-    <ClInclude Include="Game\Components\ColliderComponent.h" />
     <ClInclude Include="Game\Event\ColliderEventArgs.h" />
     <ClInclude Include="Game\Systems\ColliderSystem.h" />
     <ClInclude Include="Game\Components\ExpComponent.h" />
@@ -59,7 +58,6 @@
     <ClInclude Include="Game\Generate\City\Strategy\BSP\BSP.h" />
     <ClInclude Include="Game\Generate\City\CityGenerator.h" />
     <ClInclude Include="GameManager.h" />
-    <ClInclude Include="Game\Components\DrawableComponent.h" />
     <ClInclude Include="Game\Systems\DrawSystem.h" />
     <ClInclude Include="Game\Components\HealthComponent.h" />
     <ClInclude Include="Game\Components\InteractionComponent.h" />
@@ -72,7 +70,6 @@
     <ClInclude Include="Game\Components\PlayerComponent.h" />
     <ClInclude Include="Game\Systems\InputSystem.h" />
     <ClInclude Include="Game\Systems\MoveSystem.h" />
-    <ClInclude Include="Game\Components\PositionComponent.h" />
     <ClInclude Include="Game\Components\VelocityComponent.h" />
     <ClInclude Include="Game\Components\StatsComponent.h" />
     <ClInclude Include="Game\Systems\OverlaySystem.h" />
@@ -510,6 +507,8 @@ copy "$(SolutionDir)\dependencies\SDL2_ttf-2.0.14\lib\$(Platform)\*.dll" "$(OutD
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <AdditionalOptions>
+      </AdditionalOptions>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>

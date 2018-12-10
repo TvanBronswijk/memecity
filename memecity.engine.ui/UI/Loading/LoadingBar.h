@@ -49,6 +49,10 @@ namespace memecity::engine::ui::loading {
 				_lbar->_curr += value;
 				return *this;
 			}
+
+			Listener& operator+=(T value) {
+				return increase_current_value(value);
+			}
 		};
 
 		Listener get_listener() {

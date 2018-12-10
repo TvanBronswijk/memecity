@@ -3,7 +3,6 @@
 #include <ECS.h>
 #include <vector>
 #include <Engine\MultimediaManager.h>
-#include "DrawableComponent.h"
 
 struct InteractionComponent : public memecity::engine::ecs::Component{
 public:

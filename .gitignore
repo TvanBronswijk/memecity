@@ -368,4 +368,5 @@ ASALocalRun/
 .localhistory/
 
 #dependencies
-[Dd]ependencies/
+[Dd]ependencies/*
+![Dd]ependencies/.gitkeep
