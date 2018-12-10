@@ -1,383 +1,118 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
-    <Filter Include="Header Files\Components">
-      <UniqueIdentifier>{b4e2e74a-fe61-4c54-b48c-84052a02c61a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Systems">
-      <UniqueIdentifier>{8c5af50c-0856-410d-b82e-9b1cb52ddf39}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Systems">
-      <UniqueIdentifier>{e40c52ec-964d-4257-a326-37920ddb895a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\City">
-      <UniqueIdentifier>{69be7a77-99c9-4639-be1f-3358806ed1a9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\City">
-      <UniqueIdentifier>{0dbf50c0-d376-4205-9bd5-61396d320cc4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\City\Strategy">
-      <UniqueIdentifier>{a7b7af10-e482-4351-88bb-ed46f345485d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\City\Strategy">
-      <UniqueIdentifier>{4163cd46-6aa9-484e-8c7c-416715d66d3b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\City\Models">
-      <UniqueIdentifier>{e97041ac-e993-4d12-9f72-3c065d33f77c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Components">
-      <UniqueIdentifier>{532fe351-f6bf-45d5-afd7-8d67834047f8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Systems">
-      <UniqueIdentifier>{309dd4aa-5921-4d7c-8220-0119735ebf6c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Systems">
-      <UniqueIdentifier>{7cbc1162-2772-44b0-9071-d39d93342fdf}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\EventArgs">
-      <UniqueIdentifier>{18c95c8e-c82e-49fd-8e02-8ba386bb4940}</UniqueIdentifier>
-    </Filter>
+    <ClCompile Include="Game\Generate\NPC\NPCGenerator.cpp" />
+    <ClCompile Include="Game\GameLoader.cpp" />
+    <ClCompile Include="Game\States\DeveloperMenuState.cpp" />
+    <ClCompile Include="Game\States\LoadingState.cpp" />
+    <ClCompile Include="Game\States\GameState.cpp" />
+    <ClCompile Include="Game\States\MenuState.cpp" />
+    <ClCompile Include="Game\States\PauseMenuState.cpp" />
+    <ClCompile Include="Game\Systems\AnimationSystem.cpp" />
+    <ClCompile Include="Game\Systems\ColliderSystem.cpp" />
+    <ClCompile Include="Game\Systems\AISystem.cpp" />
+    <ClCompile Include="Game\Generate\City\Strategy\BSP\BSP.cpp" />
+    <ClCompile Include="Game\Generate\City\CityGenerator.cpp" />
+    <ClCompile Include="Game\Systems\ExpSystem.cpp" />
+    <ClCompile Include="Game\Systems\FightingSystem.cpp" />
+    <ClCompile Include="GameManager.cpp" />
+    <ClCompile Include="Game\Systems\DrawSystem.cpp" />
+    <ClCompile Include="Game\Systems\FogOfWarSystem.cpp" />
+    <ClCompile Include="Game\Systems\InteractionSystem.cpp" />
+    <ClCompile Include="Game\Systems\InputSystem.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Game\Systems\MoveSystem.cpp" />
+    <ClCompile Include="Game\Systems\OverlaySystem.cpp" />
+    <ClCompile Include="Game\UI\HUD\Hud.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="GameManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Assets.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Components\AIComponent.h">
-      <Filter>Header Files\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Components\AnimationComponent.h">
-      <Filter>Header Files\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Components\ColliderComponent.h">
-      <Filter>Header Files\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Components\DrawableComponent.h">
-      <Filter>Header Files\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Components\ExpComponent.h">
-      <Filter>Header Files\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Components\HealthComponent.h">
-      <Filter>Header Files\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Components\InteractionComponent.h">
-      <Filter>Header Files\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Components\LevelComponent.h">
-      <Filter>Header Files\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Components\PlayerComponent.h">
-      <Filter>Header Files\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Components\PositionComponent.h">
-      <Filter>Header Files\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Components\ScoreComponent.h">
-      <Filter>Header Files\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Components\StatsComponent.h">
-      <Filter>Header Files\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Components\VelocityComponent.h">
-      <Filter>Header Files\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Event\AttackEventArgs.h">
-      <Filter>Header Files\EventArgs</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Event\BlikCoinEventArg.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Event\ColliderEventArgs.h">
-      <Filter>Header Files\EventArgs</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Event\ExpEventArgs.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Event\InteractionEventArgs.h">
-      <Filter>Header Files\EventArgs</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Event\MoveEventArgs.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Event\StatsEventArgs.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Generate\City\Models\Models.h">
-      <Filter>Header Files\City\Models</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Generate\City\Strategy\BSP\Fills\Building.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Generate\City\Strategy\BSP\Fills\Empty.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Generate\City\Strategy\BSP\Fills\Fill.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Generate\City\Strategy\BSP\Fills\Park.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Generate\City\Strategy\BSP\Fills\Prefab.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Generate\City\Strategy\BSP\BSP.h">
-      <Filter>Header Files\City\Strategy</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Generate\City\Strategy\Strategy.h">
-      <Filter>Header Files\City\Strategy</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Generate\City\CityGenerator.h">
-      <Filter>Header Files\City</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Generate\NPC\NPCGenerator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\States\GameState.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\States\LoadingState.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\States\MenuState.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\States\PauseMenuState.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Systems\AISystem.h">
-      <Filter>Header Files\Systems</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Systems\AnimationSystem.h">
-      <Filter>Header Files\Systems</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Systems\ColliderSystem.h">
-      <Filter>Header Files\Systems</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Systems\DrawSystem.h">
-      <Filter>Header Files\Systems</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Systems\ExpSystem.h">
-      <Filter>Header Files\Systems</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Systems\FightingSystem.h">
-      <Filter>Header Files\Systems</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Systems\InputSystem.h">
-      <Filter>Header Files\Systems</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Systems\InteractionSystem.h">
-      <Filter>Header Files\Systems</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Systems\MoveSystem.h">
-      <Filter>Header Files\Systems</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Systems\OverlaySystem.h">
-      <Filter>Header Files\Systems</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Components.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\GameLoader.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Generate.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Input.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\States.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Systems.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Event\HealthChangedEventArgs.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\States\DeveloperMenuState.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Systems\FogOfWarSystem.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Components\DimensionComponent.h">
-      <Filter>Header Files\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Components\DimensionComponent.h">
-      <Filter>Header Files\Components</Filter>
-    </ClInclude>
+    <ClInclude Include="Components\DimensionComponent.h" />
+    <ClInclude Include="Game\Components.h" />
+    <ClInclude Include="Game\Components\AIComponent.h" />
+    <ClInclude Include="Game\Components\DimensionComponent.h" />
+    <ClInclude Include="Game\Event\BlikCoinEventArg.h" />
+    <ClInclude Include="Game\Event\ExpEventArgs.h" />
+    <ClInclude Include="Game\Event\HealthChangedEventArgs.h" />
+    <ClInclude Include="Game\Event\StatsEventArgs.h" />
+    <ClInclude Include="Game\GameLoader.h" />
+    <ClInclude Include="Game\Event\MoveEventArgs.h" />
+    <ClInclude Include="Game\Generate.h" />
+    <ClInclude Include="Game\Generate\City\Strategy\BSP\Fills\Building.h" />
+    <ClInclude Include="Game\Generate\City\Strategy\BSP\Fills\Empty.h" />
+    <ClInclude Include="Game\Generate\City\Strategy\BSP\Fills\Fill.h" />
+    <ClInclude Include="Game\Generate\City\Strategy\BSP\Fills\Park.h" />
+    <ClInclude Include="Game\Generate\City\Strategy\BSP\Fills\Prefab.h" />
+    <ClInclude Include="Game\Generate\NPC\NPCGenerator.h" />
+    <ClInclude Include="Game\Input.h" />
+    <ClInclude Include="Game\States\DeveloperMenuState.h" />
+    <ClInclude Include="Game\States\LoadingState.h" />
+    <ClInclude Include="Game\States\GameState.h" />
+    <ClInclude Include="Game\States.h" />
+    <ClInclude Include="Game\States\MenuState.h" />
+    <ClInclude Include="Game\States\PauseMenuState.h" />
+    <ClInclude Include="Game\Systems.h" />
+    <ClInclude Include="Game\Systems\AISystem.h" />
+    <ClInclude Include="Game\Event\AttackEventArgs.h" />
+    <ClInclude Include="Game\Components\AnimationComponent.h" />
+    <ClInclude Include="Game\Systems\AnimationSystem.h" />
+    <ClInclude Include="Game\Components\ColliderComponent.h" />
+    <ClInclude Include="Game\Event\ColliderEventArgs.h" />
+    <ClInclude Include="Game\Systems\ColliderSystem.h" />
+    <ClInclude Include="Game\Components\ExpComponent.h" />
+    <ClInclude Include="Game\Systems\ExpSystem.h" />
+    <ClInclude Include="Game\Systems\FightingSystem.h" />
+    <ClInclude Include="Game\Generate\City\Models\Models.h" />
+    <ClInclude Include="Game\Generate\City\Strategy\BSP\BSP.h" />
+    <ClInclude Include="Game\Generate\City\CityGenerator.h" />
+    <ClInclude Include="GameManager.h" />
+    <ClInclude Include="Game\Components\DrawableComponent.h" />
+    <ClInclude Include="Game\Systems\DrawSystem.h" />
+    <ClInclude Include="Game\Components\HealthComponent.h" />
+    <ClInclude Include="Game\Components\InteractionComponent.h" />
+    <ClInclude Include="Game\Event\InteractionEventArgs.h" />
+    <ClInclude Include="Game\Systems\FogOfWarSystem.h" />
+    <ClInclude Include="Game\Systems\InteractionSystem.h" />
+    <ClInclude Include="Game\Components\LevelComponent.h" />
+    <ClInclude Include="Game\Generate\City\Strategy\Strategy.h" />
+    <ClInclude Include="Game\Components\PlayerComponent.h" />
+    <ClInclude Include="Game\Systems\InputSystem.h" />
+    <ClInclude Include="Game\Systems\MoveSystem.h" />
+    <ClInclude Include="Game\Components\PositionComponent.h" />
+    <ClInclude Include="Game\Components\VelocityComponent.h" />
+    <ClInclude Include="Game\Components\StatsComponent.h" />
+    <ClInclude Include="Game\Systems\OverlaySystem.h" />
+    <ClInclude Include="Game\Components\ScoreComponent.h" />
+    <ClInclude Include="Assets.h" />
+    <ClInclude Include="Game\UI\HUD\Hud.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GameManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\Generate\City\Strategy\BSP\BSP.cpp">
-      <Filter>Source Files\City\Strategy</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\Generate\City\CityGenerator.cpp">
-      <Filter>Source Files\City</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\Generate\NPC\NPCGenerator.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\States\GameState.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\States\LoadingState.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\States\MenuState.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\States\PauseMenuState.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\Systems\AISystem.cpp">
-      <Filter>Source Files\Systems</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\Systems\AnimationSystem.cpp">
-      <Filter>Source Files\Systems</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\Systems\ColliderSystem.cpp">
-      <Filter>Source Files\Systems</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\Systems\DrawSystem.cpp">
-      <Filter>Source Files\Systems</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\Systems\ExpSystem.cpp">
-      <Filter>Source Files\Systems</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\Systems\FightingSystem.cpp">
-      <Filter>Source Files\Systems</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\Systems\InputSystem.cpp">
-      <Filter>Source Files\Systems</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\Systems\InteractionSystem.cpp">
-      <Filter>Source Files\Systems</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\Systems\MoveSystem.cpp">
-      <Filter>Source Files\Systems</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\Systems\OverlaySystem.cpp">
-      <Filter>Source Files\Systems</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\GameLoader.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\States\DeveloperMenuState.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\Generate\City\CityGenerator.cpp">
-      <Filter>Source Files\City</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\Generate\City\Strategy\BSP\BSP.cpp">
-      <Filter>Source Files\City\Strategy</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\Generate\NPC\NPCGenerator.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\States\LoadingState.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\Systems\FogOfWarSystem.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
+    <CopyFileToFolders Include="Assets\Music\bgm.mp3" />
+    <CopyFileToFolders Include="Assets\Music\bgm.wav" />
+    <CopyFileToFolders Include="Assets\SFX\biem.mp3" />
+    <CopyFileToFolders Include="Assets\SFX\biem.wav" />
+    <CopyFileToFolders Include="Assets\SFX\hahabier.mp3" />
+    <CopyFileToFolders Include="Assets\Sprites\Tiles\black.bmp" />
+    <CopyFileToFolders Include="Assets\Sprites\BlikBier.bmp" />
+    <CopyFileToFolders Include="Assets\Sprites\Tiles\blue.bmp" />
+    <CopyFileToFolders Include="Assets\Sprites\Tiles\brown.bmp" />
+    <CopyFileToFolders Include="Assets\Sprites\Tiles\gray.bmp" />
+    <CopyFileToFolders Include="Assets\Sprites\Tiles\green.bmp" />
+    <CopyFileToFolders Include="Assets\Sprites\Tiles\orange.bmp" />
+    <CopyFileToFolders Include="Assets\Sprites\Tiles\purple.bmp" />
+    <CopyFileToFolders Include="Assets\Sprites\Tiles\red.bmp" />
+    <CopyFileToFolders Include="Assets\Spritesheets\SpriteSheet.png" />
+    <CopyFileToFolders Include="Assets\Sprites\Tiles\white.bmp" />
+    <CopyFileToFolders Include="Assets\Sprites\Tiles\yellow.bmp" />
+    <CopyFileToFolders Include="Assets\Fonts\Blazed.ttf" />
+    <CopyFileToFolders Include="Assets\Fonts\FreePixel.ttf" />
+    <CopyFileToFolders Include="Assets\Fonts\Minecraftia-Regular.ttf" />
+    <CopyFileToFolders Include="Assets\Music\bgm-game.mp3" />
+    <CopyFileToFolders Include="Assets\Music\bgm-menu.mp3" />
+    <CopyFileToFolders Include="Assets\Advertisements\BananaWho.png" />
+    <CopyFileToFolders Include="Assets\Advertisements\BurgerKing.png" />
+    <CopyFileToFolders Include="Assets\Advertisements\CocaCola.png" />
   </ItemGroup>
   <ItemGroup>
-    <CopyFileToFolders Include="Assets\Music\bgm.mp3">
-      <Filter>Resource Files</Filter>
-    </CopyFileToFolders>
-    <CopyFileToFolders Include="Assets\Music\bgm.wav">
-      <Filter>Resource Files</Filter>
-    </CopyFileToFolders>
-    <CopyFileToFolders Include="Assets\SFX\biem.mp3">
-      <Filter>Resource Files</Filter>
-    </CopyFileToFolders>
-    <CopyFileToFolders Include="Assets\SFX\biem.wav">
-      <Filter>Resource Files</Filter>
-    </CopyFileToFolders>
-    <CopyFileToFolders Include="Assets\SFX\hahabier.mp3">
-      <Filter>Resource Files</Filter>
-    </CopyFileToFolders>
-    <CopyFileToFolders Include="Assets\Fonts\Blazed.ttf">
-      <Filter>Resource Files</Filter>
-    </CopyFileToFolders>
-    <CopyFileToFolders Include="Assets\Fonts\Minecraftia-Regular.ttf">
-      <Filter>Resource Files</Filter>
-    </CopyFileToFolders>
-    <CopyFileToFolders Include="Assets\Fonts\FreePixel.ttf">
-      <Filter>Resource Files</Filter>
-    </CopyFileToFolders>
-    <CopyFileToFolders Include="Assets\Sprites\BlikBier.bmp">
-      <Filter>Resource Files</Filter>
-    </CopyFileToFolders>
-    <CopyFileToFolders Include="Assets\Sprites\Tiles\black.bmp">
-      <Filter>Resource Files</Filter>
-    </CopyFileToFolders>
-    <CopyFileToFolders Include="Assets\Sprites\Tiles\blue.bmp">
-      <Filter>Resource Files</Filter>
-    </CopyFileToFolders>
-    <CopyFileToFolders Include="Assets\Sprites\Tiles\brown.bmp">
-      <Filter>Resource Files</Filter>
-    </CopyFileToFolders>
-    <CopyFileToFolders Include="Assets\Sprites\Tiles\gray.bmp">
-      <Filter>Resource Files</Filter>
-    </CopyFileToFolders>
-    <CopyFileToFolders Include="Assets\Sprites\Tiles\green.bmp">
-      <Filter>Resource Files</Filter>
-    </CopyFileToFolders>
-    <CopyFileToFolders Include="Assets\Sprites\Tiles\orange.bmp">
-      <Filter>Resource Files</Filter>
-    </CopyFileToFolders>
-    <CopyFileToFolders Include="Assets\Sprites\Tiles\purple.bmp">
-      <Filter>Resource Files</Filter>
-    </CopyFileToFolders>
-    <CopyFileToFolders Include="Assets\Sprites\Tiles\red.bmp">
-      <Filter>Resource Files</Filter>
-    </CopyFileToFolders>
-    <CopyFileToFolders Include="Assets\Sprites\Tiles\white.bmp">
-      <Filter>Resource Files</Filter>
-    </CopyFileToFolders>
-    <CopyFileToFolders Include="Assets\Sprites\Tiles\yellow.bmp">
-      <Filter>Resource Files</Filter>
-    </CopyFileToFolders>
-    <CopyFileToFolders Include="Assets\Spritesheets\SpriteSheet.png">
-      <Filter>Resource Files</Filter>
-    </CopyFileToFolders>
-    <CopyFileToFolders Include="Assets\Music\bgm-game.mp3">
-      <Filter>Resource Files</Filter>
-    </CopyFileToFolders>
-    <CopyFileToFolders Include="Assets\Music\bgm-menu.mp3">
-      <Filter>Resource Files</Filter>
-    </CopyFileToFolders>
-    <CopyFileToFolders Include="Assets\Advertisements\BananaWho.png">
-      <Filter>Resource Files</Filter>
-    </CopyFileToFolders>
-    <CopyFileToFolders Include="Assets\Advertisements\BurgerKing.png">
-      <Filter>Resource Files</Filter>
-    </CopyFileToFolders>
-    <CopyFileToFolders Include="Assets\Advertisements\CocaCola.png">
-      <Filter>Resource Files</Filter>
-    </CopyFileToFolders>
+    <Image Include="Assets\Sprites\big_black.bmp" />
   </ItemGroup>
 </Project>

@@ -136,6 +136,7 @@ void GameLoader::create_systems(EntityManager& em, loading::LoadingBar::Listener
 	auto& input_system =		em.create_system<InputSystem>(System::update, *_context);
 	auto& move_system =			em.create_system<MoveSystem>();
 	//auto& collider_system =		em.create_system<ColliderSystem>();
+	auto& exp_system =			em.create_system<ExpSystem>();
 	auto& ai_system =			em.create_system<AISystem>();
 	auto& fighting_system =		em.create_system<FightingSystem>(System::draw, multimedia_manager);
 	auto& interaction_system =	em.create_system<InteractionSystem>(System::draw, multimedia_manager);

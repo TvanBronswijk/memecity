@@ -4,12 +4,11 @@
 #include "../Input.h"
 #include "../Components/PlayerComponent.h"
 #include "../Components/HealthComponent.h"
+#include "../Systems/ExpSystem.h"
 
 DeveloperMenuState::DeveloperMenuState(memecity::engine::state::StateManager& sm, GameManager::GameContext& gc, memecity::engine::ecs::EntityManager& em)
 	:State(sm), _context(&gc), _entity_manager(&em)
 {
-
-	
 
 	cheat_menu = memecity::engine::ui::menu::MenuBuilder(gc.get_multimedia_manager())
 		.create_menu("Cheats", assets::fonts::DEFAULT_FONT)
@@ -22,9 +21,30 @@ DeveloperMenuState::DeveloperMenuState(memecity::engine::state::StateManager& sm
 
 		}
 	})//money
-		.with_menu_item("wanpanman")// one punch kill
+		.with_menu_item("wanpanman", nullptr, [&](auto& menu_item)// one punch kill
+	{
+		auto players = em.get_components_of_type<PlayerComponent>();
+		for (auto& player : players)
+		{
+			const auto& stats = player.get().entity().get<StatsComponent>();
+			stats->strength = 100;
+			auto* exp_system = em.get_system_of_type<ExpSystem>();
+			exp_system->stats_changed_event.fire(em, StatsEventArgs{ stats->strength, stats->perception, stats->endurance, stats->charisma, stats->intelligence, stats->agility, stats->luck });
+		}
+	})
 		.with_menu_item("Amnesia Completa")// npcs vergeten dat ze boos zijn
-		.with_menu_item("Avada Kedavra")// alle (niet quest) npcs gaan dood
+		.with_menu_item("Avada Kedavra", nullptr, [&](auto& menu_item)// alle (niet quest) npcs gaan dood
+	{
+		auto healtyEntities = em.get_entities_with_component<HealthComponent>();
+		for (auto& healty_entity : healtyEntities)
+		{
+			if(!healty_entity.get().has<PlayerComponent>())
+			{
+				const auto& health = healty_entity.get().get<HealthComponent>();
+				health->health = 0;
+			}
+		}
+	})
 		.with_back_menu_item()
 		.get_menu();
 

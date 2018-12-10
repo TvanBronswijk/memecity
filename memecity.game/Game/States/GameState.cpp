@@ -1,6 +1,7 @@
 #include "GameState.h"
 #include "../../Assets.h"
 #include "../Systems/FightingSystem.h"
+#include "../Systems/ExpSystem.h"
 
 GameState::GameState(memecity::engine::state::StateManager& sm, GameManager::GameContext& gc,
 	memecity::engine::ecs::EntityManager em) : _context(&gc), entity_manager(std::move(em)), State(sm), _hud(_context->get_multimedia_manager(), _context->get_multimedia_manager().get_texture(assets::sprites::DARK_BACKGROUND, 0, 0, _context->get_multimedia_manager().get_screen_width(), 100), 0, 0)
@@ -12,6 +13,20 @@ GameState::GameState(memecity::engine::state::StateManager& sm, GameManager::Gam
 	{
 		_hud.update("HEALTHVALUE", args.new_health);
 	};
+
+	auto* exp_system = entity_manager.get_system_of_type<ExpSystem>();
+
+	exp_system->stats_changed_event += [&](auto& em, auto args)
+	{
+		_hud.update("S", "S: " + std::to_string(args.s));
+		_hud.update("P", "P: " + std::to_string(args.p));
+		_hud.update("E", "E: " + std::to_string(args.e));
+		_hud.update("C", "C: " + std::to_string(args.c));
+		_hud.update("I", "I: " + std::to_string(args.i));
+		_hud.update("A", "A: " + std::to_string(args.a));
+		_hud.update("L", "L: " + std::to_string(args.l));
+	};
+
 
 	auto& engine = _context->get_engine();
 	engine.bindfps([&](bool enabled, auto fps)
