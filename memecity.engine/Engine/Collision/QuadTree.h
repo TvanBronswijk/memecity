@@ -28,16 +28,17 @@ public:
 
 	QuadTree(size_t capacity, Rectangle boundary)
 		: _capacity(capacity), _boundary(boundary) {
-		_objects.reserve(capacity);
+		_objects.reserve(capacity + 1);
 	}
 	QuadTree(size_t capacity, Rectangle boundary, std::vector<const BoundaryRectangle*> boundary_rectangles)
 		: _capacity(capacity), _boundary(boundary), _objects(std::move(boundary_rectangles)) {
-		_objects.reserve(capacity);
+		_objects.reserve(capacity + 1);
 	}
 	~QuadTree() = default;
 
 	bool insert(const BoundaryRectangle& collider);
 	void query(const BoundaryRectangle& range, std::vector<std::reference_wrapper<const BoundaryRectangle>> &found_object);
+	void clear();
 };
 
 #endif
