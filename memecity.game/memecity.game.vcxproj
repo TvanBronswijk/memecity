@@ -36,6 +36,8 @@
     <ClInclude Include="Game\Generate\City\Strategy\BSP\Fills\Park.h" />
     <ClInclude Include="Game\Generate\City\Strategy\BSP\Fills\Prefab.h" />
     <ClInclude Include="Game\Generate\NPC\NPCGenerator.h" />
+    <ClInclude Include="Game\Highscore.h" />
+    <ClInclude Include="Game\HighscoreLoader.h" />
     <ClInclude Include="Game\Input.h" />
     <ClInclude Include="Game\States\LoadingState.h" />
     <ClInclude Include="Game\States\GameState.h" />
