@@ -64,6 +64,7 @@ void GameLoader::create_player(EntityManager& em, loading::LoadingBar::Listener&
 		.with_component<PlayerComponent>()
 		.with_component<StatsComponent>(1,3,1,1,1,1,1)
 		.with_component<AnimationComponent>()
+		.with_component<HealthComponent>()
 		.with_component<VelocityComponent>();
 	auto base_component = builder.get().get<BaseComponent>();
 	builder.with_component<ColliderComponent>(BoundaryRectangle(base_component->location.x, base_component->location.y, base_component->w, base_component->h));
