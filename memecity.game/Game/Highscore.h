@@ -10,6 +10,7 @@ struct Highscore
 	Highscore(int score, std::string name)
 		: score(score), name(name) {}
 
+
 	std::string get_string() const
 	{
 		return name + " " + std::to_string(score);

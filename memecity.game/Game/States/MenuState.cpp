@@ -79,7 +79,7 @@ void MenuState::on_enter()
 	HighscoreLoader loader;
 	loader.Load();
 
-	for (Highscore score : loader.get_highscores())
+	for (auto score : loader.get_highscores())
 	{
 		highscores_menu_builder.with_read_only_menu_item(score.get_string());
 	}
