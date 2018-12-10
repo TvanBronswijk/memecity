@@ -38,15 +38,6 @@ void InputSystem::run(EntityManager& em) const
 			velocity_component->x += speed;
 		}
 
-		if (input_manager.is_pressed(input::ENTER))
-		{
-			const auto animation_component = player.get<AnimationComponent>();
-			if (animation_component)
-			{
-				animation_component->current_state = AnimationComponent::AnimationState::dying;
-			}
-		}
-
 		if (input_manager.is_pressed(input::INTERACTION))
 		{
 			auto npcs = em.get_entities_with_component<AIComponent>();
