@@ -6,12 +6,24 @@ GameState::GameState(memecity::engine::state::StateManager& sm, GameManager::Gam
 	memecity::engine::ecs::EntityManager em) : _context(&gc), entity_manager(std::move(em)), State(sm), _hud(_context->get_multimedia_manager(), _context->get_multimedia_manager().get_texture(assets::sprites::DARK_BACKGROUND, 0, 0, _context->get_multimedia_manager().get_screen_width(), 100), 0, 0)
 {
 
-	FightingSystem* system = entity_manager.get_system_of_type<FightingSystem>();
+	auto* system = entity_manager.get_system_of_type<FightingSystem>();
 
 	system->health_changed_event += [&](auto& em, auto args)
 	{
 		_hud.update("HEALTHVALUE", args.new_health);
 	};
+
+	auto& engine = _context->get_engine();
+	engine.bindfps([&](bool enabled, auto fps)
+	{
+		if (enabled) {
+			_hud.update("FPS", "FPS: " + std::to_string(fps));
+		}else
+		{
+			_hud.update("FPS", " ");
+		}
+	});
+	
 
 }
 
@@ -32,6 +44,8 @@ void GameState::on_load()
 	_hud.create_overlay_text_item("L", "L: 1", 16, 500, 48);
 
 	_hud.create_overlay_text_item("BLIKCOIN", "BlikCoin: 9999", 16, 650, 16);
+
+	_hud.create_overlay_text_item("FPS", " ", 16, 750, 16);
 }
 
 void GameState::update(float dt)
@@ -54,4 +68,6 @@ void GameState::on_enter()
 void GameState::on_exit()
 {
 	_context->get_multimedia_manager().pause_background_music();
+	auto& engine = _context->get_engine();
+	engine.set_calculate_fps(false);
 }

@@ -32,17 +32,19 @@ namespace memecity::engine {
 			MultimediaManager* multimedia_manager;
 			InputManager* input_manager;
 			sdl::TimerFacade* timer;
+			MemeEngine* engine;
 
 		public:
-			Context(MultimediaManager& mm, InputManager& im, sdl::TimerFacade& t)
-				: multimedia_manager(&mm), input_manager(&im), timer(&t) {}
+			Context(MultimediaManager& mm, InputManager& im, sdl::TimerFacade& t, MemeEngine& engine)
+				: multimedia_manager(&mm), input_manager(&im), timer(&t), engine(&engine) {}
 			Context(MemeEngine& engine)
-				: multimedia_manager(&engine.multimedia_manager), input_manager(&engine.input_manager), timer(&engine.timer) {}
+				: multimedia_manager(&engine.multimedia_manager), input_manager(&engine.input_manager), timer(&engine.timer),engine(&engine) {}
 			virtual ~Context() = default;
 
 			MultimediaManager& get_multimedia_manager() { return *multimedia_manager; }
 			InputManager& get_input_manager() { return *input_manager; }
 			sdl::TimerFacade& get_timer() { return *timer; }
+			MemeEngine& get_engine() { return *engine; }
 		};
 
 		StorageManager storage_manager;
@@ -51,11 +53,21 @@ namespace memecity::engine {
 		sdl::TimerFacade timer;
 		int fps;
 		std::unique_ptr<Context> _context;
-		bool get_fps_trigger;
+		bool get_fps_trigger = false;
+		using fpsSubscriber = std::function<void(bool enabled,int fps)>;
+		std::vector<fpsSubscriber> fps_subscribers;
+
+
 	public:
-		void calculate_fps()
+		void bindfps(fpsSubscriber s) { fps_subscribers.push_back(s); }
+		void set_calculate_fps(bool state)
 		{
-			get_fps_trigger = true;
+			if (!state) {
+				for (auto& subscriber : fps_subscribers) {
+					subscriber(false, 0);
+				}
+			}
+			get_fps_trigger = state;
 		}
 		MemeEngine() : storage_manager(), multimedia_manager(false), input_manager(), timer(), fps(0) {
 			_context = std::make_unique<Context>(*this);

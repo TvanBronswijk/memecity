@@ -79,11 +79,15 @@ namespace memecity::engine::ui::menu {
 		}
 	}
 
-	void MenuItem::back() const
+	bool MenuItem::back() const
 	{
 		if (sub_menu != nullptr)
 		{
-			sub_menu->back();
+			return sub_menu->back();
+		}
+		else
+		{
+			return false;
 		}
 	}
 }

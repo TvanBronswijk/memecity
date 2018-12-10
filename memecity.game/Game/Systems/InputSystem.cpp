@@ -2,6 +2,7 @@
 #include "..\Components.h"
 #include "..\States.h"
 #include "..\Input.h"
+#include "../States/DeveloperMenuState.h"
 
 using namespace memecity::engine;
 using namespace memecity::engine::ecs;
@@ -70,6 +71,10 @@ void InputSystem::run(EntityManager& em) const
 		}
 		if (input_manager.is_pressed(input::ESCAPE)) {
 			state_manager.create_state<PauseMenuState>(*_context);
+		}
+		if(input_manager.is_pressed(input::DEVELOPER))
+		{
+			state_manager.create_state<DeveloperMenuState>(*_context, em);
 		}
 	}
 }

@@ -55,7 +55,10 @@ void PauseMenuState::update(float dt)
 	}
 	else if (input_manager.is_pressed(input::ESCAPE))
 	{
-		menu->back();
+		if (!menu->back())
+		{
+			back();
+		}
 	}
 }
 
