@@ -23,20 +23,21 @@ void AnimationSystem::on_move(memecity::engine::ecs::EntityManager& em, MoveEven
 		animated_texture->update(_context->get_timer().get_delta_time());
 		animated_texture->set_state(AnimatedTexture::AnimationState::idle);
 
-		// TEST FOR DYING
-		if (animation_component->current_state == AnimationComponent::AnimationState::dying)
+		switch (animation_component->current_state)
 		{
-			animated_texture->set_state(AnimatedTexture::AnimationState::dying);
-		}
-		else if (animation_component->current_state == AnimationComponent::AnimationState::fighting)
-		{
-			animated_texture->set_animation_direction(AnimatedTexture::AnimationDirection::horizontal);
-			animation_component->current_state = AnimationComponent::AnimationState::idle;
-		}
-		else
-		{
-			animated_texture->set_animation_direction(AnimatedTexture::AnimationDirection::vertical);
-			animated_texture->set_state(args.state);
+			case AnimationComponent::AnimationState::fighting:
+				animated_texture->set_animation_direction(AnimatedTexture::AnimationDirection::horizontal);
+				animation_component->current_state = AnimationComponent::AnimationState::idle;
+				break;
+			
+			case AnimationComponent::AnimationState::dying:
+				animated_texture->set_state(AnimatedTexture::AnimationState::dying);
+				break;
+			
+			default: 
+				animated_texture->set_animation_direction(AnimatedTexture::AnimationDirection::vertical);
+				animated_texture->set_state(args.state);
+				break;
 		}
 	}
 }
