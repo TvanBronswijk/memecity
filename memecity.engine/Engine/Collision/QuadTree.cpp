@@ -81,6 +81,7 @@ void QuadTree::query(const BoundaryRectangle& range, std::vector<std::reference_
 	}
 	else
 	{
+		_objects.shrink_to_fit();
 		std::transform(_objects.begin(), _objects.end(), std::back_inserter(found_objects), 
 			[](auto& obj)->std::reference_wrapper<const BoundaryRectangle> {return std::ref(*obj); });
 	}

@@ -7,42 +7,37 @@ using namespace memecity::engine::ecs;
 void MoveSystem::run(EntityManager& em) const
 {
 	auto entities = em.get_entities_with_component<VelocityComponent>();
-
-	for (auto& entity : entities)
+	for (const Entity& entity : entities)
 	{
-		auto current_position = entity.get().get<PositionComponent>();
-		auto current_velocity_component = entity.get().get<VelocityComponent>();
-		auto direction = AnimatedTexture::Direction::idle;
-
-		if (current_velocity_component->x != 0)
-		{
-			direction = current_velocity_component->x > 0 ? AnimatedTexture::Direction::right : AnimatedTexture::Direction::left;
-
-			current_position->x += current_velocity_component->x;
-			current_velocity_component->x = 0;
+		auto base = entity.get<BaseComponent>();
+		auto velocity = entity.get<VelocityComponent>();
+		
+		Vector2 diff{ velocity->x, velocity->y };
+		base->location.x += diff.x;
+		base->location.y += diff.y;
+		velocity->x = 0;
+		velocity->y = 0;
+		
+		auto animation_component = entity.get<AnimationComponent>();
+		if (animation_component) {
+			auto direction = AnimatedTexture::Direction::idle;
+			if (diff.x != 0) direction = diff.x > 0 ? AnimatedTexture::Direction::right : AnimatedTexture::Direction::left;
+			if (diff.y != 0) direction = diff.y > 0 ? AnimatedTexture::Direction::down : AnimatedTexture::Direction::up;
+			animated_move_event.fire(em, { entity, direction });
 		}
-
-		if (current_velocity_component->y != 0)
-		{
-			direction = current_velocity_component->y > 0 ? AnimatedTexture::Direction::down : AnimatedTexture::Direction::up;
-
-			current_position->y += current_velocity_component->y;
-			current_velocity_component->y = 0;
-		}
-
-		move_event.fire(em, { entity, direction});
+		
 	}
 }
 
 void MoveSystem::on_collision(EntityManager& em, ColliderEventArgs args)
 {
-	auto position = args.source.get<PositionComponent>();
+	auto base = args.source.get<BaseComponent>();
 	auto velocity = args.source.get<VelocityComponent>();
 
 	if (velocity != nullptr)
 	{
-		position->x += args.source_rectangle.x < args.target_rectangle.x ? -(velocity->x) - 1.0f : (velocity->x) + 1.0f;
-		position->y += args.source_rectangle.y < args.target_rectangle.y ? -(velocity->y) - 1.0f : (velocity->y) + 1.0f;
+		base->location.x += args.source_rectangle.x < args.target_rectangle.x ? -(velocity->x) - 5.0f : (velocity->x) + 5.0f;
+		base->location.y += args.source_rectangle.y < args.target_rectangle.y ? -(velocity->y) - 5.0f : (velocity->y) + 5.0f;
 		velocity->x = 0;
 		velocity->y = 0;
 	}
