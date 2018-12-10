@@ -2,8 +2,6 @@
 #define  _HEALTHCOMPONENT_H
 #include <ECS.h>
 #include <Engine\MultimediaManager.h>
-#include "StatsComponent.h"
-#include "DrawableComponent.h"
 
 struct HealthComponent : public memecity::engine::ecs::Component{
 public:
@@ -15,7 +13,7 @@ public:
 	HealthComponent(memecity::engine::ecs::Entity& entity)
 		: HealthComponent(entity,0, nullptr) {}
 	HealthComponent(memecity::engine::ecs::Entity& entity,int health, std::unique_ptr<memecity::engine::texture::TextTexture> texture)
-		: memecity::engine::ecs::Component(entity), maxhealth(health),health(health), texture(std::move(texture)) {}
+		: memecity::engine::ecs::Component(entity), maxhealth(health), health(health), texture(std::move(texture)) {}
 
 	memecity::engine::texture::TextTexture& get_texture()
 	{
