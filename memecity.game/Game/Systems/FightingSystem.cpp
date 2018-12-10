@@ -13,7 +13,7 @@ void FightingSystem::on_attack(EntityManager &em, AttackEventArgs args) {
 	auto AI = args.target.get<AIComponent>();
 
 
-	if (args.target.get<PlayerComponent>() != nullptr) {
+	if (args.target.has<PlayerComponent>()) {
 		health_changed_event.fire(em, { drawable_health_target->health });
 	}
 	else {
@@ -26,6 +26,8 @@ void FightingSystem::on_attack(EntityManager &em, AttackEventArgs args) {
 		else {
 			drawable_health_target->health = 0;
 			hp += std::to_string(drawable_health_target->health);
+			em.remove_entity(args.target);
+			return;
 		}
 		hp += "/";
 		hp += std::to_string(drawable_health_target->maxhealth);

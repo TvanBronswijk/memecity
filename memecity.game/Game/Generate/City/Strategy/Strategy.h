@@ -6,11 +6,11 @@
 namespace generate::strategy {
 	class Strategy {
 	protected:
-		int _prefab_index;
+		size_t _prefab_index;
 		std::vector<models::Prefab> _prefabs;
 	public:
-		Strategy() = default;
-		Strategy(std::vector<models::Prefab> prefabs) : _prefabs(prefabs) {}
+		Strategy() noexcept = default;
+		Strategy(std::vector<models::Prefab> prefabs) : _prefab_index(0), _prefabs(prefabs) {}
 		virtual ~Strategy() = default;
 		virtual models::City generate(int w, int h) = 0;
 		virtual models::Prefab* get_next_prefab() {

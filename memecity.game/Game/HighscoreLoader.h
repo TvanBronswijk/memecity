@@ -12,7 +12,7 @@ private:
 	{
 		std::sort(highscores.begin(), highscores.end(), [](const Highscore& lhs, const Highscore& rhs)
 		{
-			return lhs.score < rhs.score;
+			return lhs.score > rhs.score;
 		});
 	}
 

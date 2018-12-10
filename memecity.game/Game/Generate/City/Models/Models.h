@@ -1,6 +1,8 @@
 #ifndef _CITY_MODELS_H
 #define _CITY_MODELS_H
+#include <map>
 #include <Engine\Util.h>
+#include "..\..\..\..\Assets.h"
 
 namespace generate::models {
 	struct Base64_Tilemap : uRectangle<int> {
@@ -35,15 +37,17 @@ namespace generate::models {
 				}
 			}
 		}
-		Prefab(int w, int h, const char** tiles) :
-			Base64_Tilemap(w, h) {
-			for (int x = 0; x < w; x++) {
-				for (int y = 0; y < h; y++) {
-					this->coord(x, y) = tiles[x][y];
-				}
-			}
-		}
 	};
+
+	static const std::map<char, assets::Asset> __cta {
+		{'-', assets::sprites::tiles::ROAD },
+		{'w', assets::sprites::tiles::WATER },
+		{'g', assets::sprites::tiles::GRASS },
+		{'W', assets::sprites::tiles::WALL }
+	};
+	static assets::Asset char_to_asset(char c) {
+		return __cta.at(c);
+	}
 }
 
 

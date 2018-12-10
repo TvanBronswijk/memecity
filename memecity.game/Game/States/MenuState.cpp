@@ -1,9 +1,8 @@
 ﻿#include "MenuState.h"
 #include "LoadingState.h"
 #include "GameState.h"
-#include "..\GameLoader.h"
-#include "..\..\Assets.h"
-#include "..\Input.h"
+#include "../../Assets.h"
+#include "../Input.h"
 #include "../Highscore.h"
 #include "../HighscoreLoader.h"
 
@@ -39,6 +38,7 @@ MenuState::MenuState(memecity::engine::state::StateManager & sm, GameManager::Ga
 		.with_read_only_menu_item(" ")
 		.with_back_menu_item()
 		.get_menu();
+
 }
 
 void MenuState::on_load()
@@ -90,7 +90,7 @@ void MenuState::on_enter()
 
 	menu = memecity::engine::ui::menu::MenuBuilder(get_context().get_multimedia_manager())
 		.create_menu("MemeCity", assets::fonts::DEFAULT_FONT)
-		.with_menu_item("Start Game", nullptr, [&](auto& menu_item) { next<LoadingState>(get_context(), [&](auto& ctx, auto& listener) { replace<GameState>(ctx, GameLoader(ctx, 128, 128).build(listener)); }); })
+		.with_menu_item("Start Game", nullptr, [&](auto& menu_item) { next<GameState>(get_context()); })
 		.with_menu_item("Settings", settings_menu.get())
 		.with_menu_item("Highscores", highscores_menu.get())
 		.with_menu_item("Credits", credits_menu.get())

@@ -4,7 +4,10 @@
 #include <iostream>
 #include <tuple>
 #include <vector>
-#include "..\EntityManager.h"
+
+namespace memecity::engine::ecs {
+	class EntityManager;
+}
 
 namespace memecity::engine::ecs::eventing {
 	template<typename TEventArgs>
