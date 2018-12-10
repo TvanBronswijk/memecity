@@ -90,43 +90,41 @@ void AISystem::best_first_search(EntityManager& em, const BaseComponent& npc_xy)
 void AISystem::move_random(const Entity& entity) const{
 
 	auto velocity = entity.get<VelocityComponent>();
-
 	velocity->x += random_x();
 	velocity->y += random_y();
-
 }
 
-void AISystem::fleeing(EntityManager& em, const BaseComponent& npc_xy) const { 
-	/*auto velocity = npc_xy.entity().get<VelocityComponent>();
-	auto& player_component = em.get_components_of_type<PlayerComponent>()[0].get();
-	auto player_position = player_component.entity().get<BaseComponent>();
+void AISystem::fleeing(EntityManager& em, const BaseComponent& base) const { 
+	auto& player = em.get_entities_with_component<PlayerComponent>().front().get();
+	auto player_base = player.get<BaseComponent>();
+	auto velocity = base.entity().get<VelocityComponent>();
 
-	if (npc_xy.x < player_position->x) { velocity->x -= 4; }
-	else if (npc_xy.x > player_position->x) { velocity->x += 4; }
-	if (npc_xy.y < player_position->y) { velocity->y -= 4; }
-	else if (npc_xy.y > player_position->y) { velocity->y += 4; }*/
+	velocity->x += base.location.x < player_base->location.x ? 4 : -4;
+	velocity->y += base.location.y < player_base->location.y ? 4 : -4;
 }
 
 void AISystem::run(EntityManager& em) const {
 
-	/*auto player = em.get_entities_with_component<PlayerComponent>().front();
+	auto player = em.get_entities_with_component<PlayerComponent>().front();
 	auto npcs = em.get_entities_with_component<AIComponent>();
 	for (const Entity& npc : npcs) {
-		switch (npc.get<AIComponent>()->state)
+		auto& state = npc.get<AIComponent>()->state;
+		auto base = npc.get<BaseComponent>();
+		switch (state)
 		{
 		case AIComponent::State::Fighting:
-			best_first_search(em, *xy);
+			best_first_search(em, *base);
 			break;
 		case AIComponent::State::Fleeing:
-			fleeing(em, *xy);
+			fleeing(em, *base);
 			break;
 		case AIComponent::State::Roaming:
-			move_random(element.get().entity());
+			move_random(npc);
 			break;
 		case AIComponent::State::Idle:
 			break;
 		default:
 			break;
 		}
-	}*/
+	}
 }
