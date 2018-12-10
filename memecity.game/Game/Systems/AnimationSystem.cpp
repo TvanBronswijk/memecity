@@ -11,9 +11,9 @@ void AnimationSystem::run(EntityManager& em) const
 
 void AnimationSystem::on_move(memecity::engine::ecs::EntityManager& em, MoveEventArgs args)
 {
-	auto animation_component = ea.source.get<AnimationComponent>();
-	const auto& current_velocity = ea.source.get<VelocityComponent>();
-	auto& texture = ea.source.get<DrawableComponent>()->get_texture();
+	auto animation_component = args.source.get<AnimationComponent>();
+	const auto& current_velocity = args.source.get<VelocityComponent>();
+	auto& texture = args.source.get<BaseComponent>()->get_texture();
 
 	// Cast from base class (Texture) to derived class (AnimatedTexture)
 	auto animated_texture = dynamic_cast<AnimatedTexture*>(&texture);
@@ -36,7 +36,7 @@ void AnimationSystem::on_move(memecity::engine::ecs::EntityManager& em, MoveEven
 		else
 		{
 			animated_texture->set_animation_direction(AnimatedTexture::AnimationDirection::vertical);
-			animated_texture->set_state(ea.state);
+			animated_texture->set_state(args.state);
 		}
 	}
 }
