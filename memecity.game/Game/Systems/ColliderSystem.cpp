@@ -2,49 +2,27 @@
 
 using namespace memecity::engine::ecs;
 
-
 void ColliderSystem::run(EntityManager& em) const
 {
-	auto entities = em.get_entities_with_component<ColliderComponent>();
-
-	for (auto& entity_ref : entities)
+	auto components = em.get_components_of_type<ColliderComponent>();
+	QuadTree quad_tree(4, Rectangle(0, 0, _map_width, _map_height));
+	for (const ColliderComponent& collider : components)
 	{
-		auto& entity = entity_ref.get();
+		quad_tree.insert(collider.boundary_rectangle);
+	}
 
-		for (auto& other_entity_ref : entities)
+	for (const ColliderComponent& collider : components)
+	{
+		const auto& boundary_rectangle = collider.boundary_rectangle;
+		std::vector<std::reference_wrapper<const BoundaryRectangle>> query_result{};
+		query_result.reserve(4);
+		quad_tree.query(boundary_rectangle, query_result);
+		query_result.shrink_to_fit();
+		for (const BoundaryRectangle& collidable : query_result)
 		{
-			auto& other_entity = other_entity_ref.get();
-
-			if (entity != other_entity)
+			if (&boundary_rectangle != &collidable && intersects(boundary_rectangle, collidable))
 			{
-				auto collider_component = entity.get<ColliderComponent>();
-				auto other_collider_component = other_entity.get<ColliderComponent>();
-				auto current_location_component = entity.get<PositionComponent>();
-				auto other_location_component = other_entity.get<PositionComponent>();
-
-				if (current_location_component != nullptr && other_location_component != nullptr)
-				{
-					float current_x1, current_y1, current_x2, current_y2;
-					float other_x1, other_y1, other_x2, other_y2;
-
-					current_x1 = current_location_component->x;
-					current_y1 = current_location_component->y;
-					current_x2 = current_location_component->x + collider_component->w - 1;
-					current_y2 = current_location_component->y + collider_component->h - 1;
-
-					other_x1 = other_location_component->x;
-					other_y1 = other_location_component->y;
-					other_x2 = other_location_component->x + other_collider_component->w - 1;
-					other_y2 = other_location_component->y + other_collider_component->h - 1;
-
-					if (current_x1 < other_x2 &&
-						current_y1 < other_y2 &&
-						other_x1 < current_x2 &&
-						other_y1 < current_y2)
-					{
-						collider_event.fire(em, { entity, other_entity });
-					}
-				}
+				collider_event.fire(em, { collider.entity(), boundary_rectangle, collidable });
 			}
 		}
 	}

@@ -9,7 +9,7 @@ void AnimationSystem::run(EntityManager& em) const
 {
 }
 
-void AnimationSystem::on_move(EntityManager& em, MoveEventArgs ea)
+void AnimationSystem::on_move(memecity::engine::ecs::EntityManager& em, MoveEventArgs args)
 {
 	auto animation_component = ea.source.get<AnimationComponent>();
 	const auto& current_velocity = ea.source.get<VelocityComponent>();
