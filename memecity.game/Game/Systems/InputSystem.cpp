@@ -68,7 +68,10 @@ void InputSystem::run(EntityManager& em) const
 		//inventory
 		if (input_manager.is_pressed(input::DROP)) {
 			auto inventory = player.get<InventoryComponent>();
-			if (inventory->items.size() != 0) {
+			if (inventory->items.size() != 0){
+				if (inventory->items.size() -1 < inventory->selected) {
+					inventory->selected = inventory->items.size() - 1;
+				}
 				auto item = inventory->items.at(inventory->selected);
 				inventory->items.erase(inventory->items.begin() + inventory->selected);
 
