@@ -24,10 +24,20 @@ void FightingSystem::on_attack(EntityManager &em, AttackEventArgs args) {
 	}
 
 	if (AI != nullptr) {
-		AI->state = State::Fighting;
-		this->damage_event.fire(em, args.target );
+		if (AI->state != State::Fighting) {
+			AI->state = State::Fighting;
+		}
+		else {
+			this->damage_event.fire(em, args.target); 
+		}
 	}
 	else{
+		const auto animation_component = args.source.get<AnimationComponent>();
+		if (animation_component)
+		{
+			animation_component->current_state = AnimationComponent::AnimationState::fighting;
+		}
+
 		if(health_target->health == 0) args.source.get<AIComponent>()->state = State::Idle;
 		health_changed_event.fire(em, { health_target->health });
 	}

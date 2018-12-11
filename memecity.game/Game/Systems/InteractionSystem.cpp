@@ -43,8 +43,6 @@ void InteractionSystem::run(EntityManager &em) const {
 }
 
 void InteractionSystem::on_interact(EntityManager &em, InteractionEventArgs args) {
-
-	//auto base = args.source.get<BaseComponent>();
 	auto interaction = args.source.get<InteractionComponent>();
 
 	auto text_texture = &interaction->get_texture();
