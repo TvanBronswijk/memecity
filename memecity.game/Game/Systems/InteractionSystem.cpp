@@ -10,12 +10,19 @@ void InteractionSystem::run(EntityManager &em) const {
 	for (auto& component : vector) {
 		auto text_texture = &component.get().get_texture();
 		if (text_texture->get_text() != " ") {
-			if (component.get().entity().get<AIComponent>() != nullptr) {
+			auto ai = component.get().entity().get<AIComponent>();
+			if (ai != nullptr) {
 				if (component.get().start_time > 1) {
 					auto npc_interaciton_texture = this->_context->get_multimedia_manager().get_text(" ", 14);
 					npc_interaciton_texture->set_position({ 0, -35 });
 					npc_interaciton_texture->set_parent(text_texture->get_parent());
 					component.get().texture = std::move(npc_interaciton_texture);
+					
+					auto npc_name_texture = this->_context->get_multimedia_manager().get_text(ai->name, 14);
+					npc_name_texture->set_position({ 0, -35 });
+					npc_name_texture->set_parent(ai->texture->get_parent());
+					ai->texture = std::move(npc_name_texture);
+					
 					component.get().start_time = 0;
 				}
 			}
@@ -48,6 +55,11 @@ void InteractionSystem::on_interact(EntityManager &em, InteractionEventArgs args
 		auto health = args.source.get<HealthComponent>();
 		if (health->health > 0) {
 			text = interaction->text[(rand() % (interaction->text.size()))];
+
+			auto npc_name_texture = this->_context->get_multimedia_manager().get_text(" ", 14);
+			npc_name_texture->set_position({ 0, -35 });
+			npc_name_texture->set_parent(text_texture->get_parent());
+			args.source.get<AIComponent>()->texture = std::move(npc_name_texture);
 		}
 	}
 	else {

@@ -18,6 +18,7 @@ void FightingSystem::on_attack(EntityManager &em, AttackEventArgs args) {
 	//calculate health
 	if (stats_source != nullptr){
 		health_target->health -= (rand() % (stats_source->strength * 5));
+		if (health_target->health < 0) health_target->health = 0;
 	} else {
 		health_target->health -= 1;
 	}
@@ -27,9 +28,8 @@ void FightingSystem::on_attack(EntityManager &em, AttackEventArgs args) {
 		this->damage_event.fire(em, args.target );
 	}
 	else{
-		if (health_target->health < 0) health_target->health = 0;
+		if(health_target->health == 0) args.source.get<AIComponent>()->state = State::Idle;
 		health_changed_event.fire(em, { health_target->health });
-		AI->state = State::Idle;
 	}
 
 	this->quest_event.fire(em, { &args.target , nullptr });

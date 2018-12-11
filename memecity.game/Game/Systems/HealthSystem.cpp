@@ -12,13 +12,7 @@ void HealthSystem::on_damage(EntityManager& em, std::reference_wrapper<const Ent
 	auto stats_target = entity.get().get<StatsComponent>();
 
 	std::string hp = "HP: ";
-	if (health_target->health <= 0) {
-		hp += std::to_string(0);
-	}
-	else {
-
-		hp += std::to_string(health_target->health);
-	}
+	hp += std::to_string(health_target->health);
 	hp += "/";
 	hp += std::to_string(health_target->maxhealth);
 

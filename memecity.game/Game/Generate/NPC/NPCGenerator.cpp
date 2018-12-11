@@ -64,7 +64,7 @@ namespace generate {
 		name_texture->set_parent(animation_texture.get());
 
 		auto interaction_texture = multimedia_manager.get_text(" ", 14);
-		interaction_texture->set_position({ 0, -800 });
+		interaction_texture->set_position({ 0, -35 });
 		interaction_texture->set_parent(animation_texture.get());
 
 		auto& builder = entity_manager.create_entity("npc")
