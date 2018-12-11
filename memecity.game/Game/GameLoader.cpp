@@ -50,7 +50,7 @@ void GameLoader::create_npcs(EntityManager& em, loading::LoadingBar::Listener& l
 	auto& multimedia_manager = _context->get_multimedia_manager();
 	auto& timer = _context->get_timer();
 	generate::NPCGenerator(multimedia_manager, em).generate_random_npc(1, 220, 0, 1);
-	listener.increase_current_value(10.0f);
+	listener.increase_current_value(20.0f);
 }
 
 void GameLoader::create_player(EntityManager& em, loading::LoadingBar::Listener& listener)
@@ -65,6 +65,7 @@ void GameLoader::create_player(EntityManager& em, loading::LoadingBar::Listener&
 		.with_component<PlayerComponent>(QuestBuilder(multimedia_manager, em).getAllStories())
 		.with_component<StatsComponent>(1,3,1,1,1,1,1)
 		.with_component<AnimationComponent>()
+		.with_component<HealthComponent>(100, nullptr)
 		.with_component<VelocityComponent>();
 	auto base_component = builder.get().get<BaseComponent>();
 	builder.with_component<ColliderComponent>(BoundaryRectangle(base_component->location.x, base_component->location.y, base_component->w, base_component->h));

@@ -6,6 +6,10 @@
 #include "../Enum/AIStates.h"
 using namespace memecity::engine::ecs;
 
+bool AISystem::check_collision(BaseComponent& l, BaseComponent& r, int range) const {
+	return ((l.location.x + range) >= r.location.x && (l.location.x - range) <= r.location.x)
+		&& ((l.location.y + range) >= r.location.y && (l.location.y - range) <= r.location.y);
+}
 
 bool AISystem::check_health(const Entity& entity) const{
 	auto AI = entity.get<AIComponent>();
@@ -37,7 +41,7 @@ bool AISystem::check_player_position(Point location, Point end) const{
 	return false;
 }
 
-void AISystem::point_jump_search(EntityManager& em, const BaseComponent& npc_base) const{
+void AISystem::point_jump_search(EntityManager& em, BaseComponent& npc_base) const{
 	auto velocity = npc_base.entity().get<VelocityComponent>();
 	auto player_base = em.get_components_of_type<PlayerComponent>()[0].get().entity().get<BaseComponent>();
 
@@ -48,6 +52,11 @@ void AISystem::point_jump_search(EntityManager& em, const BaseComponent& npc_bas
 
 	Point start(npc_base.location.x, npc_base.location.y);
 	Point end(player_base->location.x, player_base->location.y);
+
+	//check if ai is near player
+	if (check_collision(npc_base, *player_base, 60)) {
+		attack_event.fire(em, { npc_base.entity(), player_base->entity() });
+	}
 
 	Point direction = calculate_next_route(start, end, 10);
 

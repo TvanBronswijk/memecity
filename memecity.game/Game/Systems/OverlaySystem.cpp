@@ -12,6 +12,7 @@ void OverlaySystem::run(EntityManager& em) const
 
 	for (HealthComponent& item : health_overlay_components)
 	{
+		if (item.texture != nullptr)
 		multimedia_manager.render_text(item.get_texture());
 	}
 	for (InteractionComponent& item : interaction_overlay_components)

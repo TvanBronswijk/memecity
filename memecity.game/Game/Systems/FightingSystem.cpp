@@ -15,11 +15,6 @@ void FightingSystem::on_attack(EntityManager &em, AttackEventArgs args) {
 	auto stats_source = args.source.get<StatsComponent>();
 	auto AI = args.target.get<AIComponent>();
 
-
-	if (args.target.has<PlayerComponent>()) {
-		health_changed_event.fire(em, { health_target->health });
-	}
-
 	//calculate health
 	if (stats_source != nullptr){
 		health_target->health -= (rand() % (stats_source->strength * 5));
@@ -30,6 +25,11 @@ void FightingSystem::on_attack(EntityManager &em, AttackEventArgs args) {
 	if (AI != nullptr) {
 		AI->state = State::Fighting;
 		this->damage_event.fire(em, args.target );
+	}
+	else{
+		if (health_target->health < 0) health_target->health = 0;
+		health_changed_event.fire(em, { health_target->health });
+		AI->state = State::Idle;
 	}
 
 	this->quest_event.fire(em, { &args.target , nullptr });

@@ -6,7 +6,7 @@
 
 void GameState::on_load()
 {
-	next<LoadingState>(*_context, [&](auto& ctx, auto& listener) { GameLoader(ctx, 194, 194).build(entity_manager, listener); back(); });
+	next<LoadingState>(*_context, [&](auto& ctx, auto& listener) { GameLoader(ctx, 256, 256).build(entity_manager, listener); back(); });
 
 	auto& multimedia_manager = _context->get_multimedia_manager();
 
@@ -29,6 +29,7 @@ void GameState::on_load()
 	memecity::engine::ecs::eventing::bind(move_system.animated_move_event, &animation_system, &AnimationSystem::on_move);
 	memecity::engine::ecs::eventing::bind(input_system.interaction_event, &interaction_system, &InteractionSystem::on_interact);
 	memecity::engine::ecs::eventing::bind(input_system.attack_event, &fighting_system, &FightingSystem::on_attack);
+	memecity::engine::ecs::eventing::bind(ai_system.attack_event, &fighting_system, &FightingSystem::on_attack);
 	memecity::engine::ecs::eventing::bind(collider_system.collider_event, &move_system, &MoveSystem::on_collision);
 	memecity::engine::ecs::eventing::bind(fighting_system.damage_event, &health_system, &HealthSystem::on_damage);
 	memecity::engine::ecs::eventing::bind(interaction_system.quest_event, &quest_system, &QuestSystem::on_event);
