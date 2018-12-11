@@ -1,23 +1,21 @@
 #include "NPCGenerator.h"
-#include "..\..\Components.h"
+#include "../../Components.h"
 #include <stdlib.h>     /* srand, rand */
 #include <time.h>       /* time */
-#include "../../Enum/AIStates.h"
-#include "..\..\..\Assets.h"
+#include "../../../Assets.h"
 
 using namespace memecity::engine;
 using namespace memecity::engine::ecs;
 
 namespace generate {
 	int NPCGenerator::random_int(int max) {
-		srand(time(NULL));
 		if (max <= 0 || 5 > max) {
 			return 5;
 		}
 		return (5 + (rand() % (max)));
 	}
 
-	const memecity::engine::ecs::Entity& NPCGenerator::generate_random_npc(int maxlevel, float x, float y, float movement_speed) {
+	const memecity::engine::ecs::Entity& NPCGenerator::generate_random_npc(int maxlevel, float x, float y, float movement_speed, State state) {
 		this->name = "random";
 		this->level = rand() % maxlevel + 1;
 		this->x = x;
@@ -69,7 +67,7 @@ namespace generate {
 
 		auto& builder = entity_manager.create_entity("npc")
 			.with_component<BaseComponent>(std::move(animation_texture), x, y, 48.0f, 48.0f)
-			.with_component<AIComponent>(State::Idle, this->name,movement_speed, std::move(name_texture))
+			.with_component<AIComponent>(state, this->name,movement_speed, std::move(name_texture))
 			.with_component<VelocityComponent>()
 			.with_component<AnimationComponent>()
 			.with_component<LevelComponent>(level)

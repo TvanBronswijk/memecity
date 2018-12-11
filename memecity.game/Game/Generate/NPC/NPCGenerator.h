@@ -5,6 +5,7 @@
 #include <map>
 #include <Engine\MultimediaManager.h>
 #include "..\..\..\Assets.h"
+#include "..\..\Enum\AIStates.h"
 
 namespace generate {
 	class NPCGenerator {
@@ -22,7 +23,7 @@ namespace generate {
 			: multimedia_manager(multimedia_manager), entity_manager(entity_manager) {};
 
 		int random_int(int max);
-		const memecity::engine::ecs::Entity& generate_random_npc(int level, float x, float y, float movement_speed);
+		const memecity::engine::ecs::Entity& generate_random_npc(int level, float x, float y, float movement_speed, State state);
 		const memecity::engine::ecs::Entity& generate_quest_npc(std::string name, assets::Asset asset);
 		const memecity::engine::ecs::Entity& generate_npc(
 			int level, float x, float y, float movement_speed, int strength, int perception, int endurance, int charisma, 
