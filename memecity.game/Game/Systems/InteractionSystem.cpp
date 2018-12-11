@@ -11,7 +11,7 @@ void InteractionSystem::run(EntityManager &em) const {
 		auto text_texture = &component.get().get_texture();
 		if (text_texture->get_text() != " ") {
 			if (component.get().entity().get<AIComponent>() != nullptr) {
-				if (component.get().start_time > 50) {
+				if (component.get().start_time > 1) {
 					auto npc_interaciton_texture = this->_context->get_multimedia_manager().get_text(" ", 14);
 					npc_interaciton_texture->set_position({ 0, -35 });
 					npc_interaciton_texture->set_parent(text_texture->get_parent());
@@ -20,7 +20,7 @@ void InteractionSystem::run(EntityManager &em) const {
 				}
 			}
 			else {
-				if (component.get().start_time > 500) {
+				if (component.get().start_time > (component.get().text.size() * 2)) {
 						auto npc_interaciton_texture = this->_context->get_multimedia_manager().get_text(" ", 14);
 						
 						npc_interaciton_texture->set_position({ 0, -35 });
@@ -37,7 +37,7 @@ void InteractionSystem::run(EntityManager &em) const {
 
 void InteractionSystem::on_interact(EntityManager &em, InteractionEventArgs args) {
 
-	auto xy = args.source.get<PositionComponent>();
+	//auto base = args.source.get<BaseComponent>();
 	auto interaction = args.source.get<InteractionComponent>();
 
 	auto text_texture = &interaction->get_texture();

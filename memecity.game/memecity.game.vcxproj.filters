@@ -21,6 +21,11 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Game\Systems\MoveSystem.cpp" />
     <ClCompile Include="Game\Systems\OverlaySystem.cpp" />
+    <ClCompile Include="Game\Builder\QuestBuilder.cpp" />
+    <ClCompile Include="Game\States\StoryState.cpp" />
+    <ClCompile Include="Game\Systems\HealthSystem.cpp" />
+    <ClCompile Include="Game\Systems\FogOfWarSystem.cpp" />
+    <ClCompile Include="Game\Systems\QuestSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Components\DimensionComponent.h" />
@@ -75,6 +80,18 @@
     <ClInclude Include="Game\Components\ScoreComponent.h" />
     <ClInclude Include="Assets.h" />
     <ClInclude Include="Game\Components\ColliderComponent.h" />
+    <ClInclude Include="Game\Builder\QuestBuilder.h" />
+    <ClInclude Include="Game\Components\QuestAIComponent.h" />
+    <ClInclude Include="Game\Components\QuestComponent.h" />
+    <ClInclude Include="Game\Components\StoryComponent.h" />
+    <ClInclude Include="Game\Components\TaskComponent.h" />
+    <ClInclude Include="Game\Enum\AIStates.h" />
+    <ClInclude Include="Game\Enum\QuestStates.h" />
+    <ClInclude Include="Game\Event\QuestEventArgs.h" />
+    <ClInclude Include="Game\States\StoryState.h" />
+    <ClInclude Include="Game\Systems\FogOfWarSystem.h" />
+    <ClInclude Include="Game\Systems\HealthSystem.h" />
+    <ClInclude Include="Game\Systems\QuestSystem.h" />
   </ItemGroup>
   <ItemGroup>
     <CopyFileToFolders Include="Assets\Music\bgm.mp3" />
@@ -99,6 +116,11 @@
     <CopyFileToFolders Include="Assets\Fonts\Minecraftia-Regular.ttf" />
     <CopyFileToFolders Include="Assets\Music\bgm-game.mp3" />
     <CopyFileToFolders Include="Assets\Music\bgm-menu.mp3" />
-    <CopyFileToFolders Include="Assets\Sprites\big_black.bmp" />
+    <CopyFileToFolders Include="Assets\Advertisements\BananaWho.png" />
+    <CopyFileToFolders Include="Assets\Advertisements\BurgerKing.png" />
+    <CopyFileToFolders Include="Assets\Advertisements\CocaCola.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Assets\Sprites\big_black.bmp" />
   </ItemGroup>
 </Project>

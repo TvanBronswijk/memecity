@@ -10,12 +10,12 @@ struct AIComponent : public memecity::engine::ecs::Component {
 	State state;
 	Direction direction;
 	std::string name;
+	float movement_speed;
 
 	std::unique_ptr<memecity::engine::texture::TextTexture> texture;
 
-	AIComponent(memecity::engine::ecs::Entity& entity, std::unique_ptr<memecity::engine::texture::TextTexture> texture) : AIComponent(entity, State::Idle, "unknown" , std::move(texture)) {};
-
-	AIComponent(memecity::engine::ecs::Entity& entity, State type, std::string name , std::unique_ptr<memecity::engine::texture::TextTexture> texture) : memecity::engine::ecs::Component(entity), state(type), name(name) , texture(std::move(texture)) {};
+	AIComponent(memecity::engine::ecs::Entity& entity, State type, std::string name, float movement_speed, std::unique_ptr<memecity::engine::texture::TextTexture> texture) : 
+		memecity::engine::ecs::Component(entity), state(type), name(name) , movement_speed(movement_speed),  texture(std::move(texture)) {};
 
 	memecity::engine::texture::TextTexture& get_texture()
 	{

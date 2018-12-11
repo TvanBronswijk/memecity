@@ -27,7 +27,7 @@ const memecity::engine::ecs::Entity& QuestBuilder::intro() {
 	"first task it to kill a human",
 	" "};
 
-	auto builder = builder::EntityBuilder(this->entity_manager).create_entity();
+	auto builder = entity_manager.create_entity("story");
 	auto& story = builder.get();
 
 	//create tasks

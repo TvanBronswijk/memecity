@@ -17,14 +17,12 @@ void FightingSystem::on_attack(EntityManager &em, AttackEventArgs args) {
 
 
 	if (args.target.has<PlayerComponent>()) {
-		health_changed_event.fire(em, { drawable_health_target->health });
+		health_changed_event.fire(em, { health_target->health });
 	}
-	else {
 
-		
 	//calculate health
 	if (stats_source != nullptr){
-		health_target->health -= (rand() % stats_source->strength);
+		health_target->health -= (rand() % (stats_source->strength * 5));
 	} else {
 		health_target->health -= 1;
 	}

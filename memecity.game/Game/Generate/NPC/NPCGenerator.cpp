@@ -17,7 +17,7 @@ namespace generate {
 		return (5 + (rand() % (max)));
 	}
 
-	const memecity::engine::ecs::Entity& NPCGenerator::generate_random_npc(int maxlevel, float x, float y) {
+	const memecity::engine::ecs::Entity& NPCGenerator::generate_random_npc(int maxlevel, float x, float y, float movement_speed) {
 		this->name = "rick";//TODO: change to random name
 		this->level = rand() % maxlevel + 1;
 		this->x = x;
@@ -67,24 +67,23 @@ namespace generate {
 		interaction_texture->set_position({ 0, -800 });
 		interaction_texture->set_parent(animation_texture.get());
 
-		auto& npc = entity_manager.create_entity("npc")
+		auto& builder = entity_manager.create_entity("npc")
 			.with_component<BaseComponent>(std::move(animation_texture), x, y, 48.0f, 48.0f)
-			.with_component<AIComponent>()
+			.with_component<AIComponent>(State::Idle, this->name,movement_speed, std::move(name_texture))
 			.with_component<VelocityComponent>()
 			.with_component<LevelComponent>(level)
 			.with_component<StatsComponent>(strength, perception, endurance, charisma, intelligence, agility, luck)
 			.with_component<HealthComponent>(health, std::move(health_texture))
-			.with_component<InteractionComponent>(createInteractionStrings(), std::move(interaction_texture))
-			.with_component<AnimationComponent>()
-			.with_component<ColliderComponent>(48.0f, 48.0f) //TODO: moet anders gemaakt worden
-			.get();
+			.with_component<InteractionComponent>(createInteractionStrings(), std::move(interaction_texture));
+		auto base_component = builder.get().get<BaseComponent>();
+		builder.with_component<ColliderComponent>(BoundaryRectangle(base_component->location.x, base_component->location.y, base_component->w, base_component->h));
 
-		return npc;
+		return builder.get();
 	}
 
 
 	const memecity::engine::ecs::Entity& NPCGenerator::generate_npc(//TODO: kijk goed naar de bovenste
-		int level, float x, float y, int strength, int perception,
+		int level, float x, float y,float movement_speed, int strength, int perception,
 		int endurance, int charisma, int intelligence, int agility, 
 		int luck, int health, std::string name,
 		std::unique_ptr<memecity::engine::texture::Texture> animation_texture, 
@@ -92,25 +91,22 @@ namespace generate {
 		std::unique_ptr<memecity::engine::texture::TextTexture> interaction_texture,
 		std::unique_ptr<memecity::engine::texture::TextTexture> name_texture) {
 
-		auto& npc = builder::EntityBuilder(entity_manager)
-			.create_entity()
-			.with_component<AIComponent>(std::move(name_texture))
+		auto& builder = entity_manager.create_entity("npc")
+			.with_component<BaseComponent>(std::move(animation_texture), x, y, 48.0f, 48.0f)
+			.with_component<AIComponent>(State::Idle, name , movement_speed,std::move(name_texture))
 			.with_component<VelocityComponent>()
-			.with_component<PositionComponent>(x, y)
 			.with_component<LevelComponent>(level)
 			.with_component<StatsComponent>(strength, perception, endurance, charisma, intelligence, agility, luck)
-			.with_component<DrawableComponent>(std::move(animation_texture))//body of npc
 			.with_component<HealthComponent>(health, std::move(health_texture))
-			.with_component<InteractionComponent>(std::move(interaction_texture))
-			.with_component<AnimationComponent>()
-			.with_component<ColliderComponent>(48.0f, 48.0f)
-			.get();
+			.with_component<InteractionComponent>(std::move(interaction_texture));
+		auto base_component = builder.get().get<BaseComponent>();
+		builder.with_component<ColliderComponent>(BoundaryRectangle(base_component->location.x, base_component->location.y, base_component->w, base_component->h));
 
-		return npc;
+		return builder.get();
 
 	}
 
-	const memecity::engine::ecs::Entity& NPCGenerator::generate_quest_npc(std::string name, assets::Asset asset) {//TODO: kijk goed naar random npc
+	const memecity::engine::ecs::Entity& NPCGenerator::generate_quest_npc(std::string name, assets::Asset asset) {
 		if (quest_npcs.find(name) != quest_npcs.end()) {
 			return *quest_npcs.find(name)->second;
 		}
@@ -128,16 +124,16 @@ namespace generate {
 			interaction_texture->set_parent(animation_texture.get());
 
 
-			auto& quest_npc = builder::EntityBuilder(entity_manager)
-				.create_entity()
+			auto& builder = entity_manager.create_entity("npc")
+				.with_component<BaseComponent>(std::move(animation_texture), 50, 0, 48.0f, 48.0f)
 				.with_component<QuestAIComponent>(name, std::move(name_texture))
-				.with_component<PositionComponent>(0, 0)
-				.with_component<DrawableComponent>(std::move(animation_texture))//body of npc
-				.with_component<InteractionComponent>(std::move(interaction_texture))
-				.with_component<ColliderComponent>(48.0f, 48.0f)
-				.get();
+				.with_component<InteractionComponent>(std::move(interaction_texture));
+			auto base_component = builder.get().get<BaseComponent>();
+			builder.with_component<ColliderComponent>(BoundaryRectangle(base_component->location.x, base_component->location.y, base_component->w, base_component->h));
 
-			quest_npcs.insert(std::pair<std::string,const memecity::engine::ecs::Entity*>(name, &quest_npc));
+			auto& quest_npc = builder.get();
+
+			quest_npcs.insert(std::pair<std::string, const memecity::engine::ecs::Entity*>(name, &quest_npc));
 
 			return quest_npc;
 		}

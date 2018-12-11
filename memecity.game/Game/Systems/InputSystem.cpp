@@ -42,13 +42,13 @@ void InputSystem::run(EntityManager& em) const
 		{
 			auto npcs = em.get_entities_with_component<AIComponent>();
 			for (const Entity& npc : npcs) {
-				if(check_collision(*player.get<BaseComponent>(), *npc.get<BaseComponent>(), 30)){
+				if(check_collision(*player.get<BaseComponent>(), *npc.get<BaseComponent>(), 60)){
 					interaction_event.fire(em, { npc });
 				}
 			}
 			auto quest_npcs = em.get_entities_with_component<QuestAIComponent>();
 			for (const Entity& npc : quest_npcs) {
-				if (check_collision(*player.get<BaseComponent>(), *npc.get<BaseComponent>(), 30)) {
+				if (check_collision(*player.get<BaseComponent>(), *npc.get<BaseComponent>(), 60)) {
 					interaction_event.fire(em, { npc });
 				}
 			}
@@ -63,7 +63,7 @@ void InputSystem::run(EntityManager& em) const
 
 			auto npcs = em.get_entities_with_component<AIComponent>();
 			for (const Entity& npc : npcs) {
-				if (check_collision(*player.get<BaseComponent>(), *npc.get<BaseComponent>(), 30)) {
+				if (check_collision(*player.get<BaseComponent>(), *npc.get<BaseComponent>(), 60)) {
 					attack_event.fire(em, {player, npc });
 				}
 			}
@@ -72,7 +72,7 @@ void InputSystem::run(EntityManager& em) const
 			state_manager.create_state<PauseMenuState>(*_context);
 		}
 		if (input_manager.is_pressed(input::N)) {
-			state_manager.create_state<StoryState>(*_context, entity.get<PlayerComponent>()->_stories);
+			state_manager.create_state<StoryState>(*_context, player.get<PlayerComponent>()->_stories);
 		}
 	}
 }

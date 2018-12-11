@@ -15,8 +15,8 @@ public:
 	memecity::engine::ecs::eventing::Event<QuestEventArgs> quest_event;
 
 
-	InteractionSystem(GameManager::GameContext* context)
-		: _context(context) {}
+	InteractionSystem(GameManager::GameContext& context)
+		: _context(&context) {}
 
 	void run(memecity::engine::ecs::EntityManager& em) const override;
 	void on_interact(memecity::engine::ecs::EntityManager& em, InteractionEventArgs args);
