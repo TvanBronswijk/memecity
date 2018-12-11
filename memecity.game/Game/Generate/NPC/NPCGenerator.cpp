@@ -18,7 +18,7 @@ namespace generate {
 	}
 
 	const memecity::engine::ecs::Entity& NPCGenerator::generate_random_npc(int maxlevel, float x, float y, float movement_speed) {
-		this->name = "rick";//TODO: change to random name
+		this->name = "random";
 		this->level = rand() % maxlevel + 1;
 		this->x = x;
 		this->y = y;
