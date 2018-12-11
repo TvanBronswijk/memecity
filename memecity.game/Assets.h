@@ -21,7 +21,7 @@ namespace assets {
 	}
 	namespace spritesheets {
 		static constexpr Asset HUMAN_MALE_1 = "Spritesheets/SpriteSheet.png";
-		static constexpr Asset TIN_CAN = "tin_can.png";
+		static constexpr Asset TIN_CAN = "Spritesheets/Tin_can.png";
 	}
 	namespace advertisements {
 		static constexpr Asset ADVERTISEMENT_ONE = "Advertisements/BurgerKing.png";
