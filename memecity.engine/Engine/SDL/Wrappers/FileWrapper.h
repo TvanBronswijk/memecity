@@ -9,24 +9,24 @@ namespace memecity::engine::sdl {
 	class FileWrapper
 	{
 	private:
-		SDL_RWops *rw_ops;
+		SDL_RWops *_rw_ops;
 
 	public:
 		FileWrapper()
-			: rw_ops(nullptr) {}
+			: _rw_ops(nullptr) {}
 
 		FileWrapper(const char* file_name, const Mode mode)
 		{
 			switch (mode)
 			{
 			case r:
-				rw_ops = SDL_RWFromFile(file_name, "r");
+				_rw_ops = SDL_RWFromFile(file_name, "r");
 				break;
 			case w:
-				rw_ops = SDL_RWFromFile(file_name, "w");
+				_rw_ops = SDL_RWFromFile(file_name, "w");
 				break;
 			case a:
-				rw_ops = SDL_RWFromFile(file_name, "a");
+				_rw_ops = SDL_RWFromFile(file_name, "a");
 				break;
 			default:
 				break;
@@ -39,17 +39,17 @@ namespace memecity::engine::sdl {
 
 		SDL_RWops* get() const
 		{
-			return rw_ops;
+			return _rw_ops;
 		}
 
 		SDL_RWops* operator->() const
 		{
-			return rw_ops;
+			return _rw_ops;
 		}
 
 		SDL_RWops* operator*() const
 		{
-			return rw_ops;
+			return _rw_ops;
 		}
 	};
 }
