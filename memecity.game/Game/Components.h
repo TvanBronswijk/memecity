@@ -11,5 +11,8 @@
 #include "Components\StatsComponent.h"
 #include "Components\VelocityComponent.h"
 #include "Components\AIComponent.h"
+#include "Components\ItemComponent.h"
+#include "Components\InventoryComponent.h"
+
 #include <ECS/Default/BaseComponent.h>
 #endif
