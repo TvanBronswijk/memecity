@@ -1,10 +1,9 @@
 #include "HealthSystem.h"
-#include "../Enum/AIStates.h"
+#include "../States/GameOverState.h"
 
 using namespace memecity::engine::ecs;
 
 void HealthSystem::run(EntityManager& em) const {}
-
 
 void HealthSystem::on_damage(EntityManager& em, std::reference_wrapper<const Entity> entity) {
 	auto health_target = entity.get().get<HealthComponent>();
@@ -42,7 +41,15 @@ void HealthSystem::on_damage(EntityManager& em, std::reference_wrapper<const Ent
 
 	if (health_target->health < (health_target->maxhealth / 10)) {
 		if ((rand() % stats_target->strength) < 5)
-			if(AI->state != State::Fleeing)
-			AI->state = State::Fleeing;
+			if (AI->state != State::Fleeing)
+				AI->state = State::Fleeing;
 	}
+}
+
+void HealthSystem::on_death(EntityManager &em, eventing::EventArgs args) {
+	auto player = em.get_entities_with_component<PlayerComponent>().front();
+	auto exp_component = player.get().get<ExpComponent>();
+
+	auto& state_manager = _context->get_state_manager();
+	state_manager.create_state<GameOverState>(*_context, exp_component->exp);
 }

@@ -14,7 +14,9 @@
 #include "Components\QuestAIComponent.h"
 #include "Components\QuestComponent.h"
 #include "Components\StoryComponent.h"
-#include "Components\TaskComponent.h"
+#include "Components\TaskComponent.h
+#include "Components\ItemComponent.h"
+#include "Components\InventoryComponent.h"
 
 #include <ECS/Default/BaseComponent.h>
 #endif

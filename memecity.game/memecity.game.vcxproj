@@ -30,6 +30,8 @@
     <ClInclude Include="Game\Enum\AIStates.h" />
     <ClInclude Include="Game\Enum\QuestStates.h" />
     <ClInclude Include="Game\Event\QuestEventArgs.h" />
+    <ClInclude Include="Game\Components\InventoryComponent.h" />
+    <ClInclude Include="Game\Components\ItemComponent.h" />
     <ClInclude Include="Game\Components\ColliderComponent.h" />
     <ClInclude Include="Game\Event\BlikCoinEventArg.h" />
     <ClInclude Include="Game\Event\ExpEventArgs.h" />
@@ -45,6 +47,7 @@
     <ClInclude Include="Game\Generate\City\Strategy\BSP\Fills\Prefab.h" />
     <ClInclude Include="Game\Generate\NPC\NPCGenerator.h" />
     <ClInclude Include="Game\Input.h" />
+    <ClInclude Include="Game\States\GameOverState.h" />
     <ClInclude Include="Game\States\LoadingState.h" />
     <ClInclude Include="Game\States\GameState.h" />
     <ClInclude Include="Game\States.h" />
@@ -69,6 +72,7 @@
     <ClInclude Include="Game\Components\HealthComponent.h" />
     <ClInclude Include="Game\Components\InteractionComponent.h" />
     <ClInclude Include="Game\Event\InteractionEventArgs.h" />
+    <ClInclude Include="Game\Systems\HealthSystem.h" />
     <ClInclude Include="Game\Systems\FogOfWarSystem.h" />
     <ClInclude Include="Game\Systems\HealthSystem.h" />
     <ClInclude Include="Game\Systems\InteractionSystem.h" />
@@ -88,6 +92,7 @@
     <ClCompile Include="Game\Builder\QuestBuilder.cpp" />
     <ClCompile Include="Game\Generate\NPC\NPCGenerator.cpp" />
     <ClCompile Include="Game\GameLoader.cpp" />
+    <ClCompile Include="Game\States\GameOverState.cpp" />
     <ClCompile Include="Game\States\LoadingState.cpp" />
     <ClCompile Include="Game\States\GameState.cpp" />
     <ClCompile Include="Game\States\MenuState.cpp" />
@@ -359,6 +364,9 @@
     <CopyFileToFolders Include="Assets\Advertisements\BananaWho.png" />
     <CopyFileToFolders Include="Assets\Advertisements\BurgerKing.png" />
     <CopyFileToFolders Include="Assets\Advertisements\CocaCola.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <CopyFileToFolders Include="Assets\Sprites\Tin_can.png" />
   </ItemGroup>
   <ItemGroup>
     <CopyFileToFolders Include="Assets\Sprites\big_black.bmp" />

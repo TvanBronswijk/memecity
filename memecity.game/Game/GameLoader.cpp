@@ -17,9 +17,11 @@ void GameLoader::build(memecity::engine::ecs::EntityManager& em, loading::Loadin
 	listener.set_text("Loading Map");
 	create_map(em, listener);
 	listener.set_text("Loading NPCs");
-	create_npcs(em, listener);	
+	create_npcs(em, listener);
+	listener.set_text("Loading Items");
+	create_items(em, listener);	
 	listener.set_text("Loading Player");
-	create_player(em, listener);	
+	create_player(em, listener);
 	listener.set_text("Loading Complete!");
 }
 
@@ -55,6 +57,21 @@ void GameLoader::create_npcs(EntityManager& em, loading::LoadingBar::Listener& l
 	listener.increase_current_value(20.0f);
 }
 
+void GameLoader::create_items(EntityManager& em, loading::LoadingBar::Listener& listener)
+{
+	auto& multimedia_manager = _context->get_multimedia_manager();
+
+	auto texture = multimedia_manager.get_texture(assets::sprites::TIN_CAN, 0, 0, 48, 28);
+	texture->set_position({0,0});
+
+	auto builder = em.create_entity("Blik")
+		.with_component<BaseComponent>(std::move(texture), 50.0f, 0.0f, 48.0f, 48.0f)
+		.with_component<ItemComponent>("Blik", "a normal tin can")
+		.with_component<StatsComponent>(0,0,0,0,0,0,0);
+	auto base_component = builder.get().get<BaseComponent>();
+	builder.with_component<ColliderComponent>(BoundaryRectangle(base_component->location.x, base_component->location.y, base_component->w, base_component->h));
+}
+
 void GameLoader::create_player(EntityManager& em, loading::LoadingBar::Listener& listener)
 {
 	auto& multimedia_manager = _context->get_multimedia_manager();
@@ -68,6 +85,7 @@ void GameLoader::create_player(EntityManager& em, loading::LoadingBar::Listener&
 		.with_component<StatsComponent>(1,3,1,1,1,1,1)
 		.with_component<AnimationComponent>()
 		.with_component<HealthComponent>(100, nullptr)
+		.with_component<InventoryComponent>()
 		.with_component<VelocityComponent>();
 	auto base_component = builder.get().get<BaseComponent>();
 	builder.with_component<ColliderComponent>(BoundaryRectangle(base_component->location.x, base_component->location.y, base_component->w, base_component->h));

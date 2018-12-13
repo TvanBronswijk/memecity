@@ -24,6 +24,7 @@
     <ClCompile Include="Game\Builder\QuestBuilder.cpp" />
     <ClCompile Include="Game\States\StoryState.cpp" />
     <ClCompile Include="Game\Systems\HealthSystem.cpp" />
+	<ClCompile Include="Game\States\GameOverState.cpp" />
     <ClCompile Include="Game\Systems\FogOfWarSystem.cpp" />
     <ClCompile Include="Game\Systems\QuestSystem.cpp" />
   </ItemGroup>
@@ -92,6 +93,9 @@
     <ClInclude Include="Game\Systems\FogOfWarSystem.h" />
     <ClInclude Include="Game\Systems\HealthSystem.h" />
     <ClInclude Include="Game\Systems\QuestSystem.h" />
+    <ClInclude Include="Game\States\GameOverState.h" />
+    <ClInclude Include="Game\Components\InventoryComponent.h" />
+    <ClInclude Include="Game\Components\ItemComponent.h" />
   </ItemGroup>
   <ItemGroup>
     <CopyFileToFolders Include="Assets\Music\bgm.mp3" />
@@ -119,6 +123,7 @@
     <CopyFileToFolders Include="Assets\Advertisements\BananaWho.png" />
     <CopyFileToFolders Include="Assets\Advertisements\BurgerKing.png" />
     <CopyFileToFolders Include="Assets\Advertisements\CocaCola.png" />
+	<CopyFileToFolders Include="Assets\Sprites\Tin_can.png" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\Sprites\big_black.bmp" />
