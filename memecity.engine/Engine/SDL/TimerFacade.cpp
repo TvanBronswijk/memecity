@@ -9,8 +9,8 @@ namespace memecity::engine::sdl {
 	void TimerFacade::reset()
 	{
 		start_ticks = SDL_GetTicks();
-		//elapsed_ticks = 0;
-		//delta_time = 0.0;
+		elapsed_ticks = 0;
+		delta_time = 0.0;
 	}
 
 	double TimerFacade::get_delta_time() const

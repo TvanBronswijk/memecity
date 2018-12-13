@@ -20,6 +20,11 @@ namespace memecity::engine {
 				prev = logic_timer.get_delta_time();
 				logic_timer.update();
 				engine.update(logic_timer.get_delta_time() - prev);
+				if (prev > 3600)
+				{
+					logic_timer.reset();
+					prev = logic_timer.get_delta_time();
+				}
 			}
 		});
 		while (!engine.input_manager.is_quit_pressed()) {
