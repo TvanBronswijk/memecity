@@ -1,55 +1,60 @@
 #ifndef _RW_OPS_WRAPPER_H
 #define _RW_OPS_WRAPPER_H
-#include <SDL.h>
+#include <fstream>
+#include <algorithm>
 
 namespace memecity::engine::sdl {
 
-	enum Mode { r, w, a };
 
 	class FileWrapper
 	{
 	private:
-		SDL_RWops *_rw_ops;
+		std::string _file_name;
+		std::fstream _file_stream;
+		std::string _buffer;
 
 	public:
-		FileWrapper()
-			: _rw_ops(nullptr) {}
 
-		FileWrapper(const char* file_name, const Mode mode)
+		FileWrapper(const char* file_name)
 		{
-			switch (mode)
-			{
-			case r:
-				_rw_ops = SDL_RWFromFile(file_name, "r");
-				break;
-			case w:
-				_rw_ops = SDL_RWFromFile(file_name, "w");
-				break;
-			case a:
-				_rw_ops = SDL_RWFromFile(file_name, "a");
-				break;
-			default:
-				break;
-			}
+			this->_file_name = file_name;
 		}
 
 		~FileWrapper()
 		{
+			_file_stream.close();
 		}
 
-		SDL_RWops* get() const
+		const std::string read_file()
 		{
-			return _rw_ops;
+			_file_stream = std::fstream(_file_name);
+			if (_file_stream.is_open() && _file_stream.good())
+			{
+				while (std::getline(_file_stream, _buffer))
+				{
+
+				}
+				_file_stream.close();
+			}
+
+			return _buffer;
 		}
 
-		SDL_RWops* operator->() const
+		void write(const std::string& content)
 		{
-			return _rw_ops;
+			_file_stream = std::fstream(_file_name);
+
+			if (_file_stream.is_open())
+			{
+				_file_stream << content;
+			}
+			_file_stream.close();
 		}
 
-		SDL_RWops* operator*() const
+		int get_lines()
 		{
-			return _rw_ops;
+			return std::count(std::istreambuf_iterator<char>(_file_stream),
+				std::istreambuf_iterator<char>(), '\n');
 		}
 	};
 }
