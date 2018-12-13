@@ -37,8 +37,7 @@ namespace memecity::engine {
 				}
 				engine.multimedia_manager.clear_graphics();
 				engine.draw();
-				engine.multimedia_manager.render_graphics();				
-
+				engine.multimedia_manager.render_graphics();
 				engine.timer.reset();
 			}
 		};
