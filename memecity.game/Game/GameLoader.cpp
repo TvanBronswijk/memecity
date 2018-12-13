@@ -50,7 +50,7 @@ void GameLoader::create_npcs(EntityManager& em, loading::LoadingBar::Listener& l
 	for (size_t i = 0; i < 20; i++) {
 		auto& multimedia_manager = _context->get_multimedia_manager();
 		auto& timer = _context->get_timer();
-		generate::NPCGenerator(multimedia_manager, em).generate_random_npc(1, 220, 0, 1, State::Roaming);
+		generate::NPCGenerator(multimedia_manager, em).generate_random_npc(1, 50 * i, 0, 1, State::Roaming);
 	}
 	listener.increase_current_value(20.0f);
 }
