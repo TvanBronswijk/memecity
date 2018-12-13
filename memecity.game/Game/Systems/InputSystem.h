@@ -4,6 +4,7 @@
 #include "..\..\GameManager.h"
 #include "..\Event\AttackEventArgs.h"
 #include "..\Event\InteractionEventArgs.h"
+#include "..\Event\QuestEventArgs.h"
 
 class InputSystem : public memecity::engine::ecs::System
 {
@@ -13,7 +14,7 @@ private:
 public:
 	memecity::engine::ecs::eventing::Event<InteractionEventArgs> interaction_event;
 	memecity::engine::ecs::eventing::Event<AttackEventArgs> attack_event;
-
+	memecity::engine::ecs::eventing::Event<QuestEventArgs> quest_event;
 	InputSystem(GameManager::GameContext& context)
 		: _context(&context) {}
 	void run(memecity::engine::ecs::EntityManager& em) const override;

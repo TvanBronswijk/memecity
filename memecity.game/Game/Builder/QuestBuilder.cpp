@@ -24,7 +24,7 @@ const memecity::engine::ecs::Entity& QuestBuilder::intro() {
 		" "};
 
 	std::vector<std::string> task_dialog_René2 = {
-	"first task it to kill a human",
+	"pick up a tin can",
 	" "};
 
 	auto builder = entity_manager.create_entity("story");
@@ -50,8 +50,19 @@ const memecity::engine::ecs::Entity& QuestBuilder::intro() {
 		1)
 	};
 
-
 	std::deque<TaskComponent*> tasks_quest2{
+		&entity_manager.create_component<TaskComponent>(
+		const_cast<Entity&>(story),
+		"pick up a tin can" ,
+		Quest_State::Finding,
+		std::vector<std::string>(),
+		&(entity_manager.get_entities_by_type("Blik").front().get()),
+		nullptr,
+		1),
+	};
+
+
+	std::deque<TaskComponent*> tasks_quest3{
 		&entity_manager.create_component<TaskComponent>(
 		const_cast<Entity&>(story),
 		"Kill a human" ,
@@ -65,7 +76,8 @@ const memecity::engine::ecs::Entity& QuestBuilder::intro() {
 	//create quests
 	std::deque<QuestComponent*> quests{
 	&entity_manager.create_component<QuestComponent>(const_cast<Entity&>(story), "Talking", tasks_quest1),
-	&entity_manager.create_component<QuestComponent>(const_cast<Entity&>(story), "Killing", tasks_quest2)
+	&entity_manager.create_component<QuestComponent>(const_cast<Entity&>(story), "Picking Up", tasks_quest2),
+	&entity_manager.create_component<QuestComponent>(const_cast<Entity&>(story), "Killing", tasks_quest3)
 	};
 
 	//add quests

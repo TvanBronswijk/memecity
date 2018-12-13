@@ -85,7 +85,25 @@ void InputSystem::run(EntityManager& em) const
 				auto item_base = item->get<BaseComponent>();
 				auto player_base = player.get<BaseComponent>();
 
-				item_base->location = uPoint<float>(player_base->location.x + 50, player_base->location.y);
+				auto& animation_texture = dynamic_cast<texture::AnimatedTexture&>(player_base->get_texture());
+				switch (animation_texture.get_direction()) {
+				case texture::AnimatedTexture::Direction::down:
+					item_base->location = uPoint<float>(player_base->location.x, player_base->location.y + 50);
+					break;
+				case texture::AnimatedTexture::Direction::left:
+					item_base->location = uPoint<float>(player_base->location.x - 50, player_base->location.y);
+					break;
+				case texture::AnimatedTexture::Direction::right:
+					item_base->location = uPoint<float>(player_base->location.x + 50, player_base->location.y);
+					break;
+				case texture::AnimatedTexture::Direction::up:
+					item_base->location = uPoint<float>(player_base->location.x, player_base->location.y - 50);
+					break;
+				case texture::AnimatedTexture::Direction::idle:
+					item_base->location = uPoint<float>(player_base->location.x + 50, player_base->location.y);
+					break;
+				}
+				this->quest_event.fire(em, { item , nullptr });
 			}
 		}
 		if (input_manager.is_pressed(input::TAKE)) {
@@ -95,6 +113,7 @@ void InputSystem::run(EntityManager& em) const
 			for (const Entity& item : items) {
 				if (check_collision(*player.get<BaseComponent>(), *item.get<BaseComponent>(), 60)) {
 					inventory->items.emplace_back(&item);
+					this->quest_event.fire(em, { &item , nullptr });
 					item.get<BaseComponent>()->location = uPoint<float>(99999, 99999);
 				}
 			}

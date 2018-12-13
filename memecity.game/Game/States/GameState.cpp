@@ -34,6 +34,7 @@ void GameState::on_load()
 	memecity::engine::ecs::eventing::bind(fighting_system.damage_event, &health_system, &HealthSystem::on_damage);
 	memecity::engine::ecs::eventing::bind(interaction_system.quest_event, &quest_system, &QuestSystem::on_event);
 	memecity::engine::ecs::eventing::bind(fighting_system.quest_event, &quest_system, &QuestSystem::on_event);
+	memecity::engine::ecs::eventing::bind(input_system.quest_event, &quest_system, &QuestSystem::on_event);
 	memecity::engine::ecs::eventing::bind(fighting_system.death_event, &health_system, &HealthSystem::on_death);
 	fighting_system.health_changed_event += [&](auto& em, auto args) { _hud.update("HEALTHVALUE", args.new_health); };
 }

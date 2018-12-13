@@ -3,7 +3,8 @@
 #include "../Components/PlayerComponent.h"
 #include "../Components/StoryComponent.h"
 #include "../Components/HealthComponent.h"
-#include "..\Components\AIComponent.h"
+#include "../Components/ItemComponent.h"
+#include "../Components/AIComponent.h"
 #include "../Components/InteractionComponent.h"
 #include "../Enum/QuestStates.h"
 #include <vector>
@@ -112,12 +113,16 @@ void QuestSystem::check_task_interaction(QuestEventArgs args, TaskComponent* tas
 	}
 }
 void QuestSystem::check_task_finding(QuestEventArgs args, TaskComponent* task) {
-	if (task->item == args.item) {
-		task->counter++;
+	auto item = args.target->get<ItemComponent>();
+	if(item != nullptr){
+		if (task->target->get<ItemComponent>()->name == item->name) {
+			task->counter++;
+		}
 	}
 }
 void QuestSystem::check_task_dropping(QuestEventArgs args, TaskComponent* task) {
 	if (task->item == args.item) {
+		//TODO: implement quest_drop
 		task->counter++;
 	}
 }
