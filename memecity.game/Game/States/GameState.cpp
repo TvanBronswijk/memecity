@@ -19,15 +19,14 @@ void GameState::on_load()
 	auto& fow_system = system_pool.create_system<FogOfWarSystem>(memecity::engine::ecs::System::draw, multimedia_manager);
 
 	auto& input_system = system_pool.create_system<InputSystem>(memecity::engine::ecs::System::update, *_context);
-	//auto& move_system = system_pool.create_system<MoveSystem>();
-	mv = &system_pool.create_system<MoveSystem>();
+	auto& move_system = system_pool.create_system<MoveSystem>();
 	auto& collider_system = system_pool.create_system<ColliderSystem>(memecity::engine::ecs::System::update, 256 * 64.0f, 256 * 64.0f);
 	auto& ai_system = system_pool.create_system<AISystem>();
 
-	memecity::engine::ecs::eventing::bind(mv->animated_move_event, &animation_system, &AnimationSystem::on_move);
+	memecity::engine::ecs::eventing::bind(move_system.animated_move_event, &animation_system, &AnimationSystem::on_move);
 	memecity::engine::ecs::eventing::bind(input_system.interaction_event, &interaction_system, &InteractionSystem::on_interact);
 	memecity::engine::ecs::eventing::bind(input_system.attack_event, &fighting_system, &FightingSystem::on_attack);
-	memecity::engine::ecs::eventing::bind(collider_system.collider_event, mv, &MoveSystem::on_collision);
+	memecity::engine::ecs::eventing::bind(collider_system.collider_event, &move_system, &MoveSystem::on_collision);
 	fighting_system.health_changed_event += [&](auto& em, auto args) { _hud.update("HEALTHVALUE", args.new_health); };
 }
 

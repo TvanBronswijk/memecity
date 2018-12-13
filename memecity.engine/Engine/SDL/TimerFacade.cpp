@@ -13,7 +13,7 @@ namespace memecity::engine::sdl {
 		delta_time = 0.0;
 	}
 
-	double TimerFacade::get_delta_time() const
+	float TimerFacade::get_delta_time() const
 	{
 		return delta_time;
 	}
@@ -21,6 +21,6 @@ namespace memecity::engine::sdl {
 	void TimerFacade::update()
 	{
 		elapsed_ticks = SDL_GetTicks() - start_ticks;
-		delta_time = elapsed_ticks * 0.001;
+		delta_time = elapsed_ticks * 0.001f;
 	}
 }

@@ -13,7 +13,6 @@ private:
 	memecity::engine::ecs::EntityManager entity_manager;
 	memecity::engine::ecs::SystemPool system_pool;
 	memecity::engine::ui::overlay::Overlay _hud;
-	MoveSystem* mv;
 public:
 	GameState(memecity::engine::state::StateManager& sm, GameManager::GameContext& gc)
 		: _context(&gc), State(sm), _hud(_context->get_multimedia_manager(), _context->get_multimedia_manager().get_texture(assets::sprites::DARK_BACKGROUND, 0, 0, _context->get_multimedia_manager().get_screen_width(), 100), 0, 0)

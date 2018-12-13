@@ -9,7 +9,7 @@ namespace memecity::engine::sdl {
 	private:
 		unsigned int start_ticks{};
 		unsigned int elapsed_ticks{};
-		double delta_time{};
+		float delta_time{};
 
 	public:
 		TimerFacade();
@@ -18,7 +18,7 @@ namespace memecity::engine::sdl {
 		void reset();
 
 		///<summary>Returns the current delta time.</summary>
-		double get_delta_time() const;
+		float get_delta_time() const;
 
 		///<summary>Sets delta time to elapsed time since last update.</summary>
 		void update();
