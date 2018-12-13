@@ -20,6 +20,7 @@ void InputSystem::run(EntityManager& em, float dt) const
 	for (const Entity& player : players)
 	{
 		float speed = 200.0f;
+
 		auto velocity_component = player.get<VelocityComponent>();
 		if (input_manager.is_down(input::UP))
 		{
@@ -42,7 +43,7 @@ void InputSystem::run(EntityManager& em, float dt) const
 		{
 			auto npcs = em.get_entities_with_component<AIComponent>();
 			for (const Entity& npc : npcs) {
-				if(check_collision(*player.get<BaseComponent>(), *npc.get<BaseComponent>(), 30)){
+				if (check_collision(*player.get<BaseComponent>(), *npc.get<BaseComponent>(), 60)) {
 					interaction_event.fire(em, { npc });
 				}
 			}
@@ -57,14 +58,77 @@ void InputSystem::run(EntityManager& em, float dt) const
 
 			auto npcs = em.get_entities_with_component<AIComponent>();
 			for (const Entity& npc : npcs) {
-				if (check_collision(*player.get<BaseComponent>(), *npc.get<BaseComponent>(), 30)) {
-					attack_event.fire(em, {player, npc });
+				if (check_collision(*player.get<BaseComponent>(), *npc.get<BaseComponent>(), 60)) {
+					attack_event.fire(em, { player, npc });
 				}
 			}
 		}
 		if (input_manager.is_pressed(input::ESCAPE)) {
 			state_manager.create_state<PauseMenuState>(*_context);
 		}
+		//inventory
+		if (input_manager.is_pressed(input::DROP)) {
+			auto inventory = player.get<InventoryComponent>();
+			if (inventory->items.size() != 0){
+				if (inventory->items.size() -1 < inventory->selected) {
+					inventory->selected = inventory->items.size() - 1;
+				}
+				auto item = inventory->items.at(inventory->selected);
+				inventory->items.erase(inventory->items.begin() + inventory->selected);
+
+				//update position
+				auto item_base = item->get<BaseComponent>();
+				auto player_base = player.get<BaseComponent>();
+
+				item_base->location = uPoint<float>(player_base->location.x + 50, player_base->location.y);
+			}
+		}
+		if (input_manager.is_pressed(input::TAKE)) {
+			auto inventory = player.get<InventoryComponent>();
+			auto items = em.get_entities_with_component<ItemComponent>();
+			//when collid you you can get the item
+			for (const Entity& item : items) {
+				if (check_collision(*player.get<BaseComponent>(), *item.get<BaseComponent>(), 60)) {
+					inventory->items.emplace_back(&item);
+					item.get<BaseComponent>()->location = uPoint<float>(99999, 99999);
+				}
+			}
+		}
+
+		if (input_manager.is_pressed(input::ONE)) {
+			auto inventory = player.get<InventoryComponent>();
+			inventory->selected = 0;
+			//item 1 is selected from items in itemcomponent
+		}
+		if (input_manager.is_pressed(input::TWO)) {
+			auto inventory = player.get<InventoryComponent>();
+			inventory->selected = 1;
+			//item 2 is selected from items in itemcomponent
+		}
+		if (input_manager.is_pressed(input::THREE)) {
+			auto inventory = player.get<InventoryComponent>();
+			inventory->selected = 2;
+			//item 3 is selected from items in itemcomponent
+		}
+		if (input_manager.is_pressed(input::ARROWDOWN)) {
+			auto inventory = player.get<InventoryComponent>();
+			if (inventory->selected == 0)
+				inventory->selected = inventory->items.size();
+			else
+				inventory->selected--;
+
+			//next item is selected from items in itemcomponent
+		}
+		if (input_manager.is_pressed(input::ARROWUP)) {
+			auto inventory = player.get<InventoryComponent>();
+
+			if (inventory->selected == inventory->items.size())
+				inventory->selected = 0;
+			else
+				inventory->selected--;
+			//previous item is selected from items in itemcomponent
+		}
 	}
 }
+
 
