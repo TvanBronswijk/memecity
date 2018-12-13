@@ -21,6 +21,8 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Game\Systems\MoveSystem.cpp" />
     <ClCompile Include="Game\Systems\OverlaySystem.cpp" />
+    <ClCompile Include="Game\States\GameOverState.cpp" />
+    <ClCompile Include="Game\Systems\HealthSystem.cpp" />
     <ClCompile Include="Game\Systems\FogOfWarSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -76,6 +78,10 @@
     <ClInclude Include="Game\Components\ScoreComponent.h" />
     <ClInclude Include="Assets.h" />
     <ClInclude Include="Game\Components\ColliderComponent.h" />
+    <ClInclude Include="Game\States\GameOverState.h" />
+    <ClInclude Include="Game\Systems\HealthSystem.h" />
+    <ClInclude Include="Game\Components\InventoryComponent.h" />
+    <ClInclude Include="Game\Components\ItemComponent.h" />
     <ClInclude Include="Game\Systems\FogOfWarSystem.h" />
   </ItemGroup>
   <ItemGroup>
@@ -104,9 +110,9 @@
     <CopyFileToFolders Include="Assets\Advertisements\BananaWho.png" />
     <CopyFileToFolders Include="Assets\Advertisements\BurgerKing.png" />
     <CopyFileToFolders Include="Assets\Advertisements\CocaCola.png" />
+	<CopyFileToFolders Include="Assets\Sprites\Tin_can.png" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="Assets\Spritesheets\DeadSheet.png" />
-    <Image Include="Assets\Spritesheets\FightingSheet.png" />
+    <Image Include="Assets\Sprites\big_black.bmp" />
   </ItemGroup>
 </Project>

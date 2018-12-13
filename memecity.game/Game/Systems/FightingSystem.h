@@ -12,6 +12,8 @@ public:
 	memecity::engine::MultimediaManager& multimedia_manager;
 	memecity::engine::ecs::eventing::Event<HealthChangedEventArgs> health_changed_event;
 
+	memecity::engine::ecs::eventing::Event<memecity::engine::ecs::eventing::EventArgs> death_event;
+
 	FightingSystem(memecity::engine::MultimediaManager& multimedia_manager)
 		: multimedia_manager(multimedia_manager) {}
 
