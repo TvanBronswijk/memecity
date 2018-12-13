@@ -21,6 +21,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Game\Systems\MoveSystem.cpp" />
     <ClCompile Include="Game\Systems\OverlaySystem.cpp" />
+    <ClCompile Include="Game\Systems\FogOfWarSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Components\DimensionComponent.h" />
@@ -75,6 +76,7 @@
     <ClInclude Include="Game\Components\ScoreComponent.h" />
     <ClInclude Include="Assets.h" />
     <ClInclude Include="Game\Components\ColliderComponent.h" />
+    <ClInclude Include="Game\Systems\FogOfWarSystem.h" />
   </ItemGroup>
   <ItemGroup>
     <CopyFileToFolders Include="Assets\Music\bgm.mp3" />
@@ -99,6 +101,12 @@
     <CopyFileToFolders Include="Assets\Fonts\Minecraftia-Regular.ttf" />
     <CopyFileToFolders Include="Assets\Music\bgm-game.mp3" />
     <CopyFileToFolders Include="Assets\Music\bgm-menu.mp3" />
-    <CopyFileToFolders Include="Assets\Sprites\big_black.bmp" />
+    <CopyFileToFolders Include="Assets\Advertisements\BananaWho.png" />
+    <CopyFileToFolders Include="Assets\Advertisements\BurgerKing.png" />
+    <CopyFileToFolders Include="Assets\Advertisements\CocaCola.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Assets\Spritesheets\DeadSheet.png" />
+    <Image Include="Assets\Spritesheets\FightingSheet.png" />
   </ItemGroup>
 </Project>

@@ -1,6 +1,7 @@
 ﻿#include "AnimationSystem.h"
 #include <Engine\Textures.h>
 #include "../Event/MoveEventArgs.h"
+#include "../../Assets.h"
 
 using namespace memecity::engine::texture;
 using namespace memecity::engine::ecs;
@@ -9,11 +10,23 @@ void AnimationSystem::run(EntityManager& em) const
 {
 }
 
-void AnimationSystem::on_move(memecity::engine::ecs::EntityManager& em, MoveEventArgs args)
+void AnimationSystem::set_texture(BaseComponent &base_component, std::unique_ptr<Texture> texture) const
 {
-	auto animation_component = args.source.get<AnimationComponent>();
+	auto current_texture = base_component.get_texture();
+	if (current_texture.get_filename() != texture->get_filename())
+	{
+		base_component.set_texture(std::move(texture));
+		base_component.get_texture().set_position(current_texture.get_position());
+	}
+}
+
+void AnimationSystem::on_move(EntityManager& em, MoveEventArgs args)
+{
+	const auto animation_component = args.source.get<AnimationComponent>();
 	const auto& current_velocity = args.source.get<VelocityComponent>();
-	auto& texture = args.source.get<BaseComponent>()->get_texture();
+
+	auto base_component = args.source.get<BaseComponent>();
+	auto& texture = base_component->get_texture();
 
 	// Cast from base class (Texture) to derived class (AnimatedTexture)
 	auto animated_texture = dynamic_cast<AnimatedTexture*>(&texture);
@@ -26,18 +39,23 @@ void AnimationSystem::on_move(memecity::engine::ecs::EntityManager& em, MoveEven
 		switch (animation_component->current_state)
 		{
 			case AnimationComponent::AnimationState::fighting:
-				animated_texture->set_animation_direction(AnimatedTexture::AnimationDirection::horizontal);
-				animation_component->current_state = AnimationComponent::AnimationState::idle;
+				set_texture(*base_component, _context->get_multimedia_manager().get_texture(assets::spritesheets::HUMAN_FIGHTING_1, 0, 0, 48, 48, 4, 0.25f, AnimatedTexture::AnimationDirection::horizontal));
+				if (animated_texture->column() >= 3)
+				{
+					animation_component->current_state = AnimationComponent::AnimationState::idle;
+				}
 				break;
 			
 			case AnimationComponent::AnimationState::dying:
-				animated_texture->set_state(AnimatedTexture::AnimationState::dying);
+				set_texture(*base_component, _context->get_multimedia_manager().get_texture(assets::spritesheets::HUMAN_DYING_1, 0, 0, 48, 48, 4, 0.25f, AnimatedTexture::AnimationDirection::horizontal));
 				break;
 			
-			default: 
+			default:
+				set_texture(*base_component, _context->get_multimedia_manager().get_texture(assets::spritesheets::HUMAN_MALE_1, 0, 0, 48, 48, 4, 0.25f, AnimatedTexture::AnimationDirection::vertical));
 				animated_texture->set_animation_direction(AnimatedTexture::AnimationDirection::vertical);
 				animated_texture->set_state(args.state);
 				break;
 		}
 	}
 }
+

@@ -21,8 +21,8 @@ void MoveSystem::run(EntityManager& em) const
 		auto animation_component = entity.get<AnimationComponent>();
 		if (animation_component) {
 			auto direction = AnimatedTexture::AnimationState::idle;
-			if (diff.x != 0) direction = diff.x > 0 ? AnimatedTexture::AnimationState::walk_right : AnimatedTexture::AnimationState::walk_left;
-			if (diff.y != 0) direction = diff.y > 0 ? AnimatedTexture::AnimationState::walk_down : AnimatedTexture::AnimationState::walk_up;
+			if (diff.x != 0) direction = diff.x > 0 ? AnimatedTexture::AnimationState::right : AnimatedTexture::AnimationState::left;
+			if (diff.y != 0) direction = diff.y > 0 ? AnimatedTexture::AnimationState::down : AnimatedTexture::AnimationState::up;
 			animated_move_event.fire(em, { entity, direction });
 		}
 		
