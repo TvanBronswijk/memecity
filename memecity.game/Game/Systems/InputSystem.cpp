@@ -11,7 +11,7 @@ bool InputSystem::check_collision(BaseComponent& l, BaseComponent& r , int range
 		&& ((l.location.y + range) >= r.location.y && (l.location.y - range) <= r.location.y);
 }
 
-void InputSystem::run(EntityManager& em) const
+void InputSystem::run(EntityManager& em, float dt) const
 {
 	auto& input_manager = _context->get_input_manager();
 	auto& state_manager = _context->get_state_manager();
@@ -19,7 +19,7 @@ void InputSystem::run(EntityManager& em) const
 	auto players = em.get_entities_with_component<PlayerComponent>();
 	for (const Entity& player : players)
 	{
-		float speed = 120.0f;
+		float speed = 200.0f;
 		auto velocity_component = player.get<VelocityComponent>();
 		if (input_manager.is_down(input::UP))
 		{

@@ -39,10 +39,10 @@ namespace memecity::engine::ecs {
 		}
 
 		///<summary>Run all systems.</summary>
-		void update(EntityManager& em, System::Scope scope = System::update)
+		void update(EntityManager& em,float dt, System::Scope scope = System::update)
 		{
 			for (auto& pair : systems[scope]) {
-				pair.second->run(em);
+				pair.second->run(em,dt);
 			}
 		}
 	};

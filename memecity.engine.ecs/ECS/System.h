@@ -14,7 +14,7 @@ namespace memecity::engine::ecs {
 		virtual ~System() = default;
 
 		///<summary>Run the System.</summary>
-		virtual void run(EntityManager &em) const = 0;
+		virtual void run(EntityManager &em, float dt) const = 0;
 	};
 };
 #endif

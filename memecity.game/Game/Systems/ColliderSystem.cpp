@@ -2,7 +2,7 @@
 
 using namespace memecity::engine::ecs;
 
-void ColliderSystem::run(EntityManager& em) const
+void ColliderSystem::run(EntityManager& em, float dt) const
 {
 	auto components = em.get_components_of_type<ColliderComponent>();
 	QuadTree quad_tree(4, Rectangle(0, 0, _map_width, _map_height));

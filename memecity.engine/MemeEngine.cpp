@@ -14,17 +14,12 @@ namespace memecity::engine {
 #ifdef DEBUG
 			std::cout << "	logic thread: " << std::this_thread::get_id() << '\n';
 #endif
-			sdl::TimerFacade bleh;
+			sdl::TimerFacade logic_timer;
 			float prev = 0.0f;
 			while (!engine.input_manager.is_quit_pressed()) {
-				prev = bleh.get_delta_time();
-				bleh.update();
-			//	std::this_thread::sleep_for(std::chrono::seconds(1));
-
-				engine.update(bleh.get_delta_time() - prev);
-				//std::cout << "Update" << bleh.get_delta_time() - prev <<"\n" ;
-
-			//	bleh.reset();
+				prev = logic_timer.get_delta_time();
+				logic_timer.update();
+				engine.update(logic_timer.get_delta_time() - prev);
 			}
 		});
 		while (!engine.input_manager.is_quit_pressed()) {
@@ -38,7 +33,6 @@ namespace memecity::engine {
 				engine.multimedia_manager.clear_graphics();
 				engine.draw();
 				engine.multimedia_manager.render_graphics();				
-				//std::cout << "Draw" << engine.timer.get_delta_time() << "\n";
 
 				engine.timer.reset();
 			}

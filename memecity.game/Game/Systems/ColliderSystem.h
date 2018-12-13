@@ -13,7 +13,7 @@ private:
 public:
 	ColliderSystem(int map_width, int map_height)
 		: _map_width(map_width), _map_height(map_height) {}
-	void run(memecity::engine::ecs::EntityManager& em) const override;
+	void run(memecity::engine::ecs::EntityManager& em, float dt) const override;
 	memecity::engine::ecs::eventing::Event<ColliderEventArgs> collider_event;
 };
 

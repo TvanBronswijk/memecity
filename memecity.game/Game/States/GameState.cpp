@@ -6,7 +6,7 @@
 
 void GameState::on_load()
 {
-	next<LoadingState>(*_context, [&](auto& ctx, auto& listener) { GameLoader(ctx, 194, 194).build(entity_manager, listener); back(); });
+	next<LoadingState>(*_context, [&](auto& ctx, auto& listener) { GameLoader(ctx, 128, 128).build(entity_manager, listener); back(); });
 
 	auto& multimedia_manager = _context->get_multimedia_manager();
 
@@ -33,13 +33,12 @@ void GameState::on_load()
 
 void GameState::update(float dt)
 {
-	mv->dt = dt;
-	system_pool.update(entity_manager, memecity::engine::ecs::System::update);
+	system_pool.update(entity_manager, dt, memecity::engine::ecs::System::update);
 }
 
 void GameState::draw()
 {
-	system_pool.update(entity_manager, memecity::engine::ecs::System::draw);
+	system_pool.update(entity_manager, 0, memecity::engine::ecs::System::draw);
 	_hud.render();
 }
 

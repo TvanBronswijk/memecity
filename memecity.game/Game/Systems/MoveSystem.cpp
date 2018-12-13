@@ -4,7 +4,7 @@
 using namespace memecity::engine::texture;
 using namespace memecity::engine::ecs;
 
-void MoveSystem::run(EntityManager& em) const
+void MoveSystem::run(EntityManager& em, float dt) const
 {
 	auto entities = em.get_entities_with_component<VelocityComponent>();
 	for (const Entity& entity : entities)
