@@ -10,7 +10,7 @@ namespace memecity::engine::sdl {
 	{
 		start_ticks = SDL_GetTicks();
 		elapsed_ticks = 0;
-		delta_time = 0.0;
+		delta_time = 0.0f;
 	}
 
 	float TimerFacade::get_delta_time() const
