@@ -18,10 +18,10 @@ namespace assets {
 			constexpr inline Asset WATER = "Sprites/Tiles/blue.bmp";
 		}
 		constexpr inline Asset DARK_BACKGROUND = "Sprites/big_black.bmp";
+		constexpr inline Asset TIN_CAN = "Sprites/Tin_can.png";
 	}
 	namespace spritesheets {
 		static constexpr Asset HUMAN_MALE_1 = "Spritesheets/SpriteSheet.png";
-		static constexpr Asset TIN_CAN = "Spritesheets/Tin_can.png";
 	}
 	namespace advertisements {
 		static constexpr Asset ADVERTISEMENT_ONE = "Advertisements/BurgerKing.png";

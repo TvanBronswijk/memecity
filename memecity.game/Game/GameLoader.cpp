@@ -58,7 +58,7 @@ void GameLoader::create_items(EntityManager& em, loading::LoadingBar::Listener& 
 {
 	auto& multimedia_manager = _context->get_multimedia_manager();
 
-	auto texture = multimedia_manager.get_texture(assets::spritesheets::TIN_CAN, 0, 0, 48, 28);
+	auto texture = multimedia_manager.get_texture(assets::sprites::TIN_CAN, 0, 0, 48, 28);
 	texture->set_position({0,0});
 
 	auto builder = em.create_entity("Blik")

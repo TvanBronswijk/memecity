@@ -348,7 +348,7 @@
     <CopyFileToFolders Include="Assets\Advertisements\CocaCola.png" />
   </ItemGroup>
   <ItemGroup>
-    <CopyFileToFolders Include="Assets\Spritesheets\Tin_can.png" />
+    <CopyFileToFolders Include="Assets\Sprites\Tin_can.png" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
