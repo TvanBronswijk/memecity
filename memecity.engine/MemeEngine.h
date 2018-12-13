@@ -49,7 +49,6 @@ namespace memecity::engine {
 		MultimediaManager multimedia_manager;
 		InputManager input_manager;
 		sdl::TimerFacade timer;
-
 		int fps;
 		std::unique_ptr<Context> _context;
 		bool get_fps_trigger;
