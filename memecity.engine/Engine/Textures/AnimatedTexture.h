@@ -16,9 +16,10 @@ namespace memecity::engine::texture
 		AnimationDirection _animation_direction;
 		AnimationState _current_state;
 
+		int _frame_count;
+
 		float _start_x;
 		float _start_y;
-		float _frame_count;
 
 		float _animation_timer;
 		float _animation_speed;
@@ -32,11 +33,12 @@ namespace memecity::engine::texture
 		~AnimatedTexture() = default;
 
 		void row(float y);
-		float row() const;
+		int row() const;
 
 		void column(float x);
-		float column() const;
+		int column() const;
 
+		int frame_count() const;
 		bool is_last() const;
 
 		void set_state(AnimationState state);

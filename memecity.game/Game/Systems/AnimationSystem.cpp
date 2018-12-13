@@ -15,8 +15,8 @@ void AnimationSystem::set_texture(BaseComponent &base_component, std::unique_ptr
 	auto current_texture = base_component.get_texture();
 	if (current_texture.get_filename() != texture->get_filename())
 	{
+		texture->set_position(current_texture.get_position());
 		base_component.set_texture(std::move(texture));
-		base_component.get_texture().set_position(current_texture.get_position());
 	}
 }
 
@@ -34,20 +34,22 @@ void AnimationSystem::on_move(EntityManager& em, MoveEventArgs args)
 	if (animated_texture != nullptr && current_velocity != nullptr)
 	{
 		animated_texture->update(_context->get_timer().get_delta_time());
-		animated_texture->set_state(AnimatedTexture::AnimationState::idle);
 
 		switch (animation_component->current_state)
 		{
-			// TODO: is_last() is not working correctly? 
-
 			case AnimationComponent::AnimationState::fighting:
 				set_texture(*base_component, _context->get_multimedia_manager().get_texture(assets::spritesheets::HUMAN_FIGHTING_1, 0, 0, 48, 48, 4, 0.25f, AnimatedTexture::AnimationDirection::horizontal));
+				std::cout << "Fighting Column: " << animated_texture->column() << "\n";
 				if (animated_texture->is_last()) animation_component->current_state = AnimationComponent::AnimationState::idle;
 				break;
 			
 			case AnimationComponent::AnimationState::dying:
 				set_texture(*base_component, _context->get_multimedia_manager().get_texture(assets::spritesheets::HUMAN_DYING_1, 0, 0, 48, 48, 4, 0.25f, AnimatedTexture::AnimationDirection::horizontal));
-				if (animated_texture->is_last()) animation_component->current_state = AnimationComponent::AnimationState::idle;
+				if (animated_texture->is_last())
+				{
+					// TODO: Remove from ECS
+					animated_texture->column(animated_texture->frame_count() - 1);
+				}
 				break;
 			
 			default:
