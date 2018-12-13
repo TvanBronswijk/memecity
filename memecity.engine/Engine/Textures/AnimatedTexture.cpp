@@ -29,6 +29,11 @@ namespace memecity::engine::texture {
 		return clipped_rect.x / texture_width;
 	}
 
+	bool AnimatedTexture::is_last() const
+	{
+		return clipped_rect.x >= (texture_width - _start_x);
+	}
+
 	void AnimatedTexture::column(float x)
 	{
 		clipped_rect.x = x * texture_width;

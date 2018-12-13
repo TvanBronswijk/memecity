@@ -37,6 +37,8 @@ namespace memecity::engine::texture
 		void column(float x);
 		float column() const;
 
+		bool is_last() const;
+
 		void set_state(AnimationState state);
 		void set_animation_direction(AnimationDirection direction);
 		const AnimationDirection& get_animation_direction() const;
