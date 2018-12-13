@@ -74,7 +74,6 @@
     <ClInclude Include="Game\Event\InteractionEventArgs.h" />
     <ClInclude Include="Game\Systems\HealthSystem.h" />
     <ClInclude Include="Game\Systems\FogOfWarSystem.h" />
-    <ClInclude Include="Game\Systems\HealthSystem.h" />
     <ClInclude Include="Game\Systems\InteractionSystem.h" />
     <ClInclude Include="Game\Components\LevelComponent.h" />
     <ClInclude Include="Game\Generate\City\Strategy\Strategy.h" />

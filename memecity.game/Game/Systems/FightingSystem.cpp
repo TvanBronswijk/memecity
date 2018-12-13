@@ -38,7 +38,10 @@ void FightingSystem::on_attack(EntityManager &em, AttackEventArgs args) {
 			animation_component->current_state = AnimationComponent::AnimationState::fighting;
 		}
 
-		if(health_target->health == 0) args.source.get<AIComponent>()->state = State::Idle;
+		if (health_target->health == 0) {
+			args.source.get<AIComponent>()->state = State::Idle;
+			death_event.fire(em, {});
+		}
 		health_changed_event.fire(em, { health_target->health });
 	}
 

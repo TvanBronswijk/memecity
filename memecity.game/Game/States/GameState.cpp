@@ -19,7 +19,7 @@ void GameState::on_load()
 	auto& fow_system = system_pool.create_system<FogOfWarSystem>(memecity::engine::ecs::System::draw, multimedia_manager);
 
 
-	auto& health_system = system_pool.create_system<HealthSystem>(memecity::engine::ecs::System::update, multimedia_manager);
+	auto& health_system = system_pool.create_system<HealthSystem>(memecity::engine::ecs::System::update, *_context);
 	auto& quest_system = system_pool.create_system<QuestSystem>(memecity::engine::ecs::System::update, multimedia_manager);
 	auto& input_system = system_pool.create_system<InputSystem>(memecity::engine::ecs::System::update, *_context);
 	auto& move_system = system_pool.create_system<MoveSystem>();
@@ -34,6 +34,7 @@ void GameState::on_load()
 	memecity::engine::ecs::eventing::bind(fighting_system.damage_event, &health_system, &HealthSystem::on_damage);
 	memecity::engine::ecs::eventing::bind(interaction_system.quest_event, &quest_system, &QuestSystem::on_event);
 	memecity::engine::ecs::eventing::bind(fighting_system.quest_event, &quest_system, &QuestSystem::on_event);
+	memecity::engine::ecs::eventing::bind(fighting_system.death_event, &health_system, &HealthSystem::on_death);
 	fighting_system.health_changed_event += [&](auto& em, auto args) { _hud.update("HEALTHVALUE", args.new_health); };
 }
 

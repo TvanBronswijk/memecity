@@ -7,10 +7,10 @@
 class HealthSystem : public memecity::engine::ecs::System
 {
 public:
-	memecity::engine::MultimediaManager& multimedia_manager;
+	GameManager::GameContext *_context;
 	
-	HealthSystem(memecity::engine::MultimediaManager& multimedia_manager)
-		: multimedia_manager(multimedia_manager) {}
+	HealthSystem(GameManager::GameContext& context)
+		: _context(&context) {}
 
 	void run(memecity::engine::ecs::EntityManager& em) const override;
 	void on_damage(memecity::engine::ecs::EntityManager& em, std::reference_wrapper<const memecity::engine::ecs::Entity> entity);

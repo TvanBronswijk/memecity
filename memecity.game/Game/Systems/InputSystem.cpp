@@ -100,6 +100,10 @@ void InputSystem::run(EntityManager& em) const
 			}
 		}
 
+		if (input_manager.is_pressed(input::N)) {
+			state_manager.create_state<StoryState>(*_context, player.get<PlayerComponent>()->_stories);
+		}
+
 		if (input_manager.is_pressed(input::ONE)) {
 			auto inventory = player.get<InventoryComponent>();
 			inventory->selected = 0;
