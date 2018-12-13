@@ -349,6 +349,9 @@
     <CopyFileToFolders Include="Assets\Advertisements\BurgerKing.png" />
     <CopyFileToFolders Include="Assets\Advertisements\CocaCola.png" />
   </ItemGroup>
+  <ItemGroup>
+    <CopyFileToFolders Include="Assets\Sprites\big_black.bmp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{7554130C-4955-4D87-B069-5B9404014044}</ProjectGuid>
