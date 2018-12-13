@@ -21,4 +21,3 @@ public:
 	GameManager::GameContext& get_context() { return *_context; }
 };
 #endif
-#pragma once
