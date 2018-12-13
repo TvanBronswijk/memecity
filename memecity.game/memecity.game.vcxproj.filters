@@ -106,6 +106,9 @@
     <CopyFileToFolders Include="Assets\Advertisements\BananaWho.png" />
     <CopyFileToFolders Include="Assets\Advertisements\BurgerKing.png" />
     <CopyFileToFolders Include="Assets\Advertisements\CocaCola.png" />
-    <CopyFileToFolders Include="Assets\Sprites\Tin_can.png" />
+	<CopyFileToFolders Include="Assets\Sprites\Tin_can.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Assets\Sprites\big_black.bmp" />
   </ItemGroup>
 </Project>

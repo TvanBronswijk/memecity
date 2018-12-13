@@ -19,7 +19,7 @@ void InputSystem::run(EntityManager& em) const
 	auto players = em.get_entities_with_component<PlayerComponent>();
 	for (const Entity& player : players)
 	{
-		float speed = 5.0f;
+		float speed = 50.0f * _context->get_timer().get_delta_time();
 		auto velocity_component = player.get<VelocityComponent>();
 		if (input_manager.is_down(input::UP))
 		{
