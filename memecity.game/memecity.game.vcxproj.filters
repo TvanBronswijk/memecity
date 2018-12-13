@@ -76,6 +76,8 @@
     <ClInclude Include="Game\Components\ScoreComponent.h" />
     <ClInclude Include="Assets.h" />
     <ClInclude Include="Game\Components\ColliderComponent.h" />
+    <ClInclude Include="Game\Components\InventoryComponent.h" />
+    <ClInclude Include="Game\Components\ItemComponent.h" />
     <ClInclude Include="Game\Systems\FogOfWarSystem.h" />
   </ItemGroup>
   <ItemGroup>
@@ -104,6 +106,7 @@
     <CopyFileToFolders Include="Assets\Advertisements\BananaWho.png" />
     <CopyFileToFolders Include="Assets\Advertisements\BurgerKing.png" />
     <CopyFileToFolders Include="Assets\Advertisements\CocaCola.png" />
+	<CopyFileToFolders Include="Assets\Sprites\Tin_can.png" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\Sprites\big_black.bmp" />
