@@ -37,7 +37,7 @@ void GameState::update(float dt)
 
 void GameState::draw()
 {
-	system_pool.update(entity_manager, 0, memecity::engine::ecs::System::draw);
+	system_pool.update(entity_manager, 0.0f, memecity::engine::ecs::System::draw);
 	_hud.render();
 }
 

@@ -20,7 +20,7 @@ namespace memecity::engine {
 				prev = logic_timer.get_delta_time();
 				logic_timer.update();
 				engine.update(logic_timer.get_delta_time() - prev);
-				if (prev > 3600)
+				if (prev > 3600.0f)
 				{
 					logic_timer.reset();
 					prev = logic_timer.get_delta_time();
