@@ -1,7 +1,9 @@
 #include "QuestSystem.h"
 #include <ECS.h>
 #include "../Components/PlayerComponent.h"
-#include "../Components/StoryComponent.h"
+#include "../Quest/Story.h"
+#include "../Quest/Task.h"
+#include "../Quest/Quest.h"
 #include "../Components/HealthComponent.h"
 #include "../Components/ItemComponent.h"
 #include "../Components/AIComponent.h"
@@ -16,48 +18,46 @@ using namespace memecity::engine::ecs;
 
 void QuestSystem::run(EntityManager &em) const {
 	auto player_component = em.get_components_of_type<PlayerComponent>()[0];
-	auto stories = player_component.get()._stories;
-
-	//std::for_each(stories.begin(), stories.end(), [&](auto s) {story(s);});
+	auto& stories = player_component.get()._stories;
 
 	for (auto it = stories.begin(); it != stories.end(); ++it) {
 		story(*it);
 	}
 }
 
-void QuestSystem::story(const Entity* story_entity) const {
-	auto story = story_entity->get<StoryComponent>();
-	if (story->active) {
-		if (story->_quests.empty()) {
-			if (story->completed) return;
-			story->completed = true;
+void QuestSystem::story(Story& story) const {
+	if (story.active) {
+		if (story._quests.empty()) {
+			if (story.completed) return;
+			story.completed = true;
 		}
 		else {
-			if (quest(story->_quests.front())) {
-				story->_quests.pop();
+			if (quest(story._quests.front())) {
+				story._quests.pop();
 			}
 		}
 	}
 }
 
-bool QuestSystem::quest(QuestComponent* quest) const{
-	if (quest->_tasks.empty()) {
-		quest->completed = true;
+bool QuestSystem::quest(Quest& quest) const{
+	if (quest._tasks.empty()) {
+		quest.completed = true;
 		return true;
 	}
 	else {
-		if (task(quest->_tasks.front())) {
-			quest->_tasks.pop();
+		if (task(quest._tasks.front())) {
+			quest._tasks.pop();
 		}
 	}
 	return false;
 }
 
-bool QuestSystem::task(TaskComponent* task) const {
-	if (task->counter >= task->amount) {
-		task->completed = true;
-		if (task->target != NULL) {
-			auto interaction = task->target->get<InteractionComponent>();
+bool QuestSystem::task(Task& task) const {
+	if (task.counter >= task.amount) {
+		std::cout << "lukt" << "\n";
+		task.completed = true;
+		if (task.target != NULL) {
+			auto interaction = task.target->get<InteractionComponent>();
 			if (interaction != nullptr) {
 				interaction->text.clear();
 				interaction->text.emplace_back(" ");
@@ -65,11 +65,11 @@ bool QuestSystem::task(TaskComponent* task) const {
 		}
 		return true;
 	}
-	if (task->target != NULL) {
-		auto interaction = task->target->get<InteractionComponent>();
+	if (task.target != NULL) {
+		auto interaction = task.target->get<InteractionComponent>();
 		if (interaction != nullptr) {
 			if (interaction->text[0] == " ") {
-				interaction->text = task->dialog;
+				interaction->text = task.dialog;
 			}
 		}
 	}
@@ -78,24 +78,26 @@ bool QuestSystem::task(TaskComponent* task) const {
 
 void QuestSystem::on_event(EntityManager &em, QuestEventArgs args) {
 	auto player_component = em.get_components_of_type<PlayerComponent>()[0];
-	auto stories = player_component.get()._stories;
+	auto& stories = player_component.get()._stories;
 
 	for (auto it = stories.begin(); it != stories.end(); ++it) {
-		auto story = (*it)->get<StoryComponent>();
-		if (story->active) {
-			if (!story->_quests.empty()) {
-				switch (story->_quests.front()->_tasks.front()->state) {
+		auto& story = *it;
+		if (story.active) {
+			if (!story._quests.empty()) {
+				auto &task = story._quests.front()._tasks.front();
+				std::cout << task.counter;
+				switch (story._quests.front()._tasks.front().state) {
 				case Quest_State::Dropping:
-					check_task_dropping(args, story->_quests.front()->_tasks.front());
+					check_task_dropping(args, task);
 					break;
 				case Quest_State::Fighting:
-					check_task_fighting(args, story->_quests.front()->_tasks.front());
+					check_task_fighting(args, task);
 					break;
 				case Quest_State::Finding:
-					check_task_finding(args, story->_quests.front()->_tasks.front());
+					check_task_finding(args, task);
 					break;
 				case Quest_State::Interaction:
-					check_task_interaction(args, story->_quests.front()->_tasks.front());
+					check_task_interaction(args, task);
 					break;
 				}
 			}
@@ -103,35 +105,36 @@ void QuestSystem::on_event(EntityManager &em, QuestEventArgs args) {
 	}
 }
 
-void QuestSystem::check_task_interaction(QuestEventArgs args, TaskComponent* task) {
-	if (task->target == args.target) {
+void QuestSystem::check_task_interaction(QuestEventArgs args, Task& task) {
+	if (task.target == args.target) {
 		auto interaction_target = args.target->get<InteractionComponent>();
 		if (interaction_target->current_text_int == interaction_target->text.size()-1){
-			task->counter++;
+			task.counter++;
 			interaction_target->current_text_int = 0;
+			std::cout << " counter: " << task.counter << " amount: " << task.amount << " task: " << task.description << "\n";
 		}
 	}
 }
-void QuestSystem::check_task_finding(QuestEventArgs args, TaskComponent* task) {
+void QuestSystem::check_task_finding(QuestEventArgs args, Task& task) {
 	auto item = args.target->get<ItemComponent>();
 	if(item != nullptr){
-		if (task->target->get<ItemComponent>()->name == item->name) {
-			task->counter++;
+		if (task.target->get<ItemComponent>()->name == item->name) {
+			task.counter++;
 		}
 	}
 }
-void QuestSystem::check_task_dropping(QuestEventArgs args, TaskComponent* task) {
-	if (task->item == args.item) {
+void QuestSystem::check_task_dropping(QuestEventArgs args, Task& task) {
+	if (task.item == args.item) {
 		//TODO: implement quest_drop
-		task->counter++;
+		task.counter++;
 	}
 }
-void QuestSystem::check_task_fighting(QuestEventArgs args, TaskComponent* task) {
+void QuestSystem::check_task_fighting(QuestEventArgs args, Task& task) {
 	if (args.target->get<AIComponent>() != nullptr) {
-		if (task->target->get<AIComponent>()->name == args.target->get<AIComponent>()->name) {
+		if (task.target->get<AIComponent>()->name == args.target->get<AIComponent>()->name) {
 			if (args.target->get<HealthComponent>()->health <= 0) {
-				if (task->item == args.item) {
-					task->counter++;
+				if (task.item == args.item) {
+					task.counter++;
 				}
 			}
 		}

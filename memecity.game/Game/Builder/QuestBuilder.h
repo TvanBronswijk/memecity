@@ -2,7 +2,7 @@
 #define  _QUESTBUILDER_H
 #include <ECS.h>
 #include <vector>
-#include "..\Components.h"
+#include "..\Quest\Story.h"
 #include "..\Generate\NPC\NPCGenerator.h"
 
 class QuestBuilder{
@@ -13,9 +13,9 @@ private:
 	memecity::engine::ecs::EntityManager& entity_manager;
 	generate::NPCGenerator npc_generator;
 	
-	const memecity::engine::ecs::Entity& intro();
+	Story intro();
 public:
-	std::vector<const memecity::engine::ecs::Entity*> getAllStories();
+	std::vector<Story> getAllStories();
 
 	QuestBuilder(
 		memecity::engine::MultimediaManager& multimedia_manager, memecity::engine::ecs::EntityManager& entity_manager) :

@@ -1,18 +1,21 @@
 #include "QuestBuilder.h"
-#include "../Generate.h"
-#include "../Enum/QuestStates.h"
+#include "..\Generate.h"
+#include "..\Enum\QuestStates.h"
+#include "..\Quest\Quest.h"
+#include "..\Quest\Task.h"
+#include "..\Components\AIComponent.h"
 
 using namespace memecity::engine::ecs;
 
-std::vector<const memecity::engine::ecs::Entity*> QuestBuilder::getAllStories() {
-	std::vector<const memecity::engine::ecs::Entity*> stories;
+std::vector<Story> QuestBuilder::getAllStories() {
+	std::vector<Story> stories;
 
-	stories.emplace_back(&intro());
+	stories.emplace_back(intro());
 
 	return stories;
 }
 
-const memecity::engine::ecs::Entity& QuestBuilder::intro() {
+Story QuestBuilder::intro() {
 	std::string name = "René";
 	std::vector<std::string> task_dialog_René = {
 		"Hello stranger!",
@@ -27,61 +30,54 @@ const memecity::engine::ecs::Entity& QuestBuilder::intro() {
 	"pick up a tin can",
 	" "};
 
-	auto builder = entity_manager.create_entity("story");
-	auto& story = builder.get();
-
 	//create tasks
-	std::deque<TaskComponent*> tasks_quest1{
-		&entity_manager.create_component<TaskComponent>(
-		const_cast<Entity&>(story),
+	std::deque<Task> tasks_quest1{
+		Task{
 		"Talk to René" ,
 		Quest_State::Interaction,
 		task_dialog_René,
 		&npc_generator.generate_quest_npc(name, assets::spritesheets::HUMAN_MALE_1),
 		nullptr,
-		1),
-		&entity_manager.create_component<TaskComponent>(
-		const_cast<Entity&>(story),
+		1},
+		Task{
 		"Talk to René2" ,
 		Quest_State::Interaction,
 		task_dialog_René2,
 		&npc_generator.generate_quest_npc(name, assets::spritesheets::HUMAN_MALE_1),
 		nullptr,
-		1)
+		1}
 	};
 
-	std::deque<TaskComponent*> tasks_quest2{
-		&entity_manager.create_component<TaskComponent>(
-		const_cast<Entity&>(story),
+	std::deque<Task> tasks_quest2{
+		Task{
 		"pick up a tin can" ,
 		Quest_State::Finding,
 		std::vector<std::string>(),
 		&(entity_manager.get_entities_by_type("Blik").front().get()),
 		nullptr,
-		1),
+		1}
 	};
 
 
-	std::deque<TaskComponent*> tasks_quest3{
-		&entity_manager.create_component<TaskComponent>(
-		const_cast<Entity&>(story),
+	std::deque<Task> tasks_quest3{
+		Task{
 		"Kill a human" ,
 		Quest_State::Fighting,
 		std::vector<std::string>(),
 		&entity_manager.get_entities_with_component<AIComponent>()[0].get(),
 		nullptr,
-		1),
+		1}
 	};
 
 	//create quests
-	std::deque<QuestComponent*> quests{
-	&entity_manager.create_component<QuestComponent>(const_cast<Entity&>(story), "Talking", tasks_quest1),
-	&entity_manager.create_component<QuestComponent>(const_cast<Entity&>(story), "Picking Up", tasks_quest2),
-	&entity_manager.create_component<QuestComponent>(const_cast<Entity&>(story), "Killing", tasks_quest3)
+	std::deque<Quest> quests{
+	Quest{"Talking", tasks_quest1},
+	Quest{"Picking Up", tasks_quest2},
+	Quest{"Killing", tasks_quest3}
 	};
 
 	//add quests
-	builder.with_component<StoryComponent>("introduction", quests);
+	Story story{ "introduction", quests };
 
 	return story;
 }
