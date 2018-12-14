@@ -14,7 +14,7 @@ public:
 	InteractionSystem(memecity::engine::MultimediaManager& multimedia_manager)
 		: multimedia_manager(multimedia_manager) {}
 
-	void run(memecity::engine::ecs::EntityManager& em) const override;
+	void run(memecity::engine::ecs::EntityManager& em, float dt) const override;
 	void on_interact(memecity::engine::ecs::EntityManager& em, InteractionEventArgs args);
 };
 #endif
