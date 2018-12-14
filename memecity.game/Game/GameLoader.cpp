@@ -68,8 +68,6 @@ void GameLoader::create_items(EntityManager& em, loading::LoadingBar::Listener& 
 		.with_component<BaseComponent>(std::move(texture), 50.0f, 0.0f, 48.0f, 48.0f)
 		.with_component<ItemComponent>("Blik", "a normal tin can")
 		.with_component<StatsComponent>(0,0,0,0,0,0,0);
-	auto base_component = builder.get().get<BaseComponent>();
-	builder.with_component<ColliderComponent>(BoundaryRectangle(base_component->location.x, base_component->location.y, base_component->w, base_component->h));
 }
 
 void GameLoader::create_player(EntityManager& em, loading::LoadingBar::Listener& listener)

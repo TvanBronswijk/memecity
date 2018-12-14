@@ -21,21 +21,26 @@ void InputSystem::run(EntityManager& em, float dt) const
 	{
 		float speed = 200.0f;
 
+		auto animation_component = player.get<AnimationComponent>();
 		auto velocity_component = player.get<VelocityComponent>();
 		if (input_manager.is_down(input::UP))
 		{
+			animation_component->old_direction = texture::AnimatedTexture::Direction::up;
 			velocity_component->y -= speed;
 		}
 		else if (input_manager.is_down(input::DOWN))
 		{
+			animation_component->old_direction = texture::AnimatedTexture::Direction::down;
 			velocity_component->y += speed;
 		}
 		if (input_manager.is_down(input::LEFT))
 		{
+			animation_component->old_direction = texture::AnimatedTexture::Direction::left;
 			velocity_component->x -= speed;
 		}
 		else if (input_manager.is_down(input::RIGHT))
 		{
+			animation_component->old_direction = texture::AnimatedTexture::Direction::right;
 			velocity_component->x += speed;
 		}
 
@@ -87,7 +92,15 @@ void InputSystem::run(EntityManager& em, float dt) const
 				auto player_base = player.get<BaseComponent>();
 
 				auto& animation_texture = dynamic_cast<texture::AnimatedTexture&>(player_base->get_texture());
-				switch (animation_texture.get_direction()) {
+
+				texture::AnimatedTexture::Direction direction;
+				if (animation_texture.get_direction() != texture::AnimatedTexture::Direction::idle) {
+					direction = animation_texture.get_direction();
+				}
+				else {
+					direction = animation_component->old_direction;
+				}
+				switch (direction) {
 				case texture::AnimatedTexture::Direction::down:
 					item_base->location = uPoint<float>(player_base->location.x, player_base->location.y + 50);
 					break;
