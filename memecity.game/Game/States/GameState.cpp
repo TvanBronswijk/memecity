@@ -76,12 +76,12 @@ void GameState::on_load()
 
 void GameState::update(float dt)
 {
-	system_pool.update(entity_manager, memecity::engine::ecs::System::update);
+	system_pool.update(entity_manager, dt, memecity::engine::ecs::System::update);
 }
 
 void GameState::draw()
 {
-	system_pool.update(entity_manager, memecity::engine::ecs::System::draw);
+	system_pool.update(entity_manager, 0.0f, memecity::engine::ecs::System::draw);
 	_hud.render();
 }
 

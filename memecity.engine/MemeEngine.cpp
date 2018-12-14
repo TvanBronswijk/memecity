@@ -14,8 +14,17 @@ namespace memecity::engine {
 #ifdef DEBUG
 			std::cout << "	logic thread: " << std::this_thread::get_id() << '\n';
 #endif
+			sdl::TimerFacade logic_timer;
+			float prev = 0.0f;
 			while (!engine.input_manager.is_quit_pressed()) {
-				engine.update(engine.timer.get_delta_time());
+				prev = logic_timer.get_delta_time();
+				logic_timer.update();
+				engine.update(logic_timer.get_delta_time() - prev);
+				if (prev > 3600.0f)
+				{
+					logic_timer.reset();
+					prev = logic_timer.get_delta_time();
+				}
 			}
 		});
 		sdl::TimerFacade fps_timer = sdl::TimerFacade();

@@ -2,10 +2,9 @@
 
 using namespace memecity::engine::ecs;
 
-void ColliderSystem::run(EntityManager& em) const
+void ColliderSystem::run(EntityManager& em, float dt) const
 {
 	auto components = em.get_components_of_type<ColliderComponent>();
-	QuadTree quad_tree(4, Rectangle(0, 0, _map_width, _map_height));
 	for (const ColliderComponent& collider : components)
 	{
 		quad_tree.insert(collider.boundary_rectangle);
@@ -17,7 +16,6 @@ void ColliderSystem::run(EntityManager& em) const
 		std::vector<std::reference_wrapper<const BoundaryRectangle>> query_result{};
 		query_result.reserve(4);
 		quad_tree.query(boundary_rectangle, query_result);
-		query_result.shrink_to_fit();
 		for (const BoundaryRectangle& collidable : query_result)
 		{
 			if (&boundary_rectangle != &collidable && intersects(boundary_rectangle, collidable))
@@ -26,4 +24,5 @@ void ColliderSystem::run(EntityManager& em) const
 			}
 		}
 	}
+	quad_tree.clear();
 }

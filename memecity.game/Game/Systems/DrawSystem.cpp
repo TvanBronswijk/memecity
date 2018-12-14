@@ -4,7 +4,7 @@
 
 using namespace memecity::engine::ecs;
 
-void DrawSystem::run(EntityManager& em) const
+void DrawSystem::run(EntityManager& em, float dt) const
 {
 	auto& player = em.get_entities_with_component<PlayerComponent>().front().get();
 	auto player_base = player.get<BaseComponent>();
