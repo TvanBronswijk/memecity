@@ -18,19 +18,28 @@ namespace memecity::engine {
 				engine.update(engine.timer.get_delta_time());
 			}
 		});
+		sdl::TimerFacade fps_timer = sdl::TimerFacade();
+		float fps = 0;
 		while (!engine.input_manager.is_quit_pressed()) {
 			engine.timer.update();
 			engine.input_manager.update();
 			if (engine.timer.get_delta_time() >= 1.0f / 60.0f) {
-				if (engine.get_fps_trigger) {
-					for (auto& subscriber : engine.fps_subscribers) {
-						subscriber(true, 1.0f / engine.timer.get_delta_time());
-					}
-				}
+				
 				engine.multimedia_manager.clear_graphics();
 				engine.draw();
+				fps++;
 				engine.multimedia_manager.render_graphics();
 				engine.timer.reset();
+				if (engine.get_fps_trigger) {
+					fps_timer.update();
+					if (fps_timer.get_delta_time() >= 1.0f) {
+						for (auto& subscriber : engine.fps_subscribers) {
+							subscriber(true, fps);
+						}
+						fps = 0;
+						fps_timer.reset();
+					}
+				}
 			}
 		};
 		logic.join();

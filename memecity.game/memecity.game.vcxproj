@@ -73,7 +73,6 @@
     <ClInclude Include="Game\Systems\OverlaySystem.h" />
     <ClInclude Include="Game\Components\ScoreComponent.h" />
     <ClInclude Include="Assets.h" />
-    <ClInclude Include="Game\UI\HUD\Hud.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game\Generate\NPC\NPCGenerator.cpp" />
@@ -95,7 +94,6 @@
     <ClCompile Include="Game\Systems\FogOfWarSystem.cpp" />
     <ClCompile Include="Game\Systems\InteractionSystem.cpp" />
     <ClCompile Include="Game\Systems\InputSystem.cpp" />
-    <ClCompile Include="Game\UI\HUD\Hud.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Game\Systems\MoveSystem.cpp" />
     <ClCompile Include="Game\Systems\OverlaySystem.cpp" />

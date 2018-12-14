@@ -3,6 +3,7 @@
   <ItemGroup>
     <ClCompile Include="Game\Generate\NPC\NPCGenerator.cpp" />
     <ClCompile Include="Game\GameLoader.cpp" />
+    <ClCompile Include="Game\States\DeveloperMenuState.cpp" />
     <ClCompile Include="Game\States\LoadingState.cpp" />
     <ClCompile Include="Game\States\GameState.cpp" />
     <ClCompile Include="Game\States\MenuState.cpp" />
@@ -16,17 +17,18 @@
     <ClCompile Include="Game\Systems\FightingSystem.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="Game\Systems\DrawSystem.cpp" />
+    <ClCompile Include="Game\Systems\FogOfWarSystem.cpp" />
     <ClCompile Include="Game\Systems\InteractionSystem.cpp" />
     <ClCompile Include="Game\Systems\InputSystem.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Game\Systems\MoveSystem.cpp" />
     <ClCompile Include="Game\Systems\OverlaySystem.cpp" />
-	<ClCompile Include="Game\UI\HUD\Hud.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Components\DimensionComponent.h" />
     <ClInclude Include="Game\Components.h" />
     <ClInclude Include="Game\Components\AIComponent.h" />
+    <ClInclude Include="Game\Components\ColliderComponent.h" />
     <ClInclude Include="Game\Event\BlikCoinEventArg.h" />
     <ClInclude Include="Game\Event\ExpEventArgs.h" />
     <ClInclude Include="Game\Event\HealthChangedEventArgs.h" />
@@ -41,7 +43,7 @@
     <ClInclude Include="Game\Generate\City\Strategy\BSP\Fills\Prefab.h" />
     <ClInclude Include="Game\Generate\NPC\NPCGenerator.h" />
     <ClInclude Include="Game\Input.h" />
-	<ClInclude Include="Game\UI\HUD\Hud.h" />
+    <ClInclude Include="Game\States\DeveloperMenuState.h" />
     <ClInclude Include="Game\States\LoadingState.h" />
     <ClInclude Include="Game\States\GameState.h" />
     <ClInclude Include="Game\States.h" />
@@ -65,6 +67,7 @@
     <ClInclude Include="Game\Components\HealthComponent.h" />
     <ClInclude Include="Game\Components\InteractionComponent.h" />
     <ClInclude Include="Game\Event\InteractionEventArgs.h" />
+    <ClInclude Include="Game\Systems\FogOfWarSystem.h" />
     <ClInclude Include="Game\Systems\InteractionSystem.h" />
     <ClInclude Include="Game\Components\LevelComponent.h" />
     <ClInclude Include="Game\Generate\City\Strategy\Strategy.h" />
@@ -76,7 +79,6 @@
     <ClInclude Include="Game\Systems\OverlaySystem.h" />
     <ClInclude Include="Game\Components\ScoreComponent.h" />
     <ClInclude Include="Assets.h" />
-    <ClInclude Include="Game\Components\ColliderComponent.h" />
   </ItemGroup>
   <ItemGroup>
     <CopyFileToFolders Include="Assets\Music\bgm.mp3" />
@@ -101,7 +103,9 @@
     <CopyFileToFolders Include="Assets\Fonts\Minecraftia-Regular.ttf" />
     <CopyFileToFolders Include="Assets\Music\bgm-game.mp3" />
     <CopyFileToFolders Include="Assets\Music\bgm-menu.mp3" />
+    <CopyFileToFolders Include="Assets\Advertisements\BananaWho.png" />
+    <CopyFileToFolders Include="Assets\Advertisements\BurgerKing.png" />
+    <CopyFileToFolders Include="Assets\Advertisements\CocaCola.png" />
     <CopyFileToFolders Include="Assets\Sprites\big_black.bmp" />
-    <Image Include="Assets\Sprites\big_black.bmp" />
   </ItemGroup>
 </Project>

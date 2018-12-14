@@ -32,7 +32,11 @@ public:
 
 		_hud.create_overlay_text_item("BLIKCOIN", "BlikCoin: 9999", 16, 650, 16);
 	}
-	~GameState() = default;
+	~GameState()
+	{
+		auto& engine = _context->get_engine(); 
+		engine.set_calculate_fps(false);
+	};
 	void on_load() override;
 	void update(float dt) override;
 	void draw() override;

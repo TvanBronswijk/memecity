@@ -28,11 +28,12 @@ DeveloperMenuState::DeveloperMenuState(memecity::engine::state::StateManager& sm
 		{
 			const auto& stats = player.get().entity().get<StatsComponent>();
 			stats->strength = 100;
-			auto* exp_system = em.get_system_of_type<ExpSystem>();
-			exp_system->stats_changed_event.fire(em, StatsEventArgs{ stats->strength, stats->perception, stats->endurance, stats->charisma, stats->intelligence, stats->agility, stats->luck });
 		}
 	})
-		.with_menu_item("Amnesia Completa")// npcs vergeten dat ze boos zijn
+		.with_menu_item("Amnesia Completa",nullptr, [&](auto& menu_item)
+	{
+		//TODO
+	})// npcs vergeten dat ze boos zijn
 		.with_menu_item("Avada Kedavra", nullptr, [&](auto& menu_item)// alle (niet quest) npcs gaan dood
 	{
 		auto healtyEntities = em.get_entities_with_component<HealthComponent>();
