@@ -54,7 +54,8 @@ void AISystem::point_jump_search(EntityManager& em, BaseComponent& npc_base) con
 	Point end(player_base->location.x, player_base->location.y);
 
 	//check if ai is near player
-	if (check_collision(npc_base, *player_base, 60)) {
+	auto ai = npc_base.entity().get<AIComponent>();
+	if (check_collision(npc_base, *player_base, ai->range_of_fighting)) {
 		attack_event.fire(em, { npc_base.entity(), player_base->entity() });
 	}
 

@@ -16,7 +16,7 @@
 using namespace memecity::engine::ecs;
 
 
-void QuestSystem::run(EntityManager &em) const {
+void QuestSystem::run(EntityManager &em, float dt) const {
 	auto player_component = em.get_components_of_type<PlayerComponent>()[0];
 	auto& stories = player_component.get()._stories;
 

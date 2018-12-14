@@ -52,7 +52,7 @@ void GameLoader::create_npcs(EntityManager& em, loading::LoadingBar::Listener& l
 	for (size_t i = 0; i < 1; i++) {
 		auto& multimedia_manager = _context->get_multimedia_manager();
 		auto& timer = _context->get_timer();
-		generate::NPCGenerator(multimedia_manager, em).generate_random_npc(1, 50 * i, 0, 1, State::Roaming);
+		generate::NPCGenerator(multimedia_manager, em).generate_random_npc(50 * i, 0);
 	}
 	listener.increase_current_value(20.0f);
 }
@@ -82,7 +82,7 @@ void GameLoader::create_player(EntityManager& em, loading::LoadingBar::Listener&
 	auto builder = em.create_entity("player")
 		.with_component<BaseComponent>(std::move(texture), 0.0f, 0.0f, 48.0f, 48.0f)
 		.with_component<PlayerComponent>(QuestBuilder(multimedia_manager, em).getAllStories())
-		.with_component<StatsComponent>(1, 3, 1, 1, 1, 1, 1)
+		.with_component<StatsComponent>(5, 1, 5, 5, 5, 5, 5)
 		.with_component<AnimationComponent>()
 		.with_component<ExpComponent>(0, 100)
 		.with_component<HealthComponent>(100, nullptr)

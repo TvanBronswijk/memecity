@@ -19,7 +19,7 @@ private:
 
 public:
 	QuestSystem(memecity::engine::MultimediaManager& multimedia_manager) : multimedia_manager(multimedia_manager) {}
-	void run(memecity::engine::ecs::EntityManager& em) const override;
+	void run(memecity::engine::ecs::EntityManager& em, float dt) const override;
 	void story(Story&) const;
 	bool quest(Quest&) const;
 	bool task(Task&) const;

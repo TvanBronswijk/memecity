@@ -15,9 +15,107 @@ namespace generate {
 		return (5 + (rand() % (max)));
 	}
 
-	const memecity::engine::ecs::Entity& NPCGenerator::generate_random_npc(int maxlevel, float x, float y, float movement_speed, State state) {
+
+	const memecity::engine::ecs::Entity& NPCGenerator::generate_police_npc(float x, float y) {
+		this->name = "Handhaving";
+		this->level = rand() % 1;
+		//TODO:: change on map
+		this->range_of_fighting = rand() % 30 + 60;
+		this->movement_speed = rand() % 40 + 180;
+		this->exp = rand() % 100;
+		this->x = x;
+		this->y = y;
+
+		this->strength = 5 + level;
+		this->perception = 5 + level;
+		this->endurance = 5 + level;
+		this->charisma = 5 + level;
+		this->intelligence = 5 + level;
+		this->agility = 5 + level;
+
+		health = ((strength * 5) + (endurance * 3) + (agility * 2) + 50);
+
+		std::string hp = "HP: ";
+		hp += std::to_string(health);
+		hp += "/";
+		hp += std::to_string(health);
+
+
+		//TODO::change to police sprite
+		auto animation_texture = multimedia_manager.get_texture(assets::spritesheets::HUMAN_MALE_1, 0, 0, 48, 48, 4, 0.25f, texture::AnimatedTexture::AnimationDirection::vertical);
+		animation_texture->set_position({ static_cast<float>(multimedia_manager.get_screen_width()) / 2, static_cast<float>(multimedia_manager.get_screen_height()) / 2 });
+
+		std::string font = assets::fonts::DEFAULT_FONT;
+		auto health_texture = multimedia_manager.get_text(font, hp, 10, { 34,139,34 });
+		health_texture->set_position({ 0, -20 });
+		health_texture->set_parent(animation_texture.get());
+
+		auto name_texture = multimedia_manager.get_text(font, this->name, 14, { 255,255,255 });
+		name_texture->set_position({ 0, -35 });
+		name_texture->set_parent(animation_texture.get());
+
+		auto interaction_texture = multimedia_manager.get_text(" ", 14);
+		interaction_texture->set_position({ 0, -35 });
+		interaction_texture->set_parent(animation_texture.get());
+
+		return generate_npc(
+			x, y, 48.0f, 48.0f, level, exp, range_of_fighting, movement_speed,
+			strength, perception, endurance, charisma, intelligence, agility, luck,
+			health, name, State::Roaming,
+			std::move(animation_texture),
+			std::move(health_texture),
+			std::move(interaction_texture),
+			std::move(name_texture));
+	}
+	const memecity::engine::ecs::Entity& NPCGenerator::generate_civilian_npc(float x, float y) {
+		this->name = getRandomName();
+		this->range_of_fighting = 60;
+		this->movement_speed = rand() % 180;
+		this->exp = 10;
+		this->x = x;
+		this->y = y;
+
+		health = 100;
+
+		std::string hp = "HP: ";
+		hp += std::to_string(health);
+		hp += "/";
+		hp += std::to_string(health);
+
+		//TODO::change on gender
+		auto animation_texture = multimedia_manager.get_texture(assets::spritesheets::HUMAN_MALE_1, 0, 0, 48, 48, 4, 0.25f, texture::AnimatedTexture::AnimationDirection::vertical);
+		animation_texture->set_position({ static_cast<float>(multimedia_manager.get_screen_width()) / 2, static_cast<float>(multimedia_manager.get_screen_height()) / 2 });
+
+		std::string font = assets::fonts::DEFAULT_FONT;
+		auto health_texture = multimedia_manager.get_text(font, hp, 10, { 34,139,34 });
+		health_texture->set_position({ 0, -20 });
+		health_texture->set_parent(animation_texture.get());
+
+		auto name_texture = multimedia_manager.get_text(font, this->name, 14, { 255,255,255 });
+		name_texture->set_position({ 0, -35 });
+		name_texture->set_parent(animation_texture.get());
+
+		auto interaction_texture = multimedia_manager.get_text(" ", 14);
+		interaction_texture->set_position({ 0, -35 });
+		interaction_texture->set_parent(animation_texture.get());
+
+		return generate_npc(
+			x, y, 48.0f, 48.0f, level, exp, range_of_fighting, movement_speed,
+			5, 5, 5, 5, 5, 5, 5,
+			health, name, State::Roaming,
+			std::move(animation_texture),
+			std::move(health_texture),
+			std::move(interaction_texture),
+			std::move(name_texture));
+	}
+
+	//random generator
+	const memecity::engine::ecs::Entity& NPCGenerator::generate_random_npc(float x, float y) {
 		this->name = "random";
-		this->level = rand() % maxlevel + 1;
+		this->level = rand() % 1;
+		this->range_of_fighting = rand() % 30 + 60;
+		this->movement_speed = rand() % 40 + 180 ;
+		this->exp = rand() % 100;
 		this->x = x;
 		this->y = y;
 
@@ -65,9 +163,29 @@ namespace generate {
 		interaction_texture->set_position({ 0, -35 });
 		interaction_texture->set_parent(animation_texture.get());
 
-		auto& builder = entity_manager.create_entity("npc")
-			.with_component<BaseComponent>(std::move(animation_texture), x, y, 48.0f, 48.0f)
-			.with_component<AIComponent>(state, this->name,movement_speed, std::move(name_texture))
+		return generate_npc(
+			x, y, 48.0f, 48.0f, level, exp, range_of_fighting, movement_speed,
+			strength, perception, endurance, charisma,intelligence, agility, luck, 
+			health, name, State::Roaming,
+			std::move(animation_texture),
+			std::move(health_texture),
+			std::move(interaction_texture),
+			std::move(name_texture));
+	}
+
+	//base generator
+	const memecity::engine::ecs::Entity& NPCGenerator::generate_npc(
+		float x, float y, float width,float height, int level, int exp, int range_of_fighting, float movement_speed, int strength, int perception, int endurance, int charisma,
+		int intelligence, int agility, int luck, int health, std::string name, State state,
+		std::unique_ptr<memecity::engine::texture::Texture> animation_texture,
+		std::unique_ptr<memecity::engine::texture::TextTexture> health_texture,
+		std::unique_ptr<memecity::engine::texture::TextTexture> interaction_texture,
+		std::unique_ptr<memecity::engine::texture::TextTexture> name_texture){
+
+		const char* entity_name = name.c_str();
+		auto& builder = entity_manager.create_entity(entity_name)
+			.with_component<BaseComponent>(std::move(animation_texture), x, y, width, height)
+			.with_component<AIComponent>(state, this->name, exp, range_of_fighting, movement_speed, std::move(name_texture))
 			.with_component<VelocityComponent>()
 			.with_component<AnimationComponent>()
 			.with_component<LevelComponent>(level)
@@ -78,34 +196,50 @@ namespace generate {
 		builder.with_component<ColliderComponent>(BoundaryRectangle(base_component->location.x, base_component->location.y, base_component->w, base_component->h));
 
 		return builder.get();
-	}
-
-
-	const memecity::engine::ecs::Entity& NPCGenerator::generate_npc(//TODO: kijk goed naar de bovenste
-		int level, float x, float y,float movement_speed, int strength, int perception,
-		int endurance, int charisma, int intelligence, int agility, 
-		int luck, int health, std::string name,
-		std::unique_ptr<memecity::engine::texture::Texture> animation_texture, 
-		std::unique_ptr<memecity::engine::texture::TextTexture> health_texture,
-		std::unique_ptr<memecity::engine::texture::TextTexture> interaction_texture,
-		std::unique_ptr<memecity::engine::texture::TextTexture> name_texture) {
-
-		auto& builder = entity_manager.create_entity("npc")
-			.with_component<BaseComponent>(std::move(animation_texture), x, y, 48.0f, 48.0f)
-			.with_component<AIComponent>(State::Idle, name , movement_speed,std::move(name_texture))
-			.with_component<VelocityComponent>()
-			.with_component<AnimationComponent>()
-			.with_component<LevelComponent>(level)
-			.with_component<StatsComponent>(strength, perception, endurance, charisma, intelligence, agility, luck)
-			.with_component<HealthComponent>(health, std::move(health_texture))
-			.with_component<InteractionComponent>(std::move(interaction_texture));
-		auto base_component = builder.get().get<BaseComponent>();
-		builder.with_component<ColliderComponent>(BoundaryRectangle(base_component->location.x, base_component->location.y, base_component->w, base_component->h));
-
-		return builder.get();
 
 	}
 
+	//get random interaction
+	std::vector<std::string> NPCGenerator::createInteractionStrings() {
+		std::vector<std::string> interaction;
+
+		int random = rand() % 2;
+
+		switch (random) {
+		case 0:
+			interaction.emplace_back("I'm very busy now");
+			interaction.emplace_back("Sorry, i can't talk now.");
+			interaction.emplace_back("Get out the way!");
+			break;
+		case 1:
+			interaction.emplace_back("Hello Stranger!");
+			interaction.emplace_back("What a nice wheater isn't it?");
+			interaction.emplace_back("How are you sure?");
+			break;
+		case 2:
+			interaction.emplace_back("Do I know you?");
+			interaction.emplace_back("Where are you going?");
+			interaction.emplace_back("I want to buy a onesie… but know it won’t suit me.");
+			break;
+		}
+		return interaction;
+	}
+
+	std::string NPCGenerator::getRandomName() {
+		//both vectors need to be the same size;
+		int number = rand() % (this->names_boys.size() -1);
+		int gender = rand() % 100;
+		if (gender < 50) {
+			return this->names_boys.at(number);
+		}
+		else {
+			return this->names_girls.at(number);
+		}
+
+
+	}
+
+	//Quests_npcs
 	const memecity::engine::ecs::Entity& NPCGenerator::generate_quest_npc(std::string name, assets::Asset asset) {
 		if (quest_npcs.find(name) != quest_npcs.end()) {
 			return *quest_npcs.find(name)->second;
@@ -138,30 +272,4 @@ namespace generate {
 			return quest_npc;
 		}
 	}
-
-	std::vector<std::string> NPCGenerator::createInteractionStrings() {
-		std::vector<std::string> interaction;
-
-		int random = rand() % 2;
-
-		switch (random) {
-		case 0 :
-			interaction.emplace_back("I'm very busy now");
-			interaction.emplace_back("Sorry, i can't talk now.");
-			interaction.emplace_back("Get out the way!");
-			break;
-		case 1:
-			interaction.emplace_back("Hello Stranger!");
-			interaction.emplace_back("What a nice wheater isn't it?");
-			interaction.emplace_back("How are you sure?");
-			break;
-		case 2:
-			interaction.emplace_back("Do I know you?");
-			interaction.emplace_back("Where are you going?");
-			interaction.emplace_back("I want to buy a onesie… but know it won’t suit me.");
-			break;
-		}
-		return interaction;
-	}
-
 }
