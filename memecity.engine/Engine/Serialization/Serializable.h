@@ -11,6 +11,7 @@ namespace memecity::engine::serialization {
 		virtual SerializeInfo to_map() const = 0;
 		virtual void from_map(SerializeInfo map) = 0;
 
+		Serializable() = default;
 		Serializable(const Serializable &) = delete;
 		Serializable(Serializable &&) = delete;
 		Serializable& operator=(const Serializable&) = delete;

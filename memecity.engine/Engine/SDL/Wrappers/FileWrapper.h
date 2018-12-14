@@ -1,6 +1,7 @@
 #ifndef _RW_OPS_WRAPPER_H
 #define _RW_OPS_WRAPPER_H
 #include <algorithm>
+#include <string>
 #include <fstream>
 
 namespace memecity::engine::sdl {
@@ -10,32 +11,29 @@ namespace memecity::engine::sdl {
 	{
 	private:
 		std::string _file_name;
-		std::fstream _file_stream;
 		std::string _buffer;
 
 	public:
 
+		FileWrapper() = default;
+
 		FileWrapper(const char* file_name)
 			: _file_name(file_name) {}
 
-		~FileWrapper()
-		{
-			if (_file_stream.is_open())
-			{
-				_file_stream.close();
-			}
-		}
+		~FileWrapper() {}
 
 		const std::string read_file()
 		{
-			_file_stream = std::fstream(_file_name);
-			if (_file_stream.is_open() && _file_stream.good())
+			std::ifstream input_stream;
+			input_stream.open(_file_name);
+
+			if (input_stream.is_open() && input_stream.good())
 			{
-				while (std::getline(_file_stream, _buffer))
+				while (std::getline(input_stream, _buffer))
 				{
 
 				}
-				_file_stream.close();
+				input_stream.close();
 			}
 
 			return _buffer;
@@ -43,19 +41,26 @@ namespace memecity::engine::sdl {
 
 		void write(const std::string& content)
 		{
-			_file_stream = std::fstream(_file_name);
+			std::ofstream output_stream(_file_name);
 
-			if (_file_stream.is_open())
+			if (output_stream)
 			{
-				_file_stream << content;
+				output_stream << content;
+				output_stream.close();
 			}
-			_file_stream.close();
 		}
 
 		int get_lines()
 		{
-			return std::count(std::istreambuf_iterator<char>(_file_stream),
+			std::ifstream input_stream;
+			input_stream.open(_file_name);
+
+			const auto amount_of_lines = std::count(std::istreambuf_iterator<char>(input_stream),
 				std::istreambuf_iterator<char>(), '\n');
+
+			input_stream.close();
+
+			return amount_of_lines;
 		}
 	};
 }

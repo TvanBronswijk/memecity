@@ -346,7 +346,10 @@
     <CopyFileToFolders Include="Assets\Advertisements\CocaCola.png" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="Assets\new-game.txt" />
+    <CopyFileToFolders Include="Assets\Sprites\big_black.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="new-game.txt" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
