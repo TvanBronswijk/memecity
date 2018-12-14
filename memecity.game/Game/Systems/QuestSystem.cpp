@@ -54,7 +54,6 @@ bool QuestSystem::quest(Quest& quest) const{
 
 bool QuestSystem::task(Task& task) const {
 	if (task.counter >= task.amount) {
-		std::cout << "lukt" << "\n";
 		task.completed = true;
 		if (task.target != NULL) {
 			auto interaction = task.target->get<InteractionComponent>();
@@ -85,7 +84,6 @@ void QuestSystem::on_event(EntityManager &em, QuestEventArgs args) {
 		if (story.active) {
 			if (!story._quests.empty()) {
 				auto &task = story._quests.front()._tasks.front();
-				std::cout << task.counter;
 				switch (story._quests.front()._tasks.front().state) {
 				case Quest_State::Dropping:
 					check_task_dropping(args, task);
@@ -111,7 +109,6 @@ void QuestSystem::check_task_interaction(QuestEventArgs args, Task& task) {
 		if (interaction_target->current_text_int == interaction_target->text.size()-1){
 			task.counter++;
 			interaction_target->current_text_int = 0;
-			std::cout << " counter: " << task.counter << " amount: " << task.amount << " task: " << task.description << "\n";
 		}
 	}
 }
