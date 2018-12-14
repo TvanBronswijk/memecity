@@ -24,6 +24,7 @@
     <ClInclude Include="Game\Components.h" />
     <ClInclude Include="Game\Components\AIComponent.h" />
     <ClInclude Include="Game\Components\QuestAIComponent.h" />
+    <ClInclude Include="Game\Generate\Item\ItemGenerator.h" />
     <ClInclude Include="Game\Quest\Quest.h" />
     <ClInclude Include="Game\Quest\Story.h" />
     <ClInclude Include="Game\Quest\Task.h" />
@@ -89,6 +90,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game\Builder\QuestBuilder.cpp" />
+    <ClCompile Include="Game\Generate\Item\ItemGenerator.cpp" />
     <ClCompile Include="Game\Generate\NPC\NPCGenerator.cpp" />
     <ClCompile Include="Game\GameLoader.cpp" />
     <ClCompile Include="Game\States\GameOverState.cpp" />

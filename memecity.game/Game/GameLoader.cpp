@@ -60,14 +60,7 @@ void GameLoader::create_npcs(EntityManager& em, loading::LoadingBar::Listener& l
 void GameLoader::create_items(EntityManager& em, loading::LoadingBar::Listener& listener)
 {
 	auto& multimedia_manager = _context->get_multimedia_manager();
-
-	auto texture = multimedia_manager.get_texture(assets::sprites::TIN_CAN, 0, 0, 48, 28);
-	texture->set_position({0,0});
-
-	auto builder = em.create_entity("Blik")
-		.with_component<BaseComponent>(std::move(texture), 50.0f, 0.0f, 48.0f, 48.0f)
-		.with_component<ItemComponent>("Blik", "a normal tin can")
-		.with_component<StatsComponent>(0,0,0,0,0,0,0);
+	generate::ItemGenerator(multimedia_manager, em).MakeAllItems();
 }
 
 void GameLoader::create_player(EntityManager& em, loading::LoadingBar::Listener& listener)
