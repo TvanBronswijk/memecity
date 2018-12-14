@@ -7,7 +7,7 @@
 
 void GameState::on_load()
 {
-	next<LoadingState>(*_context, [&](auto& ctx, auto& listener) { GameLoader(ctx, 16, 16).build(entity_manager, listener); back(); });
+	next<LoadingState>(*_context, [&](auto& ctx, auto& listener) { GameLoader(ctx, 128, 128).build(entity_manager, listener); back(); });
 
 	auto& multimedia_manager = _context->get_multimedia_manager();
 
@@ -55,6 +55,17 @@ void GameState::on_load()
 			_hud.update("FPS", " ");
 		}
 	});
+
+	engine.bindgamespeed([&](bool enabled, float game_speed)
+	{
+		if(enabled)
+		{
+			_hud.update("GAMESPEED", "Gamespeed: " + std::to_string(game_speed));
+		}else
+		{
+			_hud.update("GAMESPEED", " ");
+		}
+	});
 	
 	_hud.create_overlay_text_item("HEALTH", "Health", 16, 100.0f, 20.0f);
 	_hud.create_overlay_bar_item("HEALTHVALUE", 100, 20, 150, 12, 100, 200, memecity::engine::sdl::Color(255,0,0), memecity::engine::sdl::Color(0,255,0));
@@ -71,7 +82,8 @@ void GameState::on_load()
 
 	_hud.create_overlay_text_item("BLIKCOIN", "BlikCoin: 9999", 16, 650, 16);
 
-	_hud.create_overlay_text_item("FPS", " ", 16, 750, 16);	
+	_hud.create_overlay_text_item("FPS", " ", 16, 750, 16);
+	_hud.create_overlay_text_item("GAMESPEED", " ", 16, 750, 32);
 }
 
 void GameState::update(float dt)

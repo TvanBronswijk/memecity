@@ -56,6 +56,8 @@ DeveloperMenuState::DeveloperMenuState(memecity::engine::state::StateManager& sm
 		.with_menu_item("Resume Game", nullptr, [&](auto& menu_item) {back(); })
 		.with_menu_item("Toggle fps on", nullptr, [&](auto& menu_item) {engine.set_calculate_fps(true); })
 		.with_menu_item("Toggle fps off", nullptr, [&](auto& menu_item) {engine.set_calculate_fps(false); })
+		.with_menu_item("Toggle gamespeed on", nullptr, [&](auto& menu_item) {engine.set_display_gamespeed(true); })
+		.with_menu_item("Toggle gamespeed off", nullptr, [&](auto& menu_item) {engine.set_display_gamespeed(false); })
 		.with_menu_item("Cheats", cheat_menu.get())
 		.get_menu();
 

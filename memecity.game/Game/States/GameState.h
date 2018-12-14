@@ -42,6 +42,7 @@ public:
 	{
 		auto& engine = _context->get_engine(); 
 		engine.set_calculate_fps(false);
+		engine.set_display_gamespeed(false);
 	};
 	void on_load() override;
 	void update(float dt) override;

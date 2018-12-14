@@ -20,6 +20,9 @@ namespace input {
 	static constexpr Key THREE = "3";
 	static constexpr Key ARROWDOWN = "Down";
 	static constexpr Key ARROWUP = "Up";
+	static constexpr Key SPEEDUP = "PageUp";
+	static constexpr Key SPEEDDOWN = "PageDown";
+	static constexpr Key SPEEDRESET = "Home";
 };
 
 #endif

@@ -99,9 +99,6 @@ void InputSystem::run(EntityManager& em, float dt) const
 		{
 			state_manager.create_state<DeveloperMenuState>(*_context, em);
 		}
-	}
-}
-
 		if (input_manager.is_pressed(input::ONE)) {
 			auto inventory = player.get<InventoryComponent>();
 			inventory->selected = 0;
@@ -134,6 +131,22 @@ void InputSystem::run(EntityManager& em, float dt) const
 			else
 				inventory->selected--;
 			//previous item is selected from items in itemcomponent
+		}
+
+		if(input_manager.is_pressed(input::SPEEDDOWN))
+		{
+			auto* engine = &_context->get_engine();
+			engine->set_games_speed_modifier(engine->get_game_speed_modifier() - 0.5f);
+		}
+		if(input_manager.is_pressed(input::SPEEDUP))
+		{
+			auto* engine = &_context->get_engine();
+			engine->set_games_speed_modifier(engine->get_game_speed_modifier() + 0.5f);
+		}
+		if(input_manager.is_pressed(input::SPEEDRESET))
+		{
+			auto* engine = &_context->get_engine();
+			engine->set_games_speed_modifier(1.0f);
 		}
 	}
 }

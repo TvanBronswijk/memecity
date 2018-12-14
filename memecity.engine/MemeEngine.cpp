@@ -19,7 +19,7 @@ namespace memecity::engine {
 			while (!engine.input_manager.is_quit_pressed()) {
 				prev = logic_timer.get_delta_time();
 				logic_timer.update();
-				engine.update(logic_timer.get_delta_time() - prev);
+				engine.update((logic_timer.get_delta_time() - prev) * engine.game_speed_modifier );
 				if (prev > 3600.0f)
 				{
 					logic_timer.reset();

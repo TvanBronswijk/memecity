@@ -54,12 +54,42 @@ namespace memecity::engine {
 		int fps;
 		std::unique_ptr<Context> _context;
 		bool get_fps_trigger = false;
+		bool display_game_speed = false;
 		using fpsSubscriber = std::function<void(bool enabled,int fps)>;
+		using gamespeedSubscriber = std::function<void(bool enabled, float fps)>;
 		std::vector<fpsSubscriber> fps_subscribers;
+		std::vector<gamespeedSubscriber> game_speed_subscribers;
 
+		float game_speed_modifier = 1.0f;
 
 	public:
+
+		void set_games_speed_modifier(float new_speed)
+		{
+			this->game_speed_modifier = new_speed;
+			if (display_game_speed) {
+				for (auto& subscriber : game_speed_subscribers) {
+					subscriber(true, new_speed);
+				}
+			}
+		}
+
+		float get_game_speed_modifier()
+		{
+			return this->game_speed_modifier;
+		}
+
 		void bindfps(fpsSubscriber s) { fps_subscribers.push_back(s); }
+		void bindgamespeed(gamespeedSubscriber s) { game_speed_subscribers.push_back(s); }
+		void set_display_gamespeed(bool state)
+		{
+			if (!state) {
+				for (auto& subscriber : game_speed_subscribers) {
+					subscriber(false, 0.0f);
+				}
+			}
+			display_game_speed = state;
+		}
 		void set_calculate_fps(bool state)
 		{
 			if (!state) {
