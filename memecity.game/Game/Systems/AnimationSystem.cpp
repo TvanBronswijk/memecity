@@ -91,7 +91,7 @@ void AnimationSystem::on_move(EntityManager& em, MoveEventArgs args)
 				if (animated_texture->is_last())
 				{
 					animated_texture->column(animated_texture->frame_count() - 1);
-					if (animation_component->dead_counter == 20)
+					if (animation_component->dead_counter == 50)
 					{
 						auto exp = animation_component->entity().get<ExpComponent>()->exp;
 						auto& state_manager = _context->get_state_manager();

@@ -1,5 +1,4 @@
 #include "AnimatedTexture.h"
-#include <iostream>
 
 namespace memecity::engine::texture {
 	
@@ -31,13 +30,10 @@ namespace memecity::engine::texture {
 
 	bool AnimatedTexture::is_last() const
 	{
-		std::cout << "Current Column: " << column() << "\n";
-		std::cout << "Last Column: " << frame_count() - 1 << "\n";
-
 		return column() == frame_count() - 1;
 	}
 
-	void AnimatedTexture::column(float x)
+	void AnimatedTexture::column(const float x)
 	{
 		clipped_rect.x = x * texture_width;
 		_column_changed = true;
@@ -48,7 +44,7 @@ namespace memecity::engine::texture {
 		return _frame_count;
 	}
 
-	void AnimatedTexture::row(float y)
+	void AnimatedTexture::row(const float y)
 	{
 		clipped_rect.y = y * texture_height;
 	}
