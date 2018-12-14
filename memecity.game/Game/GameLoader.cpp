@@ -83,7 +83,9 @@ void GameLoader::create_player(EntityManager& em, loading::LoadingBar::Listener&
 		.with_component<AnimationComponent>()
 		.with_component<VelocityComponent>()
 		.with_component<InventoryComponent>()
-	.with_component<HealthComponent>();
+		.with_component<ExpComponent>()
+		.with_component<HealthComponent>();
+
 	auto base_component = builder.get().get<BaseComponent>();
 	builder.with_component<ColliderComponent>(BoundaryRectangle(base_component->location.x, base_component->location.y, base_component->w, base_component->h));
 	listener.increase_current_value(5.0f);

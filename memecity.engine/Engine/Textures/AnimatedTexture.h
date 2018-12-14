@@ -16,6 +16,9 @@ namespace memecity::engine::texture
 		AnimationDirection _animation_direction;
 		AnimationState _current_state;
 
+		bool _column_changed = false;
+		bool _row_changed = false;
+
 		int _frame_count;
 
 		float _start_x;
@@ -27,7 +30,7 @@ namespace memecity::engine::texture
 
 	public:
 		AnimatedTexture(std::string filename, float start_x, float start_y, const float w, const float h, const int frame_count, const float animation_speed, const AnimationDirection direction)
-			: Texture(filename, start_x, start_y, w, h), _animation_direction(direction), _current_state(AnimationState::idle), _start_x(start_x), _start_y(start_y), _frame_count(frame_count), _animation_timer(0.0f), _animation_speed(animation_speed), _time_per_frame(animation_speed / frame_count)
+			: Texture(filename, start_x, start_y, w, h), _animation_direction(direction), _current_state(AnimationState::idle), _frame_count(frame_count), _start_x(start_x), _start_y(start_y), _animation_timer(0.0f), _animation_speed(animation_speed), _time_per_frame(animation_speed / frame_count)
 		{}
 
 		~AnimatedTexture() = default;

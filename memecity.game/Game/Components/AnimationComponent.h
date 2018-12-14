@@ -3,11 +3,14 @@
 
 #include <ECS.h>
 
-struct AnimationComponent : public memecity::engine::ecs::Component
+struct AnimationComponent : memecity::engine::ecs::Component
 {
 	enum class AnimationState { idle, fighting, dying };
 
+	int dead_counter = 0;
+
 	AnimationState current_state;
+	//memecity::engine::texture::AnimatedTexture::AnimationState direction;
 	AnimationComponent(memecity::engine::ecs::Entity& entity) : Component(entity), current_state(AnimationState::idle) {}
 };
 

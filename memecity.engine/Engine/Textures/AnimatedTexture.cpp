@@ -31,8 +31,8 @@ namespace memecity::engine::texture {
 
 	bool AnimatedTexture::is_last() const
 	{
-		//std::cout << "Current Column: " << column() << "\n";
-		//std::cout << "Last Column: " << frame_count() - 1 << "\n";
+		std::cout << "Current Column: " << column() << "\n";
+		std::cout << "Last Column: " << frame_count() - 1 << "\n";
 
 		return column() == frame_count() - 1;
 	}
@@ -40,6 +40,7 @@ namespace memecity::engine::texture {
 	void AnimatedTexture::column(float x)
 	{
 		clipped_rect.x = x * texture_width;
+		_column_changed = true;
 	}
 
 	int AnimatedTexture::frame_count() const
@@ -57,10 +58,9 @@ namespace memecity::engine::texture {
 		return clipped_rect.y / texture_height;
 	}
 
-	void AnimatedTexture::update(float dt)
+	void AnimatedTexture::update(const float dt)
 	{
 		_animation_timer += dt;
-		
 		if (_animation_timer >= _animation_speed)
 		{
 			_animation_timer -= _animation_speed;
@@ -71,9 +71,10 @@ namespace memecity::engine::texture {
 			clipped_rect.x = _start_x;
 			clipped_rect.y = _start_y + int(_animation_timer / _time_per_frame) * texture_height;
 		}
-		else if (_animation_direction == AnimationDirection::horizontal)
+		else if (_animation_direction == AnimationDirection::horizontal && !_column_changed)
 		{
 			clipped_rect.x = int(_animation_timer / _time_per_frame) * texture_width;
+			_column_changed = false;
 		}
 		else
 		{
