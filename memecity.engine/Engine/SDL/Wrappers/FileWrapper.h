@@ -1,7 +1,7 @@
 #ifndef _RW_OPS_WRAPPER_H
 #define _RW_OPS_WRAPPER_H
-#include <fstream>
 #include <algorithm>
+#include <fstream>
 
 namespace memecity::engine::sdl {
 
@@ -16,13 +16,14 @@ namespace memecity::engine::sdl {
 	public:
 
 		FileWrapper(const char* file_name)
-		{
-			this->_file_name = file_name;
-		}
+			: _file_name(file_name) {}
 
 		~FileWrapper()
 		{
-			_file_stream.close();
+			if (_file_stream.is_open())
+			{
+				_file_stream.close();
+			}
 		}
 
 		const std::string read_file()

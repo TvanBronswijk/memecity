@@ -15,7 +15,7 @@ void LoadingState::update(float dt)
 
 void LoadingState::draw()
 {
-	memecity::engine::sdl::FileWrapper fw = memecity::engine::sdl::FileWrapper("Assets/new-game.txt", memecity::engine::sdl::Mode::r);
+	memecity::engine::sdl::FileWrapper fw = memecity::engine::sdl::FileWrapper("Assets/new-game.txt");
 	_loading_bar.render();
 	_context->get_multimedia_manager().render_texture(*_advertisement);
 }
