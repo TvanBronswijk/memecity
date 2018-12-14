@@ -7,7 +7,7 @@
 using namespace memecity::engine::ecs;
 
 
-void FightingSystem::run(EntityManager &em) const {
+void FightingSystem::run(EntityManager &em, float dt) const {
 }
 
 void FightingSystem::on_attack(EntityManager &em, AttackEventArgs args) {

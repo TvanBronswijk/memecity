@@ -2,7 +2,7 @@
 
 using namespace memecity::engine::ecs;
 
-void ColliderSystem::run(EntityManager& em) const
+void ColliderSystem::run(EntityManager& em, float dt) const
 {
 	auto components = em.get_components_of_type<ColliderComponent>();
 	for (const ColliderComponent& collider : components)

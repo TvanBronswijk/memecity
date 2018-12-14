@@ -3,7 +3,7 @@
 
 using namespace memecity::engine::ecs;
 
-void HealthSystem::run(EntityManager& em) const {}
+void HealthSystem::run(EntityManager& em, float dt) const {}
 
 void HealthSystem::on_damage(EntityManager& em, std::reference_wrapper<const Entity> entity) {
 	auto health_target = entity.get().get<HealthComponent>();

@@ -171,7 +171,7 @@ void AISystem::fleeing(EntityManager& em, const BaseComponent& npc_base) const {
 	}
 }
 
-void AISystem::run(EntityManager& em) const {
+void AISystem::run(EntityManager& em, float dt) const {
 	auto vector = em.get_components_of_type<AIComponent>();
 	auto player = em.get_entities_with_component<PlayerComponent>()[0];
 

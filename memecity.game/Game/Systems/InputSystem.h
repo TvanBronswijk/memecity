@@ -17,6 +17,6 @@ public:
 	memecity::engine::ecs::eventing::Event<QuestEventArgs> quest_event;
 	InputSystem(GameManager::GameContext& context)
 		: _context(&context) {}
-	void run(memecity::engine::ecs::EntityManager& em) const override;
+	void run(memecity::engine::ecs::EntityManager& em, float dt) const override;
 };
 #endif

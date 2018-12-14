@@ -2,7 +2,7 @@
 
 using namespace memecity::engine::ecs;
 
-void ExpSystem::run(EntityManager& em) const {}
+void ExpSystem::run(EntityManager& em, float dt) const {}
 
 void ExpSystem::on_exp_gain(EntityManager& em, int exp) const
 {

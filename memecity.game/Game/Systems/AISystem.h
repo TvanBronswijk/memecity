@@ -24,7 +24,7 @@ private:
 public:
 	memecity::engine::ecs::eventing::Event<AttackEventArgs> attack_event;
 	static const int range = 10;
-	void run(memecity::engine::ecs::EntityManager& em) const override;
+	void run(memecity::engine::ecs::EntityManager& em, float dt) const override;
 };
 
 #endif

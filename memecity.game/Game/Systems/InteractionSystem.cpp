@@ -5,7 +5,7 @@
 
 using namespace memecity::engine::ecs;
 
-void InteractionSystem::run(EntityManager &em) const {
+void InteractionSystem::run(EntityManager &em, float dt) const {
 	auto vector = em.get_components_of_type<InteractionComponent>();
 	for (auto& component : vector) {
 		auto text_texture = &component.get().get_texture();
