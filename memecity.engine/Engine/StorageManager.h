@@ -1,10 +1,16 @@
-﻿#ifndef _STORAGEMANAGER_H
-#define _STORAGEMANAGER_H
+﻿#ifndef _STORAGE_MANAGER_H
+#define _STORAGE_MANAGER_H
+
+#include <string>
+#include <map>
+
 namespace memecity::engine {
+
 	class StorageManager
 	{
-	public:
-
+		public:
+			bool save(const std::string& file_path, std::map<std::string, std::string>& content) const;
 	};
+
 }
 #endif

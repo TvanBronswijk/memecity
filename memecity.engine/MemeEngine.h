@@ -32,17 +32,19 @@ namespace memecity::engine {
 			MultimediaManager* multimedia_manager;
 			InputManager* input_manager;
 			sdl::TimerFacade* timer;
+			StorageManager* storage_manager;
 
 		public:
-			Context(MultimediaManager& mm, InputManager& im, sdl::TimerFacade& t)
-				: multimedia_manager(&mm), input_manager(&im), timer(&t) {}
+			Context(MultimediaManager& mm, InputManager& im, sdl::TimerFacade& t, StorageManager& stm)
+				: multimedia_manager(&mm), input_manager(&im), timer(&t), storage_manager(&stm) {}
 			Context(MemeEngine& engine)
-				: multimedia_manager(&engine.multimedia_manager), input_manager(&engine.input_manager), timer(&engine.timer) {}
+				: multimedia_manager(&engine.multimedia_manager), input_manager(&engine.input_manager), timer(&engine.timer), storage_manager(&engine.storage_manager) {}
 			virtual ~Context() = default;
 
 			MultimediaManager& get_multimedia_manager() { return *multimedia_manager; }
 			InputManager& get_input_manager() { return *input_manager; }
 			sdl::TimerFacade& get_timer() { return *timer; }
+			StorageManager& get_storage_manager() { return *storage_manager; }
 		};
 
 		StorageManager storage_manager;

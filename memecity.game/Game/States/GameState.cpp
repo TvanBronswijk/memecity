@@ -31,22 +31,22 @@ void GameState::on_load()
 	memecity::engine::ecs::eventing::bind(collider_system.collider_event, &move_system, &MoveSystem::on_collision);
 	fighting_system.health_changed_event += [&](auto& em, auto args) { _hud.update("HEALTHVALUE", args.new_health); };
 	
-	auto player_entity = entity_manager.get_entities_with_component<PlayerComponent>().front().get();
-	const auto score_component = player_entity.get<ScoreComponent>();
+	//auto player_entity = entity_manager.get_entities_with_component<PlayerComponent>().front().get();
+	//const auto score_component = player_entity.get<ScoreComponent>();
 
-	auto map = score_component->test();
-	std::string result;
-	for (auto& p : map)
-	{
-		result += "[";
-		result += p.first;
-		result += ", ";
-		result += p.second;
-		result += "]";
-	}
+	//auto map = score_component->test();
+	//std::string result;
+	//for (auto& p : map)
+	//{
+	//	result += "[";
+	//	result += p.first;
+	//	result += ", ";
+	//	result += p.second;
+	//	result += "]";
+	//}
 
-	memecity::engine::sdl::FileWrapper wrapper(assets::saves::SAVE_GAME);
-	wrapper.write(result);
+	//memecity::engine::sdl::FileWrapper wrapper(assets::saves::SAVE_GAME);
+	//wrapper.write(result);
 }
 
 void GameState::update(float dt)
