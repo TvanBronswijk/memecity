@@ -4,7 +4,7 @@
 #include <any>
 
 namespace memecity::engine::serialization {
-	using SerializeInfo = std::map<std::string, std::any>;
+	using SerializeInfo = std::map<std::string, std::string>;
 	class Serializable
 	{
 	public:

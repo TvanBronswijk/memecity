@@ -14,19 +14,14 @@ struct ScoreComponent : public memecity::engine::ecs::Component, memecity::engin
 
 	memecity::engine::serialization::SerializeInfo to_map() const override
 	{
-		std::map<std::string, std::any> map;
-
-		map["score"] = this->score;
-
+		std::map<std::string, std::string> map;
+		map["score"] = std::to_string(this->score);
 		return map;
 	}
 
 	std::map<std::string, std::string> test() const
 	{
-		std::map<std::string, std::string> map;
-
-		map["score"] = std::to_string(this->score);
-
+		std::map<std::string, std::string> map{ std::make_pair("score", std::to_string(this->score)) };
 		return map;
 	}
 
