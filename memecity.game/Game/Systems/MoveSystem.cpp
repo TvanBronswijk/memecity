@@ -10,33 +10,28 @@ void MoveSystem::run(EntityManager& em) const
 	for (const Entity& entity : entities)
 	{
 		auto base = entity.get<BaseComponent>();
-		auto velocity = entity.get<VelocityComponent>();
-		
-		Vector2 diff{ velocity->x, velocity->y };
+		const auto velocity = entity.get<VelocityComponent>();
+
+		const Vector2 diff { velocity->x, velocity->y };
 		base->location.x += diff.x;
 		base->location.y += diff.y;
 		velocity->x = 0;
 		velocity->y = 0;
-		
-		auto animation_component = entity.get<AnimationComponent>();
+
+		const auto animation_component = entity.get<AnimationComponent>();
 		if (animation_component) {
 			auto direction = AnimatedTexture::AnimationState::idle;
 			if (diff.x != 0) direction = diff.x > 0 ? AnimatedTexture::AnimationState::right : AnimatedTexture::AnimationState::left;
 			if (diff.y != 0) direction = diff.y > 0 ? AnimatedTexture::AnimationState::down : AnimatedTexture::AnimationState::up;
-			//animation_component->direction = direction;
-			//auto direction = AnimatedTexture::AnimationState::idle;
-			//if (diff.x != 0) direction = diff.x > 0 ? AnimatedTexture::AnimationState::right : AnimatedTexture::AnimationState::left;
-			//if (diff.y != 0) direction = diff.y > 0 ? AnimatedTexture::AnimationState::down : AnimatedTexture::AnimationState::up;
 			animated_move_event.fire(em, { entity, direction });
 		}
-		
 	}
 }
 
 void MoveSystem::on_collision(EntityManager& em, ColliderEventArgs args)
 {
 	auto base = args.source.get<BaseComponent>();
-	auto velocity = args.source.get<VelocityComponent>();
+	const auto velocity = args.source.get<VelocityComponent>();
 
 	if (velocity != nullptr)
 	{
