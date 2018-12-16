@@ -6,7 +6,7 @@
 
 void GameState::on_load()
 {
-	next<LoadingState>(*_context, [&](auto& ctx, auto& listener) { GameLoader(ctx, 128, 128).build(entity_manager, listener); back(); });
+	next<LoadingState>(*_context, [&](auto& ctx, auto& listener) { GameLoader(ctx, 256, 256).build(entity_manager, listener); back(); });
 
 	auto& multimedia_manager = _context->get_multimedia_manager();
 
