@@ -1,16 +1,18 @@
 #ifndef _SCORE_COMPONENT_H
 #define _SCORE_COMPONENT_H
+
 #include <ECS.h>
 #include "Engine/Serialize.h"
 
-struct ScoreComponent : public memecity::engine::ecs::Component, memecity::engine::serialization::Serializable
+struct ScoreComponent : memecity::engine::ecs::Component, memecity::engine::serialization::Serializable
 {
 	int score;
+	
 	ScoreComponent(memecity::engine::ecs::Entity& entity)
 		: ScoreComponent(entity, 35) {}
 
-	ScoreComponent(memecity::engine::ecs::Entity& entity, int score)
-		: memecity::engine::ecs::Component(entity), score(score) {};
+	ScoreComponent(memecity::engine::ecs::Entity& entity, int score) 
+		: Component(entity), score(score) {};
 
 	memecity::engine::serialization::SerializeInfo to_map() const override
 	{
@@ -30,7 +32,5 @@ struct ScoreComponent : public memecity::engine::ecs::Component, memecity::engin
 		this->score = std::any_cast<int>(map["score"]);
 	}
 };
-
-
 
 #endif
