@@ -29,7 +29,7 @@ namespace memecity::engine::state {
 		std::lock_guard<std::mutex> lock(_mutex);
 		for (int i = 0; i < count; i++)
 		{
-			if (_stack.size() <= 0) {
+			if (_stack.empty()) {
 				throw exceptions::MemeException(exceptions::Level::error, "Statemachine Stack is empty while pop queue is not.");
 			}
 
