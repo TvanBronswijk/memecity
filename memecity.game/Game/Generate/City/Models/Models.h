@@ -5,26 +5,29 @@
 #include "..\..\..\..\Assets.h"
 
 namespace generate::models {
+
 	struct Base64_Tilemap : uRectangle<int> {
 	protected:
-		std::string tiles;
+		char* tiles;
 	public:
 		Base64_Tilemap(int w, int h)
 			: uRectangle(0, 0, w, h), tiles(new char[w*h]) { }
 		Base64_Tilemap(const Base64_Tilemap& copy) : Base64_Tilemap(copy.w, copy.h) {
-			tiles = copy.tiles;
+			for (int i = 0; i < w*h; i++) {
+				tiles[i] = (copy.tiles[i]);
+			}
 		}
 		virtual char& coord(int x, int y) { return tiles[x * h + y]; }
 		virtual const char& coord(int x, int y) const { return tiles[x * h + y]; }
 		virtual char& operator () (int x, int y) { return coord(x, y); }
 		virtual const char& operator () (int x, int y) const { return coord(x, y); }
-		virtual ~Base64_Tilemap() = default;
+		virtual ~Base64_Tilemap() override { delete tiles; }
 		virtual std::string get_tile_string() const
 		{
 			std::string s;
 			for (int i = 0; i < w*h; i++) {
 				s += tiles[i];
-				if ((i+1) % w == 0)
+				if ((i + 1) % w == 0)
 				{
 					s += "\n";
 				}
@@ -49,14 +52,23 @@ namespace generate::models {
 		}
 	};
 
-	static const std::map<char, assets::Asset> __cta {
+	static const std::map<char, std::map<assets::Asset, int>> __cta {
 		{'-', assets::sprites::tiles::ROAD },
 		{'w', assets::sprites::tiles::WATER },
 		{'g', assets::sprites::tiles::GRASS },
 		{'W', assets::sprites::tiles::WALL }
 	};
 	static assets::Asset char_to_asset(char c) {
-		return __cta.at(c);
+		const auto index = rand() % 100;
+
+		for (auto item : __cta.at(c))
+		{
+			if (index < item.second)
+			{
+				return item.first;
+			}
+		}
+		return __cta.at(c).begin()->first;
 	}
 }
 

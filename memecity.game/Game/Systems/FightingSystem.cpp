@@ -12,7 +12,6 @@ void FightingSystem::on_attack(EntityManager &em, AttackEventArgs args) {
 	auto health_target = args.target.get<HealthComponent>();
 	auto AI = args.target.get<AIComponent>();
 
-
 	if (args.target.has<PlayerComponent>()) {
 		health_changed_event.fire(em, { drawable_health_target->health });
 		if (health_target->health <= 0) {

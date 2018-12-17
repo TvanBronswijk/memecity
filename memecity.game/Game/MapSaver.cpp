@@ -3,9 +3,8 @@
 #include "Components/TileComponent.h"
 #include "Generate/City/Models/Models.h"
 #include "Generate/City/CityGenerator.h"
-#include "Generate/City/Strategy/File/FileStrategy.h"
 
-void MapSaver::save(memecity::engine::ecs::EntityManager& em)
+std::string MapSaver::get_map(memecity::engine::ecs::EntityManager& em)
 {
 	auto map_entities = em.get_entities_by_type("tile");
 	int max_x = 0;
@@ -41,12 +40,5 @@ void MapSaver::save(memecity::engine::ecs::EntityManager& em)
 		map(x, y) = tile_component->get_character();
 	}
 	
-	auto tiles = map.get_tile_string();
-
-	//todo: save to file
-	generate::CityGenerator generator{ 0,0 };
-	generator.set_strategy<generate::strategy::FileStrategy>(tiles);
-	auto test = generator.generate();
-	auto testtest = test.get_tile_string();
-
+	return map.get_tile_string();
 }

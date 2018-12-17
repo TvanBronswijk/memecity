@@ -4,14 +4,16 @@
 #include <UI.h>
 #include "..\..\GameManager.h"
 #include "ECS/EntityManager.h"
+#include "../PlayerManager.h"
 
 class PauseMenuState : public memecity::engine::state::State
 {
 private:
 	GameManager::GameContext* _context;
+	memecity::engine::ecs::EntityManager* _entity_manager;
 	std::unique_ptr<memecity::engine::ui::menu::Menu> menu;
 	std::unique_ptr<memecity::engine::ui::menu::Menu> help_menu;
-	memecity::engine::ecs::EntityManager* _entity_manager;
+	std::unique_ptr<memecity::engine::ui::menu::Menu> help_menu2;
 
 public:
 	PauseMenuState(memecity::engine::state::StateManager& sm, GameManager::GameContext& gc, memecity::engine::ecs::EntityManager& em);

@@ -2,12 +2,14 @@
 #include "LoadingState.h"
 #include "../../Assets.h"
 #include "../Systems/FightingSystem.h"
+#include "../Components/ScoreComponent.h"
+#include "Engine/SDL/Wrappers/FileWrapper.h"
 #include "../GameLoader.h"
 #include "../Systems/ExpSystem.h"
 
 void GameState::on_load()
 {
-	next<LoadingState>(*_context, [&](auto& ctx, auto& listener) { GameLoader(ctx, 128, 128).build(entity_manager, listener); back(); });
+	next<LoadingState>(*_context, [&](auto& ctx, auto& listener) { GameLoader(ctx, 128, 128, _load_from_file).build(entity_manager, listener); back(); });
 
 	auto& multimedia_manager = _context->get_multimedia_manager();
 
@@ -29,8 +31,6 @@ void GameState::on_load()
 	bind(input_system.interaction_event, &interaction_system, &InteractionSystem::on_interact);
 	bind(input_system.attack_event, &fighting_system, &FightingSystem::on_attack);
 	bind(collider_system.collider_event, &move_system, &MoveSystem::on_collision);
-
-
 
 	exp_system.stats_changed_event += [&](auto& em, auto args)
 	{
@@ -69,8 +69,8 @@ void GameState::on_load()
 	
 	_hud.create_overlay_text_item("HEALTH", "Health", 16, 100.0f, 20.0f);
 	_hud.create_overlay_bar_item("HEALTHVALUE", 100, 20, 150, 12, 100, 200, memecity::engine::sdl::Color(255,0,0), memecity::engine::sdl::Color(0,255,0));
-	_hud.create_overlay_text_item("SCORE", "Score:100", 16, 100, 40);
-	_hud.create_overlay_text_item("EXP", "Exp:100", 16, 100, 60);
+	_hud.create_overlay_text_item("SCORE", "Score:0", 16, 100, 40);
+	_hud.create_overlay_text_item("EXP", "Exp:0", 16, 100, 60);
 
 	_hud.create_overlay_text_item("S", "S: 1", 16, 400, 16);
 	_hud.create_overlay_text_item("P", "P: 1", 16, 400, 32);
@@ -80,7 +80,7 @@ void GameState::on_load()
 	_hud.create_overlay_text_item("A", "A: 1", 16, 500, 32);
 	_hud.create_overlay_text_item("L", "L: 1", 16, 500, 48);
 
-	_hud.create_overlay_text_item("BLIKCOIN", "BlikCoin: 9999", 16, 650, 16);
+	_hud.create_overlay_text_item("BLIKCOIN", "BlikCoin: 0", 16, 650, 16);
 
 	_hud.create_overlay_text_item("FPS", " ", 16, 750, 16);
 	_hud.create_overlay_text_item("GAMESPEED", " ", 16, 750, 32);

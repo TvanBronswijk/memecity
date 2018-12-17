@@ -4,11 +4,14 @@
 #include "Systems.h"
 #include "..\Assets.h"
 #include "Components/TileComponent.h"
+#include "Components/ScoreComponent.h"
+#include "PlayerManager.h"
+#include "Generate/City/Strategy/File/FileStrategy.h"
 
 using namespace memecity::engine::ecs;
 using namespace memecity::engine::ui;
 
-void GameLoader::build(memecity::engine::ecs::EntityManager& em, loading::LoadingBar::Listener& listener)
+void GameLoader::build(EntityManager& em, loading::LoadingBar::Listener& listener)
 {
 	listener
 		.set_max_value(100.0f)
@@ -28,13 +31,23 @@ void GameLoader::build(memecity::engine::ecs::EntityManager& em, loading::Loadin
 void GameLoader::create_map(EntityManager& em, loading::LoadingBar::Listener& listener)
 {
 	auto& multimedia_manager = _context->get_multimedia_manager();
-	generate::models::City city = generate::CityGenerator(_map_width, _map_height).generate();
+	auto generator = generate::CityGenerator(_map_width, _map_height);
+	if (_load_from_file)
+	{
+		generator.set_strategy<generate::strategy::FileStrategy>(_context->get_storage_manager().load_string(assets::saves::SAVE_MAP));
+		
+	}
+	generate::models::City city = generator.generate();
 	for (int y = city.begin.y; y < city.end.y; y++) {
 		for (int x = city.begin.x; x < city.end.x; x++) {
 			auto& character = city(x, y);
 #ifdef DEBUG
 			std::cout << character;
 #endif
+			if (character < 0)
+			{
+				
+			}
 			auto& builder = em.create_entity("tile")
 				.with_component<BaseComponent>(multimedia_manager.get_texture(generate::models::char_to_asset(character)), x * 64.0f, y * 64.0f, 64.0f, 64.0f)
 				.with_component<TileComponent>(character);
@@ -83,12 +96,20 @@ void GameLoader::create_player(EntityManager& em, loading::LoadingBar::Listener&
 		.with_component<PlayerComponent>()
 		.with_component<StatsComponent>(1, 3, 1, 1, 1, 1, 1)
 		.with_component<AnimationComponent>()
+		.with_component<ScoreComponent>()
 		.with_component<VelocityComponent>()
 		.with_component<InventoryComponent>()
-	.with_component<HealthComponent>();
+		.with_component<HealthComponent>();
+
+	if (_load_from_file)
+	{
+		auto player_manager = PlayerManager(em);
+		auto data = _context->get_storage_manager().load(assets::saves::SAVE_GAME);
+		auto success = player_manager.load_player(data);
+	}
+
 	auto base_component = builder.get().get<BaseComponent>();
 	builder.with_component<ColliderComponent>(BoundaryRectangle(base_component->location.x, base_component->location.y, base_component->w, base_component->h));
+	
 	listener.increase_current_value(5.0f);
 }
-
-

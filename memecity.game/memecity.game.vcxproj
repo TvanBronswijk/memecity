@@ -42,6 +42,7 @@
     <ClInclude Include="Game\Generate\NPC\NPCGenerator.h" />
     <ClInclude Include="Game\Input.h" />
     <ClInclude Include="Game\MapSaver.h" />
+    <ClInclude Include="Game\PlayerManager.h" />
     <ClInclude Include="Game\States\GameOverState.h" />
     <ClInclude Include="Game\States\DeveloperMenuState.h" />
     <ClInclude Include="Game\States\LoadingState.h" />
@@ -49,6 +50,7 @@
     <ClInclude Include="Game\States.h" />
     <ClInclude Include="Game\States\MenuState.h" />
     <ClInclude Include="Game\States\PauseMenuState.h" />
+    <ClInclude Include="Game\States\StatsState.h" />
     <ClInclude Include="Game\Systems.h" />
     <ClInclude Include="Game\Systems\AISystem.h" />
     <ClInclude Include="Game\Event\AttackEventArgs.h" />
@@ -86,12 +88,14 @@
     <ClCompile Include="Game\Generate\NPC\NPCGenerator.cpp" />
     <ClCompile Include="Game\GameLoader.cpp" />
     <ClCompile Include="Game\MapSaver.cpp" />
+    <ClCompile Include="Game\PlayerManager.cpp" />
     <ClCompile Include="Game\States\DeveloperMenuState.cpp" />
     <ClCompile Include="Game\States\GameOverState.cpp" />
     <ClCompile Include="Game\States\LoadingState.cpp" />
     <ClCompile Include="Game\States\GameState.cpp" />
     <ClCompile Include="Game\States\MenuState.cpp" />
     <ClCompile Include="Game\States\PauseMenuState.cpp" />
+    <ClCompile Include="Game\States\StatsState.cpp" />
     <ClCompile Include="Game\Systems\AnimationSystem.cpp" />
     <ClCompile Include="Game\Systems\ColliderSystem.cpp" />
     <ClCompile Include="Game\Systems\AISystem.cpp" />
@@ -381,6 +385,9 @@
   </ItemGroup>
   <ItemGroup>
     <CopyFileToFolders Include="Assets\Sprites\Tiles\paving_02.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="new-game.txt" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

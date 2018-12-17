@@ -28,6 +28,7 @@
     <ClCompile Include="Game\Systems\FogOfWarSystem.cpp" />
     <ClCompile Include="Game\MapSaver.cpp" />
     <ClCompile Include="Game\Generate\City\Strategy\File\FileStrategy.cpp" />
+    <ClCompile Include="Game\States\StatsState.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Components\DimensionComponent.h" />
@@ -93,6 +94,7 @@
     <ClInclude Include="Game\MapSaver.h" />
     <ClInclude Include="Game\Components\TileComponent.h" />
     <ClInclude Include="Game\Generate\City\Strategy\File\FileStrategy.h" />
+    <ClInclude Include="Game\States\StatsState.h" />
   </ItemGroup>
   <ItemGroup>
     <CopyFileToFolders Include="Assets\Music\bgm.mp3" />

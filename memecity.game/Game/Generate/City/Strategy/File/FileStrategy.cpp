@@ -3,6 +3,7 @@
 
 generate::models::City generate::strategy::FileStrategy::generate(int w, int h)
 {
+	w = h = 0;
 	for (char item : map_string)
 	{
 		if (item == '\n')

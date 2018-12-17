@@ -5,7 +5,7 @@
 class MapSaver
 {
 public:
-	void save(memecity::engine::ecs::EntityManager& em);
+	std::string get_map(memecity::engine::ecs::EntityManager& em);
 };
 
 #endif
