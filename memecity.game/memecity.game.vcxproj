@@ -47,6 +47,7 @@
     <ClInclude Include="Game\States.h" />
     <ClInclude Include="Game\States\MenuState.h" />
     <ClInclude Include="Game\States\PauseMenuState.h" />
+    <ClInclude Include="Game\States\StatsState.h" />
     <ClInclude Include="Game\Systems.h" />
     <ClInclude Include="Game\Systems\AISystem.h" />
     <ClInclude Include="Game\Event\AttackEventArgs.h" />
@@ -89,6 +90,7 @@
     <ClCompile Include="Game\States\GameState.cpp" />
     <ClCompile Include="Game\States\MenuState.cpp" />
     <ClCompile Include="Game\States\PauseMenuState.cpp" />
+    <ClCompile Include="Game\States\StatsState.cpp" />
     <ClCompile Include="Game\Systems\AnimationSystem.cpp" />
     <ClCompile Include="Game\Systems\ColliderSystem.cpp" />
     <ClCompile Include="Game\Systems\AISystem.cpp" />

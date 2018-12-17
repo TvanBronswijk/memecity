@@ -12,6 +12,7 @@ private:
 	memecity::engine::ecs::EntityManager* _entity_manager;
 	std::unique_ptr<memecity::engine::ui::menu::Menu> menu;
 	std::unique_ptr<memecity::engine::ui::menu::Menu> help_menu;
+	std::unique_ptr<memecity::engine::ui::menu::Menu> help_menu2;
 
 public:
 	PauseMenuState(memecity::engine::state::StateManager& sm, GameManager::GameContext& gc, memecity::engine::ecs::EntityManager& em);

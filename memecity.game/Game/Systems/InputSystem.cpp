@@ -4,6 +4,7 @@
 #include "..\Input.h"
 #include "../States/DeveloperMenuState.h"
 #include "../PlayerManager.h"
+#include "../States/StatsState.h"
 
 using namespace memecity::engine;
 using namespace memecity::engine::ecs;
@@ -67,6 +68,10 @@ void InputSystem::run(EntityManager& em, float dt) const
 		}
 		if (input_manager.is_pressed(input::ESCAPE)) {
 			state_manager.create_state<PauseMenuState>(*_context, em);
+		}
+		if (input_manager.is_pressed(input::STATS)) {
+			auto& stats = *player.get<StatsComponent>();
+			state_manager.create_state<StatsState>(*_context, stats);
 		}
 		//inventory
 		if (input_manager.is_pressed(input::DROP)) {
