@@ -36,7 +36,7 @@ namespace memecity::engine {
 			MemeEngine* engine;
 
 		public:
-			Context(MultimediaManager& mm, InputManager& im, sdl::TimerFacade& t, StorageManager& stm)
+			Context(MultimediaManager& mm, InputManager& im, sdl::TimerFacade& t, StorageManager& stm, MemeEngine& engine)
 				: multimedia_manager(&mm), input_manager(&im), timer(&t), storage_manager(&stm), engine(&engine) {}
 			Context(MemeEngine& engine)
 				: multimedia_manager(&engine.multimedia_manager), input_manager(&engine.input_manager), timer(&engine.timer), storage_manager(&engine.storage_manager), engine(&engine) {}
