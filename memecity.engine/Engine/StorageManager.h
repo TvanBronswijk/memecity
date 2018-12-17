@@ -3,13 +3,21 @@
 
 #include <string>
 #include <map>
+#include "Serialize.h"
 
 namespace memecity::engine {
 
 	class StorageManager
 	{
-		public:
-			bool save(const std::string& file_path, std::map<std::string, std::string>& content) const;
+	private:
+		serialization::SerializationFacade* _serialization_facade;
+
+	public:
+		StorageManager(serialization::SerializationFacade& sf) 
+			: _serialization_facade(&sf) {}
+
+		bool save(const std::string& file_path, serialization::SerializeInfo data) const;
+		serialization::SerializeInfo load(const std::string& file_path) const;
 	};
 
 }

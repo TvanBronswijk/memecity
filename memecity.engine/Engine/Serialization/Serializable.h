@@ -1,7 +1,6 @@
 #ifndef _SERIALIZABLE_H
 #define _SERIALIZABLE_H
 #include <map>
-#include <any>
 
 namespace memecity::engine::serialization {
 	using SerializeInfo = std::map<std::string, std::string>;

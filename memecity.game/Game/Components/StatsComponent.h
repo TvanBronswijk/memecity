@@ -27,13 +27,13 @@ struct StatsComponent: memecity::engine::ecs::Component, memecity::engine::seria
 
 	void from_map(memecity::engine::serialization::SerializeInfo map) override
 	{
-		this->strength = std::any_cast<int>(map["strength"]);
-		this->perception = std::any_cast<int>(map["perception"]);
-		this->endurance = std::any_cast<int>(map["endurance"]);
-		this->charisma = std::any_cast<int>(map["charisma"]);
-		this->intelligence = std::any_cast<int>(map["intelligence"]);
-		this->agility = std::any_cast<int>(map["agility"]);
-		this->luck = std::any_cast<int>(map["luck"]);
+		this->strength = std::stoi(map["strength"]);
+		this->perception = std::stoi(map["perception"]);
+		this->endurance = std::stoi(map["endurance"]);
+		this->charisma = std::stoi(map["charisma"]);
+		this->intelligence = std::stoi(map["intelligence"]);
+		this->agility = std::stoi(map["agility"]);
+		this->luck = std::stoi(map["luck"]);
 	}
 };
 

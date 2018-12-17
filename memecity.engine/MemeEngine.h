@@ -52,6 +52,7 @@ namespace memecity::engine {
 		StorageManager storage_manager;
 		MultimediaManager multimedia_manager;
 		InputManager input_manager;
+		serialization::SerializationFacade serialization_facade;
 		sdl::TimerFacade timer;
 		std::unique_ptr<Context> _context;
 
@@ -103,7 +104,7 @@ namespace memecity::engine {
 			}
 			get_fps_trigger = state;
 		}
-		MemeEngine() : storage_manager(), multimedia_manager(false), input_manager(), timer() {
+		MemeEngine() : storage_manager(serialization_facade), multimedia_manager(false), input_manager(), timer() {
 			_context = std::make_unique<Context>(*this);
 		};
 

@@ -38,8 +38,8 @@ PauseMenuState::PauseMenuState(memecity::engine::state::StateManager & sm, GameM
 		.with_menu_item("Save Game", nullptr, [&](auto& menu_item)
 	       {
 		       const auto player_manager = PlayerManager(*_entity_manager);
-		       auto player_map = player_manager.get_player_map();
-		       const auto success =_context->get_storage_manager().save(assets::saves::SAVE_GAME, player_map);
+		       const auto player_data = player_manager.save_player();
+		       const auto success = _context->get_storage_manager().save(assets::saves::SAVE_GAME, player_data);
 			   if (success) back();
 	       })
 		.with_menu_item("Main Menu", nullptr, [&](auto& menu_item) { back(2); })

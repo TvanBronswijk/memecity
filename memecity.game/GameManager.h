@@ -11,7 +11,7 @@ public:
 		_context = std::make_unique<GameContext>(*this);
 	}
 
-	struct GameContext : public memecity::engine::MemeEngine::Context {
+	struct GameContext : public Context {
 	private:
 		memecity::engine::state::StateManager* state_manager;
 	public:

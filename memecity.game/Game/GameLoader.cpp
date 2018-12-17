@@ -4,11 +4,12 @@
 #include "Systems.h"
 #include "..\Assets.h"
 #include "Components/ScoreComponent.h"
+#include "PlayerManager.h"
 
 using namespace memecity::engine::ecs;
 using namespace memecity::engine::ui;
 
-void GameLoader::build(memecity::engine::ecs::EntityManager& em, loading::LoadingBar::Listener& listener)
+void GameLoader::build(EntityManager& em, loading::LoadingBar::Listener& listener)
 {
 	listener
 		.set_max_value(100.0f)
@@ -85,10 +86,17 @@ void GameLoader::create_player(EntityManager& em, loading::LoadingBar::Listener&
 		.with_component<ScoreComponent>()
 		.with_component<VelocityComponent>()
 		.with_component<InventoryComponent>()
-	.with_component<HealthComponent>();
+		.with_component<HealthComponent>();
+
+	if (_load_from_file)
+	{
+		auto player_manager = PlayerManager(em);
+		auto data = _context->get_storage_manager().load(assets::saves::SAVE_GAME);
+		auto success = player_manager.load_player(data);
+	}
+
 	auto base_component = builder.get().get<BaseComponent>();
 	builder.with_component<ColliderComponent>(BoundaryRectangle(base_component->location.x, base_component->location.y, base_component->w, base_component->h));
+	
 	listener.increase_current_value(5.0f);
 }
-
-

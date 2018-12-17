@@ -1,8 +1,1 @@
-[agility, 1]
-[charisma, 1]
-[endurance, 1]
-[intelligence, 1]
-[luck, 1]
-[perception, 3]
-[score, 35]
-[strength, 1]
+score:0

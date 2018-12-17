@@ -1,8 +1,10 @@
 ﻿#ifndef _MENU_STATE_H
 #define _MENU_STATE_H
+
 #include <Engine\State.h>
 #include <UI.h>
 #include "..\..\GameManager.h"
+#include "ECS/EntityManager.h"
 
 class MenuState : public memecity::engine::state::State
 {
@@ -25,4 +27,3 @@ public:
 };
 
 #endif
-

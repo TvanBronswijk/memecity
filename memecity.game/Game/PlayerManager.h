@@ -13,7 +13,8 @@ public:
 	PlayerManager(memecity::engine::ecs::EntityManager &em) 
 		: _entity_manager(&em) {}
 	
-	memecity::engine::serialization::SerializeInfo get_player_map() const;
+	memecity::engine::serialization::SerializeInfo save_player() const;
+	bool load_player(memecity::engine::serialization::SerializeInfo& data) const;
 };
 
 #endif

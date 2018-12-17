@@ -9,7 +9,7 @@ struct ScoreComponent : memecity::engine::ecs::Component, memecity::engine::seri
 	int score;
 	
 	ScoreComponent(memecity::engine::ecs::Entity& entity)
-		: ScoreComponent(entity, 35) {}
+		: ScoreComponent(entity, 0) {}
 
 	ScoreComponent(memecity::engine::ecs::Entity& entity, const int score) 
 		: Component(entity), score(score) {};
@@ -23,7 +23,7 @@ struct ScoreComponent : memecity::engine::ecs::Component, memecity::engine::seri
 
 	void from_map(memecity::engine::serialization::SerializeInfo map) override
 	{
-		this->score = std::any_cast<int>(map["score"]);
+		this->score = std::stoi(map["score"]);
 	}
 };
 

@@ -1,7 +1,6 @@
 ﻿#include "MenuState.h"
 #include "LoadingState.h"
 #include "GameState.h"
-#include "..\GameLoader.h"
 #include "..\..\Assets.h"
 #include "..\Input.h"
 
@@ -40,7 +39,8 @@ MenuState::MenuState(memecity::engine::state::StateManager & sm, GameManager::Ga
 
 	menu = memecity::engine::ui::menu::MenuBuilder(gc.get_multimedia_manager())
 		.create_menu("MemeCity", assets::fonts::DEFAULT_FONT)
-		.with_menu_item("Start Game", nullptr, [&](auto& menu_item) { next<GameState>(gc); })
+		.with_menu_item("Start Game", nullptr, [&](auto& menu_item) { next<GameState>(gc, false); })
+		.with_menu_item("Load Game", nullptr, [&](auto& menu_item) { next<GameState>(gc, true); })
 		.with_menu_item("Settings", settings_menu.get())
 		.with_menu_item("Credits", credits_menu.get())
 		.with_menu_item("Exit", nullptr, [&](auto& menu_item) { gc.get_input_manager().quit(); })
