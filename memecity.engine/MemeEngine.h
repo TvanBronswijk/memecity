@@ -56,11 +56,11 @@ namespace memecity::engine {
 		bool get_fps_trigger = false;
 		bool display_game_speed = false;
 
-		using fpsSubscriber = std::function<void(bool enabled,int fps)>;
-		using gamespeedSubscriber = std::function<void(bool enabled, float fps)>;
+		using fps_subscriber = std::function<void(bool enabled,int fps)>;
+		using game_speed_subscriber = std::function<void(bool enabled, float fps)>;
 
-		std::vector<fpsSubscriber> fps_subscribers;
-		std::vector<gamespeedSubscriber> game_speed_subscribers;
+		std::vector<fps_subscriber> fps_subscribers;
+		std::vector<game_speed_subscriber> game_speed_subscribers;
 
 		float game_speed_modifier = 1.0f;
 
@@ -81,8 +81,8 @@ namespace memecity::engine {
 			return this->game_speed_modifier;
 		}
 
-		void bindfps(fpsSubscriber s) { fps_subscribers.push_back(s); }
-		void bindgamespeed(gamespeedSubscriber s) { game_speed_subscribers.push_back(s); }
+		void bind_fps(fps_subscriber s) { fps_subscribers.push_back(s); }
+		void bind_game_speed(game_speed_subscriber s) { game_speed_subscribers.push_back(s); }
 		void set_display_gamespeed(bool state)
 		{
 			if (!state) {

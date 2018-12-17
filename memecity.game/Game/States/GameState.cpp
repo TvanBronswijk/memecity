@@ -46,7 +46,7 @@ void GameState::on_load()
 	fighting_system.health_changed_event += [&](auto& em, auto args) { _hud.update("HEALTHVALUE", args.new_health); };
 
 	auto& engine = _context->get_engine();
-	engine.bindfps([&](bool enabled, auto fps)
+	engine.bind_fps([&](bool enabled, auto fps)
 	{
 		if (enabled) {
 			_hud.update("FPS", "FPS: " + std::to_string(fps));
@@ -56,7 +56,7 @@ void GameState::on_load()
 		}
 	});
 
-	engine.bindgamespeed([&](bool enabled, float game_speed)
+	engine.bind_game_speed([&](bool enabled, float game_speed)
 	{
 		if(enabled)
 		{
