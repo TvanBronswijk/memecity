@@ -40,32 +40,11 @@ namespace generate {
 		hp += "/";
 		hp += std::to_string(health);
 
-
-		//TODO::change to police sprite
-		auto animation_texture = multimedia_manager.get_texture(assets::spritesheets::HUMAN_MALE_1, 0, 0, 48, 48, 4, 0.25f, texture::AnimatedTexture::AnimationDirection::vertical);
-		animation_texture->set_position({ static_cast<float>(multimedia_manager.get_screen_width()) / 2, static_cast<float>(multimedia_manager.get_screen_height()) / 2 });
-
-		std::string font = assets::fonts::DEFAULT_FONT;
-		auto health_texture = multimedia_manager.get_text(font, hp, 10, { 34,139,34 });
-		health_texture->set_position({ 0, -20 });
-		health_texture->set_parent(animation_texture.get());
-
-		auto name_texture = multimedia_manager.get_text(font, this->name, 14, { 255,255,255 });
-		name_texture->set_position({ 0, -35 });
-		name_texture->set_parent(animation_texture.get());
-
-		auto interaction_texture = multimedia_manager.get_text(" ", 14);
-		interaction_texture->set_position({ 0, -35 });
-		interaction_texture->set_parent(animation_texture.get());
-
 		return generate_npc(
-			x, y, 48.0f, 48.0f, level, exp, range_of_fighting, movement_speed,
+			x, y, 48.0f, 48.0f, exp, range_of_fighting, movement_speed,
 			strength, perception, endurance, charisma, intelligence, agility, luck,
-			health, name, State::Roaming,
-			std::move(animation_texture),
-			std::move(health_texture),
-			std::move(interaction_texture),
-			std::move(name_texture));
+			name, State::Roaming, {},
+			assets::spritesheets::HUMAN_MALE_1);//TODO::change to police
 	}
 	const memecity::engine::ecs::Entity& NPCGenerator::generate_civilian_npc(float x, float y) {
 		this->name = getRandomName();
@@ -82,31 +61,11 @@ namespace generate {
 		hp += "/";
 		hp += std::to_string(health);
 
-		//TODO::change on gender
-		auto animation_texture = multimedia_manager.get_texture(assets::spritesheets::HUMAN_MALE_1, 0, 0, 48, 48, 4, 0.25f, texture::AnimatedTexture::AnimationDirection::vertical);
-		animation_texture->set_position({ static_cast<float>(multimedia_manager.get_screen_width()) / 2, static_cast<float>(multimedia_manager.get_screen_height()) / 2 });
-
-		std::string font = assets::fonts::DEFAULT_FONT;
-		auto health_texture = multimedia_manager.get_text(font, hp, 10, { 34,139,34 });
-		health_texture->set_position({ 0, -20 });
-		health_texture->set_parent(animation_texture.get());
-
-		auto name_texture = multimedia_manager.get_text(font, this->name, 14, { 255,255,255 });
-		name_texture->set_position({ 0, -35 });
-		name_texture->set_parent(animation_texture.get());
-
-		auto interaction_texture = multimedia_manager.get_text(" ", 14);
-		interaction_texture->set_position({ 0, -35 });
-		interaction_texture->set_parent(animation_texture.get());
-
 		return generate_npc(
-			x, y, 48.0f, 48.0f, level, exp, range_of_fighting, movement_speed,
+			x, y, 48.0f, 48.0f, exp, range_of_fighting, movement_speed,
 			5, 5, 5, 5, 5, 5, 5,
-			health, name, State::Roaming,
-			std::move(animation_texture),
-			std::move(health_texture),
-			std::move(interaction_texture),
-			std::move(name_texture));
+			name, State::Roaming, {},
+			assets::spritesheets::HUMAN_MALE_1);//TODO::change on gender
 	}
 
 	//random generator
@@ -140,14 +99,28 @@ namespace generate {
 		points -= agility_points;
 		luck += points + 5;
 
+		return generate_npc(
+			x, y, 48.0f, 48.0f, exp, range_of_fighting, movement_speed,
+			strength, perception, endurance, charisma,intelligence, agility, luck, 
+			name, State::Roaming, {},
+			assets::spritesheets::HUMAN_MALE_1);
+	}
+
+	//base generator
+	const memecity::engine::ecs::Entity& NPCGenerator::generate_npc(
+		float x, float y, float width,float height, int exp, int range_of_fighting, float movement_speed, 
+		int strength, int perception, int endurance, int charisma,int intelligence, int agility, int luck, 
+		std::string name, State state, std::vector<std::string>interaction, 
+		assets::Asset animation_character){
+
 		health = ((strength * 5) + (endurance * 3) + (agility * 2) + 50);
 
 		std::string hp = "HP: ";
 		hp += std::to_string(health);
 		hp += "/";
 		hp += std::to_string(health);
-
-		auto animation_texture = multimedia_manager.get_texture(assets::spritesheets::HUMAN_MALE_1, 0, 0, 48, 48, 4, 0.25f, texture::AnimatedTexture::AnimationDirection::vertical);
+		
+		auto animation_texture = multimedia_manager.get_texture(animation_character, 0, 0, width, height, 4, 0.25f, texture::AnimatedTexture::AnimationDirection::vertical);
 		animation_texture->set_position({ static_cast<float>(multimedia_manager.get_screen_width()) / 2, static_cast<float>(multimedia_manager.get_screen_height()) / 2 });
 
 		std::string font = assets::fonts::DEFAULT_FONT;
@@ -155,7 +128,7 @@ namespace generate {
 		health_texture->set_position({ 0, -20 });
 		health_texture->set_parent(animation_texture.get());
 
-		auto name_texture = multimedia_manager.get_text(font, this->name, 14, { 255,255,255 });
+		auto name_texture = multimedia_manager.get_text(font, name, 14, { 255,255,255 });
 		name_texture->set_position({ 0, -35 });
 		name_texture->set_parent(animation_texture.get());
 
@@ -163,35 +136,23 @@ namespace generate {
 		interaction_texture->set_position({ 0, -35 });
 		interaction_texture->set_parent(animation_texture.get());
 
-		return generate_npc(
-			x, y, 48.0f, 48.0f, level, exp, range_of_fighting, movement_speed,
-			strength, perception, endurance, charisma,intelligence, agility, luck, 
-			health, name, State::Roaming,
-			std::move(animation_texture),
-			std::move(health_texture),
-			std::move(interaction_texture),
-			std::move(name_texture));
-	}
-
-	//base generator
-	const memecity::engine::ecs::Entity& NPCGenerator::generate_npc(
-		float x, float y, float width,float height, int level, int exp, int range_of_fighting, float movement_speed, int strength, int perception, int endurance, int charisma,
-		int intelligence, int agility, int luck, int health, std::string name, State state,
-		std::unique_ptr<memecity::engine::texture::Texture> animation_texture,
-		std::unique_ptr<memecity::engine::texture::TextTexture> health_texture,
-		std::unique_ptr<memecity::engine::texture::TextTexture> interaction_texture,
-		std::unique_ptr<memecity::engine::texture::TextTexture> name_texture){
-
 		const char* entity_name = name.c_str();
 		auto& builder = entity_manager.create_entity(entity_name)
 			.with_component<BaseComponent>(std::move(animation_texture), x, y, width, height)
-			.with_component<AIComponent>(state, this->name, exp, range_of_fighting, movement_speed, std::move(name_texture))
+			.with_component<AIComponent>(state, name, exp, range_of_fighting, movement_speed, std::move(name_texture))
 			.with_component<VelocityComponent>()
 			.with_component<AnimationComponent>()
 			.with_component<LevelComponent>(level)
 			.with_component<StatsComponent>(strength, perception, endurance, charisma, intelligence, agility, luck)
-			.with_component<HealthComponent>(health, std::move(health_texture))
-			.with_component<InteractionComponent>(createInteractionStrings(), std::move(interaction_texture));
+			.with_component<HealthComponent>(health, std::move(health_texture));
+
+		if (interaction.empty()) {
+			builder.with_component<InteractionComponent>(createInteractionStrings(), std::move(interaction_texture));
+		}
+		else {
+			builder.with_component<InteractionComponent>(interaction, std::move(interaction_texture));
+		}
+
 		auto base_component = builder.get().get<BaseComponent>();
 		builder.with_component<ColliderComponent>(BoundaryRectangle(base_component->location.x, base_component->location.y, base_component->w, base_component->h));
 
@@ -240,7 +201,7 @@ namespace generate {
 	}
 
 	//Quests_npcs
-	const memecity::engine::ecs::Entity& NPCGenerator::generate_quest_npc(std::string name, assets::Asset asset) {
+	const memecity::engine::ecs::Entity& NPCGenerator::generate_quest_npc(std::string name, int x, int y, assets::Asset asset) {
 		if (quest_npcs.find(name) != quest_npcs.end()) {
 			return *quest_npcs.find(name)->second;
 		}
@@ -259,7 +220,7 @@ namespace generate {
 
 
 			auto& builder = entity_manager.create_entity("npc")
-				.with_component<BaseComponent>(std::move(animation_texture), 50, 0, 48.0f, 48.0f)
+				.with_component<BaseComponent>(std::move(animation_texture), x, y, 48.0f, 48.0f)
 				.with_component<QuestAIComponent>(name, std::move(name_texture))
 				.with_component<InteractionComponent>(std::move(interaction_texture));
 			auto base_component = builder.get().get<BaseComponent>();

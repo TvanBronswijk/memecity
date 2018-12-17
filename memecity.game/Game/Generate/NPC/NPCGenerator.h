@@ -32,14 +32,11 @@ namespace generate {
 		const memecity::engine::ecs::Entity& generate_random_npc(float x, float y);
 		const memecity::engine::ecs::Entity& generate_police_npc(float x, float y);
 			const memecity::engine::ecs::Entity& generate_civilian_npc(float x, float y);
-		const memecity::engine::ecs::Entity& generate_quest_npc(std::string name, assets::Asset asset);
+		const memecity::engine::ecs::Entity& generate_quest_npc(std::string name,int x, int y, assets::Asset asset);
 		const memecity::engine::ecs::Entity& generate_npc(
-			float x, float y,float width, float height,int level, int exp, int range_of_fighting, float movement_speed, int strength, int perception, int endurance, int charisma, 
-			int intelligence, int agility, int luck, int health, std::string name, State state,
-			std::unique_ptr<memecity::engine::texture::Texture> animation_texture, 
-			std::unique_ptr<memecity::engine::texture::TextTexture> health_texture,
-			std::unique_ptr<memecity::engine::texture::TextTexture> interaction_texture,
-			std::unique_ptr<memecity::engine::texture::TextTexture> name_texture);
+			float x, float y,float width, float height,int exp, int range_of_fighting, float movement_speed, int strength, int perception, int endurance, int charisma, 
+			int intelligence, int agility, int luck, std::string name, State state, std::vector<std::string>interaction,
+			assets::Asset animation_character);
 		std::vector<std::string> createInteractionStrings();
 		std::string getRandomName();
 	};
