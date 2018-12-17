@@ -17,7 +17,7 @@ private:
 	
 	Story intro();
 public:
-	std::vector<Story> getAllStories();
+	std::vector<Story> get_all_stories();
 
 	QuestBuilder(
 		memecity::engine::MultimediaManager& multimedia_manager, memecity::engine::ecs::EntityManager& entity_manager) :

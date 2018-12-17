@@ -47,7 +47,7 @@ namespace generate {
 			assets::spritesheets::HUMAN_MALE_1);//TODO::change to police
 	}
 	const memecity::engine::ecs::Entity& NPCGenerator::generate_civilian_npc(float x, float y) {
-		this->name = getRandomName();
+		this->name = get_random_name();
 		this->range_of_fighting = 60;
 		this->movement_speed = rand() % 180;
 		this->exp = 10;
@@ -147,7 +147,7 @@ namespace generate {
 			.with_component<HealthComponent>(health, std::move(health_texture));
 
 		if (interaction.empty()) {
-			builder.with_component<InteractionComponent>(createInteractionStrings(), std::move(interaction_texture));
+			builder.with_component<InteractionComponent>(create_interaction_strings(), std::move(interaction_texture));
 		}
 		else {
 			builder.with_component<InteractionComponent>(interaction, std::move(interaction_texture));
@@ -161,7 +161,7 @@ namespace generate {
 	}
 
 	//get random interaction
-	std::vector<std::string> NPCGenerator::createInteractionStrings() {
+	std::vector<std::string> NPCGenerator::create_interaction_strings() {
 		std::vector<std::string> interaction;
 
 		int random = rand() % 2;
@@ -186,7 +186,7 @@ namespace generate {
 		return interaction;
 	}
 
-	std::string NPCGenerator::getRandomName() {
+	std::string NPCGenerator::get_random_name() {
 		//both vectors need to be the same size;
 		int number = rand() % (this->names_boys.size() -1);
 		int gender = rand() % 100;

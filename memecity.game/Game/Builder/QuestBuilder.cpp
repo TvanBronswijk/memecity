@@ -7,7 +7,7 @@
 
 using namespace memecity::engine::ecs;
 
-std::vector<Story> QuestBuilder::getAllStories() {
+std::vector<Story> QuestBuilder::get_all_stories() {
 	std::vector<Story> stories;
 
 	stories.emplace_back(intro());
@@ -29,8 +29,8 @@ Story QuestBuilder::intro() {
 		{ "Welcome Stranger!",
 		"This is memecity.",
 		"A city full of adventure",
-		"when you press 'n' youo can see your task you need to compleet."
-		"First I will show you how to do basic task.",
+		"when you press 'n' you can see your task you need to complete."
+		"First I will show you how to do a basic task.",
 		"please interact with Simon over there.",
 		" "},
 		&npc_generator.generate_quest_npc(roy, 0,0, assets::spritesheets::HUMAN_MALE_1),
@@ -41,7 +41,7 @@ Story QuestBuilder::intro() {
 		Quest_State::Interaction,
 		{"Hello",
 		"my name is Simon.",
-		"Do you know all the inputs in this game? no?",
+		"Do you know all the inputs in this game? No?",
 		"You can find them when you press escape->help.",
 		"Have a nice day!",
 		" "},
@@ -77,7 +77,7 @@ Story QuestBuilder::intro() {
 		Task{
 		"Talk to " + roy,
 		Quest_State::Interaction,
-		{"Good job you pick up every item you want.",
+		{"Good job you have pick up every item you want.",
 		"the last task i would like you to do is to fight yoeri",
 		"Be aware he is very angry!"
 		" "},
@@ -88,7 +88,7 @@ Story QuestBuilder::intro() {
 
 	std::deque<Task> tasks_quest4{
 		Task{
-		"Fight" + yoeri,
+		"Fight " + yoeri,
 		Quest_State::Fighting,
 		{"go away!!"},
 		&npc_generator.generate_npc(0,50,48,48,10,60,180,1,1,1,1,1,1,1,yoeri,State::Idle,{" "},assets::spritesheets::HUMAN_MALE_1),
@@ -102,7 +102,9 @@ Story QuestBuilder::intro() {
 		Quest_State::Interaction,
 		{"Is he dead? i didn't say you need to kill him!!!",
 		"Ow well, one less to worry about i think.",
-		"know you know how to fight but be aware. people will fight back."
+		"know you know how to fight but be aware. people will fight back.",
+		"These are all the basic task you need to know for these cities.",
+		"Go explore and adventure these big cities!",
 		" "},
 		&npc_generator.generate_quest_npc(roy, 0,0, assets::spritesheets::HUMAN_MALE_1),
 		nullptr,

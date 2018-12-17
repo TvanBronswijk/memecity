@@ -37,8 +37,8 @@ namespace generate {
 			float x, float y,float width, float height,int exp, int range_of_fighting, float movement_speed, int strength, int perception, int endurance, int charisma, 
 			int intelligence, int agility, int luck, std::string name, State state, std::vector<std::string>interaction,
 			assets::Asset animation_character);
-		std::vector<std::string> createInteractionStrings();
-		std::string getRandomName();
+		std::vector<std::string> create_interaction_strings();
+		std::string get_random_name();
 	};
 }
 #endif

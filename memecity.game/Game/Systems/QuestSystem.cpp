@@ -27,26 +27,26 @@ void QuestSystem::run(EntityManager &em, float dt) const {
 
 void QuestSystem::story(Story& story) const {
 	if (story.active) {
-		if (story._quests.empty()) {
+		if (story.quests.empty()) {
 			if (story.completed) return;
 			story.completed = true;
 		}
 		else {
-			if (quest(story._quests.front())) {
-				story._quests.pop();
+			if (quest(story.quests.front())) {
+				story.quests.pop();
 			}
 		}
 	}
 }
 
 bool QuestSystem::quest(Quest& quest) const{
-	if (quest._tasks.empty()) {
+	if (quest.tasks.empty()) {
 		quest.completed = true;
 		return true;
 	}
 	else {
-		if (task(quest._tasks.front())) {
-			quest._tasks.pop();
+		if (task(quest.tasks.front())) {
+			quest.tasks.pop();
 		}
 	}
 	return false;
@@ -82,9 +82,9 @@ void QuestSystem::on_event(EntityManager &em, QuestEventArgs args) {
 	for (auto it = stories.begin(); it != stories.end(); ++it) {
 		auto& story = *it;
 		if (story.active) {
-			if (!story._quests.empty()) {
-				auto &task = story._quests.front()._tasks.front();
-				switch (story._quests.front()._tasks.front().state) {
+			if (!story.quests.empty()) {
+				auto &task = story.quests.front().tasks.front();
+				switch (story.quests.front().tasks.front().state) {
 				case Quest_State::Dropping:
 					check_task_dropping(args, task);
 					break;

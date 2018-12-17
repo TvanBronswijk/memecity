@@ -9,9 +9,9 @@ struct Quest {
 	std::string description;
 	bool completed;
 
-	std::queue<Task> _tasks;
+	std::queue<Task> tasks;
 
-	Quest(std::string description, std::deque<Task> tasks) :  description(description), _tasks(tasks), completed(false){};
+	Quest(std::string description, std::deque<Task> tasks) :  description(description), tasks(tasks), completed(false){};
 };
 
 #endif;

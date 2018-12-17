@@ -20,8 +20,8 @@ StoryState::StoryState(memecity::engine::state::StateManager & sm, GameManager::
 			}
 			else {
 				builder.with_read_only_menu_item("Story: " + story.description);
-				builder.with_read_only_menu_item("Quest: " + story._quests.front().description);
-				builder.with_read_only_menu_item("Task:	" + story._quests.front()._tasks.front().description);
+				builder.with_read_only_menu_item("Quest: " + story.quests.front().description);
+				builder.with_read_only_menu_item("Task:	" + story.quests.front().tasks.front().description);
 			}
 			builder.with_read_only_menu_item("******************************");
 			builder.with_read_only_menu_item(" ");
