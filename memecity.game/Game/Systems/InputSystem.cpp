@@ -2,6 +2,8 @@
 #include "..\Components.h"
 #include "..\States.h"
 #include "..\Input.h"
+#include "../States/DeveloperMenuState.h"
+#include "../States/StatsState.h"
 
 using namespace memecity::engine;
 using namespace memecity::engine::ecs;
@@ -77,6 +79,10 @@ void InputSystem::run(EntityManager& em, float dt) const
 		if (input_manager.is_pressed(input::ESCAPE)) {
 			state_manager.create_state<PauseMenuState>(*_context);
 		}
+		if (input_manager.is_pressed(input::STATS)) {
+			auto& stats = *player.get<StatsComponent>();
+			state_manager.create_state<StatsState>(*_context, stats);
+		}
 		//inventory
 		if (input_manager.is_pressed(input::DROP)) {
 			auto inventory = player.get<InventoryComponent>();
@@ -136,7 +142,10 @@ void InputSystem::run(EntityManager& em, float dt) const
 		if (input_manager.is_pressed(input::N)) {
 			state_manager.create_state<StoryState>(*_context, player.get<PlayerComponent>()->_stories);
 		}
-
+		if(input_manager.is_pressed(input::DEVELOPER))
+		{
+			state_manager.create_state<DeveloperMenuState>(*_context, em);
+		}
 		if (input_manager.is_pressed(input::ONE)) {
 			auto inventory = player.get<InventoryComponent>();
 			inventory->selected = 0;
@@ -169,6 +178,22 @@ void InputSystem::run(EntityManager& em, float dt) const
 			else
 				inventory->selected--;
 			//previous item is selected from items in itemcomponent
+		}
+
+		if(input_manager.is_pressed(input::SPEEDDOWN))
+		{
+			auto* engine = &_context->get_engine();
+			engine->set_games_speed_modifier(engine->get_game_speed_modifier() - 0.5f);
+		}
+		if(input_manager.is_pressed(input::SPEEDUP))
+		{
+			auto* engine = &_context->get_engine();
+			engine->set_games_speed_modifier(engine->get_game_speed_modifier() + 0.5f);
+		}
+		if(input_manager.is_pressed(input::SPEEDRESET))
+		{
+			auto* engine = &_context->get_engine();
+			engine->set_games_speed_modifier(1.0f);
 		}
 	}
 }
