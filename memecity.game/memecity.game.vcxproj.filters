@@ -3,6 +3,7 @@
   <ItemGroup>
     <ClCompile Include="Game\Generate\NPC\NPCGenerator.cpp" />
     <ClCompile Include="Game\GameLoader.cpp" />
+    <ClCompile Include="Game\States\DeveloperMenuState.cpp" />
     <ClCompile Include="Game\States\LoadingState.cpp" />
     <ClCompile Include="Game\States\GameState.cpp" />
     <ClCompile Include="Game\States\MenuState.cpp" />
@@ -16,17 +17,21 @@
     <ClCompile Include="Game\Systems\FightingSystem.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="Game\Systems\DrawSystem.cpp" />
+    <ClCompile Include="Game\Systems\FogOfWarSystem.cpp" />
     <ClCompile Include="Game\Systems\InteractionSystem.cpp" />
     <ClCompile Include="Game\Systems\InputSystem.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Game\Systems\MoveSystem.cpp" />
     <ClCompile Include="Game\Systems\OverlaySystem.cpp" />
+    <ClCompile Include="Game\States\GameOverState.cpp" />
+    <ClCompile Include="Game\Systems\HealthSystem.cpp" />
     <ClCompile Include="Game\Systems\FogOfWarSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Components\DimensionComponent.h" />
     <ClInclude Include="Game\Components.h" />
     <ClInclude Include="Game\Components\AIComponent.h" />
+    <ClInclude Include="Game\Components\ColliderComponent.h" />
     <ClInclude Include="Game\Event\BlikCoinEventArg.h" />
     <ClInclude Include="Game\Event\ExpEventArgs.h" />
     <ClInclude Include="Game\Event\HealthChangedEventArgs.h" />
@@ -41,6 +46,7 @@
     <ClInclude Include="Game\Generate\City\Strategy\BSP\Fills\Prefab.h" />
     <ClInclude Include="Game\Generate\NPC\NPCGenerator.h" />
     <ClInclude Include="Game\Input.h" />
+    <ClInclude Include="Game\States\DeveloperMenuState.h" />
     <ClInclude Include="Game\States\LoadingState.h" />
     <ClInclude Include="Game\States\GameState.h" />
     <ClInclude Include="Game\States.h" />
@@ -64,6 +70,7 @@
     <ClInclude Include="Game\Components\HealthComponent.h" />
     <ClInclude Include="Game\Components\InteractionComponent.h" />
     <ClInclude Include="Game\Event\InteractionEventArgs.h" />
+    <ClInclude Include="Game\Systems\FogOfWarSystem.h" />
     <ClInclude Include="Game\Systems\InteractionSystem.h" />
     <ClInclude Include="Game\Components\LevelComponent.h" />
     <ClInclude Include="Game\Generate\City\Strategy\Strategy.h" />
@@ -76,6 +83,10 @@
     <ClInclude Include="Game\Components\ScoreComponent.h" />
     <ClInclude Include="Assets.h" />
     <ClInclude Include="Game\Components\ColliderComponent.h" />
+    <ClInclude Include="Game\States\GameOverState.h" />
+    <ClInclude Include="Game\Systems\HealthSystem.h" />
+    <ClInclude Include="Game\Components\InventoryComponent.h" />
+    <ClInclude Include="Game\Components\ItemComponent.h" />
     <ClInclude Include="Game\Systems\FogOfWarSystem.h" />
   </ItemGroup>
   <ItemGroup>
@@ -104,10 +115,24 @@
     <CopyFileToFolders Include="Assets\Advertisements\BananaWho.png" />
     <CopyFileToFolders Include="Assets\Advertisements\BurgerKing.png" />
     <CopyFileToFolders Include="Assets\Advertisements\CocaCola.png" />
+    <CopyFileToFolders Include="Assets\Sprites\Tin_can.png" />
     <CopyFileToFolders Include="Assets\Sprites\big_black.bmp" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="Assets\new-game.txt" />
-    <Text Include="new-game.txt" />
+    <Image Include="Assets\Sprites\big_black.bmp" />
+    <CopyFileToFolders Include="Assets\Advertisements\BananaWho.png" />
+    <CopyFileToFolders Include="Assets\Advertisements\BurgerKing.png" />
+    <CopyFileToFolders Include="Assets\Advertisements\CocaCola.png" />
+    <CopyFileToFolders Include="Assets\Sprites\big_black.bmp" />
+    <Image Include="Assets\Sprites\Tiles\grass_00.bmp" />
+    <Image Include="Assets\Sprites\Tiles\grass_01.bmp" />
+    <Image Include="Assets\Sprites\Tiles\grass_02.bmp" />
+    <Image Include="Assets\Sprites\Tiles\grass_03.bmp" />
+    <Image Include="Assets\Sprites\Tiles\paving_00.bmp" />
+    <Image Include="Assets\Sprites\Tiles\paving_01.bmp" />
+    <Image Include="Assets\Sprites\Tiles\paving_03.bmp" />
+    <Image Include="Assets\Sprites\Tiles\wall_00.bmp" />
+    <Image Include="Assets\Sprites\Tiles\water_00.bmp" />
+    <Image Include="Assets\Sprites\Tiles\paving_02.bmp" />
   </ItemGroup>
 </Project>

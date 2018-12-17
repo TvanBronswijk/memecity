@@ -31,7 +31,7 @@ namespace memecity::engine::ui::menu {
 		void next() const;
 		void previous() const;
 		void select() const;
-		void back() const;
+		bool back() const;
 	};
 };
 #endif

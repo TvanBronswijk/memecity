@@ -31,8 +31,19 @@ public:
 		_hud.create_overlay_text_item("L", "L: 1", 16, 500, 48);
 
 		_hud.create_overlay_text_item("BLIKCOIN", "BlikCoin: 9999", 16, 650, 16);
+
+		_hud.create_overlay_text_item("INVENTORY"," Inventory" , 16, 1000, 16);
+		_hud.create_overlay_text_item("SIZE"," Size = 1" , 16, 1000, 38);
+		_hud.create_overlay_text_item("SELECTED"," Selected = 1" , 16, 1000, 62);
+		//images on the side
+
 	}
-	~GameState() = default;
+	~GameState()
+	{
+		auto& engine = _context->get_engine(); 
+		engine.set_calculate_fps(false);
+		engine.set_display_gamespeed(false);
+	};
 	void on_load() override;
 	void update(float dt) override;
 	void draw() override;

@@ -25,7 +25,7 @@ struct uRectangle {
 using Rectangle = uRectangle<float>;
 
 template<class Rect1, class Rect2>
-bool intersects(const Rect1& l, const Rect2& r)
+constexpr bool intersects(const Rect1& l, const Rect2& r)
 {
 	return (l.x < r.x + r.w
 		&& l.x + l.w > r.x

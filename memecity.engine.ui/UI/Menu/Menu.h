@@ -51,7 +51,7 @@ namespace memecity::engine::ui::menu {
 		void next();
 		void previous();
 		void select();
-		void back();
+		bool back();
 
 	};
 }

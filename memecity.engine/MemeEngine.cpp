@@ -14,22 +14,41 @@ namespace memecity::engine {
 #ifdef DEBUG
 			std::cout << "	logic thread: " << std::this_thread::get_id() << '\n';
 #endif
+			sdl::TimerFacade logic_timer;
+			float prev = 0.0f;
 			while (!engine.input_manager.is_quit_pressed()) {
-				engine.update(engine.timer.get_delta_time());
+				prev = logic_timer.get_delta_time();
+				logic_timer.update();
+				engine.update((logic_timer.get_delta_time() - prev) * engine.game_speed_modifier );
+				if (prev > 3600.0f)
+				{
+					logic_timer.reset();
+					prev = logic_timer.get_delta_time();
+				}
 			}
 		});
+		sdl::TimerFacade fps_timer = sdl::TimerFacade();
+		float fps = 0;
 		while (!engine.input_manager.is_quit_pressed()) {
 			engine.timer.update();
 			engine.input_manager.update();
 			if (engine.timer.get_delta_time() >= 1.0f / 60.0f) {
-				if (engine.get_fps_trigger) {
-					engine.fps = 1.0f / engine.timer.get_delta_time();
-					engine.get_fps_trigger = false;
-				}
+				
 				engine.multimedia_manager.clear_graphics();
 				engine.draw();
+				fps++;
 				engine.multimedia_manager.render_graphics();
 				engine.timer.reset();
+				if (engine.get_fps_trigger) {
+					fps_timer.update();
+					if (fps_timer.get_delta_time() >= 1.0f) {
+						for (auto& subscriber : engine.fps_subscribers) {
+							subscriber(true, fps);
+						}
+						fps = 0;
+						fps_timer.reset();
+					}
+				}
 			}
 		};
 		logic.join();

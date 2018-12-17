@@ -103,7 +103,7 @@ void AISystem::fleeing(EntityManager& em, const BaseComponent& base) const {
 	velocity->y += base.location.y < player_base->location.y ? 4 : -4;
 }
 
-void AISystem::run(EntityManager& em) const {
+void AISystem::run(EntityManager& em, float dt) const {
 
 	auto player = em.get_entities_with_component<PlayerComponent>().front();
 	auto npcs = em.get_entities_with_component<AIComponent>();
