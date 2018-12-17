@@ -19,6 +19,7 @@ void FightingSystem::run(EntityManager &em, float dt) const {
 void FightingSystem::on_attack(EntityManager &em, AttackEventArgs args) {
 	auto health_target = args.target.get<HealthComponent>();
 	auto stats_source = args.source.get<StatsComponent>();
+	auto stats_target = args.target.get<StatsComponent>();
 	auto AI = args.target.get<AIComponent>();
 
 	if (AI != nullptr) {
@@ -36,7 +37,11 @@ void FightingSystem::on_attack(EntityManager &em, AttackEventArgs args) {
 	else {
 		auto ai = args.source.get<AIComponent>();
 		if (ai->timer_fighting > 0.5) {
-			health_target->health -= (rand() % (stats_source->strength)+ 1);
+			auto attack = (rand() % (stats_source->strength) + 1);
+			auto defence = (rand() % (stats_target->agility * 4));
+			auto damage = attack - defence;
+			if(damage > 0)
+			health_target->health -= damage;
 			if (health_target->health < 0) health_target->health = 0;
 
 			ai->timer_fighting = 0;
