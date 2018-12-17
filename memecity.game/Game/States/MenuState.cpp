@@ -1,7 +1,6 @@
 ﻿#include "MenuState.h"
 #include "LoadingState.h"
 #include "GameState.h"
-#include "..\GameLoader.h"
 #include "..\..\Assets.h"
 #include "..\Input.h"
 

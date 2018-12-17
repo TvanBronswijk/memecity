@@ -11,7 +11,8 @@ namespace generate::strategy::bsp {
 		~Prefab() = default;
 		void write(models::City& c, const Node& n) const override {
 			iterate(n, [&](int x, int y) {
-				c(x, y) = _prefab(x - n.x, y - n.y);
+				c.tiles(x, y) = _prefab.tiles(x - n.x, y - n.y);
+				c.objects(x, y) = _prefab.objects(x - n.x, y - n.y);
 			});
 		}
 	};

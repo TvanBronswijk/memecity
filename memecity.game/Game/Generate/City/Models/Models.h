@@ -20,20 +20,30 @@ namespace generate::models {
 		virtual const char& coord(int x, int y) const { return tiles[x * h + y]; }
 		virtual char& operator () (int x, int y) { return coord(x, y); }
 		virtual const char& operator () (int x, int y) const { return coord(x, y); }
+		virtual char* operator [] (int x) { return &tiles[x * h]; }
+		virtual const char* operator [] (int x) const { return &tiles[x * h]; }
 		virtual ~Base64_Tilemap() override { delete tiles; }
 	};
 
-	struct City : Base64_Tilemap {
-		City(int w, int h)
-			: Base64_Tilemap(w, h) {}
+	struct City {
+		int width, height;
+		uPoint<int> start;
+		Base64_Tilemap tiles;
+		Base64_Tilemap objects;
+		City(int w, int h) 
+			: width(w), height(h), tiles(w, h), objects(w, h) {}
 	};
 
-	struct Prefab : Base64_Tilemap {
-		Prefab(int w, int h, const char* tiles)
-			: Base64_Tilemap(w, h) {
+	struct Prefab {
+		int width, height;
+		Base64_Tilemap tiles;
+		Base64_Tilemap objects;
+		Prefab(int w, int h, const char* tiles, const char* objects)
+			: width(w), height(h), tiles(w, h), objects(w, h) {
 			for (int x = 0; x < w; x++) {
 				for (int y = 0; y < h; y++) {
-					this->coord(x, y) = tiles[x * h + y];
+					this->tiles(x, y) = tiles[x * h + y];
+					this->objects(x, y) = objects[x * h + y];
 				}
 			}
 		}
