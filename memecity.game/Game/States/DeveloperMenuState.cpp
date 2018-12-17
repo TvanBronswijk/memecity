@@ -5,6 +5,7 @@
 #include "../Components/PlayerComponent.h"
 #include "../Components/HealthComponent.h"
 #include "../Systems/ExpSystem.h"
+//todo include state for cheat
 
 DeveloperMenuState::DeveloperMenuState(memecity::engine::state::StateManager& sm, GameManager::GameContext& gc, memecity::engine::ecs::EntityManager& em)
 	:State(sm), _context(&gc), _entity_manager(&em)
@@ -30,10 +31,6 @@ DeveloperMenuState::DeveloperMenuState(memecity::engine::state::StateManager& sm
 			stats->strength = 100;
 		}
 	})
-		.with_menu_item("Amnesia Completa",nullptr, [&](auto& menu_item)
-	{
-		//TODO
-	})// npcs vergeten dat ze boos zijn
 		.with_menu_item("Avada Kedavra", nullptr, [&](auto& menu_item)// alle (niet quest) npcs gaan dood
 	{
 		auto healtyEntities = em.get_entities_with_component<HealthComponent>();

@@ -51,12 +51,14 @@ namespace memecity::engine {
 		MultimediaManager multimedia_manager;
 		InputManager input_manager;
 		sdl::TimerFacade timer;
-		int fps;
 		std::unique_ptr<Context> _context;
+
 		bool get_fps_trigger = false;
 		bool display_game_speed = false;
+
 		using fpsSubscriber = std::function<void(bool enabled,int fps)>;
 		using gamespeedSubscriber = std::function<void(bool enabled, float fps)>;
+
 		std::vector<fpsSubscriber> fps_subscribers;
 		std::vector<gamespeedSubscriber> game_speed_subscribers;
 
@@ -99,7 +101,7 @@ namespace memecity::engine {
 			}
 			get_fps_trigger = state;
 		}
-		MemeEngine() : storage_manager(), multimedia_manager(false), input_manager(), timer(), fps(0) {
+		MemeEngine() : storage_manager(), multimedia_manager(false), input_manager(), timer() {
 			_context = std::make_unique<Context>(*this);
 		};
 
