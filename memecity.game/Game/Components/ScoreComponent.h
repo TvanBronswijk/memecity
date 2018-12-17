@@ -17,13 +17,17 @@ struct ScoreComponent : memecity::engine::ecs::Component, memecity::engine::seri
 	memecity::engine::serialization::SerializeInfo to_map() const override
 	{
 		memecity::engine::serialization::SerializeInfo map;
-		map["score"] = std::to_string(this->score);
+		map["ScoreComponent=score"] = std::to_string(this->score);
 		return map;
 	}
 
-	void from_map(memecity::engine::serialization::SerializeInfo map) override
+	void from_pair(const std::pair<std::string, std::string> pair) override
 	{
-		this->score = std::stoi(map["score"]);
+		const auto key = pair.first;
+		if (key == "score")
+		{
+			this->score = std::stoi(pair.second);
+		}
 	}
 };
 

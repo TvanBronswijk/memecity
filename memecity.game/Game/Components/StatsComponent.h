@@ -15,25 +15,59 @@ struct StatsComponent: memecity::engine::ecs::Component, memecity::engine::seria
 	memecity::engine::serialization::SerializeInfo to_map() const override
 	{
 		memecity::engine::serialization::SerializeInfo map;
-		map["strength"] = std::to_string(this->strength);
-		map["perception"] = std::to_string(this->perception);
-		map["endurance"] = std::to_string(this->endurance);
-		map["charisma"] = std::to_string(this->charisma);
-		map["intelligence"] = std::to_string(this->intelligence);
-		map["agility"] = std::to_string(this->agility);
-		map["luck"] = std::to_string(this->luck);
+		map["StatsComponent=strength"] = std::to_string(this->strength);
+		map["StatsComponent=perception"] = std::to_string(this->perception);
+		map["StatsComponent=endurance"] = std::to_string(this->endurance);
+		map["StatsComponent=charisma"] = std::to_string(this->charisma);
+		map["StatsComponent=intelligence"] = std::to_string(this->intelligence);
+		map["StatsComponent=agility"] = std::to_string(this->agility);
+		map["StatsComponent=luck"] = std::to_string(this->luck);
 		return map;
 	}
 
-	void from_map(memecity::engine::serialization::SerializeInfo map) override
+	void from_pair(const std::pair<std::string, std::string> pair) override
 	{
-		this->strength = std::stoi(map["strength"]);
-		this->perception = std::stoi(map["perception"]);
-		this->endurance = std::stoi(map["endurance"]);
-		this->charisma = std::stoi(map["charisma"]);
-		this->intelligence = std::stoi(map["intelligence"]);
-		this->agility = std::stoi(map["agility"]);
-		this->luck = std::stoi(map["luck"]);
+		const auto key = pair.first;
+		if (key == "strength")
+		{
+			this->strength = std::stoi(pair.second);
+			return;
+		}
+		
+		if (key == "perception")
+		{
+			this->perception = std::stoi(pair.second);
+			return;
+		}
+
+		if (key == "endurance")
+		{
+			this->endurance = std::stoi(pair.second);
+			return;
+		}
+
+		if (key == "charisma")
+		{
+			this->charisma = std::stoi(pair.second);
+			return;
+		}
+
+		if (key == "intelligence")
+		{
+			this->intelligence = std::stoi(pair.second);
+			return;
+		}
+
+		if (key == "agility")
+		{
+			this->agility = std::stoi(pair.second);
+			return;
+		}
+
+		if (key == "luck")
+		{
+			this->luck = std::stoi(pair.second);
+		}
 	}
 };
 

@@ -46,8 +46,6 @@ namespace memecity::engine
 					auto key = line.substr(0, line.find(':'));
 					const auto value = line.substr(line.find(':') + 1);
 					result[key] = value;
-
-					std::cout << "Key: " << key << ", value: " << value << "\n";
 				}
 
 				input_stream.close();

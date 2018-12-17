@@ -1,5 +1,6 @@
 #ifndef _SERIALIZABLE_H
 #define _SERIALIZABLE_H
+
 #include <map>
 
 namespace memecity::engine::serialization {
@@ -8,7 +9,7 @@ namespace memecity::engine::serialization {
 	{
 	public:
 		virtual SerializeInfo to_map() const = 0;
-		virtual void from_map(SerializeInfo map) = 0;
+		virtual void from_pair(std::pair<std::string, std::string> pair) = 0;
 
 		Serializable() = default;
 		Serializable(const Serializable &) = delete;
