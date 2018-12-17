@@ -7,11 +7,11 @@
 
 struct Quest {
 	std::string description;
-	bool completed = false;
+	bool completed;
 
 	std::queue<Task> _tasks;
 
-	Quest(std::string description, std::deque<Task> tasks) :  description(description), _tasks(tasks){};
+	Quest(std::string description, std::deque<Task> tasks) :  description(description), _tasks(tasks), completed(false){};
 };
 
 #endif;

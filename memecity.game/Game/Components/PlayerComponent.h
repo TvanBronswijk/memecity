@@ -1,7 +1,6 @@
 ﻿#ifndef _PLAYERCOMPONENT_H
 #define  _PLAYERCOMPONENT_H
 #include <ECS.h>
-#include <algorithm> // copy
 #include "../Quest/Story.h"
 
 struct PlayerComponent : public memecity::engine::ecs::Component
