@@ -167,8 +167,8 @@ namespace generate {
 			break;
 		case 1:
 			interaction.emplace_back("Hello Stranger!");
-			interaction.emplace_back("What a nice wheater isn't it?");
-			interaction.emplace_back("How are you sure?");
+			interaction.emplace_back("What a nice weather isn't it?");
+			interaction.emplace_back("How are you Sir?");
 			break;
 		case 2:
 			interaction.emplace_back("Do I know you?");

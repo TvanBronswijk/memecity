@@ -84,7 +84,7 @@ void QuestSystem::on_event(EntityManager &em, QuestEventArgs args) {
 		if (story.active) {
 			if (!story.quests.empty()) {
 				auto &task = story.quests.front().tasks.front();
-				switch (story.quests.front().tasks.front().state) {
+				switch (task.state) {
 				case Quest_State::Dropping:
 					check_task_dropping(args, task);
 					break;
