@@ -113,17 +113,22 @@ namespace memecity::engine::ui::menu {
 		menu_items.at(selected_menu_items_index)->handle();
 	}
 
-	void Menu::back()
+	bool Menu::back()
 	{
 		if (is_locked)
 		{
-			menu_items.at(selected_menu_items_index)->back();
-			return;
+			return menu_items.at(selected_menu_items_index)->back();
 		}
 
 		if (parent != nullptr)
 		{
 			parent->unlock();
+			return true;
+		}
+		else
+		{
+			return false;
+
 		}
 	}
 }
