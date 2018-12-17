@@ -16,9 +16,9 @@ std::vector<Story> QuestBuilder::get_all_stories() {
 }
 
 Story QuestBuilder::intro() {
-	std::string roy = "Roy van Oldenbeek";
-	std::string simon = "Simon Heij";
-	std::string yoeri = "Yoeri van Hoof";
+	std::string roy = "Roy";
+	std::string simon = "Simon";
+	std::string yoeri = "Yoeri";
 
 
 	//create tasks
@@ -33,7 +33,7 @@ Story QuestBuilder::intro() {
 		"First I will show you how to do a basic task.",
 		"please interact with Simon over there.",
 		" "},
-		&npc_generator.generate_quest_npc(roy, 0,0, assets::spritesheets::HUMAN_MALE_1),
+		&npc_generator->generate_quest_npc(roy, 0,0, assets::spritesheets::HUMAN_MALE_1),
 		nullptr,
 		1},
 		Task{
@@ -45,7 +45,7 @@ Story QuestBuilder::intro() {
 		"You can find them when you press escape->help.",
 		"Have a nice day!",
 		" "},
-		&npc_generator.generate_quest_npc(simon,300,0, assets::spritesheets::HUMAN_MALE_1),
+		&npc_generator->generate_quest_npc(simon,300,0, assets::spritesheets::HUMAN_MALE_1),
 		nullptr,
 		1},
 		Task{
@@ -56,19 +56,17 @@ Story QuestBuilder::intro() {
 		"Lets try to pick up some stuff.",
 		"Please pick up that can for me.",
 		" ",},
-		&npc_generator.generate_quest_npc(roy,0,0, assets::spritesheets::HUMAN_MALE_1),
+		&npc_generator->generate_quest_npc(roy,0,0, assets::spritesheets::HUMAN_MALE_1),
 		nullptr,
 		1},
 	};
-
-	auto item = item_generator.MakeItem("Tin can", "a normal tin can", 0, 0, 0, 0, 0, 0, 0, 50, 0, 48, 48, assets::sprites::TIN_CAN);
 
 	std::deque<Task> tasks_quest2{
 		Task{
 		"pick up a tin can" ,
 		Quest_State::Finding,
 		{},
-		item,
+		generate::ItemGenerator(*multimedia_manager, *entity_manager).MakeItem("Tin can", "a normal tin can", 0, 0, 0, 0, 0, 0, 0, 50, 0, 48, 48, assets::sprites::TIN_CAN),
 		nullptr,
 		1}
 	};
@@ -81,7 +79,7 @@ Story QuestBuilder::intro() {
 		"the last task i would like you to do is to fight yoeri",
 		"Be aware he is very angry!"
 		" "},
-		&npc_generator.generate_quest_npc(roy, 0,0, assets::spritesheets::HUMAN_MALE_1),
+		&npc_generator->generate_quest_npc(roy, 0,0, assets::spritesheets::HUMAN_MALE_1),
 		nullptr,
 		1}
 	};
@@ -91,7 +89,7 @@ Story QuestBuilder::intro() {
 		"Fight " + yoeri,
 		Quest_State::Fighting,
 		{"go away!!"},
-		&npc_generator.generate_npc(0,50,48,48,10,60,180,1,1,1,1,1,1,1,yoeri,State::Idle,{" "},assets::spritesheets::HUMAN_MALE_1),
+		&npc_generator->generate_npc(0,50,48,48,10,60,180,1,1,1,1,1,1,1,yoeri,Ai_State::Idle,{" "},assets::spritesheets::HUMAN_MALE_1),
 		nullptr,
 		1}
 	};
@@ -106,7 +104,7 @@ Story QuestBuilder::intro() {
 		"These are all the basic task you need to know for these cities.",
 		"Go explore and adventure these big cities!",
 		" "},
-		&npc_generator.generate_quest_npc(roy, 0,0, assets::spritesheets::HUMAN_MALE_1),
+		&npc_generator->generate_quest_npc(roy, 0,0, assets::spritesheets::HUMAN_MALE_1),
 		nullptr,
 		1}
 	};

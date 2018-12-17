@@ -2,6 +2,6 @@
 #define  AI_STATES_COMPONENT_H
 
 
-enum class State { Fighting, Fleeing, Roaming, Idle };
+enum class Ai_State { Fighting, Fleeing, Roaming, Idle };
 
 #endif

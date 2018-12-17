@@ -168,7 +168,7 @@ void AISystem::fleeing(EntityManager& em, const BaseComponent& npc_base) const {
 	
 	int absolute_distance = std::sqrt((distance_x * distance_x) + (distance_y * distance_y));
 	if (absolute_distance > 1000) {
-		ai->state = State::Roaming;
+		ai->state = Ai_State::Roaming;
 	}
 }
 
@@ -182,16 +182,16 @@ void AISystem::run(EntityManager& em, float dt) const {
 			auto base = element.get().entity().get<BaseComponent>();
 			switch (AI->state)
 			{
-			case State::Fighting:
+			case Ai_State::Fighting:
 				point_jump_search(em, *base);
 				break;
-			case State::Fleeing:
+			case Ai_State::Fleeing:
 				fleeing(em, *base);
 				break;
-			case State::Roaming:
+			case Ai_State::Roaming:
 				move_random(element.get().entity());
 				break;
-			case State::Idle:
+			case Ai_State::Idle:
 				break;
 			default:
 				break;

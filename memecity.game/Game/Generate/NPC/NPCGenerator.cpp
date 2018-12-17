@@ -9,31 +9,27 @@ using namespace memecity::engine::ecs;
 
 namespace generate {
 	int NPCGenerator::random_int(int max) {
-		if (max <= 0 || 5 > max) {
-			return 5;
-		}
-		return (5 + (rand() % (max)));
+		return (rand() % (max));
 	}
 
 
 	const memecity::engine::ecs::Entity& NPCGenerator::generate_police_npc(float x, float y) {
-		this->name = "Handhaving";
-		this->level = rand() % 1;
-		//TODO:: change on map
-		this->range_of_fighting = rand() % 30 + 60;
-		this->movement_speed = rand() % 40 + 180;
-		this->exp = rand() % 100;
-		this->x = x;
-		this->y = y;
+		std::string name = "Handhaving";
+		int level = rand() % 1;
+		//TODO:: change to map level
+		int range_of_fighting = rand() % 30 + min_fighting_range;
+		int movement_speed = rand() % 40 + min_movement_speed;
+		int exp = rand() % 100;
 
-		this->strength = 5 + level;
-		this->perception = 5 + level;
-		this->endurance = 5 + level;
-		this->charisma = 5 + level;
-		this->intelligence = 5 + level;
-		this->agility = 5 + level;
+		int strength = 5 + level;
+		int perception = 5 + level;
+		int endurance = 5 + level;
+		int charisma = 5 + level;
+		int intelligence = 5 + level;
+		int agility = 5 + level;
+		int luck = 5 + level;
 
-		health = ((strength * 5) + (endurance * 3) + (agility * 2) + 50);
+		int health = ((strength * 5) + (endurance * 3) + (agility * 2) + 50);
 
 		std::string hp = "HP: ";
 		hp += std::to_string(health);
@@ -43,18 +39,17 @@ namespace generate {
 		return generate_npc(
 			x, y, 48.0f, 48.0f, exp, range_of_fighting, movement_speed,
 			strength, perception, endurance, charisma, intelligence, agility, luck,
-			name, State::Roaming, {},
-			assets::spritesheets::HUMAN_MALE_1);//TODO::change to police
+			name, Ai_State::Roaming, {}, level,
+			assets::spritesheets::HUMAN_MALE_1);
 	}
 	const memecity::engine::ecs::Entity& NPCGenerator::generate_civilian_npc(float x, float y) {
-		this->name = get_random_name();
-		this->range_of_fighting = 60;
-		this->movement_speed = rand() % 180;
-		this->exp = 10;
-		this->x = x;
-		this->y = y;
+		std::string name = get_random_name();
+		int level = 1;
+		int range_of_fighting = min_fighting_range;
+		int movement_speed = rand() % min_movement_speed;
+		int exp = 10;
 
-		health = 100;
+		int health = 100;
 
 		std::string hp = "HP: ";
 		hp += std::to_string(health);
@@ -64,45 +59,43 @@ namespace generate {
 		return generate_npc(
 			x, y, 48.0f, 48.0f, exp, range_of_fighting, movement_speed,
 			5, 5, 5, 5, 5, 5, 5,
-			name, State::Roaming, {},
-			assets::spritesheets::HUMAN_MALE_1);//TODO::change on gender
+			name, Ai_State::Roaming, {}, level,
+			assets::spritesheets::HUMAN_MALE_1);
 	}
 
 	//random generator
 	const memecity::engine::ecs::Entity& NPCGenerator::generate_random_npc(float x, float y) {
-		this->name = "random";
-		this->level = rand() % 1;
-		this->range_of_fighting = rand() % 30 + 60;
-		this->movement_speed = rand() % 40 + 180 ;
-		this->exp = rand() % 100;
-		this->x = x;
-		this->y = y;
+		std::string name = "random";
+		int level = rand() % 1;
+		int range_of_fighting = rand() % 30 + min_fighting_range;
+		int movement_speed = rand() % 40 + min_movement_speed;
+		int exp = rand() % 100;
 
 		int points = level * 5;
 		int strength_points = random_int(points);
-		strength += strength_points;
+		int strength = strength_points + 5;
 		points -= strength_points;
 		int perception_points = random_int(points);
-		perception += perception_points;
+		int perception = perception_points + 5;
 		points -= perception_points;
 		int endurance_points = random_int(points);
-		endurance += endurance_points;
+		int endurance = endurance_points + 5;
 		points -= endurance_points;
 		int charisma_points = random_int(points);
-		charisma += charisma_points;
+		int charisma = charisma_points + 5;
 		points -= charisma_points;
 		int intelligence_points = random_int(points);
-		intelligence += intelligence_points;
+		int intelligence = intelligence_points + 5;
 		points -= intelligence_points;
 		int agility_points = random_int(points);
-		agility += agility_points;
+		int agility = agility_points + 5;
 		points -= agility_points;
-		luck += points + 5;
+		int luck = points + 5;
 
 		return generate_npc(
 			x, y, 48.0f, 48.0f, exp, range_of_fighting, movement_speed,
 			strength, perception, endurance, charisma,intelligence, agility, luck, 
-			name, State::Roaming, {},
+			name, Ai_State::Roaming, {}, level,
 			assets::spritesheets::HUMAN_MALE_1);
 	}
 
@@ -110,10 +103,10 @@ namespace generate {
 	const memecity::engine::ecs::Entity& NPCGenerator::generate_npc(
 		float x, float y, float width,float height, int exp, int range_of_fighting, float movement_speed, 
 		int strength, int perception, int endurance, int charisma,int intelligence, int agility, int luck, 
-		std::string name, State state, std::vector<std::string>interaction, 
+		std::string name, Ai_State state, std::vector<std::string>interaction, int level,
 		assets::Asset animation_character){
 
-		health = ((strength * 5) + (endurance * 3) + (agility * 2) + 50);
+		int health = ((strength * 5) + (endurance * 3) + (agility * 2) + 50);
 
 		std::string hp = "HP: ";
 		hp += std::to_string(health);
