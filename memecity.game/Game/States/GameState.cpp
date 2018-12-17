@@ -32,8 +32,6 @@ void GameState::on_load()
 	bind(input_system.attack_event, &fighting_system, &FightingSystem::on_attack);
 	bind(collider_system.collider_event, &move_system, &MoveSystem::on_collision);
 
-
-
 	exp_system.stats_changed_event += [&](auto& em, auto args)
 	{
 		_hud.update("S", "S: " + std::to_string(args.s));

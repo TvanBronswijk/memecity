@@ -11,19 +11,13 @@ struct ScoreComponent : memecity::engine::ecs::Component, memecity::engine::seri
 	ScoreComponent(memecity::engine::ecs::Entity& entity)
 		: ScoreComponent(entity, 35) {}
 
-	ScoreComponent(memecity::engine::ecs::Entity& entity, int score) 
+	ScoreComponent(memecity::engine::ecs::Entity& entity, const int score) 
 		: Component(entity), score(score) {};
 
 	memecity::engine::serialization::SerializeInfo to_map() const override
 	{
-		std::map<std::string, std::string> map;
+		memecity::engine::serialization::SerializeInfo map;
 		map["score"] = std::to_string(this->score);
-		return map;
-	}
-
-	std::map<std::string, std::string> test() const
-	{
-		std::map<std::string, std::string> map{ std::make_pair("score", std::to_string(this->score)) };
 		return map;
 	}
 

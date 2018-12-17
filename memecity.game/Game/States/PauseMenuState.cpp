@@ -1,9 +1,10 @@
 ﻿#include "PauseMenuState.h"
 #include "..\..\Assets.h"
 #include "..\Input.h"
+#include "../PlayerManager.h"
 
-PauseMenuState::PauseMenuState(memecity::engine::state::StateManager & sm, GameManager::GameContext & gc)
-	: State(sm), _context(&gc)
+PauseMenuState::PauseMenuState(memecity::engine::state::StateManager & sm, GameManager::GameContext & gc, memecity::engine::ecs::EntityManager & em)
+	: State(sm), _context(&gc), _entity_manager(&em)
 {
 	help_menu = memecity::engine::ui::menu::MenuBuilder(gc.get_multimedia_manager())
 		.create_menu("Help", assets::fonts::DEFAULT_FONT)
@@ -36,12 +37,12 @@ PauseMenuState::PauseMenuState(memecity::engine::state::StateManager & sm, GameM
 		.with_read_only_menu_item(" ")
 		.with_menu_item("Save Game", nullptr, [&](auto& menu_item)
 	       {
-		       std::map<std::string, std::string> test_map;
-		       test_map.insert(std::make_pair("Test", "WetNeck?"));
-		       test_map.insert(std::make_pair("Miloen", "IsGay?"));
-		       auto success = _context->get_storage_manager().save(assets::saves::SAVE_GAME, test_map);
+		       const auto player_manager = PlayerManager(*_entity_manager);
+		       auto player_map = player_manager.get_player_map();
+		       const auto success =_context->get_storage_manager().save(assets::saves::SAVE_GAME, player_map);
+			   if (success) back();
 	       })
-		.with_menu_item("Main Menu", nullptr, [&](auto& menu_item) { back(2);  })
+		.with_menu_item("Main Menu", nullptr, [&](auto& menu_item) { back(2); })
 		.get_menu();
 }
 

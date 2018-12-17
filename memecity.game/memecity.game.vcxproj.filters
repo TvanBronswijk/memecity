@@ -26,6 +26,7 @@
     <ClCompile Include="Game\States\GameOverState.cpp" />
     <ClCompile Include="Game\Systems\HealthSystem.cpp" />
     <ClCompile Include="Game\Systems\FogOfWarSystem.cpp" />
+    <ClCompile Include="Game\PlayerManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Components\DimensionComponent.h" />
@@ -88,6 +89,7 @@
     <ClInclude Include="Game\Components\InventoryComponent.h" />
     <ClInclude Include="Game\Components\ItemComponent.h" />
     <ClInclude Include="Game\Systems\FogOfWarSystem.h" />
+    <ClInclude Include="Game\PlayerManager.h" />
   </ItemGroup>
   <ItemGroup>
     <CopyFileToFolders Include="Assets\Music\bgm.mp3" />
