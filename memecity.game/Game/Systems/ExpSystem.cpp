@@ -23,8 +23,7 @@ void ExpSystem::on_exp_gain(EntityManager& em, ExpEventArgs args)
 		{
 			if (exp_component->exp + remaining_exp >= exp_component->next_level) {
 				remaining_exp -= (exp_component->next_level - exp_component->exp);
-				//TODO:: up the vailable points
-
+				stats->available_points += 2;
 				exp_component->exp = 0;
 				exp_component->next_level *= 1.1;
 

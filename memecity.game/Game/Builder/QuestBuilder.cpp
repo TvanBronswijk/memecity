@@ -66,7 +66,7 @@ Story QuestBuilder::intro() {
 		"pick up a tin can" ,
 		Quest_State::Finding,
 		{},
-		generate::ItemGenerator(*multimedia_manager, *entity_manager).MakeItem("Tin can", "a normal tin can", 0, 0, 0, 0, 0, 0, 0, 50, 0, 48, 48, assets::sprites::TIN_CAN),
+		generate::ItemGenerator(*multimedia_manager, *entity_manager).make_item("Tin can", "a normal tin can", 0, 0, 0, 0, 0, 0, 0, 50, 0, 48, 48, assets::sprites::TIN_CAN),
 		nullptr,
 		1}
 	};
@@ -89,7 +89,7 @@ Story QuestBuilder::intro() {
 		"Fight " + yoeri,
 		Quest_State::Fighting,
 		{"go away!!"},
-		&npc_generator->generate_npc(0,50,48,48,10,60,180,1,1,1,1,1,1,1,yoeri,Ai_State::Idle,{" "},assets::spritesheets::HUMAN_MALE_1),
+		&npc_generator->generate_npc(0,50,48,48,10,60,180,1,1,1,1,1,1,1,yoeri,Ai_State::Idle,{" "},1,assets::spritesheets::HUMAN_MALE_1),
 		nullptr,
 		1}
 	};

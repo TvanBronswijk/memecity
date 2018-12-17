@@ -9,7 +9,7 @@ using namespace memecity::engine::ecs;
 
 namespace generate {
 	int NPCGenerator::random_int(int max) {
-		return (rand() % (max));
+		return (rand() % (max + 1));
 	}
 
 
@@ -19,7 +19,7 @@ namespace generate {
 		//TODO:: change to map level
 		int range_of_fighting = rand() % 30 + min_fighting_range;
 		int movement_speed = rand() % 40 + min_movement_speed;
-		int exp = rand() % 100;
+		int exp = rand() % 10 + 25;
 
 		int strength = 5 + level;
 		int perception = 5 + level;
@@ -69,7 +69,7 @@ namespace generate {
 		int level = rand() % 1;
 		int range_of_fighting = rand() % 30 + min_fighting_range;
 		int movement_speed = rand() % 40 + min_movement_speed;
-		int exp = rand() % 100;
+		int exp = rand() % 10 + 10;
 
 		int points = level * 5;
 		int strength_points = random_int(points);
