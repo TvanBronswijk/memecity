@@ -17,10 +17,10 @@ namespace generate {
 		memecity::engine::MultimediaManager& multimedia_manager;
 		memecity::engine::ecs::EntityManager& entity_manager;
 
-		int min_fighting_range, min_movement_speed;
+		int min_fighting_range, min_movement_speed, min_base_points;
 	public:
 		NPCGenerator(memecity::engine::MultimediaManager& multimedia_manager, memecity::engine::ecs::EntityManager& entity_manager) 
-			: multimedia_manager(multimedia_manager), entity_manager(entity_manager) , min_fighting_range(60), min_movement_speed(180)
+			: multimedia_manager(multimedia_manager), entity_manager(entity_manager) , min_fighting_range(60), min_movement_speed(180), min_base_points(5)
 		{
 			names_boys = {"Rick", "Martijn", "Tobi", "Yoeri","Thom","Simon", "Roy", "Henk", "Jan", "Luke", "Jos", "Luuk", "Ramon", "Jeen", "Jack", "Thijn"};
 			names_girls = {"Sanne", "Denise", "Samantha", "Ria","Eline","Kim", "Danielle", "Eefje", "Karen", "Tamara", "Kate", "Tess", "Ellen", "Kelly", "Taira", "Emy"};

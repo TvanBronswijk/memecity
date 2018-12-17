@@ -73,24 +73,24 @@ namespace generate {
 
 		int points = level * 5;
 		int strength_points = random_int(points);
-		int strength = strength_points + 5;
+		int strength = strength_points + min_base_points;
 		points -= strength_points;
 		int perception_points = random_int(points);
-		int perception = perception_points + 5;
+		int perception = perception_points + min_base_points;
 		points -= perception_points;
 		int endurance_points = random_int(points);
-		int endurance = endurance_points + 5;
+		int endurance = endurance_points + min_base_points;
 		points -= endurance_points;
 		int charisma_points = random_int(points);
-		int charisma = charisma_points + 5;
+		int charisma = charisma_points + min_base_points;
 		points -= charisma_points;
 		int intelligence_points = random_int(points);
-		int intelligence = intelligence_points + 5;
+		int intelligence = intelligence_points + min_base_points;
 		points -= intelligence_points;
 		int agility_points = random_int(points);
-		int agility = agility_points + 5;
+		int agility = agility_points + min_base_points;
 		points -= agility_points;
-		int luck = points + 5;
+		int luck = points + min_base_points;
 
 		return generate_npc(
 			x, y, 48.0f, 48.0f, exp, range_of_fighting, movement_speed,
