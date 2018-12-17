@@ -5,7 +5,6 @@
 #include "../Components/PlayerComponent.h"
 #include "../Components/HealthComponent.h"
 #include "../Systems/ExpSystem.h"
-//todo include state for cheat
 
 DeveloperMenuState::DeveloperMenuState(memecity::engine::state::StateManager& sm, GameManager::GameContext& gc, memecity::engine::ecs::EntityManager& em)
 	:State(sm), _context(&gc), _entity_manager(&em)
@@ -13,7 +12,7 @@ DeveloperMenuState::DeveloperMenuState(memecity::engine::state::StateManager& sm
 
 	cheat_menu = memecity::engine::ui::menu::MenuBuilder(gc.get_multimedia_manager())
 		.create_menu("Cheats", assets::fonts::DEFAULT_FONT)
-		.with_menu_item("Motherlode", nullptr, [&](auto& menu_item)
+		.with_menu_item("Motherlode", nullptr, [&](auto& menu_item)//money
 	{
 		auto player = em.get_components_of_type<PlayerComponent>();
 		for (auto& player_component : player)
@@ -21,7 +20,7 @@ DeveloperMenuState::DeveloperMenuState(memecity::engine::state::StateManager& sm
 			player_component.get().BlikCoins += 50000;
 
 		}
-	})//money
+	})
 		.with_menu_item("wanpanman", nullptr, [&](auto& menu_item)// one punch kill
 	{
 		auto players = em.get_components_of_type<PlayerComponent>();
