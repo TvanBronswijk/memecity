@@ -30,12 +30,13 @@ PauseMenuState::PauseMenuState(memecity::engine::state::StateManager & sm, GameM
 		.with_menu_item("Resume Game", nullptr, [&](auto& menu_item) { back(); })
 		.with_menu_item("Help", help_menu.get())
 		.with_read_only_menu_item(" ")
-		.with_menu_item("Save Game", nullptr, [&](auto& menu_item) {
-			std::map<std::string, std::string> test_map;
-			test_map.insert(std::make_pair("Test", "WetNeck?"));
-			test_map.insert(std::make_pair("Thom", "IsGay?"));
-			auto success = _context->get_storage_manager().save(assets::saves::SAVE_GAME, test_map);
-		})
+		.with_menu_item("Save Game", nullptr, [&](auto& menu_item)
+	       {
+		       std::map<std::string, std::string> test_map;
+		       test_map.insert(std::make_pair("Test", "WetNeck?"));
+		       test_map.insert(std::make_pair("Thom", "IsGay?"));
+		       auto success = _context->get_storage_manager().save(assets::saves::SAVE_GAME, test_map);
+	       })
 		.with_menu_item("Main Menu", nullptr, [&](auto& menu_item) { back(2);  })
 		.get_menu();
 }
