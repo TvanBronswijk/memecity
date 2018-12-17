@@ -28,8 +28,8 @@ void FightingSystem::on_attack(EntityManager &em, AttackEventArgs args) {
 		health_target->health -= (rand() % (stats_source->strength * 5) + 1);
 		if (health_target->health < 0) { 
 			health_target->health = 0; 
-			//exp_event.fire(em, {AI->exp});
-			//TODO::exp
+			exp_event.fire(em, ExpEventArgs(AI->exp,0));
+			AI->exp = 0;
 		}
 		this->damage_event.fire(em, args.target);
 	}

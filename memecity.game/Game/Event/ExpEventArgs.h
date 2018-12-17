@@ -5,8 +5,8 @@
 
 struct ExpEventArgs : public  memecity::engine::ecs::eventing::EventArgs
 {
-	int new_Exp;
+	int new_exp, remaining_exp;
 
-	explicit ExpEventArgs(const int new_exp) : new_Exp(new_exp) {}
+	explicit ExpEventArgs(int new_exp, int remaining_exp) : new_exp(new_exp), remaining_exp(remaining_exp) {}
 };
 #endif // EXPEVENTARGS_H

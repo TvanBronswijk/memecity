@@ -19,8 +19,8 @@ void GameState::on_load()
 
 
 	auto& fighting_system = system_pool.create_system<FightingSystem>(memecity::engine::ecs::System::update, multimedia_manager);
-	//auto& exp_system = system_pool.create_system<ExpSystem>(memecity::engine::ecs::System::update);
-	//TODO::exp
+	auto& exp_system = system_pool.create_system<ExpSystem>(memecity::engine::ecs::System::update);
+	
 	auto& health_system = system_pool.create_system<HealthSystem>(memecity::engine::ecs::System::update, *_context);
 	auto& quest_system = system_pool.create_system<QuestSystem>(memecity::engine::ecs::System::update, multimedia_manager);
 	auto& input_system = system_pool.create_system<InputSystem>(memecity::engine::ecs::System::update, *_context);
@@ -35,12 +35,13 @@ void GameState::on_load()
 	memecity::engine::ecs::eventing::bind(fighting_system.damage_event, &health_system, &HealthSystem::on_damage);
 	memecity::engine::ecs::eventing::bind(fighting_system.quest_event, &quest_system, &QuestSystem::on_event);
 	memecity::engine::ecs::eventing::bind(fighting_system.death_event, &health_system, &HealthSystem::on_death);
-	//memecity::engine::ecs::eventing::bind(fighting_system.exp_event, &exp_system, &ExpSystem::on_exp_gain);
-	//TODO::exp
+	memecity::engine::ecs::eventing::bind(fighting_system.exp_event, &exp_system, &ExpSystem::on_exp_gain);
+	
 	memecity::engine::ecs::eventing::bind(ai_system.attack_event, &fighting_system, &FightingSystem::on_attack);
 	memecity::engine::ecs::eventing::bind(collider_system.collider_event, &move_system, &MoveSystem::on_collision);
 	memecity::engine::ecs::eventing::bind(interaction_system.quest_event, &quest_system, &QuestSystem::on_event);
 	fighting_system.health_changed_event += [&](auto& em, auto args) { _hud.update("HEALTHVALUE", args.new_health); };
+	exp_system.exp_event += [&](auto& em, auto args) {_hud.update("EXP", "Exp/Next: "+ std::to_string(args.new_exp) + "/" + std::to_string(args.remaining_exp)); };
 }
 
 void GameState::update(float dt)
