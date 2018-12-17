@@ -30,8 +30,8 @@ bool PlayerManager::load_player(memecity::engine::serialization::SerializeInfo& 
 	std::for_each(data.begin(), data.end(), [&](const std::pair<std::string, std::string> pair)
 	{
 		auto key = pair.first;
-		const auto component = std::string(key.substr(0, key.find('=')));
-		key = key.substr(key.find('=') + 1, key.find(':'));
+		const auto component = std::string(key.substr(0, key.find(':')));
+		key = key.substr(key.find(':') + 1, key.find('='));
 		const auto value = std::string(pair.second);
 
 		const std::pair<std::string, std::string> component_pair{ key, value };

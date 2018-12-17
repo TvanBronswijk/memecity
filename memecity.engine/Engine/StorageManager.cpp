@@ -15,7 +15,7 @@ namespace memecity::engine
 				std::for_each(data.begin(), data.end(),
 				              [&](const std::pair<std::string, std::string> pair)
 				              {
-					              output_stream << pair.first << ":" << pair.second << "\n";
+					              output_stream << pair.first << "=" << pair.second << "\n";
 				              });
 				output_stream.close();
 			}
@@ -43,8 +43,8 @@ namespace memecity::engine
 				std::string line;
 				while (std::getline(input_stream, line))
 				{
-					auto key = line.substr(0, line.find(':'));
-					const auto value = line.substr(line.find(':') + 1);
+					auto key = line.substr(0, line.find('='));
+					const auto value = line.substr(line.find('=') + 1);
 					result[key] = value;
 				}
 

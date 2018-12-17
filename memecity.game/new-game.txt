@@ -1,8 +1,9 @@
-ScoreComponent=score:0
-StatsComponent=agility:1
-StatsComponent=charisma:1
-StatsComponent=endurance:1
-StatsComponent=intelligence:1
-StatsComponent=luck:1
-StatsComponent=perception:3
-StatsComponent=strength:1
+ScoreComponent:score=0
+StatsComponent:agility=1
+StatsComponent:available_points=0
+StatsComponent:charisma=1
+StatsComponent:endurance=1
+StatsComponent:intelligence=1
+StatsComponent:luck=1
+StatsComponent:perception=3
+StatsComponent:strength=5
