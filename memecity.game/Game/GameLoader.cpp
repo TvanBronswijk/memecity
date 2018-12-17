@@ -3,6 +3,7 @@
 #include "Components.h"
 #include "Systems.h"
 #include "..\Assets.h"
+#include "Components/TileComponent.h"
 
 using namespace memecity::engine::ecs;
 using namespace memecity::engine::ui;
@@ -35,7 +36,8 @@ void GameLoader::create_map(EntityManager& em, loading::LoadingBar::Listener& li
 			std::cout << character;
 #endif
 			auto& builder = em.create_entity("tile")
-				.with_component<BaseComponent>(multimedia_manager.get_texture(generate::models::char_to_asset(character)), x * 64.0f, y * 64.0f, 64.0f, 64.0f);
+				.with_component<BaseComponent>(multimedia_manager.get_texture(generate::models::char_to_asset(character)), x * 64.0f, y * 64.0f, 64.0f, 64.0f)
+				.with_component<TileComponent>(character);
 			if (character == 'W' || character == 'w') {
 				auto base_component = builder.get().get<BaseComponent>();
 				builder.with_component<ColliderComponent>(BoundaryRectangle{ base_component->location.x, base_component->location.y, base_component->w, base_component->h });

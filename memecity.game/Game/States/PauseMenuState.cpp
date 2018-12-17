@@ -1,9 +1,10 @@
 ﻿#include "PauseMenuState.h"
 #include "..\..\Assets.h"
 #include "..\Input.h"
+#include "../MapSaver.h"
 
-PauseMenuState::PauseMenuState(memecity::engine::state::StateManager & sm, GameManager::GameContext & gc)
-	: State(sm), _context(&gc)
+PauseMenuState::PauseMenuState(memecity::engine::state::StateManager & sm, GameManager::GameContext & gc, memecity::engine::ecs::EntityManager& em)
+	: State(sm), _context(&gc), _entity_manager(&em)
 {
 	help_menu = memecity::engine::ui::menu::MenuBuilder(gc.get_multimedia_manager())
 		.create_menu("Help", assets::fonts::DEFAULT_FONT)
@@ -32,6 +33,7 @@ PauseMenuState::PauseMenuState(memecity::engine::state::StateManager & sm, GameM
 	menu = memecity::engine::ui::menu::MenuBuilder(gc.get_multimedia_manager())
 		.create_menu("Paused", assets::fonts::DEFAULT_FONT)
 		.with_menu_item("Resume Game", nullptr, [&](auto& menu_item) { back(); })
+		.with_menu_item("Save Game", nullptr, [&](auto& menu_item) { MapSaver{}.save(*_entity_manager);})
 		.with_menu_item("Help", help_menu.get())
 		.with_menu_item("Main Menu", nullptr, [&](auto& menu_item) { back(2);  })
 		.get_menu();

@@ -25,6 +25,7 @@
     <ClInclude Include="Game\Components\InventoryComponent.h" />
     <ClInclude Include="Game\Components\ItemComponent.h" />
     <ClInclude Include="Game\Components\ColliderComponent.h" />
+    <ClInclude Include="Game\Components\TileComponent.h" />
     <ClInclude Include="Game\Event\BlikCoinEventArg.h" />
     <ClInclude Include="Game\Event\ExpEventArgs.h" />
     <ClInclude Include="Game\Event\HealthChangedEventArgs.h" />
@@ -37,8 +38,10 @@
     <ClInclude Include="Game\Generate\City\Strategy\BSP\Fills\Fill.h" />
     <ClInclude Include="Game\Generate\City\Strategy\BSP\Fills\Park.h" />
     <ClInclude Include="Game\Generate\City\Strategy\BSP\Fills\Prefab.h" />
+    <ClInclude Include="Game\Generate\City\Strategy\File\FileStrategy.h" />
     <ClInclude Include="Game\Generate\NPC\NPCGenerator.h" />
     <ClInclude Include="Game\Input.h" />
+    <ClInclude Include="Game\MapSaver.h" />
     <ClInclude Include="Game\States\GameOverState.h" />
     <ClInclude Include="Game\States\DeveloperMenuState.h" />
     <ClInclude Include="Game\States\LoadingState.h" />
@@ -79,8 +82,10 @@
     <ClInclude Include="Assets.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Game\Generate\City\Strategy\File\FileStrategy.cpp" />
     <ClCompile Include="Game\Generate\NPC\NPCGenerator.cpp" />
     <ClCompile Include="Game\GameLoader.cpp" />
+    <ClCompile Include="Game\MapSaver.cpp" />
     <ClCompile Include="Game\States\DeveloperMenuState.cpp" />
     <ClCompile Include="Game\States\GameOverState.cpp" />
     <ClCompile Include="Game\States\LoadingState.cpp" />

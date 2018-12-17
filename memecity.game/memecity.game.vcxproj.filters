@@ -26,6 +26,8 @@
     <ClCompile Include="Game\States\GameOverState.cpp" />
     <ClCompile Include="Game\Systems\HealthSystem.cpp" />
     <ClCompile Include="Game\Systems\FogOfWarSystem.cpp" />
+    <ClCompile Include="Game\MapSaver.cpp" />
+    <ClCompile Include="Game\Generate\City\Strategy\File\FileStrategy.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Components\DimensionComponent.h" />
@@ -88,6 +90,9 @@
     <ClInclude Include="Game\Components\InventoryComponent.h" />
     <ClInclude Include="Game\Components\ItemComponent.h" />
     <ClInclude Include="Game\Systems\FogOfWarSystem.h" />
+    <ClInclude Include="Game\MapSaver.h" />
+    <ClInclude Include="Game\Components\TileComponent.h" />
+    <ClInclude Include="Game\Generate\City\Strategy\File\FileStrategy.h" />
   </ItemGroup>
   <ItemGroup>
     <CopyFileToFolders Include="Assets\Music\bgm.mp3" />
@@ -117,22 +122,21 @@
     <CopyFileToFolders Include="Assets\Advertisements\CocaCola.png" />
     <CopyFileToFolders Include="Assets\Sprites\Tin_can.png" />
     <CopyFileToFolders Include="Assets\Sprites\big_black.bmp" />
+    <CopyFileToFolders Include="Assets\Sprites\Tiles\grass_00.bmp" />
+    <CopyFileToFolders Include="Assets\Sprites\Tiles\grass_01.bmp" />
+    <CopyFileToFolders Include="Assets\Sprites\Tiles\grass_02.bmp" />
+    <CopyFileToFolders Include="Assets\Sprites\Tiles\grass_03.bmp" />
+    <CopyFileToFolders Include="Assets\Sprites\Tiles\paving_00.bmp" />
+    <CopyFileToFolders Include="Assets\Sprites\Tiles\paving_01.bmp" />
+    <CopyFileToFolders Include="Assets\Sprites\Tiles\paving_03.bmp" />
+    <CopyFileToFolders Include="Assets\Sprites\Tiles\wall_00.bmp" />
+    <CopyFileToFolders Include="Assets\Sprites\Tiles\water_00.bmp" />
+    <CopyFileToFolders Include="Assets\Sprites\Tiles\paving_02.bmp" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="Assets\Sprites\big_black.bmp" />
     <CopyFileToFolders Include="Assets\Advertisements\BananaWho.png" />
     <CopyFileToFolders Include="Assets\Advertisements\BurgerKing.png" />
     <CopyFileToFolders Include="Assets\Advertisements\CocaCola.png" />
     <CopyFileToFolders Include="Assets\Sprites\big_black.bmp" />
-    <Image Include="Assets\Sprites\Tiles\grass_00.bmp" />
-    <Image Include="Assets\Sprites\Tiles\grass_01.bmp" />
-    <Image Include="Assets\Sprites\Tiles\grass_02.bmp" />
-    <Image Include="Assets\Sprites\Tiles\grass_03.bmp" />
-    <Image Include="Assets\Sprites\Tiles\paving_00.bmp" />
-    <Image Include="Assets\Sprites\Tiles\paving_01.bmp" />
-    <Image Include="Assets\Sprites\Tiles\paving_03.bmp" />
-    <Image Include="Assets\Sprites\Tiles\wall_00.bmp" />
-    <Image Include="Assets\Sprites\Tiles\water_00.bmp" />
-    <Image Include="Assets\Sprites\Tiles\paving_02.bmp" />
   </ItemGroup>
 </Project>
