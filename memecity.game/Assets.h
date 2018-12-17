@@ -12,10 +12,16 @@ namespace assets {
 	}
 	namespace sprites {
 		namespace tiles {
-			constexpr inline Asset GRASS = "Sprites/Tiles/green.bmp";
-			constexpr inline Asset ROAD = "Sprites/Tiles/gray.bmp";
-			constexpr inline Asset WALL = "Sprites/Tiles/brown.bmp";
-			constexpr inline Asset WATER = "Sprites/Tiles/blue.bmp";
+			constexpr inline Asset GRASS = "Sprites/Tiles/grass_00.bmp";
+			constexpr inline Asset GRASS1 = "Sprites/Tiles/grass_01.bmp";
+			constexpr inline Asset GRASS2 = "Sprites/Tiles/grass_02.bmp";
+			constexpr inline Asset GRASS3 = "Sprites/Tiles/grass_03.bmp";
+			constexpr inline Asset ROAD = "Sprites/Tiles/paving_00.bmp";
+			constexpr inline Asset ROAD1 = "Sprites/Tiles/paving_01.bmp";
+			constexpr inline Asset ROAD2 = "Sprites/Tiles/paving_02.bmp";
+			constexpr inline Asset ROAD3 = "Sprites/Tiles/paving_03.bmp";
+			constexpr inline Asset WALL = "Sprites/Tiles/wall_00.bmp";
+			constexpr inline Asset WATER = "Sprites/Tiles/water_00.bmp";
 		}
 		constexpr inline Asset DARK_BACKGROUND = "Sprites/big_black.bmp";
 		constexpr inline Asset TIN_CAN = "Sprites/Tin_can.png";

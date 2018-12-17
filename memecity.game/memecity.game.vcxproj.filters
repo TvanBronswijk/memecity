@@ -115,7 +115,8 @@
     <CopyFileToFolders Include="Assets\Advertisements\BananaWho.png" />
     <CopyFileToFolders Include="Assets\Advertisements\BurgerKing.png" />
     <CopyFileToFolders Include="Assets\Advertisements\CocaCola.png" />
-	<CopyFileToFolders Include="Assets\Sprites\Tin_can.png" />
+    <CopyFileToFolders Include="Assets\Sprites\Tin_can.png" />
+    <CopyFileToFolders Include="Assets\Sprites\big_black.bmp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\Sprites\big_black.bmp" />
@@ -123,5 +124,15 @@
     <CopyFileToFolders Include="Assets\Advertisements\BurgerKing.png" />
     <CopyFileToFolders Include="Assets\Advertisements\CocaCola.png" />
     <CopyFileToFolders Include="Assets\Sprites\big_black.bmp" />
+    <Image Include="Assets\Sprites\Tiles\grass_00.bmp" />
+    <Image Include="Assets\Sprites\Tiles\grass_01.bmp" />
+    <Image Include="Assets\Sprites\Tiles\grass_02.bmp" />
+    <Image Include="Assets\Sprites\Tiles\grass_03.bmp" />
+    <Image Include="Assets\Sprites\Tiles\paving_00.bmp" />
+    <Image Include="Assets\Sprites\Tiles\paving_01.bmp" />
+    <Image Include="Assets\Sprites\Tiles\paving_03.bmp" />
+    <Image Include="Assets\Sprites\Tiles\wall_00.bmp" />
+    <Image Include="Assets\Sprites\Tiles\water_00.bmp" />
+    <Image Include="Assets\Sprites\Tiles\paving_02.bmp" />
   </ItemGroup>
 </Project>
