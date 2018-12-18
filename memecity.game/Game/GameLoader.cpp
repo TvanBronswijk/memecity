@@ -8,7 +8,7 @@
 using namespace memecity::engine::ecs;
 using namespace memecity::engine::ui;
 
-void GameLoader::build(memecity::engine::ecs::EntityManager& em, loading::LoadingBar::Listener& listener)
+void GameLoader::build(EntityManager& em, loading::LoadingBar::Listener& listener)
 {
 	listener
 		.set_max_value(100.0f)
@@ -78,9 +78,8 @@ void GameLoader::create_player(EntityManager& em, loading::LoadingBar::Listener&
 		.with_component<ExpComponent>(0, 100)
 		.with_component<HealthComponent>(100, nullptr)
 		.with_component<InventoryComponent>()
-		.with_component<ExpComponent>()
-		.with_component<HealthComponent>();
 		.with_component<VelocityComponent>();
+
 	auto base_component = builder.get().get<BaseComponent>();
 	builder.with_component<ColliderComponent>(BoundaryRectangle(base_component->location.x, base_component->location.y, base_component->w, base_component->h));
 	listener.increase_current_value(5.0f);

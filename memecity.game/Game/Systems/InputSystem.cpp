@@ -27,22 +27,22 @@ void InputSystem::run(EntityManager& em, float dt) const
 		auto velocity_component = player.get<VelocityComponent>();
 		if (input_manager.is_down(input::UP))
 		{
-			animation_component->old_direction = texture::AnimatedTexture::Direction::up;
+			animation_component->old_state = texture::AnimatedTexture::AnimationState::up;
 			velocity_component->y -= speed;
 		}
 		else if (input_manager.is_down(input::DOWN))
 		{
-			animation_component->old_direction = texture::AnimatedTexture::Direction::down;
+			animation_component->old_state = texture::AnimatedTexture::AnimationState::down;
 			velocity_component->y += speed;
 		}
 		if (input_manager.is_down(input::LEFT))
 		{
-			animation_component->old_direction = texture::AnimatedTexture::Direction::left;
+			animation_component->old_state = texture::AnimatedTexture::AnimationState::left;
 			velocity_component->x -= speed;
 		}
 		else if (input_manager.is_down(input::RIGHT))
 		{
-			animation_component->old_direction = texture::AnimatedTexture::Direction::right;
+			animation_component->old_state = texture::AnimatedTexture::AnimationState::right;
 			velocity_component->x += speed;
 		}
 
@@ -77,12 +77,6 @@ void InputSystem::run(EntityManager& em, float dt) const
 			}
 		}
 
-		if (input_manager.is_pressed(input::ENTER))
-		{
-			const auto animation = player.get<AnimationComponent>();
-			animation->current_state = AnimationComponent::AnimationState::dying;
-		}
-
 		if (input_manager.is_pressed(input::ESCAPE)) {
 			state_manager.create_state<PauseMenuState>(*_context);
 		}
@@ -107,27 +101,28 @@ void InputSystem::run(EntityManager& em, float dt) const
 
 				auto& animation_texture = dynamic_cast<texture::AnimatedTexture&>(player_base->get_texture());
 
-				texture::AnimatedTexture::Direction direction;
-				if (animation_texture.get_direction() != texture::AnimatedTexture::Direction::idle) {
-					direction = animation_texture.get_direction();
+				texture::AnimatedTexture::AnimationState state;
+				if (animation_texture.get_state() != texture::AnimatedTexture::AnimationState::idle) {
+					state = animation_texture.get_state();
 				}
 				else {
-					direction = animation_component->old_direction;
+					state = animation_component->old_state;
+
 				}
-				switch (direction) {
-				case texture::AnimatedTexture::Direction::down:
+				switch (state) {
+				case texture::AnimatedTexture::AnimationState::down:
 					item_base->location = uPoint<float>(player_base->location.x, player_base->location.y + 50);
 					break;
-				case texture::AnimatedTexture::Direction::left:
+				case texture::AnimatedTexture::AnimationState::left:
 					item_base->location = uPoint<float>(player_base->location.x - 50, player_base->location.y);
 					break;
-				case texture::AnimatedTexture::Direction::right:
+				case texture::AnimatedTexture::AnimationState::right:
 					item_base->location = uPoint<float>(player_base->location.x + 50, player_base->location.y);
 					break;
-				case texture::AnimatedTexture::Direction::up:
+				case texture::AnimatedTexture::AnimationState::up:
 					item_base->location = uPoint<float>(player_base->location.x, player_base->location.y - 50);
 					break;
-				case texture::AnimatedTexture::Direction::idle:
+				case texture::AnimatedTexture::AnimationState::idle:
 					item_base->location = uPoint<float>(player_base->location.x + 50, player_base->location.y);
 					break;
 				}
