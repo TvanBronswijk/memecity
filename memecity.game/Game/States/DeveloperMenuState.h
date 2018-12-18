@@ -6,17 +6,29 @@
 #include "UI/Menu/Menu.h"
 #include "../../GameManager.h"
 #include "ECS/EntityManager.h"
+#include "UI/Overlay/Overlay.h"
+
+namespace memecity {
+	namespace engine {
+		namespace ui {
+			namespace overlay {
+				class Overlay;
+			}
+		}
+	}
+}
 
 class DeveloperMenuState : public memecity::engine::state::State
 {
 private:
 	GameManager::GameContext* _context;
 	memecity::engine::ecs::EntityManager* _entity_manager;
+	memecity::engine::ui::overlay::Overlay* _hud;
 	std::unique_ptr<memecity::engine::ui::menu::Menu> menu;
 	std::unique_ptr<memecity::engine::ui::menu::Menu> cheat_menu;
 	std::unique_ptr<memecity::engine::ui::menu::Menu> speed_menu;
 public:
-	DeveloperMenuState(memecity::engine::state::StateManager& sm, GameManager::GameContext& gc, memecity::engine::ecs::EntityManager& em);
+	DeveloperMenuState(memecity::engine::state::StateManager& sm, GameManager::GameContext& gc, memecity::engine::ecs::EntityManager& em, memecity::engine::ui::overlay::Overlay& hud);
 
 	void on_load() override;
 	void update(float dt) override;

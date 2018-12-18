@@ -23,7 +23,7 @@ void GameState::on_load()
 	auto& exp_system = system_pool.create_system<ExpSystem>(memecity::engine::ecs::System::update);
 	auto& health_system = system_pool.create_system<HealthSystem>(memecity::engine::ecs::System::update, *_context);
 	auto& quest_system = system_pool.create_system<QuestSystem>(memecity::engine::ecs::System::update, multimedia_manager);
-	auto& input_system = system_pool.create_system<InputSystem>(memecity::engine::ecs::System::update, *_context);
+	auto& input_system = system_pool.create_system<InputSystem>(memecity::engine::ecs::System::update, *_context, _hud);
 	auto& move_system = system_pool.create_system<MoveSystem>();
 	auto& collider_system = system_pool.create_system<ColliderSystem>(memecity::engine::ecs::System::update, 256 * 64.0f, 256 * 64.0f);
 	auto& ai_system = system_pool.create_system<AISystem>();
@@ -57,28 +57,6 @@ void GameState::on_load()
 	};
 
 	fighting_system.health_changed_event += [&](auto& em, auto args) { _hud.update("HEALTHVALUE", args.new_health); };
-
-	auto& engine = _context->get_engine();
-	engine.bind_fps([&](bool enabled, auto fps)
-	{
-		if (enabled) {
-			_hud.update("FPS", "FPS: " + std::to_string(fps));
-		}else
-		{
-			_hud.update("FPS", " ");
-		}
-	});
-
-	engine.bind_game_speed([&](bool enabled, float game_speed)
-	{
-		if(enabled)
-		{
-			_hud.update("GAMESPEED", "Gamespeed: " + std::to_string(game_speed));
-		}else
-		{
-			_hud.update("GAMESPEED", " ");
-		}
-	});
 	
 	_hud.create_overlay_text_item("HEALTH", "Health", 16, 100.0f, 20.0f);
 	_hud.create_overlay_bar_item("HEALTHVALUE", 100, 20, 150, 12, 100, 200, memecity::engine::sdl::Color(255,0,0), memecity::engine::sdl::Color(0,255,0));
