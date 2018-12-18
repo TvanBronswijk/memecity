@@ -156,10 +156,4 @@
     <CopyFileToFolders Include="Assets\Advertisements\CocaCola.png" />
     <CopyFileToFolders Include="Assets\Sprites\big_black.bmp" />
   </ItemGroup>
-  <ItemGroup>
-    <Image Include="..\..\..\..\Downloads\adds\AbbeyGames.png" />
-    <Image Include="..\..\..\..\Downloads\adds\AdventOfCode.png" />
-    <Image Include="..\..\..\..\Downloads\adds\CodedFun.png" />
-    <Image Include="..\..\..\..\Downloads\adds\CppCon.png" />
-  </ItemGroup>
 </Project>

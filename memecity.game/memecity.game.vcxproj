@@ -395,10 +395,6 @@
     <CopyFileToFolders Include="Assets\Sprites\Tiles\paving_02.bmp" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="..\..\..\..\Downloads\adds\AbbeyGames.png" />
-    <Image Include="..\..\..\..\Downloads\adds\AdventOfCode.png" />
-    <Image Include="..\..\..\..\Downloads\adds\CodedFun.png" />
-    <Image Include="..\..\..\..\Downloads\adds\CppCon.png" />
     <CopyFileToFolders Include="Assets\Advertisements\AbbeyGames.png" />
     <CopyFileToFolders Include="Assets\Advertisements\AdventOfCode.png" />
     <CopyFileToFolders Include="Assets\Advertisements\CodedFun.png" />
