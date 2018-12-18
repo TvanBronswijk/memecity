@@ -48,16 +48,6 @@ void InputSystem::run(EntityManager& em) const
 			}
 		}
 		
-		// Test to show dying animation
-		if (input_manager.is_pressed(input::ENTER))
-		{
-			const auto animation_component = player.get<AnimationComponent>();
-			if (animation_component)
-			{
-				animation_component->current_state = AnimationComponent::AnimationState::dying;
-			}
-		}
-
 		if (input_manager.is_pressed(input::ATTACK)) {
 			const auto animation_component = player.get<AnimationComponent>();
 			if (animation_component)
