@@ -45,8 +45,9 @@ namespace assets {
 		static constexpr Asset ADVERTISEMENT_FIVE = "Advertisements/BananaWho.png";
 		static constexpr Asset ADVERTISEMENT_SIX = "Advertisements/CocaCola.png";
 		static constexpr Asset ADVERTISEMENT_SEVEN = "Advertisements/BurgerKing.png";
+		static constexpr Asset ADVERTISEMENT_EIGHT = "Advertisements/kolrd.png";
 
-		const static std::vector<std::string> ADS{ ADVERTISEMENT_ONE, ADVERTISEMENT_TWO, ADVERTISEMENT_THREE, ADVERTISEMENT_FOUR, ADVERTISEMENT_FIVE, ADVERTISEMENT_SIX, ADVERTISEMENT_SEVEN };
+		const static std::vector<std::string> ADS{ ADVERTISEMENT_ONE, ADVERTISEMENT_TWO, ADVERTISEMENT_THREE, ADVERTISEMENT_FOUR, ADVERTISEMENT_FIVE, ADVERTISEMENT_SIX, ADVERTISEMENT_SEVEN, ADVERTISEMENT_EIGHT };
 
 		inline std::string get_random_ad()
 		{
