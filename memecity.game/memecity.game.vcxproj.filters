@@ -108,6 +108,8 @@
     <ClInclude Include="Game\Generate\Item\ItemGenerator.h" />
     <ClInclude Include="Game\LevelBuilder.h" />
     <ClInclude Include="Game\PlayerBuilder.h" />
+    <ClInclude Include="Game\Components\TileComponent.h" />
+    <ClInclude Include="Game\Util\Util.h" />
   </ItemGroup>
   <ItemGroup>
     <CopyFileToFolders Include="Assets\Music\bgm.mp3" />

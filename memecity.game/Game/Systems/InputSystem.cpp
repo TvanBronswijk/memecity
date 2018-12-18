@@ -4,6 +4,7 @@
 #include "..\Input.h"
 #include "../States/DeveloperMenuState.h"
 #include "../States/StatsState.h"
+#include "..\Util\Util.h"
 
 using namespace memecity::engine;
 using namespace memecity::engine::ecs;
@@ -48,6 +49,10 @@ void InputSystem::run(EntityManager& em, float dt) const
 
 		if (input_manager.is_pressed(input::INTERACTION))
 		{
+			if (on_tile(em, player) == "Station") {
+				std::cout << "fuck";
+			}
+
 			auto npcs = em.get_entities_with_component<AIComponent>();
 			for (const Entity& npc : npcs) {
 				if(check_collision(*player.get<BaseComponent>(), *npc.get<BaseComponent>(), 60)){

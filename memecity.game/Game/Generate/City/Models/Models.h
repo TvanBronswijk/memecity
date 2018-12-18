@@ -67,25 +67,38 @@ namespace generate::models {
 		"\0\0\0\0\0\0\0\0"
 		"\0\0\0\0\0\0\0\0");
 
-	static const std::map<char, std::map<assets::Asset, int>> __cta {
-		{'-', assets::sprites::tiles::ROAD },
-		{'w', assets::sprites::tiles::WATER },
-		{'g', assets::sprites::tiles::GRASS },
-		{'W', assets::sprites::tiles::WALL },
-		{'m', assets::sprites::tiles::GRASS },
-		{'c', assets::sprites::tiles::WATER },
-	};
-	static assets::Asset char_to_asset(char c) {
-		const auto index = rand() % 100;
-
-		for (auto item : __cta.at(c))
-		{
-			if (index < item.second)
-			{
-				return item.first;
+	struct TileInfo {
+		char character;
+		const char *name;
+		assets::AssetMap asset;
+		bool blocked, block_sight;
+		TileInfo(char character, const char* name, assets::AssetMap asset, bool blocked, bool block_sight) 
+			: character(character), name(name), asset(asset), blocked(blocked), block_sight(block_sight) {}
+		assets::Asset get_asset() {
+			const auto index = rand() % 100;
+			for (auto& pair : asset) {
+				if (index < pair.second) {
+					return pair.first;
+				}
 			}
+			return asset.begin()->first;
 		}
-		return __cta.at(c).begin()->first;
+	};
+
+	static const std::map<char, TileInfo> __cta {
+		{'-', {'-', "Road", assets::sprites::tiles::ROAD, false, false } },
+		{'w', {'w', "Water", assets::sprites::tiles::WATER, true, false } },
+		{'g', {'g', "Grass", assets::sprites::tiles::GRASS, false, false } },
+		{'W', {'W', "Wall", assets::sprites::tiles::WALL, true, true } },
+		{'m', {'m', "Marble", assets::sprites::tiles::GRASS, false, false } },
+		{'c', {'c', "Station", assets::sprites::tiles::WATER, false, false } }
+	};
+	static TileInfo char_to_tile(char c) {
+		auto it = __cta.find(c);
+		if (it != __cta.end()) {
+			return it->second;
+		}
+		throw;
 	}
 }
 
