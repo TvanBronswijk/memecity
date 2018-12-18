@@ -20,8 +20,7 @@ void MoveSystem::run(EntityManager& em, float dt) const
 		velocity->x = 0;
 		velocity->y = 0;
 
-		const auto animation_component = entity.get<AnimationComponent>();
-		if (animation_component) {
+		if (entity.has<AnimationComponent>()) {
 			auto direction = AnimatedTexture::AnimationState::idle;
 			if (diff.x != 0) direction = diff.x > 0 ? AnimatedTexture::AnimationState::right : AnimatedTexture::AnimationState::left;
 			if (diff.y != 0) direction = diff.y > 0 ? AnimatedTexture::AnimationState::down : AnimatedTexture::AnimationState::up;

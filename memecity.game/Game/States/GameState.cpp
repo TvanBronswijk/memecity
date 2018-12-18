@@ -18,7 +18,6 @@ void GameState::on_load()
 	auto& overlay_system = system_pool.create_system<OverlaySystem>(memecity::engine::ecs::System::draw, multimedia_manager);
 	auto& fow_system = system_pool.create_system<FogOfWarSystem>(memecity::engine::ecs::System::draw, multimedia_manager);
 
-
 	auto& fighting_system = system_pool.create_system<FightingSystem>(memecity::engine::ecs::System::update, multimedia_manager);
 	auto& exp_system = system_pool.create_system<ExpSystem>(memecity::engine::ecs::System::update);
 	auto& health_system = system_pool.create_system<HealthSystem>(memecity::engine::ecs::System::update, *_context);
@@ -35,7 +34,7 @@ void GameState::on_load()
 	bind(input_system.quest_event, &quest_system, &QuestSystem::on_event);
 	bind(fighting_system.damage_event, &health_system, &HealthSystem::on_damage);
 	bind(fighting_system.quest_event, &quest_system, &QuestSystem::on_event);
-	bind(fighting_system.death_event, &health_system, &HealthSystem::on_death);
+	bind(fighting_system.death_event, &animation_system, &AnimationSystem::on_death);
 	bind(fighting_system.exp_event, &exp_system, &ExpSystem::on_exp_gain);
 
 	bind(ai_system.attack_event, &fighting_system, &FightingSystem::on_attack);

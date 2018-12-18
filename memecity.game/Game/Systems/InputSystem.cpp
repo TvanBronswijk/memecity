@@ -63,12 +63,6 @@ void InputSystem::run(EntityManager& em, float dt) const
 		}
 		
 		if (input_manager.is_pressed(input::ATTACK)) {
-			const auto animation_component = player.get<AnimationComponent>();
-			if (animation_component)
-			{
-				animation_component->current_state = AnimationComponent::AnimationState::fighting;
-			}
-
 			auto npcs = em.get_entities_with_component<AIComponent>();
 			for (const Entity& npc : npcs) {
 				if (check_collision(*player.get<BaseComponent>(), *npc.get<BaseComponent>(), 60)) {
@@ -126,6 +120,7 @@ void InputSystem::run(EntityManager& em, float dt) const
 					item_base->location = uPoint<float>(player_base->location.x + 50, player_base->location.y);
 					break;
 				}
+
 				this->quest_event.fire(em, { item , nullptr });
 			}
 		}
