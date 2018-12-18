@@ -76,6 +76,16 @@ void InputSystem::run(EntityManager& em, float dt) const
 				}
 			}
 		}
+
+		if (input_manager.is_pressed(input::Z)) {
+			auto npcs = em.get_entities_with_component<AIComponent>();
+			for (const Entity& npc : npcs) {
+				if (check_collision(*player.get<BaseComponent>(), *npc.get<BaseComponent>(), 60)) {
+					pickpocket_event.fire(em, { player, npc });
+				}
+			}
+		}
+
 		if (input_manager.is_pressed(input::ESCAPE)) {
 			state_manager.create_state<PauseMenuState>(*_context);
 		}
