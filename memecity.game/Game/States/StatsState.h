@@ -1,20 +1,21 @@
-﻿#ifndef _PAUSE_MENU_STATE_H
-#define _PAUSE_MENU_STATE_H
+#ifndef _STATS_STATE_H
+#define __STATS_STATE_H
 #include <Engine/State.h>
 #include <UI.h>
+#include "..\Components\StatsComponent.h"
 #include "..\..\GameManager.h"
 
-class PauseMenuState : public memecity::engine::state::State
+class StatsState : public memecity::engine::state::State
 {
 private:
 	GameManager::GameContext* _context;
 	std::unique_ptr<memecity::engine::ui::menu::Menu> menu;
-	std::unique_ptr<memecity::engine::ui::menu::Menu> help_menu;
-	std::unique_ptr<memecity::engine::ui::menu::Menu> help_menu2;
+	void make_new_menu(StatsComponent& stats);
 
 public:
-	PauseMenuState(memecity::engine::state::StateManager& sm, GameManager::GameContext& gc);
-	~PauseMenuState() = default;
+	StatsState(memecity::engine::state::StateManager& sm, GameManager::GameContext& gc, StatsComponent& stats);
+	~StatsState() = default;
+	void increase(StatsComponent& stats, int id);
 	void on_load() override;
 	void update(float dt) override;
 	void draw() override;
@@ -23,3 +24,4 @@ public:
 	GameManager::GameContext& get_context() { return *_context; }
 };
 #endif
+

@@ -7,7 +7,7 @@
 using namespace memecity::engine::texture;
 using namespace memecity::engine::ecs;
 
-void AnimationSystem::run(EntityManager& em) const
+void AnimationSystem::run(EntityManager& em, float dt) const
 {
 
 }

@@ -1,7 +1,7 @@
 ﻿#include "FogOfWarSystem.h"
 #include "../Components.h"
 
-void FogOfWarSystem::run(memecity::engine::ecs::EntityManager& em) const
+void FogOfWarSystem::run(memecity::engine::ecs::EntityManager& em, float dt) const
 {
 	auto components = em.query_components<BaseComponent>()
 		.where([&](BaseComponent& base) {

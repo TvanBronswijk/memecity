@@ -12,11 +12,25 @@ namespace assets {
 	}
 	namespace sprites {
 		namespace tiles {
-			constexpr inline Asset GRASS = "Sprites/Tiles/green.bmp";
-			constexpr inline Asset ROAD = "Sprites/Tiles/gray.bmp";
-			constexpr inline Asset WALL = "Sprites/Tiles/brown.bmp";
-			constexpr inline Asset WATER = "Sprites/Tiles/blue.bmp";
+			constexpr inline Asset GRASS0 = "Sprites/Tiles/grass_00.bmp";
+			constexpr inline Asset GRASS1 = "Sprites/Tiles/grass_01.bmp";
+			constexpr inline Asset GRASS2 = "Sprites/Tiles/grass_02.bmp";
+			constexpr inline Asset GRASS3 = "Sprites/Tiles/grass_03.bmp";
+			const static std::map<Asset, int> GRASS{ {GRASS0, 48}, {GRASS1, 96}, {GRASS2, 98}, {GRASS3, 100} };
+
+			constexpr inline Asset ROAD0 = "Sprites/Tiles/paving_00.bmp";
+			constexpr inline Asset ROAD1 = "Sprites/Tiles/paving_01.bmp";
+			constexpr inline Asset ROAD2 = "Sprites/Tiles/paving_02.bmp";
+			constexpr inline Asset ROAD3 = "Sprites/Tiles/paving_03.bmp";
+			const static std::map<Asset, int> ROAD{ {ROAD0, 90}, {ROAD1, 96}, {ROAD2, 97}, {ROAD3, 100} };
+
+			constexpr inline Asset WALL0 = "Sprites/Tiles/wall_00.bmp";
+			const static std::map<Asset, int> WALL{ {WALL0, 100} };
+
+			constexpr inline Asset WATER0 = "Sprites/Tiles/water_00.bmp";
+			const static std::map<Asset, int> WATER{ {WATER0, 100} };
 		}
+
 		constexpr inline Asset DARK_BACKGROUND = "Sprites/big_black.bmp";
 		constexpr inline Asset TIN_CAN = "Sprites/Tin_can.png";
 	}

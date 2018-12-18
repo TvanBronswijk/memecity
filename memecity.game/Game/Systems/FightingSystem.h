@@ -18,7 +18,7 @@ public:
 		: multimedia_manager(multimedia_manager) {}
 
 	void on_attack(memecity::engine::ecs::EntityManager& em, AttackEventArgs args);
-	void run(memecity::engine::ecs::EntityManager& em) const override;
+	void run(memecity::engine::ecs::EntityManager& em, float dt) const override;
 };
 
 #endif

@@ -32,32 +32,76 @@ namespace memecity::engine {
 			MultimediaManager* multimedia_manager;
 			InputManager* input_manager;
 			sdl::TimerFacade* timer;
+			MemeEngine* engine;
 
 		public:
-			Context(MultimediaManager& mm, InputManager& im, sdl::TimerFacade& t)
-				: multimedia_manager(&mm), input_manager(&im), timer(&t) {}
+			Context(MultimediaManager& mm, InputManager& im, sdl::TimerFacade& t, MemeEngine& engine)
+				: multimedia_manager(&mm), input_manager(&im), timer(&t), engine(&engine) {}
 			Context(MemeEngine& engine)
-				: multimedia_manager(&engine.multimedia_manager), input_manager(&engine.input_manager), timer(&engine.timer) {}
+				: multimedia_manager(&engine.multimedia_manager), input_manager(&engine.input_manager), timer(&engine.timer),engine(&engine) {}
 			virtual ~Context() = default;
 
 			MultimediaManager& get_multimedia_manager() { return *multimedia_manager; }
 			InputManager& get_input_manager() { return *input_manager; }
 			sdl::TimerFacade& get_timer() { return *timer; }
+			MemeEngine& get_engine() { return *engine; }
 		};
 
 		StorageManager storage_manager;
 		MultimediaManager multimedia_manager;
 		InputManager input_manager;
 		sdl::TimerFacade timer;
-		int fps;
 		std::unique_ptr<Context> _context;
-		bool get_fps_trigger;
+
+		bool get_fps_trigger = false;
+		bool display_game_speed = false;
+
+		using fps_subscriber = std::function<void(bool enabled,int fps)>;
+		using game_speed_subscriber = std::function<void(bool enabled, float fps)>;
+
+		std::vector<fps_subscriber> fps_subscribers;
+		std::vector<game_speed_subscriber> game_speed_subscribers;
+
+		float game_speed_modifier = 1.0f;
+
 	public:
-		void calculate_fps()
+
+		void set_games_speed_modifier(float new_speed)
 		{
-			get_fps_trigger = true;
+			this->game_speed_modifier = new_speed;
+			if (display_game_speed) {
+				for (auto& subscriber : game_speed_subscribers) {
+					subscriber(true, new_speed);
+				}
+			}
 		}
-		MemeEngine() : storage_manager(), multimedia_manager(false), input_manager(), timer(), fps(0) {
+
+		float get_game_speed_modifier()
+		{
+			return this->game_speed_modifier;
+		}
+
+		void bind_fps(fps_subscriber s) { fps_subscribers.push_back(s); }
+		void bind_game_speed(game_speed_subscriber s) { game_speed_subscribers.push_back(s); }
+		void set_display_gamespeed(bool state)
+		{
+			if (!state) {
+				for (auto& subscriber : game_speed_subscribers) {
+					subscriber(false, 0.0f);
+				}
+			}
+			display_game_speed = state;
+		}
+		void set_calculate_fps(bool state)
+		{
+			if (!state) {
+				for (auto& subscriber : fps_subscribers) {
+					subscriber(false, 0);
+				}
+			}
+			get_fps_trigger = state;
+		}
+		MemeEngine() : storage_manager(), multimedia_manager(false), input_manager(), timer() {
 			_context = std::make_unique<Context>(*this);
 		};
 

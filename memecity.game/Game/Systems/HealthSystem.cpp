@@ -3,7 +3,7 @@
 
 using namespace memecity::engine::ecs;
 
-void HealthSystem::run(EntityManager& em) const {}
+void HealthSystem::run(EntityManager& em, float dt) const {}
 
 void HealthSystem::on_death(EntityManager &em, eventing::EventArgs args) {
 	auto player = em.get_entities_with_component<PlayerComponent>().front();

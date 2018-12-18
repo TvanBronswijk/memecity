@@ -4,15 +4,17 @@
 using namespace memecity::engine::texture;
 using namespace memecity::engine::ecs;
 
-void MoveSystem::run(EntityManager& em) const
+void MoveSystem::run(EntityManager& em, float dt) const
 {
 	auto entities = em.get_entities_with_component<VelocityComponent>();
 	for (const Entity& entity : entities)
 	{
 		auto base = entity.get<BaseComponent>();
-		const auto velocity = entity.get<VelocityComponent>();
-
-		const Vector2 diff { velocity->x, velocity->y };
+		auto velocity = entity.get<VelocityComponent>();
+		
+		Vector2 diff{ velocity->x, velocity->y };
+		diff.x *= dt;
+		diff.y *= dt;
 		base->location.x += diff.x;
 		base->location.y += diff.y;
 		velocity->x = 0;
