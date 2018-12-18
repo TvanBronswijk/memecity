@@ -1,9 +1,10 @@
-﻿#ifndef _PLAYERCOMPONENT_H
-#define  _PLAYERCOMPONENT_H
+﻿#ifndef _PLAYER_COMPONENT_H
+#define _PLAYER_COMPONENT_H
+
 #include <ECS.h>
 #include "../Quest/Story.h"
 
-struct PlayerComponent : public memecity::engine::ecs::Component
+struct PlayerComponent : memecity::engine::ecs::Component
 {
 	std::vector<Story> _stories;
 

@@ -32,24 +32,27 @@ namespace memecity::engine {
 			MultimediaManager* multimedia_manager;
 			InputManager* input_manager;
 			sdl::TimerFacade* timer;
+			StorageManager* storage_manager;
 			MemeEngine* engine;
 
 		public:
-			Context(MultimediaManager& mm, InputManager& im, sdl::TimerFacade& t, MemeEngine& engine)
-				: multimedia_manager(&mm), input_manager(&im), timer(&t), engine(&engine) {}
+			Context(MultimediaManager& mm, InputManager& im, sdl::TimerFacade& t, StorageManager& stm, MemeEngine& engine)
+				: multimedia_manager(&mm), input_manager(&im), timer(&t), storage_manager(&stm), engine(&engine) {}
 			Context(MemeEngine& engine)
-				: multimedia_manager(&engine.multimedia_manager), input_manager(&engine.input_manager), timer(&engine.timer),engine(&engine) {}
+				: multimedia_manager(&engine.multimedia_manager), input_manager(&engine.input_manager), timer(&engine.timer), storage_manager(&engine.storage_manager), engine(&engine) {}
 			virtual ~Context() = default;
 
 			MultimediaManager& get_multimedia_manager() { return *multimedia_manager; }
 			InputManager& get_input_manager() { return *input_manager; }
 			sdl::TimerFacade& get_timer() { return *timer; }
+			StorageManager& get_storage_manager() { return *storage_manager; }
 			MemeEngine& get_engine() { return *engine; }
 		};
 
 		StorageManager storage_manager;
 		MultimediaManager multimedia_manager;
 		InputManager input_manager;
+		serialization::SerializationFacade serialization_facade;
 		sdl::TimerFacade timer;
 		std::unique_ptr<Context> _context;
 
@@ -111,7 +114,7 @@ namespace memecity::engine {
 			fps_subscribers.clear();			
 			get_fps_trigger = false;
 		}
-		MemeEngine() : storage_manager(), multimedia_manager(false), input_manager(), timer() {
+		MemeEngine() : storage_manager(serialization_facade), multimedia_manager(false), input_manager(), timer() {
 			_context = std::make_unique<Context>(*this);
 		};
 

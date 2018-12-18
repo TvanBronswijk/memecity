@@ -2,6 +2,7 @@
 #include "Components.h"
 #include "../Assets.h"
 #include "Builder/QuestBuilder.h"
+#include "Components/ScoreComponent.h"
 
 int rand_stat() {
 	return 1 + (rand() % 3);
@@ -24,6 +25,7 @@ const memecity::engine::ecs::Entity& PlayerBuilder::build(memecity::engine::ecs:
 		.with_component<ExpComponent>(0, 100)
 		.with_component<HealthComponent>(100, nullptr)
 		.with_component<InventoryComponent>()
+		.with_component<ScoreComponent>()
 		.with_component<VelocityComponent>();
 	
 	auto base_component = builder.get().get<BaseComponent>();

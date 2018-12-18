@@ -5,6 +5,7 @@
 #include "..\..\..\..\Assets.h"
 
 namespace generate::models {
+
 	struct Base64_Tilemap : uRectangle<int> {
 	protected:
 		char* tiles;
@@ -23,6 +24,18 @@ namespace generate::models {
 		virtual char* operator [] (int x) { return &tiles[x * h]; }
 		virtual const char* operator [] (int x) const { return &tiles[x * h]; }
 		virtual ~Base64_Tilemap() override { delete tiles; }
+		virtual std::string get_tile_string() const
+		{
+			std::string s;
+			for (int i = 0; i < w*h; i++) {
+				s += tiles[i];
+				if ((i + 1) % w == 0)
+				{
+					s += "\n";
+				}
+			}
+			return s;
+		}
 	};
 
 	struct City {
