@@ -6,6 +6,9 @@
 #include "..\..\GameManager.h"
 #include "UI/Overlay/Overlay.h"
 
+
+enum class SPECIAL { Strenght, Perception, Luck, Intelligence, Endurance, Charisma, Agility };
+
 class StatsState : public memecity::engine::state::State
 {
 private:
@@ -16,7 +19,7 @@ private:
 public:
 	StatsState(memecity::engine::state::StateManager& sm, GameManager::GameContext& gc, memecity::engine::ui::overlay::Overlay& hud, StatsComponent& stats);
 	~StatsState() = default;
-	void increase(memecity::engine::ui::overlay::Overlay& hud, StatsComponent& stats, int id);
+	void increase(memecity::engine::ui::overlay::Overlay& hud, StatsComponent& stats, SPECIAL type);
 	void on_load() override;
 	void update(float dt) override;
 	void draw() override;
