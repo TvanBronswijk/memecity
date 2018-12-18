@@ -32,7 +32,6 @@ void QuestSystem::story(EntityManager &em, Story& story) const {
 			if (story.completed) return;
 			story.completed = true;
 			exp_event.fire(em, ExpEventArgs(story.exp, 0));
-			//TODO::get blikcoins
 			auto player = em.get_entities_by_type("player")[0].get().get<PlayerComponent>();
 			player->blik_coins += story.blik_coins;
 			blikcoins_event.fire(em, BlikCoinEventArgs(player->blik_coins));
