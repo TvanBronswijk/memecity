@@ -120,7 +120,7 @@ Story QuestBuilder::intro() {
 	};
 
 	//add quests
-	Story story{ "introduction", quests };
+	Story story{ "introduction",210,200, quests };
 
 	return story;
 }
