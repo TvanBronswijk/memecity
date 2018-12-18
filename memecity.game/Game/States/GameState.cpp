@@ -37,18 +37,6 @@ void GameState::on_load()
 	bind(input_system.interaction_event, &interaction_system, &InteractionSystem::on_interact);
 	bind(input_system.attack_event, &fighting_system, &FightingSystem::on_attack);
 	bind(collider_system.collider_event, &move_system, &MoveSystem::on_collision);
-
-	exp_system.stats_changed_event += [&](auto& em, auto args)
-	{
-		_hud.update("S", "S: " + std::to_string(args.s));
-		_hud.update("P", "P: " + std::to_string(args.p));
-		_hud.update("E", "E: " + std::to_string(args.e));
-		_hud.update("C", "C: " + std::to_string(args.c));
-		_hud.update("I", "I: " + std::to_string(args.i));
-		_hud.update("A", "A: " + std::to_string(args.a));
-		_hud.update("L", "L: " + std::to_string(args.l));
-	};
-
 	bind(input_system.quest_event, &quest_system, &QuestSystem::on_event);
 	bind(fighting_system.damage_event, &health_system, &HealthSystem::on_damage);
 	bind(fighting_system.quest_event, &quest_system, &QuestSystem::on_event);
