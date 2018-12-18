@@ -19,7 +19,7 @@ void FogOfWarSystem::run(memecity::engine::ecs::EntityManager& em, float dt) con
 	auto perception_pixels = player_perception * 255;
 	for (BaseComponent& base : components)
 	{
-		auto texture = base.get_texture();
+		auto& texture = base.get_texture();
 		
 		auto component_tex_position = texture.get_position();
 		auto distance = sqrt(pow(abs(player_tex_position.x - component_tex_position.x), 2) 

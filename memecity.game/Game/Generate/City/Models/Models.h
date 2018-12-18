@@ -20,42 +20,85 @@ namespace generate::models {
 		virtual const char& coord(int x, int y) const { return tiles[x * h + y]; }
 		virtual char& operator () (int x, int y) { return coord(x, y); }
 		virtual const char& operator () (int x, int y) const { return coord(x, y); }
+		virtual char* operator [] (int x) { return &tiles[x * h]; }
+		virtual const char* operator [] (int x) const { return &tiles[x * h]; }
 		virtual ~Base64_Tilemap() override { delete tiles; }
 	};
 
-	struct City : Base64_Tilemap {
-		City(int w, int h)
-			: Base64_Tilemap(w, h) {}
+	struct City {
+		int width, height;
+		uPoint<int> start;
+		Base64_Tilemap tiles;
+		Base64_Tilemap objects;
+		City(int w, int h) 
+			: width(w), height(h), tiles(w, h), objects(w, h) {}
 	};
 
-	struct Prefab : Base64_Tilemap {
-		Prefab(int w, int h, const char* tiles)
-			: Base64_Tilemap(w, h) {
+	struct Prefab {
+		int width, height;
+		Base64_Tilemap tiles;
+		Base64_Tilemap objects;
+		Prefab(int w, int h, const char* tiles, const char* objects)
+			: width(w), height(h), tiles(w, h), objects(w, h) {
 			for (int x = 0; x < w; x++) {
 				for (int y = 0; y < h; y++) {
-					this->coord(x, y) = tiles[x * h + y];
+					this->tiles(x, y) = tiles[x * h + y];
+					this->objects(x, y) = objects[x * h + y];
 				}
 			}
 		}
 	};
 
-	static const std::map<char, std::map<assets::Asset, int>> __cta {
-		{'-', assets::sprites::tiles::ROAD },
-		{'w', assets::sprites::tiles::WATER },
-		{'g', assets::sprites::tiles::GRASS },
-		{'W', assets::sprites::tiles::WALL }
-	};
-	static assets::Asset char_to_asset(char c) {
-		const auto index = rand() % 100;
+	static const Prefab station(8, 8, 
+		"--------"
+		"-WWWWWW-"
+		"-WmmmmW-"
+		"-WmccmW-"
+		"-WmccmW-"
+		"-WmmmmW-"
+		"-WWmmWW-"
+		"--------",
+		"\0\0\0\0\0\0\0\0"
+		"\0\0\0\0\0\0\0\0"
+		"\0\0\0\0\0\0\0\0"
+		"\0\0\0\0\0\0\0\0"
+		"\0\0\0\0\0\0\0\0"
+		"\0\0\0\0\0\0\0\0"
+		"\0\0\0\0\0\0\0\0"
+		"\0\0\0\0\0\0\0\0");
 
-		for (auto item : __cta.at(c))
-		{
-			if (index < item.second)
-			{
-				return item.first;
+	struct TileInfo {
+		char character;
+		const char *name;
+		assets::AssetMap asset;
+		bool blocked, block_sight;
+		TileInfo(char character, const char* name, assets::AssetMap asset, bool blocked, bool block_sight) 
+			: character(character), name(name), asset(asset), blocked(blocked), block_sight(block_sight) {}
+		assets::Asset get_asset() {
+			const auto index = rand() % 100;
+			for (auto& pair : asset) {
+				if (index < pair.second) {
+					return pair.first;
+				}
 			}
+			return asset.begin()->first;
 		}
-		return __cta.at(c).begin()->first;
+	};
+
+	static const std::map<char, TileInfo> __cta {
+		{'-', {'-', "Road", assets::sprites::tiles::ROAD, false, false } },
+		{'w', {'w', "Water", assets::sprites::tiles::WATER, true, false } },
+		{'g', {'g', "Grass", assets::sprites::tiles::GRASS, false, false } },
+		{'W', {'W', "Wall", assets::sprites::tiles::WALL, true, true } },
+		{'m', {'m', "Marble", assets::sprites::tiles::GRASS, false, false } },
+		{'c', {'c', "Station", assets::sprites::tiles::WATER, false, false } }
+	};
+	static TileInfo char_to_tile(char c) {
+		auto it = __cta.find(c);
+		if (it != __cta.end()) {
+			return it->second;
+		}
+		throw;
 	}
 }
 

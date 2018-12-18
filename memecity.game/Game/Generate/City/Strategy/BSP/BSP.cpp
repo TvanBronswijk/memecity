@@ -24,13 +24,16 @@ namespace generate::strategy::bsp {
 		models::City city = { w, h };
 		for (int x = 0; x < w; x++) {
 			for (int y = 0; y < h; y++) {
-				city(x, y) = '-';
+				city.tiles(x, y) = '-';
+				city.objects(x, y) = '\0';
 			}
 		}
 		for (auto& node : nodes)
 		{
 			this->write_node(city, node);
 		}
+		city.start.x = nodes.front().get().center.x;
+		city.start.y = nodes.front().get().center.y;
 		return std::move(city);
 	}
 
