@@ -65,6 +65,13 @@ void InputSystem::run(EntityManager& em, float dt) const
 				}
 			}
 		}
+
+		if (input_manager.is_pressed(input::ENTER))
+		{
+			const auto animation = player.get<AnimationComponent>();
+			animation->current_state = AnimationComponent::AnimationState::dying;
+		}
+
 		if (input_manager.is_pressed(input::ESCAPE)) {
 			state_manager.create_state<PauseMenuState>(*_context);
 		}
@@ -72,6 +79,7 @@ void InputSystem::run(EntityManager& em, float dt) const
 			auto& stats = *player.get<StatsComponent>();
 			state_manager.create_state<StatsState>(*_context, stats);
 		}
+
 		//inventory
 		if (input_manager.is_pressed(input::DROP)) {
 			auto inventory = player.get<InventoryComponent>();

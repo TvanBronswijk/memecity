@@ -62,14 +62,16 @@ namespace memecity::engine::texture {
 			_animation_timer -= _animation_speed;
 		}
 
-		if (_current_state != AnimationState::idle && _animation_direction == AnimationDirection::vertical)
+		if (_current_state != AnimationState::idle && _animation_direction == AnimationDirection::vertical && !_row_changed)
 		{
 			clipped_rect.x = _start_x;
 			clipped_rect.y = _start_y + int(_animation_timer / _time_per_frame) * texture_height;
+			_row_changed = false;
 		}
 		else if (_animation_direction == AnimationDirection::horizontal && !_column_changed)
 		{
 			clipped_rect.x = int(_animation_timer / _time_per_frame) * texture_width;
+			clipped_rect.y = _start_y;
 			_column_changed = false;
 		}
 		else
