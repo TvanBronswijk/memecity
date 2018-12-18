@@ -145,11 +145,21 @@
     <CopyFileToFolders Include="Assets\Sprites\Tiles\wall_00.bmp" />
     <CopyFileToFolders Include="Assets\Sprites\Tiles\water_00.bmp" />
     <CopyFileToFolders Include="Assets\Sprites\Tiles\paving_02.bmp" />
+    <CopyFileToFolders Include="Assets\Advertisements\AbbeyGames.png" />
+    <CopyFileToFolders Include="Assets\Advertisements\AdventOfCode.png" />
+    <CopyFileToFolders Include="Assets\Advertisements\CodedFun.png" />
+    <CopyFileToFolders Include="Assets\Advertisements\CppCon.png" />
   </ItemGroup>
   <ItemGroup>
     <CopyFileToFolders Include="Assets\Advertisements\BananaWho.png" />
     <CopyFileToFolders Include="Assets\Advertisements\BurgerKing.png" />
     <CopyFileToFolders Include="Assets\Advertisements\CocaCola.png" />
     <CopyFileToFolders Include="Assets\Sprites\big_black.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\..\..\..\Downloads\adds\AbbeyGames.png" />
+    <Image Include="..\..\..\..\Downloads\adds\AdventOfCode.png" />
+    <Image Include="..\..\..\..\Downloads\adds\CodedFun.png" />
+    <Image Include="..\..\..\..\Downloads\adds\CppCon.png" />
   </ItemGroup>
 </Project>
