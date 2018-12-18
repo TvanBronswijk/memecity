@@ -3,6 +3,7 @@
 #include "..\States.h"
 #include "..\Input.h"
 #include "../States/DeveloperMenuState.h"
+#include "../PlayerManager.h"
 #include "../States/StatsState.h"
 #include "..\Util\Util.h"
 #include "..\LevelBuilder.h"
@@ -65,7 +66,7 @@ void InputSystem::run(EntityManager& em, float dt) const
 					}
 					state_manager.pop(); });
 				state_manager.create_state<LoadingState>(*_context, 
-					[&](auto& ctx, auto& listener) { start = LevelBuilder(ctx, 128, 128).build(em, listener); state_manager.pop(); });
+					[&](auto& ctx, auto& listener) { start = LevelBuilder(ctx, 128, 128, false).build(em, listener); state_manager.pop(); });
 				player.get<BaseComponent>()->location = start;
 			}
 
@@ -108,7 +109,7 @@ void InputSystem::run(EntityManager& em, float dt) const
 		}
 
 		if (input_manager.is_pressed(input::ESCAPE)) {
-			state_manager.create_state<PauseMenuState>(*_context);
+			state_manager.create_state<PauseMenuState>(*_context, em);
 		}
 		if (input_manager.is_pressed(input::STATS)) {
 			auto& stats = *player.get<StatsComponent>();

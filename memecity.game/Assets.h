@@ -56,6 +56,11 @@ namespace assets {
 			return ADS[index];
 		}
 	}
+	namespace saves
+	{
+		static constexpr Asset SAVE_GAME = "new-game.txt";
+		static constexpr Asset SAVE_MAP = "map.txt";
+	}
 };
 
 #endif

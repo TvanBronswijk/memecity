@@ -22,6 +22,12 @@ void FightingSystem::on_attack(EntityManager &em, AttackEventArgs args) {
 	auto stats_target = args.target.get<StatsComponent>();
 	auto AI = args.target.get<AIComponent>();
 
+	if (args.target.has<PlayerComponent>()) {
+		health_changed_event.fire(em, { health_target->health });
+		if (health_target->health <= 0) {
+			death_event.fire(em, {});
+		}
+	}
 	if (AI != nullptr) {
 		if (AI->state != Ai_State::Fighting ) {
 			AI->state = Ai_State::Fighting;
