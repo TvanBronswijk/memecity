@@ -37,11 +37,13 @@ void GameState::on_load()
 	bind(fighting_system.quest_event, &quest_system, &QuestSystem::on_event);
 	bind(fighting_system.death_event, &health_system, &HealthSystem::on_death);
 	bind(fighting_system.exp_event, &exp_system, &ExpSystem::on_exp_gain);
+	bind(quest_system.exp_event, &exp_system, &ExpSystem::on_exp_gain);
 
 	bind(ai_system.attack_event, &fighting_system, &FightingSystem::on_attack);
 	bind(interaction_system.quest_event, &quest_system, &QuestSystem::on_event);
 	fighting_system.health_changed_event += [&](auto& em, auto args) { _hud.update("HEALTHVALUE", args.new_health); };
 	exp_system.exp_event += [&](auto& em, auto args) {_hud.update("EXP", "Exp/Next: " + std::to_string(args.new_exp) + "/" + std::to_string(args.remaining_exp)); };
+	quest_system.blikcoins_event += [&](auto& em, auto args) {_hud.update("BLIKCOIN", "Blikcoins: " + std::to_string(args.new_coin)); };
 
 
 

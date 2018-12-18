@@ -8,6 +8,7 @@
 #include "../Components/ItemComponent.h"
 #include "../Components/AIComponent.h"
 #include "../Components/InteractionComponent.h"
+#include "../Components/PlayerComponent.h"
 #include "../Enum/QuestStates.h"
 #include <vector>
 #include <algorithm> 
@@ -21,15 +22,20 @@ void QuestSystem::run(EntityManager &em, float dt) const {
 	auto& stories = player_component.get()._stories;
 
 	for (auto it = stories.begin(); it != stories.end(); ++it) {
-		story(*it);
+		story(em,*it);
 	}
 }
 
-void QuestSystem::story(Story& story) const {
+void QuestSystem::story(EntityManager &em, Story& story) const {
 	if (story.active) {
 		if (story.quests.empty()) {
 			if (story.completed) return;
 			story.completed = true;
+			exp_event.fire(em, ExpEventArgs(story.exp, 0));
+			//TODO::get blikcoins
+			auto player = em.get_entities_by_type("player")[0].get().get<PlayerComponent>();
+			player->blik_coins += story.blik_coins;
+			blikcoins_event.fire(em, BlikCoinEventArgs(player->blik_coins));
 		}
 		else {
 			if (quest(story.quests.front())) {
