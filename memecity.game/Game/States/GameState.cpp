@@ -51,16 +51,16 @@ void GameState::on_load()
 
 
 
-	exp_system.stats_changed_event += [&](auto& em, auto args)
-	{
-		_hud.update("S", "S: " + std::to_string(args.s));
-		_hud.update("P", "P: " + std::to_string(args.p));
-		_hud.update("E", "E: " + std::to_string(args.e));
-		_hud.update("C", "C: " + std::to_string(args.c));
-		_hud.update("I", "I: " + std::to_string(args.i));
-		_hud.update("A", "A: " + std::to_string(args.a));
-		_hud.update("L", "L: " + std::to_string(args.l));
-	};
+	//exp_system.stats_changed_event += [&](auto& em, auto args)
+	//{
+	//	_hud.update("S", "S: " + std::to_string(args.s));
+	//	_hud.update("P", "P: " + std::to_string(args.p));
+	//	_hud.update("E", "E: " + std::to_string(args.e));
+	//	_hud.update("C", "C: " + std::to_string(args.c));
+	//	_hud.update("I", "I: " + std::to_string(args.i));
+	//	_hud.update("A", "A: " + std::to_string(args.a));
+	//	_hud.update("L", "L: " + std::to_string(args.l));
+	//};
 
 	fighting_system.health_changed_event += [&](auto& em, auto args) { _hud.update("HEALTHVALUE", args.new_health); };
 	

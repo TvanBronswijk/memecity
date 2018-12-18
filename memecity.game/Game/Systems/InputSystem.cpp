@@ -92,7 +92,7 @@ void InputSystem::run(EntityManager& em, float dt) const
 		}
 		if (input_manager.is_pressed(input::STATS)) {
 			auto& stats = *player.get<StatsComponent>();
-			state_manager.create_state<StatsState>(*_context, stats);
+			state_manager.create_state<StatsState>(*_context, *_hud, stats);
 		}
 		//inventory
 		if (input_manager.is_pressed(input::DROP)) {

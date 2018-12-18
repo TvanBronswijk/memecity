@@ -34,7 +34,13 @@ void PickpocketSystem::on_pickpocket(EntityManager& em,  PickpocketEventArgs arg
 				std::cout << player->blik_coins;
 				ai->blik_coins = 0;
 				exp_event.fire(em, ExpEventArgs(10, 0));
-				blikcoins_event.fire(em, BlikCoinEventArgs(player->blik_coins));
+				auto luck = rand() % player_stats->luck;
+				if (luck > player_stats->luck / 5) {
+					blikcoins_event.fire(em, BlikCoinEventArgs((player->blik_coins * 1.3)));
+				}
+				else {
+					blikcoins_event.fire(em, BlikCoinEventArgs(player->blik_coins));
+				}
 			}
 		}
 	}
