@@ -1,6 +1,4 @@
-﻿
-
-#ifndef DEVELOPERMENUSTATE_H
+﻿#ifndef DEVELOPERMENUSTATE_H
 #define DEVELOPERMENUSTATE_H
 #include "Engine/State/State.h"
 #include "UI/Menu/Menu.h"
