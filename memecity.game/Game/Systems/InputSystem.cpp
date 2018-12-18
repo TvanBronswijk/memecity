@@ -154,7 +154,7 @@ void InputSystem::run(EntityManager& em, float dt) const
 		}
 		if(input_manager.is_pressed(input::DEVELOPER))
 		{
-			state_manager.create_state<DeveloperMenuState>(*_context, em);
+			state_manager.create_state<DeveloperMenuState>(*_context, em, *_hud);
 		}
 		if (input_manager.is_pressed(input::ONE)) {
 			auto inventory = player.get<InventoryComponent>();
