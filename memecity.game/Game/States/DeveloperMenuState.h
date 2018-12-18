@@ -8,15 +8,7 @@
 #include "ECS/EntityManager.h"
 #include "UI/Overlay/Overlay.h"
 
-namespace memecity {
-	namespace engine {
-		namespace ui {
-			namespace overlay {
-				class Overlay;
-			}
-		}
-	}
-}
+
 
 class DeveloperMenuState : public memecity::engine::state::State
 {
