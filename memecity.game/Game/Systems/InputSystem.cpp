@@ -21,7 +21,8 @@ void InputSystem::run(EntityManager& em, float dt) const
 	auto players = em.get_entities_with_component<PlayerComponent>();
 	for (const Entity& player : players)
 	{
-		float speed = 200.0f;
+		auto player_stats = player.get<StatsComponent>();
+		float speed = player.get<PlayerComponent>()->min_movement_speed + (player_stats->endurance * 10);
 
 		auto animation_component = player.get<AnimationComponent>();
 		auto velocity_component = player.get<VelocityComponent>();
