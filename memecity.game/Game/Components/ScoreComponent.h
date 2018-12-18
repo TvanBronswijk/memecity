@@ -8,7 +8,7 @@ struct ScoreComponent : public memecity::engine::ecs::Component
 	ScoreComponent(memecity::engine::ecs::Entity& entity)
 		: ScoreComponent(entity, 0) {};
 	ScoreComponent(memecity::engine::ecs::Entity& entity, int score)
-		: memecity::engine::ecs::Component(entity), score(score) {};
+		: Component(entity), score(score) {}
 };
 
 #endif

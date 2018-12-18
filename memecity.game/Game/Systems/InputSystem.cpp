@@ -47,7 +47,7 @@ void InputSystem::run(EntityManager& em) const
 				}
 			}
 		}
-
+		
 		// Test to show dying animation
 		if (input_manager.is_pressed(input::ENTER))
 		{
