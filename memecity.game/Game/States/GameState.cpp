@@ -73,7 +73,7 @@ void GameState::on_load()
 
 	_hud.create_overlay_text_item("BLIKCOIN", "BlikCoin: 0", 16, 650, 16);
 
-	_hud.create_overlay_text_item("FPS", " ", 16, 750, 16);
+	_hud.create_overlay_text_item("FPS", " ", 16, 750, 48);
 	_hud.create_overlay_text_item("GAMESPEED", " ", 16, 750, 32);
 }
 
