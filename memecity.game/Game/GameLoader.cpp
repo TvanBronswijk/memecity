@@ -1,5 +1,6 @@
 #include "GameLoader.h"
 #include "Generate.h"
+#include "Builder/QuestBuilder.h"
 #include "Components.h"
 #include "Systems.h"
 #include "..\Assets.h"
@@ -63,25 +64,18 @@ void GameLoader::create_map(EntityManager& em, loading::LoadingBar::Listener& li
 
 void GameLoader::create_npcs(EntityManager& em, loading::LoadingBar::Listener& listener)
 {
-	auto& multimedia_manager = _context->get_multimedia_manager();
-	auto& timer = _context->get_timer();
-	generate::NPCGenerator(multimedia_manager, em).generate(1, 10, 10);
+	for (size_t i = 0; i < 10; i++) {
+		auto& multimedia_manager = _context->get_multimedia_manager();
+		auto& timer = _context->get_timer();
+		generate::NPCGenerator(multimedia_manager, em).generate_random_npc(50 * i, 0);
+	}
 	listener.increase_current_value(20.0f);
 }
 
 void GameLoader::create_items(EntityManager& em, loading::LoadingBar::Listener& listener)
 {
 	auto& multimedia_manager = _context->get_multimedia_manager();
-
-	auto texture = multimedia_manager.get_texture(assets::sprites::TIN_CAN, 0, 0, 48, 28);
-	texture->set_position({0,0});
-
-	auto builder = em.create_entity("Blik")
-		.with_component<BaseComponent>(std::move(texture), 50.0f, 0.0f, 48.0f, 48.0f)
-		.with_component<ItemComponent>("Blik", "a normal tin can")
-		.with_component<StatsComponent>(0,0,0,0,0,0,0);
-	auto base_component = builder.get().get<BaseComponent>();
-	builder.with_component<ColliderComponent>(BoundaryRectangle(base_component->location.x, base_component->location.y, base_component->w, base_component->h));
+	generate::ItemGenerator(multimedia_manager, em).make_all_items();
 }
 
 void GameLoader::create_player(EntityManager& em, loading::LoadingBar::Listener& listener)
@@ -93,13 +87,14 @@ void GameLoader::create_player(EntityManager& em, loading::LoadingBar::Listener&
 
 	auto builder = em.create_entity("player")
 		.with_component<BaseComponent>(std::move(texture), 0.0f, 0.0f, 48.0f, 48.0f)
-		.with_component<PlayerComponent>()
-		.with_component<StatsComponent>(1, 3, 1, 1, 1, 1, 1)
+		.with_component<PlayerComponent>(QuestBuilder(multimedia_manager, em).get_all_stories())
+		.with_component<StatsComponent>(1, 1, 1, 1, 1, 1, 1)
 		.with_component<AnimationComponent>()
 		.with_component<ScoreComponent>()
 		.with_component<VelocityComponent>()
 		.with_component<InventoryComponent>()
-		.with_component<HealthComponent>();
+		.with_component<ExpComponent>(0, 100)
+		.with_component<HealthComponent>(100, nullptr);
 
 	if (_load_from_file)
 	{

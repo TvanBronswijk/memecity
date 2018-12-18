@@ -6,5 +6,6 @@
 #include "Generate\City\Strategy\BSP\BSP.h"
 #include "Generate\City\CityGenerator.h"
 #include "Generate\NPC\NPCGenerator.h"
+#include "Generate\Item\ItemGenerator.h"
 
 #endif

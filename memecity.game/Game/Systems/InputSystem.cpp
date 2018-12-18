@@ -22,23 +22,29 @@ void InputSystem::run(EntityManager& em, float dt) const
 	auto players = em.get_entities_with_component<PlayerComponent>();
 	for (const Entity& player : players)
 	{
-		float speed = 200.0f;
+		auto player_stats = player.get<StatsComponent>();
+		float speed = player.get<PlayerComponent>()->min_movement_speed + (player_stats->endurance * 10);
 
+		auto animation_component = player.get<AnimationComponent>();
 		auto velocity_component = player.get<VelocityComponent>();
 		if (input_manager.is_down(input::UP))
 		{
+			animation_component->old_direction = texture::AnimatedTexture::Direction::up;
 			velocity_component->y -= speed;
 		}
 		else if (input_manager.is_down(input::DOWN))
 		{
+			animation_component->old_direction = texture::AnimatedTexture::Direction::down;
 			velocity_component->y += speed;
 		}
 		if (input_manager.is_down(input::LEFT))
 		{
+			animation_component->old_direction = texture::AnimatedTexture::Direction::left;
 			velocity_component->x -= speed;
 		}
 		else if (input_manager.is_down(input::RIGHT))
 		{
+			animation_component->old_direction = texture::AnimatedTexture::Direction::right;
 			velocity_component->x += speed;
 		}
 
@@ -46,6 +52,12 @@ void InputSystem::run(EntityManager& em, float dt) const
 		{
 			auto npcs = em.get_entities_with_component<AIComponent>();
 			for (const Entity& npc : npcs) {
+				if(check_collision(*player.get<BaseComponent>(), *npc.get<BaseComponent>(), 60)){
+					interaction_event.fire(em, { npc });
+				}
+			}
+			auto quest_npcs = em.get_entities_with_component<QuestAIComponent>();
+			for (const Entity& npc : quest_npcs) {
 				if (check_collision(*player.get<BaseComponent>(), *npc.get<BaseComponent>(), 60)) {
 					interaction_event.fire(em, { npc });
 				}
@@ -62,16 +74,26 @@ void InputSystem::run(EntityManager& em, float dt) const
 			auto npcs = em.get_entities_with_component<AIComponent>();
 			for (const Entity& npc : npcs) {
 				if (check_collision(*player.get<BaseComponent>(), *npc.get<BaseComponent>(), 60)) {
-					attack_event.fire(em, { player, npc });
+					attack_event.fire(em, {player, npc });
 				}
 			}
 		}
+
+		if (input_manager.is_pressed(input::Z)) {
+			auto npcs = em.get_entities_with_component<AIComponent>();
+			for (const Entity& npc : npcs) {
+				if (check_collision(*player.get<BaseComponent>(), *npc.get<BaseComponent>(), 60)) {
+					pickpocket_event.fire(em, { player, npc });
+				}
+			}
+		}
+
 		if (input_manager.is_pressed(input::ESCAPE)) {
 			state_manager.create_state<PauseMenuState>(*_context, em);
 		}
 		if (input_manager.is_pressed(input::STATS)) {
 			auto& stats = *player.get<StatsComponent>();
-			state_manager.create_state<StatsState>(*_context, stats);
+			state_manager.create_state<StatsState>(*_context, *_hud, stats);
 		}
 		//inventory
 		if (input_manager.is_pressed(input::DROP)) {
@@ -87,7 +109,33 @@ void InputSystem::run(EntityManager& em, float dt) const
 				auto item_base = item->get<BaseComponent>();
 				auto player_base = player.get<BaseComponent>();
 
-				item_base->location = uPoint<float>(player_base->location.x + 50, player_base->location.y);
+				auto& animation_texture = dynamic_cast<texture::AnimatedTexture&>(player_base->get_texture());
+
+				texture::AnimatedTexture::Direction direction;
+				if (animation_texture.get_direction() != texture::AnimatedTexture::Direction::idle) {
+					direction = animation_texture.get_direction();
+				}
+				else {
+					direction = animation_component->old_direction;
+				}
+				switch (direction) {
+				case texture::AnimatedTexture::Direction::down:
+					item_base->location = uPoint<float>(player_base->location.x, player_base->location.y + 50);
+					break;
+				case texture::AnimatedTexture::Direction::left:
+					item_base->location = uPoint<float>(player_base->location.x - 50, player_base->location.y);
+					break;
+				case texture::AnimatedTexture::Direction::right:
+					item_base->location = uPoint<float>(player_base->location.x + 50, player_base->location.y);
+					break;
+				case texture::AnimatedTexture::Direction::up:
+					item_base->location = uPoint<float>(player_base->location.x, player_base->location.y - 50);
+					break;
+				case texture::AnimatedTexture::Direction::idle:
+					item_base->location = uPoint<float>(player_base->location.x + 50, player_base->location.y);
+					break;
+				}
+				this->quest_event.fire(em, { item , nullptr });
 			}
 		}
 		if (input_manager.is_pressed(input::TAKE)) {
@@ -97,13 +145,18 @@ void InputSystem::run(EntityManager& em, float dt) const
 			for (const Entity& item : items) {
 				if (check_collision(*player.get<BaseComponent>(), *item.get<BaseComponent>(), 60)) {
 					inventory->items.emplace_back(&item);
+					this->quest_event.fire(em, { &item , nullptr });
 					item.get<BaseComponent>()->location = uPoint<float>(99999, 99999);
 				}
 			}
 		}
+
+		if (input_manager.is_pressed(input::N)) {
+			state_manager.create_state<StoryState>(*_context, player.get<PlayerComponent>()->_stories);
+		}
 		if(input_manager.is_pressed(input::DEVELOPER))
 		{
-			state_manager.create_state<DeveloperMenuState>(*_context, em);
+			state_manager.create_state<DeveloperMenuState>(*_context, em, *_hud);
 		}
 		if (input_manager.is_pressed(input::ONE)) {
 			auto inventory = player.get<InventoryComponent>();

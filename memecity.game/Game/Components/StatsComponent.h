@@ -9,6 +9,7 @@ struct StatsComponent: memecity::engine::ecs::Component, memecity::engine::seria
 	int strength, perception, endurance, charisma, intelligence, agility, luck, available_points;
 
 	StatsComponent(memecity::engine::ecs::Entity& entity) : StatsComponent(entity, 0, 0, 0, 0, 0, 0, 0) {};
+
 	StatsComponent(memecity::engine::ecs::Entity& entity, const int strength, const int perception, const int endurance, const int charisma, const int intelligence, const int agility, const int luck) 
 		: Component(entity), strength(strength), perception(perception), endurance(endurance), charisma(charisma), intelligence(intelligence), agility(agility), luck(luck), available_points(4) {};
 
@@ -76,6 +77,7 @@ struct StatsComponent: memecity::engine::ecs::Component, memecity::engine::seria
 			this->available_points = std::stoi(pair.second);
 		}
 	}
+
 };
 
 #endif

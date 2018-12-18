@@ -5,4 +5,6 @@
 #include "States\LoadingState.h"
 #include "States\MenuState.h"
 #include "States\PauseMenuState.h"
+#include "States\StoryState.h"
+
 #endif

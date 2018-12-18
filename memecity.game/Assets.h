@@ -38,11 +38,16 @@ namespace assets {
 		static constexpr Asset HUMAN_MALE_1 = "Spritesheets/SpriteSheet.png";
 	}
 	namespace advertisements {
-		static constexpr Asset ADVERTISEMENT_ONE = "Advertisements/BurgerKing.png";
-		static constexpr Asset ADVERTISEMENT_TWO = "Advertisements/BananaWho.png";
-		static constexpr Asset ADVERTISEMENT_THREE = "Advertisements/CocaCola.png";
+		static constexpr Asset ADVERTISEMENT_ONE = "Advertisements/AbbeyGames.png";
+		static constexpr Asset ADVERTISEMENT_TWO = "Advertisements/AdventOfCode.png";
+		static constexpr Asset ADVERTISEMENT_THREE = "Advertisements/CodedFun.png";
+		static constexpr Asset ADVERTISEMENT_FOUR = "Advertisements/CppCon.png";
+		static constexpr Asset ADVERTISEMENT_FIVE = "Advertisements/BananaWho.png";
+		static constexpr Asset ADVERTISEMENT_SIX = "Advertisements/CocaCola.png";
+		static constexpr Asset ADVERTISEMENT_SEVEN = "Advertisements/BurgerKing.png";
+		static constexpr Asset ADVERTISEMENT_EIGHT = "Advertisements/kolrd.png";
 
-		const static std::vector<std::string> ADS{ ADVERTISEMENT_ONE, ADVERTISEMENT_TWO, ADVERTISEMENT_THREE };
+		const static std::vector<std::string> ADS{ ADVERTISEMENT_ONE, ADVERTISEMENT_TWO, ADVERTISEMENT_THREE, ADVERTISEMENT_FOUR, ADVERTISEMENT_FIVE, ADVERTISEMENT_SIX, ADVERTISEMENT_SEVEN, ADVERTISEMENT_EIGHT };
 
 		inline std::string get_random_ad()
 		{
