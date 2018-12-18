@@ -40,9 +40,10 @@ public:
 	}
 	~GameState()
 	{
-		auto& engine = _context->get_engine(); 
-		engine.set_calculate_fps(false);
-		engine.set_display_gamespeed(false);
+		auto& engine = _context->get_engine();
+		
+		engine.disable_calculate_fps();
+		engine.disable_display_gamespeed();
 	};
 	void on_load() override;
 	void update(float dt) override;
