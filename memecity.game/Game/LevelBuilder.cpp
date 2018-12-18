@@ -31,7 +31,7 @@ Point LevelBuilder::build(memecity::engine::ecs::EntityManager& em, loading::Loa
 			switch (object)
 			{
 			case 'n':
-				generate::NPCGenerator(_context->get_multimedia_manager(), em).generate(1, x, y);
+				generate::NPCGenerator(_context->get_multimedia_manager(), em).generate_police_npc(x, y);
 				break;
 			case 'i':
 				auto texture = multimedia_manager.get_texture(assets::sprites::TIN_CAN, 0, 0, 48, 28);

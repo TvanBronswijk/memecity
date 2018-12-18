@@ -5,6 +5,21 @@
 PauseMenuState::PauseMenuState(memecity::engine::state::StateManager & sm, GameManager::GameContext & gc)
 	: State(sm), _context(&gc)
 {
+
+
+	help_menu2 = memecity::engine::ui::menu::MenuBuilder(gc.get_multimedia_manager())
+		.create_menu("Help", assets::fonts::DEFAULT_FONT)
+		.with_read_only_menu_item("Goal:")
+		.with_read_only_menu_item("Kill NPCs to gain XP.")
+		.with_read_only_menu_item("Interact with NPCs to start quests.")
+		.with_read_only_menu_item("Complete quests to gain more XP.")
+		.with_read_only_menu_item(" ")
+		.with_read_only_menu_item("Die or click Retire to finish the game.")
+		.with_read_only_menu_item(" ")
+		//add next when needed.
+		.with_back_menu_item()
+		.get_menu();
+
 	help_menu = memecity::engine::ui::menu::MenuBuilder(gc.get_multimedia_manager())
 		.create_menu("Help", assets::fonts::DEFAULT_FONT)
 		.with_read_only_menu_item("Controls:")
@@ -19,13 +34,7 @@ PauseMenuState::PauseMenuState(memecity::engine::state::StateManager & sm, GameM
 		.with_read_only_menu_item("Arrow up: next item")
 		.with_read_only_menu_item("Arrow down: previous item")
 		.with_read_only_menu_item(" ")
-		.with_read_only_menu_item("Goal:")
-		.with_read_only_menu_item("Kill NPCs to gain XP.")
-		.with_read_only_menu_item("Interact with NPCs to start quests.")
-		.with_read_only_menu_item("Complete quests to gain more XP.")
-		.with_read_only_menu_item(" ")
-		.with_read_only_menu_item("Die or click Retire to finish the game.")
-		.with_read_only_menu_item(" ")
+		.with_menu_item("Next", help_menu2.get())
 		.with_back_menu_item()
 		.get_menu();
 

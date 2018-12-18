@@ -1,6 +1,7 @@
 #include "GameOverState.h"
 #include "..\..\Assets.h"
 #include "..\Input.h"
+#include <string>
 
 GameOverState::GameOverState(memecity::engine::state::StateManager & sm, GameManager::GameContext & gc, int experience)
 	: State(sm), _context(&gc)
@@ -8,7 +9,8 @@ GameOverState::GameOverState(memecity::engine::state::StateManager & sm, GameMan
 	menu = memecity::engine::ui::menu::MenuBuilder(gc.get_multimedia_manager())
 		.create_menu("Game Over", assets::fonts::DEFAULT_FONT)
 		.with_read_only_menu_item(" ")
-		.with_read_only_menu_item("Your total experience is: " + experience)
+		.with_read_only_menu_item("Your total experience is:")
+		.with_read_only_menu_item(std::to_string(experience))
 		.with_read_only_menu_item(" ")
 		.with_menu_item("Main Menu", nullptr, [&](auto& menu_item) { back(2);  })
 		.get_menu();

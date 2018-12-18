@@ -1,6 +1,7 @@
 #include "PlayerBuilder.h"
 #include "Components.h"
 #include "../Assets.h"
+#include "Builder/QuestBuilder.h"
 
 int rand_stat() {
 	return 1 + (rand() % 3);
@@ -17,12 +18,13 @@ const memecity::engine::ecs::Entity& PlayerBuilder::build(memecity::engine::ecs:
 
 	auto builder = em.create_entity("player")
 		.with_component<BaseComponent>(std::move(texture), _start.x, _start.y, 48.0f, 48.0f)
-		.with_component<PlayerComponent>()
+		.with_component<PlayerComponent>(QuestBuilder(multimedia_manager, em).get_all_stories())
 		.with_component<StatsComponent>(rand_stat(), rand_stat(), rand_stat(), rand_stat(), rand_stat(), rand_stat(), rand_stat())
 		.with_component<AnimationComponent>()
-		.with_component<VelocityComponent>()
+		.with_component<ExpComponent>(0, 100)
+		.with_component<HealthComponent>(100, nullptr)
 		.with_component<InventoryComponent>()
-		.with_component<HealthComponent>();
+		.with_component<VelocityComponent>();
 	
 	auto base_component = builder.get().get<BaseComponent>();
 	builder.with_component<ColliderComponent>(BoundaryRectangle(base_component->location.x, base_component->location.y, base_component->w, base_component->h));

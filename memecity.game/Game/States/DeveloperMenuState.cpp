@@ -17,9 +17,10 @@ DeveloperMenuState::DeveloperMenuState(memecity::engine::state::StateManager& sm
 		auto player = em.get_components_of_type<PlayerComponent>();
 		for (auto& player_component : player)
 		{
-			player_component.get().BlikCoins += 50000;
+			player_component.get().blik_coins += 50000;
 
 		}
+		back();
 	})
 		.with_menu_item("wanpanman", nullptr, [&](auto& menu_item)// one punch kill
 	{
@@ -29,6 +30,7 @@ DeveloperMenuState::DeveloperMenuState(memecity::engine::state::StateManager& sm
 			const auto& stats = player.get().entity().get<StatsComponent>();
 			stats->strength = 100;
 		}
+		back();
 	})
 		.with_menu_item("Avada Kedavra", nullptr, [&](auto& menu_item)// alle (niet quest) npcs gaan dood
 	{
@@ -41,6 +43,7 @@ DeveloperMenuState::DeveloperMenuState(memecity::engine::state::StateManager& sm
 				health->health = 0;
 			}
 		}
+		back();
 	})
 		.with_back_menu_item()
 		.get_menu();

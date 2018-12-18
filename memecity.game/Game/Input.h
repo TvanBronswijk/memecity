@@ -14,9 +14,11 @@ namespace input {
 	static constexpr Key TAKE = "F";
 	static constexpr Key ESCAPE = "Escape";
 	static constexpr Key ENTER = "Return";
+	static constexpr Key N = "N";
 	static constexpr Key DEVELOPER = "`";
 	static constexpr Key ONE = "1";
 	static constexpr Key TWO = "2";
+	static constexpr Key STATS = "P";
 	static constexpr Key THREE = "3";
 	static constexpr Key ARROWDOWN = "Down";
 	static constexpr Key ARROWUP = "Up";
