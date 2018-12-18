@@ -29,6 +29,7 @@
     <ClCompile Include="Game\MapSaver.cpp" />
     <ClCompile Include="Game\Generate\City\Strategy\File\FileStrategy.cpp" />
     <ClCompile Include="Game\States\StatsState.cpp" />
+    <ClCompile Include="Game\PlayerManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Components\DimensionComponent.h" />
@@ -95,6 +96,7 @@
     <ClInclude Include="Game\Components\TileComponent.h" />
     <ClInclude Include="Game\Generate\City\Strategy\File\FileStrategy.h" />
     <ClInclude Include="Game\States\StatsState.h" />
+    <ClInclude Include="Game\PlayerManager.h" />
   </ItemGroup>
   <ItemGroup>
     <CopyFileToFolders Include="Assets\Music\bgm.mp3" />
