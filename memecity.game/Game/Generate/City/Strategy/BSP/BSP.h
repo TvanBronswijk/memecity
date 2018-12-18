@@ -57,7 +57,7 @@ namespace generate::strategy::bsp {
 		void write_node(generate::models::City &c, const Node& n);
 	public:
 		BSP() = default;
-		BSP(std::vector<models::Prefab> prefabs) : Strategy(prefabs) {}
+		BSP(std::vector<const models::Prefab*> prefabs) : Strategy(prefabs) {}
 		~BSP() = default;
 		generate::models::City generate(int w, int h) override;
 	};

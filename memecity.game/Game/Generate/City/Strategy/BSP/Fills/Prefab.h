@@ -5,13 +5,16 @@
 namespace generate::strategy::bsp {
 	class Prefab : public Fill {
 	private:
-		models::Prefab& _prefab;
+		const models::Prefab& _prefab;
 	public:
-		Prefab(models::Prefab& prefab) : _prefab(prefab) {}
+		Prefab(const models::Prefab& prefab) : _prefab(prefab) {}
 		~Prefab() = default;
 		void write(models::City& c, const Node& n) const override {
 			iterate(n, [&](int x, int y) {
-				c(x, y) = _prefab(x - n.x, y - n.y);
+				int xoff = x - n.x;
+				int yoff = y - n.y;
+				c.tiles(y, x) = xoff < _prefab.width && yoff < _prefab.height ? _prefab.tiles(xoff, yoff) : '-';
+				c.objects(y, x) = xoff < _prefab.width && yoff < _prefab.height ? _prefab.objects(xoff, yoff) : '\0';
 			});
 		}
 	};

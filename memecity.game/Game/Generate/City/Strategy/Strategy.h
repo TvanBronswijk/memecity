@@ -7,17 +7,17 @@ namespace generate::strategy {
 	class Strategy {
 	protected:
 		size_t _prefab_index;
-		std::vector<models::Prefab> _prefabs;
+		std::vector<const models::Prefab*> _prefabs;
 	public:
 		Strategy() noexcept = default;
-		Strategy(std::vector<models::Prefab> prefabs) : _prefab_index(0), _prefabs(prefabs) {}
+		Strategy(std::vector<const models::Prefab*> prefabs) : _prefab_index(0), _prefabs(prefabs) {}
 		virtual ~Strategy() = default;
 		virtual models::City generate(int w, int h) = 0;
-		virtual models::Prefab* get_next_prefab() {
+		virtual const models::Prefab* get_next_prefab() {
 			if (_prefab_index >= _prefabs.size()) {
 				return nullptr;
 			}
-			return &(_prefabs[_prefab_index++]);
+			return _prefabs[_prefab_index++];
 		}
 	};
 }
