@@ -33,6 +33,9 @@ Point LevelBuilder::build(memecity::engine::ecs::EntityManager& em, loading::Loa
 			switch (object)
 			{
 			case 'n':
+				generate::NPCGenerator(_context->get_multimedia_manager(), em).generate_civilian_npc(x*64.0f, y*64.0f);
+				break;
+			case 'p':
 				generate::NPCGenerator(_context->get_multimedia_manager(), em).generate_police_npc(x*64.0f, y*64.0f);
 				break;
 			case 'i':
@@ -42,8 +45,6 @@ Point LevelBuilder::build(memecity::engine::ecs::EntityManager& em, loading::Loa
 					.with_component<BaseComponent>(std::move(texture), x * 64.0f, y * 64.0f, 48.0f, 48.0f)
 					.with_component<ItemComponent>("Blik", "a normal tin can")
 					.with_component<StatsComponent>(0, 0, 0, 0, 0, 0, 0);
-				auto base_component = builder.get().get<BaseComponent>();
-				builder.with_component<ColliderComponent>(BoundaryRectangle(base_component->location.x, base_component->location.y, base_component->w, base_component->h));
 				break;
 			}
 			listener.increase_current_value((100.0f / (_map_width*_map_height)) / 2);

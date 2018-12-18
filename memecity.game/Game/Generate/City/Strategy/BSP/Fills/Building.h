@@ -21,6 +21,19 @@ namespace generate::strategy::bsp {
 					c.tiles(n.begin.x + _road_size, y) = 'W';
 					c.tiles(n.end.x - _road_size, y) = 'W';
 				}
+				//NPC
+				if (x == n.begin.x && y == n.begin.y) {
+					if (rand() % 100 < 50) {
+						c.objects(x, y) = 'c';
+					}
+				}
+				if (x == n.end.x && y == n.end.y) {
+					if (rand() % 100 < 50) {
+						c.objects(x, y) = 'p';
+					}
+				}
+
+
 
 			});
 

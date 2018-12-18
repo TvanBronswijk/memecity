@@ -22,13 +22,13 @@ namespace generate {
 		int exp = rand() % 10 + 25;
 		int blikcoins = rand() % (level * 5 + 1) + 5;
 
-		int strength = 5 + level;
-		int perception = 5 + level;
-		int endurance = 5 + level;
-		int charisma = 5 + level;
-		int intelligence = 5 + level;
-		int agility = 5 + level;
-		int luck = 5 + level;
+		int strength = 6 + level;
+		int perception = 6 + level;
+		int endurance = 6 + level;
+		int charisma = 6 + level;
+		int intelligence = 6 + level;
+		int agility = 6 + level;
+		int luck = 6 + level;
 
 		int health = ((strength * 5) + (endurance * 3) + (agility * 2) + 50);
 
