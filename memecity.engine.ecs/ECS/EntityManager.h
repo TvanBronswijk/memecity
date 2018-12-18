@@ -170,6 +170,14 @@ namespace memecity::engine::ecs {
 			});
 		}
 
+		template<class C>
+		void sort(std::function<bool(const C&, const C&)> sort_func) {
+			std::lock_guard lock2(component_mutex);
+			auto typed_components = components.find(token<C>());
+			if(typed_components != components.end())
+				std::sort(typed_components->second.begin(), typed_components->second.end(), [&](auto& l, auto& r) {return sort_func(*static_cast<C*>(l.get()), *static_cast<C*>(r.get())); });
+		}
+
 		void cleanup() {
 			deleted_entities.clear();
 			deleted_components.clear();
