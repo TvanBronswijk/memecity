@@ -14,7 +14,7 @@ void AnimationSystem::run(EntityManager& em, float dt) const
 
 void AnimationSystem::change_texture(BaseComponent &base_component, std::unique_ptr<Texture> texture) const
 {
-	auto current_texture = base_component.get_texture();
+	auto& current_texture = base_component.get_texture();
 	if (current_texture.get_filename() != texture->get_filename())
 	{
 		texture->set_position(current_texture.get_position());
@@ -25,7 +25,7 @@ void AnimationSystem::change_texture(BaseComponent &base_component, std::unique_
 void AnimationSystem::on_move(EntityManager& em, MoveEventArgs args)
 {
 	const auto animation_component = args.source.get<AnimationComponent>();
-	const auto& current_velocity = args.source.get<VelocityComponent>();
+	const auto current_velocity = args.source.get<VelocityComponent>();
 
 	auto base_component = args.source.get<BaseComponent>();
 	auto& texture = base_component->get_texture();
