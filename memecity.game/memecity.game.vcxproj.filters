@@ -31,6 +31,7 @@
     <ClCompile Include="Game\Systems\QuestSystem.cpp" />
     <ClCompile Include="Game\Generate\Item\ItemGenerator.cpp" />
     <ClCompile Include="Game\States\StatsState.cpp" />
+    <ClCompile Include="Game\Systems\PickpocketSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Components\DimensionComponent.h" />
@@ -105,7 +106,10 @@
     <ClInclude Include="Game\Quest\Story.h" />
     <ClInclude Include="Game\Quest\Task.h" />
     <ClInclude Include="Game\Generate\Item\ItemGenerator.h" />
+    <ClInclude Include="Game\Systems\PickpocketSystem.h" />
+    <ClInclude Include="Game\Event\PickpocketEventArgs.h" />
     <ClInclude Include="Game\Event\BlikCoinEventArgs.h" />
+    <ClInclude Include="Game\Event\FaultyPickpocketEventArgs.h" />
   </ItemGroup>
   <ItemGroup>
     <CopyFileToFolders Include="Assets\Music\bgm.mp3" />

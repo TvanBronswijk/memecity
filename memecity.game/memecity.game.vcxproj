@@ -24,6 +24,8 @@
     <ClInclude Include="Game\Components.h" />
     <ClInclude Include="Game\Components\AIComponent.h" />
     <ClInclude Include="Game\Components\QuestAIComponent.h" />
+    <ClInclude Include="Game\Event\FaultyPickpocketEventArgs.h" />
+    <ClInclude Include="Game\Event\PickpocketEventArgs.h" />
     <ClInclude Include="Game\Generate\Item\ItemGenerator.h" />
     <ClInclude Include="Game\Quest\Quest.h" />
     <ClInclude Include="Game\Quest\Story.h" />
@@ -88,6 +90,7 @@
     <ClInclude Include="Game\Systems\OverlaySystem.h" />
     <ClInclude Include="Game\Components\ScoreComponent.h" />
     <ClInclude Include="Assets.h" />
+    <ClInclude Include="Game\Systems\PickpocketSystem.h" />
     <ClInclude Include="Game\Systems\QuestSystem.h" />
   </ItemGroup>
   <ItemGroup>
@@ -116,6 +119,7 @@
     <ClCompile Include="Game\Systems\FogOfWarSystem.cpp" />
     <ClCompile Include="Game\Systems\InteractionSystem.cpp" />
     <ClCompile Include="Game\Systems\InputSystem.cpp" />
+    <ClCompile Include="Game\Systems\PickpocketSystem.cpp" />
     <ClCompile Include="Game\Systems\QuestSystem.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Game\Systems\MoveSystem.cpp" />

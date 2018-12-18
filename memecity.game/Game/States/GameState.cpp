@@ -18,7 +18,7 @@ void GameState::on_load()
 	auto& overlay_system = system_pool.create_system<OverlaySystem>(memecity::engine::ecs::System::draw, multimedia_manager);
 	auto& fow_system = system_pool.create_system<FogOfWarSystem>(memecity::engine::ecs::System::draw, multimedia_manager);
 
-
+	auto& pickpocket_system = system_pool.create_system<PickpocketSystem>(memecity::engine::ecs::System::update, multimedia_manager);
 	auto& fighting_system = system_pool.create_system<FightingSystem>(memecity::engine::ecs::System::update, multimedia_manager);
 	auto& exp_system = system_pool.create_system<ExpSystem>(memecity::engine::ecs::System::update);
 	auto& health_system = system_pool.create_system<HealthSystem>(memecity::engine::ecs::System::update, *_context);
@@ -37,6 +37,9 @@ void GameState::on_load()
 	bind(fighting_system.quest_event, &quest_system, &QuestSystem::on_event);
 	bind(fighting_system.death_event, &health_system, &HealthSystem::on_death);
 	bind(fighting_system.exp_event, &exp_system, &ExpSystem::on_exp_gain);
+	bind(pickpocket_system.faulty_pickpocket_event, &interaction_system, &InteractionSystem::on_pickpocket);
+	bind(input_system.pickpocket_event, &pickpocket_system, &PickpocketSystem::on_pickpocket);
+	bind(pickpocket_system.exp_event, &exp_system, &ExpSystem::on_exp_gain);
 	bind(quest_system.exp_event, &exp_system, &ExpSystem::on_exp_gain);
 
 	bind(ai_system.attack_event, &fighting_system, &FightingSystem::on_attack);
@@ -44,6 +47,7 @@ void GameState::on_load()
 	fighting_system.health_changed_event += [&](auto& em, auto args) { _hud.update("HEALTHVALUE", args.new_health); };
 	exp_system.exp_event += [&](auto& em, auto args) {_hud.update("EXP", "Exp/Next: " + std::to_string(args.new_exp) + "/" + std::to_string(args.remaining_exp)); };
 	quest_system.blikcoins_event += [&](auto& em, auto args) {_hud.update("BLIKCOIN", "Blikcoins: " + std::to_string(args.new_coin)); };
+	pickpocket_system.blikcoins_event += [&](auto& em, auto args) {_hud.update("BLIKCOIN", "Blikcoins: " +  std::to_string(args.new_coin)); };
 
 
 

@@ -20,6 +20,7 @@ namespace generate {
 		int range_of_fighting = rand() % 30 + min_fighting_range;
 		int movement_speed = rand() % 40 + min_movement_speed;
 		int exp = rand() % 10 + 25;
+		int blikcoins = rand() % (level * 5 + 1) + 5;
 
 		int strength = 5 + level;
 		int perception = 5 + level;
@@ -37,7 +38,7 @@ namespace generate {
 		hp += std::to_string(health);
 
 		return generate_npc(
-			x, y, 48.0f, 48.0f, exp, range_of_fighting, movement_speed,
+			x, y, 48.0f, 48.0f, exp, range_of_fighting, movement_speed,blikcoins,
 			strength, perception, endurance, charisma, intelligence, agility, luck,
 			name, Ai_State::Roaming, {}, level,
 			assets::spritesheets::HUMAN_MALE_1);
@@ -48,6 +49,7 @@ namespace generate {
 		int range_of_fighting = min_fighting_range;
 		int movement_speed = rand() % min_movement_speed;
 		int exp = 10;
+		int blikcoins = rand() % (level * 10 + 1) + 10;
 
 		int health = 100;
 
@@ -57,7 +59,7 @@ namespace generate {
 		hp += std::to_string(health);
 
 		return generate_npc(
-			x, y, 48.0f, 48.0f, exp, range_of_fighting, movement_speed,
+			x, y, 48.0f, 48.0f, exp, range_of_fighting, movement_speed,blikcoins,
 			5, 5, 5, 5, 5, 5, 5,
 			name, Ai_State::Roaming, {}, level,
 			assets::spritesheets::HUMAN_MALE_1);
@@ -66,10 +68,11 @@ namespace generate {
 	//random generator
 	const memecity::engine::ecs::Entity& NPCGenerator::generate_random_npc(float x, float y) {
 		std::string name = "random";
-		int level = rand() % 1;
+		int level = 1;
 		int range_of_fighting = rand() % 30 + min_fighting_range;
 		int movement_speed = rand() % 40 + min_movement_speed;
 		int exp = rand() % 10 + 10;
+		int blikcoins = rand() % (level * 10 + 1) + 10;
 
 		int points = level * 5;
 		int strength_points = random_int(points);
@@ -93,7 +96,7 @@ namespace generate {
 		int luck = points + min_base_points;
 
 		return generate_npc(
-			x, y, 48.0f, 48.0f, exp, range_of_fighting, movement_speed,
+			x, y, 48.0f, 48.0f, exp, range_of_fighting, movement_speed,blikcoins,
 			strength, perception, endurance, charisma,intelligence, agility, luck, 
 			name, Ai_State::Roaming, {}, level,
 			assets::spritesheets::HUMAN_MALE_1);
@@ -101,7 +104,7 @@ namespace generate {
 
 	//base generator
 	const memecity::engine::ecs::Entity& NPCGenerator::generate_npc(
-		float x, float y, float width,float height, int exp, int range_of_fighting, float movement_speed, 
+		float x, float y, float width,float height, int exp, int range_of_fighting, float movement_speed, int blikcoins,
 		int strength, int perception, int endurance, int charisma,int intelligence, int agility, int luck, 
 		std::string name, Ai_State state, std::vector<std::string>interaction, int level,
 		assets::Asset animation_character){
@@ -132,7 +135,7 @@ namespace generate {
 		const char* entity_name = name.c_str();
 		auto& builder = entity_manager.create_entity(entity_name)
 			.with_component<BaseComponent>(std::move(animation_texture), x, y, width, height)
-			.with_component<AIComponent>(state, name, exp, range_of_fighting, movement_speed, std::move(name_texture))
+			.with_component<AIComponent>(state, name, exp, range_of_fighting, movement_speed,blikcoins, std::move(name_texture))
 			.with_component<VelocityComponent>()
 			.with_component<AnimationComponent>()
 			.with_component<LevelComponent>(level)
