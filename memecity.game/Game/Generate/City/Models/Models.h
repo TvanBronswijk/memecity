@@ -49,11 +49,31 @@ namespace generate::models {
 		}
 	};
 
+	static const Prefab station(8, 8, 
+		"--------"
+		"-WWWWWW-"
+		"-WmmmmW-"
+		"-WmccmW-"
+		"-WmccmW-"
+		"-WmmmmW-"
+		"-WWmmWW-"
+		"--------",
+		"\0\0\0\0\0\0\0\0"
+		"\0\0\0\0\0\0\0\0"
+		"\0\0\0\0\0\0\0\0"
+		"\0\0\0\0\0\0\0\0"
+		"\0\0\0\0\0\0\0\0"
+		"\0\0\0\0\0\0\0\0"
+		"\0\0\0\0\0\0\0\0"
+		"\0\0\0\0\0\0\0\0");
+
 	static const std::map<char, std::map<assets::Asset, int>> __cta {
 		{'-', assets::sprites::tiles::ROAD },
 		{'w', assets::sprites::tiles::WATER },
 		{'g', assets::sprites::tiles::GRASS },
-		{'W', assets::sprites::tiles::WALL }
+		{'W', assets::sprites::tiles::WALL },
+		{'m', assets::sprites::tiles::GRASS },
+		{'c', assets::sprites::tiles::WATER },
 	};
 	static assets::Asset char_to_asset(char c) {
 		const auto index = rand() % 100;
