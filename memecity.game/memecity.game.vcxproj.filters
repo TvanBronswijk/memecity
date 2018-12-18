@@ -23,9 +23,13 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Game\Systems\MoveSystem.cpp" />
     <ClCompile Include="Game\Systems\OverlaySystem.cpp" />
-    <ClCompile Include="Game\States\GameOverState.cpp" />
+    <ClCompile Include="Game\Builder\QuestBuilder.cpp" />
+    <ClCompile Include="Game\States\StoryState.cpp" />
     <ClCompile Include="Game\Systems\HealthSystem.cpp" />
+    <ClCompile Include="Game\States\GameOverState.cpp" />
     <ClCompile Include="Game\Systems\FogOfWarSystem.cpp" />
+    <ClCompile Include="Game\Systems\QuestSystem.cpp" />
+    <ClCompile Include="Game\Generate\Item\ItemGenerator.cpp" />
     <ClCompile Include="Game\States\StatsState.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -84,12 +88,24 @@
     <ClInclude Include="Game\Components\ScoreComponent.h" />
     <ClInclude Include="Assets.h" />
     <ClInclude Include="Game\Components\ColliderComponent.h" />
-    <ClInclude Include="Game\States\GameOverState.h" />
+    <ClInclude Include="Game\Builder\QuestBuilder.h" />
+    <ClInclude Include="Game\Components\QuestAIComponent.h" />
+    <ClInclude Include="Game\Enum\AIStates.h" />
+    <ClInclude Include="Game\Enum\QuestStates.h" />
+    <ClInclude Include="Game\Event\QuestEventArgs.h" />
+    <ClInclude Include="Game\States\StoryState.h" />
+    <ClInclude Include="Game\Systems\FogOfWarSystem.h" />
     <ClInclude Include="Game\Systems\HealthSystem.h" />
+    <ClInclude Include="Game\Systems\QuestSystem.h" />
+    <ClInclude Include="Game\States\GameOverState.h" />
     <ClInclude Include="Game\Components\InventoryComponent.h" />
     <ClInclude Include="Game\Components\ItemComponent.h" />
     <ClInclude Include="Game\Systems\FogOfWarSystem.h" />
     <ClInclude Include="Game\States\StatsState.h" />
+    <ClInclude Include="Game\Quest\Quest.h" />
+    <ClInclude Include="Game\Quest\Story.h" />
+    <ClInclude Include="Game\Quest\Task.h" />
+    <ClInclude Include="Game\Generate\Item\ItemGenerator.h" />
   </ItemGroup>
   <ItemGroup>
     <CopyFileToFolders Include="Assets\Music\bgm.mp3" />
