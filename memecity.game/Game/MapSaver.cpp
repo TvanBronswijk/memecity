@@ -37,7 +37,7 @@ std::string MapSaver::get_map(memecity::engine::ecs::EntityManager& em)
 		auto tile_component = entity.get().get<TileComponent>();
 		int x = base_component->location.x / base_component->w;
 		int y = base_component->location.y / base_component->h;
-		map(x, y) = tile_component->get_character();
+		map(y, x) = tile_component->character;
 	}
 	
 	return map.get_tile_string();

@@ -4,12 +4,15 @@
 #include "../Systems/FightingSystem.h"
 #include "../Components/ScoreComponent.h"
 #include "Engine/SDL/Wrappers/FileWrapper.h"
-#include "../GameLoader.h"
+#include "../LevelBuilder.h"
 #include "../Systems/ExpSystem.h"
+#include "../PlayerBuilder.h"
 
 void GameState::on_load()
 {
-	next<LoadingState>(*_context, [&](auto& ctx, auto& listener) { GameLoader(ctx, 128, 128, _load_from_file).build(entity_manager, listener); back(); });
+	Point start;
+	next<LoadingState>(*_context, [&](auto& ctx, auto& listener) { start = LevelBuilder(ctx, 128, 128, _load_from_file).build(entity_manager, listener); back(); });
+	next<LoadingState>(*_context, [&](auto& ctx, auto& listener) { PlayerBuilder(ctx, start).build(entity_manager, listener); back(); });
 
 	auto& multimedia_manager = _context->get_multimedia_manager();
 

@@ -11,9 +11,9 @@ namespace generate::strategy::bsp {
 		~Park() = default;
 		void write(models::City& c, const Node& n) const override {
 			iterate(n, [&](int x, int y){
-					c(x, y) = '-';
+				c.tiles(x, y) = '-';
 					if ((x > n.begin.x && x < n.end.x - 1) && (y > n.begin.y && y < n.end.y - 1)) {
-						c(x, y) = 'g';
+						c.tiles(x, y) = 'g';
 					}
 			});
 
@@ -21,10 +21,10 @@ namespace generate::strategy::bsp {
 			int y = n.center.y;
 			for (int i = 0; i < _iterations; i++)
 			{
-				if (c(x, y) == 'w') {
+				if (c.tiles(x, y) == 'w') {
 					i--;
 				}
-				c(x, y) = 'w';
+				c.tiles(x, y) = 'w';
 				switch (rand() % 4)
 				{
 				case 0:
@@ -49,6 +49,7 @@ namespace generate::strategy::bsp {
 					break;
 				}
 			}
+			c.objects(n.begin.x, n.begin.y) = 'i';
 		}
 	};
 }

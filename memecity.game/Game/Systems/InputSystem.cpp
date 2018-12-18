@@ -5,6 +5,8 @@
 #include "../States/DeveloperMenuState.h"
 #include "../PlayerManager.h"
 #include "../States/StatsState.h"
+#include "..\Util\Util.h"
+#include "..\LevelBuilder.h"
 
 using namespace memecity::engine;
 using namespace memecity::engine::ecs;
@@ -50,6 +52,24 @@ void InputSystem::run(EntityManager& em, float dt) const
 
 		if (input_manager.is_pressed(input::INTERACTION))
 		{
+			if (on_tile(em, player) == "Station") {
+				Point start;
+				state_manager.create_state<LoadingState>(*_context,
+					[&](auto& ctx, auto& listener) {
+					auto entities = em.query_all_entities().where([](const auto& e) { return e.type != "player";  }).to_vector();
+					listener.set_text("Clearing State...");
+					listener.set_max_value(100.0f);
+					listener.set_current_value(0.0f);
+					for (const auto& entity : entities) {
+						em.remove_entity(entity);
+						listener.increase_current_value(100.0f / entities.size());
+					}
+					state_manager.pop(); });
+				state_manager.create_state<LoadingState>(*_context, 
+					[&](auto& ctx, auto& listener) { start = LevelBuilder(ctx, 128, 128, false).build(em, listener); state_manager.pop(); });
+				player.get<BaseComponent>()->location = start;
+			}
+
 			auto npcs = em.get_entities_with_component<AIComponent>();
 			for (const Entity& npc : npcs) {
 				if(check_collision(*player.get<BaseComponent>(), *npc.get<BaseComponent>(), 60)){

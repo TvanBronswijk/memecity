@@ -42,7 +42,7 @@
     <ClInclude Include="Game\Event\ExpEventArgs.h" />
     <ClInclude Include="Game\Event\HealthChangedEventArgs.h" />
     <ClInclude Include="Game\Event\StatsEventArgs.h" />
-    <ClInclude Include="Game\GameLoader.h" />
+    <ClInclude Include="Game\LevelBuilder.h" />
     <ClInclude Include="Game\Event\MoveEventArgs.h" />
     <ClInclude Include="Game\Generate.h" />
     <ClInclude Include="Game\Generate\City\Strategy\BSP\Fills\Building.h" />
@@ -55,6 +55,7 @@
     <ClInclude Include="Game\Input.h" />
     <ClInclude Include="Game\MapSaver.h" />
     <ClInclude Include="Game\PlayerManager.h" />
+    <ClInclude Include="Game\PlayerBuilder.h" />
     <ClInclude Include="Game\States\GameOverState.h" />
     <ClInclude Include="Game\States\DeveloperMenuState.h" />
     <ClInclude Include="Game\States\LoadingState.h" />
@@ -97,15 +98,17 @@
     <ClInclude Include="Assets.h" />
     <ClInclude Include="Game\Systems\PickpocketSystem.h" />
     <ClInclude Include="Game\Systems\QuestSystem.h" />
+    <ClInclude Include="Game\Util\Util.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game\Generate\City\Strategy\File\FileStrategy.cpp" />
     <ClCompile Include="Game\Builder\QuestBuilder.cpp" />
     <ClCompile Include="Game\Generate\Item\ItemGenerator.cpp" />
     <ClCompile Include="Game\Generate\NPC\NPCGenerator.cpp" />
-    <ClCompile Include="Game\GameLoader.cpp" />
     <ClCompile Include="Game\MapSaver.cpp" />
     <ClCompile Include="Game\PlayerManager.cpp" />
+    <ClCompile Include="Game\LevelBuilder.cpp" />
+    <ClCompile Include="Game\PlayerBuilder.cpp" />
     <ClCompile Include="Game\States\DeveloperMenuState.cpp" />
     <ClCompile Include="Game\States\GameOverState.cpp" />
     <ClCompile Include="Game\States\LoadingState.cpp" />

@@ -92,7 +92,11 @@ namespace memecity::engine::ecs {
 			std::lock_guard lock(entity_mutex);
 			std::lock_guard lock2(component_mutex);
 			std::vector<std::reference_wrapper<const Entity>> result;
-			auto& entity_components = (*components.find(token<C>())).second;
+			auto it = components.find(token<C>());
+			if (it == components.end()) {
+				return result;
+			}
+			auto& entity_components = it->second;
 			std::transform(entity_components.begin(), entity_components.end(), 
 				std::back_inserter(result), [](auto& c)->std::reference_wrapper<const Entity> {
 				return std::ref(c->entity());

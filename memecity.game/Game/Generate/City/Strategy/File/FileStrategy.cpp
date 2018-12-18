@@ -10,12 +10,9 @@ generate::models::City generate::strategy::FileStrategy::generate(int w, int h)
 		{
 			h++;
 		}
-		else
+		else if (h == 0)
 		{
-			if (h == 0)
-			{
-				w++;
-			}
+			w++;
 		}
 	}
 	models::City city(w, h);
@@ -25,7 +22,8 @@ generate::models::City generate::strategy::FileStrategy::generate(int w, int h)
 	{
 		if (item != '\n')
 		{
-			city(y, x) = item;
+			city.tiles(x, y) = item;
+			city.objects(x, y) = '\0';
 		}
 		if (item == '\n')
 		{

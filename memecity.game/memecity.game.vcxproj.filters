@@ -2,7 +2,6 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="Game\Generate\NPC\NPCGenerator.cpp" />
-    <ClCompile Include="Game\GameLoader.cpp" />
     <ClCompile Include="Game\States\DeveloperMenuState.cpp" />
     <ClCompile Include="Game\States\LoadingState.cpp" />
     <ClCompile Include="Game\States\GameState.cpp" />
@@ -35,6 +34,8 @@
     <ClCompile Include="Game\Systems\QuestSystem.cpp" />
     <ClCompile Include="Game\Generate\Item\ItemGenerator.cpp" />
     <ClCompile Include="Game\States\StatsState.cpp" />
+    <ClCompile Include="Game\LevelBuilder.cpp" />
+    <ClCompile Include="Game\PlayerBuilder.cpp" />
     <ClCompile Include="Game\Systems\PickpocketSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -45,7 +46,6 @@
     <ClInclude Include="Game\Event\ExpEventArgs.h" />
     <ClInclude Include="Game\Event\HealthChangedEventArgs.h" />
     <ClInclude Include="Game\Event\StatsEventArgs.h" />
-    <ClInclude Include="Game\GameLoader.h" />
     <ClInclude Include="Game\Event\MoveEventArgs.h" />
     <ClInclude Include="Game\Generate.h" />
     <ClInclude Include="Game\Generate\City\Strategy\BSP\Fills\Building.h" />
@@ -118,6 +118,10 @@
     <ClInclude Include="Game\Event\PickpocketEventArgs.h" />
     <ClInclude Include="Game\Event\BlikCoinEventArgs.h" />
     <ClInclude Include="Game\Event\FaultyPickpocketEventArgs.h" />
+    <ClInclude Include="Game\LevelBuilder.h" />
+    <ClInclude Include="Game\PlayerBuilder.h" />
+    <ClInclude Include="Game\Components\TileComponent.h" />
+    <ClInclude Include="Game\Util\Util.h" />
   </ItemGroup>
   <ItemGroup>
     <CopyFileToFolders Include="Assets\Music\bgm.mp3" />
