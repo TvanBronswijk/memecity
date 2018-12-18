@@ -56,11 +56,11 @@ namespace memecity::engine {
 		bool get_fps_trigger = false;
 		bool display_game_speed = false;
 
-		using fps_subscriber = std::function<void(bool enabled,int fps)>;
-		using game_speed_subscriber = std::function<void(bool enabled, float fps)>;
+		using FpsSubscriber = std::function<void(bool enabled,int fps)>;
+		using GameSpeedSubscriber = std::function<void(bool enabled, float fps)>;
 
-		std::vector<fps_subscriber> fps_subscribers;
-		std::vector<game_speed_subscriber> game_speed_subscribers;
+		std::vector<FpsSubscriber> fps_subscribers;
+		std::vector<GameSpeedSubscriber> game_speed_subscribers;
 
 		float game_speed_modifier = 1.0f;
 
@@ -81,25 +81,35 @@ namespace memecity::engine {
 			return this->game_speed_modifier;
 		}
 
-		void bind_fps(fps_subscriber s) { fps_subscribers.push_back(s); }
-		void bind_game_speed(game_speed_subscriber s) { game_speed_subscribers.push_back(s); }
-		void set_display_gamespeed(bool state)
+		void bind_fps(FpsSubscriber s)
 		{
-			if (!state) {
-				for (auto& subscriber : game_speed_subscribers) {
-					subscriber(false, 0.0f);
-				}
-			}
-			display_game_speed = state;
+			fps_subscribers.push_back(s);
+			get_fps_trigger = true;
 		}
-		void set_calculate_fps(bool state)
+		void bind_game_speed(GameSpeedSubscriber s)
 		{
-			if (!state) {
-				for (auto& subscriber : fps_subscribers) {
-					subscriber(false, 0);
-				}
+			game_speed_subscribers.push_back(s);
+			display_game_speed = true;
+			for (auto& subscriber : game_speed_subscribers) {
+				subscriber(true, game_speed_modifier);
 			}
-			get_fps_trigger = state;
+		}
+		void disable_display_gamespeed()
+		{
+			
+			for (auto& subscriber : game_speed_subscribers) {
+				subscriber(false, 0.0f);
+			}
+			game_speed_subscribers.clear();			
+			display_game_speed = false;
+		}
+		void disable_calculate_fps()
+		{
+			for (auto& subscriber : fps_subscribers) {
+				subscriber(false, 0);
+			}
+			fps_subscribers.clear();			
+			get_fps_trigger = false;
 		}
 		MemeEngine() : storage_manager(), multimedia_manager(false), input_manager(), timer() {
 			_context = std::make_unique<Context>(*this);

@@ -16,6 +16,7 @@ namespace input {
 	static constexpr Key ENTER = "Return";
 	static constexpr Key N = "N";
 	static constexpr Key DEVELOPER = "`";
+	static constexpr Key Z = "Z";
 	static constexpr Key ONE = "1";
 	static constexpr Key TWO = "2";
 	static constexpr Key STATS = "P";

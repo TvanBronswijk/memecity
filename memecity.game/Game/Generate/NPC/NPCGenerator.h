@@ -32,7 +32,7 @@ namespace generate {
 			const memecity::engine::ecs::Entity& generate_civilian_npc(float x, float y);
 		const memecity::engine::ecs::Entity& generate_quest_npc(std::string name,int x, int y, assets::Asset asset);
 		const memecity::engine::ecs::Entity& generate_npc(
-			float x, float y,float width, float height,int exp, int range_of_fighting, float movement_speed, int strength, int perception, int endurance, int charisma, 
+			float x, float y,float width, float height,int exp, int range_of_fighting, float movement_speed, int blikcoins, int strength, int perception, int endurance, int charisma,
 			int intelligence, int agility, int luck, std::string name, Ai_State state, std::vector<std::string>interaction, int level,
 			assets::Asset animation_character);
 		std::vector<std::string> create_interaction_strings();

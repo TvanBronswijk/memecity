@@ -30,7 +30,7 @@ public:
 		_hud.create_overlay_text_item("A", "A: 1", 16, 500, 32);
 		_hud.create_overlay_text_item("L", "L: 1", 16, 500, 48);
 
-		_hud.create_overlay_text_item("BLIKCOIN", "BlikCoin: 9999", 16, 650, 16);
+		_hud.create_overlay_text_item("BLIKCOIN", "BlikCoins: 0", 16, 650, 16);
 
 		_hud.create_overlay_text_item("INVENTORY"," Inventory" , 16, 1000, 16);
 		_hud.create_overlay_text_item("SIZE"," Size = 1" , 16, 1000, 38);
@@ -40,9 +40,10 @@ public:
 	}
 	~GameState()
 	{
-		auto& engine = _context->get_engine(); 
-		engine.set_calculate_fps(false);
-		engine.set_display_gamespeed(false);
+		auto& engine = _context->get_engine();
+		
+		engine.disable_calculate_fps();
+		engine.disable_display_gamespeed();
 	};
 	void on_load() override;
 	void update(float dt) override;

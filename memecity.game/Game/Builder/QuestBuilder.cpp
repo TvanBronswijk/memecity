@@ -89,7 +89,7 @@ Story QuestBuilder::intro() {
 		"Fight " + yoeri,
 		Quest_State::Fighting,
 		{"go away!!"},
-		&npc_generator->generate_npc(0,50,48,48,10,60,100,1,1,1,1,1,1,1,yoeri,Ai_State::Idle,{" "},1,assets::spritesheets::HUMAN_MALE_1),
+		&npc_generator->generate_npc(0,50,48,48,10,60,100,10,1,1,1,1,1,1,1,yoeri,Ai_State::Idle,{" "},1,assets::spritesheets::HUMAN_MALE_1),
 		nullptr,
 		1}
 	};
@@ -120,7 +120,7 @@ Story QuestBuilder::intro() {
 	};
 
 	//add quests
-	Story story{ "introduction", quests };
+	Story story{ "introduction",210,200, quests };
 
 	return story;
 }

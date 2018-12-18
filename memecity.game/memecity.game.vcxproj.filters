@@ -32,13 +32,13 @@
     <ClCompile Include="Game\States\StatsState.cpp" />
     <ClCompile Include="Game\LevelBuilder.cpp" />
     <ClCompile Include="Game\PlayerBuilder.cpp" />
+    <ClCompile Include="Game\Systems\PickpocketSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Components\DimensionComponent.h" />
     <ClInclude Include="Game\Components.h" />
     <ClInclude Include="Game\Components\AIComponent.h" />
     <ClInclude Include="Game\Components\ColliderComponent.h" />
-    <ClInclude Include="Game\Event\BlikCoinEventArg.h" />
     <ClInclude Include="Game\Event\ExpEventArgs.h" />
     <ClInclude Include="Game\Event\HealthChangedEventArgs.h" />
     <ClInclude Include="Game\Event\StatsEventArgs.h" />
@@ -106,6 +106,10 @@
     <ClInclude Include="Game\Quest\Story.h" />
     <ClInclude Include="Game\Quest\Task.h" />
     <ClInclude Include="Game\Generate\Item\ItemGenerator.h" />
+    <ClInclude Include="Game\Systems\PickpocketSystem.h" />
+    <ClInclude Include="Game\Event\PickpocketEventArgs.h" />
+    <ClInclude Include="Game\Event\BlikCoinEventArgs.h" />
+    <ClInclude Include="Game\Event\FaultyPickpocketEventArgs.h" />
     <ClInclude Include="Game\LevelBuilder.h" />
     <ClInclude Include="Game\PlayerBuilder.h" />
     <ClInclude Include="Game\Components\TileComponent.h" />
@@ -149,6 +153,11 @@
     <CopyFileToFolders Include="Assets\Sprites\Tiles\wall_00.bmp" />
     <CopyFileToFolders Include="Assets\Sprites\Tiles\water_00.bmp" />
     <CopyFileToFolders Include="Assets\Sprites\Tiles\paving_02.bmp" />
+    <CopyFileToFolders Include="Assets\Advertisements\AbbeyGames.png" />
+    <CopyFileToFolders Include="Assets\Advertisements\AdventOfCode.png" />
+    <CopyFileToFolders Include="Assets\Advertisements\CodedFun.png" />
+    <CopyFileToFolders Include="Assets\Advertisements\CppCon.png" />
+    <CopyFileToFolders Include="Assets\Advertisements\kolrd.png" />
   </ItemGroup>
   <ItemGroup>
     <CopyFileToFolders Include="Assets\Advertisements\BananaWho.png" />
