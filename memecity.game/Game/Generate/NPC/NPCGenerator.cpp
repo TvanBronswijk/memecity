@@ -41,7 +41,7 @@ namespace generate {
 			x, y, 48.0f, 48.0f, exp, range_of_fighting, movement_speed,blikcoins,
 			strength, perception, endurance, charisma, intelligence, agility, luck,
 			name, Ai_State::Roaming, {}, level,
-			assets::spritesheets::HUMAN_MALE_1);
+			assets::spritesheets::POLICE_MALE_1);
 	}
 	const memecity::engine::ecs::Entity& NPCGenerator::generate_civilian_npc(float x, float y) {
 		std::string name = get_random_name();
@@ -52,6 +52,25 @@ namespace generate {
 		int blikcoins = rand() % (level * 10 + 1) + 10;
 
 		int health = 100;
+		int random = rand() % 100;
+		assets::Asset asset;
+
+		if (this->gender == Gender::Female) {
+			if (random < 50) {
+				asset = assets::spritesheets::CIVILIAN_FEMALE_1;
+			}
+			else {
+				asset = assets::spritesheets::CIVILIAN_FEMALE_2;
+			}
+		}
+		else {
+			if (random < 50) {
+				asset = assets::spritesheets::CIVILIAN_MALE_1;
+			}
+			else {
+				asset = assets::spritesheets::CIVILIAN_MALE_2;
+			}
+		}
 
 		std::string hp = "HP: ";
 		hp += std::to_string(health);
@@ -62,7 +81,7 @@ namespace generate {
 			x, y, 48.0f, 48.0f, exp, range_of_fighting, movement_speed,blikcoins,
 			5, 5, 5, 5, 5, 5, 5,
 			name, Ai_State::Roaming, {}, level,
-			assets::spritesheets::HUMAN_MALE_1);
+			asset);
 	}
 
 	//random generator
@@ -116,7 +135,7 @@ namespace generate {
 		hp += "/";
 		hp += std::to_string(health);
 		
-		auto animation_texture = multimedia_manager.get_texture(animation_character, 0, 0, width, height, 4, 0.25f, texture::AnimatedTexture::AnimationDirection::vertical);
+		auto animation_texture = multimedia_manager.get_texture(animation_character, 0, 0, width, height, 3, 0.25f, texture::AnimatedTexture::AnimationDirection::vertical);
 		animation_texture->set_position({ static_cast<float>(multimedia_manager.get_screen_width()) / 2, static_cast<float>(multimedia_manager.get_screen_height()) / 2 });
 
 		std::string font = assets::fonts::DEFAULT_FONT;
@@ -187,9 +206,11 @@ namespace generate {
 		int number = rand() % (this->names_boys.size() -1);
 		int gender = rand() % 100;
 		if (gender < 50) {
+			this->gender = Gender::Male;
 			return this->names_boys.at(number);
 		}
 		else {
+			this->gender = Gender::Female;
 			return this->names_girls.at(number);
 		}
 

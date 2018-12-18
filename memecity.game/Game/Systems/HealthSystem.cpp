@@ -52,5 +52,5 @@ void HealthSystem::on_death(EntityManager &em, eventing::EventArgs args) {
 	auto exp_component = player.get().get<ExpComponent>();
 
 	auto& state_manager = _context->get_state_manager();
-	state_manager.create_state<GameOverState>(*_context, exp_component->exp);
+	state_manager.create_state<GameOverState>(*_context, exp_component->total_exp);
 }

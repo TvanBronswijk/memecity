@@ -154,11 +154,18 @@
     <CopyFileToFolders Include="Assets\Advertisements\CodedFun.png" />
     <CopyFileToFolders Include="Assets\Advertisements\CppCon.png" />
     <CopyFileToFolders Include="Assets\Advertisements\kolrd.png" />
+    <CopyFileToFolders Include="Assets\Spritesheets\boy1.png" />
+    <CopyFileToFolders Include="Assets\Spritesheets\boy2.png" />
+    <CopyFileToFolders Include="Assets\Spritesheets\girl1.png" />
+    <CopyFileToFolders Include="Assets\Spritesheets\girl2.png" />
   </ItemGroup>
   <ItemGroup>
     <CopyFileToFolders Include="Assets\Advertisements\BananaWho.png" />
     <CopyFileToFolders Include="Assets\Advertisements\BurgerKing.png" />
     <CopyFileToFolders Include="Assets\Advertisements\CocaCola.png" />
     <CopyFileToFolders Include="Assets\Sprites\big_black.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Assets\Spritesheets\police1.png" />
   </ItemGroup>
 </Project>

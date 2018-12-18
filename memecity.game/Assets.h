@@ -36,6 +36,11 @@ namespace assets {
 	}
 	namespace spritesheets {
 		static constexpr Asset HUMAN_MALE_1 = "Spritesheets/SpriteSheet.png";
+		static constexpr Asset POLICE_MALE_1 = "Spritesheets/police1.png";
+		static constexpr Asset CIVILIAN_FEMALE_1 = "Spritesheets/girl1.png";
+		static constexpr Asset CIVILIAN_FEMALE_2 = "Spritesheets/girl2.png";
+		static constexpr Asset CIVILIAN_MALE_1 = "Spritesheets/boy1.png";
+		static constexpr Asset CIVILIAN_MALE_2 = "Spritesheets/boy2.png";
 	}
 	namespace advertisements {
 		static constexpr Asset ADVERTISEMENT_ONE = "Advertisements/AbbeyGames.png";
