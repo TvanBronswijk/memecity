@@ -6,6 +6,7 @@
 #include "..\Components.h"
 #include "..\Event\InteractionEventArgs.h"
 #include "..\Event\QuestEventArgs.h"
+#include "..\Event\FaultyPickpocketEventArgs.h"
 
 class InteractionSystem : public memecity::engine::ecs::System {
 
@@ -20,5 +21,6 @@ public:
 
 	void run(memecity::engine::ecs::EntityManager& em, float dt) const override;
 	void on_interact(memecity::engine::ecs::EntityManager& em, InteractionEventArgs args);
+	void on_pickpocket(memecity::engine::ecs::EntityManager& em, FaultyPickpocketEventArgs args);
 };
 #endif

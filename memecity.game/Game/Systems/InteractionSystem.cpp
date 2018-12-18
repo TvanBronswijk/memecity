@@ -79,3 +79,21 @@ void InteractionSystem::on_interact(EntityManager &em, InteractionEventArgs args
 	quest_event.fire(em, { &args.source, nullptr });
 
 }
+
+void InteractionSystem::on_pickpocket(EntityManager &em, FaultyPickpocketEventArgs args) {
+	auto interaction = args.ai.get<InteractionComponent>();
+
+	auto text_texture = &interaction->get_texture();
+
+	auto npc_name_texture = this->_context->get_multimedia_manager().get_text(" ", 14);
+	npc_name_texture->set_position({ 0, -35 });
+	npc_name_texture->set_parent(text_texture->get_parent());
+	args.ai.get<AIComponent>()->texture = std::move(npc_name_texture);
+
+	auto npc_interaciton_texture = _context->get_multimedia_manager().get_text(assets::fonts::DEFAULT_FONT, args.text, 14, { 255,255,255 });
+	npc_interaciton_texture->set_position({ 0, -35 });
+	npc_interaciton_texture->set_parent(text_texture->get_parent());
+	interaction->texture = std::move(npc_interaciton_texture);
+
+	interaction->start_time = 0;
+}
