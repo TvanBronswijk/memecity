@@ -15,7 +15,7 @@ const memecity::engine::ecs::Entity& PlayerBuilder::build(memecity::engine::ecs:
 	listener.set_max_value(100.0f);
 
 	auto texture = multimedia_manager.get_texture(assets::spritesheets::HUMAN_MALE_1, 0, 0, 48, 48, 4, 0.25f, memecity::engine::texture::AnimatedTexture::AnimationDirection::vertical);
-	texture->set_position({ static_cast<float>(multimedia_manager.get_screen_width()) / 2 + 100, static_cast<float>(multimedia_manager.get_screen_height()) / 2 });
+	texture->set_position({ static_cast<float>(multimedia_manager.get_screen_width()) / 2, static_cast<float>(multimedia_manager.get_screen_height()) / 2 });
 
 	auto builder = em.create_entity("player")
 		.with_component<BaseComponent>(std::move(texture), _start.x, _start.y, 48.0f, 48.0f)
