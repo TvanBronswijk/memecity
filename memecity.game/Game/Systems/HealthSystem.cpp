@@ -46,11 +46,3 @@ void HealthSystem::on_damage(EntityManager& em, std::reference_wrapper<const Ent
 				AI->state = Ai_State::Fleeing;
 	}
 }
-
-void HealthSystem::on_death(EntityManager &em, eventing::EventArgs args) {
-	auto player = em.get_entities_with_component<PlayerComponent>().front();
-	auto exp_component = player.get().get<ExpComponent>();
-
-	auto& state_manager = _context->get_state_manager();
-	state_manager.create_state<GameOverState>(*_context, exp_component->exp);
-}

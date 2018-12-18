@@ -24,6 +24,7 @@
     <ClInclude Include="Game\Components.h" />
     <ClInclude Include="Game\Components\AIComponent.h" />
     <ClInclude Include="Game\Components\QuestAIComponent.h" />
+    <ClInclude Include="Game\Event\DeathEventArgs.h" />
     <ClInclude Include="Game\Generate\Item\ItemGenerator.h" />
     <ClInclude Include="Game\Quest\Quest.h" />
     <ClInclude Include="Game\Quest\Story.h" />

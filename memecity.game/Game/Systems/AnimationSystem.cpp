@@ -7,12 +7,9 @@
 using namespace memecity::engine::texture;
 using namespace memecity::engine::ecs;
 
-void AnimationSystem::run(EntityManager& em, float dt) const
-{
+void AnimationSystem::run(EntityManager& em, float dt) const {}
 
-}
-
-void AnimationSystem::change_texture(BaseComponent &base_component, std::unique_ptr<Texture> texture) const
+void AnimationSystem::change_texture(BaseComponent& base_component, std::unique_ptr<Texture> texture) const
 {
 	auto& current_texture = base_component.get_texture();
 	if (current_texture.get_filename() != texture->get_filename())
@@ -48,8 +45,11 @@ void AnimationSystem::on_move(EntityManager& em, MoveEventArgs args)
 					animated_texture->column(animated_texture->frame_count() - 1);
 					if (animation_component->is_finished())
 					{
-						auto exp = animation_component->entity().get<ExpComponent>()->exp;
-						_context->get_state_manager().create_state<GameOverState>(*_context, exp);
+						if (animation_component->entity().has<PlayerComponent>())
+						{
+							auto exp = animation_component->entity().get<ExpComponent>()->exp;
+							_context->get_state_manager().create_state<GameOverState>(*_context, exp);
+						}
 					}
 					else
 					{
@@ -64,9 +64,13 @@ void AnimationSystem::on_move(EntityManager& em, MoveEventArgs args)
 			
 			default:
 				change_texture(*base_component, _context->get_multimedia_manager().get_texture(assets::spritesheets::HUMAN_MALE_1, 0, 0, 48, 48, 4, 2.0f, AnimatedTexture::AnimationDirection::vertical));
-				animated_texture->set_animation_direction(AnimatedTexture::AnimationDirection::vertical);
 				animated_texture->set_state(args.state);
 				break;
 		}
 	}
+}
+
+void AnimationSystem::on_death(EntityManager& em, DeathEventArgs args)
+{
+	args.target.get<AnimationComponent>()->current_state = AnimationComponent::AnimationState::dying;
 }

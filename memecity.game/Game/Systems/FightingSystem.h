@@ -7,6 +7,7 @@
 #include "..\Event\QuestEventArgs.h"
 #include "..\Event\ExpEventArgs.h"
 #include "../Event/HealthChangedEventArgs.h"
+#include "../Event/DeathEventArgs.h"
 
 class FightingSystem : public memecity::engine::ecs::System {
 
@@ -16,7 +17,7 @@ public:
 	memecity::engine::ecs::eventing::Event<std::reference_wrapper<const memecity::engine::ecs::Entity>> damage_event;
 	memecity::engine::ecs::eventing::Event<QuestEventArgs> quest_event;
 	memecity::engine::ecs::eventing::Event<HealthChangedEventArgs> health_changed_event;
-	memecity::engine::ecs::eventing::Event<memecity::engine::ecs::eventing::EventArgs> death_event;
+	memecity::engine::ecs::eventing::Event<DeathEventArgs> death_event;
 	memecity::engine::ecs::eventing::Event<ExpEventArgs> exp_event;
 
 	FightingSystem(memecity::engine::MultimediaManager& multimedia_manager)
