@@ -4,13 +4,13 @@
 #include <ECS.h>
 #include "Engine/Serialization/Serializable.h"
 
-struct StatsComponent: memecity::engine::ecs::Component, memecity::engine::serialization::Serializable
+struct StatsComponent : memecity::engine::ecs::Component, memecity::engine::serialization::Serializable
 {
 	int strength, perception, endurance, charisma, intelligence, agility, luck, available_points;
 
 	StatsComponent(memecity::engine::ecs::Entity& entity) : StatsComponent(entity, 0, 0, 0, 0, 0, 0, 0) {};
 
-	StatsComponent(memecity::engine::ecs::Entity& entity, const int strength, const int perception, const int endurance, const int charisma, const int intelligence, const int agility, const int luck) 
+	StatsComponent(memecity::engine::ecs::Entity& entity, const int strength, const int perception, const int endurance, const int charisma, const int intelligence, const int agility, const int luck)
 		: Component(entity), strength(strength), perception(perception), endurance(endurance), charisma(charisma), intelligence(intelligence), agility(agility), luck(luck), available_points(4) {};
 
 	memecity::engine::serialization::SerializeInfo to_map() const override
@@ -33,46 +33,32 @@ struct StatsComponent: memecity::engine::ecs::Component, memecity::engine::seria
 		if (key == "strength")
 		{
 			this->strength = std::stoi(pair.second);
-			return;
 		}
-		
-		if (key == "perception")
+		else if (key == "perception")
 		{
 			this->perception = std::stoi(pair.second);
-			return;
 		}
-
-		if (key == "endurance")
+		else if (key == "endurance")
 		{
 			this->endurance = std::stoi(pair.second);
-			return;
 		}
-
-		if (key == "charisma")
+		else if (key == "charisma")
 		{
 			this->charisma = std::stoi(pair.second);
-			return;
 		}
-
-		if (key == "intelligence")
+		else if (key == "intelligence")
 		{
 			this->intelligence = std::stoi(pair.second);
-			return;
 		}
-
-		if (key == "agility")
+		else if (key == "agility")
 		{
 			this->agility = std::stoi(pair.second);
-			return;
 		}
-
-		if (key == "luck")
+		else if (key == "luck")
 		{
 			this->luck = std::stoi(pair.second);
-			return;
 		}
-
-		if (key == "available_points")
+		else if (key == "available_points")
 		{
 			this->available_points = std::stoi(pair.second);
 		}
