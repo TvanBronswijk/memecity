@@ -96,7 +96,7 @@ namespace generate {
 			x, y, 48.0f, 48.0f, exp, range_of_fighting, movement_speed,
 			strength, perception, endurance, charisma,intelligence, agility, luck, 
 			name, Ai_State::Roaming, {}, level,
-			assets::spritesheets::HUMAN_MALE_1);
+			assets::spritesheets::HUMAN_TEST_1);
 	}
 
 	//base generator
@@ -113,7 +113,7 @@ namespace generate {
 		hp += "/";
 		hp += std::to_string(health);
 
-		auto animation_texture = multimedia_manager.get_texture(assets::spritesheets::HUMAN_MALE_1, 0, 0, 48, 48, 4, 2.0f, texture::AnimatedTexture::AnimationDirection::vertical);
+		auto animation_texture = multimedia_manager.get_texture(assets::spritesheets::HUMAN_TEST_1, 0, 0, 48, 48, 4, 2.0f, texture::AnimatedTexture::AnimationDirection::vertical);
 		animation_texture->set_position({ static_cast<float>(multimedia_manager.get_screen_width()) / 2, static_cast<float>(multimedia_manager.get_screen_height()) / 2 });
 
 		std::string font = assets::fonts::DEFAULT_FONT;

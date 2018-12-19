@@ -49,11 +49,11 @@ void GameLoader::create_map(EntityManager& em, loading::LoadingBar::Listener& li
 
 void GameLoader::create_npcs(EntityManager& em, loading::LoadingBar::Listener& listener)
 {
-	//for (size_t i = 0; i < 10; i++) {
-	//	auto& multimedia_manager = _context->get_multimedia_manager();
-	//	auto& timer = _context->get_timer();
-	//	generate::NPCGenerator(multimedia_manager, em).generate_random_npc(50 * i, 0);
-	//}
+	for (size_t i = 0; i < 10; i++) {
+		auto& multimedia_manager = _context->get_multimedia_manager();
+		auto& timer = _context->get_timer();
+		generate::NPCGenerator(multimedia_manager, em).generate_random_npc(50 * i, 0);
+	}
 	listener.increase_current_value(20.0f);
 }
 

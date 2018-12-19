@@ -76,7 +76,12 @@ namespace memecity::engine::texture {
 			{
 				if (_column_changed)
 				{
-					clipped_rect.y = _start_y + int(_animation_timer / _time_per_frame) * texture_height;
+					if (!_row_changed)
+					{
+						clipped_rect.y = _start_y + int(_animation_timer / _time_per_frame) * texture_height;
+					}
+
+					_row_changed = false;
 					_column_changed = false;
 				}
 				else
@@ -86,7 +91,10 @@ namespace memecity::engine::texture {
 			}
 			else
 			{
-				clipped_rect.y = _start_y + int(_animation_timer / _time_per_frame) * texture_height;
+				if (!_row_changed)
+				{
+					clipped_rect.y = _start_y + int(_animation_timer / _time_per_frame) * texture_height;
+				}
 			}
 		}
 		else if (_animation_direction == AnimationDirection::horizontal)
