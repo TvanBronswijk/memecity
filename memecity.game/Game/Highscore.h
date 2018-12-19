@@ -7,6 +7,7 @@ struct Highscore
 	int score;
 	std::string name;
 
+	Highscore() = default;
 	Highscore(int score, std::string name)
 		: score(score), name(name) {}
 

@@ -60,6 +60,7 @@ namespace assets {
 	{
 		static constexpr Asset SAVE_GAME = "new-game.txt";
 		static constexpr Asset SAVE_MAP = "map.txt";
+		static constexpr Asset SAVE_HIGHSCORES = "highscores.meme";
 	}
 };
 

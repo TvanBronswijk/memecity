@@ -1,7 +1,6 @@
 ﻿#pragma once
 #include <vector>
 #include <algorithm>
-#include <functional>
 #include "Highscore.h"
 
 class HighscoreLoader
@@ -16,21 +15,32 @@ private:
 		});
 	}
 
-public:
-	void Load()
+	void clip()
 	{
-		//todo: Load from file
-		highscores.emplace_back(10, "Simon");
-		highscores.emplace_back(11, "Yoeri");
-		highscores.emplace_back(19, "BLEEH");
-		highscores.emplace_back(9, "BLAAH");
+		highscores.resize(10);
+	}
+
+public:
+	void Load(memecity::engine::serialization::SerializeInfo& data)
+	{
+		std::for_each(data.begin(), data.end(), [&](const std::pair<std::string, std::string> pair)
+		{
+			auto key = pair.first;
+			const auto component = std::string(key.substr(0, key.find(':')));
+			key = key.substr(key.find(':') + 1, key.find('='));
+			const auto value = std::string(pair.second);
+
+			highscores.emplace_back(std::stoi(value), key);
+		});
 		sort();
+		clip();
 	}
 
 	void add_highscore(Highscore score)
 	{
 		highscores.emplace_back(score);
 		sort();
+		clip();
 	}
 
 	std::vector<Highscore> get_highscores() const

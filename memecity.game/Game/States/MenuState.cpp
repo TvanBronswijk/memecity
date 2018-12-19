@@ -71,7 +71,8 @@ void MenuState::on_enter()
 	highscores_menu_builder.create_menu("Highscores", assets::fonts::DEFAULT_FONT);
 
 	HighscoreLoader loader;
-	loader.Load();
+	auto data = _context->get_storage_manager().load(assets::saves::SAVE_HIGHSCORES);
+	loader.Load(data);
 
 	for (auto score : loader.get_highscores())
 	{
@@ -79,6 +80,7 @@ void MenuState::on_enter()
 	}
 
 	highscores_menu = highscores_menu_builder
+		.with_read_only_menu_item(" ")
 		.with_back_menu_item()
 		.get_menu();
 
