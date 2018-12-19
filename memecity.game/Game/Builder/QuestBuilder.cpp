@@ -257,8 +257,8 @@ Story QuestBuilder::intro() {
 	std::string simon = "Simon";
 	std::string yoeri = "Yoeri";
 
-	int x = (rand() % (tile_size * 3) + start_player.x);
-	int y = (rand() % (tile_size * 3) + start_player.y);
+	int x = (rand() % (tile_size * 2) + start_player.x);
+	int y = (rand() % (tile_size * 2) + start_player.y);
 	//create tasks
 	std::deque<Task> tasks_quest1{
 		Task{
