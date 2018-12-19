@@ -49,7 +49,10 @@ PauseMenuState::PauseMenuState(memecity::engine::state::StateManager & sm, GameM
 	       {
 		       const auto player_manager = PlayerManager(*_entity_manager);
 		       const auto player_data = player_manager.save_player();
-		       const auto success = _context->get_storage_manager().save(assets::saves::SAVE_GAME, player_data);
+		//todo save to folder
+		       //const auto success = _context->get_storage_manager().save(assets::saves::SAVE_GAME, player_data);
+			   const auto success = true;
+
 
 			   auto map = MapSaver{}.get_map(em);
 			   auto map_success = _context->get_storage_manager().save(assets::saves::SAVE_MAP, map);

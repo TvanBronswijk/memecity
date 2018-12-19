@@ -24,6 +24,8 @@ namespace memecity::engine {
 		serialization::SerializeInfo load(const std::string& file_path) const;
 		std::string load_string(const std::string& file_path) const;
 		std::map<std::string, std::string> load_files_from_directory(const std::string& file_path) const;
+		std::vector<std::string> get_filenames_from_directory(const std::string& directory_path) const;
+		std::vector<std::string> get_foldernames_from_directory(const std::string& directory_path) const;
 	};
 
 }

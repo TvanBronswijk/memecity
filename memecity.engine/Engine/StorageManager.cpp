@@ -125,4 +125,39 @@ namespace memecity::engine
 
 		return temp;
 	}
+	std::vector<std::string> StorageManager::get_filenames_from_directory(const std::string & directory_path) const
+	{
+		std::vector<std::string> temp;
+		std::string absolute_path = SDL_GetBasePath();
+		absolute_path += directory_path;
+		for (const auto& entry : filesystem::directory_iterator(absolute_path))
+		{
+			if (!filesystem::is_directory(entry.path())) {
+				std::string file_path = entry.path().string();
+				const std::size_t found = file_path.find_last_of("/\\");
+
+				temp.push_back(file_path.substr(found + 1));
+			}
+		}
+
+		return temp;
+	}
+
+	std::vector<std::string> StorageManager::get_foldernames_from_directory(const std::string & directory_path) const
+	{
+		std::vector<std::string> temp;
+		std::string absolute_path = SDL_GetBasePath();
+		absolute_path += directory_path;
+		for (const auto& entry : filesystem::directory_iterator(absolute_path))
+		{
+			if (filesystem::is_directory(entry.path())) {
+				std::string file_path = entry.path().string();
+				const std::size_t found = file_path.find_last_of("/\\");
+
+				temp.push_back(file_path.substr(found + 1));
+			}
+		}
+
+		return temp;
+	}
 }

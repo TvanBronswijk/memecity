@@ -7,13 +7,24 @@
 #include "../LevelBuilder.h"
 #include "../Systems/ExpSystem.h"
 #include "../PlayerBuilder.h"
+#include "../PlayerManager.h"
 
 void GameState::on_load()
 {
+	
 	Point start;
-	next<LoadingState>(*_context, [&](auto& ctx, auto& listener) { start = LevelBuilder(ctx, 128, 128, _load_from_file).build(entity_manager, listener); back(); });
+	next<LoadingState>(*_context, [&](auto& ctx, auto& listener) { start = LevelBuilder(ctx, 128, 128, _load_from_file, _save_location).build(entity_manager, listener); back(); });
 	next<LoadingState>(*_context, [&](auto& ctx, auto& listener) { PlayerBuilder(ctx, start).build(entity_manager, listener); back(); });
-
+	if(_load_from_file)
+	{
+		const auto player_manager = PlayerManager(entity_manager);
+		std::string save = assets::saves::SAVE_LOCATION;
+		save += "\\" + _save_location + "\\" + assets::saves::SAVE_PLAYER;
+		auto& storage = _context->get_storage_manager();
+		auto data = storage.load(save);
+		if (player_manager.load_player(data));
+	}
+	
 	auto& multimedia_manager = _context->get_multimedia_manager();
 
 	//TODO: Make System Loader

@@ -16,9 +16,11 @@ Point LevelBuilder::build(memecity::engine::ecs::EntityManager& em, loading::Loa
 	auto generator = generate::CityGenerator(_map_width, _map_height);
 	if (_load_from_file)
 	{
-		generator.set_strategy<generate::strategy::FileStrategy>(_context->get_storage_manager().load_string(assets::saves::SAVE_MAP));
-
+		std::string save = assets::saves::SAVE_LOCATION;
+		save += "\\" + _save_location + "\\" +assets::saves::SAVE_MAP;
+		generator.set_strategy<generate::strategy::FileStrategy>(_context->get_storage_manager().load_string(save));
 	}
+
 	generate::models::City city = generator.generate();
 	for (int y = 0; y < city.height; y++) {
 		for (int x = 0; x < city.width; x++) {
