@@ -13,11 +13,11 @@ namespace memecity::engine
 		try
 		{
 			std::for_each(data.begin(), data.end(),
-              [&](const std::pair<std::string, std::string> pair)
-              {
-	              text += pair.first + "=" + pair.second + "\n";
-              });
-		
+				[&](const std::pair<std::string, std::string> pair)
+			{
+				text += pair.first + "=" + pair.second + "\n";
+			});
+
 		}
 		catch (std::exception& exception)
 		{
@@ -25,12 +25,12 @@ namespace memecity::engine
 			return false;
 		}
 
-		return save_string(file_path, text);
+		return save(file_path, text);
 	}
 
 
 
-	bool StorageManager::save_string(const std::string& file_path, std::string data) const
+	bool StorageManager::save(const std::string& file_path, const std::string& data) const
 	{
 		try
 		{
@@ -38,7 +38,7 @@ namespace memecity::engine
 			full_path += "\\" + file_path;
 			std::ofstream output_stream(full_path);
 			if (output_stream)
-			{			
+			{
 				output_stream << data;
 				output_stream.close();
 			}
@@ -114,5 +114,15 @@ namespace memecity::engine
 
 		return result;
 	}
-}
 
+	std::map<std::string, std::string> StorageManager::load_files_from_directory(const std::string& file_path) const
+	{
+		std::map<std::string, std::string> temp;
+		for (const auto& entry : filesystem::directory_iterator(file_path))
+		{
+			temp.insert(std::pair<std::string, std::string>(entry.path().string(), load_string(entry.path().string())));
+		}
+
+		return temp;
+	}
+}
