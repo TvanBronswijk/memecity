@@ -14,6 +14,11 @@ namespace generate::strategy::bsp {
 			iterate(n, [&](int x, int y) {
 				c.tiles(x, y) = '-';
 
+				if (x > n.begin.x + _road_size && x < n.end.x - _road_size
+					&& y > n.begin.y + _road_size && y < n.end.y - _road_size) {
+					c.tiles(x, y) = 'l';
+				}
+
 				if (x >= (n.begin.x + _road_size) && x <= (n.end.x - _road_size)) {
 					c.tiles(x, n.begin.y + _road_size) = 'W';
 					c.tiles(x, n.end.y - _road_size) = 'W';
@@ -29,26 +34,25 @@ namespace generate::strategy::bsp {
 			{
 			case 0:
 				for (int i = n.center.x; i < n.end.x; i++) {
-					c.tiles(i, n.center.y) = '-';
+					c.tiles(i, n.center.y) = 'l';
 				}
 				break;
 			case 1:
 				for (int i = n.center.x; i > n.begin.x; i--) {
-					c.tiles(i, n.center.y) = '-';
+					c.tiles(i, n.center.y) = 'l';
 				}
 				break;
 			case 2:
 				for (int i = n.center.y; i < n.end.y; i++) {
-					c.tiles(n.center.x, i) = '-';
+					c.tiles(n.center.x, i) = 'l';
 				}
 				break;
 			case 3:
 				for (int i = n.center.y; i > n.begin.y; i--) {
-					c.tiles(n.center.x, i) = '-';
+					c.tiles(n.center.x, i) = 'l';
 				}
 				break;
 			}
-			c.objects(n.begin.x, n.begin.y) = 'n';
 		}
 	};
 }

@@ -13,10 +13,13 @@ generate::CityGenerator::CityGenerator(memecity::engine::StorageManager& storage
 			{ return other_pair.first.path().stem() == pair.first.path().stem() && other_pair.first.path().extension() == ".m2do"; });
 			
 			auto content = pair.second;
+			int w = 0, h = 0;
+			while ((content[++w] != '\n'));
 			content.erase(std::remove(content.begin(), content.end(), '\n'), content.end());
+			h = content.size() / w;
 			auto objects = other_pair->second;
 			objects.erase(std::remove(objects.begin(), objects.end(), '\n'), objects.end());
-			_prefabs.push_back(models::Prefab{ 16, 16, content.c_str(), objects.c_str() });
+			_prefabs.push_back(models::Prefab{ w, h, content.c_str(), objects.c_str() });
 		}
 	}
 
