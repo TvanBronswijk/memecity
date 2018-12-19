@@ -203,7 +203,7 @@ namespace generate {
 		}
 		else {
 			auto animation_texture = multimedia_manager.get_texture(asset, 0, 0, 48, 48, 4, 0.25f, texture::AnimatedTexture::AnimationDirection::vertical);
-			animation_texture->set_position({ static_cast<float>(multimedia_manager.get_screen_width()) / 2, static_cast<float>(multimedia_manager.get_screen_height()) / 2 });
+			animation_texture->set_position({ 0.0f, 0.0f });
 
 			std::string font = assets::fonts::DEFAULT_FONT;
 			auto name_texture = multimedia_manager.get_text(font, name, 14, { 255,0,0 });
