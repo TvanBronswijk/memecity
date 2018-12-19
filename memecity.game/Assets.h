@@ -31,8 +31,34 @@ namespace assets {
 			constexpr inline Asset WATER0 = "Sprites/Tiles/water_00.bmp";
 			static inline AssetMap WATER{ {WATER0, 100} };
 
-			constexpr inline Asset FLOOR0 = "Sprites/Tiles/purple.bmp";
-			static inline AssetMap FLOOR{ {FLOOR0, 100} };
+			constexpr inline Asset HARDWOOD0 = "Sprites/Tiles/hardwood_00.png";
+			static inline AssetMap HARDWOOD{ {HARDWOOD0, 100} };
+
+			constexpr inline Asset HARDWOODDARK0 = "Sprites/Tiles/hardwood_dark_00.png";
+			static inline AssetMap HARDWOODDARK{ {HARDWOODDARK0, 100} };
+
+			constexpr inline Asset MARBLEBLACK0 = "Sprites/Tiles/black_00.png";
+			constexpr inline Asset MARBLEBLACK1 = "Sprites/Tiles/black_01.png";
+			static inline AssetMap MARBLEBLACK{ {MARBLEBLACK0, 50}, {MARBLEBLACK1, 100} };
+
+			constexpr inline Asset MARBLEWHITE0 = "Sprites/Tiles/white_00.png";
+			constexpr inline Asset MARBLEWHITE1 = "Sprites/Tiles/white_01.png";
+			static inline AssetMap MARBLEWHITE{ {MARBLEWHITE0, 50}, {MARBLEWHITE1, 100} };
+
+			constexpr inline Asset CARPETBROWN0 = "Sprites/Tiles/brown_00.png";
+			constexpr inline Asset CARPETBROWN1 = "Sprites/Tiles/brown_01.png";
+			static inline AssetMap CARPETBROWN{ {CARPETBROWN0, 50}, {CARPETBROWN1, 100} };
+
+			constexpr inline Asset CARPETLIGHTGRAY0 = "Sprites/Tiles/light_gray_00.png";
+			constexpr inline Asset CARPETLIGHTGRAY1 = "Sprites/Tiles/light_gray_01.png";
+			static inline AssetMap CARPETLIGHTGRAY{ {CARPETLIGHTGRAY0, 50}, {CARPETLIGHTGRAY1, 100} };
+
+			constexpr inline Asset CARPETTAN0 = "Sprites/Tiles/tan_00.png";
+			constexpr inline Asset CARPETTAN1 = "Sprites/Tiles/tan_01.png";
+			static inline AssetMap CARPETTAN{ {CARPETTAN0, 50}, {CARPETTAN1, 100} };
+		
+			constexpr inline Asset STATION0 = "Sprites/Tiles/ns_00.png";
+			static inline AssetMap STATION{ {STATION0, 100} };
 		}
 
 		constexpr inline Asset DARK_BACKGROUND = "Sprites/big_black.bmp";
