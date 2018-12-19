@@ -3,7 +3,9 @@
 
 generate::CityGenerator::CityGenerator(int width, int height) : _w(width), _h(height)
 {
-	set_strategy<generate::strategy::bsp::BSP>(std::vector<const models::Prefab*>{ &generate::models::station });
+	std::queue<const models::Prefab*> queue;
+	queue.push(&models::station);
+	set_strategy<generate::strategy::bsp::BSP>(std::move(queue));
 }
 
 generate::models::City generate::CityGenerator::generate() const
