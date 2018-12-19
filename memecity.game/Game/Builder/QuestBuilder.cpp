@@ -272,7 +272,7 @@ Story QuestBuilder::intro() {
 		"First I will show you how to do a basic task.",
 		"please interact with Simon over there.",
 		" "},
-		&npc_generator->generate_quest_npc(violet, start_player.x,start_player.y - (tile_size * 2), assets::spritesheets::GIRL_1),
+		&npc_generator->generate_quest_npc(violet, start_player.x,start_player.y - (tile_size * 1), assets::spritesheets::GIRL_1),
 		nullptr,
 		1},
 		Task{
