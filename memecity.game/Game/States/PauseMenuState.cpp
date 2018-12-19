@@ -4,6 +4,8 @@
 #include "../MapSaver.h"
 #include "../PlayerManager.h"
 #include "../GameSaver.h"
+#include "GameOverState.h"
+#include "../Components/ExpComponent.h"
 
 PauseMenuState::PauseMenuState(memecity::engine::state::StateManager & sm, GameManager::GameContext & gc, memecity::engine::ecs::EntityManager & em, int& map_number, std::string& save_slot)
 	: State(sm), _context(&gc), _entity_manager(&em), _map_number(&map_number), _save_slot(&save_slot)
@@ -41,8 +43,13 @@ PauseMenuState::PauseMenuState(memecity::engine::state::StateManager & sm, GameM
 		.with_back_menu_item()
 		.get_menu();
 
+	;
 
-
+	retire_confirm_menu = memecity::engine::ui::menu::MenuBuilder(gc.get_multimedia_manager())
+		.create_menu("Retire?", assets::fonts::DEFAULT_FONT)
+		.with_menu_item("No", nullptr, [&](memecity::engine::ui::menu::MenuItem& menu_item) { menu_item.unlock(); })
+		.with_menu_item("Yes", nullptr, [&](auto& menu_item) {_context->get_state_manager().create_state<GameOverState>(*_context, _entity_manager->get_components_of_type<ExpComponent>().front().get().exp, true);  })
+		.get_menu();
 
 	menu = memecity::engine::ui::menu::MenuBuilder(gc.get_multimedia_manager())
 		.create_menu("Paused", assets::fonts::DEFAULT_FONT)
@@ -51,6 +58,9 @@ PauseMenuState::PauseMenuState(memecity::engine::state::StateManager & sm, GameM
 		.with_read_only_menu_item(" ")
 		.with_menu_item("Save Game", nullptr, [&](memecity::engine::ui::menu::MenuItem& menu_item) {GameSaver{}.save(em, *_context, *_save_slot, map_number); back(); })
 		.with_menu_item("Main Menu", nullptr, [&](auto& menu_item) { back(2); })
+		.with_read_only_menu_item("-----")
+		.with_menu_item("Retire", retire_confirm_menu.get())
+		.with_read_only_menu_item("-----")
 		.get_menu();
 }
 
