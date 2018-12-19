@@ -2,6 +2,7 @@
 #include "..\..\Assets.h"
 #include "..\Input.h"
 #include <string>
+#include "../HighscoreLoader.h"
 
 GameOverState::GameOverState(memecity::engine::state::StateManager & sm, GameManager::GameContext & gc, int experience)
 	: State(sm), _context(&gc)
@@ -14,6 +15,11 @@ GameOverState::GameOverState(memecity::engine::state::StateManager & sm, GameMan
 		.with_read_only_menu_item(" ")
 		.with_menu_item("Main Menu", nullptr, [&](auto& menu_item) { back(2);  })
 		.get_menu();
+
+
+	HighscoreLoader loader;
+	auto data = _context->get_storage_manager().load(assets::saves::SAVE_HIGHSCORES);
+	loader.Load(data);
 }
 
 void GameOverState::on_load()
