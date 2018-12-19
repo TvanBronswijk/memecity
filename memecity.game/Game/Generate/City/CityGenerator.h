@@ -2,6 +2,7 @@
 #define _CITY_GENERATOR_H
 #include <vector>
 #include <Engine\MultimediaManager.h>
+#include <Engine/StorageManager.h>
 #include <ECS.h>
 #include "Models\Models.h"
 #include "strategy\Strategy.h"
@@ -10,9 +11,10 @@ namespace generate {
 	class CityGenerator {
 	private:
 		int _w, _h;
+		std::vector<models::Prefab> _prefabs;
 		std::unique_ptr<strategy::Strategy> _strategy;
 	public:
-		CityGenerator(int width, int _height);
+		CityGenerator(memecity::engine::StorageManager& storage, int width, int _height);
 
 		template<class T, class... Args>
 		void set_strategy(Args&&... args)

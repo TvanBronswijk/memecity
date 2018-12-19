@@ -51,7 +51,7 @@ void GameState::on_load()
 	bind(input_system.quest_event, &quest_system, &QuestSystem::on_event);
 	bind(fighting_system.damage_event, &health_system, &HealthSystem::on_damage);
 	bind(fighting_system.quest_event, &quest_system, &QuestSystem::on_event);
-	bind(fighting_system.death_event, &health_system, &HealthSystem::on_death);
+	bind(fighting_system.death_event, &animation_system, &AnimationSystem::on_death);
 	bind(fighting_system.exp_event, &exp_system, &ExpSystem::on_exp_gain);
 	bind(pickpocket_system.faulty_pickpocket_event, &interaction_system, &InteractionSystem::on_pickpocket);
 	bind(input_system.pickpocket_event, &pickpocket_system, &PickpocketSystem::on_pickpocket);

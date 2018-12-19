@@ -103,15 +103,21 @@ namespace generate::models {
 		{'w', {'w', "Water", assets::sprites::tiles::WATER, true, false } },
 		{'g', {'g', "Grass", assets::sprites::tiles::GRASS, false, false } },
 		{'W', {'W', "Wall", assets::sprites::tiles::WALL, true, true } },
-		{'m', {'m', "Marble", assets::sprites::tiles::GRASS, false, false } },
-		{'c', {'c', "Station", assets::sprites::tiles::WATER, false, false } }
+		{'m', {'m', "Marble White", assets::sprites::tiles::MARBLEWHITE, false, false } },
+		{'B', {'B', "Marble Black", assets::sprites::tiles::MARBLEBLACK, false, false } },
+		{'f', {'f', "Hardwood", assets::sprites::tiles::HARDWOOD, false, false } },
+		{'d', {'d', "Hardwood Dark", assets::sprites::tiles::HARDWOODDARK, false, false } },
+		{'b', {'b', "Carpet Brown", assets::sprites::tiles::CARPETBROWN, false, false } },
+		{'l', {'l', "Carpet Light Gray", assets::sprites::tiles::CARPETLIGHTGRAY, false, false } },
+		{'t', {'t', "Carpet Tan", assets::sprites::tiles::CARPETTAN, false, false } },
+		{'c', {'c', "Station", assets::sprites::tiles::STATION, false, false } }
 	};
 	static TileInfo char_to_tile(char c) {
 		auto it = __cta.find(c);
 		if (it != __cta.end()) {
 			return it->second;
 		}
-		throw;
+		return TileInfo{ c, "Not Found", {}, false, false };
 	}
 }
 

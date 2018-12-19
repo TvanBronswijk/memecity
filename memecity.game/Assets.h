@@ -30,13 +30,48 @@ namespace assets {
 
 			constexpr inline Asset WATER0 = "Sprites/Tiles/water_00.bmp";
 			static inline AssetMap WATER{ {WATER0, 100} };
+
+			constexpr inline Asset HARDWOOD0 = "Sprites/Tiles/hardwood_00.png";
+			static inline AssetMap HARDWOOD{ {HARDWOOD0, 100} };
+
+			constexpr inline Asset HARDWOODDARK0 = "Sprites/Tiles/hardwood_dark_00.png";
+			static inline AssetMap HARDWOODDARK{ {HARDWOODDARK0, 100} };
+
+			constexpr inline Asset MARBLEBLACK0 = "Sprites/Tiles/black_00.png";
+			constexpr inline Asset MARBLEBLACK1 = "Sprites/Tiles/black_01.png";
+			static inline AssetMap MARBLEBLACK{ {MARBLEBLACK0, 50}, {MARBLEBLACK1, 100} };
+
+			constexpr inline Asset MARBLEWHITE0 = "Sprites/Tiles/white_00.png";
+			constexpr inline Asset MARBLEWHITE1 = "Sprites/Tiles/white_01.png";
+			static inline AssetMap MARBLEWHITE{ {MARBLEWHITE0, 50}, {MARBLEWHITE1, 100} };
+
+			constexpr inline Asset CARPETBROWN0 = "Sprites/Tiles/brown_00.png";
+			constexpr inline Asset CARPETBROWN1 = "Sprites/Tiles/brown_01.png";
+			static inline AssetMap CARPETBROWN{ {CARPETBROWN0, 50}, {CARPETBROWN1, 100} };
+
+			constexpr inline Asset CARPETLIGHTGRAY0 = "Sprites/Tiles/light_gray_00.png";
+			constexpr inline Asset CARPETLIGHTGRAY1 = "Sprites/Tiles/light_gray_01.png";
+			static inline AssetMap CARPETLIGHTGRAY{ {CARPETLIGHTGRAY0, 50}, {CARPETLIGHTGRAY1, 100} };
+
+			constexpr inline Asset CARPETTAN0 = "Sprites/Tiles/tan_00.png";
+			constexpr inline Asset CARPETTAN1 = "Sprites/Tiles/tan_01.png";
+			static inline AssetMap CARPETTAN{ {CARPETTAN0, 50}, {CARPETTAN1, 100} };
+		
+			constexpr inline Asset STATION0 = "Sprites/Tiles/ns_00.png";
+			static inline AssetMap STATION{ {STATION0, 100} };
 		}
 
 		constexpr inline Asset DARK_BACKGROUND = "Sprites/big_black.bmp";
 		constexpr inline Asset TIN_CAN = "Sprites/Tin_can.png";
 	}
 	namespace spritesheets {
-		static constexpr Asset HUMAN_MALE_1 = "Spritesheets/SpriteSheet.png";
+		constexpr inline Asset BOY_1 = "Spritesheets/Boy1SpriteSheet.png";
+		constexpr inline Asset BOY_2 = "Spritesheets/Boy2SpriteSheet.png";
+		constexpr inline Asset BOY_3 = "Spritesheets/Boy3SpriteSheet.png";
+		constexpr inline Asset GIRL_1 = "Spritesheets/Girl1SpriteSheet.png";
+		constexpr inline Asset GIRL_2 = "Spritesheets/Girl2SpriteSheet.png";
+		constexpr inline Asset POLICE_1 = "Spritesheets/PoliceSpriteSheet.png";
+
 	}
 	namespace advertisements {
 		static constexpr Asset ADVERTISEMENT_ONE = "Advertisements/AbbeyGames.png";
@@ -60,6 +95,7 @@ namespace assets {
 	{
 		static constexpr Asset SAVE_PLAYER = "player.txt";
 		static constexpr Asset SAVE_MAP = "map.txt";
+		static constexpr Asset SAVE_HIGHSCORES = "highscores.meme";
 		static constexpr Asset SAVE_LOCATION = "saves";
 	}
 };

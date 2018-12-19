@@ -1,8 +1,10 @@
 ﻿#include "MenuState.h"
 #include "LoadingState.h"
 #include "GameState.h"
-#include "..\..\Assets.h"
-#include "..\Input.h"
+#include "../../Assets.h"
+#include "../Input.h"
+#include "../Highscore.h"
+#include "../HighscoreLoader.h"
 
 MenuState::MenuState(memecity::engine::state::StateManager & sm, GameManager::GameContext & gc)
 	: State(sm), _context(&gc)
@@ -43,16 +45,6 @@ MenuState::MenuState(memecity::engine::state::StateManager & sm, GameManager::Ga
 		.with_read_only_menu_item(" ")
 		.with_back_menu_item()
 		.get_menu();
-
-	menu = memecity::engine::ui::menu::MenuBuilder(gc.get_multimedia_manager())
-		.create_menu("MemeCity", assets::fonts::DEFAULT_FONT)
-		.with_menu_item("Start Game", nullptr, [&](auto& menu_item) { next<GameState>(gc, false); })
-		.with_menu_item("Select Save", load_save_menu.get())
-		.with_menu_item("Load Game", nullptr, [&](auto& menu_item) { next<GameState>(gc, true); })
-		.with_menu_item("Settings", settings_menu.get())
-		.with_menu_item("Credits", credits_menu.get())
-		.with_menu_item("Exit", nullptr, [&](auto& menu_item) { gc.get_input_manager().quit(); })
-		.get_menu();
 }
 
 void MenuState::on_load()
@@ -87,6 +79,34 @@ void MenuState::draw()
 
 void MenuState::on_enter()
 {
+	auto highscores_menu_builder = memecity::engine::ui::menu::MenuBuilder(get_context().get_multimedia_manager());
+	highscores_menu_builder.create_menu("Highscores", assets::fonts::DEFAULT_FONT);
+
+	HighscoreLoader loader;
+	auto data = _context->get_storage_manager().load(assets::saves::SAVE_HIGHSCORES);
+	loader.Load(data);
+
+	for (auto score : loader.get_highscores())
+	{
+		highscores_menu_builder.with_read_only_menu_item(score.get_string());
+	}
+
+	highscores_menu = highscores_menu_builder
+		.with_read_only_menu_item(" ")
+		.with_back_menu_item()
+		.get_menu();
+
+	menu = memecity::engine::ui::menu::MenuBuilder(get_context().get_multimedia_manager())
+		.create_menu("MemeCity", assets::fonts::DEFAULT_FONT)
+		.with_menu_item("Start Game", nullptr, [&](auto& menu_item) { next<GameState>(get_context(), false); })
+		.with_menu_item("Select Save", load_save_menu.get())
+		.with_menu_item("Load Game", nullptr, [&](auto& menu_item) { next<GameState>(get_context(), true); })
+		.with_menu_item("Settings", settings_menu.get())
+		.with_menu_item("Highscores", highscores_menu.get())
+		.with_menu_item("Credits", credits_menu.get())
+		.with_menu_item("Exit", nullptr, [&](auto& menu_item) { get_context().get_input_manager().quit(); })
+		.get_menu();
+
 	_context->get_multimedia_manager().play_background_music(assets::music::MAIN_MENU_BGM);
 }
 
