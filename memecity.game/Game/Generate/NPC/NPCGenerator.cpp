@@ -57,18 +57,18 @@ namespace generate {
 
 		if (this->gender == Gender::Female) {
 			if (random < 50) {
-				asset = assets::spritesheets::CIVILIAN_FEMALE_1;
+				asset = assets::spritesheets::GIRL_1;
 			}
 			else {
-				asset = assets::spritesheets::CIVILIAN_FEMALE_2;
+				asset = assets::spritesheets::GIRL_2;
 			}
 		}
 		else {
 			if (random < 50) {
-				asset = assets::spritesheets::CIVILIAN_MALE_1;
+				asset = assets::spritesheets::BOY_1;
 			}
 			else {
-				asset = assets::spritesheets::CIVILIAN_MALE_2;
+				asset = assets::spritesheets::BOY_2;
 			}
 		}
 
