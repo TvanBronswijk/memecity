@@ -35,15 +35,7 @@ void GameOverState::update(float dt)
 {
 	name_text = _context->get_input_manager().get_text();
 	auto& input_manager = _context->get_input_manager();
-	if (input_manager.is_pressed(input::UP))
-	{
-		//menu->next();
-	}
-	else if (input_manager.is_pressed(input::DOWN))
-	{
-		//menu->previous();
-	}
-	else if (input_manager.is_pressed(input::ENTER))
+	if (input_manager.is_pressed(input::ENTER))
 	{
 		_context->get_input_manager().disable_text_editing();
 		HighscoreLoader loader;
@@ -51,9 +43,11 @@ void GameOverState::update(float dt)
 		loader.Load(load_data);
 		loader.add_highscore({ experience, name_text });
 		auto save_data = loader.save();
-		_context->get_storage_manager().save(assets::saves::SAVE_HIGHSCORES, save_data);
-		menu->next();
-		menu->select();
+
+		if (_context->get_storage_manager().save(assets::saves::SAVE_HIGHSCORES, save_data)) {
+			menu->next();
+			menu->select();
+		}
 	}
 }
 
