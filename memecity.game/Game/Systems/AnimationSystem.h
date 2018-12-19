@@ -12,7 +12,7 @@ private:
 	GameManager::GameContext* _context;
 public:
 	AnimationSystem(GameManager::GameContext& context) : _context(&context) {}
-	void run(memecity::engine::ecs::EntityManager& em) const override;
+	void run(memecity::engine::ecs::EntityManager& em, float dt) const override;
 	void on_move(memecity::engine::ecs::EntityManager & em, MoveEventArgs ea);
 };
 

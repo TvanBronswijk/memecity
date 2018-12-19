@@ -2,7 +2,7 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="Game\Generate\NPC\NPCGenerator.cpp" />
-    <ClCompile Include="Game\GameLoader.cpp" />
+    <ClCompile Include="Game\States\DeveloperMenuState.cpp" />
     <ClCompile Include="Game\States\LoadingState.cpp" />
     <ClCompile Include="Game\States\GameState.cpp" />
     <ClCompile Include="Game\States\MenuState.cpp" />
@@ -16,21 +16,36 @@
     <ClCompile Include="Game\Systems\FightingSystem.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="Game\Systems\DrawSystem.cpp" />
+    <ClCompile Include="Game\Systems\FogOfWarSystem.cpp" />
     <ClCompile Include="Game\Systems\InteractionSystem.cpp" />
     <ClCompile Include="Game\Systems\InputSystem.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Game\Systems\MoveSystem.cpp" />
     <ClCompile Include="Game\Systems\OverlaySystem.cpp" />
+    <ClCompile Include="Game\Builder\QuestBuilder.cpp" />
+    <ClCompile Include="Game\States\StoryState.cpp" />
+    <ClCompile Include="Game\Systems\HealthSystem.cpp" />
+    <ClCompile Include="Game\States\GameOverState.cpp" />
+    <ClCompile Include="Game\Systems\FogOfWarSystem.cpp" />
+    <ClCompile Include="Game\MapSaver.cpp" />
+    <ClCompile Include="Game\Generate\City\Strategy\File\FileStrategy.cpp" />
+    <ClCompile Include="Game\States\StatsState.cpp" />
+    <ClCompile Include="Game\PlayerManager.cpp" />
+    <ClCompile Include="Game\Systems\QuestSystem.cpp" />
+    <ClCompile Include="Game\Generate\Item\ItemGenerator.cpp" />
+    <ClCompile Include="Game\States\StatsState.cpp" />
+    <ClCompile Include="Game\LevelBuilder.cpp" />
+    <ClCompile Include="Game\PlayerBuilder.cpp" />
+    <ClCompile Include="Game\Systems\PickpocketSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Components\DimensionComponent.h" />
     <ClInclude Include="Game\Components.h" />
     <ClInclude Include="Game\Components\AIComponent.h" />
-    <ClInclude Include="Game\Event\BlikCoinEventArg.h" />
+    <ClInclude Include="Game\Components\ColliderComponent.h" />
     <ClInclude Include="Game\Event\ExpEventArgs.h" />
     <ClInclude Include="Game\Event\HealthChangedEventArgs.h" />
     <ClInclude Include="Game\Event\StatsEventArgs.h" />
-    <ClInclude Include="Game\GameLoader.h" />
     <ClInclude Include="Game\Event\MoveEventArgs.h" />
     <ClInclude Include="Game\Generate.h" />
     <ClInclude Include="Game\Generate\City\Strategy\BSP\Fills\Building.h" />
@@ -40,6 +55,7 @@
     <ClInclude Include="Game\Generate\City\Strategy\BSP\Fills\Prefab.h" />
     <ClInclude Include="Game\Generate\NPC\NPCGenerator.h" />
     <ClInclude Include="Game\Input.h" />
+    <ClInclude Include="Game\States\DeveloperMenuState.h" />
     <ClInclude Include="Game\States\LoadingState.h" />
     <ClInclude Include="Game\States\GameState.h" />
     <ClInclude Include="Game\States.h" />
@@ -63,6 +79,7 @@
     <ClInclude Include="Game\Components\HealthComponent.h" />
     <ClInclude Include="Game\Components\InteractionComponent.h" />
     <ClInclude Include="Game\Event\InteractionEventArgs.h" />
+    <ClInclude Include="Game\Systems\FogOfWarSystem.h" />
     <ClInclude Include="Game\Systems\InteractionSystem.h" />
     <ClInclude Include="Game\Components\LevelComponent.h" />
     <ClInclude Include="Game\Generate\City\Strategy\Strategy.h" />
@@ -75,6 +92,36 @@
     <ClInclude Include="Game\Components\ScoreComponent.h" />
     <ClInclude Include="Assets.h" />
     <ClInclude Include="Game\Components\ColliderComponent.h" />
+    <ClInclude Include="Game\Builder\QuestBuilder.h" />
+    <ClInclude Include="Game\Components\QuestAIComponent.h" />
+    <ClInclude Include="Game\Enum\AIStates.h" />
+    <ClInclude Include="Game\Enum\QuestStates.h" />
+    <ClInclude Include="Game\Event\QuestEventArgs.h" />
+    <ClInclude Include="Game\States\StoryState.h" />
+    <ClInclude Include="Game\Systems\FogOfWarSystem.h" />
+    <ClInclude Include="Game\Systems\HealthSystem.h" />
+    <ClInclude Include="Game\Systems\QuestSystem.h" />
+    <ClInclude Include="Game\States\GameOverState.h" />
+    <ClInclude Include="Game\Components\InventoryComponent.h" />
+    <ClInclude Include="Game\Components\ItemComponent.h" />
+    <ClInclude Include="Game\Systems\FogOfWarSystem.h" />
+    <ClInclude Include="Game\MapSaver.h" />
+    <ClInclude Include="Game\Components\TileComponent.h" />
+    <ClInclude Include="Game\Generate\City\Strategy\File\FileStrategy.h" />
+    <ClInclude Include="Game\States\StatsState.h" />
+    <ClInclude Include="Game\PlayerManager.h" />
+    <ClInclude Include="Game\Quest\Quest.h" />
+    <ClInclude Include="Game\Quest\Story.h" />
+    <ClInclude Include="Game\Quest\Task.h" />
+    <ClInclude Include="Game\Generate\Item\ItemGenerator.h" />
+    <ClInclude Include="Game\Systems\PickpocketSystem.h" />
+    <ClInclude Include="Game\Event\PickpocketEventArgs.h" />
+    <ClInclude Include="Game\Event\BlikCoinEventArgs.h" />
+    <ClInclude Include="Game\Event\FaultyPickpocketEventArgs.h" />
+    <ClInclude Include="Game\LevelBuilder.h" />
+    <ClInclude Include="Game\PlayerBuilder.h" />
+    <ClInclude Include="Game\Components\TileComponent.h" />
+    <ClInclude Include="Game\Util\Util.h" />
   </ItemGroup>
   <ItemGroup>
     <CopyFileToFolders Include="Assets\Music\bgm.mp3" />
@@ -99,6 +146,31 @@
     <CopyFileToFolders Include="Assets\Fonts\Minecraftia-Regular.ttf" />
     <CopyFileToFolders Include="Assets\Music\bgm-game.mp3" />
     <CopyFileToFolders Include="Assets\Music\bgm-menu.mp3" />
+    <CopyFileToFolders Include="Assets\Advertisements\BananaWho.png" />
+    <CopyFileToFolders Include="Assets\Advertisements\BurgerKing.png" />
+    <CopyFileToFolders Include="Assets\Advertisements\CocaCola.png" />
+    <CopyFileToFolders Include="Assets\Sprites\Tin_can.png" />
+    <CopyFileToFolders Include="Assets\Sprites\big_black.bmp" />
+    <CopyFileToFolders Include="Assets\Sprites\Tiles\grass_00.bmp" />
+    <CopyFileToFolders Include="Assets\Sprites\Tiles\grass_01.bmp" />
+    <CopyFileToFolders Include="Assets\Sprites\Tiles\grass_02.bmp" />
+    <CopyFileToFolders Include="Assets\Sprites\Tiles\grass_03.bmp" />
+    <CopyFileToFolders Include="Assets\Sprites\Tiles\paving_00.bmp" />
+    <CopyFileToFolders Include="Assets\Sprites\Tiles\paving_01.bmp" />
+    <CopyFileToFolders Include="Assets\Sprites\Tiles\paving_03.bmp" />
+    <CopyFileToFolders Include="Assets\Sprites\Tiles\wall_00.bmp" />
+    <CopyFileToFolders Include="Assets\Sprites\Tiles\water_00.bmp" />
+    <CopyFileToFolders Include="Assets\Sprites\Tiles\paving_02.bmp" />
+    <CopyFileToFolders Include="Assets\Advertisements\AbbeyGames.png" />
+    <CopyFileToFolders Include="Assets\Advertisements\AdventOfCode.png" />
+    <CopyFileToFolders Include="Assets\Advertisements\CodedFun.png" />
+    <CopyFileToFolders Include="Assets\Advertisements\CppCon.png" />
+    <CopyFileToFolders Include="Assets\Advertisements\kolrd.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <CopyFileToFolders Include="Assets\Advertisements\BananaWho.png" />
+    <CopyFileToFolders Include="Assets\Advertisements\BurgerKing.png" />
+    <CopyFileToFolders Include="Assets\Advertisements\CocaCola.png" />
     <CopyFileToFolders Include="Assets\Sprites\big_black.bmp" />
   </ItemGroup>
 </Project>

@@ -4,7 +4,7 @@
 
 struct ExpComponent : public memecity::engine::ecs::Component
 {
-	int exp, next_level;
+	int exp, next_level, total_exp;
 	ExpComponent(memecity::engine::ecs::Entity& entity)
 		: ExpComponent(entity, 0, 0) {};
 	ExpComponent(memecity::engine::ecs::Entity& entity, int exp, int next_level) 

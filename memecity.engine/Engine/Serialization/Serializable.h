@@ -1,16 +1,17 @@
 #ifndef _SERIALIZABLE_H
 #define _SERIALIZABLE_H
+
 #include <map>
-#include <any>
 
 namespace memecity::engine::serialization {
-	using SerializeInfo = std::map<std::string, std::any>;
+	using SerializeInfo = std::map<std::string, std::string>;
 	class Serializable
 	{
 	public:
 		virtual SerializeInfo to_map() const = 0;
-		virtual void from_map(SerializeInfo map) = 0;
+		virtual void from_pair(std::pair<std::string, std::string> pair) = 0;
 
+		Serializable() = default;
 		Serializable(const Serializable &) = delete;
 		Serializable(Serializable &&) = delete;
 		Serializable& operator=(const Serializable&) = delete;

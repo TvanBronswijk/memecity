@@ -17,20 +17,28 @@ namespace generate::strategy::bsp {
 	models::City BSP::generate(int w, int h)
 	{
 		srand(time(nullptr));
-		Node root = { 0, 0, w, h };
+		Node root = { 1, 1, w, h };
 		split_recursively(root, root.horizontal());
 
 		auto nodes = root.get_leaves();
 		models::City city = { w, h };
 		for (int x = 0; x < w; x++) {
 			for (int y = 0; y < h; y++) {
-				city(x, y) = '-';
+				city.tiles(x, y) = 'W';
+				city.objects(x, y) = '\0';
+			}
+		}
+		for (int x = 1; x < w-1; x++) {
+			for (int y = 1; y < h-1; y++) {
+				city.tiles(x, y) = '-';
 			}
 		}
 		for (auto& node : nodes)
 		{
 			this->write_node(city, node);
 		}
+		city.start.x = nodes.front().get().center.x;
+		city.start.y = nodes.front().get().center.y;
 		return std::move(city);
 	}
 

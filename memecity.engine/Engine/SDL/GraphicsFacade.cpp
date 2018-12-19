@@ -93,6 +93,10 @@ namespace memecity::engine::sdl {
 
 	std::unique_ptr<RawTextureWrapper> GraphicsFacade::load_text_texture(const RawFontWrapper& font, std::string text, const SDL_Color color) const
 	{
+		if (text.empty())
+		{
+			text = " ";
+		}
 		std::unique_ptr<RawSurfaceWrapper> surface = std::make_unique<RawSurfaceWrapper>(TTF_RenderText_Solid(*font, text.c_str(), color));
 
 		if (surface->get() == nullptr)

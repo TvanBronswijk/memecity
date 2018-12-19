@@ -11,12 +11,12 @@ public:
 		_context = std::make_unique<GameContext>(*this);
 	}
 
-	struct GameContext : public memecity::engine::MemeEngine::Context {
+	struct GameContext : public Context {
 	private:
 		memecity::engine::state::StateManager* state_manager;
 	public:
-		GameContext(memecity::engine::MultimediaManager& mm, memecity::engine::InputManager& im, memecity::engine::sdl::TimerFacade& t, memecity::engine::state::StateManager& sm)
-			: Context(mm, im, t), state_manager(&sm) {}
+		GameContext(memecity::engine::MultimediaManager& mm, memecity::engine::InputManager& im, memecity::engine::sdl::TimerFacade& t, memecity::engine::state::StateManager& sm, memecity::engine::StorageManager& stm, MemeEngine& engine)
+			: Context(mm, im, t, stm, engine), state_manager(&sm) {}
 		GameContext(GameManager& engine)
 			: Context(engine), state_manager(&engine._states) {}
 		memecity::engine::state::StateManager& get_state_manager() { return *state_manager; }

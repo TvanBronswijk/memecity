@@ -9,16 +9,11 @@
 MenuState::MenuState(memecity::engine::state::StateManager & sm, GameManager::GameContext & gc)
 	: State(sm), _context(&gc)
 {
-	advanced_graphics_menu = memecity::engine::ui::menu::MenuBuilder(gc.get_multimedia_manager())
-		.create_menu("Advanced Graphics", assets::fonts::DEFAULT_FONT)
-		.with_back_menu_item()
-		.get_menu();
 
 	settings_menu = memecity::engine::ui::menu::MenuBuilder(gc.get_multimedia_manager())
 		.create_menu("Settings", assets::fonts::DEFAULT_FONT)
 		.with_menu_item("Enable Fullscreen", nullptr, [&](auto& menu_item) { gc.get_multimedia_manager().set_fullscreen(true); })
 		.with_menu_item("Disable Fullscreen", nullptr, [&](auto& menu_item) { gc.get_multimedia_manager().set_fullscreen(false); })
-		.with_menu_item("Advanced Graphics", advanced_graphics_menu.get())
 		.with_back_menu_item()
 		.get_menu();
 
@@ -38,7 +33,6 @@ MenuState::MenuState(memecity::engine::state::StateManager & sm, GameManager::Ga
 		.with_read_only_menu_item(" ")
 		.with_back_menu_item()
 		.get_menu();
-
 }
 
 void MenuState::on_load()
@@ -90,7 +84,8 @@ void MenuState::on_enter()
 
 	menu = memecity::engine::ui::menu::MenuBuilder(get_context().get_multimedia_manager())
 		.create_menu("MemeCity", assets::fonts::DEFAULT_FONT)
-		.with_menu_item("Start Game", nullptr, [&](auto& menu_item) { next<GameState>(get_context()); })
+		.with_menu_item("Start Game", nullptr, [&](auto& menu_item) { next<GameState>(get_context(), false); })
+		.with_menu_item("Load Game", nullptr, [&](auto& menu_item) { next<GameState>(get_context(), true); })
 		.with_menu_item("Settings", settings_menu.get())
 		.with_menu_item("Highscores", highscores_menu.get())
 		.with_menu_item("Credits", credits_menu.get())

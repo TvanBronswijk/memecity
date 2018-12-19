@@ -4,7 +4,7 @@
 
 using namespace memecity::engine::ecs;
 
-void DrawSystem::run(EntityManager& em) const
+void DrawSystem::run(EntityManager& em, float dt) const
 {
 	auto& player = em.get_entities_with_component<PlayerComponent>().front().get();
 	auto player_base = player.get<BaseComponent>();
@@ -12,6 +12,9 @@ void DrawSystem::run(EntityManager& em) const
 
 	float half_w = multimedia_manager.get_screen_width() / 2.0f;
 	float half_h = multimedia_manager.get_screen_height() / 2.0f;
+	em.sort<BaseComponent>([&](auto& l, auto& r) {
+		return strcmp(l.entity().type, r.entity().type) > 0;
+	});
 	auto components = em.query_components<BaseComponent>()
 		.where([&](BaseComponent& c) { 
 		return c.location.x > player_base->location.x - half_w - 255 
