@@ -101,7 +101,7 @@ Story QuestBuilder::Johnny() {
 		"Find tomato's",
 		Quest_State::Finding,
 		{},
-		generate::ItemGenerator(*multimedia_manager, *entity_manager).make_item("Tin can", "a normal tin can", 0, 0, 0, 0, 0, 0, 0,(rand() % (width * tile_size)) ,(rand() % (height * tile_size)), 48, 48, assets::sprites::TOMATO),
+		generate::ItemGenerator(*multimedia_manager, *entity_manager).make_item("Tomato", "round juicy opbject", 0, 0, 0, 0, 0, 0, 0,(rand() % (width * tile_size)) ,(rand() % (height * tile_size)), 48, 48, assets::sprites::TOMATO),
 		nullptr,
 		5}
 	};

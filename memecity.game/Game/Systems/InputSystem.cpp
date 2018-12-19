@@ -124,9 +124,6 @@ void InputSystem::run(EntityManager& em, float dt) const
 				auto item = inventory->items.at(inventory->selected);
 				inventory->items.erase(inventory->items.begin() + inventory->selected);
 
-				//TODO::quest
-				//this->quest_event.fire(em, { nullptr , item });
-
 				//update position
 				auto item_base = item->get<BaseComponent>();
 				auto player_base = player.get<BaseComponent>();
@@ -159,7 +156,7 @@ void InputSystem::run(EntityManager& em, float dt) const
 					break;
 				}
 
-				this->quest_event.fire(em, { item , nullptr });
+				this->quest_event.fire(em, { nullptr , item });
 			}
 		}
 		if (input_manager.is_pressed(input::TAKE)) {
