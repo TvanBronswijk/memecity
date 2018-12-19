@@ -77,22 +77,24 @@ namespace generate::strategy::bsp {
 
 	void BSP::write_node(models::City &c, const Node& n)
 	{
-		auto prefab = _prefabs.front();
-		if (_prefabs.size() > 0 && fits(*prefab, n)) {
-			Prefab(*prefab).write(c, n);
-			_prefabs.pop();
-		}
-		else {
-			switch (get_random_fill()) {
-			case building:
-				Building().write(c, n);
-				break;
-			case park:
-				Park(n.w + n.h).write(c, n);
-				break;
-			case empty:
-				Empty('-').write(c, n);
-				break;
+		if (!_prefabs.empty()) {
+			auto prefab = _prefabs.front();
+			if (_prefabs.size() > 0 && fits(*prefab, n)) {
+				Prefab(*prefab).write(c, n);
+				_prefabs.pop();
+			}
+			else {
+				switch (get_random_fill()) {
+				case building:
+					Building().write(c, n);
+					break;
+				case park:
+					Park(n.w + n.h).write(c, n);
+					break;
+				case empty:
+					Empty('-').write(c, n);
+					break;
+				}
 			}
 		}
 	}

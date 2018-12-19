@@ -10,17 +10,7 @@ MenuState::MenuState(memecity::engine::state::StateManager & sm, GameManager::Ga
 	: State(sm), _context(&gc)
 {
 
-	auto load_save_menu_builder = memecity::engine::ui::menu::MenuBuilder(gc.get_multimedia_manager());
-	load_save_menu_builder.create_menu("Load game", assets::fonts::DEFAULT_FONT);
-
-	auto saves = gc.get_storage_manager().get_foldernames_from_directory(assets::saves::SAVE_LOCATION);
-
-	for (std::string& save : saves)
-	{
-		load_save_menu_builder.with_menu_item(save, nullptr, [&,save](auto& menu_item) {next<GameState>(gc, true, save); });
-	}
-
-	load_save_menu = load_save_menu_builder.with_back_menu_item().get_menu();
+	
 
 	settings_menu = memecity::engine::ui::menu::MenuBuilder(gc.get_multimedia_manager())
 		.create_menu("Settings", assets::fonts::DEFAULT_FONT)
@@ -96,11 +86,22 @@ void MenuState::on_enter()
 		.with_back_menu_item()
 		.get_menu();
 
+	auto load_save_menu_builder = memecity::engine::ui::menu::MenuBuilder(_context->get_multimedia_manager());
+	load_save_menu_builder.create_menu("Load game", assets::fonts::DEFAULT_FONT);
+
+	auto saves = _context->get_storage_manager().get_foldernames_from_directory(assets::saves::SAVE_LOCATION);
+
+	for (std::string& save : saves)
+	{
+		load_save_menu_builder.with_menu_item(save, nullptr, [&, save](auto& menu_item) {next<GameState>(*_context, true, save); });
+	}
+
+	load_save_menu = load_save_menu_builder.with_back_menu_item().get_menu();
+
 	menu = memecity::engine::ui::menu::MenuBuilder(get_context().get_multimedia_manager())
 		.create_menu("MemeCity", assets::fonts::DEFAULT_FONT)
 		.with_menu_item("Start Game", nullptr, [&](auto& menu_item) { next<GameState>(get_context(), false); })
 		.with_menu_item("Select Save", load_save_menu.get())
-		.with_menu_item("Load Game", nullptr, [&](auto& menu_item) { next<GameState>(get_context(), true); })
 		.with_menu_item("Settings", settings_menu.get())
 		.with_menu_item("Highscores", highscores_menu.get())
 		.with_menu_item("Credits", credits_menu.get())
