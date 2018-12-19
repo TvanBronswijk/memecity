@@ -422,10 +422,12 @@
     <CopyFileToFolders Include="Assets\Spritesheets\train_animated.bmp" />
   </ItemGroup>
   <ItemGroup>
-    <CopyFileToFolders Include="Assets\Scripts\Prefabs\prettypark-objects.m2do">
+    <CopyFileToFolders Include="Assets\Scripts\Prefabs\prettypark.m2d">
       <FileType>Document</FileType>
     </CopyFileToFolders>
-    <CopyFileToFolders Include="Assets\Scripts\Prefabs\prettypark.m2d">
+  </ItemGroup>
+  <ItemGroup>
+    <CopyFileToFolders Include="Assets\Scripts\Prefabs\prettypark.m2do">
       <FileType>Document</FileType>
     </CopyFileToFolders>
   </ItemGroup>

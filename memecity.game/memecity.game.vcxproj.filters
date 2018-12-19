@@ -177,6 +177,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Scripts\Prefabs\prettypark.m2d" />
-    <None Include="Assets\Scripts\Prefabs\prettypark-objects.m2do" />
+    <None Include="Assets\Scripts\Prefabs\prettypark.m2do" />
   </ItemGroup>
 </Project>
