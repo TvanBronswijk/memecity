@@ -11,9 +11,12 @@ struct Story
 	std::string description;
 	bool active;
 
+	int blik_coins;
+	int exp;
+
 	std::queue<Quest> quests;
 
-	Story(std::string description,std::deque<Quest> quests) : description(description), quests(quests), completed(false),active(true) {};
+	Story(std::string description,int exp, int blik_coins,std::deque<Quest> quests) : description(description), quests(quests), completed(false),active(true), blik_coins(blik_coins), exp(exp) {};
 };
 
 #endif;

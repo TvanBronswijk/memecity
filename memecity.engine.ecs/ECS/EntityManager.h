@@ -92,7 +92,11 @@ namespace memecity::engine::ecs {
 			std::lock_guard lock(entity_mutex);
 			std::lock_guard lock2(component_mutex);
 			std::vector<std::reference_wrapper<const Entity>> result;
-			auto& entity_components = (*components.find(token<C>())).second;
+			auto it = components.find(token<C>());
+			if (it == components.end()) {
+				return result;
+			}
+			auto& entity_components = it->second;
 			std::transform(entity_components.begin(), entity_components.end(), 
 				std::back_inserter(result), [](auto& c)->std::reference_wrapper<const Entity> {
 				return std::ref(c->entity());
@@ -164,6 +168,14 @@ namespace memecity::engine::ecs {
 					std::back_inserter(deleted_components), [&](auto&& c) { return (c.get()) == &component; });
 				component_type.erase(std::remove_if(component_type.begin(), component_type.end(), [](auto& c) { return c ? false : true; }), component_type.end());
 			});
+		}
+
+		template<class C>
+		void sort(std::function<bool(const C&, const C&)> sort_func) {
+			std::lock_guard lock2(component_mutex);
+			auto typed_components = components.find(token<C>());
+			if(typed_components != components.end())
+				std::sort(typed_components->second.begin(), typed_components->second.end(), [&](auto& l, auto& r) {return sort_func(*static_cast<C*>(l.get()), *static_cast<C*>(r.get())); });
 		}
 
 		void cleanup() {

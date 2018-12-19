@@ -1,14 +1,15 @@
 ﻿#ifndef _MENU_STATE_H
 #define _MENU_STATE_H
+
 #include <Engine\State.h>
 #include <UI.h>
 #include "..\..\GameManager.h"
+#include "ECS/EntityManager.h"
 
 class MenuState : public memecity::engine::state::State
 {
 private:
 	GameManager::GameContext* _context;
-	std::unique_ptr<memecity::engine::ui::menu::Menu> advanced_graphics_menu;
 	std::unique_ptr<memecity::engine::ui::menu::Menu> settings_menu;
 	std::unique_ptr<memecity::engine::ui::menu::Menu> credits_menu;
 	std::unique_ptr<memecity::engine::ui::menu::Menu> menu;
@@ -25,4 +26,3 @@ public:
 };
 
 #endif
-

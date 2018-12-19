@@ -3,7 +3,10 @@
 #include "..\States.h"
 #include "..\Input.h"
 #include "../States/DeveloperMenuState.h"
+#include "../PlayerManager.h"
 #include "../States/StatsState.h"
+#include "..\Util\Util.h"
+#include "..\LevelBuilder.h"
 
 using namespace memecity::engine;
 using namespace memecity::engine::ecs;
@@ -21,7 +24,8 @@ void InputSystem::run(EntityManager& em, float dt) const
 	auto players = em.get_entities_with_component<PlayerComponent>();
 	for (const Entity& player : players)
 	{
-		float speed = 200.0f;
+		auto player_stats = player.get<StatsComponent>();
+		float speed = player.get<PlayerComponent>()->min_movement_speed + (player_stats->endurance * 10);
 
 		auto animation_component = player.get<AnimationComponent>();
 		auto velocity_component = player.get<VelocityComponent>();
@@ -48,6 +52,24 @@ void InputSystem::run(EntityManager& em, float dt) const
 
 		if (input_manager.is_pressed(input::INTERACTION))
 		{
+			if (on_tile(em, player) == "Station") {
+				Point start;
+				state_manager.create_state<LoadingState>(*_context,
+					[&](auto& ctx, auto& listener) {
+					auto entities = em.query_all_entities().where([](const auto& e) { return e.type != "player";  }).to_vector();
+					listener.set_text("Clearing State...");
+					listener.set_max_value(100.0f);
+					listener.set_current_value(0.0f);
+					for (const auto& entity : entities) {
+						em.remove_entity(entity);
+						listener.increase_current_value(100.0f / entities.size());
+					}
+					state_manager.pop(); });
+				state_manager.create_state<LoadingState>(*_context, 
+					[&](auto& ctx, auto& listener) { start = LevelBuilder(ctx, 128, 128, false).build(em, listener); state_manager.pop(); });
+				player.get<BaseComponent>()->location = start;
+			}
+
 			auto npcs = em.get_entities_with_component<AIComponent>();
 			for (const Entity& npc : npcs) {
 				if(check_collision(*player.get<BaseComponent>(), *npc.get<BaseComponent>(), 60)){
@@ -71,12 +93,21 @@ void InputSystem::run(EntityManager& em, float dt) const
 			}
 		}
 
+		if (input_manager.is_pressed(input::Z)) {
+			auto npcs = em.get_entities_with_component<AIComponent>();
+			for (const Entity& npc : npcs) {
+				if (check_collision(*player.get<BaseComponent>(), *npc.get<BaseComponent>(), 60)) {
+					pickpocket_event.fire(em, { player, npc });
+				}
+			}
+		}
+
 		if (input_manager.is_pressed(input::ESCAPE)) {
-			state_manager.create_state<PauseMenuState>(*_context);
+			state_manager.create_state<PauseMenuState>(*_context, em);
 		}
 		if (input_manager.is_pressed(input::STATS)) {
 			auto& stats = *player.get<StatsComponent>();
-			state_manager.create_state<StatsState>(*_context, stats);
+			state_manager.create_state<StatsState>(*_context, *_hud, stats);
 		}
 
 		//inventory
@@ -142,7 +173,7 @@ void InputSystem::run(EntityManager& em, float dt) const
 		}
 		if(input_manager.is_pressed(input::DEVELOPER))
 		{
-			state_manager.create_state<DeveloperMenuState>(*_context, em);
+			state_manager.create_state<DeveloperMenuState>(*_context, em, *_hud);
 		}
 		if (input_manager.is_pressed(input::ONE)) {
 			auto inventory = player.get<InventoryComponent>();

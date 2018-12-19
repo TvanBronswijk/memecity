@@ -24,7 +24,7 @@ namespace memecity::engine::ecs {
 		T* first(Predicate predicate) const {
 			auto it = std::find_if(_collection.begin(), _collection.end(), predicate);
 			if (it != _collection.end())
-				return *it;
+				return &((*it).get());
 			return nullptr;
 		}
 		T* first() const {

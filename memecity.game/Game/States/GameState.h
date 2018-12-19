@@ -1,5 +1,6 @@
 #ifndef _GAME_STATE_H
-#define  _GAME_STATE_H
+#define _GAME_STATE_H
+
 #include <Engine\State.h>
 #include <ECS.h>
 #include <UI\Overlay\Overlay.h>
@@ -7,15 +8,18 @@
 #include "..\..\GameManager.h"
 #include "..\..\Assets.h"
 
-struct GameState : public memecity::engine::state::State {
+struct GameState : memecity::engine::state::State {
+
 private:
 	GameManager::GameContext* _context;
 	memecity::engine::ecs::EntityManager entity_manager;
 	memecity::engine::ecs::SystemPool system_pool;
 	memecity::engine::ui::overlay::Overlay _hud;
+	bool _load_from_file;
+
 public:
-	GameState(memecity::engine::state::StateManager& sm, GameManager::GameContext& gc)
-		: _context(&gc), State(sm), _hud(_context->get_multimedia_manager(), _context->get_multimedia_manager().get_texture(assets::sprites::DARK_BACKGROUND, 0, 0, _context->get_multimedia_manager().get_screen_width(), 100), 0, 0)
+	GameState(memecity::engine::state::StateManager& sm, GameManager::GameContext& gc, bool load_from_file)
+		: State(sm), _context(&gc), _hud(_context->get_multimedia_manager(), _context->get_multimedia_manager().get_texture(assets::sprites::DARK_BACKGROUND, 0, 0, _context->get_multimedia_manager().get_screen_width(), 100), 0, 0), _load_from_file(load_from_file)
 	{
 		_hud.create_overlay_text_item("HEALTH", "Health", 16, 100.0f, 20.0f);
 		_hud.create_overlay_bar_item("HEALTHVALUE", 100, 20, 150, 12, 100, 200, memecity::engine::sdl::Color(255, 0, 0), memecity::engine::sdl::Color(0, 255, 0));
@@ -30,7 +34,7 @@ public:
 		_hud.create_overlay_text_item("A", "A: 1", 16, 500, 32);
 		_hud.create_overlay_text_item("L", "L: 1", 16, 500, 48);
 
-		_hud.create_overlay_text_item("BLIKCOIN", "BlikCoin: 9999", 16, 650, 16);
+		_hud.create_overlay_text_item("BLIKCOIN", "BlikCoins: 0", 16, 650, 16);
 
 		_hud.create_overlay_text_item("INVENTORY"," Inventory" , 16, 1000, 16);
 		_hud.create_overlay_text_item("SIZE"," Size = 1" , 16, 1000, 38);
@@ -40,9 +44,10 @@ public:
 	}
 	~GameState()
 	{
-		auto& engine = _context->get_engine(); 
-		engine.set_calculate_fps(false);
-		engine.set_display_gamespeed(false);
+		auto& engine = _context->get_engine();
+		
+		engine.disable_calculate_fps();
+		engine.disable_display_gamespeed();
 	};
 	void on_load() override;
 	void update(float dt) override;
