@@ -14,6 +14,8 @@ private:
 	std::unique_ptr<memecity::engine::ui::menu::Menu> menu;
 	std::unique_ptr<memecity::engine::ui::menu::Menu> help_menu;
 	std::unique_ptr<memecity::engine::ui::menu::Menu> help_menu2;
+	std::unique_ptr<memecity::engine::ui::menu::Menu> retire_confirm_menu;
+
 	int* _map_number;
 	std::string* _save_slot;
 

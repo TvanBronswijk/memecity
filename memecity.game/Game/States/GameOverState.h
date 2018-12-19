@@ -12,9 +12,9 @@ private:
 	std::unique_ptr<memecity::engine::texture::TextTexture> name_text_texture;
 	std::string name_text = " ";
 	int experience;
-
+	bool retire;
 public:
-	GameOverState(memecity::engine::state::StateManager& sm, GameManager::GameContext& gc, int exp);
+	GameOverState(memecity::engine::state::StateManager& sm, GameManager::GameContext& gc, int exp, bool retire = false);
 	~GameOverState() = default;
 	void on_load() override;
 	void update(float dt) override;
