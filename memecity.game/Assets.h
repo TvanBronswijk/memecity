@@ -38,6 +38,7 @@ namespace assets {
 		constexpr inline Asset HUMAN_MALE_1 = "Spritesheets/SpriteSheet.png";
 		constexpr inline Asset HUMAN_FIGHTING_1 = "Spritesheets/FightingSheet.png";
 		constexpr inline Asset HUMAN_DYING_1 = "Spritesheets/DeadSheet.png";
+		constexpr inline Asset HUMAN_TEST_1 = "Spritesheets/Boy1SpriteSheet.png";
 
 	}
 	namespace advertisements {

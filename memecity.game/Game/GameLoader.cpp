@@ -49,11 +49,11 @@ void GameLoader::create_map(EntityManager& em, loading::LoadingBar::Listener& li
 
 void GameLoader::create_npcs(EntityManager& em, loading::LoadingBar::Listener& listener)
 {
-	for (size_t i = 0; i < 10; i++) {
-		auto& multimedia_manager = _context->get_multimedia_manager();
-		auto& timer = _context->get_timer();
-		generate::NPCGenerator(multimedia_manager, em).generate_random_npc(50 * i, 0);
-	}
+	//for (size_t i = 0; i < 10; i++) {
+	//	auto& multimedia_manager = _context->get_multimedia_manager();
+	//	auto& timer = _context->get_timer();
+	//	generate::NPCGenerator(multimedia_manager, em).generate_random_npc(50 * i, 0);
+	//}
 	listener.increase_current_value(20.0f);
 }
 
@@ -67,7 +67,7 @@ void GameLoader::create_player(EntityManager& em, loading::LoadingBar::Listener&
 {
 	auto& multimedia_manager = _context->get_multimedia_manager();
 
-	auto texture = multimedia_manager.get_texture(assets::spritesheets::HUMAN_MALE_1, 0, 0, 48, 48, 4, 2.0f, memecity::engine::texture::AnimatedTexture::AnimationDirection::vertical);
+	auto texture = multimedia_manager.get_texture(assets::spritesheets::HUMAN_TEST_1, 0, 0, 48, 48, 4, 2.0f, memecity::engine::texture::AnimatedTexture::AnimationDirection::vertical);
 	texture->set_position({ static_cast<float>(multimedia_manager.get_screen_width()) / 2, static_cast<float>(multimedia_manager.get_screen_height()) / 2 });
 
 	auto builder = em.create_entity("player")

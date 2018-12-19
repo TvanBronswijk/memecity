@@ -406,6 +406,9 @@
     <CopyFileToFolders Include="Assets\Spritesheets\girl2.png" />
     <CopyFileToFolders Include="Assets\Spritesheets\police1.png" />
   </ItemGroup>
+  <ItemGroup>
+    <CopyFileToFolders Include="Assets\Spritesheets\Boy1SpriteSheet.png" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{7554130C-4955-4D87-B069-5B9404014044}</ProjectGuid>

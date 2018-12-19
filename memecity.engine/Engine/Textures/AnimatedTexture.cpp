@@ -5,7 +5,14 @@ namespace memecity::engine::texture {
 	void AnimatedTexture::set_state(AnimationState state)
 	{
 		this->_current_state = state;
-		this->_start_x = static_cast<int>(state) * texture_width;
+		if (state == AnimationState::idle)
+		{
+			this->clipped_rect.x = 0;
+		}
+		else
+		{
+			this->clipped_rect.x = static_cast<int>(state) * texture_width;
+		}
 	}
 
 	void AnimatedTexture::set_animation_direction(AnimationDirection direction)
@@ -30,7 +37,7 @@ namespace memecity::engine::texture {
 
 	bool AnimatedTexture::is_last() const
 	{
-		return column() == frame_count() - 1;
+		return row() == frame_count() - 1;
 	}
 
 	void AnimatedTexture::column(const float x)
@@ -47,6 +54,7 @@ namespace memecity::engine::texture {
 	void AnimatedTexture::row(const float y)
 	{
 		clipped_rect.y = y * texture_height;
+		_row_changed = true;
 	}
 
 	int AnimatedTexture::row() const
@@ -62,21 +70,43 @@ namespace memecity::engine::texture {
 			_animation_timer -= _animation_speed;
 		}
 
-		if (_current_state != AnimationState::idle && _animation_direction == AnimationDirection::vertical && !_row_changed)
+		if (_animation_direction == AnimationDirection::vertical)
 		{
-			clipped_rect.x = _start_x;
-			clipped_rect.y = _start_y + int(_animation_timer / _time_per_frame) * texture_height;
-			_row_changed = false;
+			if (_current_state == AnimationState::idle)
+			{
+				if (_column_changed)
+				{
+					clipped_rect.y = _start_y + int(_animation_timer / _time_per_frame) * texture_height;
+					_column_changed = false;
+				}
+				else
+				{
+					clipped_rect.y = 0;
+				}
+			}
+			else
+			{
+				clipped_rect.y = _start_y + int(_animation_timer / _time_per_frame) * texture_height;
+			}
 		}
-		else if (_animation_direction == AnimationDirection::horizontal && !_column_changed)
+		else if (_animation_direction == AnimationDirection::horizontal)
 		{
-			clipped_rect.x = int(_animation_timer / _time_per_frame) * texture_width;
-			clipped_rect.y = _start_y;
-			_column_changed = false;
-		}
-		else
-		{
-			clipped_rect.y = _start_y;
+			if (_current_state == AnimationState::idle)
+			{
+				if (_row_changed)
+				{
+					clipped_rect.x = _start_x + int(_animation_timer / _time_per_frame) * texture_width;
+					_row_changed = false;
+				}
+				else
+				{
+					clipped_rect.x = 0;
+				}
+			}
+			else
+			{
+				clipped_rect.x = _start_x + int(_animation_timer / _time_per_frame) * texture_width;
+			}
 		}
 	}
 }

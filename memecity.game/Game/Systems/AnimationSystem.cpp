@@ -35,8 +35,11 @@ void AnimationSystem::on_move(EntityManager& em, MoveEventArgs args)
 		switch (animation_component->current_state)
 		{
 			case AnimationComponent::AnimationState::fighting:
-				change_texture(*base_component, _context->get_multimedia_manager().get_texture(assets::spritesheets::HUMAN_FIGHTING_1, 0, 0, 48, 48, 4, 2.0f, AnimatedTexture::AnimationDirection::horizontal));
-				if (animated_texture->is_last()) animation_component->current_state = AnimationComponent::AnimationState::idle;
+				animated_texture->column(4);
+				if (animated_texture->row() == 3)
+				{
+					animation_component->current_state = AnimationComponent::AnimationState::idle;
+				}
 				break;
 			
 			case AnimationComponent::AnimationState::dying:
@@ -63,7 +66,6 @@ void AnimationSystem::on_move(EntityManager& em, MoveEventArgs args)
 				break;
 			
 			default:
-				change_texture(*base_component, _context->get_multimedia_manager().get_texture(assets::spritesheets::HUMAN_MALE_1, 0, 0, 48, 48, 4, 2.0f, AnimatedTexture::AnimationDirection::vertical));
 				animated_texture->set_state(args.state);
 				break;
 		}

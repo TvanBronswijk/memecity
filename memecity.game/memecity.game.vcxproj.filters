@@ -160,4 +160,7 @@
     <CopyFileToFolders Include="Assets\Advertisements\CocaCola.png" />
     <CopyFileToFolders Include="Assets\Sprites\big_black.bmp" />
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="Assets\Spritesheets\Boy1SpriteSheet.png" />
+  </ItemGroup>
 </Project>
