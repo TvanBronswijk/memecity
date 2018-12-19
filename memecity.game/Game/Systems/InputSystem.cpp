@@ -66,7 +66,7 @@ void InputSystem::run(EntityManager& em, float dt) const
 					}
 					state_manager.pop(); });
 				state_manager.create_state<LoadingState>(*_context, 
-					[&](auto& ctx, auto& listener) { start = LevelBuilder(ctx, 128, 128, false).build(em, listener); state_manager.pop(); });
+					[&](auto& ctx, auto& listener) { start = LevelBuilder(ctx, 1, 128, 128, false).build(em, listener); state_manager.pop(); });
 				player.get<BaseComponent>()->location = start;
 			}
 
