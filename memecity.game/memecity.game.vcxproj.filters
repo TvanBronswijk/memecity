@@ -124,6 +124,8 @@
     <ClInclude Include="Game\Components\TileComponent.h" />
     <ClInclude Include="Game\Util\Util.h" />
     <ClInclude Include="Game\Event\BlikCoinEventArg.h" />
+    <ClInclude Include="Game\Highscore.h" />
+    <ClInclude Include="Game\HighscoreLoader.h" />
   </ItemGroup>
   <ItemGroup>
     <CopyFileToFolders Include="Assets\Music\bgm.mp3" />
@@ -169,22 +171,18 @@
     <CopyFileToFolders Include="Assets\Advertisements\kolrd.png" />
     <CopyFileToFolders Include="Assets\Spritesheets\train_animated.bmp" />
     <CopyFileToFolders Include="Assets\Spritesheets\Boy1SpriteSheet.png" />
+    <CopyFileToFolders Include="Assets\Spritesheets\Boy2SpriteSheet.png" />
+    <CopyFileToFolders Include="Assets\Spritesheets\Boy3SpriteSheet.png" />
+    <CopyFileToFolders Include="Assets\Spritesheets\Girl1SpriteSheet.png" />
+    <CopyFileToFolders Include="Assets\Spritesheets\Girl2SpriteSheet.png" />
+    <CopyFileToFolders Include="Assets\Spritesheets\PoliceSpriteSheet.png" />
+    <CopyFileToFolders Include="Assets\Scripts\Prefabs\prettypark.m2d" />
+    <CopyFileToFolders Include="Assets\Scripts\Prefabs\prettypark.m2do" />
   </ItemGroup>
   <ItemGroup>
     <CopyFileToFolders Include="Assets\Advertisements\BananaWho.png" />
     <CopyFileToFolders Include="Assets\Advertisements\BurgerKing.png" />
     <CopyFileToFolders Include="Assets\Advertisements\CocaCola.png" />
     <CopyFileToFolders Include="Assets\Sprites\big_black.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="Assets\Spritesheets\Boy2SpriteSheet.png" />
-    <Image Include="Assets\Spritesheets\Boy3SpriteSheet.png" />
-    <Image Include="Assets\Spritesheets\Girl1SpriteSheet.png" />
-    <Image Include="Assets\Spritesheets\Girl2SpriteSheet.png" />
-    <Image Include="Assets\Spritesheets\PoliceSpriteSheet.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Assets\Scripts\Prefabs\prettypark.m2d" />
-    <None Include="Assets\Scripts\Prefabs\prettypark.m2do" />
   </ItemGroup>
 </Project>

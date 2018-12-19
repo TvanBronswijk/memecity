@@ -424,12 +424,12 @@
     <CopyFileToFolders Include="Assets\Spritesheets\PoliceSpriteSheet.png" />
   </ItemGroup>
   <ItemGroup>
-    <CopyFileToFolders Include="Assets\Scripts\Prefabs\prettypark.m2d">
+    <CopyFileToFolders Include="Assets\Scripts\Prefabs\prettypark.m2do">
       <FileType>Document</FileType>
     </CopyFileToFolders>
   </ItemGroup>
   <ItemGroup>
-    <CopyFileToFolders Include="Assets\Scripts\Prefabs\prettypark.m2do">
+    <CopyFileToFolders Include="Assets\Scripts\Prefabs\prettypark.m2d">
       <FileType>Document</FileType>
     </CopyFileToFolders>
   </ItemGroup>
