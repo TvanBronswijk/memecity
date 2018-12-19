@@ -1,49 +1,120 @@
 #include "AnimatedTexture.h"
 
 namespace memecity::engine::texture {
-
-	void AnimatedTexture::set_direction(Direction direction)
+	
+	void AnimatedTexture::set_state(AnimationState state)
 	{
-		this->direction = direction;
-		this->start_x = static_cast<int>(direction) * texture_width;
+		this->_current_state = state;
+		if (state == AnimationState::idle)
+		{
+			this->clipped_rect.x = 0;
+		}
+		else
+		{
+			this->clipped_rect.x = static_cast<int>(state) * texture_width;
+		}
 	}
 
 	void AnimatedTexture::set_animation_direction(AnimationDirection direction)
 	{
-		this->animation_direction = direction;
+		this->_animation_direction = direction;
 	}
 
 	const AnimatedTexture::AnimationDirection& AnimatedTexture::get_animation_direction() const
 	{
-		return this->animation_direction;
+		return this->_animation_direction;
 	}
 
-	const AnimatedTexture::Direction& AnimatedTexture::get_direction() const
+	const AnimatedTexture::AnimationState& AnimatedTexture::get_state() const
 	{
-		return this->direction;
+		return this->_current_state;
 	}
 
-	void AnimatedTexture::update(float dt)
+	int AnimatedTexture::column() const
 	{
-		animation_timer += dt;
-		if (animation_timer >= animation_speed)
+		return clipped_rect.x / texture_width;
+	}
+
+	bool AnimatedTexture::is_last() const
+	{
+		return row() == frame_count() - 1;
+	}
+
+	void AnimatedTexture::column(const float x)
+	{
+		clipped_rect.x = x * texture_width;
+		_column_changed = true;
+	}
+
+	int AnimatedTexture::frame_count() const
+	{
+		return _frame_count;
+	}
+
+	void AnimatedTexture::row(const float y)
+	{
+		clipped_rect.y = y * texture_height;
+		_row_changed = true;
+	}
+
+	int AnimatedTexture::row() const
+	{
+		return clipped_rect.y / texture_height;
+	}
+
+	void AnimatedTexture::update(const float dt)
+	{
+		_animation_timer += dt;
+		if (_animation_timer >= _animation_speed)
 		{
-			animation_timer -= animation_speed;
+			_animation_timer -= _animation_speed;
 		}
 
-		if (direction != Direction::idle && animation_direction == AnimationDirection::vertical)
+		if (_animation_direction == AnimationDirection::vertical)
 		{
-			clipped_rect.x = start_x;
-			clipped_rect.y = start_y + int(animation_timer / time_per_frame) * texture_height;
+			if (_current_state == AnimationState::idle)
+			{
+				if (_column_changed)
+				{
+					if (!_row_changed)
+					{
+						clipped_rect.y = _start_y + int(_animation_timer / _time_per_frame) * texture_height;
+					}
+
+					_row_changed = false;
+					_column_changed = false;
+				}
+				else
+				{
+					clipped_rect.y = 0;
+				}
+			}
+			else
+			{
+				if (!_row_changed)
+				{
+					clipped_rect.y = _start_y + int(_animation_timer / _time_per_frame) * texture_height;
+				}
+			}
 		}
-		else if (animation_direction == AnimationDirection::horizontal)
+		else if (_animation_direction == AnimationDirection::horizontal)
 		{
-			clipped_rect.y = 4 * texture_width;
-			clipped_rect.x = int(animation_timer / time_per_frame) * texture_width;
-		}
-		else
-		{
-			clipped_rect.y = 0;
+			if (_current_state == AnimationState::idle)
+			{
+				if (_row_changed)
+				{
+					clipped_rect.x = _start_x + int(_animation_timer / _time_per_frame) * texture_width;
+					_row_changed = false;
+				}
+				else
+				{
+					clipped_rect.x = 0;
+				}
+			}
+			else
+			{
+				clipped_rect.x = _start_x + int(_animation_timer / _time_per_frame) * texture_width;
+			}
 		}
 	}
 }

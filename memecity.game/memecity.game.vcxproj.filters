@@ -114,6 +114,7 @@
     <ClInclude Include="Game\Quest\Story.h" />
     <ClInclude Include="Game\Quest\Task.h" />
     <ClInclude Include="Game\Generate\Item\ItemGenerator.h" />
+    <ClInclude Include="Game\Event\DeathEventArgs.h" />
     <ClInclude Include="Game\Systems\PickpocketSystem.h" />
     <ClInclude Include="Game\Event\PickpocketEventArgs.h" />
     <ClInclude Include="Game\Event\BlikCoinEventArgs.h" />
@@ -139,7 +140,6 @@
     <CopyFileToFolders Include="Assets\Sprites\Tiles\orange.bmp" />
     <CopyFileToFolders Include="Assets\Sprites\Tiles\purple.bmp" />
     <CopyFileToFolders Include="Assets\Sprites\Tiles\red.bmp" />
-    <CopyFileToFolders Include="Assets\Spritesheets\SpriteSheet.png" />
     <CopyFileToFolders Include="Assets\Sprites\Tiles\white.bmp" />
     <CopyFileToFolders Include="Assets\Sprites\Tiles\yellow.bmp" />
     <CopyFileToFolders Include="Assets\Fonts\Blazed.ttf" />
@@ -168,11 +168,19 @@
     <CopyFileToFolders Include="Assets\Advertisements\CppCon.png" />
     <CopyFileToFolders Include="Assets\Advertisements\kolrd.png" />
     <CopyFileToFolders Include="Assets\Spritesheets\train_animated.bmp" />
+    <CopyFileToFolders Include="Assets\Spritesheets\Boy1SpriteSheet.png" />
   </ItemGroup>
   <ItemGroup>
     <CopyFileToFolders Include="Assets\Advertisements\BananaWho.png" />
     <CopyFileToFolders Include="Assets\Advertisements\BurgerKing.png" />
     <CopyFileToFolders Include="Assets\Advertisements\CocaCola.png" />
     <CopyFileToFolders Include="Assets\Sprites\big_black.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Assets\Spritesheets\Boy2SpriteSheet.png" />
+    <Image Include="Assets\Spritesheets\Boy3SpriteSheet.png" />
+    <Image Include="Assets\Spritesheets\Girl1SpriteSheet.png" />
+    <Image Include="Assets\Spritesheets\Girl2SpriteSheet.png" />
+    <Image Include="Assets\Spritesheets\PoliceSpriteSheet.png" />
   </ItemGroup>
 </Project>

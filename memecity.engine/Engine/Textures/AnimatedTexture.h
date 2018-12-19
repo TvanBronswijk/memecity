@@ -1,7 +1,6 @@
 #ifndef _ANIMATED_TEXTURE_H
 #define _ANIMATED_TEXTURE_H
 
-#include "..\SDL\TimerFacade.h"
 #include "Texture.h"
 #include <string>
 
@@ -11,32 +10,44 @@ namespace memecity::engine::texture
 	{
 	public:
 		enum class AnimationDirection { horizontal, vertical };
-		enum class Direction { down, left, up, right, idle };
+		enum class AnimationState { down, left, up, right, idle };
 
 	private:
-		AnimationDirection animation_direction;
-		Direction direction;
+		AnimationDirection _animation_direction;
+		AnimationState _current_state;
 
-		float start_x;
-		float start_y;
+		bool _column_changed = false;
+		bool _row_changed = false;
 
-		int frame_count;
+		int _frame_count;
 
-		float animation_timer;
-		float animation_speed;
+		float _start_x;
+		float _start_y;
 
-		float time_per_frame;
+		float _animation_timer;
+		float _animation_speed;
+		float _time_per_frame;
 
 	public:
-		AnimatedTexture(std::string filename, float x, float y, const float w, const float h, const int frame_count, const float animation_speed, const AnimationDirection direction)
-			: Texture(filename, x, y, w, h), animation_direction(direction), direction(Direction::down), start_x(x), start_y(y), frame_count(frame_count), animation_timer(0.0f), animation_speed(animation_speed), time_per_frame(animation_speed / frame_count)
-		{};
+		AnimatedTexture(std::string filename, float start_x, float start_y, const float w, const float h, const int frame_count, const float animation_speed, const AnimationDirection direction)
+			: Texture(filename, start_x, start_y, w, h), _animation_direction(direction), _current_state(AnimationState::idle), _frame_count(frame_count), _start_x(start_x), _start_y(start_y), _animation_timer(0.0f), _animation_speed(animation_speed), _time_per_frame(animation_speed / frame_count)
+		{}
+
 		~AnimatedTexture() = default;
 
-		void set_direction(const Direction direction);
-		void set_animation_direction(const AnimationDirection direction);
+		void row(float y);
+		int row() const;
+
+		void column(float x);
+		int column() const;
+
+		int frame_count() const;
+		bool is_last() const;
+
+		void set_state(AnimationState state);
+		void set_animation_direction(AnimationDirection direction);
 		const AnimationDirection& get_animation_direction() const;
-		const Direction& get_direction() const;
+		const AnimationState& get_state() const;
 
 		void update(float dt);
 	};
