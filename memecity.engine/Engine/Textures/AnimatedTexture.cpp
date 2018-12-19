@@ -4,14 +4,18 @@ namespace memecity::engine::texture {
 	
 	void AnimatedTexture::set_state(AnimationState state)
 	{
-		this->_current_state = state;
-		if (state == AnimationState::idle)
+		if (_current_state != state)
 		{
-			this->clipped_rect.x = 0;
-		}
-		else
-		{
-			this->clipped_rect.x = static_cast<int>(state) * texture_width;
+			this->_current_state = state;
+
+			if (state == AnimationState::idle)
+			{
+				this->clipped_rect.x = 0;
+			}
+			else
+			{
+				this->clipped_rect.x = static_cast<int>(state) * texture_width;
+			}
 		}
 	}
 
