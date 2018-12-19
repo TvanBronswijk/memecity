@@ -3,11 +3,15 @@
 #include "..\..\Assets.h"
 #include "LoadingState.h"
 #include "..\LevelBuilder.h"
+#include "..\GameSaver.h"
 
 LevelChangeState::LevelChangeState(memecity::engine::state::StateManager & sm, GameManager::GameContext & gc, memecity::engine::ecs::EntityManager & em, int& map_number, std::string save_location)
 	:State(sm), _context(&gc), _entity_manager(&em), map_number(map_number), save_location(save_location)
 {
 	auto& player = em.get_entities_by_type("player").front().get();
+	GameSaver().save(em, gc, save_location, map_number);
+
+
 	menu = memecity::engine::ui::menu::MenuBuilder(gc.get_multimedia_manager())
 		.create_menu("Station", assets::fonts::DEFAULT_FONT)
 		.with_menu_item("Go to Next City", nullptr, [&](auto& _) {
