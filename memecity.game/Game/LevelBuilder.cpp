@@ -49,9 +49,6 @@ Point LevelBuilder::build(memecity::engine::ecs::EntityManager& em, loading::Loa
 			case 'n':
 				generate::NPCGenerator(_context->get_multimedia_manager(), em).generate_civilian_npc(x*64.0f, y*64.0f);
 				break;
-			case 'p':
-				generate::NPCGenerator(_context->get_multimedia_manager(), em).generate_police_npc(x*64.0f, y*64.0f);
-				break;
 			case 'c':
 				auto texture = multimedia_manager.get_texture(assets::sprites::TIN_CAN, 0, 0, 48, 28);
 				texture->set_position({ 0,0 });

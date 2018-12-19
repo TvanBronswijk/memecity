@@ -81,7 +81,7 @@ namespace generate {
 			x, y, 48.0f, 48.0f, exp, range_of_fighting, movement_speed,blikcoins,
 			5, 5, 5, 5, 5, 5, 5,
 			name, Ai_State::Roaming, {}, level,
-			assets::spritesheets::GIRL_2);
+			asset);
 	}
 
 	//random generator
