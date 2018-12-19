@@ -1,7 +1,6 @@
 ﻿#include "AnimationSystem.h"
 #include <Engine\Textures.h>
 #include "../Event/MoveEventArgs.h"
-#include "../../Assets.h"
 #include "../States/GameOverState.h"
 
 using namespace memecity::engine::texture;
@@ -36,7 +35,7 @@ void AnimationSystem::on_move(EntityManager& em, MoveEventArgs args)
 		{
 			case AnimationComponent::AnimationState::fighting:
 				animated_texture->column(4);
-				if (animated_texture->is_last())
+				if (animated_texture->is_last()) 
 				{
 					animation_component->current_state = AnimationComponent::AnimationState::idle;
 				}
@@ -44,18 +43,18 @@ void AnimationSystem::on_move(EntityManager& em, MoveEventArgs args)
 			
 			case AnimationComponent::AnimationState::dying:
 				animated_texture->column(5);
-				if (animated_texture->is_last())
+				if (animated_texture->is_last()) 
 				{
 					animated_texture->row(animated_texture->frame_count() - 1);
-					if (animation_component->is_finished())
+					if (animation_component->is_finished()) 
 					{
-						if (animation_component->entity().has<PlayerComponent>())
+						if (animation_component->entity().has<PlayerComponent>()) 
 						{
 							auto exp = animation_component->entity().get<ExpComponent>()->exp;
 							_context->get_state_manager().create_state<GameOverState>(*_context, exp);
 						}
 					}
-					else
+					else 
 					{
 						animation_component->animation_timer += _context->get_timer().get_delta_time();
 					}
