@@ -46,25 +46,20 @@ bool PlayerManager::load_player(memecity::engine::serialization::SerializeInfo& 
 		if (component == "ScoreComponent")
 		{
 			player_entity.get<ScoreComponent>()->from_pair(component_pair);
-			return;
 		}
-
-		if (component == "StatsComponent")
+		else if (component == "StatsComponent")
 		{
 			player_entity.get<StatsComponent>()->from_pair(component_pair);
-			return;
 		}
-		if (component == "ExpComponent")
+		else if (component == "ExpComponent")
 		{
 			player_entity.get<ExpComponent>()->from_pair(component_pair);
-			return;
 		}
-		if (component == "PlayerComponent")
+		else if (component == "PlayerComponent")
 		{
 			player_entity.get<PlayerComponent>()->from_pair(component_pair);
-			return;
 		}
-		if (component == "HealthComponent")
+		else if (component == "HealthComponent")
 		{
 			player_entity.get<HealthComponent>()->from_pair(component_pair);
 		}

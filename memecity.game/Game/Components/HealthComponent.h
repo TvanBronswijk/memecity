@@ -35,12 +35,10 @@ public:
 		if (key == "maxhealth")
 		{
 			this->maxhealth = std::stoi(pair.second);
-			return;
 		}
-		if (key == "health")
+		else if (key == "health")
 		{
 			this->health = std::stoi(pair.second);
-			return;
 		}
 	}
 };

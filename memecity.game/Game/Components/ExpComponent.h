@@ -27,14 +27,12 @@ struct ExpComponent : public memecity::engine::ecs::Component, public memecity::
 		if (key == "exp")
 		{
 			this->exp = std::stoi(pair.second);
-			return;
 		}
-		if (key == "next_level")
+		else if (key == "next_level")
 		{
 			this->next_level = std::stoi(pair.second);
-			return;
 		}
-		if (key == "total_exp")
+		else if (key == "total_exp")
 		{
 			this->total_exp = std::stoi(pair.second);
 		}
