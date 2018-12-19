@@ -18,6 +18,16 @@ private:
 	void clip()
 	{
 		highscores.resize(10);
+		int empty_index = 0;
+		for (Highscore score : highscores)
+		{
+			if (score.name.empty())
+			{
+				break;
+			}
+			empty_index++;
+		}
+		highscores.erase(highscores.begin() + empty_index, highscores.end());
 	}
 
 public:
@@ -48,5 +58,15 @@ public:
 		return highscores;
 	}
 
-
+	memecity::engine::serialization::SerializeInfo save()
+	{
+		memecity::engine::serialization::SerializeInfo map;
+		int i = 0;
+		for (Highscore score : highscores)
+		{
+			map["HighScore" + std::to_string(i) + ":" + score.name] = std::to_string(score.score);
+			i++;
+		}
+		return map;
+	}
 };

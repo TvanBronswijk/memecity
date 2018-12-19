@@ -14,6 +14,8 @@ namespace memecity::engine::sdl {
 		std::unordered_map<std::string, SDL_Scancode> scancodes;
 		bool quit_pressed = false;
 
+		bool edit_text = false;
+		std::string text;
 	public:
 		///<summary>Updates the Keyboard State to find out which keys are pressed.</summary>
 		void update();
@@ -27,6 +29,22 @@ namespace memecity::engine::sdl {
 		void quit()
 		{
 			quit_pressed = true;
+		}
+
+		void enable_text_editing()
+		{
+			edit_text = true;
+			text = "";
+			SDL_StartTextInput();
+		}
+		void disable_text_editing()
+		{
+			edit_text = false;
+			SDL_StopTextInput(); 
+		}
+		std::string get_text()
+		{
+			return text;
 		}
 	};
 }
