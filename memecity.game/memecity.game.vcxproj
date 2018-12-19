@@ -53,6 +53,8 @@
     <ClInclude Include="Game\Generate\City\Strategy\BSP\Fills\Prefab.h" />
     <ClInclude Include="Game\Generate\City\Strategy\File\FileStrategy.h" />
     <ClInclude Include="Game\Generate\NPC\NPCGenerator.h" />
+    <ClInclude Include="Game\Highscore.h" />
+    <ClInclude Include="Game\HighscoreLoader.h" />
     <ClInclude Include="Game\Input.h" />
     <ClInclude Include="Game\MapSaver.h" />
     <ClInclude Include="Game\PlayerManager.h" />

@@ -38,6 +38,21 @@ namespace memecity::engine {
 		return input_facade->is_quit_pressed();
 	}
 
+	void InputManager::enable_text_editing()
+	{
+		input_facade->enable_text_editing();
+	}
+
+	void InputManager::disable_text_editing()
+	{
+		input_facade->disable_text_editing();
+	}
+
+	std::string InputManager::get_text()
+	{
+		return  input_facade->get_text();
+	}
+
 	void InputManager::quit()
 	{
 		input_facade->quit();

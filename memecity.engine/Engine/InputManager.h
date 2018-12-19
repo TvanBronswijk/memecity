@@ -17,6 +17,9 @@ namespace memecity::engine {
 		bool is_pressed(std::string key);
 		bool is_down(std::string key) const;
 		bool is_quit_pressed() const;
+		void enable_text_editing();
+		void disable_text_editing();
+		std::string get_text();
 		void quit();
 	};
 }
