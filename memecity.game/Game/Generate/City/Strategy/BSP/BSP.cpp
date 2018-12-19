@@ -58,7 +58,7 @@ namespace generate::strategy::bsp {
 
 
 	bool fits(const models::Prefab& pf, const Node& n) {
-		return pf.width < n.w && pf.height < n.h;
+		return pf.width <= n.w && pf.height <= n.h;
 	}
 
 	Fills get_random_fill() {

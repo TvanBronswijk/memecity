@@ -111,7 +111,7 @@ namespace generate::models {
 		if (it != __cta.end()) {
 			return it->second;
 		}
-		throw;
+		return TileInfo{ c, "Not Found", {}, false, false };
 	}
 }
 

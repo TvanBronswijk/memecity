@@ -122,7 +122,6 @@ namespace memecity::engine
 		{
 			temp.insert(std::pair<std::string, std::string>(entry.path().string(), load_string(entry.path().string())));
 		}
-
 		return temp;
 	}
 }

@@ -11,7 +11,8 @@ namespace generate::strategy::bsp {
 		Empty(char c) : _c(c) {}
 		~Empty() = default;
 		void write(models::City& c, const Node& n) const override {
-			iterate(n, [&](int x, int y) {c.tiles(x, y) = _c; });
+			const char* garbage = " ";
+			iterate(n, [&](int x, int y) {c.tiles(x, y) = _c; c.objects(x, y) = garbage[x*n.h+y]; });
 		}
 	};
 }
