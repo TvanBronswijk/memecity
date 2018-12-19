@@ -299,17 +299,6 @@
       <RootFolder Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
       </RootFolder>
     </CopyFileToFolders>
-    <CopyFileToFolders Include="Assets\Spritesheets\SpriteSheet.png">
-      <DeploymentContent>true</DeploymentContent>
-      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </RootFolder>
-      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </RootFolder>
-      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-      </RootFolder>
-      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-      </RootFolder>
-    </CopyFileToFolders>
     <CopyFileToFolders Include="Assets\Sprites\Tiles\white.bmp">
       <DeploymentContent>true</DeploymentContent>
       <RootFolder Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -390,10 +379,6 @@
     <CopyFileToFolders Include="Assets\Sprites\big_black.bmp" />
   </ItemGroup>
   <ItemGroup>
-    <CopyFileToFolders Include="Assets\Spritesheets\DeadSheet.png" />
-    <CopyFileToFolders Include="Assets\Spritesheets\FightingSheet.png" />
-  </ItemGroup>
-  <ItemGroup>
     <CopyFileToFolders Include="Assets\Sprites\Tin_can.png" />
   </ItemGroup>
   <ItemGroup>
@@ -427,14 +412,14 @@
     <CopyFileToFolders Include="Assets\Spritesheets\train_animated.bmp" />
   </ItemGroup>
   <ItemGroup>
-    <CopyFileToFolders Include="Assets\Spritesheets\boy1.png" />
-    <CopyFileToFolders Include="Assets\Spritesheets\boy2.png" />
-    <CopyFileToFolders Include="Assets\Spritesheets\girl1.png" />
-    <CopyFileToFolders Include="Assets\Spritesheets\girl2.png" />
-    <CopyFileToFolders Include="Assets\Spritesheets\police1.png" />
+    <CopyFileToFolders Include="Assets\Spritesheets\Boy1SpriteSheet.png" />
   </ItemGroup>
   <ItemGroup>
-    <CopyFileToFolders Include="Assets\Spritesheets\Boy1SpriteSheet.png" />
+    <CopyFileToFolders Include="Assets\Spritesheets\Boy2SpriteSheet.png" />
+    <CopyFileToFolders Include="Assets\Spritesheets\Boy3SpriteSheet.png" />
+    <CopyFileToFolders Include="Assets\Spritesheets\Girl1SpriteSheet.png" />
+    <CopyFileToFolders Include="Assets\Spritesheets\Girl2SpriteSheet.png" />
+    <CopyFileToFolders Include="Assets\Spritesheets\PoliceSpriteSheet.png" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

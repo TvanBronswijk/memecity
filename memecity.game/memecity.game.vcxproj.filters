@@ -140,7 +140,6 @@
     <CopyFileToFolders Include="Assets\Sprites\Tiles\orange.bmp" />
     <CopyFileToFolders Include="Assets\Sprites\Tiles\purple.bmp" />
     <CopyFileToFolders Include="Assets\Sprites\Tiles\red.bmp" />
-    <CopyFileToFolders Include="Assets\Spritesheets\SpriteSheet.png" />
     <CopyFileToFolders Include="Assets\Sprites\Tiles\white.bmp" />
     <CopyFileToFolders Include="Assets\Sprites\Tiles\yellow.bmp" />
     <CopyFileToFolders Include="Assets\Fonts\Blazed.ttf" />
@@ -169,13 +168,7 @@
     <CopyFileToFolders Include="Assets\Advertisements\CppCon.png" />
     <CopyFileToFolders Include="Assets\Advertisements\kolrd.png" />
     <CopyFileToFolders Include="Assets\Spritesheets\train_animated.bmp" />
-    <CopyFileToFolders Include="Assets\Spritesheets\DeadSheet.png" />
-    <CopyFileToFolders Include="Assets\Spritesheets\FightingSheet.png" />
-    <CopyFileToFolders Include="Assets\Spritesheets\police1.png" />
-    <CopyFileToFolders Include="Assets\Spritesheets\girl1.png" />
-    <CopyFileToFolders Include="Assets\Spritesheets\girl2.png" />
-    <CopyFileToFolders Include="Assets\Spritesheets\boy2.png" />
-    <CopyFileToFolders Include="Assets\Spritesheets\boy1.png" />
+    <CopyFileToFolders Include="Assets\Spritesheets\Boy1SpriteSheet.png" />
   </ItemGroup>
   <ItemGroup>
     <CopyFileToFolders Include="Assets\Advertisements\BananaWho.png" />
@@ -184,6 +177,10 @@
     <CopyFileToFolders Include="Assets\Sprites\big_black.bmp" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="Assets\Spritesheets\Boy1SpriteSheet.png" />
+    <Image Include="Assets\Spritesheets\Boy2SpriteSheet.png" />
+    <Image Include="Assets\Spritesheets\Boy3SpriteSheet.png" />
+    <Image Include="Assets\Spritesheets\Girl1SpriteSheet.png" />
+    <Image Include="Assets\Spritesheets\Girl2SpriteSheet.png" />
+    <Image Include="Assets\Spritesheets\PoliceSpriteSheet.png" />
   </ItemGroup>
 </Project>
