@@ -23,7 +23,6 @@ generate::models::City generate::strategy::FileStrategy::generate(int w, int h)
 		if (item != '\n')
 		{
 			city.tiles(x, y) = item;
-			city.objects(x, y) = '\0';
 		}
 		if (item == '\n')
 		{
@@ -36,7 +35,6 @@ generate::models::City generate::strategy::FileStrategy::generate(int w, int h)
 		}
 
 	}
-
 
 	return city;
 }
