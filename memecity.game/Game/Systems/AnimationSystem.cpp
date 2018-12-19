@@ -53,6 +53,10 @@ void AnimationSystem::on_move(EntityManager& em, MoveEventArgs args)
 							auto exp = animation_component->entity().get<ExpComponent>()->exp;
 							_context->get_state_manager().create_state<GameOverState>(*_context, exp);
 						}
+						else
+						{
+							em.remove_entity(animation_component->entity());
+						}
 					}
 					else 
 					{

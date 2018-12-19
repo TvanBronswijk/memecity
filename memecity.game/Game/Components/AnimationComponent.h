@@ -21,7 +21,7 @@ struct AnimationComponent : memecity::engine::ecs::Component
 
 inline bool AnimationComponent::is_finished() const
 {
-	return animation_timer >= 2.0f;
+	return animation_timer >= 4.0f;
 }
 
 #endif
