@@ -122,6 +122,7 @@
     <ClInclude Include="Game\PlayerBuilder.h" />
     <ClInclude Include="Game\Components\TileComponent.h" />
     <ClInclude Include="Game\Util\Util.h" />
+    <ClInclude Include="Game\Event\BlikCoinEventArg.h" />
   </ItemGroup>
   <ItemGroup>
     <CopyFileToFolders Include="Assets\Music\bgm.mp3" />
@@ -166,6 +167,7 @@
     <CopyFileToFolders Include="Assets\Advertisements\CodedFun.png" />
     <CopyFileToFolders Include="Assets\Advertisements\CppCon.png" />
     <CopyFileToFolders Include="Assets\Advertisements\kolrd.png" />
+    <CopyFileToFolders Include="Assets\Spritesheets\train_animated.bmp" />
   </ItemGroup>
   <ItemGroup>
     <CopyFileToFolders Include="Assets\Advertisements\BananaWho.png" />

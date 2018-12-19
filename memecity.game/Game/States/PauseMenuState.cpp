@@ -52,7 +52,7 @@ PauseMenuState::PauseMenuState(memecity::engine::state::StateManager & sm, GameM
 		       const auto success = _context->get_storage_manager().save(assets::saves::SAVE_GAME, player_data);
 
 			   auto map = MapSaver{}.get_map(em);
-			   auto map_success = _context->get_storage_manager().save_string(assets::saves::SAVE_MAP, map);
+			   auto map_success = _context->get_storage_manager().save(assets::saves::SAVE_MAP, map);
 			   if (success && map_success) back();
 	       })
 		.with_menu_item("Main Menu", nullptr, [&](auto& menu_item) { back(2); })

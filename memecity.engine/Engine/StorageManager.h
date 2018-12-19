@@ -3,7 +3,10 @@
 
 #include <string>
 #include <map>
+#include <filesystem>
 #include "Serialize.h"
+
+namespace filesystem = std::filesystem;
 
 namespace memecity::engine {
 
@@ -17,9 +20,10 @@ namespace memecity::engine {
 			: _serialization_facade(&sf) {}
 
 		bool save(const std::string& file_path, serialization::SerializeInfo data) const;
-		bool save_string(const std::string& file_path, std::string data) const;
+		bool save(const std::string& file_path, const std::string& data) const;
 		serialization::SerializeInfo load(const std::string& file_path) const;
 		std::string load_string(const std::string& file_path) const;
+		std::map<std::string, std::string> load_files_from_directory(const std::string& file_path) const;
 	};
 
 }
