@@ -2,6 +2,8 @@
 #include "Components/PlayerComponent.h"
 #include "Components/ScoreComponent.h"
 #include "Components/StatsComponent.h"
+#include "Components/ExpComponent.h"
+#include "Components/HealthComponent.h"
 
 memecity::engine::serialization::SerializeInfo PlayerManager::save_player() const
 {
@@ -13,6 +15,9 @@ memecity::engine::serialization::SerializeInfo PlayerManager::save_player() cons
 
 	result_maps.push_back(player_entity.get<ScoreComponent>()->to_map());
 	result_maps.push_back(player_entity.get<StatsComponent>()->to_map());
+	result_maps.push_back(player_entity.get<ExpComponent>()->to_map());
+	result_maps.push_back(player_entity.get<PlayerComponent>()->to_map());
+	result_maps.push_back(player_entity.get<HealthComponent>()->to_map());
 
 	std::for_each(result_maps.begin(), result_maps.end(), [&](const memecity::engine::serialization::SerializeInfo data)
 	{
@@ -41,12 +46,22 @@ bool PlayerManager::load_player(memecity::engine::serialization::SerializeInfo& 
 		if (component == "ScoreComponent")
 		{
 			player_entity.get<ScoreComponent>()->from_pair(component_pair);
-			return;
 		}
-
-		if (component == "StatsComponent")
+		else if (component == "StatsComponent")
 		{
 			player_entity.get<StatsComponent>()->from_pair(component_pair);
+		}
+		else if (component == "ExpComponent")
+		{
+			player_entity.get<ExpComponent>()->from_pair(component_pair);
+		}
+		else if (component == "PlayerComponent")
+		{
+			player_entity.get<PlayerComponent>()->from_pair(component_pair);
+		}
+		else if (component == "HealthComponent")
+		{
+			player_entity.get<HealthComponent>()->from_pair(component_pair);
 		}
 	});
 

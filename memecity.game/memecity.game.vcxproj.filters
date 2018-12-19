@@ -33,6 +33,8 @@
     <ClCompile Include="Game\LevelBuilder.cpp" />
     <ClCompile Include="Game\PlayerBuilder.cpp" />
     <ClCompile Include="Game\Systems\PickpocketSystem.cpp" />
+    <ClCompile Include="Game\GameSaver.cpp" />
+    <ClCompile Include="Game\States\LevelChangeState.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Components\DimensionComponent.h" />
@@ -90,8 +92,6 @@
     <ClInclude Include="Game\Components\ColliderComponent.h" />
     <ClInclude Include="Game\Builder\QuestBuilder.h" />
     <ClInclude Include="Game\Components\QuestAIComponent.h" />
-    <ClInclude Include="Game\Enum\AIStates.h" />
-    <ClInclude Include="Game\Enum\QuestStates.h" />
     <ClInclude Include="Game\Event\QuestEventArgs.h" />
     <ClInclude Include="Game\States\StoryState.h" />
     <ClInclude Include="Game\Systems\FogOfWarSystem.h" />
@@ -114,6 +114,13 @@
     <ClInclude Include="Game\PlayerBuilder.h" />
     <ClInclude Include="Game\Components\TileComponent.h" />
     <ClInclude Include="Game\Util\Util.h" />
+    <ClInclude Include="Game\Event\BlikCoinEventArg.h" />
+    <ClInclude Include="Game\Highscore.h" />
+    <ClInclude Include="Game\HighscoreLoader.h" />
+    <ClInclude Include="Game\GameSaver.h" />
+    <ClInclude Include="Game\Enum\AIStates.h" />
+    <ClInclude Include="Game\Enum\QuestStates.h" />
+    <ClInclude Include="Game\States\LevelChangeState.h" />
   </ItemGroup>
   <ItemGroup>
     <CopyFileToFolders Include="Assets\Music\bgm.mp3" />
@@ -158,18 +165,53 @@
     <CopyFileToFolders Include="Assets\Advertisements\CodedFun.png" />
     <CopyFileToFolders Include="Assets\Advertisements\CppCon.png" />
     <CopyFileToFolders Include="Assets\Advertisements\kolrd.png" />
-    <CopyFileToFolders Include="Assets\Spritesheets\boy1.png" />
-    <CopyFileToFolders Include="Assets\Spritesheets\boy2.png" />
-    <CopyFileToFolders Include="Assets\Spritesheets\girl1.png" />
-    <CopyFileToFolders Include="Assets\Spritesheets\girl2.png" />
+    <CopyFileToFolders Include="Assets\Spritesheets\train_animated.bmp" />
+    <CopyFileToFolders Include="Assets\Spritesheets\Boy1SpriteSheet.png" />
+    <CopyFileToFolders Include="Assets\Spritesheets\Boy2SpriteSheet.png" />
+    <CopyFileToFolders Include="Assets\Spritesheets\Boy3SpriteSheet.png" />
+    <CopyFileToFolders Include="Assets\Spritesheets\Girl1SpriteSheet.png" />
+    <CopyFileToFolders Include="Assets\Spritesheets\Girl2SpriteSheet.png" />
+    <CopyFileToFolders Include="Assets\Spritesheets\PoliceSpriteSheet.png" />
+    <CopyFileToFolders Include="Assets\Sprites\Tiles\black_00.png" />
+    <CopyFileToFolders Include="Assets\Sprites\Tiles\black_01.png" />
+    <CopyFileToFolders Include="Assets\Sprites\Tiles\brown_00.png" />
+    <CopyFileToFolders Include="Assets\Sprites\Tiles\brown_01.png" />
+    <CopyFileToFolders Include="Assets\Sprites\Tiles\hardwood_00.png" />
+    <CopyFileToFolders Include="Assets\Sprites\Tiles\hardwood_dark_00.png" />
+    <CopyFileToFolders Include="Assets\Sprites\Tiles\light_gray_00.png" />
+    <CopyFileToFolders Include="Assets\Sprites\Tiles\light_gray_01.png" />
+    <CopyFileToFolders Include="Assets\Sprites\Tiles\ns_00.png" />
+    <CopyFileToFolders Include="Assets\Sprites\Tiles\tan_00.png" />
+    <CopyFileToFolders Include="Assets\Sprites\Tiles\tan_01.png" />
+    <CopyFileToFolders Include="Assets\Sprites\Tiles\white_00.png" />
+    <CopyFileToFolders Include="Assets\Sprites\Tiles\white_01.png" />
+    <CopyFileToFolders Include="Assets\Scripts\Prefabs\BlikSpawner.m2d" />
+    <CopyFileToFolders Include="Assets\Scripts\Prefabs\BlikSpawner.m2do" />
+    <CopyFileToFolders Include="Assets\Scripts\Prefabs\BridgePark.m2d" />
+    <CopyFileToFolders Include="Assets\Scripts\Prefabs\BridgePark.m2do" />
+    <CopyFileToFolders Include="Assets\Scripts\Prefabs\CanFortress.m2d" />
+    <CopyFileToFolders Include="Assets\Scripts\Prefabs\CanFortress.m2do" />
+    <CopyFileToFolders Include="Assets\Scripts\Prefabs\CanPrison.m2d" />
+    <CopyFileToFolders Include="Assets\Scripts\Prefabs\CanPrison.m2do" />
+    <CopyFileToFolders Include="Assets\Scripts\Prefabs\Church.m2d" />
+    <CopyFileToFolders Include="Assets\Scripts\Prefabs\Church.m2do" />
+    <CopyFileToFolders Include="Assets\Scripts\Prefabs\CrossBridge.m2d" />
+    <CopyFileToFolders Include="Assets\Scripts\Prefabs\CrossBridge.m2do" />
+    <CopyFileToFolders Include="Assets\Scripts\Prefabs\Hi.m2d" />
+    <CopyFileToFolders Include="Assets\Scripts\Prefabs\Hi.m2do" />
+    <CopyFileToFolders Include="Assets\Scripts\Prefabs\HorizontalBridge.m2d" />
+    <CopyFileToFolders Include="Assets\Scripts\Prefabs\HorizontalBridge.m2do" />
+    <CopyFileToFolders Include="Assets\Scripts\Prefabs\Nerd.m2d" />
+    <CopyFileToFolders Include="Assets\Scripts\Prefabs\Nerd.m2do" />
+    <CopyFileToFolders Include="Assets\Scripts\Prefabs\PolicePark.m2d" />
+    <CopyFileToFolders Include="Assets\Scripts\Prefabs\PolicePark.m2do" />
+    <CopyFileToFolders Include="Assets\Scripts\Prefabs\VerticalBridge.m2d" />
+    <CopyFileToFolders Include="Assets\Scripts\Prefabs\VerticalBridge.m2do" />
   </ItemGroup>
   <ItemGroup>
     <CopyFileToFolders Include="Assets\Advertisements\BananaWho.png" />
     <CopyFileToFolders Include="Assets\Advertisements\BurgerKing.png" />
     <CopyFileToFolders Include="Assets\Advertisements\CocaCola.png" />
     <CopyFileToFolders Include="Assets\Sprites\big_black.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="Assets\Spritesheets\police1.png" />
   </ItemGroup>
 </Project>

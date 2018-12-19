@@ -14,9 +14,13 @@ private:
 	std::unique_ptr<memecity::engine::ui::menu::Menu> menu;
 	std::unique_ptr<memecity::engine::ui::menu::Menu> help_menu;
 	std::unique_ptr<memecity::engine::ui::menu::Menu> help_menu2;
+	std::unique_ptr<memecity::engine::ui::menu::Menu> retire_confirm_menu;
+
+	int* _map_number;
+	std::string* _save_slot;
 
 public:
-	PauseMenuState(memecity::engine::state::StateManager& sm, GameManager::GameContext& gc, memecity::engine::ecs::EntityManager& em);
+	PauseMenuState(memecity::engine::state::StateManager& sm, GameManager::GameContext& gc, memecity::engine::ecs::EntityManager& em, int& map_number, std::string& save_slot);
 	~PauseMenuState() = default;
 	void on_load() override;
 	void update(float dt) override;

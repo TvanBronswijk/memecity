@@ -7,13 +7,30 @@
 #include "../LevelBuilder.h"
 #include "../Systems/ExpSystem.h"
 #include "../PlayerBuilder.h"
+#include "../PlayerManager.h"
+#include "../MapSaver.h"
+#include "../GameSaver.h"
 
 void GameState::on_load()
 {
+	
+	
 	Point start;
-	next<LoadingState>(*_context, [&](auto& ctx, auto& listener) { start = LevelBuilder(ctx, 128, 128, _load_from_file).build(entity_manager, listener); back(); });
+	next<LoadingState>(*_context, [&](auto& ctx, auto& listener) { start = LevelBuilder(ctx, 1, 128, 128, _load_from_file, _save_location).build(entity_manager, listener, _map_number); back(); });
 	next<LoadingState>(*_context, [&](auto& ctx, auto& listener) { PlayerBuilder(ctx, start).build(entity_manager, listener); back(); });
-
+	if(_load_from_file)
+	{//TODO HIERRRRR
+		const auto player_manager = PlayerManager(entity_manager);
+		std::string save = assets::saves::SAVE_LOCATION;
+		save += "\\" + _save_location + "\\" + assets::saves::SAVE_PLAYER;
+		auto& storage = _context->get_storage_manager();
+		auto data = storage.load(save);
+		if (player_manager.load_player(data));
+	}else
+	{
+		GameSaver{}.save(entity_manager, *_context, _save_location, 1);
+	}
+	
 	auto& multimedia_manager = _context->get_multimedia_manager();
 
 	//TODO: Make System Loader
@@ -28,7 +45,7 @@ void GameState::on_load()
 	auto& exp_system = system_pool.create_system<ExpSystem>(memecity::engine::ecs::System::update);
 	auto& health_system = system_pool.create_system<HealthSystem>(memecity::engine::ecs::System::update, *_context);
 	auto& quest_system = system_pool.create_system<QuestSystem>(memecity::engine::ecs::System::update, multimedia_manager);
-	auto& input_system = system_pool.create_system<InputSystem>(memecity::engine::ecs::System::update, *_context, _hud);
+	auto& input_system = system_pool.create_system<InputSystem>(memecity::engine::ecs::System::update, *_context, _hud, _map_number, _save_location);
 	auto& move_system = system_pool.create_system<MoveSystem>();
 	auto& collider_system = system_pool.create_system<ColliderSystem>(memecity::engine::ecs::System::update, 256 * 64.0f, 256 * 64.0f);
 	auto& ai_system = system_pool.create_system<AISystem>();

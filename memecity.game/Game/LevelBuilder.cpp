@@ -8,7 +8,7 @@
 using namespace memecity::engine::ecs;
 using namespace memecity::engine::ui;
 
-Point LevelBuilder::build(memecity::engine::ecs::EntityManager& em, loading::LoadingBar::Listener& listener)
+Point LevelBuilder::build(memecity::engine::ecs::EntityManager& em, loading::LoadingBar::Listener& listener, int& _map_number)
 {
 	listener.set_max_value(100.0f);
 	listener.set_current_value(0.0f);
@@ -16,9 +16,14 @@ Point LevelBuilder::build(memecity::engine::ecs::EntityManager& em, loading::Loa
 	auto generator = generate::CityGenerator(_context->get_storage_manager(), _map_width, _map_height);
 	if (_load_from_file)
 	{
-		generator.set_strategy<generate::strategy::FileStrategy>(_context->get_storage_manager().load_string(assets::saves::SAVE_MAP));
-
+		auto active_map_number = _context->get_storage_manager().load_string(assets::saves::SAVE_LOCATION + std::string("//") + _save_location + "//" + assets::saves::SAVE_MAP_ACTIVE);
+		active_map_number.erase(std::remove(active_map_number.begin(), active_map_number.end(), '\n'), active_map_number.end());
+		std::string save = assets::saves::SAVE_LOCATION;
+		save += "\\" + _save_location + "\\" +assets::saves::SAVE_MAP + active_map_number+".txt";
+		generator.set_strategy<generate::strategy::FileStrategy>(_context->get_storage_manager().load_string(save));
+		_map_number = stoi(active_map_number);
 	}
+
 	generate::models::City city = generator.generate();
 	for (int y = 0; y < city.height; y++) {
 		for (int x = 0; x < city.width; x++) {
@@ -38,13 +43,16 @@ Point LevelBuilder::build(memecity::engine::ecs::EntityManager& em, loading::Loa
 			auto& object = city.objects(x, y);
 			switch (object)
 			{
+			case 'p':
+				generate::NPCGenerator(_context->get_multimedia_manager(), em).generate_police_npc(x*64.0f, y*64.0f);
+				break;
 			case 'n':
 				generate::NPCGenerator(_context->get_multimedia_manager(), em).generate_civilian_npc(x*64.0f, y*64.0f);
 				break;
 			case 'p':
 				generate::NPCGenerator(_context->get_multimedia_manager(), em).generate_police_npc(x*64.0f, y*64.0f);
 				break;
-			case 'i':
+			case 'c':
 				auto texture = multimedia_manager.get_texture(assets::sprites::TIN_CAN, 0, 0, 48, 28);
 				texture->set_position({ 0,0 });
 				auto builder = em.create_entity("Blik")

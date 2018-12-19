@@ -36,6 +36,18 @@ namespace memecity::engine
 		{
 			std::string full_path = SDL_GetBasePath();
 			full_path += "\\" + file_path;
+
+			std::string directory;
+			const size_t last_slash_idx = full_path.rfind('\\');
+			if (std::string::npos != last_slash_idx)
+			{
+				directory = full_path.substr(0, last_slash_idx);
+			}
+
+			if(!filesystem::exists(directory)){
+				filesystem::create_directories(directory);
+			}
+
 			std::ofstream output_stream(full_path);
 			if (output_stream)
 			{
@@ -122,6 +134,43 @@ namespace memecity::engine
 		{
 			temp.insert(std::pair<std::filesystem::directory_entry, std::string>(entry, load_string(entry.path().string())));
 		}
+		return temp;
+	}
+	std::vector<std::string> StorageManager::get_filenames_from_directory(const std::string & directory_path) const
+	{
+		std::vector<std::string> temp;
+		std::string absolute_path = SDL_GetBasePath();
+		absolute_path += directory_path;
+		for (const auto& entry : filesystem::directory_iterator(absolute_path))
+		{
+			if (!filesystem::is_directory(entry.path())) {
+				std::string file_path = entry.path().string();
+				const std::size_t found = file_path.find_last_of("/\\");
+
+				temp.push_back(file_path.substr(found + 1));
+			}
+		}
+
+		return temp;
+	}
+
+	std::vector<std::string> StorageManager::get_foldernames_from_directory(const std::string & directory_path) const
+	{
+		std::vector<std::string> temp;
+		std::string absolute_path = SDL_GetBasePath();
+		absolute_path += directory_path;
+		if (filesystem::exists(absolute_path)) {
+			for (const auto& entry : filesystem::directory_iterator(absolute_path))
+			{
+				if (filesystem::is_directory(entry.path())) {
+					std::string file_path = entry.path().string();
+					const std::size_t found = file_path.find_last_of("/\\");
+
+					temp.push_back(file_path.substr(found + 1));
+				}
+			}
+		}
+
 		return temp;
 	}
 }
