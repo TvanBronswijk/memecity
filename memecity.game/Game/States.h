@@ -6,5 +6,6 @@
 #include "States\MenuState.h"
 #include "States\PauseMenuState.h"
 #include "States\StoryState.h"
+#include "States\LevelChangeState.h"
 
 #endif

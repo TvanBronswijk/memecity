@@ -62,6 +62,7 @@
     <ClInclude Include="Game\PlayerBuilder.h" />
     <ClInclude Include="Game\States\GameOverState.h" />
     <ClInclude Include="Game\States\DeveloperMenuState.h" />
+    <ClInclude Include="Game\States\LevelChangeState.h" />
     <ClInclude Include="Game\States\LoadingState.h" />
     <ClInclude Include="Game\States\GameState.h" />
     <ClInclude Include="Game\States.h" />
@@ -116,6 +117,7 @@
     <ClCompile Include="Game\PlayerBuilder.cpp" />
     <ClCompile Include="Game\States\DeveloperMenuState.cpp" />
     <ClCompile Include="Game\States\GameOverState.cpp" />
+    <ClCompile Include="Game\States\LevelChangeState.cpp" />
     <ClCompile Include="Game\States\LoadingState.cpp" />
     <ClCompile Include="Game\States\GameState.cpp" />
     <ClCompile Include="Game\States\MenuState.cpp" />
