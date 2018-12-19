@@ -16,11 +16,12 @@ private:
 	memecity::engine::ecs::SystemPool system_pool;
 	memecity::engine::ui::overlay::Overlay _hud;
 	bool _load_from_file;
+	int _map_number;
 	std::string _save_location;
 
 public:
-	GameState(memecity::engine::state::StateManager& sm, GameManager::GameContext& gc, bool load_from_file = false, std::string save_location = "")
-		: State(sm), _context(&gc), _hud(_context->get_multimedia_manager(), _context->get_multimedia_manager().get_texture(assets::sprites::DARK_BACKGROUND, 0, 0, _context->get_multimedia_manager().get_screen_width(), 100), 0, 0), _load_from_file(load_from_file),_save_location(save_location)
+	GameState(memecity::engine::state::StateManager& sm, GameManager::GameContext& gc, bool load_from_file, std::string save_location)
+		: State(sm), _context(&gc), _hud(_context->get_multimedia_manager(), _context->get_multimedia_manager().get_texture(assets::sprites::DARK_BACKGROUND, 0, 0, _context->get_multimedia_manager().get_screen_width(), 100), 0, 0), _load_from_file(load_from_file),_save_location(save_location),_map_number(1)
 	{
 		_hud.create_overlay_text_item("HEALTH", "Health", 16, 100.0f, 20.0f);
 		_hud.create_overlay_bar_item("HEALTHVALUE", 100, 20, 150, 12, 100, 200, memecity::engine::sdl::Color(255, 0, 0), memecity::engine::sdl::Color(0, 255, 0));

@@ -37,6 +37,7 @@
     <ClCompile Include="Game\LevelBuilder.cpp" />
     <ClCompile Include="Game\PlayerBuilder.cpp" />
     <ClCompile Include="Game\Systems\PickpocketSystem.cpp" />
+    <ClCompile Include="Game\GameSaver.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Components\DimensionComponent.h" />
@@ -94,8 +95,6 @@
     <ClInclude Include="Game\Components\ColliderComponent.h" />
     <ClInclude Include="Game\Builder\QuestBuilder.h" />
     <ClInclude Include="Game\Components\QuestAIComponent.h" />
-    <ClInclude Include="Game\Enum\AIStates.h" />
-    <ClInclude Include="Game\Enum\QuestStates.h" />
     <ClInclude Include="Game\Event\QuestEventArgs.h" />
     <ClInclude Include="Game\States\StoryState.h" />
     <ClInclude Include="Game\Systems\FogOfWarSystem.h" />
@@ -126,6 +125,9 @@
     <ClInclude Include="Game\Event\BlikCoinEventArg.h" />
     <ClInclude Include="Game\Highscore.h" />
     <ClInclude Include="Game\HighscoreLoader.h" />
+    <ClInclude Include="Game\GameSaver.h" />
+    <ClInclude Include="Game\Enum\AIStates.h" />
+    <ClInclude Include="Game\Enum\QuestStates.h" />
   </ItemGroup>
   <ItemGroup>
     <CopyFileToFolders Include="Assets\Music\bgm.mp3" />
@@ -167,26 +169,24 @@
     <CopyFileToFolders Include="Assets\Spritesheets\PoliceSpriteSheet.png" />
     <CopyFileToFolders Include="Assets\Scripts\Prefabs\prettypark.m2d" />
     <CopyFileToFolders Include="Assets\Scripts\Prefabs\prettypark.m2do" />
+    <CopyFileToFolders Include="Assets\Sprites\Tiles\black_00.png" />
+    <CopyFileToFolders Include="Assets\Sprites\Tiles\black_01.png" />
+    <CopyFileToFolders Include="Assets\Sprites\Tiles\brown_00.png" />
+    <CopyFileToFolders Include="Assets\Sprites\Tiles\brown_01.png" />
+    <CopyFileToFolders Include="Assets\Sprites\Tiles\hardwood_00.png" />
+    <CopyFileToFolders Include="Assets\Sprites\Tiles\hardwood_dark_00.png" />
+    <CopyFileToFolders Include="Assets\Sprites\Tiles\light_gray_00.png" />
+    <CopyFileToFolders Include="Assets\Sprites\Tiles\light_gray_01.png" />
+    <CopyFileToFolders Include="Assets\Sprites\Tiles\ns_00.png" />
+    <CopyFileToFolders Include="Assets\Sprites\Tiles\tan_00.png" />
+    <CopyFileToFolders Include="Assets\Sprites\Tiles\tan_01.png" />
+    <CopyFileToFolders Include="Assets\Sprites\Tiles\white_00.png" />
+    <CopyFileToFolders Include="Assets\Sprites\Tiles\white_01.png" />
   </ItemGroup>
   <ItemGroup>
     <CopyFileToFolders Include="Assets\Advertisements\BananaWho.png" />
     <CopyFileToFolders Include="Assets\Advertisements\BurgerKing.png" />
     <CopyFileToFolders Include="Assets\Advertisements\CocaCola.png" />
     <CopyFileToFolders Include="Assets\Sprites\big_black.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="Assets\Sprites\Tiles\black_00.png" />
-    <Image Include="Assets\Sprites\Tiles\black_01.png" />
-    <Image Include="Assets\Sprites\Tiles\brown_00.png" />
-    <Image Include="Assets\Sprites\Tiles\brown_01.png" />
-    <Image Include="Assets\Sprites\Tiles\hardwood_00.png" />
-    <Image Include="Assets\Sprites\Tiles\hardwood_dark_00.png" />
-    <Image Include="Assets\Sprites\Tiles\light_gray_00.png" />
-    <Image Include="Assets\Sprites\Tiles\light_gray_01.png" />
-    <Image Include="Assets\Sprites\Tiles\ns_00.png" />
-    <Image Include="Assets\Sprites\Tiles\tan_00.png" />
-    <Image Include="Assets\Sprites\Tiles\tan_01.png" />
-    <Image Include="Assets\Sprites\Tiles\white_00.png" />
-    <Image Include="Assets\Sprites\Tiles\white_01.png" />
   </ItemGroup>
 </Project>

@@ -66,7 +66,7 @@ void InputSystem::run(EntityManager& em, float dt) const
 					}
 					state_manager.pop(); });
 				state_manager.create_state<LoadingState>(*_context, 
-					[&](auto& ctx, auto& listener) { start = LevelBuilder(ctx, 128, 128, false).build(em, listener); state_manager.pop(); });
+					[&](auto& ctx, auto& listener) { start = LevelBuilder(ctx, 128, 128, false).build(em, listener,*new int(1)); state_manager.pop(); });//TODO tobi, hier het nummer van de map meegeven
 				player.get<BaseComponent>()->location = start;
 			}
 
@@ -103,7 +103,7 @@ void InputSystem::run(EntityManager& em, float dt) const
 		}
 
 		if (input_manager.is_pressed(input::ESCAPE)) {
-			state_manager.create_state<PauseMenuState>(*_context, em);
+			state_manager.create_state<PauseMenuState>(*_context, em, *_map_number, *_save_slot);
 		}
 		if (input_manager.is_pressed(input::STATS)) {
 			auto& stats = *player.get<StatsComponent>();

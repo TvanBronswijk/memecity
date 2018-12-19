@@ -98,9 +98,18 @@ void MenuState::on_enter()
 
 	load_save_menu = load_save_menu_builder.with_back_menu_item().get_menu();
 
+
+	start_new_game_menu = memecity::engine::ui::menu::MenuBuilder(get_context().get_multimedia_manager())
+		.create_menu("Select save slot", assets::fonts::DEFAULT_FONT)
+		.with_menu_item("Save 1", nullptr, [&](memecity::engine::ui::menu::MenuItem& menu_item){next<GameState>(get_context(), false, menu_item.get_text()); })
+		.with_menu_item("Save 2", nullptr, [&](memecity::engine::ui::menu::MenuItem& menu_item) {next<GameState>(get_context(), false, menu_item.get_text()); })
+		.with_menu_item("Save 3", nullptr, [&](memecity::engine::ui::menu::MenuItem& menu_item) {next<GameState>(get_context(), false, menu_item.get_text()); })
+		.with_back_menu_item()
+		.get_menu();
+
 	menu = memecity::engine::ui::menu::MenuBuilder(get_context().get_multimedia_manager())
 		.create_menu("MemeCity", assets::fonts::DEFAULT_FONT)
-		.with_menu_item("Start Game", nullptr, [&](auto& menu_item) { next<GameState>(get_context(), false); })
+		.with_menu_item("Start New Game", start_new_game_menu.get())// nullptr, [&](auto& menu_item) { next<GameState>(get_context(), false); })
 		.with_menu_item("Select Save", load_save_menu.get())
 		.with_menu_item("Settings", settings_menu.get())
 		.with_menu_item("Highscores", highscores_menu.get())

@@ -17,7 +17,7 @@ public:
 		: _context(&context), _map_width(map_width), _map_height(map_height), _load_from_file(load_from_file),_save_location(save_location) {};
 	~LevelBuilder() = default;
 
-	Point build(memecity::engine::ecs::EntityManager& em, memecity::engine::ui::loading::LoadingBar::Listener& listener);
+	Point build(memecity::engine::ecs::EntityManager& em, memecity::engine::ui::loading::LoadingBar::Listener& listener, int& map_number);
 };
 
 #endif
