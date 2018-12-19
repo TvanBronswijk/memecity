@@ -6,7 +6,7 @@
 struct AnimationComponent : memecity::engine::ecs::Component
 {
 	enum class AnimationState { idle, fighting, dying };
-	
+
 	float animation_timer = 0.0f;
 	AnimationState current_state;
 	memecity::engine::texture::AnimatedTexture::AnimationState old_state;
