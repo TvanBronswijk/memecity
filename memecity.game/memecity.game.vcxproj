@@ -202,129 +202,6 @@
     </CopyFileToFolders>
   </ItemGroup>
   <ItemGroup>
-    <CopyFileToFolders Include="Assets\Sprites\Tiles\black.bmp">
-      <DeploymentContent>true</DeploymentContent>
-      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </RootFolder>
-      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </RootFolder>
-      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-      </RootFolder>
-      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-      </RootFolder>
-    </CopyFileToFolders>
-    <CopyFileToFolders Include="Assets\Sprites\BlikBier.bmp">
-      <DeploymentContent>true</DeploymentContent>
-      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </RootFolder>
-      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </RootFolder>
-      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-      </RootFolder>
-      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-      </RootFolder>
-    </CopyFileToFolders>
-    <CopyFileToFolders Include="Assets\Sprites\Tiles\blue.bmp">
-      <DeploymentContent>true</DeploymentContent>
-      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </RootFolder>
-      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </RootFolder>
-      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-      </RootFolder>
-      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-      </RootFolder>
-    </CopyFileToFolders>
-    <CopyFileToFolders Include="Assets\Sprites\Tiles\brown.bmp">
-      <DeploymentContent>true</DeploymentContent>
-      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </RootFolder>
-      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </RootFolder>
-      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-      </RootFolder>
-      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-      </RootFolder>
-    </CopyFileToFolders>
-    <CopyFileToFolders Include="Assets\Sprites\Tiles\gray.bmp">
-      <DeploymentContent>true</DeploymentContent>
-      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </RootFolder>
-      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </RootFolder>
-      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-      </RootFolder>
-      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-      </RootFolder>
-    </CopyFileToFolders>
-    <CopyFileToFolders Include="Assets\Sprites\Tiles\green.bmp">
-      <DeploymentContent>true</DeploymentContent>
-      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </RootFolder>
-      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </RootFolder>
-      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-      </RootFolder>
-      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-      </RootFolder>
-    </CopyFileToFolders>
-    <CopyFileToFolders Include="Assets\Sprites\Tiles\orange.bmp">
-      <DeploymentContent>true</DeploymentContent>
-      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </RootFolder>
-      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </RootFolder>
-      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-      </RootFolder>
-      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-      </RootFolder>
-    </CopyFileToFolders>
-    <CopyFileToFolders Include="Assets\Sprites\Tiles\purple.bmp">
-      <DeploymentContent>true</DeploymentContent>
-      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </RootFolder>
-      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </RootFolder>
-      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-      </RootFolder>
-      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-      </RootFolder>
-    </CopyFileToFolders>
-    <CopyFileToFolders Include="Assets\Sprites\Tiles\red.bmp">
-      <DeploymentContent>true</DeploymentContent>
-      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </RootFolder>
-      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </RootFolder>
-      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-      </RootFolder>
-      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-      </RootFolder>
-    </CopyFileToFolders>
-    <CopyFileToFolders Include="Assets\Sprites\Tiles\white.bmp">
-      <DeploymentContent>true</DeploymentContent>
-      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </RootFolder>
-      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </RootFolder>
-      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-      </RootFolder>
-      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-      </RootFolder>
-    </CopyFileToFolders>
-    <CopyFileToFolders Include="Assets\Sprites\Tiles\yellow.bmp">
-      <DeploymentContent>true</DeploymentContent>
-      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </RootFolder>
-      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </RootFolder>
-      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-      </RootFolder>
-      <RootFolder Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-      </RootFolder>
-    </CopyFileToFolders>
-  </ItemGroup>
-  <ItemGroup>
     <CopyFileToFolders Include="Assets\Fonts\Blazed.ttf">
       <DeploymentContent>true</DeploymentContent>
       <FileType>Document</FileType>
@@ -490,6 +367,27 @@
     <CopyFileToFolders Include="Assets\Scripts\Prefabs\VerticalBridge.m2do">
       <FileType>Document</FileType>
     </CopyFileToFolders>
+  </ItemGroup>
+  <ItemGroup>
+    <CopyFileToFolders Include="Assets\Sprites\Tiles\black_00.png" />
+    <CopyFileToFolders Include="Assets\Sprites\Tiles\black_01.png" />
+    <CopyFileToFolders Include="Assets\Sprites\Tiles\brown_00.png" />
+    <CopyFileToFolders Include="Assets\Sprites\Tiles\brown_01.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <CopyFileToFolders Include="Assets\Sprites\Tiles\hardwood_00.png" />
+    <CopyFileToFolders Include="Assets\Sprites\Tiles\hardwood_dark_00.png" />
+    <CopyFileToFolders Include="Assets\Sprites\Tiles\light_gray_00.png" />
+    <CopyFileToFolders Include="Assets\Sprites\Tiles\light_gray_01.png" />
+    <CopyFileToFolders Include="Assets\Sprites\Tiles\ns_00.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <CopyFileToFolders Include="Assets\Sprites\Tiles\tan_00.png" />
+    <CopyFileToFolders Include="Assets\Sprites\Tiles\tan_01.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <CopyFileToFolders Include="Assets\Sprites\Tiles\white_00.png" />
+    <CopyFileToFolders Include="Assets\Sprites\Tiles\white_01.png" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
