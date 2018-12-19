@@ -133,17 +133,6 @@
     <CopyFileToFolders Include="Assets\SFX\biem.mp3" />
     <CopyFileToFolders Include="Assets\SFX\biem.wav" />
     <CopyFileToFolders Include="Assets\SFX\hahabier.mp3" />
-    <CopyFileToFolders Include="Assets\Sprites\Tiles\black.bmp" />
-    <CopyFileToFolders Include="Assets\Sprites\BlikBier.bmp" />
-    <CopyFileToFolders Include="Assets\Sprites\Tiles\blue.bmp" />
-    <CopyFileToFolders Include="Assets\Sprites\Tiles\brown.bmp" />
-    <CopyFileToFolders Include="Assets\Sprites\Tiles\gray.bmp" />
-    <CopyFileToFolders Include="Assets\Sprites\Tiles\green.bmp" />
-    <CopyFileToFolders Include="Assets\Sprites\Tiles\orange.bmp" />
-    <CopyFileToFolders Include="Assets\Sprites\Tiles\purple.bmp" />
-    <CopyFileToFolders Include="Assets\Sprites\Tiles\red.bmp" />
-    <CopyFileToFolders Include="Assets\Sprites\Tiles\white.bmp" />
-    <CopyFileToFolders Include="Assets\Sprites\Tiles\yellow.bmp" />
     <CopyFileToFolders Include="Assets\Fonts\Blazed.ttf" />
     <CopyFileToFolders Include="Assets\Fonts\FreePixel.ttf" />
     <CopyFileToFolders Include="Assets\Fonts\Minecraftia-Regular.ttf" />
@@ -184,5 +173,20 @@
     <CopyFileToFolders Include="Assets\Advertisements\BurgerKing.png" />
     <CopyFileToFolders Include="Assets\Advertisements\CocaCola.png" />
     <CopyFileToFolders Include="Assets\Sprites\big_black.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Assets\Sprites\Tiles\black_00.png" />
+    <Image Include="Assets\Sprites\Tiles\black_01.png" />
+    <Image Include="Assets\Sprites\Tiles\brown_00.png" />
+    <Image Include="Assets\Sprites\Tiles\brown_01.png" />
+    <Image Include="Assets\Sprites\Tiles\hardwood_00.png" />
+    <Image Include="Assets\Sprites\Tiles\hardwood_dark_00.png" />
+    <Image Include="Assets\Sprites\Tiles\light_gray_00.png" />
+    <Image Include="Assets\Sprites\Tiles\light_gray_01.png" />
+    <Image Include="Assets\Sprites\Tiles\ns_00.png" />
+    <Image Include="Assets\Sprites\Tiles\tan_00.png" />
+    <Image Include="Assets\Sprites\Tiles\tan_01.png" />
+    <Image Include="Assets\Sprites\Tiles\white_00.png" />
+    <Image Include="Assets\Sprites\Tiles\white_01.png" />
   </ItemGroup>
 </Project>
