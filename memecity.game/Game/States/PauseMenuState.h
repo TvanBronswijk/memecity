@@ -12,6 +12,7 @@ private:
 	GameManager::GameContext* _context;
 	memecity::engine::ecs::EntityManager* _entity_manager;
 	std::unique_ptr<memecity::engine::ui::menu::Menu> menu;
+	std::unique_ptr<memecity::engine::ui::menu::Menu> save_menu;
 	std::unique_ptr<memecity::engine::ui::menu::Menu> help_menu;
 	std::unique_ptr<memecity::engine::ui::menu::Menu> help_menu2;
 

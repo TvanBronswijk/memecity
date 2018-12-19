@@ -36,6 +36,18 @@ namespace memecity::engine
 		{
 			std::string full_path = SDL_GetBasePath();
 			full_path += "\\" + file_path;
+
+			std::string directory;
+			const size_t last_slash_idx = full_path.rfind('\\');
+			if (std::string::npos != last_slash_idx)
+			{
+				directory = full_path.substr(0, last_slash_idx);
+			}
+
+			if(!filesystem::exists(directory)){
+				filesystem::create_directories(directory);
+			}
+
 			std::ofstream output_stream(full_path);
 			if (output_stream)
 			{

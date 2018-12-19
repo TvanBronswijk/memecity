@@ -40,24 +40,35 @@ PauseMenuState::PauseMenuState(memecity::engine::state::StateManager & sm, GameM
 		.with_back_menu_item()
 		.get_menu();
 
+
+	std::function<void(std::string)> save_function = [&](std::string save_slot) 
+	{ 
+		const auto player_manager = PlayerManager(*_entity_manager);
+		const auto player_data = player_manager.save_player();
+		std::string save_location = assets::saves::SAVE_LOCATION;
+		const auto success = _context->get_storage_manager().save(save_location + "\\" + save_slot + "\\" + assets::saves::SAVE_PLAYER, player_data);
+		auto map = MapSaver{}.get_map(em);
+		//todo support multiple maps
+		auto map_success = _context->get_storage_manager().save(save_location + "\\" + save_slot + "\\" + assets::saves::SAVE_MAP, map);
+		if (success && map_success) back();
+	};
+
+
+
+	save_menu = memecity::engine::ui::menu::MenuBuilder(gc.get_multimedia_manager())
+		.create_menu("Save Menu", assets::fonts::DEFAULT_FONT)
+		.with_menu_item("Save 1", nullptr, [&, save_function](memecity::engine::ui::menu::MenuItem& menu_item) {save_function(menu_item.get_text());	})
+		.with_menu_item("Save 2", nullptr, [&, save_function](memecity::engine::ui::menu::MenuItem& menu_item) {save_function(menu_item.get_text()); })
+		.with_menu_item("Save 3", nullptr, [&, save_function](memecity::engine::ui::menu::MenuItem& menu_item) {save_function(menu_item.get_text()); })
+		.with_back_menu_item()
+		.get_menu();
+
 	menu = memecity::engine::ui::menu::MenuBuilder(gc.get_multimedia_manager())
 		.create_menu("Paused", assets::fonts::DEFAULT_FONT)
 		.with_menu_item("Resume Game", nullptr, [&](auto& menu_item) { back(); })
 		.with_menu_item("Help", help_menu.get())
 		.with_read_only_menu_item(" ")
-		.with_menu_item("Save Game", nullptr, [&](auto& menu_item)
-	       {
-		       const auto player_manager = PlayerManager(*_entity_manager);
-		       const auto player_data = player_manager.save_player();
-		//todo save to folder
-		       //const auto success = _context->get_storage_manager().save(assets::saves::SAVE_GAME, player_data);
-			   const auto success = true;
-
-
-			   auto map = MapSaver{}.get_map(em);
-			   auto map_success = _context->get_storage_manager().save(assets::saves::SAVE_MAP, map);
-			   if (success && map_success) back();
-	       })
+		.with_menu_item("Save Game", save_menu.get())
 		.with_menu_item("Main Menu", nullptr, [&](auto& menu_item) { back(2); })
 		.get_menu();
 }
