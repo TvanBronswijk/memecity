@@ -257,8 +257,8 @@ Story QuestBuilder::intro() {
 	std::string simon = "Simon";
 	std::string yoeri = "Yoeri";
 
-	int x = (rand() % (tile_size * 5) + start_player.x);
-	int y = (rand() % (tile_size * 5) + start_player.y);
+	int x = (rand() % (tile_size * 3) + start_player.x);
+	int y = (rand() % (tile_size * 3) + start_player.y);
 	//create tasks
 	std::deque<Task> tasks_quest1{
 		Task{
@@ -272,7 +272,7 @@ Story QuestBuilder::intro() {
 		"First I will show you how to do a basic task.",
 		"please interact with Simon over there.",
 		" "},
-		&npc_generator->generate_quest_npc(violet, x,y, assets::spritesheets::GIRL_1),
+		&npc_generator->generate_quest_npc(violet, start_player.x,start_player.y - (tile_size * 2), assets::spritesheets::GIRL_1),
 		nullptr,
 		1},
 		Task{
