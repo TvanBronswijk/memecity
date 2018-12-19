@@ -16,7 +16,7 @@ std::vector<Story> QuestBuilder::get_all_stories() {
 }
 
 Story QuestBuilder::intro() {
-	std::string roy = "Roy";
+	std::string violet = "Violet";
 	std::string simon = "Simon";
 	std::string yoeri = "Yoeri";
 
@@ -24,7 +24,7 @@ Story QuestBuilder::intro() {
 	//create tasks
 	std::deque<Task> tasks_quest1{
 		Task{
-		"Talk to " + roy ,
+		"Talk to " + violet ,
 		Quest_State::Interaction,
 		{ "Welcome Stranger!",
 		"This is memecity.",
@@ -33,7 +33,7 @@ Story QuestBuilder::intro() {
 		"First I will show you how to do a basic task.",
 		"please interact with Simon over there.",
 		" "},
-		&npc_generator->generate_quest_npc(roy, 0,0, assets::spritesheets::HUMAN_MALE_1),
+		&npc_generator->generate_quest_npc(violet, 0,0, assets::spritesheets::GIRL_1),
 		nullptr,
 		1},
 		Task{
@@ -45,18 +45,18 @@ Story QuestBuilder::intro() {
 		"You can find them when you press escape->help.",
 		"Have a nice day!",
 		" "},
-		&npc_generator->generate_quest_npc(simon,300,0, assets::spritesheets::HUMAN_MALE_1),
+		&npc_generator->generate_quest_npc(simon,300,0, assets::spritesheets::BOY_1),
 		nullptr,
 		1},
 		Task{
-		"Talk to " + roy ,
+		"Talk to " + violet ,
 		Quest_State::Interaction,
 		{"Have you talked to Simon?",
 		"yess? great. Now you know how to use all the inputs.",
 		"Lets try to pick up some stuff.",
 		"Please pick up that can for me.",
 		" ",},
-		&npc_generator->generate_quest_npc(roy,0,0, assets::spritesheets::HUMAN_MALE_1),
+		&npc_generator->generate_quest_npc(violet,0,0, assets::spritesheets::GIRL_1),
 		nullptr,
 		1},
 	};
@@ -73,13 +73,13 @@ Story QuestBuilder::intro() {
 	
 	std::deque<Task> tasks_quest3{
 		Task{
-		"Talk to " + roy,
+		"Talk to " + violet,
 		Quest_State::Interaction,
 		{"Good job you have pick up every item you want.",
 		"the last task i would like you to do is to fight yoeri",
 		"Be aware he is very angry!"
 		" "},
-		&npc_generator->generate_quest_npc(roy, 0,0, assets::spritesheets::HUMAN_MALE_1),
+		&npc_generator->generate_quest_npc(violet, 0,0, assets::spritesheets::GIRL_1),
 		nullptr,
 		1}
 	};
@@ -89,14 +89,14 @@ Story QuestBuilder::intro() {
 		"Fight " + yoeri,
 		Quest_State::Fighting,
 		{"go away!!"},
-		&npc_generator->generate_npc(0,50,48,48,10,60,100,10,1,1,1,1,1,1,1,yoeri,Ai_State::Idle,{" "},1,assets::spritesheets::HUMAN_MALE_1),
+		&npc_generator->generate_npc(0,50,48,48,10,60,100,10,1,1,1,1,1,1,1,yoeri,Ai_State::Idle,{" "},1,assets::spritesheets::BOY_2),
 		nullptr,
 		1}
 	};
 
 	std::deque<Task> tasks_quest5{
 		Task{
-		"Talking to " + roy,
+		"Talking to " + violet,
 		Quest_State::Interaction,
 		{"Is he dead? i didn't say you need to kill him!!!",
 		"Ow well, one less to worry about i think.",
@@ -104,7 +104,7 @@ Story QuestBuilder::intro() {
 		"These are all the basic task you need to know for these cities.",
 		"Go explore and adventure these big cities!",
 		" "},
-		&npc_generator->generate_quest_npc(roy, 0,0, assets::spritesheets::HUMAN_MALE_1),
+		&npc_generator->generate_quest_npc(violet, 0,0, assets::spritesheets::GIRL_1),
 		nullptr,
 		1}
 	};

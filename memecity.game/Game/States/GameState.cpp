@@ -2,6 +2,8 @@
 #include "LoadingState.h"
 #include "../../Assets.h"
 #include "../Systems/FightingSystem.h"
+#include "../Components/ScoreComponent.h"
+#include "Engine/SDL/Wrappers/FileWrapper.h"
 #include "../LevelBuilder.h"
 #include "../Systems/ExpSystem.h"
 #include "../PlayerBuilder.h"
@@ -9,7 +11,7 @@
 void GameState::on_load()
 {
 	Point start;
-	next<LoadingState>(*_context, [&](auto& ctx, auto& listener) { start = LevelBuilder(ctx, 128, 128).build(entity_manager, listener); back(); });
+	next<LoadingState>(*_context, [&](auto& ctx, auto& listener) { start = LevelBuilder(ctx, 128, 128, _load_from_file).build(entity_manager, listener); back(); });
 	next<LoadingState>(*_context, [&](auto& ctx, auto& listener) { PlayerBuilder(ctx, start).build(entity_manager, listener); back(); });
 
 	auto& multimedia_manager = _context->get_multimedia_manager();
@@ -38,7 +40,7 @@ void GameState::on_load()
 	bind(input_system.quest_event, &quest_system, &QuestSystem::on_event);
 	bind(fighting_system.damage_event, &health_system, &HealthSystem::on_damage);
 	bind(fighting_system.quest_event, &quest_system, &QuestSystem::on_event);
-	bind(fighting_system.death_event, &health_system, &HealthSystem::on_death);
+	bind(fighting_system.death_event, &animation_system, &AnimationSystem::on_death);
 	bind(fighting_system.exp_event, &exp_system, &ExpSystem::on_exp_gain);
 	bind(pickpocket_system.faulty_pickpocket_event, &interaction_system, &InteractionSystem::on_pickpocket);
 	bind(input_system.pickpocket_event, &pickpocket_system, &PickpocketSystem::on_pickpocket);

@@ -17,47 +17,59 @@ void FightingSystem::run(EntityManager &em, float dt) const {
 }
 
 void FightingSystem::on_attack(EntityManager &em, AttackEventArgs args) {
-	auto health_target = args.target.get<HealthComponent>();
-	auto stats_source = args.source.get<StatsComponent>();
-	auto stats_target = args.target.get<StatsComponent>();
-	auto AI = args.target.get<AIComponent>();
 
-	if (AI != nullptr) {
-		if (AI->state != Ai_State::Fighting ) {
-			AI->state = Ai_State::Fighting;
+	auto health_component = args.target.get<HealthComponent>();
+	auto target_ai_component = args.target.get<AIComponent>();
+
+	const auto source_stats_component = args.source.get<StatsComponent>();
+	const auto target_stats_component = args.target.get<StatsComponent>();
+
+	args.source.get<AnimationComponent>()->current_state = AnimationComponent::AnimationState::fighting;
+
+	if (target_ai_component != nullptr)
+	{
+		if (target_ai_component->state != Ai_State::Fighting ) {
+			target_ai_component->state = Ai_State::Fighting;
 		}
-		health_target->health -= (rand() % (stats_source->strength * 5) + 1);
-		if (health_target->health < 0) { 
-			health_target->health = 0; 
-			auto luck = rand() % stats_source->luck;
-			if (luck > stats_source->luck / 5) {
-				exp_event.fire(em, ExpEventArgs((AI->exp * 1.3), 0));
-			}
-			else {
-				exp_event.fire(em, ExpEventArgs(AI->exp, 0));
-			}
-			AI->exp = 0;
+
+		health_component->health -= (rand() % (source_stats_component->strength * 5) + 1);
+		
+		if (health_component->health < 0) {
+			health_component->health = 0; 
+			exp_event.fire(em, ExpEventArgs(target_ai_component->exp,0));
+			death_event.fire(em, { args.target });
+			target_ai_component->exp = 0;
 		}
+
 		this->damage_event.fire(em, args.target);
 	}
-	else {
-		auto ai = args.source.get<AIComponent>();
+	else 
+	{
+		const auto ai = args.source.get<AIComponent>();
 		if (ai->timer_fighting > 0.5) {
-			auto attack = (rand() % (stats_source->strength) + 1);
-			auto defence = (rand() % (stats_target->agility * 4));
-			auto damage = attack - defence;
-			if(damage > 0)
-			health_target->health -= damage;
-			if (health_target->health < 0) health_target->health = 0;
+
+			const auto attack = (rand() % (source_stats_component->strength) + 1);
+			const auto defense = (rand() % (target_stats_component->agility * 4));
+			const auto damage = attack - defense;
+			
+			if (damage > 0) {
+				health_component->health -= damage;
+			}
+
+			if (health_component->health < 0) {
+				health_component->health = 0;
+			}
 
 			ai->timer_fighting = 0;
 
-			if (health_target->health == 0) {
+			if (health_component->health == 0) {
 				args.source.get<AIComponent>()->state = Ai_State::Idle;
-				death_event.fire(em, {});
+				death_event.fire(em, {args.target});
 			}
-			health_changed_event.fire(em, { health_target->health });
+
+			health_changed_event.fire(em, { health_component->health });
 		}
 	}
+
 	this->quest_event.fire(em, { &args.target , nullptr });
 }

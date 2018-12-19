@@ -11,9 +11,9 @@ public:
 	
 	HealthSystem(GameManager::GameContext& context)
 		: _context(&context) {}
+
 	void run(memecity::engine::ecs::EntityManager& em, float dt) const override;
 	void on_damage(memecity::engine::ecs::EntityManager& em, std::reference_wrapper<const memecity::engine::ecs::Entity> entity);
-	void on_death(memecity::engine::ecs::EntityManager& em, memecity::engine::ecs::eventing::EventArgs args);
 };
 
 #endif

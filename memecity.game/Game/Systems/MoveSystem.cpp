@@ -19,22 +19,20 @@ void MoveSystem::run(EntityManager& em, float dt) const
 		base->location.y += diff.y;
 		velocity->x = 0;
 		velocity->y = 0;
-		
-		auto animation_component = entity.get<AnimationComponent>();
-		if (animation_component) {
-			auto direction = AnimatedTexture::Direction::idle;
-			if (diff.x != 0) direction = diff.x > 0 ? AnimatedTexture::Direction::right : AnimatedTexture::Direction::left;
-			if (diff.y != 0) direction = diff.y > 0 ? AnimatedTexture::Direction::down : AnimatedTexture::Direction::up;
+
+		if (entity.has<AnimationComponent>()) {
+			auto direction = AnimatedTexture::AnimationState::idle;
+			if (diff.x != 0) direction = diff.x > 0 ? AnimatedTexture::AnimationState::right : AnimatedTexture::AnimationState::left;
+			if (diff.y != 0) direction = diff.y > 0 ? AnimatedTexture::AnimationState::down : AnimatedTexture::AnimationState::up;
 			animated_move_event.fire(em, { entity, direction });
 		}
-		
 	}
 }
 
 void MoveSystem::on_collision(EntityManager& em, ColliderEventArgs args)
 {
 	auto base = args.source.get<BaseComponent>();
-	auto velocity = args.source.get<VelocityComponent>();
+	const auto velocity = args.source.get<VelocityComponent>();
 
 	if (velocity != nullptr)
 	{

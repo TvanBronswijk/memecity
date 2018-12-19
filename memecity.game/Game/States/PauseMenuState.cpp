@@ -1,9 +1,11 @@
 ﻿#include "PauseMenuState.h"
 #include "..\..\Assets.h"
 #include "..\Input.h"
+#include "../MapSaver.h"
+#include "../PlayerManager.h"
 
-PauseMenuState::PauseMenuState(memecity::engine::state::StateManager & sm, GameManager::GameContext & gc)
-	: State(sm), _context(&gc)
+PauseMenuState::PauseMenuState(memecity::engine::state::StateManager & sm, GameManager::GameContext & gc, memecity::engine::ecs::EntityManager & em)
+	: State(sm), _context(&gc), _entity_manager(&em)
 {
 
 
@@ -42,7 +44,18 @@ PauseMenuState::PauseMenuState(memecity::engine::state::StateManager & sm, GameM
 		.create_menu("Paused", assets::fonts::DEFAULT_FONT)
 		.with_menu_item("Resume Game", nullptr, [&](auto& menu_item) { back(); })
 		.with_menu_item("Help", help_menu.get())
-		.with_menu_item("Main Menu", nullptr, [&](auto& menu_item) { back(2);  })
+		.with_read_only_menu_item(" ")
+		.with_menu_item("Save Game", nullptr, [&](auto& menu_item)
+	       {
+		       const auto player_manager = PlayerManager(*_entity_manager);
+		       const auto player_data = player_manager.save_player();
+		       const auto success = _context->get_storage_manager().save(assets::saves::SAVE_GAME, player_data);
+
+			   auto map = MapSaver{}.get_map(em);
+			   auto map_success = _context->get_storage_manager().save(assets::saves::SAVE_MAP, map);
+			   if (success && map_success) back();
+	       })
+		.with_menu_item("Main Menu", nullptr, [&](auto& menu_item) { back(2); })
 		.get_menu();
 }
 

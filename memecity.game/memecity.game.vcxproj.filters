@@ -27,6 +27,10 @@
     <ClCompile Include="Game\Systems\HealthSystem.cpp" />
     <ClCompile Include="Game\States\GameOverState.cpp" />
     <ClCompile Include="Game\Systems\FogOfWarSystem.cpp" />
+    <ClCompile Include="Game\MapSaver.cpp" />
+    <ClCompile Include="Game\Generate\City\Strategy\File\FileStrategy.cpp" />
+    <ClCompile Include="Game\States\StatsState.cpp" />
+    <ClCompile Include="Game\PlayerManager.cpp" />
     <ClCompile Include="Game\Systems\QuestSystem.cpp" />
     <ClCompile Include="Game\Generate\Item\ItemGenerator.cpp" />
     <ClCompile Include="Game\States\StatsState.cpp" />
@@ -101,11 +105,16 @@
     <ClInclude Include="Game\Components\InventoryComponent.h" />
     <ClInclude Include="Game\Components\ItemComponent.h" />
     <ClInclude Include="Game\Systems\FogOfWarSystem.h" />
+    <ClInclude Include="Game\MapSaver.h" />
+    <ClInclude Include="Game\Components\TileComponent.h" />
+    <ClInclude Include="Game\Generate\City\Strategy\File\FileStrategy.h" />
     <ClInclude Include="Game\States\StatsState.h" />
+    <ClInclude Include="Game\PlayerManager.h" />
     <ClInclude Include="Game\Quest\Quest.h" />
     <ClInclude Include="Game\Quest\Story.h" />
     <ClInclude Include="Game\Quest\Task.h" />
     <ClInclude Include="Game\Generate\Item\ItemGenerator.h" />
+    <ClInclude Include="Game\Event\DeathEventArgs.h" />
     <ClInclude Include="Game\Systems\PickpocketSystem.h" />
     <ClInclude Include="Game\Event\PickpocketEventArgs.h" />
     <ClInclude Include="Game\Event\BlikCoinEventArgs.h" />
@@ -114,6 +123,9 @@
     <ClInclude Include="Game\PlayerBuilder.h" />
     <ClInclude Include="Game\Components\TileComponent.h" />
     <ClInclude Include="Game\Util\Util.h" />
+    <ClInclude Include="Game\Event\BlikCoinEventArg.h" />
+    <ClInclude Include="Game\Highscore.h" />
+    <ClInclude Include="Game\HighscoreLoader.h" />
   </ItemGroup>
   <ItemGroup>
     <CopyFileToFolders Include="Assets\Music\bgm.mp3" />
@@ -121,18 +133,6 @@
     <CopyFileToFolders Include="Assets\SFX\biem.mp3" />
     <CopyFileToFolders Include="Assets\SFX\biem.wav" />
     <CopyFileToFolders Include="Assets\SFX\hahabier.mp3" />
-    <CopyFileToFolders Include="Assets\Sprites\Tiles\black.bmp" />
-    <CopyFileToFolders Include="Assets\Sprites\BlikBier.bmp" />
-    <CopyFileToFolders Include="Assets\Sprites\Tiles\blue.bmp" />
-    <CopyFileToFolders Include="Assets\Sprites\Tiles\brown.bmp" />
-    <CopyFileToFolders Include="Assets\Sprites\Tiles\gray.bmp" />
-    <CopyFileToFolders Include="Assets\Sprites\Tiles\green.bmp" />
-    <CopyFileToFolders Include="Assets\Sprites\Tiles\orange.bmp" />
-    <CopyFileToFolders Include="Assets\Sprites\Tiles\purple.bmp" />
-    <CopyFileToFolders Include="Assets\Sprites\Tiles\red.bmp" />
-    <CopyFileToFolders Include="Assets\Spritesheets\SpriteSheet.png" />
-    <CopyFileToFolders Include="Assets\Sprites\Tiles\white.bmp" />
-    <CopyFileToFolders Include="Assets\Sprites\Tiles\yellow.bmp" />
     <CopyFileToFolders Include="Assets\Fonts\Blazed.ttf" />
     <CopyFileToFolders Include="Assets\Fonts\FreePixel.ttf" />
     <CopyFileToFolders Include="Assets\Fonts\Minecraftia-Regular.ttf" />
@@ -158,10 +158,13 @@
     <CopyFileToFolders Include="Assets\Advertisements\CodedFun.png" />
     <CopyFileToFolders Include="Assets\Advertisements\CppCon.png" />
     <CopyFileToFolders Include="Assets\Advertisements\kolrd.png" />
-    <CopyFileToFolders Include="Assets\Spritesheets\boy1.png" />
-    <CopyFileToFolders Include="Assets\Spritesheets\boy2.png" />
-    <CopyFileToFolders Include="Assets\Spritesheets\girl1.png" />
-    <CopyFileToFolders Include="Assets\Spritesheets\girl2.png" />
+    <CopyFileToFolders Include="Assets\Spritesheets\train_animated.bmp" />
+    <CopyFileToFolders Include="Assets\Spritesheets\Boy1SpriteSheet.png" />
+    <CopyFileToFolders Include="Assets\Spritesheets\Boy2SpriteSheet.png" />
+    <CopyFileToFolders Include="Assets\Spritesheets\Boy3SpriteSheet.png" />
+    <CopyFileToFolders Include="Assets\Spritesheets\Girl1SpriteSheet.png" />
+    <CopyFileToFolders Include="Assets\Spritesheets\Girl2SpriteSheet.png" />
+    <CopyFileToFolders Include="Assets\Spritesheets\PoliceSpriteSheet.png" />
   </ItemGroup>
   <ItemGroup>
     <CopyFileToFolders Include="Assets\Advertisements\BananaWho.png" />
@@ -170,6 +173,42 @@
     <CopyFileToFolders Include="Assets\Sprites\big_black.bmp" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="Assets\Spritesheets\police1.png" />
+    <None Include="Assets\Scripts\Prefabs\VerticalBridge.m2do" />
+    <None Include="Assets\Scripts\Prefabs\BlikSpawner.m2d" />
+    <None Include="Assets\Scripts\Prefabs\BlikSpawner.m2do" />
+    <None Include="Assets\Scripts\Prefabs\BridgePark.m2d" />
+    <None Include="Assets\Scripts\Prefabs\BridgePark.m2do" />
+    <None Include="Assets\Scripts\Prefabs\CanFortress.m2d" />
+    <None Include="Assets\Scripts\Prefabs\CanFortress.m2do" />
+    <None Include="Assets\Scripts\Prefabs\CanPrison.m2d" />
+    <None Include="Assets\Scripts\Prefabs\CanPrison.m2do" />
+    <None Include="Assets\Scripts\Prefabs\Church.m2d" />
+    <None Include="Assets\Scripts\Prefabs\Church.m2do" />
+    <None Include="Assets\Scripts\Prefabs\CrossBridge.m2d" />
+    <None Include="Assets\Scripts\Prefabs\CrossBridge.m2do" />
+    <None Include="Assets\Scripts\Prefabs\Hi.m2d" />
+    <None Include="Assets\Scripts\Prefabs\Hi.m2do" />
+    <None Include="Assets\Scripts\Prefabs\HorizontalBridge.m2d" />
+    <None Include="Assets\Scripts\Prefabs\HorizontalBridge.m2do" />
+    <None Include="Assets\Scripts\Prefabs\Nerd.m2d" />
+    <None Include="Assets\Scripts\Prefabs\Nerd.m2do" />
+    <None Include="Assets\Scripts\Prefabs\PolicePark.m2d" />
+    <None Include="Assets\Scripts\Prefabs\PolicePark.m2do" />
+    <None Include="Assets\Scripts\Prefabs\VerticalBridge.m2d" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Assets\Sprites\Tiles\black_00.png" />
+    <Image Include="Assets\Sprites\Tiles\black_01.png" />
+    <Image Include="Assets\Sprites\Tiles\brown_00.png" />
+    <Image Include="Assets\Sprites\Tiles\brown_01.png" />
+    <Image Include="Assets\Sprites\Tiles\hardwood_00.png" />
+    <Image Include="Assets\Sprites\Tiles\hardwood_dark_00.png" />
+    <Image Include="Assets\Sprites\Tiles\light_gray_00.png" />
+    <Image Include="Assets\Sprites\Tiles\light_gray_01.png" />
+    <Image Include="Assets\Sprites\Tiles\ns_00.png" />
+    <Image Include="Assets\Sprites\Tiles\tan_00.png" />
+    <Image Include="Assets\Sprites\Tiles\tan_01.png" />
+    <Image Include="Assets\Sprites\Tiles\white_00.png" />
+    <Image Include="Assets\Sprites\Tiles\white_01.png" />
   </ItemGroup>
 </Project>

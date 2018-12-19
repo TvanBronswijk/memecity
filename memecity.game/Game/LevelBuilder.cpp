@@ -3,6 +3,7 @@
 #include "Components.h"
 #include "Systems.h"
 #include "..\Assets.h"
+#include "Generate/City/Strategy/File/FileStrategy.h"
 
 using namespace memecity::engine::ecs;
 using namespace memecity::engine::ui;
@@ -12,22 +13,27 @@ Point LevelBuilder::build(memecity::engine::ecs::EntityManager& em, loading::Loa
 	listener.set_max_value(100.0f);
 	listener.set_current_value(0.0f);
 	auto& multimedia_manager = _context->get_multimedia_manager();
-	generate::models::City city = generate::CityGenerator(_map_width, _map_height).generate();
+	auto generator = generate::CityGenerator(_context->get_storage_manager(), _map_width, _map_height);
+	if (_load_from_file)
+	{
+		generator.set_strategy<generate::strategy::FileStrategy>(_context->get_storage_manager().load_string(assets::saves::SAVE_MAP));
+
+	}
+	generate::models::City city = generator.generate();
 	for (int y = 0; y < city.height; y++) {
 		for (int x = 0; x < city.width; x++) {
 			auto& tile = city.tiles(x, y);
-#ifdef DEBUG
-			std::cout << tile;
-#endif
 			auto tile_info = generate::models::char_to_tile(tile);
-			auto& builder = em.create_entity("tile")
-				.with_component<BaseComponent>(multimedia_manager.get_texture(tile_info.get_asset()), x * 64.0f, y * 64.0f, 64.0f, 64.0f)
-				.with_component<TileComponent>(tile_info.name, tile_info.blocked, tile_info.block_sight);
-			if (tile_info.blocked) {
-				auto base_component = builder.get().get<BaseComponent>();
-				builder.with_component<ColliderComponent>(BoundaryRectangle{ base_component->location.x, base_component->location.y, base_component->w, base_component->h });
+			if (tile_info.name != "Not Found") {
+				auto& builder = em.create_entity("tile")
+					.with_component<BaseComponent>(multimedia_manager.get_texture(tile_info.get_asset()), x * 64.0f, y * 64.0f, 64.0f, 64.0f)
+					.with_component<TileComponent>(tile_info.name, tile_info.blocked, tile_info.block_sight, tile);
+				if (tile_info.blocked) {
+					auto base_component = builder.get().get<BaseComponent>();
+					builder.with_component<ColliderComponent>(BoundaryRectangle{ base_component->location.x, base_component->location.y, base_component->w, base_component->h });
+				}
+				listener.increase_current_value((100.0f / (_map_width*_map_height)) / 2);
 			}
-			listener.increase_current_value((100.0f / (_map_width*_map_height)) / 2);
 
 			auto& object = city.objects(x, y);
 			switch (object)

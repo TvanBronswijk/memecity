@@ -2,6 +2,7 @@
 #include "Components.h"
 #include "../Assets.h"
 #include "Builder/QuestBuilder.h"
+#include "Components/ScoreComponent.h"
 
 int rand_stat() {
 	return 1 + (rand() % 3);
@@ -13,7 +14,7 @@ const memecity::engine::ecs::Entity& PlayerBuilder::build(memecity::engine::ecs:
 	listener.set_text("Generating Player...");
 	listener.set_max_value(100.0f);
 
-	auto texture = multimedia_manager.get_texture(assets::spritesheets::HUMAN_MALE_1, 0, 0, 48, 48, 4, 0.25f, memecity::engine::texture::AnimatedTexture::AnimationDirection::vertical);
+	auto texture = multimedia_manager.get_texture(assets::spritesheets::BOY_3, 0, 0, 48, 48, 4, 2.0f, memecity::engine::texture::AnimatedTexture::AnimationDirection::vertical);
 	texture->set_position({ static_cast<float>(multimedia_manager.get_screen_width()) / 2, static_cast<float>(multimedia_manager.get_screen_height()) / 2 });
 
 	auto builder = em.create_entity("player")
@@ -24,6 +25,7 @@ const memecity::engine::ecs::Entity& PlayerBuilder::build(memecity::engine::ecs:
 		.with_component<ExpComponent>(0, 100)
 		.with_component<HealthComponent>(100, nullptr)
 		.with_component<InventoryComponent>()
+		.with_component<ScoreComponent>()
 		.with_component<VelocityComponent>();
 	
 	auto base_component = builder.get().get<BaseComponent>();

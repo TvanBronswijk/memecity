@@ -5,6 +5,7 @@
 #include "..\..\..\..\Assets.h"
 
 namespace generate::models {
+
 	struct Base64_Tilemap : uRectangle<int> {
 	protected:
 		char* tiles;
@@ -23,6 +24,18 @@ namespace generate::models {
 		virtual char* operator [] (int x) { return &tiles[x * h]; }
 		virtual const char* operator [] (int x) const { return &tiles[x * h]; }
 		virtual ~Base64_Tilemap() override { delete tiles; }
+		virtual std::string get_tile_string() const
+		{
+			std::string s;
+			for (int i = 0; i < w*h; i++) {
+				s += tiles[i];
+				if ((i + 1) % w == 0)
+				{
+					s += "\n";
+				}
+			}
+			return s;
+		}
 	};
 
 	struct City {
@@ -90,15 +103,21 @@ namespace generate::models {
 		{'w', {'w', "Water", assets::sprites::tiles::WATER, true, false } },
 		{'g', {'g', "Grass", assets::sprites::tiles::GRASS, false, false } },
 		{'W', {'W', "Wall", assets::sprites::tiles::WALL, true, true } },
-		{'m', {'m', "Marble", assets::sprites::tiles::GRASS, false, false } },
-		{'c', {'c', "Station", assets::sprites::tiles::WATER, false, false } }
+		{'m', {'m', "Marble White", assets::sprites::tiles::MARBLEWHITE, false, false } },
+		{'B', {'B', "Marble Black", assets::sprites::tiles::MARBLEBLACK, false, false } },
+		{'f', {'f', "Hardwood", assets::sprites::tiles::HARDWOOD, false, false } },
+		{'d', {'d', "Hardwood Dark", assets::sprites::tiles::HARDWOODDARK, false, false } },
+		{'b', {'b', "Carpet Brown", assets::sprites::tiles::CARPETBROWN, false, false } },
+		{'l', {'l', "Carpet Light Gray", assets::sprites::tiles::CARPETLIGHTGRAY, false, false } },
+		{'t', {'t', "Carpet Tan", assets::sprites::tiles::CARPETTAN, false, false } },
+		{'c', {'c', "Station", assets::sprites::tiles::STATION, false, false } }
 	};
 	static TileInfo char_to_tile(char c) {
 		auto it = __cta.find(c);
 		if (it != __cta.end()) {
 			return it->second;
 		}
-		throw;
+		return TileInfo{ c, "Not Found", {}, false, false };
 	}
 }
 

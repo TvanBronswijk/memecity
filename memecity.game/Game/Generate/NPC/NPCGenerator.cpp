@@ -41,7 +41,7 @@ namespace generate {
 			x, y, 48.0f, 48.0f, exp, range_of_fighting, movement_speed,blikcoins,
 			strength, perception, endurance, charisma, intelligence, agility, luck,
 			name, Ai_State::Roaming, {}, level,
-			assets::spritesheets::POLICE_MALE_1);
+			assets::spritesheets::POLICE_1);
 	}
 	const memecity::engine::ecs::Entity& NPCGenerator::generate_civilian_npc(float x, float y) {
 		std::string name = get_random_name();
@@ -81,7 +81,7 @@ namespace generate {
 			x, y, 48.0f, 48.0f, exp, range_of_fighting, movement_speed,blikcoins,
 			5, 5, 5, 5, 5, 5, 5,
 			name, Ai_State::Roaming, {}, level,
-			asset);
+			assets::spritesheets::GIRL_2);
 	}
 
 	//random generator
@@ -118,7 +118,7 @@ namespace generate {
 			x, y, 48.0f, 48.0f, exp, range_of_fighting, movement_speed,blikcoins,
 			strength, perception, endurance, charisma,intelligence, agility, luck, 
 			name, Ai_State::Roaming, {}, level,
-			assets::spritesheets::HUMAN_MALE_1);
+			assets::spritesheets::BOY_1);
 	}
 
 	//base generator
@@ -135,8 +135,8 @@ namespace generate {
 		hp += "/";
 		hp += std::to_string(health);
 		
-		auto animation_texture = multimedia_manager.get_texture(animation_character, 0, 0, width, height, 3, 0.25f, texture::AnimatedTexture::AnimationDirection::vertical);
-		animation_texture->set_position({ static_cast<float>(multimedia_manager.get_screen_width()) / 2, static_cast<float>(multimedia_manager.get_screen_height()) / 2 });
+		auto animation_texture = multimedia_manager.get_texture(animation_character, 0, 0, width, height, 4, 2.0f, texture::AnimatedTexture::AnimationDirection::vertical);
+		animation_texture->set_position({ 0.0f, 0.0f });
 
 		std::string font = assets::fonts::DEFAULT_FONT;
 		auto health_texture = multimedia_manager.get_text(font, hp, 10, { 34,139,34 });
@@ -223,8 +223,8 @@ namespace generate {
 			return *quest_npcs.find(name)->second;
 		}
 		else {
-			auto animation_texture = multimedia_manager.get_texture(asset, 0, 0, 48, 48, 4, 0.25f, texture::AnimatedTexture::AnimationDirection::vertical);
-			animation_texture->set_position({ static_cast<float>(multimedia_manager.get_screen_width()) / 2, static_cast<float>(multimedia_manager.get_screen_height()) / 2 });
+			auto animation_texture = multimedia_manager.get_texture(asset, 0, 0, 48, 48, 4, 2.0f, texture::AnimatedTexture::AnimationDirection::vertical);
+			animation_texture->set_position({ 0.0f, 0.0f });
 
 			std::string font = assets::fonts::DEFAULT_FONT;
 			auto name_texture = multimedia_manager.get_text(font, name, 14, { 255,0,0 });
