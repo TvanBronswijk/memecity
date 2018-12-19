@@ -23,6 +23,7 @@ namespace memecity::engine::ui::menu {
 
 		void set_selected(bool selected);
 		texture::TextTexture& get_texture() const;
+		std::string get_text() { return text; };
 		bool get_read_only() const;
 		void render() const;
 		void unlock() const;
