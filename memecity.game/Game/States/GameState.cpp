@@ -14,10 +14,8 @@
 
 void GameState::on_load()
 {
-	
-	
 	Point start;
-	next<LoadingState>(*_context, [&](auto& ctx, auto& listener) { start = LevelBuilder(ctx, 1, 128, 128, _load_from_file, _save_location).build(entity_manager, listener, _map_number); back(); });
+	next<LoadingState>(*_context, [&](auto& ctx, auto& listener) { start = LevelBuilder(ctx, 1, 128, 128, _load_from_file, true, _save_location).build(entity_manager, listener, _map_number); back(); });
 	next<LoadingState>(*_context, [&](auto& ctx, auto& listener) { PlayerBuilder(ctx, start).build(entity_manager, listener); back(); });
 	if(_load_from_file)
 	{//TODO HIERRRRR

@@ -46,3 +46,4 @@ void HealthSystem::on_damage(EntityManager& em, std::reference_wrapper<const Ent
 				AI->state = Ai_State::Fleeing;
 	}
 }
+

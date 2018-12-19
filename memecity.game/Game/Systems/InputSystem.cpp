@@ -54,7 +54,7 @@ void InputSystem::run(EntityManager& em, float dt) const
 		if (input_manager.is_pressed(input::INTERACTION))
 		{
 			if (on_tile(em, player) == "Station") {
-				state_manager.create_state<LevelChangeState>(*_context, em);
+				state_manager.create_state<LevelChangeState>(*_context, em, *_map_number, *_save_slot);
 			}
 
 			auto npcs = em.get_entities_with_component<AIComponent>();

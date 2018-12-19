@@ -22,13 +22,13 @@ namespace generate {
 		int exp = rand() % 10 + 25;
 		int blikcoins = rand() % (level * 5 + 1) + 5;
 
-		int strength = 5 + level;
-		int perception = 5 + level;
-		int endurance = 5 + level;
-		int charisma = 5 + level;
-		int intelligence = 5 + level;
-		int agility = 5 + level;
-		int luck = 5 + level;
+		int strength = 6 + level;
+		int perception = 6 + level;
+		int endurance = 6 + level;
+		int charisma = 6 + level;
+		int intelligence = 6 + level;
+		int agility = 6 + level;
+		int luck = 6 + level;
 
 		int health = ((strength * 5) + (endurance * 3) + (agility * 2) + 50);
 
@@ -52,6 +52,25 @@ namespace generate {
 		int blikcoins = rand() % (level * 10 + 1) + 10;
 
 		int health = 100;
+		int random = rand() % 100;
+		assets::Asset asset;
+
+		if (this->gender == Gender::Female) {
+			if (random < 50) {
+				asset = assets::spritesheets::GIRL_1;
+			}
+			else {
+				asset = assets::spritesheets::GIRL_2;
+			}
+		}
+		else {
+			if (random < 50) {
+				asset = assets::spritesheets::BOY_1;
+			}
+			else {
+				asset = assets::spritesheets::BOY_2;
+			}
+		}
 
 		std::string hp = "HP: ";
 		hp += std::to_string(health);
@@ -62,7 +81,7 @@ namespace generate {
 			x, y, 48.0f, 48.0f, exp, range_of_fighting, movement_speed,blikcoins,
 			5, 5, 5, 5, 5, 5, 5,
 			name, Ai_State::Roaming, {}, level,
-			assets::spritesheets::GIRL_2);
+			asset);
 	}
 
 	//random generator
@@ -187,9 +206,11 @@ namespace generate {
 		int number = rand() % (this->names_boys.size() -1);
 		int gender = rand() % 100;
 		if (gender < 50) {
+			this->gender = Gender::Male;
 			return this->names_boys.at(number);
 		}
 		else {
+			this->gender = Gender::Female;
 			return this->names_girls.at(number);
 		}
 

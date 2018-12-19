@@ -7,6 +7,8 @@
 #include "..\..\..\Assets.h"
 #include "..\..\Enum\AIStates.h"
 
+enum class Gender {Male,Female};
+
 namespace generate {
 	class NPCGenerator {
 	private:
@@ -18,6 +20,8 @@ namespace generate {
 		memecity::engine::ecs::EntityManager& entity_manager;
 
 		int min_fighting_range, min_movement_speed, min_base_points;
+
+		Gender gender;
 	public:
 		NPCGenerator(memecity::engine::MultimediaManager& multimedia_manager, memecity::engine::ecs::EntityManager& entity_manager) 
 			: multimedia_manager(multimedia_manager), entity_manager(entity_manager) , min_fighting_range(60), min_movement_speed(180), min_base_points(5)
