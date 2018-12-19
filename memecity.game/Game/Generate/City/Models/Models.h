@@ -104,6 +104,7 @@ namespace generate::models {
 		{'g', {'g', "Grass", assets::sprites::tiles::GRASS, false, false } },
 		{'W', {'W', "Wall", assets::sprites::tiles::WALL, true, true } },
 		{'m', {'m', "Marble", assets::sprites::tiles::GRASS, false, false } },
+		{'f', {'f', "Floor", assets::sprites::tiles::FLOOR, false, false } },
 		{'c', {'c', "Station", assets::sprites::tiles::WATER, false, false } }
 	};
 	static TileInfo char_to_tile(char c) {
@@ -111,7 +112,7 @@ namespace generate::models {
 		if (it != __cta.end()) {
 			return it->second;
 		}
-		throw;
+		return TileInfo{ c, "Not Found", {}, false, false };
 	}
 }
 

@@ -49,7 +49,6 @@ namespace generate::strategy::bsp {
 					break;
 				}
 			}
-			c.objects(n.begin.x, n.begin.y) = 'i';
 		}
 	};
 }

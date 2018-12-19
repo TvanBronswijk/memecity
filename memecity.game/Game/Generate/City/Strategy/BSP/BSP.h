@@ -50,14 +50,14 @@ namespace generate::strategy::bsp {
 
 	class BSP : public generate::strategy::Strategy {
 	private:
-		const static int MIN_NODE_WIDTH = 8;
-		const static int MIN_NODE_HEIGHT = 8;
+		const static int MIN_NODE_WIDTH = 10;
+		const static int MIN_NODE_HEIGHT = 10;
 
 		void split_recursively(Node& n, bool h) const;
 		void write_node(generate::models::City &c, const Node& n);
 	public:
 		BSP() = default;
-		BSP(std::vector<const models::Prefab*> prefabs) : Strategy(prefabs) {}
+		BSP(std::queue<const models::Prefab*> prefabs) : Strategy(prefabs) {}
 		~BSP() = default;
 		generate::models::City generate(int w, int h) override;
 	};

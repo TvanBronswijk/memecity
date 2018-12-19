@@ -115,14 +115,13 @@ namespace memecity::engine
 		return result;
 	}
 
-	std::map<std::string, std::string> StorageManager::load_files_from_directory(const std::string& file_path) const
+	std::map<std::filesystem::directory_entry, std::string> StorageManager::load_files_from_directory(const std::string& file_path) const
 	{
-		std::map<std::string, std::string> temp;
+		std::map<std::filesystem::directory_entry, std::string> temp;
 		for (const auto& entry : filesystem::directory_iterator(file_path))
 		{
-			temp.insert(std::pair<std::string, std::string>(entry.path().string(), load_string(entry.path().string())));
+			temp.insert(std::pair<std::filesystem::directory_entry, std::string>(entry, load_string(entry.path().string())));
 		}
-
 		return temp;
 	}
 }

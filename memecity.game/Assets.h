@@ -30,6 +30,9 @@ namespace assets {
 
 			constexpr inline Asset WATER0 = "Sprites/Tiles/water_00.bmp";
 			static inline AssetMap WATER{ {WATER0, 100} };
+
+			constexpr inline Asset FLOOR0 = "Sprites/Tiles/purple.bmp";
+			static inline AssetMap FLOOR{ {FLOOR0, 100} };
 		}
 
 		constexpr inline Asset DARK_BACKGROUND = "Sprites/big_black.bmp";
