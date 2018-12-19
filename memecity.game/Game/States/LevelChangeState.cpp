@@ -4,8 +4,8 @@
 #include "LoadingState.h"
 #include "..\LevelBuilder.h"
 
-LevelChangeState::LevelChangeState(memecity::engine::state::StateManager & sm, GameManager::GameContext & gc, memecity::engine::ecs::EntityManager & em)
-	:State(sm), _context(&gc), _entity_manager(&em)
+LevelChangeState::LevelChangeState(memecity::engine::state::StateManager & sm, GameManager::GameContext & gc, memecity::engine::ecs::EntityManager & em, int& map_number, std::string save_location)
+	:State(sm), _context(&gc), _entity_manager(&em), map_number(map_number), save_location(save_location)
 {
 	auto& player = em.get_entities_by_type("player").front().get();
 	menu = memecity::engine::ui::menu::MenuBuilder(gc.get_multimedia_manager())
@@ -26,12 +26,27 @@ LevelChangeState::LevelChangeState(memecity::engine::state::StateManager & sm, G
 			back(); });
 		
 		next<LoadingState>(*_context,
-			[&](auto& ctx, auto& listener) { start = LevelBuilder(ctx, 1, 128, 128, false).build(em, listener, *new int(1)); back(); });//TODO tobi, hier het nummer van de map meegeven
+			[&](auto& ctx, auto& listener) { start = LevelBuilder(ctx, 1, 128, 128, false, false, this->save_location).build(em, listener, map_number); back(); });//TODO tobi, hier het nummer van de map meegeven
 		player.get<BaseComponent>()->location = start;
 		back();
 	})
 		.with_menu_item("Go to Last City", nullptr, [&](auto& _) {
+		Point start;
+		next<LoadingState>(*_context,
+			[&](auto& ctx, auto& listener) {
+			auto entities = em.query_all_entities().where([](const auto& e) { return e.type != "player";  }).to_vector();
+			listener.set_text("Clearing State...");
+			listener.set_max_value(100.0f);
+			listener.set_current_value(0.0f);
+			for (const auto& entity : entities) {
+				em.remove_entity(entity);
+				listener.increase_current_value(100.0f / entities.size());
+			}
+			back(); });
 
+		next<LoadingState>(*_context,
+			[&](auto& ctx, auto& listener) { start = LevelBuilder(ctx, 1, 128, 128, true, false, this->save_location).build(em, listener, map_number); back(); });//TODO tobi, hier het nummer van de map meegeven
+		player.get<BaseComponent>()->location = start;
 		back();
 	})
 		.get_menu();
