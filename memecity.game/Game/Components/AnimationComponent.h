@@ -3,13 +3,25 @@
 
 #include <ECS.h>
 
-struct AnimationComponent : public memecity::engine::ecs::Component
+struct AnimationComponent : memecity::engine::ecs::Component
 {
-	enum class AnimationState { idle, fighting };
-
-	memecity::engine::texture::AnimatedTexture::Direction old_direction;
+	enum class AnimationState { idle, fighting, dying };
+	
+	float animation_timer = 0.0f;
 	AnimationState current_state;
-	AnimationComponent(memecity::engine::ecs::Entity& entity) : memecity::engine::ecs::Component(entity), current_state(AnimationState::idle), old_direction(memecity::engine::texture::AnimatedTexture::Direction::idle) {}
+	memecity::engine::texture::AnimatedTexture::AnimationState old_state;
+
+	AnimationComponent(memecity::engine::ecs::Entity& entity) : Component(entity), current_state(AnimationState::idle),
+	                                                            old_state(memecity::engine::texture::AnimatedTexture::AnimationState::idle)
+	{
+	}
+
+	bool is_finished() const;
 };
+
+inline bool AnimationComponent::is_finished() const
+{
+	return animation_timer >= 4.0f;
+}
 
 #endif

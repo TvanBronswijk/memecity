@@ -13,6 +13,7 @@ namespace generate::strategy::bsp {
 		void write(models::City& c, const Node& n) const override {
 			iterate(n, [&](int x, int y) {
 				c.tiles(x, y) = '-';
+
 				if (x >= (n.begin.x + _road_size) && x <= (n.end.x - _road_size)) {
 					c.tiles(x, n.begin.y + _road_size) = 'W';
 					c.tiles(x, n.end.y - _road_size) = 'W';

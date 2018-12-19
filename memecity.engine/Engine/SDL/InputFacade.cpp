@@ -5,7 +5,15 @@ namespace memecity::engine::sdl {
 	{
 		while (SDL_PollEvent(&event) != 0)
 		{
-			if (event.type == SDL_QUIT) { quit_pressed = true; }
+			if (event.type == SDL_QUIT) { quit_pressed = true;}
+			if (event.type == SDL_TEXTINPUT && edit_text)
+			{
+				text += event.text.text;
+			}			
+			if (event.type == SDL_KEYDOWN && edit_text && event.key.keysym.scancode == SDL_SCANCODE_BACKSPACE)
+			{
+				text = text.substr(0, text.size() - 1);
+			}
 		}
 	}
 

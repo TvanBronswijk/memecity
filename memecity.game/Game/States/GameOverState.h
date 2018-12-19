@@ -9,6 +9,9 @@ class GameOverState : public memecity::engine::state::State
 private:
 	GameManager::GameContext* _context;
 	std::unique_ptr<memecity::engine::ui::menu::Menu> menu;
+	std::unique_ptr<memecity::engine::texture::TextTexture> name_text_texture;
+	std::string name_text = " ";
+	int experience;
 
 public:
 	GameOverState(memecity::engine::state::StateManager& sm, GameManager::GameContext& gc, int exp);
