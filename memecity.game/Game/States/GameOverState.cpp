@@ -21,9 +21,6 @@ GameOverState::GameOverState(memecity::engine::state::StateManager & sm, GameMan
 		.get_menu();
 
 	_context->get_input_manager().enable_text_editing();
-
-
-
 }
 
 void GameOverState::on_load()

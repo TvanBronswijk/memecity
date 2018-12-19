@@ -42,7 +42,7 @@ namespace memecity::engine::sdl {
 			edit_text = false;
 			SDL_StopTextInput(); 
 		}
-		std::string get_text()
+		std::string get_text() const
 		{
 			return text;
 		}
