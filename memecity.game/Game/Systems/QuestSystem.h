@@ -14,7 +14,7 @@ class QuestSystem : public memecity::engine::ecs::System
 private:
 	memecity::engine::MultimediaManager& multimedia_manager;
 
-	void check_task_dropping(QuestEventArgs args, Task& task);
+	void check_task_dropping(memecity::engine::ecs::EntityManager &em, QuestEventArgs args, Task& task);
 	void check_task_finding(QuestEventArgs args, Task& task);
 	void check_task_interaction(QuestEventArgs args, Task& task);
 	void check_task_fighting(QuestEventArgs args, Task& task);

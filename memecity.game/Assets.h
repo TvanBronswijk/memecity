@@ -63,6 +63,8 @@ namespace assets {
 
 		constexpr inline Asset DARK_BACKGROUND = "Sprites/big_black.bmp";
 		constexpr inline Asset TIN_CAN = "Sprites/Tin_can.png";
+		constexpr inline Asset CHEWING_GUM = "Sprites/chewing_gum.png";
+		constexpr inline Asset TOMATO = "Sprites/tomato.png";
 	}
 	namespace spritesheets {
 		constexpr inline Asset BOY_1 = "Spritesheets/Boy1SpriteSheet.png";

@@ -4,7 +4,7 @@
 #include <Engine\Util.h>
 #include "..\Components.h"
 
-const char* on_tile(memecity::engine::ecs::EntityManager& em, const memecity::engine::ecs::Entity& entity) {
+inline const char* on_tile(memecity::engine::ecs::EntityManager& em, const memecity::engine::ecs::Entity& entity) {
 	auto entity_base = entity.get<BaseComponent>();
 	return em.query_entities("tile")
 		.first([&](const auto& e){

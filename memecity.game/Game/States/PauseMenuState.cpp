@@ -7,9 +7,22 @@
 PauseMenuState::PauseMenuState(memecity::engine::state::StateManager & sm, GameManager::GameContext & gc, memecity::engine::ecs::EntityManager & em)
 	: State(sm), _context(&gc), _entity_manager(&em)
 {
+	help_menu4 = memecity::engine::ui::menu::MenuBuilder(gc.get_multimedia_manager())
+		.create_menu("Help", assets::fonts::DEFAULT_FONT)
+		.with_read_only_menu_item("Stats")
+		.with_read_only_menu_item("Strenght: improves attack")
+		.with_read_only_menu_item("Perception: improves vision")
+		.with_read_only_menu_item("Endurance: improves movment speed")
+		.with_read_only_menu_item("Charisma: better change of a getting away with a faulty pickpocket ")
+		.with_read_only_menu_item("Intelligence: imporves pickpocket")
+		.with_read_only_menu_item("Agility: imporves defence")
+		.with_read_only_menu_item("Luck: beter change of getting more exp and coins")
+		.with_read_only_menu_item(" ")
+		//add next when needed.
+		.with_back_menu_item()
+		.get_menu();
 
-
-	help_menu2 = memecity::engine::ui::menu::MenuBuilder(gc.get_multimedia_manager())
+	help_menu3 = memecity::engine::ui::menu::MenuBuilder(gc.get_multimedia_manager())
 		.create_menu("Help", assets::fonts::DEFAULT_FONT)
 		.with_read_only_menu_item("Goal:")
 		.with_read_only_menu_item("Kill NPCs to gain XP.")
@@ -18,7 +31,23 @@ PauseMenuState::PauseMenuState(memecity::engine::state::StateManager & sm, GameM
 		.with_read_only_menu_item(" ")
 		.with_read_only_menu_item("Die or click Retire to finish the game.")
 		.with_read_only_menu_item(" ")
-		//add next when needed.
+		.with_menu_item("Next", help_menu4.get())
+		.with_back_menu_item()
+		.get_menu();
+
+	help_menu2 = memecity::engine::ui::menu::MenuBuilder(gc.get_multimedia_manager())
+		.create_menu("Help", assets::fonts::DEFAULT_FONT)
+		.with_read_only_menu_item("Controlls:")
+		.with_read_only_menu_item("N: quest list.")
+		.with_read_only_menu_item("P: stats list")
+		.with_read_only_menu_item("1: preset first inventory")
+		.with_read_only_menu_item("2: preset second position inventory")
+		.with_read_only_menu_item("3: preset third position inventory")
+		.with_read_only_menu_item("~: developer screen")
+		.with_read_only_menu_item("page up: speed + 0.5")
+		.with_read_only_menu_item("page down: speed - 0.5")
+		.with_read_only_menu_item(" ")
+		.with_menu_item("Next", help_menu3.get())
 		.with_back_menu_item()
 		.get_menu();
 

@@ -8,6 +8,7 @@
 #include "../Systems/ExpSystem.h"
 #include "../PlayerBuilder.h"
 
+
 void GameState::on_load()
 {
 	Point start;

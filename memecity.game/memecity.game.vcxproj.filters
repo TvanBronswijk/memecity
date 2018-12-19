@@ -165,50 +165,48 @@
     <CopyFileToFolders Include="Assets\Spritesheets\Girl1SpriteSheet.png" />
     <CopyFileToFolders Include="Assets\Spritesheets\Girl2SpriteSheet.png" />
     <CopyFileToFolders Include="Assets\Spritesheets\PoliceSpriteSheet.png" />
+    <CopyFileToFolders Include="Assets\Scripts\Prefabs\BlikSpawner.m2d" />
+    <CopyFileToFolders Include="Assets\Scripts\Prefabs\BlikSpawner.m2do" />
+    <CopyFileToFolders Include="Assets\Scripts\Prefabs\BridgePark.m2d" />
+    <CopyFileToFolders Include="Assets\Scripts\Prefabs\BridgePark.m2do" />
+    <CopyFileToFolders Include="Assets\Scripts\Prefabs\CanFortress.m2d" />
+    <CopyFileToFolders Include="Assets\Scripts\Prefabs\CanFortress.m2do" />
+    <CopyFileToFolders Include="Assets\Scripts\Prefabs\CanPrison.m2d" />
+    <CopyFileToFolders Include="Assets\Scripts\Prefabs\CanPrison.m2do" />
+    <CopyFileToFolders Include="Assets\Scripts\Prefabs\Church.m2d" />
+    <CopyFileToFolders Include="Assets\Scripts\Prefabs\Church.m2do" />
+    <CopyFileToFolders Include="Assets\Scripts\Prefabs\CrossBridge.m2d" />
+    <CopyFileToFolders Include="Assets\Scripts\Prefabs\CrossBridge.m2do" />
+    <CopyFileToFolders Include="Assets\Scripts\Prefabs\Hi.m2d" />
+    <CopyFileToFolders Include="Assets\Scripts\Prefabs\Hi.m2do" />
+    <CopyFileToFolders Include="Assets\Scripts\Prefabs\HorizontalBridge.m2d" />
+    <CopyFileToFolders Include="Assets\Scripts\Prefabs\HorizontalBridge.m2do" />
+    <CopyFileToFolders Include="Assets\Scripts\Prefabs\Nerd.m2d" />
+    <CopyFileToFolders Include="Assets\Scripts\Prefabs\Nerd.m2do" />
+    <CopyFileToFolders Include="Assets\Scripts\Prefabs\PolicePark.m2d" />
+    <CopyFileToFolders Include="Assets\Scripts\Prefabs\PolicePark.m2do" />
+    <CopyFileToFolders Include="Assets\Scripts\Prefabs\VerticalBridge.m2d" />
+    <CopyFileToFolders Include="Assets\Scripts\Prefabs\VerticalBridge.m2do" />
+    <CopyFileToFolders Include="Assets\Sprites\Tiles\black_00.png" />
+    <CopyFileToFolders Include="Assets\Sprites\Tiles\black_01.png" />
+    <CopyFileToFolders Include="Assets\Sprites\Tiles\brown_00.png" />
+    <CopyFileToFolders Include="Assets\Sprites\Tiles\brown_01.png" />
+    <CopyFileToFolders Include="Assets\Sprites\Tiles\hardwood_00.png" />
+    <CopyFileToFolders Include="Assets\Sprites\Tiles\hardwood_dark_00.png" />
+    <CopyFileToFolders Include="Assets\Sprites\Tiles\light_gray_00.png" />
+    <CopyFileToFolders Include="Assets\Sprites\Tiles\light_gray_01.png" />
+    <CopyFileToFolders Include="Assets\Sprites\Tiles\ns_00.png" />
+    <CopyFileToFolders Include="Assets\Sprites\Tiles\tan_00.png" />
+    <CopyFileToFolders Include="Assets\Sprites\Tiles\tan_01.png" />
+    <CopyFileToFolders Include="Assets\Sprites\Tiles\white_00.png" />
+    <CopyFileToFolders Include="Assets\Sprites\Tiles\white_01.png" />
+    <CopyFileToFolders Include="Assets\Sprites\tomato.png" />
+    <CopyFileToFolders Include="Assets\Sprites\chewing_gum.png" />
   </ItemGroup>
   <ItemGroup>
     <CopyFileToFolders Include="Assets\Advertisements\BananaWho.png" />
     <CopyFileToFolders Include="Assets\Advertisements\BurgerKing.png" />
     <CopyFileToFolders Include="Assets\Advertisements\CocaCola.png" />
     <CopyFileToFolders Include="Assets\Sprites\big_black.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Assets\Scripts\Prefabs\VerticalBridge.m2do" />
-    <None Include="Assets\Scripts\Prefabs\BlikSpawner.m2d" />
-    <None Include="Assets\Scripts\Prefabs\BlikSpawner.m2do" />
-    <None Include="Assets\Scripts\Prefabs\BridgePark.m2d" />
-    <None Include="Assets\Scripts\Prefabs\BridgePark.m2do" />
-    <None Include="Assets\Scripts\Prefabs\CanFortress.m2d" />
-    <None Include="Assets\Scripts\Prefabs\CanFortress.m2do" />
-    <None Include="Assets\Scripts\Prefabs\CanPrison.m2d" />
-    <None Include="Assets\Scripts\Prefabs\CanPrison.m2do" />
-    <None Include="Assets\Scripts\Prefabs\Church.m2d" />
-    <None Include="Assets\Scripts\Prefabs\Church.m2do" />
-    <None Include="Assets\Scripts\Prefabs\CrossBridge.m2d" />
-    <None Include="Assets\Scripts\Prefabs\CrossBridge.m2do" />
-    <None Include="Assets\Scripts\Prefabs\Hi.m2d" />
-    <None Include="Assets\Scripts\Prefabs\Hi.m2do" />
-    <None Include="Assets\Scripts\Prefabs\HorizontalBridge.m2d" />
-    <None Include="Assets\Scripts\Prefabs\HorizontalBridge.m2do" />
-    <None Include="Assets\Scripts\Prefabs\Nerd.m2d" />
-    <None Include="Assets\Scripts\Prefabs\Nerd.m2do" />
-    <None Include="Assets\Scripts\Prefabs\PolicePark.m2d" />
-    <None Include="Assets\Scripts\Prefabs\PolicePark.m2do" />
-    <None Include="Assets\Scripts\Prefabs\VerticalBridge.m2d" />
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="Assets\Sprites\Tiles\black_00.png" />
-    <Image Include="Assets\Sprites\Tiles\black_01.png" />
-    <Image Include="Assets\Sprites\Tiles\brown_00.png" />
-    <Image Include="Assets\Sprites\Tiles\brown_01.png" />
-    <Image Include="Assets\Sprites\Tiles\hardwood_00.png" />
-    <Image Include="Assets\Sprites\Tiles\hardwood_dark_00.png" />
-    <Image Include="Assets\Sprites\Tiles\light_gray_00.png" />
-    <Image Include="Assets\Sprites\Tiles\light_gray_01.png" />
-    <Image Include="Assets\Sprites\Tiles\ns_00.png" />
-    <Image Include="Assets\Sprites\Tiles\tan_00.png" />
-    <Image Include="Assets\Sprites\Tiles\tan_01.png" />
-    <Image Include="Assets\Sprites\Tiles\white_00.png" />
-    <Image Include="Assets\Sprites\Tiles\white_01.png" />
   </ItemGroup>
 </Project>

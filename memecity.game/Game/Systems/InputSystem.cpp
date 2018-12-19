@@ -2,11 +2,12 @@
 #include "..\Components.h"
 #include "..\States.h"
 #include "..\Input.h"
-#include "../States/DeveloperMenuState.h"
-#include "../PlayerManager.h"
-#include "../States/StatsState.h"
+#include "..\States\DeveloperMenuState.h"
+#include "..\PlayerManager.h"
+#include "..\States\StatsState.h"
 #include "..\Util\Util.h"
 #include "..\LevelBuilder.h"
+#include "..\Builder\QuestBuilder.h"
 
 using namespace memecity::engine;
 using namespace memecity::engine::ecs;
@@ -68,6 +69,9 @@ void InputSystem::run(EntityManager& em, float dt) const
 				state_manager.create_state<LoadingState>(*_context, 
 					[&](auto& ctx, auto& listener) { start = LevelBuilder(ctx, 128, 128, false).build(em, listener); state_manager.pop(); });
 				player.get<BaseComponent>()->location = start;
+
+				player.get<PlayerComponent>()->_stories = QuestBuilder(_context->get_multimedia_manager(), em, start).get_all_stories();
+				player.get<PlayerComponent>()->_stories[0].active = false;
 			}
 
 			auto npcs = em.get_entities_with_component<AIComponent>();
@@ -120,6 +124,9 @@ void InputSystem::run(EntityManager& em, float dt) const
 				auto item = inventory->items.at(inventory->selected);
 				inventory->items.erase(inventory->items.begin() + inventory->selected);
 
+				//TODO::quest
+				//this->quest_event.fire(em, { nullptr , item });
+
 				//update position
 				auto item_base = item->get<BaseComponent>();
 				auto player_base = player.get<BaseComponent>();
@@ -163,7 +170,7 @@ void InputSystem::run(EntityManager& em, float dt) const
 				if (check_collision(*player.get<BaseComponent>(), *item.get<BaseComponent>(), 60)) {
 					inventory->items.emplace_back(&item);
 					this->quest_event.fire(em, { &item , nullptr });
-					item.get<BaseComponent>()->location = uPoint<float>(99999, 99999);
+					item.get<BaseComponent>()->location = uPoint<float>(-999, -999);
 				}
 			}
 		}
