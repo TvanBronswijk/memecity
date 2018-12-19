@@ -27,6 +27,7 @@
     <ClInclude Include="Game\Event\FaultyPickpocketEventArgs.h" />
     <ClInclude Include="Game\Event\PickpocketEventArgs.h" />
     <ClInclude Include="Game\Event\DeathEventArgs.h" />
+    <ClInclude Include="Game\GameSaver.h" />
     <ClInclude Include="Game\Generate\Item\ItemGenerator.h" />
     <ClInclude Include="Game\Quest\Quest.h" />
     <ClInclude Include="Game\Quest\Story.h" />
@@ -61,6 +62,7 @@
     <ClInclude Include="Game\PlayerBuilder.h" />
     <ClInclude Include="Game\States\GameOverState.h" />
     <ClInclude Include="Game\States\DeveloperMenuState.h" />
+    <ClInclude Include="Game\States\LevelChangeState.h" />
     <ClInclude Include="Game\States\LoadingState.h" />
     <ClInclude Include="Game\States\GameState.h" />
     <ClInclude Include="Game\States.h" />
@@ -104,6 +106,7 @@
     <ClInclude Include="Game\Util\Util.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Game\GameSaver.cpp" />
     <ClCompile Include="Game\Generate\City\Strategy\File\FileStrategy.cpp" />
     <ClCompile Include="Game\Builder\QuestBuilder.cpp" />
     <ClCompile Include="Game\Generate\Item\ItemGenerator.cpp" />
@@ -114,6 +117,7 @@
     <ClCompile Include="Game\PlayerBuilder.cpp" />
     <ClCompile Include="Game\States\DeveloperMenuState.cpp" />
     <ClCompile Include="Game\States\GameOverState.cpp" />
+    <ClCompile Include="Game\States\LevelChangeState.cpp" />
     <ClCompile Include="Game\States\LoadingState.cpp" />
     <ClCompile Include="Game\States\GameState.cpp" />
     <ClCompile Include="Game\States\MenuState.cpp" />

@@ -10,6 +10,8 @@ class MenuState : public memecity::engine::state::State
 {
 private:
 	GameManager::GameContext* _context;
+	std::unique_ptr<memecity::engine::ui::menu::Menu> start_new_game_menu;
+	std::unique_ptr<memecity::engine::ui::menu::Menu> load_save_menu;
 	std::unique_ptr<memecity::engine::ui::menu::Menu> settings_menu;
 	std::unique_ptr<memecity::engine::ui::menu::Menu> credits_menu;
 	std::unique_ptr<memecity::engine::ui::menu::Menu> highscores_menu;

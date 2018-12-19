@@ -4,12 +4,12 @@
 #include <string>
 #include "../HighscoreLoader.h"
 
-GameOverState::GameOverState(memecity::engine::state::StateManager & sm, GameManager::GameContext & gc, int experience)
-	: State(sm), _context(&gc)
+GameOverState::GameOverState(memecity::engine::state::StateManager & sm, GameManager::GameContext & gc, int experience, bool retire)
+	: State(sm), _context(&gc), retire(retire)
 {
 	this->experience = experience;
 	menu = memecity::engine::ui::menu::MenuBuilder(gc.get_multimedia_manager())
-		.create_menu("Game Over", assets::fonts::DEFAULT_FONT)
+		.create_menu(retire? "Retired":"Game Over", assets::fonts::DEFAULT_FONT)
 		.with_read_only_menu_item(" ")
 		.with_read_only_menu_item("Enter your name:")
 		.with_menu_item(" ")
@@ -17,7 +17,7 @@ GameOverState::GameOverState(memecity::engine::state::StateManager & sm, GameMan
 		.with_read_only_menu_item("Your total experience is:")
 		.with_read_only_menu_item(std::to_string(experience))
 		.with_read_only_menu_item(" ")
-		.with_menu_item("Main Menu", nullptr, [&](auto& menu_item) { back(2);  })
+		.with_menu_item("Main Menu", nullptr, [&](auto& menu_item){	if (retire)	{ back(2); } else { back(3); }})
 		.get_menu();
 
 	_context->get_input_manager().enable_text_editing();
