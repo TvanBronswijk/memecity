@@ -3,7 +3,6 @@
 #include <algorithm>
 #include <iostream>
 #include <SDL.h>
-
 namespace memecity::engine
 {
 	bool StorageManager::save(const std::string& file_path, serialization::SerializeInfo data) const
@@ -34,7 +33,7 @@ namespace memecity::engine
 	{
 		try
 		{
-			std::string full_path = SDL_GetBasePath();
+			std::string full_path = std::string(getenv("USERPROFILE")) + "\\Documents\\MemeCity";
 			full_path += "\\" + file_path;
 
 			std::string directory;
@@ -71,7 +70,7 @@ namespace memecity::engine
 
 		try
 		{
-			std::string full_path = SDL_GetBasePath();
+			std::string full_path = std::string(getenv("USERPROFILE")) + "\\Documents\\MemeCity";
 			full_path += "\\" + file_path;
 			std::ifstream input_stream;
 			input_stream.open(full_path);
@@ -103,7 +102,7 @@ namespace memecity::engine
 
 		try
 		{
-			std::string full_path = SDL_GetBasePath();
+			std::string full_path = std::string(getenv("USERPROFILE")) + "\\Documents\\MemeCity";
 			full_path += "\\" + file_path;
 			std::ifstream input_stream;
 			input_stream.open(full_path);
@@ -139,7 +138,7 @@ namespace memecity::engine
 	std::vector<std::string> StorageManager::get_filenames_from_directory(const std::string & directory_path) const
 	{
 		std::vector<std::string> temp;
-		std::string absolute_path = SDL_GetBasePath();
+		std::string absolute_path = std::string(getenv("USERPROFILE")) + "\\Documents\\MemeCity";
 		absolute_path += directory_path;
 		for (const auto& entry : filesystem::directory_iterator(absolute_path))
 		{
@@ -157,8 +156,8 @@ namespace memecity::engine
 	std::vector<std::string> StorageManager::get_foldernames_from_directory(const std::string & directory_path) const
 	{
 		std::vector<std::string> temp;
-		std::string absolute_path = SDL_GetBasePath();
-		absolute_path += directory_path;
+		std::string absolute_path = std::string(getenv("USERPROFILE")) + "\\Documents\\MemeCity";
+		absolute_path += "\\" + directory_path;
 		if (filesystem::exists(absolute_path)) {
 			for (const auto& entry : filesystem::directory_iterator(absolute_path))
 			{
