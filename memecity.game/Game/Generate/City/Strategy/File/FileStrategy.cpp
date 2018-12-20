@@ -16,6 +16,8 @@ generate::models::City generate::strategy::FileStrategy::generate(int w, int h)
 		}
 	}
 	models::City city(w, h);
+	city.start.x = 5;
+	city.start.y = 5;
 	int x = 0;
 	int y = 0;
 	for (char item : map_string)
@@ -23,7 +25,6 @@ generate::models::City generate::strategy::FileStrategy::generate(int w, int h)
 		if (item != '\n')
 		{
 			city.tiles(x, y) = item;
-			city.objects(x, y) = '\0';
 		}
 		if (item == '\n')
 		{
@@ -36,7 +37,6 @@ generate::models::City generate::strategy::FileStrategy::generate(int w, int h)
 		}
 
 	}
-
 
 	return city;
 }

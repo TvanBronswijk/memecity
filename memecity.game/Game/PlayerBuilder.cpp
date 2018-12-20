@@ -19,7 +19,7 @@ const memecity::engine::ecs::Entity& PlayerBuilder::build(memecity::engine::ecs:
 
 	auto builder = em.create_entity("player")
 		.with_component<BaseComponent>(std::move(texture), _start.x, _start.y, 48.0f, 48.0f)
-		.with_component<PlayerComponent>(QuestBuilder(multimedia_manager, em).get_all_stories())
+		.with_component<PlayerComponent>(QuestBuilder(multimedia_manager, em, _start).get_all_stories())
 		.with_component<StatsComponent>(rand_stat(), rand_stat(), rand_stat(), rand_stat(), rand_stat(), rand_stat(), rand_stat())
 		.with_component<AnimationComponent>()
 		.with_component<ExpComponent>(0, 100)

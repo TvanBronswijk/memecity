@@ -10,6 +10,8 @@
 #include "../Components/InteractionComponent.h"
 #include "../Components/PlayerComponent.h"
 #include "../Enum/QuestStates.h"
+#include "../Components/TileComponent.h"
+#include "../Util/Util.h"
 #include <vector>
 #include <algorithm> 
 #include <iostream>
@@ -91,7 +93,7 @@ void QuestSystem::on_event(EntityManager &em, QuestEventArgs args) {
 				auto &task = story.quests.front().tasks.front();
 				switch (task.state) {
 				case Quest_State::Dropping:
-					check_task_dropping(args, task);
+					check_task_dropping(em, args, task);
 					break;
 				case Quest_State::Fighting:
 					check_task_fighting(args, task);
@@ -125,10 +127,14 @@ void QuestSystem::check_task_finding(QuestEventArgs args, Task& task) {
 		}
 	}
 }
-void QuestSystem::check_task_dropping(QuestEventArgs args, Task& task) {
-	if (task.item == args.item) {
-		//TODO: implement quest_drop
-		task.counter++;
+void QuestSystem::check_task_dropping(EntityManager &em, QuestEventArgs args, Task& task) {
+	if (args.item != nullptr) {
+		if (task.item->get<ItemComponent>()->name == args.item->get<ItemComponent>()->name) {
+			auto tile = on_tile(em, *args.item);
+			if (task.target->get<TileComponent>()->type == tile) {
+				task.counter++;
+			}
+		}
 	}
 }
 void QuestSystem::check_task_fighting(QuestEventArgs args, Task& task) {

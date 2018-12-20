@@ -106,10 +106,10 @@ void AISystem::move_random(const Entity& entity) const{
 	auto velocity = entity.get<VelocityComponent>();
 	auto ai = entity.get<AIComponent>();
 
-	auto random = (rand() % 100);
+	auto random = (rand() % 1000);
 
 	if (random < 1) {
-		auto direction = (rand() % 4);
+		auto direction = (rand() % 5);
 		switch (direction)
 		{
 		case 0:

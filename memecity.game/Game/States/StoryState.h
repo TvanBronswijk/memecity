@@ -13,9 +13,12 @@ private:
 	std::unique_ptr<memecity::engine::ui::menu::Menu> menu;
 	std::unique_ptr<memecity::engine::ui::menu::Menu> help_menu;
 
+	std::vector<Story> stories;
+	int depth;
 public:
 	StoryState(memecity::engine::state::StateManager& sm, GameManager::GameContext& gc, std::vector<Story> stories);
 	~StoryState() = default;
+	void make_menu(GameManager::GameContext & gc);
 	void on_load() override;
 	void update(float dt) override;
 	void draw() override;
