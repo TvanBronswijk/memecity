@@ -2,9 +2,9 @@
 #include "..\Components.h"
 #include "..\States.h"
 #include "..\Input.h"
-#include "../States/DeveloperMenuState.h"
-#include "../PlayerManager.h"
-#include "../States/StatsState.h"
+#include "..\States\DeveloperMenuState.h"
+#include "..\PlayerManager.h"
+#include "..\States\StatsState.h"
 #include "..\Util\Util.h"
 #include "..\LevelBuilder.h"
 #include "..\States\LevelChangeState.h"
@@ -139,7 +139,7 @@ void InputSystem::run(EntityManager& em, float dt) const
 					break;
 				}
 
-				this->quest_event.fire(em, { item , nullptr });
+				this->quest_event.fire(em, { nullptr , item });
 			}
 		}
 		if (input_manager.is_pressed(input::TAKE)) {
@@ -150,7 +150,7 @@ void InputSystem::run(EntityManager& em, float dt) const
 				if (check_collision(*player.get<BaseComponent>(), *item.get<BaseComponent>(), 60)) {
 					inventory->items.emplace_back(&item);
 					this->quest_event.fire(em, { &item , nullptr });
-					item.get<BaseComponent>()->location = uPoint<float>(99999, 99999);
+					item.get<BaseComponent>()->location = uPoint<float>(-999, -999);
 				}
 			}
 		}

@@ -61,9 +61,9 @@ Point LevelBuilder::build(memecity::engine::ecs::EntityManager& em, loading::Loa
 			case 'c':
 				auto texture = multimedia_manager.get_texture(assets::sprites::TIN_CAN, 0, 0, 48, 28);
 				texture->set_position({ 0,0 });
-				auto builder = em.create_entity("Blik")
+				auto builder = em.create_entity("Tin can")
 					.with_component<BaseComponent>(std::move(texture), x * 64.0f, y * 64.0f, 48.0f, 48.0f)
-					.with_component<ItemComponent>("Blik", "a normal tin can")
+					.with_component<ItemComponent>("Tin can", "a normal tin can")
 					.with_component<StatsComponent>(0, 0, 0, 0, 0, 0, 0);
 				break;
 			}

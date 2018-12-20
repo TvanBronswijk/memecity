@@ -3,6 +3,8 @@
 #include "..\..\Assets.h"
 #include "LoadingState.h"
 #include "..\LevelBuilder.h"
+#include "..\Components\PlayerComponent.h"
+#include "..\Builder\QuestBuilder.h"
 #include "..\GameSaver.h"
 
 LevelChangeState::LevelChangeState(memecity::engine::state::StateManager & sm, GameManager::GameContext & gc, memecity::engine::ecs::EntityManager & em, int& map_number, std::string save_location)
@@ -16,6 +18,9 @@ LevelChangeState::LevelChangeState(memecity::engine::state::StateManager & sm, G
 		.create_menu("Station", assets::fonts::DEFAULT_FONT)
 		.with_menu_item("Go to Next City", nullptr, [&](auto& _) {
 		Point start;
+
+		player.get<PlayerComponent>()->_stories = QuestBuilder(_context->get_multimedia_manager(), em, start).get_all_stories();
+		player.get<PlayerComponent>()->_stories[0].active = false;
 		
 		next<LoadingState>(*_context,
 			[&](auto& ctx, auto& listener) {

@@ -38,9 +38,6 @@ public:
 
 		_hud.create_overlay_text_item("BLIKCOIN", "BlikCoins: 0", 16, 650, 16);
 
-		_hud.create_overlay_text_item("INVENTORY"," Inventory" , 16, 1000, 16);
-		_hud.create_overlay_text_item("SIZE"," Size = 1" , 16, 1000, 38);
-		_hud.create_overlay_text_item("SELECTED"," Selected = 1" , 16, 1000, 62);
 		//images on the side
 
 	}

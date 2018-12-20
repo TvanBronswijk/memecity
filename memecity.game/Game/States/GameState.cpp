@@ -11,6 +11,7 @@
 #include "../MapSaver.h"
 #include "../GameSaver.h"
 
+
 void GameState::on_load()
 {
 	Point start;
